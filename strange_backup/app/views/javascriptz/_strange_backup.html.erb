@@ -1,0 +1,18 @@
+<script type="text/javascript" charset="utf-8">
+
+
+$('ul.backup_change_tag_Tab_nav li a').live('click', function(event){
+	event.preventDefault();
+	
+	$(this).parent().parent().find('a.aktiv').removeClass('aktiv');
+	$(this).addClass('aktiv');
+	var this_box = $(this).attr("id");
+	$(this).parent().parent().parent().find('.field_value_box').toggleClass('hidden');
+
+});
+
+
+
+
+
+</script>

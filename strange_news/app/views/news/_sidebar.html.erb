@@ -1,0 +1,76 @@
+
+<%= content_for :modul_sidebar do %>
+
+<% news ||= News.aktiv.first %>
+
+
+<div class="side_box">
+	<div class="sidebar_head aktiv_box">
+		<a href="#">Kategorien</a>
+	</div>
+	<ul class='sidebar'>
+			<% if Kat.where(:target_type => 'News').count > 0 %>
+				<% @kats = [] %>
+				<% @n_kat_fl = 0 %>
+				<% Kat.where(:target_type => 'News').each do |tagging| %>
+					<% @kats << tagging.kategorie.name %>
+				<% end %>
+				<% @kats.uniq.sort.each do |kat| %>
+					<% kt = Kategorie.where(:name => kat).first %>
+
+					<li class="dot"><%= link_to raw("#{ kat }"),
+					 					"#{news.news_site_slug}/by_kategorie#{kt.slug}", :class => "#{ 'aktiv' if @kategorie && @kategorie == kt}" %></li>
+
+				<% end %>
+			<% end %>
+	</ul>
+</div>
+
+
+<div class="side_box">
+	<div class="sidebar_head">
+		<a href="#">Newsarchiv</a>
+	</div>
+	<ul class='sidebar'>
+			<% @n_jahr = 0 %>
+			<% News.aktiv.each do |news_bar| %>
+			
+				<% unless @n_jahr == news_bar.jahr %>
+					<li class="dot"><%= link_to news_bar.jahr, "#{news_bar.news_site_slug}/by_date/#{news_bar.jahr}", :class => "#{ 'aktiv' if news_bar.jahr.to_s == params[:year].to_s}" %></li>
+					<% @n_jahr = news_bar.jahr %>
+				<% end %>
+				
+			<% end %>
+	</ul>
+</div>
+
+
+<div class="side_box">
+	<div class="sidebar_head aktiv_box">
+		<a href="#">Tags</a>
+	</div>
+	<ul class='sidebar'>
+			<% if Tagging.where(:target_type => 'News').count > 0 %>
+				<% @tags = [] %>
+				<% @n_tag_fl = 0 %>
+				<% Tagging.where(:target_type => 'News').each do |tagging| %>
+					<% @tags << tagging.tag.name %>
+				<% end %>
+				<% @tags.uniq.sort.each do |tag| %>
+					<% tg = Tag.where(:name => tag).first %>
+				<% unless @n_tag_fl == tg.firstletter %>
+					<li><%= link_to raw("<span class='firstletter'>#{tg.firstletter}</span>#{ tag }"),
+					 					"#{news.news_site_slug}/by_tag#{tg.slug}", :class => "#{ 'aktiv' if @tag && @tag == tg}" %></li>
+					<% @n_tag_fl = tg.firstletter %>
+				<% else %>
+					<li><%= link_to raw("#{ tag }"),
+					 					"#{news.news_site_slug}/by_tag#{tg.slug}", :class => "#{ 'aktiv' if @tag && @tag == tg}" %></li>
+				<% end%>
+				<% end %>
+			<% end %>
+	</ul>
+</div>
+
+<% end %>
+
+

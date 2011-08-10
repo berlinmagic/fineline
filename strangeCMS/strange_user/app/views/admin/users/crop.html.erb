@@ -1,0 +1,101 @@
+<% content_for :head do %>
+<%= theme_stylesheet_link_tag 'jquery.Jcrop' %>
+<% end %>
+
+<% content_for :js_stuff do %>
+
+<%= theme_javascript_include_tag 'jquery.Jcrop.min' %>
+
+<script language="Javascript">
+
+function showPreview(coords)
+{
+  var aspect_ratio = <%= @user.bild_width %> / <%= @user.bild_height %>;
+  var scale = <%= 1.0 * @user.bild_width / 660 %>;
+  var crop_str = Math.round(coords.w * scale) + 'x' + Math.round(coords.h * scale) +
+           '+' + Math.round(coords.x * scale) + '+' + Math.round(coords.y * scale);
+  $('#bild_cropping').val(crop_str);
+
+  var rx = 660 / coords.w ;
+  var ry = 760 / coords.h;
+  $('#preview').css({
+    width: Math.round(rx * 660) + 'px',
+    height: Math.round(ry * <%= 660 * @user.bild_height / @user.bild_width %>) + 'px',
+    marginLeft: '-' + Math.round(rx * coords.x) + 'px',
+    marginTop: '-' + Math.round(ry * coords.y) + 'px'
+  });
+}
+
+$(function() {
+  $('#cropbox').Jcrop({
+      onSelect: showPreview,
+      onChange: showPreview,
+      setSelect:   [ 0, 0, 240, 240 ],
+      aspectRatio: 660/760
+    });
+});
+
+</script>
+<% end %>
+
+<div class="admin_box">
+	
+<div class="box">
+	<div class="in_box">
+
+		<h1><%= @user.anrede %> <%= @user.vorname %> <%= @user.name %></h1>
+		
+	</div>
+</div>
+
+<div class="box">
+	<div class="trenn_box">
+		<div class="top_trenner"></div>
+	</div>
+</div>
+
+<div class="box">
+	<div class="in_box">
+		<p><strong>Avatar:</strong></p>
+		<%= image_tag @user.bild.thumb("660x").url, :id => 'cropbox' %>
+	</div>
+</div>
+
+<div class="box">
+	<div class="trenn_box">
+		<div class="top_trenner"></div>
+	</div>
+</div>
+
+<div class="box">
+	<div class="in_box">
+		<%= form_for @user, :html => { :method => :put }, :url => { :controller => 'admin/users', :action => :croped} do |f| %>
+		  <%= f.hidden_field :bild_cropping, :id => 'bild_cropping' %><br />
+		  <%= f.submit "zuschneiden!" %>
+		<% end %>
+		<div class="clearfix"></div>
+	</div>
+</div>
+
+<div class="box">
+	<div class="trenn_box">
+		<div class="top_trenner"></div>
+	</div>
+</div>
+
+<div class="box">
+	<div class="in_box">
+		<p><strong>Vorschau:</strong></p>
+		<div style="width:660px;height:760px;overflow:hidden">
+		  <%= image_tag @user.bild.thumb("660x").url, :id => 'preview' %>
+		</div>
+	</div>
+</div>
+
+
+
+</div>
+
+
+
+

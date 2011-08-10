@@ -1,0 +1,50 @@
+<% content_for :js_stuff do %>
+<%# javascript_include_tag 'fckeditor/fckeditor', 'elfinder/elfinder.min', 'elfinder/i18n/elfinder.de' %>
+<%= theme_javascript_include_tag 'fckeditor/fckeditor' %>
+<%= theme_javascript_include_tag 'elfinder/elfinder.min' %>
+<%= theme_javascript_include_tag 'elfinder/i18n/elfinder.de' %>
+<script type="text/javascript">
+window.onload = function()
+{
+	var js_path = "/javascripts";
+    var base_path = js_path+"/fckeditor/";
+	var fck_height = "200px";
+	var fck_width = "731px";
+	var fck_toolz = "Strange"
+	
+  $('textarea.fck').each(function(){
+	var oFCKeditor = new FCKeditor(this.id, fck_width, fck_height, fck_toolz);
+	oFCKeditor.BasePath = base_path;
+	oFCKeditor.Config['GoogleMaps_Key'] = STRANGE_G_MAP_KEY;
+	oFCKeditor.Config['CustomConfigurationsPath'] = js_path+'/fckcustom.js';
+	oFCKeditor.ReplaceTextarea(); 
+  });
+$('div.add_nested_form.add_text_field a').live('click', function(){
+/*	$('textarea.live-fck').live('click', function(){ */
+		
+	$(this).parent().parent().hide();
+	
+	
+  });
+$('div.edit_nested_form a.Pagez__toggle_remote_link').live('click', function(event){
+/* $('textarea.live-fck').each(function(){ */
+	
+	event.preventDefault();
+
+	var text_stuff = $(this).parent().parent().parent().find('textarea.live-fck').attr("id");
+	var oFCKeditor = new FCKeditor(text_stuff, fck_width, fck_height, fck_toolz);
+	oFCKeditor.BasePath = base_path;
+	oFCKeditor.Config['GoogleMaps_Key'] = STRANGE_G_MAP_KEY;
+	oFCKeditor.Config['CustomConfigurationsPath'] = js_path+'/fckcustom.js';
+	oFCKeditor.ReplaceTextarea(); 
+	
+	$(this).parent().parent().parent().find('div.hidden').hide().removeClass("hidden").fadeIn('900');
+	$(this).parent().parent().parent().find('div.show_text').fadeOut('300').hide();
+	$(this).parent().fadeOut('500');
+	
+  })
+
+
+};
+</script>
+<% end %>

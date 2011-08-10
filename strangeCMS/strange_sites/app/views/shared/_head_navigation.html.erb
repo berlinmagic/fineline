@@ -1,0 +1,14 @@
+<nav id="head_navigation">
+	
+	<%= hook :system_navigation do %>
+		
+		<% Seite.aktiv.header.each do |seite| %>
+			<a href="<%= seite.link %>" class="<%= 'aktiv' if @seite && ((@seite == seite) || (@seite.ueber_seite == seite)) %>"><%= seite.name %></a>
+		<% end %>
+	
+
+		<%= link_to t('std_seiten.sitemap'), '/sitemap', :class => "strange_head_button #{'aktiv' if @seite && @seite.slug == '/sitemap'}" %>
+	
+	<% end %>
+	
+</nav>

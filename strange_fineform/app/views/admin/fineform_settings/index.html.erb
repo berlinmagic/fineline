@@ -1,0 +1,54 @@
+<div class="admin_box">
+	<h1><%= t('strange_preferences.kontakt_settings')%></h1>
+	<div class="admin_in_box">
+		
+		<div class="box">
+			<div class="in_box">
+				<h3>Hier sehen Sie die aktuellen Einstellungen Ihres Formulars:</h3>
+			</div>
+		</div>
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<table>
+					<tr>
+						<th><%= t("fineform.mail_von") %></th>
+						<td><%= Strangecms::Fineform::Config[:mail_von] %></td>
+					</tr>
+					<tr>
+						<th><%= t("fineform.mail_an") %></th>
+						<td><%= Strangecms::Fineform::Config[:mail_an] %></td>
+					</tr>
+					<tr>
+						<th><%= t("fineform.mail_bcc") %></th>
+						<td><%= Strangecms::Fineform::Config[:mail_bcc] %></td>
+					</tr>
+					
+				</table>
+				<br/>
+				<p><strong><%= t("fineform.std_antwort") %>:</strong></p>
+				<div class="top_trenner"></div>
+				<p><%= raw(Strangecms::Fineform::Config[:std_antwort] )%></p>
+				<div class="top_trenner"></div>
+				<br/>
+				<p><strong><%= t("fineform.mail_antwort") %>:</strong></p>
+				<div class="top_trenner"></div>
+				<p><%= raw(Strangecms::Fineform::Config[:mail_antwort] )%></p>
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<%= link_to t("edit_settings"), admin_fineform_settings_edit_path, :class => 'big_submit_button' %>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<%= render 'admin/settings/sidebar' %>

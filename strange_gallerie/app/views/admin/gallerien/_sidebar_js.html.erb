@@ -1,0 +1,58 @@
+<% content_for :sidebar do %>
+<div id="sidebar">
+			<ul id="gallerie_navi">
+				<li><%= link_to 'Gallerien', admin_gallerien_url, :class => "js_pic_link #{'aktiv' if @u_aktiv == 'gallerie'}" %></li>
+				<% if Gallerie.all.count > 0 %>
+					<li>
+						<ul class="inner_gallerie_navi">
+					<% Gallerie.all.each do |data| %>
+						<li><%= link_to raw("&nbsp;&raquo;&nbsp;&nbsp;#{data.name}&nbsp;&nbsp;&ndash;&nbsp;&nbsp;[ #{data.bilder.count} ]"), admin_gallerie_url(data), 
+												:class => "js_pic_link #{'aktiv' if @gallerie && @gallerie.id == data.id}" %></li>
+					<% end %>
+						</ul>
+					</li>
+				<% end %>
+				<li><%= link_to 'Kategorien', admin_bild_kategorien_url, :class => "js_pic_link #{'aktiv' if @u_aktiv == 'bild_kategorien'}" %></li>
+				<% if BildKategorie.all.count > 0 %>
+					<li>
+						<ul class="inner_gallerie_navi">
+					<% BildKategorie.all.each do |data| %>
+						<li><%= link_to raw("&nbsp;&raquo;&nbsp;&nbsp;#{data.name}&nbsp;&nbsp;&ndash;&nbsp;&nbsp;[ #{data.bilder.count} ]"), admin_bild_kategorie_url(data), 
+												:class => "js_pic_link #{'aktiv' if @bild_kategorie && @bild_kategorie.id == data.id}" %></li>
+					<% end %>
+						</ul>
+					</li>
+				<% end %>
+				<li><%= link_to 'Bilder', admin_bilder_url, :class => "js_pic_link #{'aktiv' if @u_aktiv == 'bilder'}" %></li>
+				<% if Tagging.where(:target_type => 'Bild').count > 0 %>
+					<% @tags = [] %>
+					<% Tagging.where(:target_type => 'Bild').each do |tagging| %>
+						<% @tags << tagging.tag.name %>
+					<% end %>
+					<li>
+						<ul class="inner_gallerie_navi">
+							<li>&nbsp;</li>
+							<li><h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tag´s:</h3></li>
+					<% @tags.uniq.sort.each do |tag| %>
+						<% tg = Tag.where(:name => tag).first %>
+						<li><%= link_to raw("&nbsp;&raquo;&nbsp;&nbsp;#{ tag }&nbsp;&nbsp;&ndash;&nbsp;&nbsp;
+							[ #{ Tagging.where(:target_type => 'Bild', :tag_id => tg.id).count } ]"), selected_admin_tag_bilder_path(tg), :class => 'js_pic_link' %></li>
+					<% end %>
+						</ul>
+					</li>
+					
+				<% end %>
+				<% if @u_aktiv == 'gallerie' %>
+					<li>&nbsp;</li>
+					<li><%= link_to '+ neue Gallerie', new_admin_gallerie_url, :class => 'js_pic_link ' %></li>
+				<% elsif @u_aktiv == 'bild_kategorien' %>
+					<li>&nbsp;</li>
+					<li><%= link_to '+ neue Kategorie', new_admin_bild_kategorie_url, :class => 'js_pic_link ' %></li>
+				<% elsif @u_aktiv == 'bilder' %>
+					<li>&nbsp;</li>
+					<li><%= link_to '+ neues Bild', new_admin_bild_url, :class => 'js_pic_link ' %></li>
+				<% end %>
+			</ul>
+			<br class="clear" />
+</div>
+<% end %>

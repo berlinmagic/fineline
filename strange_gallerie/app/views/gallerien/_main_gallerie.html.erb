@@ -1,0 +1,23 @@
+
+
+<div style="margin-right: -15px">
+	
+
+<% @bilder = Bild.all %>
+	
+	<% if @bilder.count > 0 %>
+	
+		<% @bilder.each do |bild| %>
+
+			<%= render 'gallerien/g_pic', :bild => bild, :gpic_width => 167, :gpic_height => 122 %>
+
+		<% end %>
+		
+	
+	<% else %>
+	
+		Bilder folgen ...
+
+	<% end %>
+	
+</div>

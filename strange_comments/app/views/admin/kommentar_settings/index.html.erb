@@ -1,0 +1,89 @@
+<div class="admin_box">
+	<h1><%= t('strange_comments.settings')%></h1>
+	<div class="admin_in_box">
+		
+		<div class="box">
+			<div class="in_box">
+				<h3>Hier sehen Sie die momentan aktiven Felder Ihres Kontakt-Formulars:</h3>
+			</div>
+		</div>
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<table class="settings">
+					<tr>
+						<th>Kommentare sind </th>
+						<td>
+							<% if Strangecms::Kommenta::Config[:aktiv] %>
+								<span class="cool">aktiv</span>
+							<% else %>
+								<span class="panic">Achtung, inaktiv!</span>
+							<% end %>
+						</td>
+					</tr>
+					
+					<tr>
+						<th>Formular - Stil</th>
+						<td>
+							<%= Strangecms::Kommenta::Config[:form_stil] %>
+						</td>
+					</tr>
+					
+					
+					<tr>
+						<th colspan="2" class="u_kat"><%= t('strange_comments.optional_fields')%></th>
+					</tr>
+					
+					
+					<tr>
+						<th><%= t('strange_comments.headline') %></th>
+						<td>
+							<%= Strangecms::Kommenta::Config[:headline_feld] ? 'aktiv' : 'inaktiv' %>
+						</td>
+					</tr>
+					
+					<tr>
+						<th><%= t('strange_comments.user_vorname') %></th>
+						<td>
+							<%= Strangecms::Kommenta::Config[:vorname_feld] ? 'aktiv' : 'inaktiv' %>
+						</td>
+					</tr>
+					
+					<tr>
+						<th><%= t('strange_comments.user_website') %></th>
+						<td>
+							<%= Strangecms::Kommenta::Config[:website_feld] ? 'aktiv' : 'inaktiv' %>
+						</td>
+					</tr>
+					
+					<tr>
+						<th><%= t('strange_comments.user_firma') %></th>
+						<td>
+							<%= Strangecms::Kommenta::Config[:firma_feld] ? 'aktiv' : 'inaktiv' %>
+						</td>
+					</tr>
+				</table>
+				
+			</div>
+		</div>
+
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<%= link_to t("edit_settings"), '/admin/settings/kommentare/edit', :class => 'big_submit_button' %>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<%= render 'admin/settings/sidebar' %>

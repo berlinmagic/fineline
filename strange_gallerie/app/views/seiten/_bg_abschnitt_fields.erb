@@ -1,0 +1,89 @@
+
+<% if f.object.stuff_typ && f.object.stuff_typ == "gallerie" %>
+<div class="abschnitt_box" id="<%= dom_id(f.object)%>">
+	<div class="abschnitt_inhalt_box">
+		<%= abschnitt_anker_field( f ) %>
+		<%#= abschnitt_admin_toolz(f, :edit => true, :delete => true, :safe => true) %>
+		<%= abschnitt_admin_toolz(f, :delete => true, :safe => true) %>
+		
+		<span class="handle"><%= image_tag '/images/fineline/icons_16/position.png'%></span>
+
+		<br/>
+
+		<h2> [:: Bild - Gallerie ::] </h2>
+		<br/>
+		<%= f.select :stuff_param, Gallerie.all.map { |c| [c.name, c.id] } %>
+		<br/>
+		<br/>
+
+		<br/>
+		<div class="clearfix"></div>
+		
+		<div class="hidden new_abs_stuff_typ"><%= f.hidden_field 		:stuff_typ, 	:value => f.object.stuff_typ %></div>
+		<% if f.object.protected_stuff %>
+			<div class="hidden new_abs_protected"><%= f.hidden_field 		:protected_stuff, 	:value => f.object.protected_stuff %></div>
+		<% end %>
+		<% if f.object.gruppe_id %>
+			<div class="hidden new_abs_gruppe"><%= f.hidden_field 			:gruppe_id, 	:value => f.object.gruppe_id %></div>
+		<% end %>
+		<% if f.object.system_stuff %>
+			<div class="hidden new_abs_system_stuff"><%= f.hidden_field 	:system_stuff, 	:value => f.object.system_stuff %></div>
+		<% end %>
+		<% if f.object.modul %>
+			<div class="hidden new_abs_modul"><%= f.hidden_field 			:modul, 		:value => f.object.modul %></div>
+		<% end %>
+		<% if f.object.modul_typ %>
+			<div class="hidden new_abs_modul_typ"><%= f.hidden_field 		:modul_typ, 	:value => f.object.modul_typ %></div>
+		<% end %>
+		<% if f.object.modul_id %>
+			<div class="hidden new_abs_modul_id"><%= f.hidden_field 		:modul_id, 		:value => f.object.modul_id %></div>
+		<% end %>
+	</div>
+</div>
+<div class="clearfix"></div>
+<% end %>
+
+
+
+<% if f.object.stuff_typ && f.object.stuff_typ == "main_gallerie" %>
+<div class="abschnitt_box" id="<%= dom_id(f.object)%>">
+	<div class="abschnitt_inhalt_box">
+		<%= abschnitt_anker_field( f ) %>
+		<%#= abschnitt_admin_toolz(f, :edit => true, :delete => true, :safe => true) %>
+		<%= abschnitt_admin_toolz(f, :delete => true, :safe => true) %>
+		
+		<span class="handle"><%= image_tag '/images/fineline/icons_16/position.png'%></span>
+
+		<br/>
+
+		<h2> [:: Haupt - Gallerie ::] </h2>
+
+		<br/>
+		<div class="clearfix"></div>
+		
+		<div class="hidden new_abs_stuff_typ"><%= f.hidden_field 		:stuff_typ, 	:value => f.object.stuff_typ %></div>
+		<% if f.object.stuff_param %>
+			<div class="hidden new_abs_stuff_param"><%= f.hidden_field 		:stuff_param, 	:value => f.object.stuff_param %></div>
+		<% end %>
+		<% if f.object.protected_stuff %>
+			<div class="hidden new_abs_protected"><%= f.hidden_field 		:protected_stuff, 	:value => f.object.protected_stuff %></div>
+		<% end %>
+		<% if f.object.gruppe_id %>
+			<div class="hidden new_abs_gruppe"><%= f.hidden_field 			:gruppe_id, 	:value => f.object.gruppe_id %></div>
+		<% end %>
+		<% if f.object.system_stuff %>
+			<div class="hidden new_abs_system_stuff"><%= f.hidden_field 	:system_stuff, 	:value => f.object.system_stuff %></div>
+		<% end %>
+		<% if f.object.modul %>
+			<div class="hidden new_abs_modul"><%= f.hidden_field 			:modul, 		:value => f.object.modul %></div>
+		<% end %>
+		<% if f.object.modul_typ %>
+			<div class="hidden new_abs_modul_typ"><%= f.hidden_field 		:modul_typ, 	:value => f.object.modul_typ %></div>
+		<% end %>
+		<% if f.object.modul_id %>
+			<div class="hidden new_abs_modul_id"><%= f.hidden_field 		:modul_id, 		:value => f.object.modul_id %></div>
+		<% end %>
+	</div>
+</div>
+<div class="clearfix"></div>
+<% end %>

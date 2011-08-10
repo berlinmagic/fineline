@@ -1,0 +1,31 @@
+
+<div class="box">
+	<div class="in_box white">
+		<div class="right">
+			<%= link_to 'Fertig', '#', :class => 'big_button', :remote => true, :id => 'close_available_box' %>
+		</div>
+		<h2>Bild hinzufügen:</h2>
+		<br/>
+		<p>zum Hinzufügen, gewünschtes Bild anklicken!</p>
+		<div class="top_trenner"></div>
+<% data.each do |bild| %>
+	<% pic_dim = format_thumb(bild, 200, 200) %>
+	<% thumb_breite = pic_dim[:breite] %>
+	<% thumb_hoehe = pic_dim[:hoehe] %>
+	<% if @gallerie %>
+	<a class="bild_box" href="<%= select_admin_gallerie_bild_path(@gallerie,bild) %>" id="<%= dom_id(bild)%>" data-remote="true">
+		<%= image_tag bild.file.thumb(bild.file_cropping).thumb("#{thumb_breite}x#{thumb_hoehe}").url, 
+						:style => "margin: #{(200-thumb_hoehe)/2}px #{(200-thumb_breite)/2}px" %>
+	</a>
+	<% elsif @bild_kategorie %>
+	<a class="bild_box" href="<%= select_admin_bild_kategorie_bild_path(@bild_kategorie,bild) %>" id="<%= dom_id(bild)%>" data-remote="true">
+		<%= image_tag bild.file.thumb(bild.file_cropping).thumb("#{thumb_breite}x#{thumb_hoehe}").url, 
+						:style => "margin: #{(200-thumb_hoehe)/2}px #{(200-thumb_breite)/2}px" %>
+	</a>
+	<% end %>
+<% end %>
+<div class="clearfix"></div>
+
+	</div>
+</div>
+

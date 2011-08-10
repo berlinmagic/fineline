@@ -1,0 +1,14 @@
+<div class="in_box">
+	<div class="trenn_linie"></div>
+</div>
+
+
+<div class="in_box">
+	<% if Finemail.count == 1 %>
+	<%= link_to "ein neuen Quick-Check erhalten", admin_finemails_path %>
+	<% else %>
+	<%= link_to "#{Finemail.count} neue Quick-Checks vorhanden", admin_finemails_path %>
+	<% end %>
+	<br/>
+
+</div>

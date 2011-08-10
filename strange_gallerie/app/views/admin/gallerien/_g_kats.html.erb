@@ -1,0 +1,28 @@
+<% klasse = klasse ? klasse : 'xxx' %>
+<% data.each do |kat| %>
+<div class="bild_box_folder" id="<%= dom_id(kat)%>">
+	
+	<% if klasse == 'bild' %>
+		<%= strange_selected_delete( kat, :url => remove_admin_bild_bild_kategorie_path(@bild, kat) ) %>
+	<% elsif klasse == 'gallerie' %>
+		<%= strange_selected_delete( kat, :url => remove_admin_gallerie_bild_kategorie_path(@gallerie, kat), :title => 'rababar' ) %>
+	<% end %>
+	
+	<a href="<%= admin_bild_kategorie_path(kat) %>">
+		<% if kat.bilder.count > 0 %>
+			<% bild = kat.bilder.first %>
+			<% dim = format_thumb(bild, 172, 172) %>
+			<%= image_tag bild.file.thumb(bild.file_cropping).thumb("#{dim[:breite]}x#{dim[:hoehe]}").url, 
+						:style => "margin: #{(200-dim[:hoehe])/2}px #{(200-dim[:breite])/2}px" %>
+
+		<% else %>
+
+			<%= image_tag '/images/default_bild_kategorie.png', :style => 'margin: 14px' %>
+
+		<% end %>	
+	</a>
+	<p><%= kat.name %> (<%= kat.bilder.count %>)</p>
+	
+</div>	
+<% end %>
+<div class="clearfix"></div>

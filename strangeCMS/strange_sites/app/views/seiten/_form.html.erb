@@ -1,0 +1,27 @@
+<div id="fineline_seite_form_abschnitt_area">
+	<% f.fields_for :abschnitte do |builder| %>
+		<%= render "abschnitt_fields", :f => builder %>
+	<% end %>
+</div>
+
+<div class="box">
+	<div class="in_box" id="fineline_seite_form_abschnitt_new">
+		<%= link_to_add_fineline_abschnitt fineline_button('neu')+" neuer Abschnitt", f, :abschnitte %>
+	</div>
+</div>
+
+<div class="box">
+	<div class="in_box">
+		<%= add_new_fineline_abschnitt fineline_button('neu')+" neuer Text Abschnitt", f, :abschnitte, :class => 'tooltiped', :title => 'Fügen Sie einen neuen Text-Abschnitt ein.', :stuff_typ => 'text' %>
+		<br/>
+		<br/>
+		<%= add_new_fineline_abschnitt fineline_button('neu')+" neue Trennlinie", f, :abschnitte, :class => 'tooltiped', :title => 'Fügen Sie eine neue Trennlinie ein.', :stuff_typ => 'trenn_linie' %>
+	</div>
+</div>
+	
+
+
+<%#= render 'seiten/erweitert', :f => f %>
+
+
+

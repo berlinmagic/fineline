@@ -1,0 +1,43 @@
+<%= render 'admin/shared/module_sub_menu' %>
+
+
+<div class="admin_box">
+	<h1>Wertelisten</h1>
+	<div class="admin_in_box">
+		<div class="box">
+			<div class="in_box">
+				<% if @wertelisten.count > 1 %>
+					<h2>Aktuell sind <%= @wertelisten.count %> Wertelisten vorhanden.</h2>
+				<% elsif @wertelisten.count == 1 %>
+					<h2>Aktuell ist nur eine Werteliste vorhanden.</h2>
+				<% else %>
+					<h2>Aktuell sind leider keine Wertelisten vorhanden.</h2>
+				<% end %>
+			</div>
+		</div>
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<p>Hier sehen Sie eine Liste der momentan aktivierten Module.</p>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box white">
+				<br/>
+				
+				<% @wertelisten.each do |wl| %>
+					<%= link_to wl.name, admin_werteliste_path(wl) %><br/><br/>
+				<% end %>
+				<div class="clearfix"></div>
+				<br/>
+			</div>
+		</div>
+		
+	</div>
+</div>
+
+<%= render 'admin/shared/kats_sidebar' %>

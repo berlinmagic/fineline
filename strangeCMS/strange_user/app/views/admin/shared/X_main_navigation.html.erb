@@ -1,0 +1,8 @@
+<nav id="main_navigation">
+	<%= link_to 'Dashboard', admin_root_url, :class => "#{'aktiv' if @aktivio && @aktivio == 'dashboard'}" %>
+	<%= link_to 'Seiten', admin_seiten_url, :class => "#{'aktiv' if @aktivio && @aktivio == 'seiten'}" %>
+	<%= link_to 'E-Mails', admin_kontakt_formulare_url, :class => "#{'aktiv' if @aktivio && @aktivio == 'kontakt_formular'}" %>
+	<%= link_to 'Einstellungen', admin_settings_url, :class => "#{'aktiv' if @aktivio && @aktivio == 'settings'}" %>
+	<%= link_to 'User', admin_users_url, :class => "#{'aktiv' if @aktivio && @aktivio == 'user'}" %>
+	<!--<li><%# link_to 'Finder', admin_finder_url, :class => "#{'aktiv' if @aktivio && @aktivio == 'elFinder'}" %></li>-->
+</nav>

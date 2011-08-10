@@ -1,0 +1,54 @@
+<%= render 'admin/shared/seiten_sub_menu' %>
+
+<div class="box">
+	<% if Strangecms::Config[:show_site_name] %>
+	<div class="in_box first">
+		<h1><%= @seite.name %></h1>
+	</div>
+	<% end %>
+	
+<% if @old_site %>
+<% @old_site.name %>
+<% @old_site.titel %>
+<% @old_site.abschnitte.each do |xxx| %>
+	<% if xxx.stuff_typ && xxx.stuff_typ == 'k_form' %>
+		<% xxx.stuff_typ %> <% xxx.system_stuff %> <% xxx.position %>
+	<% elsif xxx.text %>
+		<% xxx.text.inhalt %> <% xxx.system_stuff %> <% xxx.position %>
+	<% end %>
+<% end %>
+<% end %>
+
+<% @seite.abschnitte.each_with_index do |abschnitt,index| %>
+
+	<% if abschnitt.stuff_typ && abschnitt.stuff_typ == 'k_form' %>
+	<div class="in_box<%= ' first' unless Strangecms::Config[:show_site_name] || index > 0 %>">
+		<%= render 'kontakt_formulare/k_form' %>
+		<div class="clearfix"></div>
+	</div>
+	<% elsif abschnitt.stuff_typ && abschnitt.stuff_typ == 'trenn_linie' %>
+	<div class="in_box<%= ' first' unless Strangecms::Config[:show_site_name] || index > 0 %>">
+		<div class="trenn_linie"></div>
+		<div class="clearfix"></div>
+	</div>
+	<% elsif abschnitt.text %>
+
+	<div class="in_box<%= ' first' unless Strangecms::Config[:show_site_name] || index > 0 %>">
+		<%= raw abschnitt.text.inhalt %>
+		<div class="clearfix"></div>
+	</div>
+	<% end %>
+	
+<% end %>
+<br/><br/><br/>
+	<% if admin_check %>
+<% xtitel = @seite.titel %>
+<%= link_to ' ', edit_admin_seite_path(@seite), :id => 'btn_edit' %>
+<% if site_master || @seite.system_seite == false %>
+<%= strange_delete @seite, :url => admin_seite_path(@seite) %>
+<% end %><% end %>
+</div>
+
+
+
+

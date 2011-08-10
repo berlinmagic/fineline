@@ -1,0 +1,62 @@
+<div class="admin_box">
+	<h1>E-Mail von <%= @kontakt_formular.anrede %> <%= @kontakt_formular.name %></h1>
+	<div class="admin_in_box">
+		<div class="box">
+			<div class="in_box">
+				<div class="right">
+					<%= @kontakt_formular.created_at.strftime('%d.%m.%Y . %H:%M') %>
+				</div>
+				<p><%= @kontakt_formular.anrede %> <%= @kontakt_formular.titel %> <%= @kontakt_formular.vorname %> <%= @kontakt_formular.name %></p>
+				<p><%= @kontakt_formular.firma %> <%= '['+@kontakt_formular.abteiung_oder_position+']' if @kontakt_formular.abteiung_oder_position %></p>
+				<p><strong><%= @kontakt_formular.email %></strong></p>
+				<p><%= 'Webseite: '+@kontakt_formular.webseite if @kontakt_formular.webseite %></p>
+				<p><%= @kontakt_formular.strasse %></p>
+				<p><%= @kontakt_formular.plz %> <%= @kontakt_formular.ort %></p>
+				<p><%= @kontakt_formular.bundesland %></p>
+				<p><%= @kontakt_formular.land %></p>
+				<p><%= 'Webseite: '+@kontakt_formular.geburtstag if @kontakt_formular.geburtstag %></p>
+				<p><%= 'Tel.: '+@kontakt_formular.telefon if @kontakt_formular.telefon %></p>
+				<p><%= 'Fax: '+@kontakt_formular.telefax if @kontakt_formular.telefax %></p>
+				<p><%= 'Mobil: '+@kontakt_formular.mobil if @kontakt_formular.mobil %></p>
+			</div>
+		</div>
+		<% if @kontakt_formular.betreff %>
+		<div class="box">
+			<div class="in_box">
+				<div class="trenn_linie"></div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<p>Betreff: <strong><%= @kontakt_formular.betreff %></strong></p>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<div class="trenn_linie"></div>
+			</div>
+		</div>
+		<% end %>
+		
+		<div class="box">
+			<div class="in_box white">
+				<br/>
+				<pre><%= @kontakt_formular.inhalt %></pre>
+				<br/>
+				<p><b>User ip:</b>  <%= @kontakt_formular.user_ip %></p>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<%= link_to 'Antwort', antwort_admin_kontakt_formular_path(@kontakt_formular), :class => 'big_submit_button' %>
+				<div class="big_button_spacer">oder</div>
+				<%# link_to 'Edit', edit_admin_kontakt_formular_path(@kontakt_formular), :class => 'big_submit_button' %>
+				<%= link_to 'zurück', admin_kontakt_formulare_path, :class => 'big_button' %>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<%= render 'admin/shared/kontakt_sidebar' %>

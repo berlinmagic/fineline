@@ -1,0 +1,33 @@
+<h1>Neue Seite</h1>
+
+
+
+<%= render 'shared/fck_editor' %>
+
+
+<%= form_for @seite, :url => { :controller => 'seiten'}  do |f| %>
+
+<div class="box">
+	<div class="in_box first">
+		<%= f.text_field :name, :class => 'tipped tooltiped', :placeholder => Seite.human_attribute_name(:name), :title => Seite.human_attribute_name(:name) %>
+	</div>
+</div>
+<div class="box">
+	<div class="in_box first">
+		<%= f.text_field :headline, :class => 'tipped tooltiped', :placeholder => Seite.human_attribute_name(:headline), :title => Seite.human_attribute_name(:headline) %>
+	</div>
+</div>
+
+<%= render 'form', :f => f %>
+
+<div class="box">
+  <div class="actions in_box">
+    <%= f.submit %>
+ 	<div class="big_button_spacer"><%= t('or') %></div>
+	<%= link_to 'verwerfen', "#{root_url}", :class => 'big_button' %>
+	<div class="clearfix"></div>
+  </div>
+</div>
+
+
+<% end %>

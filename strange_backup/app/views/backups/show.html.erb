@@ -1,0 +1,135 @@
+<div class="box">
+	<% if Strangecms::Config[:show_site_name] %>
+	<div class="in_box ">
+		<h1><%= @backup_seite.headline %></h1>
+	</div>
+	<% end %>
+<% @backup_abschnitte.each_with_index do |abschnitt,index| %>
+
+	<%= hook :seiten_abschnitte_if, :abschnitt => abschnitt, :index => index %>
+	
+	
+	<% if abschnitt.stuff_typ == 'trenn_linie' %>
+	<div class="in_box">
+		<div class="trenn_linie"></div>
+		<div class="clearfix"></div>
+	</div>
+	<% end %>
+
+	<%# if abschnitt.text %>
+	<% if abschnitt.stuff_typ == 'text' %>
+	<div class="in_box">
+		<%= raw abschnitt.inhalt %>
+		<div class="clearfix"></div>
+	</div>
+	<% end %>
+	
+	
+	
+	
+	
+<% end %>
+
+<%= hook :seiten_abschnitte_ende %>
+
+
+</div>
+
+<br/><br/>
+
+<div class="box">
+<% @backup.backup_fields.each do |bkf| %>
+<div class="in_box">
+	<strong><%= bkf.target_feld %>:</strong><br/>
+	<%= bkf.vorher %> = = = > <%= bkf.nachher %>
+	<div class="clearfix"></div>
+</div>
+<% end %>
+
+<% @backup.backup_parts.each do |bkp| %>
+<div class="in_box">
+	<strong><%= @typ = YAML.load(bkp.yml_attribute)["stuff_typ"] %></strong> 
+	<% if bkp.aktion == 'new' %>
+		neu
+	<% end %>
+	<% if bkp.aktion == 'delete' %>
+		gelöscht
+	<% end %>
+	<% if bkp.aktion == 'update' %>
+		geändert
+		
+	<% end %>
+	<%# YAML.load(bkp.yml_attribute).keys.join(', ') %>
+	<br/>
+	<div class="backup_change_tag">
+			
+				<% bkp.backup_fields.each_with_index do |bkpf,index| %>
+						<ul class="backup_change_tag_Tab_nav">
+							<li><a href="#" id="abs_<%= bkp.id %>_<%= index + 1 %>_v" class=" aktiv">Vorher</a></li>
+							<li><a href="#" id="abs_<%= bkp.id %>_<%= index + 1 %>_n" class="">Nachher</a></li>
+						</ul>
+						<div id="tab_abs_<%= bkp.id %>_<%= index + 1 %>_v" class="field_value_box">
+							<%= raw(bkpf.vorher) %>
+							<div class="clearfix"></div>
+						</div>
+						<div id="tab_abs_<%= bkp.id %>_<%= index + 1 %>_n" class="field_value_box hidden">
+							<%= raw(bkpf.nachher) %>
+							<div class="clearfix"></div>
+						</div>
+				<% end %>
+	</div>
+	
+</div>
+<% end %>
+
+</div>
+
+<% content_for :sidebar do %>
+
+	<% if @seite && @seite.backups.count > 0 && admin_check %>
+		<div class="side_box">
+			<% bkp_count = @seite.backups.count%>
+			<div class="sidebar_head">
+				<a href="#">Backup</a>
+			</div>
+			<ul class='sidebar'>
+				<% @vn = '' %>
+				<li><%= link_to 'Zur aktuellen Version', @seite.link %></li>
+				<li>&nbsp;&nbsp;&mdash;&nbsp;&nbsp;&nbsp;&mdash;&nbsp;&nbsp;&nbsp;&mdash;&nbsp;&nbsp;&nbsp;&mdash;</li>
+				<% @seite.backups.each_with_index do |bkp,index| %>
+					<% if bkp == @backup %>
+						<% @vn = bkp_count - index %>
+					<% end %>
+					<li><%= link_to 'Version '+(bkp_count - index).to_s+' - '+bkp.created_at.strftime('%d.%m. - %H:%M').to_s, backup_path(bkp), :class => "#{'aktiv' if bkp == @backup}" %></li>
+				<% end %>
+				<li>&nbsp;&nbsp;&mdash;&nbsp;&nbsp;&nbsp;&mdash;&nbsp;&nbsp;&nbsp;&mdash;&nbsp;&nbsp;&nbsp;&mdash;</li>
+				<!--
+				<li><%# link_to 'Version '+@vn.to_s+' wiederherstellen', wiederherstellen_backup_path(@backup) %></li>
+				<li>&nbsp;</li>
+				-->
+				<li>
+					<%# strange_rebuilder @backup, @vn.to_s, :url => wiederherstellen_backup_path(@backup)  %>
+					<%# strange_rebuilder @backup, @vn.to_s, :url => wiederherstellen_backup_path(@backup), :tooltip => 'Version '+@vn.to_s+' wiederherstellen' %>
+				</li>
+				<li>&nbsp;</li>
+			</ul>
+		</div>
+	<% end %>
+	
+	<% if @backup_seite && admin_check %>
+	<% bkp_count = @backup_seite.backups.count %>
+		<div class="side_box">
+			<div class="sidebar_head">
+				<a href="#">Backups</a>
+			</div>
+			<ul class='sidebar'>
+				<% @backup_seite.backups.each_with_index do |bkp,index| %>
+					<li><%= link_to 'Version '+(bkp_count - index).to_s+' - '+bkp.created_at.strftime('%d.%m. - %H:%M').to_s, backup_path(bkp) %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+
+	
+
+<% end %>

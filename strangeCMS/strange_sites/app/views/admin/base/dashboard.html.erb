@@ -1,0 +1,22 @@
+<div class="admin_box">
+	<h1>Dashboard</h1>
+	<div class="admin_in_box">
+		<div class="box">
+			<div class="in_box">
+				<h2>Hallo <%= t(current_user.anrede)+' '+current_user.name %></h2>
+				<p>Hier sehen Sie eine Zusammenfassung aktueller Ereignisse.</p>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<div class="trenn_linie"></div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box white">
+				<%= hook :admin_dashboard %>
+			</div>
+		</div>
+		
+	</div>
+</div>

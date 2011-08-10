@@ -1,0 +1,166 @@
+
+
+
+<% if abs %>
+
+<% if abs.stuff_param && abs.stuff_param != '' %>
+
+<% if fform = Fineform.find(abs.stuff_param) %>
+	<h1><%= fform.name %></h1>
+	<br/>
+		
+		<% if fform.form_typ && fform.form_typ == "fieldset" %>
+		
+		<%# Finemail.finemail_fieldsets_build(fform.fineform_fieldsets.count) %>
+		
+		<% @finemail ||= Finemail.new %>
+		
+	<%= form_for(@finemail, :url => { :controller => 'finemails', :action => :create}, :html => { :multipart => true}, :remote => true) do |f| %>
+		<%= render 'shared/error', :item => f.object%>
+			<% fform.fineform_fieldsets.each do |field_set| %>
+				
+				<%= f.hidden_field :abs, :value => abs.id %>
+				<table class="fine_form_field_set">
+					<% @this_fields = field_set.fineform_fields %>
+					
+					<% field_set.fineform_fields.each do |field| %>
+					<tr>
+						<% f.fields_for(:finemail_fields, @finemail.finemail_fields.build, :child_index => "new_finemail_field_#{field.position}") do |builder| %>
+						<th>
+							<%= field.name %>
+						</th>
+						<td>
+							<%= builder.hidden_field :name, :value => field.name %>
+							<%= builder.text_field :inhalt %>
+							<%= builder.hidden_field :finemail_id, :value => fform.id %>
+							<%= builder.hidden_field :position, :value => field.position %>
+						</td>
+						<% end %>
+					</tr>
+					<% end %>
+					<tr><td colspan="2"></td></tr>
+					<tr>
+						<th></th>
+						<td>
+							<%= f.submit %>
+						</td>
+					</tr>
+				</table>
+				<br/>
+				
+					
+					
+					
+			<% end %>
+		<% end %>
+		
+		
+		
+		<% else %>
+			<% @finemail ||= Finemail.new %>
+			<%= form_for(@finemail, :url => { :controller => 'finemails', :action => :create}, :html => { :multipart => true}, :remote => true) do |f| %>
+				<%= render 'shared/error', :item => f.object%>
+				<%= f.hidden_field :abs, :value => abs.id %>
+				<table class="fine_form_field_set">
+					<% @this_fields = fform.fineform_fields %>
+					<% fform.fineform_fields.each do |field| %>
+					<tr>
+						<% f.fields_for(:finemail_fields, @finemail.finemail_fields.build, :child_index => "new_finemail_field_#{field.position}") do |builder| %>
+							<th>
+								<%= field.name %>
+							</th>
+							<td>
+								<%= builder.hidden_field :name, :value => field.name %>
+								<%= builder.text_field :inhalt, :class => "finefield_#{field.id}" %>
+								<%= builder.hidden_field :finemail_id, :value => fform.id %>
+								<%= builder.hidden_field :position, :value => field.position %>
+							</td>
+						<% end %>
+					</tr>
+					
+					<% end %>
+					<tr><td colspan="2"></td></tr>
+					<tr>
+						<th></th>
+						<td>
+							<%= f.submit %>
+						</td>
+					</tr>
+				</table>
+				<br/>
+				
+			<% end %>
+			
+		<% end %>
+		
+<% end %>
+
+<% end %>
+
+<% end %>
+
+<div class="clearfix"></div>
+
+<% content_for :more_front_stuff do %>
+<script type="text/javascript">
+$.validator.setDefaults({
+	submitHandler: function() { alert("submitted!"); }
+});
+
+$().ready(function() {
+	// validate signup form on keyup and submit
+	$("#signupForm").validate({
+		rules: {
+			
+			<%  @this_fields.each do |field| %>
+				<% if field.needed %>
+				$("#finefield_<%= field.id %>").attr("name"): "required",
+				
+			firstname: "required",
+			lastname: "required",
+			username: {
+				required: true,
+				minlength: 2
+			},
+			password: {
+				required: true,
+				minlength: 5
+			},
+			confirm_password: {
+				required: true,
+				minlength: 5,
+				equalTo: "#password"
+			},
+			email: {
+				required: true,
+				email: true
+			},
+			topic: {
+				required: "#newsletter:checked",
+				minlength: 2
+			},
+			agree: "required"
+		},
+		messages: {
+			firstname: "Please enter your firstname",
+			lastname: "Please enter your lastname",
+			username: {
+				required: "Please enter a username",
+				minlength: "Your username must consist of at least 2 characters"
+			},
+			password: {
+				required: "Please provide a password",
+				minlength: "Your password must be at least 5 characters long"
+			},
+			confirm_password: {
+				required: "Please provide a password",
+				minlength: "Your password must be at least 5 characters long",
+				equalTo: "Please enter the same password as above"
+			},
+			email: "Please enter a valid email address",
+			agree: "Please accept our policy"
+		}
+	});
+});
+</script>
+<% end %>

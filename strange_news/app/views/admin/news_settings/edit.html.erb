@@ -1,0 +1,131 @@
+<div class="admin_box">
+	<h1>Gallerie-Einstellungen <%= t('edit')%></h1>
+	<div class="admin_in_box">
+		<div class="box">
+			<div class="in_box">
+				<h2><strong>Achtung</strong> die Bild-Größen beeinflussen das Design, ändern Sie diese nur wenn Sie sich sicher sind.</h2>
+				<br/>
+				<p>alle Formate in .. [ <strong>Breite &times; Höhe</strong> ] .. Pixel</p>
+			</div>
+		</div>
+		<%= form_tag(admin_news_settings_path, :method => :put) do -%>
+		<%= hidden_field_tag('name', @name, :size => 50 ) %>
+		
+		<div class="box">
+			<div class="in_box white">
+				<br/>
+				<table class="settings kontakt">
+					
+					<tr>
+						<th><%= t('strange_preferences.strange_news.aktiv') %></th>
+						<td>
+							<%= hidden_field_tag('preferences[aktiv]', Strangecms::Newz::Config[:aktiv]) %>
+							<%= link_to '', '#', :class => "on_off_schalter #{Strangecms::Newz::Config[:aktiv] ? 'an' : 'aus'}" %>
+						</td>
+						<td> </td>
+						<td> </td>
+					</tr>
+					
+					<tr>
+						<th colspan="4"><br/><strong> - - - </strong><br/></th>
+					</tr>
+					
+					<tr>
+						<th><%= t('strange_preferences.strange_news.news_per_page') %></th>
+						<td>
+							<%= text_field_tag('preferences[news_per_page]', Strangecms::Newz::Config[:news_per_page], :size => 20 )%>
+						</td>
+						<td> </td>
+						<td> </td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.strange_news.always_crop_pix') %></th>
+						<td>
+							<%= hidden_field_tag('preferences[always_crop_pix]', Strangecms::Newz::Config[:always_crop_pix]) %>
+							<%= link_to '', '#', :class => "on_off_schalter #{Strangecms::Newz::Config[:always_crop_pix] ? 'an' : 'aus'}" %>
+						</td>
+						<td> </td>
+						<td> </td>
+					</tr>
+					
+					<tr>
+						<th colspan="4"><br/></th>
+					</tr>
+					
+					<tr>
+						<th colspan="4"><strong><%= t('strange_preferences.strange_news.preview_pic') %></strong></th>
+					</tr>
+					
+					
+					<tr>
+						<th><%= t('strange_preferences.strange_news.pic_wh') %></th>
+						<td>
+							<%= text_field_tag('preferences[preview_pic_width]', Strangecms::Newz::Config[:preview_pic_width], :size => 20 )%>
+						</td>
+						<td>&times;</td>
+						<td>
+							<%= text_field_tag('preferences[preview_pic_height]', Strangecms::Newz::Config[:preview_pic_height], :size => 20 )%>
+						</td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.strange_news.pic_max_wh') %></th>
+						<td>
+							<%= text_field_tag('preferences[preview_pic_max_width]', Strangecms::Newz::Config[:preview_pic_max_width], :size => 20 )%>
+						</td>
+						<td>&times;</td>
+						<td>
+							<%= text_field_tag('preferences[preview_pic_max_height]', Strangecms::Newz::Config[:preview_pic_max_height], :size => 20 )%>
+						</td>
+					</tr>
+					
+					<tr>
+						<th colspan="4"><strong><%= t('strange_preferences.strange_news.news_pic') %></strong></th>
+					</tr>
+					
+					<tr>
+						<th><%= t('strange_preferences.strange_news.pic_wh') %></th>
+						<td>
+							<%= text_field_tag('preferences[news_pic_width]', Strangecms::Newz::Config[:news_pic_width], :size => 20 )%>
+						</td>
+						<td>&times;</td>
+						<td>
+							<%= text_field_tag('preferences[news_pic_height]', Strangecms::Newz::Config[:news_pic_height], :size => 20 )%>
+						</td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.strange_news.pic_max_wh') %></th>
+						<td>
+							<%= text_field_tag('preferences[news_pic_max_width]', Strangecms::Newz::Config[:news_pic_max_width], :size => 20 )%>
+						</td>
+						<td>&times;</td>
+						<td>
+							<%= text_field_tag('preferences[news_pic_max_height]', Strangecms::Newz::Config[:news_pic_max_height], :size => 20 )%>
+						</td>
+					</tr>
+
+					
+				</table>
+				<br/>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<%= submit_tag t('save_settings') %>
+				<div class="big_button_spacer"><%= t('or') %></div>
+				<%= link_to t('cancel'), admin_gallerie_settings_path, :class => 'big_button' %>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		
+	
+		<% end %>
+	</div>
+</div>
+
+
+
+
+
+
+
+<%= render 'admin/settings/sidebar' %>

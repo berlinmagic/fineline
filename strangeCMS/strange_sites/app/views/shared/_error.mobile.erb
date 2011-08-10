@@ -1,0 +1,16 @@
+  <% if item.errors.any? %>
+    <div id="error_explanation" class="o_box">
+      <h2>Bitte überprüfen Sie Ihre Eingaben 
+<% if Rails.env.development? %>
+	(<%= item.errors.count %> Fehler<%= ' = '+item.errors.keys.join(', ').humanize.downcase  %>)
+<% end %>
+	</h2>
+	
+	<ul class="fehler_liste">
+      <% item.errors.keys.each do |key| %>
+        <li><strong><%= key.to_s.humanize.titleize %></strong> <%= item.errors[key].last %></li>
+      <% end %>
+      </ul>
+
+    </div>
+  <% end %>

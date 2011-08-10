@@ -1,0 +1,6 @@
+
+	$("#katts_js_magick_place").hide().html(
+		"<%= escape_javascript(render(:partial => 'admin/kategorien/available_kats', :locals => {:data => @data, :available_data => @available_kategorien})) %>"
+		).slideToggle();
+	
+	$('#kategorie_get_available').hide();

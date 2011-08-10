@@ -1,0 +1,136 @@
+<style>
+.pretty th .current {  
+  padding-right: 12px;  
+  background-repeat: no-repeat;  
+  background-position: right center;  
+}  
+.pretty th .asc {   
+  background-image: url(/images/up_arrow.gif);   
+}  
+  
+.pretty th .desc {   
+  background-image: url(/images/down_arrow.gif);   
+}
+#mail_box { padding: 3px 3px 2px 2px;  background: #e0e0e0; border: solid 1px #bbb; 
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;}
+#mail_list { width: 100%; }
+#mail_list tbody { border: solid 1px #aaa;}
+#mail_list th { background: #e0e0e0; }
+#mail_list th, #mail_list td { padding: 5px; }
+
+#mail_list th.sign, #mail_list td.sign { width: 2%; }
+#mail_list th.from, #mail_list td.from { width: 33%; }
+#mail_list th.about, #mail_list td.about { width: 33%; }
+#mail_list th.sended, #mail_list td.sended { width: 22%; }
+#mail_list th.actions, #mail_list td.actions { width: 10%; }
+#mail_list tr td.actions a { visibility: hidden; }
+
+#mail_list tr:hover td.actions a { visibility: visible; }
+
+#mail_list tr.even { background: #fff; }
+#mail_list tr.odd { background: #f6f4f5; }
+
+#mail_list tr:hover { background: #ceedff; }
+
+#mail_list a { color: #444;}
+</style>
+<div class="admin_box">
+	<h1>E-Mails</h1>
+	<div class="admin_in_box">
+		<div class="box">
+			<div class="in_box">
+				<p>Hier finden Sie alle, über Ihre Internetseite, eingegangen Nachrichten.</p>
+			</div>
+		</div>
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<div class="left">
+					<label>
+					Anzeigen &nbsp;&nbsp;&nbsp;
+					</label>
+				</div>
+				<div class="left">
+				<%= form_tag admin_emails_path, :id => 'changer_form' do |f| %>
+					<%= select_tag :view, options_for_select( KontaktFormular::MAIL_TYPES.map { |c| [I18n.t(c), c] }, @mail_view), :class => 'changer' %>
+				<% end %>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		<div class="box">
+
+				<div id="mail_box">
+				<table id="mail_list">
+					<thead>
+					<tr class="pretty">
+						<th class="sign"></th>
+						<% if @mail_view == 'mail_out' %>
+					    	<th class="from"><%= sortable "email", "Empfänger", @mail_view %></th>
+							<th class="about"><%= sortable "betreff", "Betreff", @mail_view %></th>
+						    <th class="sended"><%= sortable "created_at", "gesendet", @mail_view %></th>
+						<% else %>
+							<th class="from"><%= sortable "email", "Absender", @mail_view %></th>
+							<th class="about"><%= sortable "betreff", "Betreff", @mail_view %></th>
+						    <th class="sended"><%= sortable "created_at", "Empfangen", @mail_view %></th>
+						<% end %>
+					    <th class="actions"></th>
+					  </tr>
+					</thead>
+					<tbody>
+				<% @kontakt_formulare.each do |kontakt_formular| %>
+				  <tr class="<%= 'neu' if kontakt_formular.neu %> <%= cycle('even', 'odd') %>"  id="<%= dom_id(kontakt_formular)%>">
+					<td class="sign">
+						<% if kontakt_formular.beantwortet %>
+							<strong> &crarr; </strong>
+						<% elsif kontakt_formular.neu %>
+							<strong>&nbsp;&times;</strong>
+						<% end %>
+					</td>
+					<td class="from"><%= link_to truncate(kontakt_formular.email, :length => 35, :omission => "..."),
+					 				[:admin, kontakt_formular]	%></td>
+					<td class="about"><%= link_to truncate(kontakt_formular.betreff, :length => 37, :omission => "..."),
+									 [:admin, kontakt_formular] %></td>
+					
+					<td class="sended"><% if Time.now - 3.hour < kontakt_formular.created_at %>
+						<%= link_to time_ago_in_words(kontakt_formular.created_at),
+										 [:admin, kontakt_formular] %>
+						<% else%>
+						<%= link_to kontakt_formular.created_at.strftime('%d.%m.%Y . %H:%M'),
+										 [:admin, kontakt_formular] %>
+						<% end %></td>
+					
+				    <!-- <td><%# kontakt_formular.anrede %> <%# kontakt_formular.name %></td> -->
+				    <td class="actions"><%= strange_show_link [:admin, kontakt_formular] %>&nbsp;&nbsp;&nbsp;
+					<!-- <%# strange_antwort_link kontakt_formular %>&nbsp;&nbsp;&nbsp; -->
+				    <%= strange_delete_link(kontakt_formular, :url => admin_kontakt_formular_path(kontakt_formular) ) %></td>
+				  </tr>
+				<% end %>
+				</tbody>
+				</table>
+				</div>
+
+		</div>
+		
+	</div>
+</div>
+
+
+<%= render 'admin/shared/kontakt_sidebar' %>
+
+
+<% content_for :js_stuff do %>
+<script>
+
+$('.changer').change(function () {
+	$("#changer_form").submit();
+});
+
+</script>
+<% end %>

@@ -1,0 +1,17 @@
+<% if @seite %>
+	<% if @seite.gallerien.count > 0 %>
+		<% @seite.gallerien.each do |gal| %>
+			<p class='add_gallerie_form'><%= link_to "[gallerie] :: #{gal.name}", site_pic_bg_form_path, :remote => true %><span class='gallerie_id hidden'><%= gal.id %></span></p>
+		<% end %>
+	<% else %>
+		
+		<% Gallerie.all.each do |gal| %>
+			<p class='add_gallerie_form'><%= link_to raw("[gallerie] :: #{gal.name}"), site_pic_bg_form_path, :remote => true %><span class='gallerie_id hidden'><%= gal.id %></span></p>
+		<% end %>
+	
+	<% end %>
+<% else %>
+	<% Gallerie.all.each do |gal| %>
+		<p class='add_gallerie_form'><%= link_to raw("[gallerie] :: #{gal.name}"), site_pic_bg_form_path, :remote => true %><span class='gallerie_id hidden'><%= gal.id %></span></p>
+	<% end %>
+<% end %>

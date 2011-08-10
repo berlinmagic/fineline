@@ -1,0 +1,198 @@
+<div class="box">
+	<div class="in_box first">
+		<h1><%= t('strange_preferences.kontakt_settings')%></h1>
+	</div>
+</div>
+
+<div class="box">
+	<div class="in_box">
+		<h3>Hier sehen Sie die momentan aktiven Felder Ihres Kontakt-Formulars:</h3>
+		<br/>
+		<table>
+			<% if Strangecms::Config[:kontakt_anrede] %>
+			<tr>
+				<th>Anrede</th>
+				<td><em><%= 'Plichtfeld' if Strangecms::Config[:kontakt_validate_anrede] %></em></td>
+			</tr>
+			<% end %>
+			<% if Strangecms::Config[:kontakt_titel] %>
+			<tr>
+				<th>Titel</th>
+				<td><em><%= 'Plichtfeld' if Strangecms::Config[:kontakt_validate_titel] %></em></td>
+			</tr>
+			<% end %>
+			<% if Strangecms::Config[:kontakt_name] %>
+			<tr>
+				<th>Name</th>
+				<td><em><%= 'Plichtfeld' if Strangecms::Config[:kontakt_validate_name] %></em></td>
+			</tr>
+			<% end %>
+			<% if Strangecms::Config[:kontakt_vorname] %>
+			<tr>
+				<th>Vorname</th>
+				<td><em><%= 'Plichtfeld' if Strangecms::Config[:kontakt_validate_vorname] %></em></td>
+			</tr>
+			<% end %>
+			<% if Strangecms::Config[:kontakt_firma] %>
+			<tr>
+				<th>Firma</th>
+				<td><em><%= 'Plichtfeld' if Strangecms::Config[:kontakt_validate_firma] %></em></td>
+			</tr>
+			<% end %>
+			<% if Strangecms::Config[:kontakt_abteiung_oder_position] %>
+			<tr>
+				<th>Abteilung / Position</th>
+				<td><em><%= 'Plichtfeld' if Strangecms::Config[:kontakt_validate_abteiung_oder_position] %></em></td>
+			</tr>
+			<% end %>
+			<tr>
+				<th>E-Mail</th>
+				<td><em><%= t('strange_preferences.system_pflicht_feld') %></em></td>
+			</tr>
+			<% if Strangecms::Config[:kontakt_webseite] %>
+			<tr>
+				<th>Webseite</th>
+				<td><em><%= 'Plichtfeld' if Strangecms::Config[:kontakt_validate_webseite] %></em></td>
+			</tr>
+			<% end %>
+			<% if Strangecms::Config[:kontakt_strasse] %>
+			<tr>
+				<th>Strasse</th>
+				<td><em><%= 'Plichtfeld' if Strangecms::Config[:kontakt_validate_strasse] %></em></td>
+			</tr>
+			<% end %>
+			<% if Strangecms::Config[:kontakt_plz] %>
+			<tr>
+				<th>PLZ</th>
+				<td><em><%= 'Plichtfeld' if Strangecms::Config[:kontakt_validate_plz] %></em></td>
+			</tr>
+			<% end %>
+			<% if Strangecms::Config[:kontakt_ort] %>
+			<tr>
+				<th>Ort</th>
+				<td><em><%= 'Plichtfeld' if Strangecms::Config[:kontakt_validate_ort] %></em></td>
+			</tr>
+			<% end %>
+			<% if Strangecms::Config[:kontakt_bundesland] %>
+			<tr>
+				<th>Bundesland</th>
+				<td><em><%= 'Plichtfeld' if Strangecms::Config[:kontakt_validate_bundesland] %></em></td>
+			</tr>
+			<% end %>
+			<% if Strangecms::Config[:kontakt_land] %>
+			<tr>
+				<th>Land</th>
+				<td><em><%= 'Plichtfeld' if Strangecms::Config[:kontakt_validate_land] %></em></td>
+			</tr>
+			<% end %>
+			<% if Strangecms::Config[:kontakt_geburtstag] %>
+			<tr>
+				<th>Geburtstag</th>
+				<td><em><%= 'Plichtfeld' if Strangecms::Config[:kontakt_validate_geburtstag] %></em></td>
+			</tr>
+			<% end %>
+			<% if Strangecms::Config[:kontakt_telefon] %>
+			<tr>
+				<th>Telefon</th>
+				<td><em><%= 'Plichtfeld' if Strangecms::Config[:kontakt_validate_telefon] %></em></td>
+			</tr>
+			<% end %>
+			<% if Strangecms::Config[:kontakt_telefax] %>
+			<tr>
+				<th>Fax</th>
+				<td><em><%= 'Plichtfeld' if Strangecms::Config[:kontakt_validate_telefax] %></em></td>
+			</tr>
+			<% end %>
+			<% if Strangecms::Config[:kontakt_mobil] %>
+			<tr>
+				<th>Mobil-Telefon</th>
+				<td><em><%= 'Plichtfeld' if Strangecms::Config[:kontakt_validate_mobil] %></em></td>
+			</tr>
+			<% end %>
+			<% if Strangecms::Config[:kontakt_betreff] %>
+			<tr>
+				<th>Betreff</th>
+				<td><em><%= 'Plichtfeld' if Strangecms::Config[:kontakt_validate_betreff] %></em></td>
+			</tr>
+			<% end %>
+			<tr>
+				<th>Inhalt</th>
+				<td><em><%= t('strange_preferences.system_pflicht_feld') %></em></td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+<div class="box">
+	<div class="in_box">
+		<p><strong>Achtung!</strong> die Felder 'E-Mail' und 'Inhalt' sind generell vorhanden und werden validiert, was heißt auf Richtigkeit geprüft.</p>
+	</div>
+</div>
+
+<div class="box">
+	<div class="in_box">
+		<h3>Hier eine Liste von Feldern, welches möglich aber momentan nicht aktiviert sind:</h3>
+		<br/>
+		<ul>
+			<% unless Strangecms::Config[:kontakt_anrede] %>
+			<li>Anrede</li>
+			<% end %>
+			<% unless Strangecms::Config[:kontakt_titel] %>
+			<li>Titel</li>
+			<% end %>
+			<% unless Strangecms::Config[:kontakt_name] %>
+			<li>Name</li>
+			<% end %>
+			<% unless Strangecms::Config[:kontakt_vorname] %>
+			<li>Vorname</li>
+			<% end %>
+			<% unless Strangecms::Config[:kontakt_firma] %>
+			<li>Firma</li>
+			<% end %>
+			<% unless Strangecms::Config[:kontakt_abteiung_oder_position] %>
+			<li>Abteilung / Position</li>
+			<% end %>
+			<% unless Strangecms::Config[:kontakt_webseite] %>
+			<li>Webseite</li>
+			<% end %>
+			<% unless Strangecms::Config[:kontakt_strasse] %>
+			<li>Strasse</li>
+			<% end %>
+			<% unless Strangecms::Config[:kontakt_plz] %>
+			<li>PLZ</li>
+			<% end %>
+			<% unless Strangecms::Config[:kontakt_ort] %>
+			<li>Ort</li>
+			<% end %>
+			<% unless Strangecms::Config[:kontakt_bundesland] %>
+			<li>Bundesland</li>
+			<% end %>
+			<% unless Strangecms::Config[:kontakt_land] %>
+			<li>Land</li>
+			<% end %>
+			<% unless Strangecms::Config[:kontakt_geburtstag] %>
+			<li>Geburtstag</li>
+			<% end %>
+			<% unless Strangecms::Config[:kontakt_telefon] %>
+			<li>Telefon</li>
+			<% end %>
+			<% unless Strangecms::Config[:kontakt_telefax] %>
+			<li>Fax</li>
+			<% end %>
+			<% unless Strangecms::Config[:kontakt_mobil] %>
+			<li>Mobil-Telefon</li>
+			<% end %>
+			<% unless Strangecms::Config[:kontakt_betreff] %>
+			<li>Betreff</li>
+			<% end %>
+		</ul>
+	</div>
+</div>
+
+
+
+<%= render 'edit_buttons' %>
+
+<%= render 'sidebar' %>
+
+

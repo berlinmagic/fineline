@@ -1,0 +1,3 @@
+$("#werte_box").html("<%= escape_javascript(render(:partial => "admin/wertelisten/werte", :locals => {:data => @werteliste})) %>");
+$('#ffelder_counta').html("<%= @werteliste.werte.count %>");
+$('.new_wert_field').val('');

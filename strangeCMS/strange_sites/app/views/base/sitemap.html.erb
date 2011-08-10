@@ -1,0 +1,88 @@
+<div class="box">
+	<div class="in_box first">
+		<h1>Sitemap</h1>
+	</div>
+</div>
+
+<div class="box">
+	<div class="in_box">
+		<p>Die sog. Sitemap ist eine Übersicht, sämtlicher Seiten und Unterseiten Ihrer Internet-Präsenz ...</p>
+	</div>
+</div>
+
+<div class="box">
+	<div class="in_box">
+		<%= link_to Strangecms::Config[:site_name], @public_dir %><br />
+		<ul>
+
+		<% unless @pages.blank? %>
+		    <% @pages.each do |page| %>
+				<% unless page.system_name && page.system_name == 'start' %>
+		    		<li><%= link_to page.titel, page.slug  %></li>
+				<% end %>
+		  <% end %>
+		<% end %>
+		</ul>
+	</div>
+</div>
+
+<div class="box">
+	<div class="in_box">
+		<p>Diese Seite wird dynamisch generiert ist somit immer auf dem neusten Stand!</p>
+		<p>Interne Seiten, wie der Admin-Bereich, werden selbstverständlich ausgeblendet.</p>
+	</div>
+</div>
+
+<div class="box">
+	<div class="in_box">
+		<p>Des Weiteren ist die Sitemap in drei Formaten verfügbar, in Html für herkömmliche Browser und als XML oder Text Dokument, 
+		diese Formate sind aber eher für Suchmaschinen, wie zB. Google, gedacht.</p>
+	</div>
+</div>
+
+<div class="box">
+	<div class="in_box">
+		<h3>Sie können diese Seite in folgenden Formaten betrachten:</h3>
+		<br/>
+		<%= link_to 'als html', sitemap_path(:format => :html), :class => 'big_submit_button' %>
+		<div class="big_button_spacer">&nbsp;&nbsp;|&nbsp;&nbsp;</div>
+		<%= link_to 'als xml', sitemap_path(:format => :xml), :class => 'big_submit_button' %>
+		<div class="big_button_spacer">&nbsp;&nbsp;|&nbsp;&nbsp;</div>
+		<%= link_to 'als text', sitemap_path(:format => :text), :class => 'big_submit_button' %>
+		<div class="clearfix"></div>
+	</div>
+</div>
+
+<br/>
+<br/>
+
+<h1><%= yeah_baby_yeah %></h1>
+
+<%#= finelineButton(  :icon,  :blur,  :color,   :size,  :aktion, :tooltip, :title, :url, :class ) %><br/>
+<%#= finelineButton(:icon => 53, :blur => 87, :color => 'hell', :size => 48, :aktion => false) %><br/>
+<%#= finelineButton(:icon => 11, :blur => 75, :color => 'hell', :size => 32, :aktion => true) %><br/>
+
+<% xx = Array(1 .. 90) %>
+<% ax = Array(1 .. 25) %>
+<% sz = [18, 24, 32, 48] %>
+	
+	<% sz.each do |z| %>
+		<h3><%= z %> Pixel</h3>
+		<% xx.each do |x_icon| %>
+			<%= finelineButton(:icon => x_icon.to_i, :blur => 90, :color => 'hell', :size => z.to_i, :class => "#{'kreis' if 2 == rand(5)}" ) %>
+			<%= finelineButton(:icon => x_icon.to_i, :blur => 90, :color => 'dunkel', :size => z.to_i, :class => "#{'kreis' if 2 == rand(5)}" ) %>
+		<% end %>
+		<br/>
+		<hr/>
+		<br/>
+		<% if z == 32 || z == 48 %>
+			<h3><%= z %> Pixel Spezial-Icons</h3>
+			<% ax.each do |a_icon| %>
+				<%= finelineButton(:icon => a_icon.to_i, :blur => 90, :color => 'hell', :size => z.to_i, :aktion => true) %>
+				<%= finelineButton(:icon => a_icon.to_i, :blur => 90, :color => 'dunkel', :size => z.to_i, :aktion => true) %>
+			<% end %>
+			<br/>
+			<hr/>
+			<br/>
+		<% end %>
+	<% end %>

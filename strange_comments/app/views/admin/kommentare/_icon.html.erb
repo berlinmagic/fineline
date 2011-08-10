@@ -1,0 +1,45 @@
+<div class="finelineModulBox_Icon">
+	<a class="module_icon" href="<%# ueberblick_admin_gallerien_url %><%= admin_kommentare_url %>">
+		<div class="module_pic">
+			<%= image_tag '/images/modul_icons/smal_80/kommentare.png'%>
+		</div>
+		<p><strong>Kommentare</strong>&nbsp;&nbsp;[<%= StrangeComments::VERSION.to_s %>]</p>
+	</a>
+</div>
+
+<div class="finelineModulBox_List">
+	<div class="clearfix"></div>
+	<div class="box">
+		<div class="in_box">
+			<div class="trenn_linie"></div>
+		</div>
+	</div>
+
+	<div class="box">
+		<div class="in_box">
+		<a class="finelineModulLinkBox" href="<%= admin_kommentare_url %>">
+			<div class="fineModulActionBox">
+				installiert
+			</div>
+			<div class="fineModulIconBox">
+				<%# image_tag '/images/icon_kommentar.png'%>
+				<%= image_tag '/images/modul_icons/smal_80/kommentare.png'%>
+			</div>
+			<div class="fineModulInfoBox">
+				<p class="fineModulHeadline">Kommentare</p>
+				<p>version <%= StrangeComments::VERSION.to_s %></p>
+				<br/>
+				<p>Modul zum Kommentieren.</p>
+			</div>
+
+
+			<div class="clearfix"></div>
+		</a>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</div>
+
+
+
+

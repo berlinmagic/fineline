@@ -1,0 +1,2 @@
+$("#taggs_js_magick_place").hide().html("<%= escape_javascript(render(:partial => "admin/tags/available_tags", :locals => {:data => @data, :available_tags => @available_tags})) %>").slideToggle();
+$('#tag_get_available').hide();

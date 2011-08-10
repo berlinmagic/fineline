@@ -1,0 +1,16 @@
+<% if Strangecms::Config[:allow_locale_switching] %>
+<div class="left">
+	<br/><br/>
+	<ul id="language-bar">
+	  <li id="parent"><strong><%= t('StrangeLocal.change_language') %></strong>
+	  <ul>
+	  <% I18n.available_locales.each do |locale| -%>
+	    <li>
+	      <%= link_to '', system_locale_set_path(:locale => locale), { :id => locale.to_s.downcase, :title => t("StrangeLocal.#{locale}"), :class => "#{'aktiv' if locale == I18n.locale}" } %>
+	    </li>
+	  <% end -%>
+	  </ul>
+	  </li>
+	</ul>
+</div>
+<% end %>

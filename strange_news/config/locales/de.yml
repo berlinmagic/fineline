@@ -1,0 +1,27 @@
+# encoding: utf-8
+de:
+##############################################################################################################################################
+#  =>  #  =>  #  =>  #  =>  #  =>  #  =>  #  =>  #  =>   S T R A N G E - C M S   <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #
+##############################################################################################################################################
+  Keine_standard_Newsnamen_verwenden: "Bitte verwenden Sie keine Standardnamen!"
+  strange_preferences:
+      strange_news:
+          settings_headline: "News Einstellungen"
+          aktiv: "Aktiv"
+          news_per_page: "News pro Seite"
+          always_crop_pix: "Bilder generell zuschneiden"
+          preview_pic_width: "Vorschaubild Breite"
+          preview_pic_height: "Vorschaubild Höhe"
+          preview_pic_max_width: "Vorschaubild max-Breite"
+          preview_pic_max_height: "Vorschaubild max-Höhe"
+          preview_pic: "Vorschaubild"
+          pic_wh: "Breite x Höhe"
+          pic_max_wh: "maximale Breite x Höhe"
+          news_pic_width: "Newsbild Breite"
+          news_pic_height: "Newsbild Breite"
+          news_pic_max_width: "Newsbild max-Breite"
+          news_pic_max_height: "Newsbild max-Höhe"
+          news_pic: "Newsbild"
+##############################################################################################################################################
+#  =>  #  =>  #  =>  #  =>  #  =>  #  =>  #  =>  #  =>   S T R A N G E - C M S   <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #
+##############################################################################################################################################

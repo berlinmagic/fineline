@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+    <Snippets imagesBasePath="snippets/images/">
+      <Snippet title="Simple Table 1" image="simple1.gif">
+        <Description>Simple table with a red top row and black border</Description>
+        <Html>
+          <![CDATA[
+			<table width="200" border="1" cellpadding="2" cellspacing="0" bordercolor="#000000">
+			  <tr>
+				<td bgcolor="#FF0000"><span style="color: #FFFFFF;font-family: Verdana, Arial, Helvetica, sans-serif;">Simple Table 1 </span></td>
+			  </tr>
+			  <tr>
+				<td>&nbsp;</td>
+			  </tr>
+			  <tr>
+				<td>&nbsp;</td>
+			  </tr>
+			</table>	  
+          ]]>
+        </Html>
+      </Snippet>
+    </Snippets>

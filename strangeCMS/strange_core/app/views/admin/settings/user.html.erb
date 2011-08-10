@@ -1,0 +1,192 @@
+<div class="admin_box">
+	
+	
+	<h1>Account</h1>
+	<div class="admin_in_box">
+		<div class="box">
+			<div class="in_box">
+				
+				<h2>Seiten-Besitzer:</h2>
+	
+			</div>
+		</div>
+		
+		<% @owners.each do |owner| %>
+		
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		
+		<div class="box">
+			<div class="in_box">
+				<div class="account_card">
+					
+					<% if owner.bild %>
+						<% if owner.bild_cropping%>
+							<%= image_tag owner.bild.thumb(owner.bild_cropping).thumb("66x76").url %>
+						<% else %>
+							<%= image_tag owner.bild.thumb("66x76").url %>
+						<% end %>
+					<% else %>
+						<% if owner.anrede == 'frau' %>
+							<%= image_tag '/images/account_default_frau.png' %>
+						<% elsif owner.anrede == 'herr' %>
+							<%= image_tag '/images/account_default_man.png' %>
+						<% else %>
+							<%= image_tag '/images/account_default_admin.png' %>
+						<% end %>
+					<% end %>
+					<div class="c_name">
+						<%= owner.vorname.capitalize %> <%= owner.name.capitalize %>
+					</div>
+					<div class="c_id">
+						<strong>ID:</strong>&nbsp;&nbsp;<%= owner.strange_id %>
+					</div>
+					<div class="c_mail">
+						<%= owner.email %>
+					</div>
+				</div>
+				<table>
+					<tr>
+						<td>Account_Name</td>
+						<th><%= owner.nick_name %></th>
+					</tr>
+					<tr>
+						<td>Anrede</td>
+						<th><%= owner.anrede %></th>
+					</tr>
+					<tr>
+						<td>Name</td>
+						<th><%= owner.name %></th>
+					</tr>
+					<tr>
+						<td>Vorname</td>
+						<th><%= owner.vorname %></th>
+					</tr>
+					<tr>
+						<td>E-Mail</td>
+						<th><%= owner.email %></th>
+					</tr>
+				</table>
+				<div class="clearfix"></div>
+				
+			</div>
+		</div>
+		
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		
+		<div class="box">
+			<div class="in_box ">
+				<% if owner_check || current_user == owner %>
+					
+					<%= link_to 'Bild hochladen', bild_upload_admin_user_path(owner), :class => 'big_submit_button' %>
+					<% if owner.bild %>
+						<div class="big_button_spacer"></div>
+						<%= link_to 'Bild neu zuschneiden', crop_admin_user_path(owner), :class => 'big_button' %>
+					<% end %>
+					<div class="big_button_spacer"></div>
+					<%= link_to 'Besitzer bearbeiten', edit_admin_user_path(owner), :class => 'big_button' %>
+				<% end %>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		
+		<% end %>
+		
+	</div>
+	
+	<br/>
+	<br/>
+	
+	<h1>Daten:</h1>
+	<div class="admin_in_box">
+		<div class="box">
+			<div class="in_box">
+				
+				<h2><%= t('strange_preferences.owner_settings')%></h2>
+	
+			</div>
+		</div>
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		
+		<div class="box">
+			<div class="in_box">
+				<table class="settings">
+					<tr>
+						<th><%= t('strange_preferences.stange_owner_firma') %></th>
+						<td><%= Strangecms::Config[:stange_owner_firma] %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.stange_owner_name') %></th>
+						<td><%= Strangecms::Config[:stange_owner_name] %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.stange_owner_vorname') %></th>
+						<td><%= Strangecms::Config[:stange_owner_vorname] %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.stange_owner_street') %></th>
+						<td><%= Strangecms::Config[:stange_owner_street] %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.stange_owner_zip') %></th>
+						<td><%= Strangecms::Config[:stange_owner_zip] %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.stange_owner_city') %></th>
+						<td><%= Strangecms::Config[:stange_owner_city] %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.stange_owner_country') %></th>
+						<td><%= Strangecms::Config[:stange_owner_country] %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.stange_owner_fon') %></th>
+						<td><%= Strangecms::Config[:stange_owner_fon] %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.stange_owner_fax') %></th>
+						<td><%= Strangecms::Config[:stange_owner_fax] %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.stange_owner_mobile') %></th>
+						<td><%= Strangecms::Config[:stange_owner_mobile] %></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		
+		<div class="box">
+			<div class="in_box ">
+				<%= render 'edit_buttons' %>
+			</div>
+		</div>
+		
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		
+	</div>
+</div>
+
+
+
+<%= render 'sidebar' %>

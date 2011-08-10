@@ -1,0 +1,97 @@
+
+<script type="text/javascript" charset="utf-8">
+
+var fixWidthHelper = function(e, ui) {
+    ui.children().each(function() {
+      $(this).width($(this).width());
+    });
+    return ui;
+};
+
+$(function() {
+  $("#finefields_box tbody").sortable({
+    axis: 'y',
+    handle: '.handler',
+    cursor: "move",
+    helper: fixWidthHelper,
+    
+    update: function(){
+      $.ajax({
+        type: 'post', 
+        data: $('#finefields_box tbody').sortable('serialize'), 
+        dataType: 'script',
+        complete: function(request){
+          $('#finefields_box tbody').effect('highlight');
+        },
+        url: "<%= admin_reorder_fineformfields_url %>"
+      })
+    }
+		}).disableSelection();
+		
+});
+$(function() {
+  	$(".set_finefields_SortBox tbody").sortable({
+      axis: 'y',
+      handle: '.handler',
+      cursor: "move",
+      helper: fixWidthHelper,
+
+      update: function(){
+        $.ajax({
+          type: 'post', 
+          data: $('.set_finefields_SortBox tbody').sortable('serialize'), 
+          dataType: 'script',
+          complete: function(request){
+            $('.set_finefields_SortBox tbody').effect('highlight');
+          },
+          url: "<%= admin_reorder_fineformsetfields_url %>"
+        })
+      }
+		}).disableSelection();
+		
+});
+
+$(function() {
+  	$("#finefieldsets_box").sortable({
+      axis: 'y',
+      handle: '.handle',
+      cursor: "move",
+      helper: fixWidthHelper,
+
+      update: function(){
+        $.ajax({
+          type: 'post', 
+          data: $('#finefieldsets_box').sortable('serialize'), 
+          dataType: 'script',
+          complete: function(request){
+            $('#finefieldsets_box').effect('highlight');
+          },
+          url: "<%= admin_reorder_fineformfieldsets_url %>"
+        })
+      }
+		}).disableSelection();
+		
+});
+
+$('.add_ff_form a').live('click', function(event){
+	event.preventDefault();
+	var ffform = $(this).parent().find('span.ffform_id').html();
+	$(this).parent().parent().parent().parent().find('.k_param_box input').val(ffform);
+	$(this).parent().parent().parent().parent().find('.k_box input').val('fineform');
+	$(this).parent().parent().parent().html('<br/><h2> [:: fineform - Formular ::] </h2><br/>');
+	
+});
+
+$('.show_field_form').live('click', function(event){
+	event.preventDefault();
+	$(this).parent().find('.form_box').removeClass('hidden');
+});
+
+$('.form_box :submit').live('click', function(){
+	$(this).parent().find('.reloada').removeClass('hidden');
+
+});
+
+</script>
+
+

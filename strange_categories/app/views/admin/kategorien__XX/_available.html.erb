@@ -1,0 +1,30 @@
+
+<div class="box">
+	<div class="in_box white">
+		<div class="right">
+			<%= link_to 'Fertig', '#', :class => 'big_button', :remote => true, :id => 'close_available_box' %>
+		</div>
+		<h2>Kategorie hinzufügen:</h2>
+		<br/>
+		<p>zum Hinzufügen, gewünschte Kategorie anklicken!</p>
+		<div class="top_trenner"></div>
+<% data.each do |bk| %>
+	<a href="<%= select_admin_gallerie_bild_kategorie_path(@gallerie,bk) %>" class="bild_box_folder"  id="<%= dom_id(bk)%>" data-remote="true">
+		<% if bk.bilder.count > 0 %>
+			<% bild = bk.bilder.first %>
+			<% dim = format_thumb(bild, 172, 172) %>
+			<%= image_tag bild.file.thumb(bild.file_cropping).thumb("#{dim[:breite]}x#{dim[:hoehe]}").url, 
+						:style => "margin: #{(200-dim[:hoehe])/2}px #{(200-dim[:breite])/2}px" %>
+
+		<% else %>
+
+			<%= image_tag '/images/default_bild_kategorie.png', :style => 'margin: 14px' %>
+
+		<% end %>	
+		<p><%= bk.name %> (<%= bk.bilder.count %>)</p>
+	</a>
+<% end %>
+<div class="clearfix"></div>
+
+	</div>
+</div>

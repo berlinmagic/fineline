@@ -1,0 +1,119 @@
+<div class="admin_box">
+	<h1><%= t('strange_comments.settings')%> <%= t('edit')%></h1>
+	<div class="admin_in_box">
+		
+		<%= form_tag('/admin/settings/kommentare/update', :method => :put) do -%>
+		<%= hidden_field_tag('name', @name, :size => 50 ) %>
+		
+		
+		<div class="box">
+			<div class="in_box">
+				<p>Wählen Sie hier alle Felder aus, welche im Kontakt-Formular angezeigt werden sollen. Weiterhin können Sie einstellen welche Felder Pflichtfelder sind, also ausgefüllt werden müssen.</p>
+			</div>
+		</div>
+		
+		<div class="box">
+			<div class="in_box">
+				<p>Wählen Sie hier alle Felder aus, welche im Kontakt-Formular angezeigt werden sollen. Weiterhin können Sie einstellen welche Felder Pflichtfelder sind, also ausgefüllt werden müssen.</p>
+			</div>
+		</div>
+		
+		<div class="box">
+			<div class="in_box white">
+				<table class="settings kontakt">
+						
+						
+						<tr>
+							<th>Kommentare sind </th>
+							<td>
+								<% if Strangecms::Kommenta::Config[:aktiv] %>
+									<span class="cool">aktiv</span>
+								<% else %>
+									<span class="panic">Achtung, inaktiv!</span>
+								<% end %>
+								<% if site_master %>
+									<%= hidden_field_tag('preferences[aktiv]', Strangecms::Kommenta::Config[:aktiv]) %>
+									<%= link_to '', '#', :class => "on_off_schalter #{Strangecms::Kommenta::Config[:aktiv] ? 'an' : 'aus'}" %>
+								<%end%>
+							</td>
+						</tr>
+
+						<tr>
+							<th>Formular - Stil</th>
+							<td>
+								<%= select_tag('preferences[form_stil]',
+			        								options_for_select(KommentaConfiguration::FORM_STYLEZ.map { |c| [t("strange_comments.FORM_STYLEZ.#{c}"),c] }, 
+			        								Strangecms::Kommenta::Config[:form_stil])) %>
+							</td>
+						</tr>
+						
+						
+						
+						<tr>
+							<th colspan="2" class="u_kat"><%= t('strange_comments.optional_fields')%></th>
+						</tr>
+						
+						<tr>
+							<th><%= t('strange_comments.headline') %></th>
+							<td>
+								<%= hidden_field_tag('preferences[headline_feld]', Strangecms::Kommenta::Config[:headline_feld]) %>
+								<%= link_to '', '#', :class => "on_off_schalter #{Strangecms::Kommenta::Config[:headline_feld] ? 'an' : 'aus'}" %>
+							</td>
+						</tr>
+
+						<tr>
+							<th><%= t('strange_comments.user_vorname') %></th>
+							<td>
+								<%= hidden_field_tag('preferences[vorname_feld]', Strangecms::Kommenta::Config[:vorname_feld]) %>
+								<%= link_to '', '#', :class => "on_off_schalter #{Strangecms::Kommenta::Config[:vorname_feld] ? 'an' : 'aus'}" %>
+							</td>
+						</tr>
+
+						<tr>
+							<th><%= t('strange_comments.user_website') %></th>
+							<td>
+								<%= hidden_field_tag('preferences[website_feld]', Strangecms::Kommenta::Config[:website_feld]) %>
+								<%= link_to '', '#', :class => "on_off_schalter #{Strangecms::Kommenta::Config[:website_feld] ? 'an' : 'aus'}" %>
+							</td>
+						</tr>
+
+						<tr>
+							<th><%= t('strange_comments.user_firma') %></th>
+							<td>
+
+								<%= hidden_field_tag('preferences[firma_feld]', Strangecms::Kommenta::Config[:firma_feld]) %>
+								<%= link_to '', '#', :class => "on_off_schalter #{Strangecms::Kommenta::Config[:firma_feld] ? 'an' : 'aus'}" %>
+							</td>
+						</tr>
+						
+
+		
+		
+				</table>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<%= submit_tag t('save_settings') %>
+				<div class="big_button_spacer"><%= t('or') %></div>
+				<%= link_to t('cancel'), admin_kontakt_settings_path, :class => 'big_button' %>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		
+		<div class="box">
+			<div class="in_box">
+				<p><strong>Achtung!</strong> die Felder 'E-Mail' und 'Inhalt' sind generell vorhanden und werden validiert, was heißt auf Richtigkeit geprüft.</p>
+			</div>
+		</div>
+		<% end %>
+	</div>
+</div>
+
+
+
+
+
+
+
+<%= render 'admin/settings/sidebar' %>

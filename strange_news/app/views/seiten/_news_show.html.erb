@@ -1,0 +1,7 @@
+<% if abschnitt.stuff_typ && abschnitt.stuff_typ == 'news_modul' %>
+	<div class="in_box<%= ' first' unless Strangecms::Config[:show_site_name] || index > 0 %>">
+		<%= render 'news/index', :abs => abschnitt, :index => index %>
+		<div class="clearfix"></div>
+	</div>
+	<%= render :partial => 'news/sidebar' %>
+<% end %>

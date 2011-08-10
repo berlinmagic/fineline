@@ -1,0 +1,50 @@
+<% if @gallerie = Gallerie.find(abs.stuff_param) %>
+
+<div style="margin-right: -15px">
+	
+	<% if @gallerie.bilder.count == 2 %>
+	
+		<% @gallerie.bilder.each do |bild| %>
+			
+			<%= render 'gallerien/g_pic', :bild => bild, :gpic_width => 345, :gpic_height => 265 %>
+		
+		<% end %>
+	
+	<% elsif (@gallerie.bilder.count == 3) || (@gallerie.bilder.count == 6) %>
+		
+		<% @gallerie.bilder.each do |bild| %>
+			
+			<%= render 'gallerien/g_pic', :bild => bild, :gpic_width => 225, :gpic_height => 180 %>
+		
+		<% end %>
+	
+	<% elsif @gallerie.bilder.count > 3 %>
+
+		<% @gallerie.bilder.each do |bild| %>
+
+			<%= render 'gallerien/g_pic', :bild => bild, :gpic_width => 167, :gpic_height => 122 %>
+
+		<% end %>
+		
+	<% elsif @gallerie.bilder.count == 1 %>
+
+		<% @gallerie.bilder.each do |bild| %>
+
+			<%= render 'gallerien/g_pic', :bild => bild, :gpic_width => 700, :gpic_height => 525 %>
+
+		<% end %>
+	
+	<% else %>
+	
+		Bilder folgen ...
+
+	<% end %>
+	
+</div>
+
+<% else %>
+
+<h2>undefinierte Gallerie</h2>
+
+
+<% end %>

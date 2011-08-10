@@ -1,0 +1,83 @@
+
+<div class="admin_box">
+	<h1>E-Mail von <%= ' '+@finemail.absender if @finemail.absender %></h1>
+	<div class="admin_in_box">
+		<div class="box">
+			<div class="in_box">
+				<div class="right">
+					<%= @finemail.sended.strftime('%d.%m.%Y . %H:%M') %>
+				</div>
+				Mail von<strong><%= ' '+@finemail.absender if @finemail.absender %></strong>
+				<br/>
+			</div>
+		</div>
+		
+		<div class="box">
+			<div class="in_box white">
+				<% @finemail.finemail_fields.each do |field| %>
+				
+					<% if field.typ == 'multi_select' || field.typ == 'text' %>
+						<% if field.inhalt && field.inhalt != '' %>
+						<div class="left_box">
+							<p><%= field.name %></p>
+						</div>
+						<div class="right_box">
+							<pre><%= field.inhalt %></pre>
+						</div>	
+						<div class="clearfix"></div>
+						<%end%>
+					<% elsif field.typ == 'file' %>
+						<% if field.datei %>
+						<div class="left_box">
+							<p><%= field.name %></p>
+						</div>
+						<div class="right_box">
+							<%= link_to field.datei, field.datei.url() if field.datei %>
+						</div>	
+						<div class="clearfix"></div>
+						<% else %>
+						<div class="left_box">
+							<p><%= field.name %></p>
+						</div>
+						<div class="right_box">
+							keine Datei beigefügt!
+						</div>	
+						<div class="clearfix"></div>
+						<%end%>
+					<% else %>
+						<% if field.inhalt && field.inhalt != '' %>
+						<div class="left_box">
+							<p><%= field.name %></p>
+						</div>
+						<div class="right_box">
+							<p><%= field.inhalt %></p>
+						</div>	
+						<div class="clearfix"></div>
+						<%end%>
+					<%end%>
+				
+				<% end %>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<%# link_to 'Edit', edit_admin_kontakt_formular_path(@kontakt_formular), :class => 'big_submit_button' %>
+				<%= link_to 'zurück', admin_finemails_path, :class => 'big_button' %>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<style>
+.clearfix:before, .clearfix:after { content: "\0020"; display: block; height: 0; visibility: hidden; }
+.clearfix:after { clear: both; }
+/* Fix clearfix: blueprintcss.lighthouseapp.com/projects/15318/tickets/5-extra-margin-padding-bottom-of-page */
+.clearfix { zoom: 1; }
+
+.left_box { float:left; width: 250px; padding: 10px; }
+.right_box { float:left; width: 400px; padding: 10px; }
+</style>
+
+

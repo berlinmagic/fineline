@@ -1,0 +1,69 @@
+<% if field.feld_typ && field.feld_typ == 'select' && field.werteliste_id %>
+	<% if wl = Werteliste.find(field.werteliste_id) %>
+		<%= builder.select :inhalt, wl.werte.map{ |c| [c.inhalt,c.inhalt]}, {:include_blank => 'Bitte Wählen: '}, {:class => "#{'required' if field.needed}"}  %>
+	<% else %>
+		<%= builder.text_field :inhalt, :class => "#{ 'required' if field.needed }", :placeholder => field.name %>
+	<% end %>
+<% elsif field.feld_typ && field.feld_typ == 'multi_select' && field.werteliste_id %>
+	<% if wl = Werteliste.find(field.werteliste_id) %>
+		<%# builder.select :inhalt, wl.werte.map{ |c| [c.inhalt,c.inhalt]}, {:include_blank => 'Bitte Wählen: '}, {:class => "#{'required' if field.needed}", :multiple => "multiple"} %>
+		<%= builder.hidden_field :typ, :value => 'multi_select' %>
+			
+
+			<script type="text/javascript" charset="utf-8">
+				jQuery(function() {
+
+					$('input:checkbox.checka_<%= index + 1 %>').live('click', function(){
+							$('.checka_field_<%= index + 1 %>').val('');
+							$('input:checkbox.checka_<%= index + 1 %>:checked').each(function(){
+								var xyz_val = $('.checka_field_<%= index + 1 %>').val(); 
+								var zyx_val = $(this).val();
+								$('.checka_field_<%= index + 1 %>').val(xyz_val+'- '+zyx_val+'\n');
+							});
+					});
+				});
+			</script>
+
+			
+			
+		
+			<% wl.werte.each do |wert| %>
+				<input type="checkbox" class="checka_<%= index + 1 %>" name="xx_<%= wert.inhalt %>" value="<%= wert.inhalt %>"/>&nbsp;&nbsp;<%= wert.inhalt %><br><br>
+			<% end %>
+			
+			<%= builder.hidden_field :inhalt, :class => "checka_field_#{ index + 1 } #{'required' if field.needed}" %>
+			
+			<% else %>
+				<%= builder.text_field :inhalt, :class => "#{ 'required' if field.needed } #{' fineform_default_email_field ' if field.system_stuff }" %>
+			<% end %>
+<% elsif field.feld_typ && field.feld_typ == 'radio' && field.werteliste_id %>
+				<% if wl = Werteliste.find(field.werteliste_id) %>
+					<%# builder.select :inhalt, wl.werte.map{ |c| [c.inhalt,c.inhalt]}, {:include_blank => 'Bitte Wählen: '}, {:class => "#{'required' if field.needed}", :multiple => "multiple"} %>
+					<%= builder.hidden_field :typ, :value => 'radio' %>
+
+						<% wl.werte.each do |wert| %>
+							<%= builder.radio_button :inhalt, wert.inhalt, :class => "checka_field_#{ index + 1 } #{'required' if field.needed}" %>&nbsp;&nbsp;<%= wert.inhalt %><br><br>
+						<% end %>
+		
+				<% else %>
+					<%= builder.text_field :inhalt, :class => "#{ 'required' if field.needed } #{' fineform_default_email_field ' if field.system_stuff }", :placeholder => field.name %>
+				<% end %>
+<% elsif field.feld_typ && field.feld_typ  == 'text' %>
+	<%= builder.hidden_field :typ, :value => 'text' %>
+	<%= builder.text_area :inhalt, :class => "#{' required ' if field.needed}", :size => '42x5' %>
+	
+<% elsif field.feld_typ && field.feld_typ  == 'file' %>
+
+		<%= builder.hidden_field :typ, :value => 'file' %>
+		
+		<%= builder.file_field :datei, :class => "#{' required ' if field.needed}", :placeholder => field.name %>
+			
+<% else %>
+
+	<%= builder.text_field :inhalt, :class => "#{' required ' if field.needed} #{' email ' if field.validat && field.validation_typ && field.validation_typ == 'email'} #{' fineform_default_email_field ' if field.system_stuff }", :size => '42', :placeholder => field.name %>
+	
+	
+	
+	
+	
+<% end %>

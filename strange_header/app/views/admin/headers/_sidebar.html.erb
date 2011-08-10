@@ -1,0 +1,8 @@
+<% content_for :sidebar do %>
+<div id="sidebar">
+			<ul id="sidebar_navi">
+				<li class="plus"><%= link_to 'Neuer Header', new_admin_header_path, :class => "#{'aktiv' if @u_aktiv == 'new'}" %></li>
+			</ul>
+			<br class="clear" />
+</div>
+<% end %>

@@ -1,0 +1,68 @@
+<%# render 'admin/shared/module_sub_menu' %>
+
+
+<div class="admin_box">
+	<h1>News</h1>
+	<div class="admin_in_box">
+		<div class="box">
+			<div class="in_box">
+				<% if @news.count > 1 %>
+					<h2>Aktuell sind <%= @news.count %> News vorhanden.</h2>
+				<% elsif @news.count == 1 %>
+					<h2>Aktuell ist <%= @news.count %> News vorhanden.</h2>
+				<% else %>
+					<h2>Aktuell sind keine News vorhanden.</h2>
+				<% end %>
+			</div>
+		</div>
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<p>Hier sehen Sie eine Liste der momentan vorhandenen News.</p>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box white">
+				<br/>
+				<div class="mb_table">
+				<% @news.each do |news| %>
+		
+					
+					<div class="row" id="<%= dom_id(news)%>">
+
+					    <div class="title">
+							<a href="<%= admin_news_path(news) %>">
+								<p><%= news.datum.strftime('%d.%m.%Y - %H:%M') %>&nbsp;&nbsp;-&nbsp;&nbsp;<strong><%= news.headline %></strong>
+								<% if news.kommentare.count > 0 %>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><%= news.kommentare.count %></strong> Kommentare
+
+								<% end %></p>
+							</a>
+						</div>
+
+					
+						<div class="actions">
+								<%= strange_admin_show_link news %>
+								<%= strange_edit_link(news) %>
+
+							    <%= strange_delete_link news %>
+
+						</div>
+					
+					  </div>
+					
+				<% end %>
+				</div>
+				<div class="clearfix"></div>
+				<br/>
+			</div>
+		</div>
+		
+	</div>
+</div>
+
+<%= render 'sidebar' %>

@@ -1,0 +1,138 @@
+<div class="admin_box">
+	<h1>Nutzer-Sicherheits-Einstulngen bearbeiten</h1>
+	<div class="admin_in_box">
+		<div class="box">
+			<div class="in_box">
+				
+				<h2>Sicherheits-Einstellungen:</h2>
+	
+			</div>
+		</div>
+		
+		<%= form_tag( admin_user_settings_update_path, :method => :put) do -%>
+		
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		
+		<div class="box">
+			<div class="in_box">
+				<table class="settings">
+					<tr>
+						<th><%= t('user_settings.mailer_sender') %></th>
+						<td><%= text_field_tag('preferences[mailer_sender]', Strangecms::User::Config[:mailer_sender], :size => '50' )%></td>
+					</tr>
+					<tr>
+						<th colspan="2">&nbsp;</th>
+					</tr>
+					<tr>
+						<th colspan="2">&nbsp;</th>
+					</tr>
+					<tr>
+						<th><%= t('user_settings.timeout_in') %></th>
+						<td><%= text_field_tag('preferences[timeout_in]', Strangecms::User::Config[:timeout_in], :class => 'smal_input', :size => '5' )%>
+							<%= select_tag 'preferences[timeout_in_period]', 
+												options_for_select(
+												UserConfiguration::TIMES.map { |c| [t("user_settings.#{c}"), c] }, 
+												Strangecms::User::Config[:timeout_in_period] )    %>
+							</td>
+					</tr>
+
+					<tr>
+						<th colspan="2">&nbsp;</th>
+					</tr>
+					<tr>
+						<th colspan="2">&nbsp;</th>
+					</tr>
+					<tr>
+						<th><%= t('user_settings.confirm_within') %></th>
+						<td><%= text_field_tag('preferences[confirm_within]', Strangecms::User::Config[:confirm_within], :class => 'smal_input', :size => '5' )%>
+							<%= select_tag 'preferences[confirm_within_period]', options_for_select(UserConfiguration::TIMES.map { |c| [t("user_settings.#{c}"), c] }, Strangecms::User::Config[:confirm_within_period])    %>
+							</td>
+					</tr>
+					<tr>
+						<th><%= t('user_settings.remember_for') %></th>
+						<td><%= text_field_tag('preferences[remember_for]', Strangecms::User::Config[:remember_for], :class => 'smal_input', :size => '5' )%>
+							<%= select_tag 'preferences[remember_for_period]', options_for_select(UserConfiguration::TIMES.map { |c| [t("user_settings.#{c}"), c] }, Strangecms::User::Config[:remember_for_period])    %>
+							</td>
+					</tr>
+					<tr>
+						<th><%= t('user_settings.invite_for') %></th>
+						<td><%= text_field_tag('preferences[invite_for]', Strangecms::User::Config[:invite_for], :class => 'smal_input', :size => '5' )%>
+							<%= select_tag 'preferences[invite_for_period]', options_for_select(UserConfiguration::TIMES.map { |c| [t("user_settings.#{c}"), c] }, Strangecms::User::Config[:invite_for_period])    %>
+							</td>
+					</tr>
+					<tr>
+						<th colspan="2">&nbsp;</th>
+					</tr>
+					<tr>
+						<th colspan="2">&nbsp;</th>
+					</tr>
+					<tr>
+						<th><%= t('user_settings.lock_strategy') %></th>
+						<td><%= select_tag 'preferences[lock_strategy]', options_for_select(UserConfiguration::LOCK_STRATEGY.map { |c| [t("user_settings.#{c}"), c] }, Strangecms::User::Config[:lock_strategy])    %></td>
+					</tr>
+					<tr>
+						<th><%= t('user_settings.maximum_attempts') %></th>
+						<td><%= text_field_tag('preferences[maximum_attempts]', Strangecms::User::Config[:maximum_attempts], :class => 'smal_input', :size => '5' )%></td>
+					</tr>
+					<tr>
+						<th><%= t('user_settings.unlock_strategy') %></th>
+						<td><%= select_tag 'preferences[unlock_strategy]', options_for_select(UserConfiguration::UNLOCK_STRATEGY.map { |c| [t("user_settings.#{c}"), c] }, Strangecms::Config[:unlock_strategy])    %></td>
+					</tr>
+					<tr>
+						<th><%= t('user_settings.unlock_in') %></th>
+						<td><%= text_field_tag('preferences[unlock_in]', Strangecms::User::Config[:unlock_in], :class => 'smal_input', :size => '5' )%>
+							<%= select_tag 'preferences[unlock_in_period]', 
+							options_for_select(
+									UserConfiguration::TIMES.map { |c| [t("user_settings.#{c}"), c] },
+							 		Strangecms::User::Config[:unlock_in_period])    %>
+							</td>
+					</tr>
+					<tr>
+						<th colspan="2">&nbsp;</th>
+					</tr>
+					<tr>
+						<th colspan="2">&nbsp;</th>
+					</tr>
+					<tr>
+						<th colspan="2"><p><%= t('user_settings.password_length') %>: <%= Strangecms::User::Config[:password_length_from] %> - <%= Strangecms::User::Config[:password_length_to] %></p></th>
+					</tr>
+					<tr>
+						<th colspan="2">&nbsp;</th>
+					</tr>
+				</table>
+			</div>
+		</div>
+		
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		
+		<div class="box">
+			<div class="in_box ">
+				<%= submit_tag %>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+
+		<% end %>
+		
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		
+	</div>
+</div>
+
+
+
+
+
+<%= render 'admin/settings/sidebar' %>

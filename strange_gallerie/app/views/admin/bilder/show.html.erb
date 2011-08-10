@@ -1,0 +1,155 @@
+<%= render 'admin/shared/module_sub_menu' %>
+
+<div class="admin_box">
+	<h1>Bilder</h1>
+	<div class="admin_in_box">
+		<div class="box">
+			<div class="in_box">
+				<div class="right">
+					<%= link_to 'zurück', admin_bild_path(@prev_pic), :class => 'big_button' %>
+					<div class="big_button_spacer"></div>
+					<%= link_to 'weiter', admin_bild_path(@next_pic), :class => 'big_button' %>
+					<div class="clearfix"></div>
+				</div>
+				<h2><%= @bild.name %></h2>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<% x_dims = format_bild(@bild, 692, 650) %>
+				<% xb = x_dims[:breite] %>
+				<% xh = x_dims[:hoehe] %>
+				
+				
+				<%= image_tag @bild.file.thumb(@bild.file_cropping).thumb("#{xb}x#{xh}").url %>
+			</div>
+		</div>
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<div class="left_meta">
+					<table>
+
+						<tr>
+							<td>Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+							<th><%= @bild.name %></th>
+						</tr>
+						<tr>
+							<td>Stil:</td>
+							<th><%= t @bild.stil %></th>
+						</tr>
+					</table>
+					<p><%= @bild.beschreibung %></p>
+					<br/>
+					<p><strong><%= link_to 'Bild bearbeiten', edit_admin_bild_path(@bild) %></strong></p>
+				</tr>
+				</div>
+				<div class="right_meta">
+					<table>
+						<tr>
+							<th colspan="2">Meta-Daten:</th>
+						</tr>
+						<tr>
+							<td>Bild-Dimensionen:</td>
+							<th><%= @bild.file.width %> &times; <%= @bild.file.height %> Pixel</th>
+						</tr>
+						<tr>
+							<td>Bild-Größe:</td>
+							<th><%= (@bild.file.size.to_f / 1024 / 1024).round(2) %> MB</th>
+						</tr>
+						<% if @bild.file.mime_type == 'image/jpeg' %>
+							<% if EXIFR::JPEG.new(@bild.file.file).date_time_original %>
+							<tr>
+								<td>Aufnahme-Datum:</td>
+								<th><%= EXIFR::JPEG.new(@bild.file.file).date_time_original.strftime('%d.%m.%Y - %H:%M') if EXIFR::JPEG.new(@bild.file.file).date_time_original %></th>
+							</tr>
+							<tr>
+								<td>Änderungs-Datum:</td>
+								<th><%= EXIFR::JPEG.new(@bild.file.file).date_time.to_datetime.strftime('%d.%m.%Y - %H:%M') if EXIFR::JPEG.new(@bild.file.file).date_time.to_datetime %></th>
+							</tr>
+							<% elsif EXIFR::JPEG.new(@bild.file.file).date_time %>
+							<tr>
+								<td>Aufnahme-Datum:</td>
+								<th><%= EXIFR::JPEG.new(@bild.file.file).date_time.to_datetime.strftime('%d.%m.%Y - %H:%M') if EXIFR::JPEG.new(@bild.file.file).date_time.to_datetime %></th>
+							</tr>
+							<% end %>
+							<% if EXIFR::JPEG.new(@bild.file.file).model %>
+							<tr>
+								<td>Kamera:</td>
+								<th><%= EXIFR::JPEG.new(@bild.file.file).model %></th>
+							</tr>
+							<% end %>
+							<% if EXIFR::JPEG.new(@bild.file.file).exposure_time %>
+							<tr>
+								<td>Belichtungszeit:</td>
+								<th><%= EXIFR::JPEG.new(@bild.file.file).exposure_time.to_s %></th>
+							</tr>
+							<% end %>
+							<% if EXIFR::JPEG.new(@bild.file.file).f_number %>
+							<tr>
+								<td>Blende:</td>
+								<th><%= EXIFR::JPEG.new(@bild.file.file).f_number.to_f %></th>
+							</tr>
+							<% end %>
+							<% if EXIFR::JPEG.new(@bild.file.file).iso_speed_ratings %>
+							<tr>
+								<td>ISO:</td>
+								<th><%= EXIFR::JPEG.new(@bild.file.file).iso_speed_ratings %></th>
+							</tr>
+							<% end %>
+
+							
+						<% end %>
+					</table>
+				</div>
+
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<h3>Tag´s&nbsp;&nbsp;&ndash;&nbsp;&nbsp;[ <span id="bild_tags_count"><%= @bild.tags.count %></span> ]</h3>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box" id="bild_tags_box">
+				<% if @bild.tags.count > 0 %>
+					<%= render 'b_tags', :data => @bild.tags %>
+				<% end %>
+			</div>
+		</div>
+		
+		<div id="js_magick_place"></div>
+		
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		
+		<div class="box">
+			<div class="in_box">
+				<%= link_to 'Tag´s hinzufügen', available_bild_tags_admin_bild_tags_path(@bild), :remote => true, :class => 'big_submit_button show_available' %>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		
+	</div>
+</div>
+
+<%= render 'admin/gallerien/sidebar' %>

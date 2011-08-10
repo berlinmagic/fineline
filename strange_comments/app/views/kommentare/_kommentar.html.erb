@@ -1,0 +1,50 @@
+<% @put_kommentar_form_box = false %>
+<div class="kommentar_box" id="<%= dom_id(kommentar) %>">
+	<p class="kommentar_head">
+		<span class="kommentar_user_name"><%= kommentar.user_vorname if kommentar.user_vorname %> <%= kommentar.user_name if kommentar.user_name %></span> 
+		<span class="kommentar_date"> am <%= kommentar.created_at.strftime('%d.%m.%Y') %> um <%= kommentar.created_at.strftime('%H:%M') %> Uhr</span>
+	</p>
+	
+	<div class="kommentar_inhalt">
+		<div class="abschnitt_admin_toolz">
+		<% if (kommentar.user_ip == request.remote_ip) && (kommentar.created_at+5.minutes >= Time.now ) %>
+			<% @put_kommentar_form_box = true %>
+			<div class="remove_nested_forms">
+				<%= fineline_button_delete( kommentar, 	#:link_text => 'loeschen', 
+													:url => kommentare_path(kommentar),
+													:tooltip => 'Kommentar löschen' ) %>
+			</div>
+			<div class="edit_nested_form">
+				<%= link_to fineline_button('bearbeiten'), '#', :class => "kommentar_form_toggle_remote_link tolltips_edit", :title => "Kommentar bearbeiten" %></div>
+		<% elsif admin_check %>
+			<% @put_kommentar_form_box = true %>
+			<div class="remove_nested_forms">
+				<%= fineline_button_delete( kommentar, 	#:link_text => 'loeschen', 
+													:url => kommentare_path(kommentar),
+													:tooltip => 'Kommentar löschen' ) %>
+			</div>
+			<div class="edit_nested_form">
+				<%= link_to fineline_button('bearbeiten'), '#', :class => "kommentar_form_toggle_remote_link tolltips_edit", :title => "Kommentar bearbeiten" %>
+			</div>
+
+		<% end %>
+		</div>
+		<p class="kommentar_text">
+		<%= kommentar.inhalt %>
+		</p>
+		<div class="kommentar_form_feld hidden">
+			<% if @put_kommentar_form_box %>
+				<%= form_for kommentar, :remote => true do |f| %>
+					<%= f.hidden_field :back_url, :value => kommentar.back_url %>
+					<%= f.text_area :inhalt, :size => '90x5', :class => 'tipped' %>
+					<%= f.submit 'Speichern' %>
+					<div class="clearfix"></div>
+				<% end %>
+			<% end %>
+		</div>
+		
+		
+		
+	</div>
+	<div class="clearfix"></div>
+</div>

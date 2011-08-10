@@ -1,0 +1,39 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+##############################################################################################################################################
+#  =>  #  =>  #  =>  #  =>  #  =>  #  =>  #  =>  #  =>   S T R A N G E - C M S   <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #
+##############################################################################################################################################
+  default: "no translation"
+  missing: "no translation"
+  strange_Backend: "edit Backend"
+  strange_Frontend: "go to Website"
+###  Linkz  ###
+  Show: "show"
+  Edit: "edit"
+  Destroy: "destroy"
+###  Meldungen  ###
+  confirm_delete: "confirm delete"
+  Are_you_sure: "Are you sure?"
+  are_you_sure: "Are you sure?"
+### =>   Seiten   <= ###
+  seiten_headline: "Your Sites:"
+  Neue_Seite: "New Site"
+  Keine_standard_Seitennamen_verwenden: "Don´t use system-names!"
+  seite_wurde_erstellt: "Site was created succesfully."
+  seite_wurde_geändert: "Site was updated succesfully."
+###  Standard - Seiten  ###
+  std_seiten:
+      kontakt: "contact"
+      sitemap: "sitemap"
+      impressum: "impressum"
+###     Standard - Erweiterungen        ####
+  activerecord:
+      errors:
+          messages:
+              email_error_message: 'is no email'
+              
+##############################################################################################################################################
+#  =>  #  =>  #  =>  #  =>  #  =>  #  =>  #  =>  #  =>   S T R A N G E - C M S   <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #
+##############################################################################################################################################

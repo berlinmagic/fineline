@@ -1,0 +1,16 @@
+<nav id="main_navigation">
+	<%= hook :admin_main_navigation do %>
+		
+		<%= link_to 'Dashboard', admin_root_url, :class => "#{'aktiv' if @aktivio && @aktivio == 'dashboard'}" %>
+		<%= link_to 'Seiten', admin_seiten_url, :class => "#{'aktiv' if @aktivio && @aktivio == 'seiten'}" %>
+
+	<% end %>
+</nav>
+
+<nav id="main_right_navigation">
+	<%= hook :admin_main_right_navigation do %>
+		
+		<%= link_to 'Module', admin_module_url, :class => "#{'aktiv' if @aktivio && @aktivio == 'module'}" %>
+
+	<% end %>
+</nav>

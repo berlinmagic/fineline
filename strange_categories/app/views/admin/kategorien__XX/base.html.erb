@@ -1,0 +1,148 @@
+<%= render 'admin/shared/module_sub_menu' %>
+
+<div class="admin_box">
+	<h1>Listen-Modul</h1>
+	<div class="admin_in_box">
+		<div class="box">
+			<div class="in_box">
+				<p>Das Listen-Modul beinhaltet Tags, Kategorien und Wertelisten welche Sie an verschiedenen Stellen Ihrer Seite einsetzen können.</p>
+			</div>
+		</div>
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<% if @kategorien.count > 1 %>
+					<h3>Aktuell sind <%= @kategorien.count %> Kategorien vorhanden.</h3>
+				<% elsif @kategorien.count == 1 %>
+					<h3>Aktuell ist <%= @kategorien.count %> Kategorie vorhanden.</h3>
+				<% else %>
+					<h3>Aktuell sind keine Kategorien vorhanden.</h3>
+				<% end %>
+				<br/>
+				<div class="fineline_table">
+				<% @kategorien.each do |bk| %>
+					<div class="row" id="<%= dom_id(bk)%>">
+						<div class="title">
+							<a href="<%= admin_kategorie_path(bk) %>">
+								<p><strong><%= bk.name %></strong></p>
+							</a>
+						</div>
+						<div class="actions">
+								<%= fineline_button( 'ansehen', 	#:link_text => 'anzeigen', 
+																	:url => admin_kategorie_path(bk), 
+																	:class => "remote_form_link" ) %>
+								&nbsp;
+								<%= fineline_button( 'bearbeiten', 	#:link_text => 'bearbeiten', 
+																	:url => edit_admin_kategorie_path(bk), 
+																	:class => "remote_form_link" ) %>
+								&nbsp;
+								<%= fineline_button_delete( bk, 	#:link_text => 'loeschen', 
+																	:url => admin_kategorie_path(bk),
+																	:title => 'löschen' ) %>
+						</div>
+					</div>
+				<% end %>
+				</div>
+				<div class="clearfix"></div>								
+			</div>
+		</div>
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<% if @tags.count > 1 %>
+					<h3>Aktuell sind <%= @tags.count %> Tag´s vorhanden.</h3>
+				<% elsif @tags.count == 1 %>
+					<h3>Aktuell ist <%= @tags.count %> Tag vorhanden.</h3>
+				<% else %>
+					<h3>Aktuell sind keine Tag´s vorhanden.</h3>
+				<% end %>
+				<br/>
+				
+				<div class="fineline_table">
+				<% @tags.each do |tag| %>
+					<div class="row" id="<%= dom_id(tag)%>">
+						<div class="title">
+							<a href="<%= admin_tag_path(tag) %>">
+								<p><strong><%= tag.name %></strong></p>
+							</a>
+						</div>
+						<div class="actions">
+								<%= fineline_button( 'ansehen', 	#:link_text => 'anzeigen', 
+																	:url => admin_tag_path(tag), 
+																	:class => "remote_form_link" ) %>
+								&nbsp;
+								<%= fineline_button( 'bearbeiten', 	#:link_text => 'bearbeiten', 
+																	:url => edit_admin_tag_path(tag), 
+																	:class => "remote_form_link" ) %>
+								&nbsp;
+								<%= fineline_button_delete( tag, 	#:link_text => 'loeschen', 
+																	:url => admin_tag_path(tag),
+																	:title => 'löschen' ) %>
+						</div>
+					</div>
+				<% end %>
+				</div>
+				<div class="clearfix"></div>
+				
+				
+			</div>
+		</div>
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<% if @wertelisten.count > 1 %>
+					<h3>Aktuell sind <%= @wertelisten.count %> Wertelisten vorhanden.</h3>
+				<% elsif @wertelisten.count == 1 %>
+					<h3>Aktuell ist nur eine Werteliste vorhanden.</h3>
+				<% else %>
+					<h3>Aktuell sind leider keine Wertelisten vorhanden.</h3>
+				<% end %>
+				<br/>
+				
+				
+				<div class="fineline_table">
+				<% @wertelisten.each do |wl| %>
+					<div class="row" id="<%= dom_id(wl)%>">
+						<div class="title">
+							<a href="<%= admin_werteliste_path(wl) %>">
+								<p><strong><%= wl.name %></strong>
+								<% if wl.werte.count > 0 %>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><%= wl.werte.count %></strong> Werte
+
+								<% end %></p>
+							</a>
+						</div>
+
+					
+						<div class="actions">
+								<%= strange_admin_show_link wl %>
+								<%= strange_edit_link(wl) %>
+
+							    <%= strange_delete_link wl %>
+
+						</div>
+					
+					  </div>
+					
+				<% end %>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		
+	</div>
+</div>
+
+<%= render 'admin/shared/kats_sidebar' %>

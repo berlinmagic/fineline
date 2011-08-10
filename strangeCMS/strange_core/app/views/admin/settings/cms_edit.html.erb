@@ -1,0 +1,98 @@
+<div class="admin_box">
+	<h1><%= t('strange_preferences.site_settings') %> <%= t('edit')%></h1>
+	<div class="admin_in_box">
+		<%= form_tag(admin_setting_path(@name), :method => :put) do -%>
+		<%= hidden_field_tag('name', @name, :size => 50 ) %>
+		<div class="box">
+			<div class="in_box white">
+				
+				<table class="settings">
+					<tr>
+						<th colspan="2" class="u_kat"><%= t('strange_preferences.site_settings')%></th>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.site_name') %></th>
+						<td><%= text_field_tag('preferences[site_name]', Strangecms::Config[:site_name], :size => 50 )%></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.site_url') %></th>
+						<td><%= text_field_tag('preferences[site_url]', Strangecms::Config[:site_url], :size => 50 )%></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.show_site_name') %></th>
+						<td>
+							<%= hidden_field_tag('preferences[show_site_name]', Strangecms::Config[:show_site_name]) %>
+							<%= link_to '', '#', :class => "on_off_schalter #{Strangecms::Config[:show_site_name] ? 'an' : 'aus'}" %>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2"><%= t('strange_preferences.show_site_name_explain')%></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.invite_only_site') %></th>
+						<td>
+						<%= hidden_field_tag('preferences[invite_only_site]', Strangecms::Config[:invite_only_site]) %>
+						<%= link_to '', '#', :class => "on_off_schalter #{Strangecms::Config[:invite_only_site] ? 'an' : 'aus'}" %></td>
+					</tr>
+					<tr>
+						<td colspan="2"><%= t('strange_preferences.invite_only_site_explain')%></td>
+					</tr>
+				</table>
+				<br/>
+				
+				<table class="settings">
+					<tr>
+						<th colspan="2" class="u_kat">Social-Einstellungen</th>
+					</tr>
+					<tr>
+						<th>FaceBook App-ID</th>
+						<td><%= text_field_tag('preferences[facebook_app_id]', Strangecms::Config[:facebook_app_id], :size => 35 )%></td>
+					</tr>
+					<tr>
+						<th colspan="2" class="u_kat"><%= t('strange_preferences.google_settings')%></th>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.analytics_key') %></th>
+						<td><%= text_field_tag('preferences[analytics_key]', Strangecms::Config[:analytics_key], :size => 35 )%></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.g_maps_key') %></th>
+						<td><%= text_field_tag('preferences[g_maps_key]', Strangecms::Config[:g_maps_key], :size => 35 )%></td>
+					</tr>
+				</table>
+				<br/>
+				
+				<table class="settings">
+					<tr>
+						<th colspan="2" class="u_kat"><%= t('strange_preferences.locale_settings')%></th>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.allow_locale_switching') %></th>
+						<td><%= select_tag 'preferences[allow_locale_switching]', options_for_select({ 'Aktiv' => true, 'Inaktiv' => false }, Strangecms::Config[:allow_locale_switching])    %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.default_locale') %></th>
+						<td><%= text_field_tag('preferences[default_locale]', Strangecms::Config[:default_locale], :size => 7 )%></td>
+					</tr>
+				</table>
+				
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<%= render 'update_buttons' %>
+			</div>
+		</div>
+		
+		<% end %>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+<%= render 'sidebar' %>

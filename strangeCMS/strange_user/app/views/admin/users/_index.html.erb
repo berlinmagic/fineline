@@ -1,0 +1,79 @@
+<div class="admin_box">
+	
+	<div id='inviting_form'>
+		
+	<h1>User</h1>
+		
+	<div class="admin_in_box">
+		<div class="box">
+			<div class="in_box">
+				<h2>Hallo <%= t(current_user.anrede)+' '+current_user.name %></h2>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<div class="trenn_linie"></div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<p>Hier sehen Sie eine Liste aller momentan aktiven User.</p>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box white">
+				<%= hook :admin_user_list do %>
+				<table class="mb_table">
+				  <tr>	
+				    <th>Name</th>
+				    <th>Rang</th>
+				    <th>Aktiv</th>
+					<th></th>
+				  </tr>
+				<tbody>
+				<% @users.each do |user| %>
+				  <tr id="<%= dom_id(user)%>">
+				    <td>
+						<a href="<%= admin_user_path(user) %>">
+							<%= t(user.anrede) %>&nbsp;&nbsp;&nbsp;<strong><%= user.vorname+' '+user.name %></strong>
+						</a>
+					</td>
+					<td><%= user_rang(user) %></td>
+					<td>
+					<% if user.invitation_sent_at && (user.encrypted_password.nil? || user.encrypted_password == '') %>
+						wurde Eingeladen
+					<% else %>
+						<%= user.confirmed_at ? raw("<strong>Ja</strong> . seit #{user.confirmed_at.strftime('%d.%m.%Y')}") : 'Konto muss Bestätigt werden!' %>
+					<% end %>
+					</td>
+					<td class="actions"><%# strange_admin_show_link user %></td>
+				  </tr>
+				<% end %>
+				</tbody>
+				</table>
+				<% end %>
+			</div>
+		</div>
+		
+		
+		<div class="box">
+			<div class="in_box">
+				<%= link_to 'neuen Nutzer einladen', new_user_invitation_path, :remote => true, :class => 'big_submit_button' %>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		
+	</div>
+	
+	</div>
+</div>
+
+
+<% content_for :sidebar do %>
+	<div id="sidebar">
+		<ul id="sidebar_navi">
+			<li><%= link_to t('Nutzer einladen'), new_user_invitation_path, :remote => true %></li>
+		</ul>
+		<br class="clear" />
+	</div>
+<% end %>

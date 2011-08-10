@@ -1,0 +1,19 @@
+<tbody>
+<% data.werte.each do |wert| %>
+	<tr id="<%= dom_id(wert)%>">
+		<td class="sorter"><span class="handler"></span></td>
+		
+		<td class="title"><%= wert.inhalt %></td>
+		<td class="aktiv"></td>
+		<td class="actions">
+			
+			<%# link_to 'kill', admin_kill_wl_wert_path(:wert => wert.id), :remote => true, :method => :post %>
+			
+			<%= strange_edit_link wert %>
+			&nbsp;&nbsp;&nbsp;
+			<%= strange_delete_link( wert, :url => remove_admin_werteliste_wert_path(@werteliste, wert) ) %>
+			
+		</td>
+	</tr>
+<% end %>
+</tbody>

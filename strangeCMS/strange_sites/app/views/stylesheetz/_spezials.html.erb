@@ -1,0 +1,169 @@
+
+<%  %>
+<%  %>
+
+
+<style type="text/css" media="screen">
+	
+	/********	Tool-TIP	*****************************************************/
+	#tooltip {
+		position: absolute;
+		z-index: 3000;
+		background: transparent url('/images/fineline/tooltip_pfeil.png') bottom right no-repeat;
+		padding: 0px 0px 10px;
+		opacity: 0.75;
+	}
+	#tooltip h3, #tooltip div { background-color: #000; padding: 5px 10px; margin: 0; color: #fff; font-weight:normal; font-size: 13px; }
+	
+	/********	Pagination	*****************************************************/
+	.pagination { padding: 10px 20px; text-align:right;
+		-webkit-box-shadow: 	inset 0 7px 8px 1px rgba(153,153,153,.3); 
+		-moz-box-shadow: 		inset 0 7px 8px 1px rgba(153,153,153,.3); 
+		box-shadow: 			inset 0 7px 8px 1px rgba(153,153,153,.3); 
+		-webkit-border-top-left-radius: 	5px; -webkit-border-top-right-radius: 	5px; 
+		-moz-border-radius-topleft: 		5px; -moz-border-radius-topright: 		5px; 
+		border-top-left-radius: 			5px; border-top-right-radius: 			5px; }
+	
+	.pagination span a, .pagination span.current { width: 26px; height: 26px; border: solid 1px #ccc; display: inline-block; 
+		text-align: center; line-height:26px;
+		-webkit-border-radius: 	13px; 
+		-moz-border-radius: 	13px; 
+		-o-border-radius: 		13px; 
+		-ms-border-radius: 		13px; 
+		border-radius: 			13px;
+		-webkit-box-shadow: 	inset 1px 1px 2px 0px rgba(2,35,73,.8); 
+		-moz-box-shadow: 		inset 1px 1px 2px 0px rgba(2,35,73,.8); 
+		box-shadow: 			inset 1px 1px 2px 0px rgba(2,35,73,.8); }
+	.pagination span a { background: #369; color: #fff; font-weight: bold; font-size: 14px; }
+	.pagination span.first a { }
+	.pagination span.page a { }
+	.pagination span.current { font-size: 15px; font-weight: bold; font-style: italic; }
+	.pagination span.last a { }
+	
+	.pagination span.prev a { background: #369 url('/images/fineline/spezial/pagination_l.png') center center no-repeat; color: transparent; }
+	.pagination span.next a { background: #369 url('/images/fineline/spezial/pagination_r.png') center center no-repeat; color: transparent; }
+	.pagination span.prev.current { background: #f3f3f3 url('/images/fineline/spezial/pagination_l_b50.png') center center no-repeat; color: transparent;}
+	.pagination span.next.current { background: #f3f3f3 url('/images/fineline/spezial/pagination_r_b50.png') center center no-repeat; color: transparent;}
+	
+	
+	
+	/********	jQuery - Alerts 	*****************************************************/
+	
+	#popup_container { font-family: Arial, sans-serif; font-size: 13px; color: #444;
+		min-width: 300px; /* Dialog will be no smaller than this */
+		max-width: 600px; /* Dialog will wrap after this width */
+
+		border: solid 1px #369;
+		padding: 5px 30px;
+		
+		-moz-border-radius: 5px;
+		-webkit-border-radius: 5px;
+		border-radius: 5px;
+		background: #f3f3f3;
+
+		-moz-box-shadow: 		0px 0px 75px 75px rgba(0,0,0,.5);
+		-webkit-box-shadow: 	0px 0px 75px 75px rgba(0,0,0,.5);
+		box-shadow: 			0px 0px 75px 75px rgba(0,0,0,.5);
+	}
+
+	#popup_title {
+		color: #336699; font-style: italic; font-weight: bold; font-size: 15px;
+		text-align: left;
+		line-height: 1.75em;
+		border-bottom: solid 1px #ccc;
+		cursor: default;
+		padding: 5px;
+		margin: 0em;
+		margin: 5px 20px 0 20px;
+	}
+
+	#popup_content {
+		border-top: solid 1px #fff;
+		background: transparent 16px 16px no-repeat url(/images/info.gif);
+		padding: 1em 1.75em;
+		margin: 0 20px 42px 15px;
+		font-size: 15px;
+	}
+
+	#popup_ok { float:left;  padding: 7px 20px 8px;  margin: 5px 5px 5px 0;
+			border: solid 1px #3e5d0b; 
+			-webkit-border-radius: 	<%= @big_button_radius %>; 
+			-moz-border-radius: 	<%= @big_button_radius %>; 
+			-o-border-radius: 		<%= @big_button_radius %>; 
+			-ms-border-radius: 		<%= @big_button_radius %>; 
+			border-radius: 			<%= @big_button_radius %>;
+			color: #fff; font-weight: bold; font-size: 15px; 
+			-webkit-text-shadow: 0px 0px 2px #3e5d0b; 
+			-moz-text-shadow: 0px 0px 2px #3e5d0b; 
+			text-shadow: 0px 0px 2px #3e5d0b; 
+			background: rgb(64,112,172); /* Old browsers */
+			background: -moz-linear-gradient(top, rgba(64,112,172,1) 0%, rgba(42,86,142,1) 100%); /* FF3.6+ */
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(64,112,172,1)), color-stop(100%,rgba(42,86,142,1))); /* Chrome,Safari4+ */
+			background: -webkit-linear-gradient(top, rgba(64,112,172,1) 0%,rgba(42,86,142,1) 100%); /* Chrome10+,Safari5.1+ */
+			background: -o-linear-gradient(top, rgba(64,112,172,1) 0%,rgba(42,86,142,1) 100%); /* Opera11.10+ */
+			background: -ms-linear-gradient(top, rgba(64,112,172,1) 0%,rgba(42,86,142,1) 100%); /* IE10+ */
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4070ac', endColorstr='#2a568e',GradientType=0 ); /* IE6-9 */
+			background: linear-gradient(top, rgba(64,112,172,1) 0%,rgba(42,86,142,1) 100%); /* W3C */ }
+
+	#popup_ok:hover {
+			background: #606c88; /* Old browsers */
+			background: -moz-linear-gradient(top, #606c88 0%, #3f4c6b 100%); /* FF3.6+ */
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#606c88), color-stop(100%,#3f4c6b)); /* Chrome,Safari4+ */
+			background: -webkit-linear-gradient(top, #606c88 0%,#3f4c6b 100%); /* Chrome10+,Safari5.1+ */
+			background: -o-linear-gradient(top, #606c88 0%,#3f4c6b 100%); /* Opera11.10+ */
+			background: -ms-linear-gradient(top, #606c88 0%,#3f4c6b 100%); /* IE10+ */
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#606c88', endColorstr='#3f4c6b',GradientType=0 ); /* IE6-9 */
+			background: linear-gradient(top, #606c88 0%,#3f4c6b 100%); /* W3C */ }
+
+	#popup_cancel { 		float:left; padding: 7px 20px 7px; margin: 5px 5px 5px 5px; color: #444; font-weight: bold; font-size: 15px;
+			border: solid 1px #777; 
+			-webkit-border-radius: 	<%= @big_button_radius %>; 
+			-moz-border-radius: 	<%= @big_button_radius %>; 
+			-o-border-radius: 		<%= @big_button_radius %>; 
+			-ms-border-radius: 		<%= @big_button_radius %>; 
+			border-radius: 			<%= @big_button_radius %>; 
+			background: rgb(243,243,243); /* Old browsers */
+			background: -moz-linear-gradient(top, rgba(243,243,243,1) 0%, rgba(143,168,181,1) 100%); /* FF3.6+ */
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(243,243,243,1)), color-stop(100%,rgba(143,168,181,1))); 
+			background: -webkit-linear-gradient(top, rgba(243,243,243,1) 0%,rgba(143,168,181,1) 100%); /* Chrome10+,Safari5.1+ */
+			background: -o-linear-gradient(top, rgba(243,243,243,1) 0%,rgba(143,168,181,1) 100%); /* Opera11.10+ */
+			background: -ms-linear-gradient(top, rgba(243,243,243,1) 0%,rgba(143,168,181,1) 100%); /* IE10+ */
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f3f3f3', endColorstr='#8fa8b5',GradientType=0 ); /* IE6-9 */
+			background: linear-gradient(top, rgba(243,243,243,1) 0%,rgba(143,168,181,1) 100%); /* W3C */ }
+
+	#popup_cancel:hover { 				color: #fff;
+			background: rgb(181,189,200); /* Old browsers */
+			background: -moz-linear-gradient(top, rgba(181,189,200,1) 0%, rgba(130,140,149,1) 36%, rgba(40,52,59,1) 100%); /* FF3.6+ */
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(181,189,200,1)), color-stop(36%,rgba(130,140,149,1)), color-stop(100%,rgba(40,52,59,1))); /* Chrome,Safari4+ */
+			background: -webkit-linear-gradient(top, rgba(181,189,200,1) 0%,rgba(130,140,149,1) 36%,rgba(40,52,59,1) 100%); /* Chrome10+,Safari5.1+ */
+			background: -o-linear-gradient(top, rgba(181,189,200,1) 0%,rgba(130,140,149,1) 36%,rgba(40,52,59,1) 100%); /* Opera11.10+ */
+			background: -ms-linear-gradient(top, rgba(181,189,200,1) 0%,rgba(130,140,149,1) 36%,rgba(40,52,59,1) 100%); /* IE10+ */
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b5bdc8', endColorstr='#28343b',GradientType=0 ); /* IE6-9 */
+			background: linear-gradient(top, rgba(181,189,200,1) 0%,rgba(130,140,149,1) 36%,rgba(40,52,59,1) 100%); /* W3C */}
+
+	#popup_content.alert {
+		background-image: url(/images/info.gif);
+	}
+
+	#popup_content.confirm {
+		background-image: url(/images/important.gif);
+	}
+
+	#popup_content.prompt {
+		background-image: url(/images/help.gif);
+	}
+
+	#popup_message {
+		padding-left: 48px;
+	}
+
+	#popup_panel {
+		text-align: center;
+		margin: 30px 0;
+	}
+
+	#popup_prompt {
+		margin: .5em 0em;
+	}
+	
+</style>

@@ -1,0 +1,12 @@
+<%# gpic_width = 350 %>
+<%# gpic_height = 300 %>
+
+<% pic_dim = format_thumb(bild, gpic_width, gpic_height) %>
+<% thumb_breite = pic_dim[:breite] %>
+<% thumb_hoehe = pic_dim[:hoehe] %>
+
+<a class="gpix_box colorB" href="/system/gallerie/lightbox/<%= bild.id %>">
+	
+	<%= image_tag bild.file.thumb(bild.file_cropping).thumb("#{thumb_breite}x#{thumb_hoehe}").url, 
+					:style => "margin: #{(gpic_height-thumb_hoehe)/2}px #{(gpic_width-thumb_breite)/2}px" %>
+</a>

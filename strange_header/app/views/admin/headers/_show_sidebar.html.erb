@@ -1,0 +1,21 @@
+<% content_for :sidebar do %>
+<div id="sidebar">
+			<ul id="sidebar_navi">
+				<li class="plus"><%= link_to 'Header bearbeiten', edit_admin_header_path(@header), :class => "#{'aktiv' if @u_aktiv == 'edit'}" %></li>
+				<li class="plus">
+					<%#= link_to 'Neues Bild', new_admin_header_header_pic_path(@header), :class => "remote_form_link #{'aktiv' if @u_aktiv == 'new'}" %>
+					<%= link_to 'Neues Bild', new_admin_header_header_pic_path(@header), :class => "colorB #{'aktiv' if @u_aktiv == 'new'}" %>
+				</li>
+				<li class="plus"><%= link_to 'Neuer Header', new_admin_header_path, :class => "colorB #{'aktiv' if @u_aktiv == 'new'}" %></li>
+				<% if @header && @header.name != 'Standard_Header' %>
+				<li>- - -</li>
+				<li class="plus"><%= strange_delete_text_link( @header, :url => admin_header_path(@header), :link_text => "Header löschen" ) %></li>
+				<% end %>
+			</ul>
+			<br class="clear" />
+</div>
+<% end %>
+<style>
+#sidebar_navi li.plus a { line-height: 18px;}
+#sidebar_navi li.plus a img {vertical-align: middle; margin-left: -20px;}
+</style>

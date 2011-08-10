@@ -1,0 +1,3 @@
+$('#inviting_form').html("<%= escape_javascript(render 'index')%>");
+$('#notice_area').html('<div id="notice" class="flash round notice"><div id="in_flash">Einladung wurde gesendet.</div></div>');
+$('div.flash').delay(5000).slideUp(700);

@@ -1,0 +1,10 @@
+Mail von<%= ' '+@data.absender if @data.absender %>:
+
+
+<% @data.finemail_fields.each do |field| %>
+<%= field.name %>
+
+<%= field.inhalt %>
+
+
+<% end %>

@@ -1,0 +1,76 @@
+<div class="admin_box">
+	<h1><%= t('strange_preferences.strange_news.settings_headline')%></h1>
+	<div class="admin_in_box">
+
+		<div class="box">
+			<div class="in_box">
+				<table>
+					<tr>
+						<th><%= t('strange_preferences.strange_news.aktiv') %></th>
+						<td><%= Strangecms::Newz::Config[:aktiv] %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.strange_news.news_per_page') %></th>
+						<td><%= Strangecms::Newz::Config[:news_per_page] %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.strange_news.always_crop_pix') %></th>
+						<td><%= Strangecms::Newz::Config[:always_crop_pix] %></td>
+					</tr>
+					
+					<tr>
+						<th><%= t('strange_preferences.strange_news.preview_pic_width') %></th>
+						<td><%= Strangecms::Newz::Config[:preview_pic_width] %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.strange_news.preview_pic_height') %></th>
+						<td><%= Strangecms::Newz::Config[:preview_pic_height] %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.strange_news.preview_pic_max_width') %></th>
+						<td><%= Strangecms::Newz::Config[:preview_pic_max_width] %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.strange_news.preview_pic_max_height') %></th>
+						<td><%= Strangecms::Newz::Config[:preview_pic_max_height] %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.strange_news.news_pic_width') %></th>
+						<td><%= Strangecms::Newz::Config[:news_pic_width] %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.strange_news.news_pic_height') %></th>
+						<td><%= Strangecms::Newz::Config[:news_pic_height] %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.strange_news.news_pic_max_width') %></th>
+						<td><%= Strangecms::Newz::Config[:news_pic_max_width] %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.strange_news.news_pic_max_height') %></th>
+						<td><%= Strangecms::Newz::Config[:news_pic_max_height] %></td>
+					</tr>
+
+				</table>
+				
+			</div>
+		</div>
+
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<%= link_to t("edit_settings"), edit_admin_news_settings_path, :class => 'big_submit_button' %>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<%= render 'admin/settings/sidebar' %>
+
+

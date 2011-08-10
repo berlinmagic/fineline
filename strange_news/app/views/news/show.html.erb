@@ -1,0 +1,119 @@
+<div class="box">
+
+	<div class="in_box first">
+		<h1><%= @news.headline %></h1>
+	</div>
+
+	<div class="in_box ">
+		<span class="news_info">
+			<%= @news.datum.strftime('%d.%m.%Y') %> von <%= @news.schreiber %>
+		</span>
+	</div>
+	
+	<div class="in_box ">
+			<%= image_tag @news.file.thumb("700x300>").url if @news.file %>
+	</div>
+	
+	
+<% if @news.news_abschnitte.count > 0 %>
+	
+	<% @news.news_abschnitte.each_with_index do |abschnitt,index| %>
+
+	
+	
+		<% if abschnitt.stuff_typ == 'trenn_linie' %>
+		<div class="in_box">
+			<div class="trenn_linie"></div>
+			<div class="clearfix"></div>
+		</div>
+		<% end %>
+
+		<% if abschnitt.stuff_typ == 'text' %>
+		<div class="in_box">
+			<%= raw abschnitt.inhalt %>
+			<div class="clearfix"></div>
+		</div>
+		<% end %>
+	
+	
+	
+	<% end %>
+
+<% else %>
+
+	<div class="in_box">
+		<%= raw @news.beschreibung %>
+		<div class="clearfix"></div>
+	</div>
+	
+<% end %>
+
+
+<% if @news.ilike %>
+<div class="in_box">	
+	<div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#appId=<%= Strangecms::Config[:facebook_app_id] %>&amp;xfbml=1"></script><fb:like href="<%= "#{Strangecms::Config[:site_url]}#{@news.news_site_slug}" + @news.slug + '/' %>" send="true" width="700" show_faces="false" font="lucida grande"></fb:like>
+	
+	<div class="clearfix"></div>
+</div>
+<% end %>
+
+
+</div>
+
+<% if @news.kommentierbar %>
+<div id="kommetar_area" class="<%= 'hidden' unless @news.kommentare.count > 0 %>">
+	
+	
+	<div class="in_box">
+		<div class="trenn_linie"></div>
+		<div class="clearfix"></div>
+	</div>
+
+	<div class="box">
+		<div class="in_box kommentare_index_box">
+			<h2 class="komentare_headline">Kommentare</h2>
+
+			<% @news.kommentare.each do |kmt| %>
+
+				<%= render 'kommentare/kommentar', :kommentar => kmt %>
+
+			<% end %>
+		</div>
+	</div>
+	
+	
+</div>
+
+
+
+<% end %>
+
+<% if @news.kommentierbar %>
+
+<div class="in_box">
+	<div class="trenn_linie"></div>
+	<div class="clearfix"></div>
+</div>
+
+<div class="box">
+	<div class="in_box">
+		<%= render 'kommentare/ajax_form', :this_target => 'News', :this_id => @news.id, :this_back_url => "#{@news.news_site_slug}" + @news.slug %>
+		<div class="clearfix"></div>
+		<br/>
+	</div>
+</div>
+<div class="in_box">
+	<div class="trenn_linie"></div>
+	<div class="clearfix"></div>
+</div>
+<% end %>
+	
+	
+	<%= render 'admin/tags/tags_show', :data => @news %>
+	
+	
+	<%= render 'admin/kategorien/kategorie_show', :data => @news %>
+
+
+
+<%= render :partial => 'news/sidebar' %>

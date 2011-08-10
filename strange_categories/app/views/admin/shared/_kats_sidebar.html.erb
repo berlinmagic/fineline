@@ -1,0 +1,32 @@
+<% content_for :sidebar do %>
+<div id="sidebar">
+	
+		
+	<ul id="gallerie_navi">
+		<li><%= link_to 'Kategorien', admin_kategorien_url, :class => "#{'aktiv' if @u_aktiv == 'kategorien'}" %></li>
+		<% if @kategorie || @kategorien %>
+			<li><ul>
+				<% Kategorie.all.each do |kt| %>
+					<li><%= link_to kt.name, admin_kategorie_url(kt), :class => "#{'aktiv' if @kategorie && @kategorie == kt}" %></li>
+				<% end %>
+			</ul></li>
+		<% end %>
+		<li><%= link_to fineline_icon('neu')+' neue Kategorie', new_admin_kategorie_url, :class => "#{'aktiv' if @u_aktiv == 'kt_new'}" %></li>
+		<li>&nbsp;</li>
+		<li><%= link_to 'Tags', admin_tags_url, :class => "#{'aktiv' if @u_aktiv == 'tags'}" %></li>
+		<li><%= link_to fineline_icon('neu')+' neuer Tag', new_admin_tag_url, :class => "#{'aktiv' if @u_aktiv == 'tg_new'}" %></li>
+		<li>&nbsp;</li>
+		<li><%= link_to 'Wertelisten', admin_wertelisten_url, :class => "#{'aktiv' if @u_aktiv == 'werteliste'}" %></li>
+		<% if @werteliste || @wertelisten %>
+			<li><ul>
+				<% Werteliste.all.each do |wt| %>
+					<li><%= link_to wt.name, admin_werteliste_url(wt), :class => "#{'aktiv' if @werteliste && @werteliste == wt}" %></li>
+				<% end %>
+			</ul></li>
+		<% end %>
+		<li><%= link_to fineline_icon('neu')+' neue Werteliste', new_admin_werteliste_url, :class => "#{'aktiv' if @u_aktiv == 'wl_new'}" %></li>
+	</ul>
+	<br class="clear" />
+
+</div>
+<% end %>

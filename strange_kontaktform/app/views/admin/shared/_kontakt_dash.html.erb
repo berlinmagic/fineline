@@ -1,0 +1,18 @@
+<div class="in_box">
+	<div class="trenn_linie"></div>
+</div>
+
+
+<div class="in_box">
+	<% if KontaktFormular.neu.count == 1 %>
+	<%= link_to "ein neues Kontaktformular", admin_posteingang_neu_path %>
+	<% else %>
+	<%= link_to "#{KontaktFormular.neu.count} neue Kontaktformulare", admin_posteingang_neu_path %>
+	<% end %>
+	<br/>
+	<% if KontaktFormular.gelesen.count == 1 %>
+	<%= link_to "ein gelesenes Kontaktformular", admin_posteingang_neu_path %>
+	<% else %>
+	<%= link_to "#{KontaktFormular.gelesen.count} gelesene Kontaktformulare", admin_kontakt_formulare_path %>
+	<% end %>
+</div>

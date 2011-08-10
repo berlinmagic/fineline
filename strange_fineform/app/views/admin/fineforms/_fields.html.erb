@@ -1,0 +1,49 @@
+<tbody>
+<% data.fineform_fields.each_with_index do |wert,index| %>
+
+<% if data.class == 'FineformFieldset' %>
+	<% p_form = data.fineform_id %>
+<% else %>
+	<% p_form = data.id %>
+<% end %>
+	<tr id="<%= dom_id(wert)%>">
+		<td class="sorter"><span class="handler"></span></td>
+		
+		<td class="title"><%= wert.name %></td>
+		<td class="fine_feld">
+			<% if wert.feld_typ == 'email' %>
+				<input type="text" name="email_<%= index + 1 %>" value="<%=  t("strange_fineform.#{wert.feld_typ}") %>">
+			<% elsif wert.feld_typ == 'string' %>
+				<input type="text" name="string_<%= index + 1 %>" value="<%=  t("strange_fineform.#{wert.feld_typ}") %>">
+			<% elsif wert.feld_typ == 'text' %>
+				<textarea name="text_<%= index + 1 %>"><%=  t("strange_fineform.#{wert.feld_typ}") %></textarea>
+			<% elsif wert.feld_typ == 'select' %>
+				<select id="select_<%= index + 1 %>"><option value="select"><%=  t("strange_fineform.#{wert.feld_typ}") %></option></select>
+			
+			<% elsif wert.feld_typ == 'radio' %>
+				<input type="radio" name="input_radio" value="Radio"> RadioButton
+			<% elsif wert.feld_typ == 'multi_select' %>
+				<input type="checkbox" name="input_checkbox" value="CheckBox"> CheckBox
+			<% elsif wert.feld_typ == 'date' %>
+				<%= date_select 'date_select', 'input_date' %>
+			
+			<% elsif wert.feld_typ == 'file' %>
+				<input type="file" name="input_file" size="chars"> 
+			
+			<% else %>
+				<input type="text" name="feld_<%= index + 1 %>" value="<%=  t("strange_fineform.#{wert.feld_typ}") %>">
+			<% end %>
+		</td>
+		<td class="desc"><%= wert.needed ? nepp : '' %> <%= wert.validat ? raw("&nbsp;&nbsp;&nbsp; [ #{wert.validation_typ} ]") : '' %></td>
+		<td class="actions">
+			
+		<%= link_to(icon('edit'), edit_admin_fineform_fineform_field_path(p_form,wert), :title => "#{wert.name} bearbeiten", :class => 'strange_icon_link', :remote => true)   %>
+			
+			&nbsp;&nbsp;&nbsp;
+			<% unless wert.system_stuff %>
+			<%= strange_delete_link( wert, :url => remove_admin_fineform_fineform_field_path(@fineform, wert) ) %>
+			<% end %>
+		</td>
+	</tr>
+<% end %>
+</tbody>

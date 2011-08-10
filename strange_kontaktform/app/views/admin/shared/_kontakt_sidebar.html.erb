@@ -1,0 +1,13 @@
+<% content_for :sidebar do %>
+<div id="sidebar">
+			<ul id="sidebar_navi">
+				<li><%= link_to 'Alle E-Mails', admin_kontakt_formulare_path, :class => "#{'aktiv' if @u_aktiv == 'All'}" %></li>
+				<li><%= link_to 'Posteingang', admin_posteingang_path, :class => "#{'aktiv' if @u_aktiv == 'Posteingang'}" %></li>
+				<li><%= link_to 'Neue E-Mails', admin_posteingang_neu_path, :class => "#{'aktiv' if @u_aktiv == 'posteingang_neu'}" %></li>
+				<li><%= link_to 'Postausgang', admin_postausgang_path, :class => "#{'aktiv' if @u_aktiv == 'Postausgang'}" %></li>
+				<li>&nbsp;</li>
+				<li><%= link_to 'Einstellungen', admin_setting_path('kontakt') %></li>
+			</ul>
+			<br class="clear" />
+</div>
+<% end %>

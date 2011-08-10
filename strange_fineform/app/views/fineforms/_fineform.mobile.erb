@@ -1,0 +1,125 @@
+<%  @this_fields = [] %>
+<% @javatext = '' %>
+<% if abs %>
+
+<% if abs.stuff_param && abs.stuff_param != '' %>
+
+<% if fform = Fineform.find(abs.stuff_param) %>
+		
+		<% if fform.form_typ && fform.form_typ == "fieldset" %>
+		
+		<h1><%= fform.name %> ( 1 / <%= fform.fineform_fieldsets.count %> )</h1>
+		<br/>
+		<% @finemail ||= Finemail.new %>
+		
+	<%= form_for(@finemail, :url => { :controller => 'finemails', :action => :create_form_part}, 
+							:html => { :multipart => true, :id => 'fineform_box'}, :remote => true) do |f| %>
+		<%= render 'shared/error', :item => f.object%>
+			<% if fform.fineform_fieldsets.count > 0 %>
+			<% field_set = fform.fineform_fieldsets.first %>
+			
+				<p>
+				<% fform.fineform_fieldsets.each_with_index do |ff_fieldset,index| %>
+					<%= raw('&nbsp;&nbsp;&nbsp;&rarr;&nbsp;&nbsp;&nbsp;') if index > 0 %><%= raw('<strong>') if ff_fieldset == field_set %><%= ff_fieldset.name %><%= raw('</strong>') if ff_fieldset == field_set %>
+				<% end %>
+				
+
+				
+				</p>
+				<br/><br/>
+				<%= f.hidden_field :form_part, :value => 0 %>
+				<%= f.hidden_field :abs, :value => abs.id %>
+
+				<%= f.hidden_field :fineform_id, :value => fform.id %>
+				<%= f.hidden_field :typ, :value => fform.typ %>
+				<ul class="edit rounded">
+					<% @this_fields = field_set.fineform_fields %>
+					<% field_set.fineform_fields.each_with_index do |field,index| %>
+					
+						<% if field.system_stuff %>
+							<%= f.hidden_field :absender, :id => 'absender_feld' %>
+						<% end %>
+						
+						<%= f.fields_for(:finemail_fields, @finemail.finemail_fields.build, :child_index => "new_finemail_field_#{index+1}") do |builder| %>
+								<li>
+										<%= builder.hidden_field :name, :value => field.name %>
+										<%= render 'fineforms/ff_field', :field => field, :builder => builder, :index => index %>
+										<%= builder.hidden_field :position, :value => field.position %>
+										<%= builder.hidden_field :fineform_field_id, :value => field.id %>
+								</li>
+						<% end %>
+					
+					<% end %>
+					<br/>
+							<% if fform.fineform_fieldsets.count == 1 %>
+								<%= f.submit 'senden' %>
+							<% else %>
+								<%= f.submit 'weiter' %>
+							<% end %>
+				</ul>
+				<br/>
+				
+					
+					
+					
+			<% end %>
+		<% end %>
+		
+		
+		
+		<% else %>
+		
+		<h1><%= fform.name %></h1>
+		<br/>
+		
+			<% @finemail ||= Finemail.new %>
+			<%= form_for(@finemail, :html => { :multipart => true, :id => 'fineform_box' }, :remote => true) do |f| %>
+				<%= render 'shared/error', :item => f.object%>
+				<%= f.hidden_field :abs, :value => abs.id %>
+				<%= f.hidden_field :absender, :id => 'absender_feld' %>
+				<%= f.hidden_field :fineform_id, :value => fform.id %>
+				<%= f.hidden_field :typ, :value => fform.typ %>
+				<ul class="edit rounded">
+					<% @this_fields = fform.fineform_fields %>
+					
+					
+					<% fform.fineform_fields.each_with_index do |field,index| %>
+					
+
+					
+					
+					<% f.fields_for(:finemail_fields, @finemail.finemail_fields.build, :child_index => "new_finemail_field_#{index+1}") do |builder| %>
+						
+
+							<li>
+									<%= builder.hidden_field :name, :value => field.name %>
+								
+									<%= render 'fineforms/ff_field', :field => field, :builder => builder, :index => index %>
+								
+									<%= builder.hidden_field :position, :value => field.position %>
+									<%= builder.hidden_field :fineform_field_id, :value => field.id %>
+								
+							</li>
+
+					<% end %>
+					
+					
+					<% end %>
+					<br/>
+							<%= f.submit 'Senden' %>
+
+				</ul>
+				<br/>
+				
+			<% end %>
+			
+		<% end %>
+		
+<% end %>
+
+<% end %>
+
+<% end %>
+
+<div class="clearfix"></div>
+

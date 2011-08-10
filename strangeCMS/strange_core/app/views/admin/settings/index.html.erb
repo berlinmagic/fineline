@@ -1,0 +1,121 @@
+<div class="admin_box">
+	<h1><%= t('strange_preferences.Preferences') %></h1>
+	<div class="admin_in_box">
+		<div class="box">
+			<div class="in_box">
+				<p>Hier haben Sie die Möglichkeit verschiedene Einstellungen Ihrer Seite einzusehen und zu verändern. > > ></p><br/>
+				<p>Ändern Sie den Seitennamen, die möglichen und nötigen Felder des Kontakt-Formulars, den Mail-Server und vieles mehr .. um Ihre Seite perfekt zu machen.</p>
+			</div>
+		</div>
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box white">
+				<p><em>Hier eine kleine Übersicht der momentanen Einstellungen, ändern können Sie diese über das Menü auf der rechten Seite.</em></p>
+				<br/>
+				<table class="settings">
+					<tr>
+						<th colspan="2" class="u_kat"><%= t('strange_preferences.site_settings')%></th>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.site_name') %></th>
+						<td>
+							<% if Strangecms::Config[:site_name] && Strangecms::Config[:site_name] != "fineline-CMS" && Strangecms::Config[:site_name] != "" %>
+								<strong><%= Strangecms::Config[:site_name] %></strong>
+							<% else %>
+								<span class="panic">Achtung, nicht vergeben!</span>
+							<% end %>
+						</td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.site_url') %></th>
+						<td>
+							<% if Strangecms::Config[:site_url] && Strangecms::Config[:site_url] != "2strange.net" && Strangecms::Config[:site_url] != "" %>
+								<strong><%= Strangecms::Config[:site_url] %></strong>
+							<% else %>
+								<span class="panic">Achtung, nicht vergeben!</span>
+							<% end %>
+						</td>
+					</tr>
+					<tr>
+						<th colspan="2" class="u_kat"><%= t('strange_preferences.google_settings')%></th>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.analytics_key') %></th>
+						<td>
+							<% if Strangecms::Config[:analytics_key] && Strangecms::Config[:analytics_key] != "UA-XXXXX-X" && Strangecms::Config[:analytics_key] != "" %>
+								<strong>O.K.</strong>
+							<% else %>
+								<span class="panic">Achtung, nicht vergeben!</span>
+							<% end %>
+						</td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.g_maps_key') %></th>
+						<td>
+							<% if Strangecms::Config[:g_maps_key] && Strangecms::Config[:g_maps_key] != "UA-XXXXX-X" && Strangecms::Config[:g_maps_key] != "" %>
+								<strong>O.K.</strong>
+							<% else %>
+								<span class="panic">Achtung, nicht vergeben!</span>
+							<% end %>
+						</td>
+					</tr>
+					<tr>
+						<th colspan="2" class="u_kat">Social-Einstellungen</th>
+					</tr>
+					<tr>
+						<th>FaceBook App-ID</th>
+						<td>
+							<% if Strangecms::Config[:facebook_app_id] && Strangecms::Config[:facebook_app_id] != "UA-XXXXX-X" && Strangecms::Config[:facebook_app_id] != "" %>
+								<strong><%= Strangecms::Config[:facebook_app_id] %></strong>
+							<% else %>
+								<span class="panic">Achtung, nicht vergeben!</span>
+							<% end %>
+						</td>
+					</tr>
+					<tr>
+						<th colspan="2" class="u_kat"><%= t('strange_preferences.owner_settings')%></th>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.stange_owner_firma') %></th>
+						<td>
+							<% if Strangecms::Config[:stange_owner_firma] && Strangecms::Config[:stange_owner_firma] != "Firma" && Strangecms::Config[:stange_owner_firma] != "" %>
+								<strong><%= Strangecms::Config[:stange_owner_firma] %></strong>
+							<% else %>
+								<span class="panic">Achtung, nicht vergeben!</span>
+							<% end %>
+						</td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.stange_owner_name') %></th>
+						<td>
+							<% if Strangecms::Config[:stange_owner_name] && Strangecms::Config[:stange_owner_name] != "Name" && Strangecms::Config[:stange_owner_name] != "" %>
+								<strong><%= Strangecms::Config[:stange_owner_name] %></strong>
+							<% else %>
+								<span class="panic">Achtung, nicht vergeben!</span>
+							<% end %>
+						</td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.stange_owner_vorname') %></th>
+						<td>
+							<% if Strangecms::Config[:stange_owner_vorname] && Strangecms::Config[:stange_owner_vorname] != "Vorname" && Strangecms::Config[:stange_owner_vorname] != "" %>
+								<strong><%= Strangecms::Config[:stange_owner_vorname] %></strong>
+							<% else %>
+								<span class="panic">Achtung, nicht vergeben!</span>
+							<% end %>
+						</td>
+					</tr>
+
+				</table>
+			</div>
+		</div>
+		
+	</div>
+</div>
+
+
+<%= render 'sidebar' %>

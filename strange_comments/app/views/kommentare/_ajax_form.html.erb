@@ -1,0 +1,130 @@
+<h2 class="kommentar_form_head"><a href="#">Kommentar einfügen</a></h2>
+
+
+<% @kommentar ||= Kommentar.new %>
+
+<div id="kommentar_form_box" style="display: none">
+	<%= form_for @kommentar, :remote => true do |f| %>
+
+		<%= f.hidden_field :target_type, :value => this_target %>
+		<%= f.hidden_field :target_id, :value => this_id %>
+		<%= f.hidden_field :back_url, :value => this_back_url %>
+		
+
+		<% if current_user %>
+		
+			<% if Strangecms::Kommenta::Config[:form_stil] == 'classic' %>
+			
+				<%= f.hidden_field :user_id, :value => current_user.id %>
+				<p class="kommentar_user_name"><%= current_user.vorname %> <%= current_user.name %></p>
+				<br/>
+				<% if Strangecms::Kommenta::Config[:headline_feld] %>
+				Überschrift:<br/>
+				<%= f.text_field :headline, :size => '50' %>
+				<br/><br/>
+				<% end %>
+				Inhalt:<br/>
+				<%= f.text_area :inhalt, :size => '90x5', :class => 'tipped' %>
+			
+			<% else %>
+				
+				<%= f.hidden_field :user_id, :value => current_user.id %>
+				<p class="kommentar_user_name"><%= current_user.vorname %> <%= current_user.name %></p>
+				<% if Strangecms::Kommenta::Config[:headline_feld] %>
+				<%= f.text_field :headline, :size => '50', :class => 'tipped', :placeholder => t('strange_comments.headline') %>
+				<br/>
+				<% end %>
+				<%= f.text_area :inhalt, :size => '90x5', :class => 'tipped', :placeholder => t('strange_comments.inhalt')+" *" %>
+				
+			<% end %>
+
+		<% else %>
+		
+			<% if Strangecms::Kommenta::Config[:form_stil] == 'classic' %>
+			
+				<table>
+					<tr>
+						<th><%= f.label :user_name, t('strange_comments.user_name') %></th>
+						<td><%= f.text_field :user_name, :size => '50' %></td>
+					</tr>
+					
+					<% if Strangecms::Kommenta::Config[:vorname_feld] %>
+						<tr>
+							<th><%= f.label :user_vorname, t('strange_comments.user_vorname') %></th>
+							<td><%= f.text_field :user_vorname, :size => '50' %></td>
+						</tr>
+					<% end %>
+					<% if Strangecms::Kommenta::Config[:firma_feld] %>
+						<tr>
+							<th><%= f.label :user_firma, t('strange_comments.user_firma') %></th>
+							<td><%= f.text_field :user_firma, :size => '50' %></td>
+						</tr>
+					<% end %>
+					<% if Strangecms::Kommenta::Config[:website_feld] %>
+						<tr>
+							<th><%= f.label :user_website, t('strange_comments.user_website') %></th>
+							<td><%= f.text_field :user_website, :size => '50' %></td>
+						</tr>
+					<% end %>
+					
+					<tr>
+						<th><%= f.label :user_email, t('strange_comments.user_email') %></th>
+						<td><%= f.text_field :user_email, :size => '50' %></td>
+					</tr>
+					
+					<% if Strangecms::Kommenta::Config[:headline_feld] %>
+						<tr>
+							<th><%= f.label :headline, t('strange_comments.headline') %></th>
+							<td><%= f.text_field :headline, :size => '50' %></td>
+						</tr>
+					<% end %>
+					
+					<tr>
+						<th><%= f.label :inhalt, t('strange_comments.inhalt') %></th>
+						<td><%= f.text_area :inhalt, :size => '90x5' %></td>
+					</tr>
+				</table>
+
+			
+			<% else %>
+			
+				<%= f.text_field :user_name, :size => '50', :class => 'tipped', :placeholder => t('strange_comments.user_name')+" *" %>
+				
+				<% if Strangecms::Kommenta::Config[:vorname_feld] %>
+					<%= f.text_field :user_vorname, :size => '50', :class => 'tipped', :placeholder => t('strange_comments.user_vorname') %>
+				<% end %>
+				
+				<%= f.text_field :user_email, :size => '50', :class => 'tipped', :placeholder => t('strange_comments.user_email')+" *" %>
+				
+				<% if Strangecms::Kommenta::Config[:firma_feld] %>
+					<%= f.text_field :user_firma, :size => '50', :class => 'tipped', :placeholder => t('strange_comments.user_firma') %>
+				<% end %>
+				
+				<% if Strangecms::Kommenta::Config[:website_feld] %>
+					<%= f.text_field :user_website, :size => '50', :class => 'tipped', :placeholder => t('strange_comments.user_website') %>
+				<% end %>
+				
+				<% if Strangecms::Kommenta::Config[:headline_feld] %>
+					<%= f.text_field :headline, :size => '50', :class => 'tipped', :placeholder => t('strange_comments.headline') %>
+				<% end %>
+				
+				<%= f.text_area :inhalt, :size => '90x5', :class => 'tipped', :placeholder => t('strange_comments.inhalt')+" *" %>
+
+				
+			<% end %>
+
+			
+
+		<% end %>
+
+		<div class="clearfix"></div>
+		<br/>
+
+		<%= f.submit 'Speichern' %>
+		<div class="clearfix"></div>
+		<br/>
+
+	<% end %>
+	<div class="clearfix"></div>
+</div>
+

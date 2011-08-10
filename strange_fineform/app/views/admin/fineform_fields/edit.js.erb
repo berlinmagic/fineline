@@ -1,0 +1,1 @@
+$("#<%= dom_id(@fineform_field) %>").html("<%= escape_javascript(render(:partial => "admin/fineform_fields/edit", :locals => {:data => @fineform_field})) %>");

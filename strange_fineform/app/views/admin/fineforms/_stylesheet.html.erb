@@ -1,0 +1,62 @@
+<style>
+	.wertlisten_wert_box {padding: 10px 30px;}
+	
+	
+	table.fineline_table {width: 95%; border-spacing: 0; border: 0; position: relative; }
+	table.fineline_table th { padding: 10px 5px; background: rgba(230,230,230,.7); position: relative; }
+	table.fineline_table td { padding: 10px 5px; position: relative; }
+
+	table.fineline_table th.title, table.fineline_table td.title { width: 25%; color: #444; font-weight: bold;}
+	table.fineline_table th.fine_feld, table.fineline_table td.fine_feld { width: 30%; color: #444; }
+	table.fineline_table th.sorter, table.fineline_table td.sorter { width: 5%; padding: 2px 5px;}
+	table.fineline_table th.desc, table.fineline_table td.desc { width: 20%; color: #666;}
+	table.fineline_table th.actions, table.fineline_table td.actions { width:20%;}
+	table.fineline_table tr { position: relative;  }
+
+	table.fineline_table tr td.actions { text-align:right;}
+	table.fineline_table tr td.sorter span { visibility:hidden;}
+	table.fineline_table tr td.actions a { visibility:hidden; }
+
+	table.fineline_table tr:hover { background: rgba(5,230,30,.2); }
+	table.fineline_table tr:hover td.actions a { visibility:visible; }
+	table.fineline_table tr:hover td.sorter span { visibility:visible;}
+
+	table.fineline_table td.sorter span.handler { cursor:pointer; width: 22px; background: transparent url('/images/schieber_k.png'); height: 22px; position:relative; display:block; left:0; top:5px; vertical-align: top;}
+	
+	.pretty th .current {  
+	  padding-right: 12px;  
+	  background-repeat: no-repeat;  
+	  background-position: right center;  
+	}  
+	.pretty th .asc {   
+	  background-image: url(/images/up_arrow.gif);   
+	}  
+
+	.pretty th .desc {   
+	  background-image: url(/images/down_arrow.gif);   
+	}
+	#mail_box { padding: 3px 3px 2px 2px;  background: #e0e0e0; border: solid 1px #bbb; 
+		-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;
+		border-radius: 3px;}
+	#mail_list { width: 100%; }
+	#mail_list tbody { border: solid 1px #aaa;}
+	#mail_list th { background: #e0e0e0; }
+	#mail_list th, #mail_list td { padding: 5px; }
+
+	#mail_list th.sign, #mail_list td.sign { width: 2%; }
+	#mail_list th.from, #mail_list td.from { width: 33%; }
+	#mail_list th.about, #mail_list td.about { width: 33%; }
+	#mail_list th.sended, #mail_list td.sended { width: 22%; }
+	#mail_list th.actions, #mail_list td.actions { width: 10%; }
+	#mail_list tr td.actions a { visibility: hidden; }
+
+	#mail_list tr:hover td.actions a { visibility: visible; }
+
+	#mail_list tr.even { background: #fff; }
+	#mail_list tr.odd { background: #f6f4f5; }
+
+	#mail_list tr:hover { background: #ceedff; }
+
+	#mail_list a { color: #444;}	
+</style>

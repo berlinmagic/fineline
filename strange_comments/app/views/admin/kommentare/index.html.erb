@@ -1,0 +1,81 @@
+<%= render 'admin/shared/module_sub_menu' %>
+
+
+<div class="admin_box">
+	<h1>Kommentare</h1>
+	<div class="admin_in_box">
+		<div class="box">
+			<div class="in_box">
+				<% if @kommentare.count > 1 %>
+					<h2>Aktuell sind <%= @kommentare.count %> kommentare vorhanden.</h2>
+				<% elsif @kommentare.count == 1 %>
+					<h2>Aktuell ist <%= @kommentare.count %> kommentare vorhanden.</h2>
+				<% else %>
+					<h2>Aktuell sind keine kommentare vorhanden.</h2>
+				<% end %>
+			</div>
+		</div>
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<p>Hier sehen Sie eine Liste aller abgegebenen Kommentare.</p>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box white">
+				<br/>
+				<div class="mb_table">
+				<% @kommentare.each do |kommentar| %>
+		
+					
+					<div class="row" id="<%= dom_id(kommentar)%>">
+
+					    <div class="title">
+							<a href="<%= admin_kommentar_path(kommentar) %>">
+								<p><%= kommentar.created_at.strftime('%d.%m.%Y-%H:%M') %>&nbsp;:&nbsp;<%= kommentar.user.vorname + ' ' + truncate(kommentar.user.name, :length => 2, :omission => ".") if kommentar.user %>
+									
+									
+								
+									<% if kommentar.kommentare.count > 0 %>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><%= kommentar.kommentare.count %></strong> Kommentare
+
+									<% end %>
+									
+									<br/>
+									<%= kommentar.target.description() %>
+									
+								
+									<br/>
+									<strong><%= kommentar.headline %></strong>
+									<br/>
+									<%= kommentar.inhalt %>
+								</p>
+							</a>
+						</div>
+
+					
+						<div class="actions">
+								<%= strange_admin_show_link kommentar %>
+								<%= strange_edit_link(kommentar) %>
+
+							    <%= strange_delete_link kommentar %>
+
+						</div>
+					
+					  </div>
+					
+				<% end %>
+				</div>
+				<div class="clearfix"></div>
+				<br/>
+			</div>
+		</div>
+		
+	</div>
+</div>
+
+<%= render 'sidebar' %>

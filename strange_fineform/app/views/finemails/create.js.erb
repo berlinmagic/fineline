@@ -1,0 +1,11 @@
+$('#fineform_show').html("<%= escape_javascript( raw( Strangecms::Fineform::Config[:std_antwort] ) ) %>");
+
+<%= remotipart_response do %>
+  // Display a Javascript alert
+  alert('success!');
+  <% if remotipart_submitted? %>
+   $('#fineform_show').html("<%= escape_javascript( raw( Strangecms::Fineform::Config[:std_antwort] ) ) %>");
+  <% else %>
+    $('#fineform_show').html("<h1>..scheisse Fehler Passiert! .. </h1>");
+  <% end %>
+<% end %>

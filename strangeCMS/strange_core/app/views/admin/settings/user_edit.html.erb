@@ -1,0 +1,93 @@
+<div class="admin_box">
+	<h1><%= t('strange_preferences.owner_settings')%> <%= t('edit')%></h1>
+	<div class="admin_in_box">
+		<div class="box">
+			<div class="in_box">
+				
+				<h2>Einstellungen editieren:</h2>
+	
+			</div>
+		</div>
+		
+		<%= form_tag(admin_setting_path(@name), :method => :put) do -%>
+		<%= hidden_field_tag('name', @name, :size => 50 ) %>
+		
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		
+		<div class="box">
+			<div class="in_box">
+				<table class="settings">
+					<tr>
+						<th><%= t('strange_preferences.stange_owner_firma') %></th>
+						<td><%= text_field_tag('preferences[stange_owner_firma]', Strangecms::Config[:stange_owner_firma], :size => 50 )%></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.stange_owner_name') %></th>
+						<td><%= text_field_tag('preferences[stange_owner_name]', Strangecms::Config[:stange_owner_name], :size => 50 )%></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.stange_owner_vorname') %></th>
+						<td><%= text_field_tag('preferences[stange_owner_vorname]', Strangecms::Config[:stange_owner_vorname], :size => 50 )%></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.stange_owner_street') %></th>
+						<td><%= text_field_tag('preferences[stange_owner_street]', Strangecms::Config[:stange_owner_street], :size => 50 )%></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.stange_owner_zip') %></th>
+						<td><%= text_field_tag('preferences[stange_owner_zip]', Strangecms::Config[:stange_owner_zip], :size => 50 )%></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.stange_owner_city') %></th>
+						<td><%= text_field_tag('preferences[stange_owner_city]', Strangecms::Config[:stange_owner_city], :size => 50 )%></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.stange_owner_country') %></th>
+						<td><%= text_field_tag('preferences[stange_owner_country]', Strangecms::Config[:stange_owner_country], :size => 50 )%></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.stange_owner_fon') %></th>
+						<td><%= text_field_tag('preferences[stange_owner_fon]', Strangecms::Config[:stange_owner_fon], :size => 50 )%></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.stange_owner_fax') %></th>
+						<td><%= text_field_tag('preferences[stange_owner_fax]', Strangecms::Config[:stange_owner_fax], :size => 50 )%></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.stange_owner_mobile') %></th>
+						<td><%= text_field_tag('preferences[stange_owner_mobile]', Strangecms::Config[:stange_owner_mobile], :size => 50 )%></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		
+		<div class="box">
+			<div class="in_box ">
+				<%= render 'update_buttons' %>
+			</div>
+		</div>
+		
+		<% end %>
+		
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		
+	</div>
+</div>
+
+
+
+<%= render 'sidebar' %>

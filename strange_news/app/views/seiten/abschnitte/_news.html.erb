@@ -1,0 +1,41 @@
+<% this_stuff_typ 		||= 'trenn_linie' %>
+<% this_stuff_param 	||= nil %>
+<% this_protected 		||= false %>
+<% this_gruppe_id 		||= nil %>
+<% this_system_stuff 	||= false %>
+<% this_modul 			||= nil %>
+<% this_modul_typ 		||= nil %>
+<% this_modul_id 		||= nil %>
+<div class="abschnitt_box" id="<%= dom_id(f.object)%>">
+	<div class="abschnitt_inhalt_box">
+
+		<%= abschnitt_admin_toolz(f, :delete => true) %>
+		
+		<div class="trenn_linie"></div>
+		<div class="clearfix"></div>
+		
+		<div class="hidden new_abs_stuff_typ"><%= f.hidden_field 		:stuff_typ, 	:value => this_stuff_typ %></div>
+		<% if this_stuff_param %>
+			<div class="hidden new_abs_stuff_param"><%= f.hidden_field 		:stuff_param, 	:value => this_stuff_param %></div>
+		<% end %>
+		<% if this_protected %>
+			<div class="hidden new_abs_protected"><%= f.hidden_field 		:protected, 	:value => this_protected %></div>
+		<% end %>
+		<% if this_gruppe_id %>
+			<div class="hidden new_abs_gruppe"><%= f.hidden_field 			:gruppe_id, 	:value => this_gruppe_id %></div>
+		<% end %>
+		<% if this_system_stuff %>
+			<div class="hidden new_abs_system_stuff"><%= f.hidden_field 	:system_stuff, 	:value => this_system_stuff %></div>
+		<% end %>
+		<% if this_modul %>
+			<div class="hidden new_abs_modul"><%= f.hidden_field 			:modul, 		:value => this_modul %></div>
+		<% end %>
+		<% if this_modul_typ %>
+			<div class="hidden new_abs_modul_typ"><%= f.hidden_field 		:modul_typ, 	:value => this_modul_typ %></div>
+		<% end %>
+		<% if this_modul_id %>
+			<div class="hidden new_abs_modul_id"><%= f.hidden_field 		:modul_id, 		:value => this_modul_id %></div>
+		<% end %>
+	</div>
+</div>
+<div class="clearfix"></div>

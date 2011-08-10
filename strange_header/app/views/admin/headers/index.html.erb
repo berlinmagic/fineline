@@ -1,0 +1,62 @@
+<%= render 'admin/shared/seiten_sub_menu' %>
+
+<div class="admin_box">
+	<h1><%= t('header_headline') %></h1>
+	<div class="admin_in_box">
+		<div class="box">
+			<div class="in_box">
+				<p>Hier haben Sie die Möglichkeit die Reihenfolge bestehender Headerbilder zu verändern und weitere Bilder hinzuzufügen.</p>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<div class="trenn_linie"></div>
+			</div>
+		</div>
+
+		
+		<div class="box">
+			<div class="in_box white">
+				<div class="fineline_table">
+					<% @headers.each do |head| %>
+					  <div class="row" id="<%= dom_id(head)%>">
+
+					    <div class="first">
+							<%= link_to head.name, admin_header_path(head) %>
+						</div>
+						
+						<div class="aktiv">
+							<%= head.header_pics.count %>
+						</div>
+						
+					    <div class="second">
+							<%= head.seite.name if head.seite %>
+						</div>
+					
+						<div class="actions">
+							<%= fineline_button( 'ansehen', 	:url => admin_header_path(head) ) %>
+							&nbsp;&nbsp;
+							<%= fineline_button( 'bearbeiten', 	:url => edit_admin_header_path(head), 
+																:class => "remote_form_link" ) %>
+							&nbsp;&nbsp;
+							<%= fineline_button_delete( head, 	:url => admin_header_path(head),
+																:title => 'löschen' ) %>
+						</div>
+					
+					  </div>
+					<% end %>
+					<div class="clearfix">
+						
+					</div>
+					<br class="clear" />
+				</div>
+			</div>
+		</div>
+		
+		
+	</div>
+</div>
+
+<%= render 'sidebar' %>
+
+

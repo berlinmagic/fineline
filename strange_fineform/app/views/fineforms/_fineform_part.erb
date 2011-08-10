@@ -1,0 +1,104 @@
+<%  @this_fields = [] %>
+<script>
+var v = jQuery("#fineform_box").validate({
+	success: function(label) {
+		label.text(" ok!").addClass("success");
+	}
+});
+</script>
+<%  form_part ||= @form_part %>
+
+<% if fineform_fieldset %>
+	<h1><%= fineform.name %> ( <%= form_part + 1 %> / <%= fineform.fineform_fieldsets.count %> )</h1>
+	<br/>	
+	<% @finemail ||= Finemail.new %>
+		
+	<%= form_for(@finemail, :url => { :controller => 'finemails', :action => :update}, 
+							:html => { :multipart => true, :id => 'fineform_box'}, :remote => true) do |f| %>
+							
+		<%= render 'shared/error', :item => f.object%>
+		<% field_set = fineform_fieldset %>
+		<% fform = fineform %>
+		<p>
+			<% fform.fineform_fieldsets.each_with_index do |ff_fieldset,index| %>
+					<%= raw('&nbsp;&nbsp;&nbsp;&rarr;&nbsp;&nbsp;&nbsp;') if index > 0 %><%= raw('<strong>') if ff_fieldset == field_set %>
+					<%= ff_fieldset.name %><%= raw('</strong>') if ff_fieldset == field_set %>
+			<% end %>
+		</p>
+		<br/><br/>
+
+		<%= f.hidden_field :fineform_id, :value => fform.id %>
+		<%= f.hidden_field :this_id, :value => finemail.id %>
+		<%= f.hidden_field :form_part, :value => form_part %>
+		<table class="fine_form_field_set">
+				
+				<% @this_fields = field_set.fineform_fields %>
+				
+					
+				<% field_set.fineform_fields.each_with_index do |field,index| %>
+						
+						<% if field.system_stuff %>
+							<%= f.hidden_field :absender, :id => 'absender_feld' %>
+						<% end %>
+						
+					
+				<%= f.fields_for(:finemail_fields, @finemail.finemail_fields.build, :child_index => "new_finemail_field_#{( form_part * 100 ) + (index + 1)}") do |builder| %>		
+				
+					<% if field.stil == 'list' %>
+						<tr>
+							<th colspan="2" class="no_pad">
+								<%= field.name %>
+							</th>
+						</tr>
+						<tr>
+							<th></th>
+							<td class="no_pad">
+								<%= builder.hidden_field :name, :value => field.name %>
+							
+								<%= render 'fineforms/ff_field', :field => field, :builder => builder, :index => index %>
+							
+								<%= builder.hidden_field :position, :value => ( form_part * 100  + field.position ) %>
+								<%= builder.hidden_field :fineform_field_id, :value => field.id %>
+							
+							</td>
+						</tr>
+					<% else %>
+						<tr>
+							<th style="width: 30%">
+								<%= field.name %>
+							</th>
+							<td>
+								<%= builder.hidden_field :name, :value => field.name %>
+							
+								<%= render 'fineforms/ff_field', :field => field, :builder => builder, :index => index %>
+							
+								<%= builder.hidden_field :position, :value => ( form_part * 100  + field.position ) %>
+								<%= builder.hidden_field :fineform_field_id, :value => field.id %>
+							
+							</td>
+						</tr>
+					<% end %>
+					
+					
+					<% end %>
+					<% end %>
+					<tr><td colspan="2"></td></tr>
+					<tr>
+						<th></th>
+						<td>
+							<% if (form_part + 1) == fineform.fineform_fieldsets.count %>
+								<%= f.submit 'senden' %>
+							<% else %>
+								<%= f.submit 'weiter' %>
+							<% end %>
+						</td>
+					</tr>
+				</table>
+				<br/>
+
+<% end %>
+
+<% end %>
+
+<div class="clearfix"></div>
+

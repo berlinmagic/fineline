@@ -1,0 +1,13 @@
+<%= form_for @text, :url => admin_text_update_path do |f| %>
+
+  <div class="field">
+	<%= f.hidden_field :id, :value => @text.id %>
+    <%= f.text_area :inhalt, :class => "live-fck", :size => '93x15' %>
+  </div>
+<%= f.submit %>
+<!--
+  <div class="actions Pagez_remove_link">
+    <%# f.submit %>
+  </div>
+-->
+<% end %>

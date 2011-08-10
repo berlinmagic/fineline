@@ -1,0 +1,130 @@
+<%= render 'admin/shared/seiten_sub_menu' %>
+
+<div class="admin_box">
+	<h1><%= t('seiten_headline') %></h1>
+	<div class="admin_in_box">
+		<div class="box">
+			<div class="in_box">
+				<p>Hier können Sie Ihre bestehenden Seiten und Unterseiten ansehen, bearbeiten oder löschen.  Sie können entscheiden ,
+				ob eine Seite veröffentlicht werden soll oder eine bestehende Seite ausblenden.</p>
+			</div>
+		</div>
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<p>Sollten Sie die Reihenfolge der Seiten untereinander verändern wollen, können Sie alle Seiten ganz einfach per Drag and Drop verschieben.</p>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box white">
+				<div class="mb_table">
+					<% @seiten.each do |seite| %>
+					  <div class="row" id="<%= dom_id(seite)%>">
+
+						<div class="sorter"><span class="handler"></span></div>
+
+					    <div class="title">
+							<%= seite.titel %>
+							<% if seite.unter_seiten.count > 0 %>
+								<br />
+								<% seite.unter_seiten.each do |u_seite| %>
+									> <%= u_seite.titel %><br />
+								<% end %>
+							<% end %>
+						</div>
+					    <div class="aktiv">
+							<% if seite.deleted %><strong>gelöscht</strong><% else%><%= seite.entwurf ? 'entwurf' : 'aktiv' %><% end %>
+							<% if seite.unter_seiten.count > 0 %>
+								<br />
+								<% seite.unter_seiten.each do |u_seite| %>
+									<% if u_seite.deleted %><strong>gelöscht</strong><% else%><%= u_seite.entwurf ? 'entwurf' : 'aktiv' %><% end %><br />
+								<% end %>
+							<% end %>
+						</div>
+					
+						<div class="actions">
+							<% if seite.deleted %>
+								<%= link_to 'wiederherstellen', restore_admin_seite_path(seite) %> | <%= link_to 'engültig Löschen', kill_admin_seite_path(seite) %>
+							<% else%>
+								<%= strange_admin_show_link seite %>
+								<%= strange_edit_link(seite) %>
+								<%# hook :admin_site_delete_button do %>
+								<% if site_master || seite.system_seite == false %>
+							    	<%= strange_delete_link seite %>
+								<% end %>
+							<% end %>
+							
+							<% if seite.unter_seiten.count > 0 %>
+								<br />
+								<% seite.unter_seiten.each do |u_seite| %>
+								
+								<% if u_seite.deleted %>
+									<%= link_to 'aktivieren', restore_admin_seite_path(u_seite) %>
+									 | <%= link_to 'zerstören', kill_admin_seite_path(u_seite) %><br />
+								<% else %>
+									
+									<%= strange_admin_show_link u_seite %>
+									<%= strange_edit_link(u_seite) %>
+									<%# hook :admin_site_delete_button do %>
+									<% if site_master || u_seite.system_seite == false %>
+								    	<%= strange_delete_link u_seite %>
+									<% end %><br />
+									
+								<% end %>
+								
+								<% end %>
+							<% end %>
+						</div>
+					
+					  </div>
+					<% end %>
+					<div class="clearfix">
+						
+					</div>
+					<br class="clear" />
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</div>
+
+
+<%= render 'admin/shared/seiten_sidebar' %>
+
+
+<% content_for :js_stuff do %>
+<script type="text/javascript" charset="utf-8">
+	
+	var fixWidthHelper = function(e, ui) {
+      ui.children().each(function() {
+        $(this).width($(this).width());
+      });
+      return ui;
+  };
+  $(function() {
+    $("div.mb_table").sortable({
+      axis: 'y',
+      handle: '.handler',
+      cursor: "move",
+      helper: fixWidthHelper,
+      
+      update: function(){
+        $.ajax({
+          type: 'post', 
+          data: $('div.mb_table').sortable('serialize'), 
+          dataType: 'script',
+          complete: function(request){
+            $('div.mb_table').effect('highlight');
+          },
+          url: "<%= reorder_seiten_url %>"
+        })
+      }
+		}).disableSelection();
+  });
+</script>
+<% end %>

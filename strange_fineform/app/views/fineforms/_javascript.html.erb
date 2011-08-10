@@ -1,0 +1,76 @@
+<%= theme_javascript_include_tag 'validate' %>
+
+<script type="text/javascript" charset="utf-8">
+
+$.validator.methods.equal = function(value, element, param) {
+	return value == param;
+};
+$.validator.methods.unequal = function(value, element, param) {
+	return value != param;
+};
+
+jQuery.validator.addClassRules({
+name: {
+	required: true,
+	minlength: 2
+	},
+zip: {
+    required: true,
+    digits: true,
+    minlength: 5,
+    maxlength: 5
+	},
+mobil: {
+	required: true,
+    digits: true,
+	minlength: 9
+	},	
+math: {
+	required:true,
+	equal: 6	
+},
+selector: {
+	required: true,
+	equal: 'berlin'
+}
+
+});
+
+
+
+jQuery(function() {
+	// show a simple loading indicator
+	
+	var v = jQuery("#fineform_box").validate({
+		success: function(label) {
+			label.text(" ok!").addClass("success");
+		}
+	});
+	
+	jQuery("#reset").click(function() {
+		v.resetForm();
+	});
+});
+
+$('.add_ff_form a').live('click', function(event){
+	event.preventDefault();
+	var ffform = $(this).parent().find('span.ffform_id').html();
+	$(this).parent().parent().parent().parent().find('.k_param_box input').val(ffform);
+	$(this).parent().parent().parent().parent().find('.k_box input').val('fineform');
+	$(this).parent().parent().parent().html('<br/><h2> [:: fineform - Formular ::] </h2><br/>');
+	
+});
+
+
+
+
+jQuery(function($){
+              $('.fineform_default_email_field').live('change', function(){
+                var xxyxx = $('.fineform_default_email_field').val();
+				$('#absender_feld').val(xxyxx);
+              });
+            });
+
+</script>
+
+

@@ -1,0 +1,67 @@
+<div class="admin_box">
+	<h1>Antwort</h1>
+	<div class="admin_in_box">
+		<%= form_for @kontakt_formular, :url => { :controller => 'admin/kontakt_formulare'}, :method => :post do |f| %>
+		<div class="box">
+			<div class="in_box">
+				<%= render 'shared/error', :item => f.object%>
+				<%= f.hidden_field :anrede, :value => @old_formular.anrede %>
+				<%= f.hidden_field :titel, :value => @old_formular.titel %>
+				<%= f.hidden_field :vorname, :value => @old_formular.vorname %>
+				<%= f.hidden_field :name, :value => @old_formular.name %>
+				<%= f.hidden_field :firma, :value => @old_formular.firma %>
+				<%= f.hidden_field :abteiung_oder_position, :value => @old_formular.abteiung_oder_position %>
+				<%= f.hidden_field :email, :value => @old_formular.email %>
+				<%= f.hidden_field :webseite, :value => @old_formular.webseite %>
+				<%= f.hidden_field :strasse, :value => @old_formular.strasse %>
+				<%= f.hidden_field :plz, :value => @old_formular.plz %>
+				<%= f.hidden_field :ort, :value => @old_formular.ort %>
+				<%= f.hidden_field :bundesland, :value => @old_formular.bundesland %>
+				<%= f.hidden_field :land, :value => @old_formular.land %>
+				<%= f.hidden_field :geburtstag, :value => @old_formular.geburtstag %>
+				<%= f.hidden_field :telefon, :value => @old_formular.telefon %>
+				<%= f.hidden_field :telefax, :value => @old_formular.telefax %>
+				<%= f.hidden_field :mobil, :value => @old_formular.mobil %>
+				<%= f.hidden_field :antwort_auf, :value => @old_formular.id %>
+				<%= f.hidden_field :betreff, :value => "RE: #{@old_formular.betreff}" %>
+				<table>
+					<tr>
+						<th>An:</th>
+						<td><%= @old_formular.anrede %> <%= @old_formular.vorname %> <%= @old_formular.name %> <%= '[ '+@old_formular.firma+' ]' if @old_formular.firma %></td>
+					</tr>
+					<tr>
+						<th>E-Mail:</th>
+						<td><%= @old_formular.email %></td>
+					</tr>
+					<tr>
+						<th>Betreff:</th>
+						<td><%= "RE: #{@old_formular.betreff}" %></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+		<div class="box">
+			<div class="in_box white">
+				<div class="field">
+				<%= f.label :inhalt, 'Ihre Antwort' %><br />
+				<%= f.text_area :inhalt, :value => "\n\n\n- - - - -\nIhre Nachricht:\n#{@old_formular.inhalt}", :size => '150x15', :id => 'kontakt_form_inhalt_area' %>
+				</div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<%= f.submit 'senden' %>
+				<div class="big_button_spacer">oder</div>
+				<%= link_to 'verwerfen', admin_kontakt_formulare_path, :class => 'big_button' %>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		<% end %>
+	</div>
+</div>
+
+
+
+
+<%= render 'admin/shared/kontakt_sidebar' %>

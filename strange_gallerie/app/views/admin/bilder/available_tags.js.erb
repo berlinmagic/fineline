@@ -1,0 +1,4 @@
+$("#js_magick_place").html("<%= escape_javascript(render(:partial => "admin/bilder/available_tags", :locals => {:data => @available_tags})) %>");
+
+$('.show_available').parent().find('.big_button_spacer').hide();
+$('.show_available').hide();

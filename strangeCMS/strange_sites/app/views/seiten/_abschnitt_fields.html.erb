@@ -1,0 +1,69 @@
+<%= hook :in_form_abschnitte, :f => f %>
+
+<% if f.object.stuff_typ && f.object.stuff_typ == 'trenn_linie' %>
+<div class="abschnitt_box" id="<%= dom_id(f.object)%>">
+	<div class="abschnitt_inhalt_box">
+		<%= abschnitt_admin_toolz(f, :delete => true) %>
+		<%= seiten_abschnitt_mini_handler %>
+		<div class="trenn_linie"></div>
+		<div class="clearfix"></div>
+	</div>
+</div>
+<div class="clearfix"></div>
+<% end %>
+
+<% if f.object.stuff_typ && f.object.stuff_typ == 'text' %>
+<div class="abschnitt_box" id="<%= dom_id(f.object)%>">
+	<div class="abschnitt_inhalt_box">
+		<%= abschnitt_anker_field( f ) %>
+		<%= abschnitt_admin_toolz(f, :edit => true, :delete => true, :safe => true) %>
+		<%= seiten_abschnitt_handler %>
+		
+		
+		
+		<div class="show_text">	
+			<%= raw f.object.inhalt %>
+			<div class="clearfix"></div>
+		</div>
+		<div class="hidden">
+			<%= f.text_area :inhalt, :class => 'live-fck', :size => "170x5" %>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+</div>
+<div class="clearfix"></div>
+<% end %>
+
+<% if (f.object.stuff_typ.nil? || f.object.stuff_typ.blank? || f.object.stuff_typ == 'new') %>
+<div class="abschnitt_box" id="<%= dom_id(f.object)%>">
+	<div class="abschnitt_inhalt_box">
+		<%= abschnitt_anker_field( f ) %>
+		<%= abschnitt_admin_toolz(f, :delete => true) %>
+		<div class="abs_text_box hidden">
+			<%= f.text_area :inhalt, :class => 'new_abs_fck', :size => "70x5" %>
+			<div class="clearfix"></div>
+		</div>
+		<div class="abschnitt_choose_toolz">
+				<h3 class="abschnitt_choose_head">Abschnitt-typ wählen:</h3>
+				
+				<%= hook :abschnitt_content_choose do %>
+				
+					<div class="new_text_abschnitt abschnitt_choose_option">
+						<%= link_to fineline_button('bearbeiten')+' Text', '#' %>
+					</div>
+					<div class="add_trenn_linie abschnitt_choose_option"><%= link_to fineline_button('bearbeiten')+' Trennlinie', '#' %></div>
+
+				<% end %>
+		</div>
+		<div class="hidden new_abs_stuff_typ"><%= f.hidden_field 		:stuff_typ, 	:value => 'new' %></div>
+		<div class="hidden new_abs_stuff_param"><%= f.hidden_field 		:stuff_param, 	:value => '' %></div>
+		<div class="hidden new_abs_protected"><%= f.hidden_field 		:protected_stuff, 	:value => false %></div>
+		<div class="hidden new_abs_gruppe"><%= f.hidden_field 			:gruppe_id, 	:value => '' %></div>
+		<div class="hidden new_abs_system_stuff"><%= f.hidden_field 	:system_stuff, 	:value => false %></div>
+		<div class="hidden new_abs_modul"><%= f.hidden_field 			:modul, 		:value => '' %></div>
+		<div class="hidden new_abs_modul_typ"><%= f.hidden_field 		:modul_typ, 	:value => '' %></div>
+		<div class="hidden new_abs_modul_id"><%= f.hidden_field 		:modul_id, 		:value => '' %></div>
+	</div>
+</div>
+<div class="clearfix"></div>
+<% end %>

@@ -1,0 +1,7 @@
+
+
+jQuery('#kommetar_area').removeClass("hidden");
+
+jQuery('.kommentare_index_box').html("<%= escape_javascript(render 'index', :target => @this_target_thing )%>");
+
+jQuery('#kommentar_form_box').html("<%= escape_javascript(render 'form')%>");

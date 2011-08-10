@@ -1,0 +1,7 @@
+<h2 class="komentare_headline">Kommentare</h2>
+
+<% target.kommentare.each do |kmt| %>
+
+	<%= render 'kommentare/kommentar', :kommentar => kmt %>
+
+<% end %>

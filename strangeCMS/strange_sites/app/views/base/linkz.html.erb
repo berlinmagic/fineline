@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<title>CMS Link - Insert CMS Made Simple Link</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta content="noindex, nofollow" name="robots">
+		<%= javascript_include_tag 'libs/jquery-1.5.1.min.js' %>
+	<!--	<script type="text/javascript" src="fckcmscontent.js"></script>		-->
+
+<style>
+.body { height: 364px; width:384px; }
+
+h2 { font-weight: normal; font-size: 15px; color: #666; padding: 0; margin:0 0 5px;}
+
+#cmbPages { padding: 0; margin:0;}
+#cmbPages li { padding: 0; margin:0; }
+#cmbPages li a { padding: 5px 10px; display:block; font-size: 14px; font-weight:bold; text-decoration:none; color: #444;}
+
+#cmbPages li a img { display:none; border:0; }
+
+#cmbPages li #selected_Link img { display: inline-block !important; padding: 0 0 0 10px; }
+
+#cmbPages li a:hover { background: rgba(5,230,30,.2); } 
+
+#cmbPages li #selected_Link { color: #66cc00;}
+
+</style>	
+
+
+		<script type="text/javascript">
+
+			var dialog	= window.parent ;
+
+		
+		$(function(){
+			$('.strangeCMS_Link').click(function(event){
+				event.preventDefault();
+				$(this).parent().parent().find('#selected_Link').attr("id", '');
+				$(this).attr("id", 'selected_Link');
+				var link = $(this).attr('href');
+				var titel = $(this).attr('title');
+				$('#txtLnkUrl', window.parent.document).val(link);
+				$('#txtUrl', window.parent.document).val(link);
+				$('#txtAttTitle', window.parent.document).val(titel);
+				$('#cmbLinkProtocol', window.parent.document).val('');
+			});
+			$('#jqtl').live('click', function(){
+				$(this).css('color', 'red');
+				$(this).delay(550).css('color', 'black');
+			});
+		});
+		</script>
+	</head>
+			
+	<body scroll="no" style="overflow:hidden;">
+	
+		 <input type="hidden" id="PageURL" value="<%= root_url %>" />
+		 		<div class="box">
+			<h2>Such Sie sich eine Seite aus:</h2>
+	<div class="in_box">
+		<ul id="cmbPages">
+
+		<% unless @pages.blank? %>
+		    <% @pages.each do |page| %>
+				<% unless page.system_name && page.system_name == 'start' %>
+		    		<li>
+		<%# link_to raw(page.name + image_tag("/images/ok.png", :class => "jepp")), @public_dir + page.slug.gsub('/', ''), :title => page.name, :class => 'strangeCMS_Link', :id => page.id  %>
+		<%= link_to raw(page.name + image_tag("/images/ok.png", :class => "jepp")), page.link, :title => page.name, :class => 'strangeCMS_Link', :id => page.id  %>
+					</li>
+				<% else %>
+					<li>
+					<%# link_to raw(page.name + image_tag("/images/ok.png", :class => "jepp")), @public_dir, :title => page.name, :class => 'strangeCMS_Link', :id => page.id  %>
+					<%= link_to raw(page.name + image_tag("/images/ok.png", :class => "jepp")), '/', :title => page.name, :class => 'strangeCMS_Link', :id => page.id  %>
+					</li>
+				<% end %>
+		  <% end %>
+		<% end %>
+		</ul>
+		<br/><br/>
+		<%= link_to 'jQuery?', '#', :id => 'jqtl' %>
+	</div>
+</div>
+
+	</body>
+</html> 

@@ -1,0 +1,77 @@
+<%= render 'shared/fck_editor' %>
+
+<%= form_tag(admin_fineform_settings_update_path, :method => :put) do -%>
+
+<div class="admin_box">
+	<h1>Formular-Einstellungen <%= t('edit')%></h1>
+	<div class="admin_in_box">
+		<div class="box">
+			<div class="in_box">
+				<h2><strong>Achtung</strong> dies sind Sende- und Empfangs-E-Mailadressen, ändern Sie diese nur wenn Sie sich sicher sind.</h2>
+				<br/>
+				<p><strong>Achtung!</strong> das Feld 'E-Mail' ist genereller Bestandteil eines jeden Formulares und wird validiert, was heißt auf Richtigkeit geprüft.</p>
+			</div>
+		</div>
+		
+		<%= hidden_field_tag('name', @name, :size => 50 ) %>
+		
+		<div class="box">
+			<div class="in_box white">
+				<br/>
+				<table class="settings">
+					<tr>
+						<th><%= t("fineform.mail_von") %></th>
+						<td><%= text_field_tag('preferences[mail_von]',
+	        								Strangecms::Fineform::Config[:mail_von], :size => '50') %></td>
+					</tr>
+					<tr>
+						<th><%= t("fineform.mail_an") %></th>
+						<td><%= text_field_tag('preferences[mail_an]',
+	        								Strangecms::Fineform::Config[:mail_an], :size => '50') %></td>
+					</tr>
+					<tr>
+						<th><%= t("fineform.mail_bcc") %></th>
+						<td><%= text_field_tag('preferences[mail_bcc]',
+	        								Strangecms::Fineform::Config[:mail_bcc], :size => '50') %></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+<br/>
+
+<div class="admin_box">
+	<h1><%= t("fineform.std_antwort") %></h1>
+	<div class="admin_in_box">
+<%= text_area_tag('preferences[std_antwort]', Strangecms::Fineform::Config[:std_antwort], :class => 'fck')%>		
+	</div>
+</div>
+
+<br/>
+
+<div class="admin_box">
+	<h1><%= t("fineform.mail_antwort") %></h1>
+	<div class="admin_in_box">
+<%= text_area_tag('preferences[mail_antwort]', Strangecms::Fineform::Config[:mail_antwort], :class => 'fck')%>
+	</div>
+</div>
+
+<br/>
+
+<div class="admin_box">
+	<div class="admin_in_box">
+		<div class="box">
+			<div class="in_box">
+				<%= submit_tag t('save_settings') %>
+				<div class="big_button_spacer"><%= t('or') %></div>
+				<%= link_to t('cancel'), admin_fineform_settings_path, :class => 'big_button' %>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<% end %>
+
+<%= render 'admin/settings/sidebar' %>

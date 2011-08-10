@@ -1,0 +1,116 @@
+<%= render 'admin/shared/module_sub_menu' %>
+
+<style>
+
+a.module_icon { width: 180px; display: block; border: solid 1px transparent; background: transparent; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; -webkit-box-shadow: -1px -1px 2px transparent;
+	 padding: 10px; margin: 20px; float: left;}
+a.module_icon .module_pic { width: 80px; height: 80px; display: block; margin: 0 auto 15px;}
+a.module_icon p { line-height: 24px; font-weight: normal; font-size: 15px; text-align: center; color: #666;}
+a.module_icon:hover { background: #f4f2f2 url('/images/back.png') left top repeat; -webkit-box-shadow: -1px -1px 2px #cccccc; border: solid 1px #cccccc; }
+a.module_icon:hover p { color: #444; }
+
+
+.fineModulIconBox { float: left; width: 110px; padding: 10px; }
+.fineModulInfoBox { float: left; width: 415px; padding: 10px; }
+.fineModulActionBox { float: right; width: 110px; padding: 10px; text-align:right;}
+
+.trenn_linie { height: 0px; border-top: solid 1px #cccccc; border-bottom: solid 1px #ffffff; margin: 0 -16px;}
+
+
+.fineModulActionBox p { font-size: 10px; font-weight:bold; color: #666; padding: 7px; }
+
+.fineModulInfoBox p { font-size: 12px; font-weight: normal; color: #666; line-height: 18px; }
+
+.fineModulInfoBox p.fineModulHeadline { font-size: 14px; font-weight: bold; color: #333; text-shadow: 1px 1px 1px #ffffff; }
+.fineModulInfoBox p.fineModulSubHeadline { font-size: 12px; color: #999; /* font-style:italic; */ }
+
+a.finelineModulLinkBox { width: 100%; display:block;}
+a.finelineModulLinkBox:hover { background: #fff;}
+
+#Modul_List_viewer, #Modul_table_viewer { width: 28px; height: 28px; display:block; float: right; margin: 5px; 
+	-webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; border: 1px solid #cccccc; }
+#Modul_List_viewer { background: #f4f2f2 url('/images/ModulViewChanger_List.png') center center no-repeat; }
+#Modul_table_viewer { background: #f4f2f2 url('/images/ModulViewChanger_Icons.png') center center no-repeat; }
+
+#Modul_List_viewer.aktiv,  #Modul_List_viewer:hover { background: #fff url('/images/ModulViewChanger_List.png') center center no-repeat; border: 1px solid #336699; }
+
+#Modul_table_viewer.aktiv, #Modul_table_viewer:hover { background: #fff url('/images/ModulViewChanger_Icons.png') center center no-repeat; border: 1px solid #336699; }
+ 
+.modul_state_button { height: 22px; line-height: 22px; padding: 0 15px; display:block; float: right; border: 1px inset #cccccc; font-size: 13px;
+	-webkit-border-radius: 11px; -moz-border-radius: 11px; border-radius: 11px; background: rgba(102,204,0,.4); font-weight:normal; color: #666666;
+	text-shadow: 1px 1px 1px #ffffff;/* Versatz links - Versatz oben - Unschärfe (Blur) - Farbe */  
+	}
+
+</style>
+
+
+<div class="admin_box">
+	<h1>aktive Module</h1>
+	<div class="admin_in_box">
+		<div class="box">
+			<div class="in_box">
+				<div class="fineModulActionBox">
+					<a href="#" id="strangeXXchanger">
+						<div id="Modul_List_viewer"></div>
+						<div id="Modul_table_viewer"></div>
+						<div class="clearfix"></div>
+					</a>
+					
+				</div>
+				<div class="fineModulIconBox">
+					<%# image_tag '/images/finelineModul_icon.png'%>
+					<%= image_tag "/images/modul_icons/smal_80/fineline.png" %>
+				</div>
+				<div class="fineModulInfoBox">
+					<p class="fineModulHeadline">fineline &ndash; CMS</p>
+					<p class="fineModulSubHeadline"><strong><%= Strangecms::name.to_s %> &ndash; <%= Strangecms::VERSION.to_s %></strong></p>
+					<p class="fineModulSubHeadline"><%= StrangeCore::name.to_s %> &ndash; <%= StrangeCore::VERSION.to_s %></p>
+					<p class="fineModulSubHeadline"><%= StrangeSites::name.to_s %> &ndash; <%= StrangeSites::VERSION.to_s %></p>
+					<p class="fineModulSubHeadline"><%= StrangeThemes::name.to_s %> &ndash; <%= StrangeThemes::VERSION.to_s %></p>
+					<p class="fineModulSubHeadline"><%= StrangeUser::name.to_s %> &ndash; <%= StrangeUser::VERSION.to_s %></p>
+					<br/>
+					<p>Einfach zu nutzendes und dennoch mächtiges ContentManagementSystem.</p>
+				</div>
+				
+				
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		
+		<div class="box hidden finelineModulBox_Icon">
+			<div class="in_box">
+				<div class="trenn_linie"></div>
+			</div>
+		</div>
+		
+		<div class="clearfix"></div>
+		
+		<%= hook :admin_module_list %>
+		
+		<div class="clearfix"></div>
+		
+	</div>
+</div>
+
+<% content_for :js_stuff do %>
+<script type="text/javascript" charset="utf-8">
+
+	$(function() {
+		
+	 	$('.finelineModulBox_Icon').each( function() {
+			$(this).addClass('hidden');
+		});
+		$('#Modul_List_viewer').addClass('aktiv');
+		
+		$('#strangeXXchanger').live('click', function(){
+			$('#Modul_table_viewer').toggleClass('aktiv');
+			$('#Modul_List_viewer').toggleClass('aktiv');
+			$('.finelineModulBox_Icon').toggleClass('hidden');
+			$('.finelineModulBox_List').toggleClass('hidden');
+			$('.fineModulSubHeadline').toggleClass('hidden');
+			
+		});
+	});
+	
+</script>
+<% end %>

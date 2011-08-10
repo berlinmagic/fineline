@@ -1,0 +1,26 @@
+<% content_for :sidebar do %>
+<% @versions ||= Protokoll.where( :seite_id => @seite.id ) %>
+<% @current_version ||= 'seite' %>
+<div id="sidebar">
+	<% vzahl=  @seite.protokolle.count  %>&nbsp;&nbsp;&nbsp;<strong><%= vzahl + 1 %> - Versionen</strong>
+			<ul id="sidebar_navi">
+				<% if @seite.protokolle.count > 0 %>
+					
+				<li><%= link_to 'aktuell', {:controller => 'admin/seiten', :action => :show, :id => @seite.id}, :class => "#{'aktiv' if @current_version == 'seite'}" %></li>
+				<li>&nbsp;</li>
+				
+<% @versions.each_with_index do |v,i| %>
+	<li><%= link_to "#{vzahl - i} - #{v.created_at.strftime('%d.%m.%Y-%H:%M')}", {:controller => 'admin/seiten', :action => :version, :id => v.id.to_s}, :class => "#{'aktiv' if @current_version == v.id.to_s}" %></li>
+
+<% end %>
+
+					<li><%# link_to 'prev', :controller => 'admin/seiten', :action => :show_version, :id => @seite.protokolle.last.id %></li>
+					<li>&nbsp;</li>
+					<li><%# link_to 'previous', :controller => 'admin/seiten', :action => :version, :id => @seite.protokolle.last.id %></li>
+				<% end %>
+
+			</ul>
+			<br class="clear" />
+</div>
+<% end %>
+

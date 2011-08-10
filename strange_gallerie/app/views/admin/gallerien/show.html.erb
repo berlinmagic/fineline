@@ -1,0 +1,111 @@
+<%= render 'admin/shared/module_sub_menu' %>
+
+<div class="admin_box">
+	<h1><%= t('gallerie_show') %></h1>
+	<div class="admin_in_box">
+		<div class="box">
+			<div class="in_box">
+				<p>Hier haben Sie die Möglichkeit weitere Bilder zur Gallerie '<%= @gallerie.name %>' hinzuzufügen.</p>
+			</div>
+		</div>
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<div class="left">
+					<table>
+						<tr>
+							<th>Name:</th>
+							<td><%= @gallerie.name %></td>
+							<th>Stil:</th>
+							<td><%= @gallerie.stil %></td>
+						</tr>
+						<tr>
+							<th>Seite:</th>
+							<td><%= @gallerie.seite.titel if @gallerie.seite %></td>
+							<th>Typ:</th>
+							<td><%= @gallerie.typ %></td>
+						</tr>
+					</table>
+				</div>
+				<div class="right">
+					<p>Beschreibung:</p>
+					<p><%= @gallerie.beschreibung %></p>
+				</div>
+				<div class="clearfix"></div>
+				
+			</div>
+		</div>
+		
+
+		
+		
+			<div class="box">
+				<div class="trenn_box">
+					<div class="top_trenner"></div>
+				</div>
+			</div>
+			
+			<div class="box">
+				<div class="in_box">
+					<h2>[ <span id="data_k_counta"><%= @gallerie.bild_kategorien.count %></span> ] Kategorien:</h2>
+				</div>
+			</div>
+			<div class="box">
+				<div class="in_box" id="gallerie_kats">
+					<% if @gallerie.bild_kategorien.count > 0 %>
+						<%= render 'g_kats', :data => @gallerie.bild_kategorien, :klasse => 'gallerie' %>
+					<% end %>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+			
+			
+			
+			
+			<div class="box">
+				<div class="trenn_box">
+					<div class="top_trenner"></div>
+				</div>
+			</div>
+			
+			<div class="box">
+				<div class="in_box">
+					<h2>[ <span id="data_counta"><%= @gallerie.bilder.count %></span> ] Bilder:</h2>
+				</div>
+			</div>
+			<div class="box">
+				<div class="in_box" id="gallerie_pics">
+					<% if @gallerie.bilder.count > 0 %>
+						<%= render 'g_pics', :data => @gallerie.bilder, :klasse => 'gallerie' %>
+					<% end %>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+			
+		
+		
+		<div id="js_magick_place"></div>
+		
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		
+		<div class="box">
+			<div class="in_box">
+				<%= link_to 'Kategorie hinzufügen', available_admin_gallerie_bild_kategorien_path(@gallerie), :remote => true, :class => 'big_submit_button show_available' %>
+				<div class="big_button_spacer"><%= t('or') %></div>
+				<%= link_to 'Bild hinzufügen', available_admin_gallerie_bilder_path(@gallerie), :remote => true, :class => 'big_submit_button show_available' %>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		
+	</div>
+</div>
+
+<%= render 'admin/gallerien/sidebar' %>

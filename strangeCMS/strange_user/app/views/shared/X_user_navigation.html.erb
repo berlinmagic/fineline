@@ -1,0 +1,23 @@
+<ul id="strange_top_navigation">
+	<li><% if user_check %>
+			<%= t('hallo_user') %> 
+			<% if current_user.vorname %>
+				<%= current_user.vorname %> <%= current_user.name %>
+			<% else %>
+				<%= current_user.anrede %> <%= current_user.name %>
+			<% end %>
+		<% end %>
+	</li>
+	<li>
+		<% if user_check %>
+			<%= link_to t('logout'), abmelden_url, :class => "strange_user_button" %>
+		<% else %>
+			<%= link_to t('login'), anmelden_url, :class => "strange_user_button" %>
+		<% end %>
+	</li>
+	<li>
+		<% if admin_check %>
+			<%= link_to t('strange_Backend'), admin_root_url, :class => 'strange_admin_button' %>
+		<% end %>
+	</li>
+</ul>

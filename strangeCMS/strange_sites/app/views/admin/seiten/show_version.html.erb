@@ -1,0 +1,62 @@
+1 <%= @version %>
+<hr/>
+2 <%= yy = @seite.ivars %> .. <%= item = @seite.class %>
+<hr/>
+3 
+<% attrs = @seite.ivars %> <br/>
+<% model = Seite.new %>
+
+<% attrs.each do |k, v| %>
+	<% if k == 'attributes' %>
+		<% v.each do |k, v| %>
+			> > > <strong><%= k.to_sym %> => <%= v %></strong><br/><% model.send :write_attribute, k.to_sym , v %>
+		<% end %>
+	<% end %>
+	<% if k == 'abschnitte' %>
+		<% v.map do |k| %>
+			<% xx = k.ivars %>
+			<% xx.each do |k, v| %>
+				<% if k == 'attributes' %>
+					<br/><% abschnitt = Abschnitt.new %>
+					<% v.each do |k, v| %>
+						abschnitt > > > > > > <strong><%= k %> => <%= v %></strong><br/><% abschnitt.send :write_attribute, k.to_sym , v %>
+					<% end %>
+						<% model.abschnitte << abschnitt %>
+						<% @abc = abschnitt%>
+				<% end %>
+				<% if k == 'text' %>
+					<% v.ivars.each do |k, v| %>
+						
+						<% if k == 'attributes' %>
+							<% hash = Hash.new %>
+							<% v.each do |k, v| %>
+								abschnitt > Text > > > <strong><%= k %> => <%= v %></strong><br/><% hash["#{k.to_sym}"] = v  %>
+							<% end %>
+							<% @abc.build_text(hash) %>
+						<% end %>
+						
+					<% end %>
+				<% end %>
+			<% end %>
+		<% end %>
+	<% end %>
+<% end %>
+<hr/><hr/>
+<strong><%= model.name %></strong>
+<br/>
+<% model.abschnitte.each_with_index do |big,i| %>
+<%= i + 1 %>: 
+	<% if big.text %>
+		<%= raw big.text.inhalt %>
+	<% else %>
+		<br/> [:: <%= big.stuff_typ %> ::]<br/>
+	<% end %>
+<br/>
+<% end %>
+<hr/><hr/><hr/><hr/><hr/>
+5 <%= x23 = YAML::load yy.to_yaml %>
+<%# x23.name %>
+<hr/>
+6 <%= @version.safed_stuff.to_json %>
+<hr/><hr/>
+7 <%= ActiveSupport::JSON.decode(attrs.to_json) %>

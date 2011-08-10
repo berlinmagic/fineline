@@ -1,0 +1,176 @@
+<div class="admin_box">
+	<h1><%= t('strange_preferences.kontakt_settings')%></h1>
+	<div class="admin_in_box">
+		
+		<div class="box">
+			<div class="in_box">
+				<h3>Hier sehen Sie die momentan verwendeten Bild-größen:</h3>
+			</div>
+		</div>
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box ">
+				<table class="settings">
+					<tr>
+						<th>Standard-Format</th>
+						<td>&nbsp;</td>
+						<td colspan="3"><%= Strangecms::Gallerie::Config[:standard_format] %></td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td colspan="6" style="text-align: center;">&nbsp;</td>
+					</tr>
+					<tr>
+						<th colspan="5">Hochformat</th>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+
+						<td>große Darstellung</td>
+						<td>&nbsp;</td>
+						<td><%= Strangecms::Gallerie::Config[:hochformat_width] %></td>
+						<td>&times;</td>
+						<td><%= Strangecms::Gallerie::Config[:hochformat_height] %></td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+
+						<td>miniatur Darstellung</td>
+						<td>&nbsp;</td>
+						<td><%= Strangecms::Gallerie::Config[:hochformat_thumb_width] %></td>
+						<td>&times;</td>
+						<td><%= Strangecms::Gallerie::Config[:hochformat_thumb_height] %></td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td colspan="6" style="text-align: center;">&nbsp;</td>
+					</tr>
+					<tr>
+
+						<th colspan="5">Querformat</th>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+
+						<td>große Darstellung</td>
+						<td>&nbsp;</td>
+						<td><%= Strangecms::Gallerie::Config[:querformat_width] %></td>
+						<td>&times;</td>
+						<td><%= Strangecms::Gallerie::Config[:querformat_height] %></td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+
+						<td>miniatur Darstellung</td>
+						<td>&nbsp;</td>
+						<td><%= Strangecms::Gallerie::Config[:querformat_thumb_width] %></td>
+						<td>&times;</td>
+						<td><%= Strangecms::Gallerie::Config[:querformat_thumb_height] %></td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td colspan="6" style="text-align: center;">&nbsp;</td>
+					</tr>
+					<tr>
+
+						<th colspan="5">Panorama-Format</th>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+
+						<td>große Darstellung</td>
+						<td>&nbsp;</td>
+						<td><%= Strangecms::Gallerie::Config[:panorama_width] %></td>
+						<td>&times;</td>
+						<td><%= Strangecms::Gallerie::Config[:panorama_height] %></td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+
+						<td>miniatur Darstellung</td>
+						<td>&nbsp;</td>
+						<td><%= Strangecms::Gallerie::Config[:panorama_thumb_width] %></td>
+						<td>&times;</td>
+						<td><%= Strangecms::Gallerie::Config[:panorama_thumb_height] %></td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td colspan="6" style="text-align: center;">&nbsp;</td>
+					</tr>
+					<tr>
+						<th>Spezial-Format</th>
+						<td>&nbsp;</td>
+						<td colspan="3"><em>Maximale-Ausmaße .. Format nutzt Original-Seitenverhälniss</em></td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+
+						<td>große Darstellung</td>
+						<td>&nbsp;</td>
+						<td><%= Strangecms::Gallerie::Config[:spezial_width] %></td>
+						<td>&times;</td>
+						<td><%= Strangecms::Gallerie::Config[:spezial_height] %></td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+
+						<td>miniatur Darstellung</td>
+						<td>&nbsp;</td>
+						<td><%= Strangecms::Gallerie::Config[:spezial_thumb_width] %></td>
+						<td>&times;</td>
+						<td><%= Strangecms::Gallerie::Config[:spezial_thumb_height] %></td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td colspan="6" style="text-align: center;">&nbsp;</td>
+					</tr>
+					<tr>
+
+						<th>Ausfall-Format </th>
+						<td>&nbsp;</td>
+						<td colspan="3"><em>wird verwendet wenn kein Format zugewiesen werden kann</em></td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+
+						<td>große Darstellung</td>
+						<td>&nbsp;</td>
+						<td><%= Strangecms::Gallerie::Config[:default_width] %></td>
+						<td>&times;</td>
+						<td><%= Strangecms::Gallerie::Config[:default_height] %></td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+
+						<td>miniatur Darstellung</td>
+						<td>&nbsp;</td>
+						<td><%= Strangecms::Gallerie::Config[:default_thumb_width] %></td>
+						<td>&times;</td>
+						<td><%= Strangecms::Gallerie::Config[:default_thumb_height] %></td>
+						<td>&nbsp;</td>
+					</tr>
+					
+				</table>
+				
+			</div>
+		</div>
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<%= link_to t("edit_settings"), admin_gallerie_settings_edit_path, :class => 'big_submit_button' %>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<%= render 'admin/settings/sidebar' %>

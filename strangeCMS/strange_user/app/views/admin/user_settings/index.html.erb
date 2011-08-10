@@ -1,0 +1,125 @@
+<div class="admin_box">
+	<h1>Nutzer-Sicherheits-Einstulngen</h1>
+	<div class="admin_in_box">
+		<div class="box">
+			<div class="in_box">
+				
+				<h2>Anmelde- & Sicherheitsoptionen:</h2>
+	
+			</div>
+		</div>
+		
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		
+		<div class="box">
+			<div class="in_box">
+				<table class="settings">
+					<tr>
+						<th><%= t('user_settings.mailer_sender') %></th>
+						<td><%= Strangecms::User::Config[:mailer_sender] %></td>
+					</tr>
+					<tr>
+						<th colspan="2">&nbsp;</th>
+					</tr>
+					<tr>
+						<th><%= t('user_settings.timeout_in') %>:</th>
+						<td>
+							<strong><%= Strangecms::User::Config[:timeout_in] %></strong>&nbsp;-&nbsp;
+							<%= t("User_safety.#{Strangecms::User::Config[:timeout_in_period]}") %>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">Nach <%= Strangecms::User::Config[:timeout_in] %> <%= t("User_safety.#{Strangecms::User::Config[:timeout_in_period]}") %> inaktivität wird der Benutzer automatisch abgemeldet.<br/><strong>Achtung</strong> diese Zeit ist Ihre Maximalzeit zum bearbeiten von Seiten!</td>
+					</tr>
+					<tr>
+						<th colspan="2">&nbsp;</th>
+					</tr>
+					<tr>
+						<th colspan="2">&nbsp;</th>
+					</tr>
+					<tr>
+						<th><%= t('user_settings.invite_for') %>:</th>
+						<td>
+							<strong><%= Strangecms::User::Config[:invite_for] %></strong>&nbsp;-&nbsp;
+							<%= t("User_safety.#{Strangecms::User::Config[:invite_for_period]}") %>
+						</td>
+					</tr>
+					<tr>
+						<th><%= t('user_settings.confirm_within') %></th>
+						<td>
+							<strong><%= Strangecms::User::Config[:confirm_within] %></strong>&nbsp;-&nbsp;
+							<%= t("User_safety.#{ Strangecms::User::Config[:confirm_within_period] }") %>
+						</td>
+					</tr>
+					<tr>
+						<th><%= t('user_settings.remember_for') %></th>
+						<td>
+							<strong><%= Strangecms::User::Config[:remember_for] %></strong>&nbsp;-&nbsp;
+							<%= t("User_safety.#{ Strangecms::User::Config[:remember_for_period] }") %>
+						</td>
+					</tr>
+					<tr>
+						<th colspan="2">&nbsp;</th>
+					</tr>
+					<tr>
+						<th><%= t('user_settings.lock_strategy') %></th>
+						<td><%= t("user_settings.#{Strangecms::User::Config[:lock_strategy]}") %></td>
+					</tr>
+					<tr>
+						<th><%= t('user_settings.maximum_attempts') %></th>
+						<td><%= Strangecms::User::Config[:maximum_attempts] %> Versuche</td>
+					</tr>
+					<tr>
+						<th colspan="2">&nbsp;</th>
+					</tr>
+					<tr>
+						<td colspan="2"><strong>Entsperrarten:</strong>&nbsp;&nbsp;E-Mail (<em>E-Mail bestätigen</em>)&nbsp;&nbsp;-&nbsp;&nbsp;Zeit (<em>Wartezeit</em>)&nbsp;&nbsp;-&nbsp;&nbsp;beides</td>
+					</tr>
+					<tr>
+						<th><%= t('user_settings.unlock_strategy') %></th>
+						<td><strong><%= t("user_settings.#{Strangecms::User::Config[:unlock_strategy]}") %></strong></td>
+					</tr>
+					<tr>
+						<th><%= t('user_settings.unlock_in') %></th>
+						<td>
+							<strong><%= Strangecms::User::Config[:unlock_in] %></strong>&nbsp;-&nbsp;
+							<%= t("User_safety.#{ Strangecms::User::Config[:unlock_in_period] }") %>&nbsp;&nbsp;( Wenn Zeit / beides )
+						</td>
+					</tr>
+					<tr>
+						<th colspan="2">&nbsp;</th>
+					</tr>
+					<tr>
+						<th><%= t('user_settings.password_length') %></th>
+						<td><%= Strangecms::User::Config[:password_length_from] %> - <%= Strangecms::User::Config[:password_length_to] %> Zeichen</td>
+					</tr>
+				</table>
+				<br/>
+			</div>
+		</div>
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box ">
+				<%= link_to "Einstellungen bearbeiten", admin_user_setting_path('edit'), :class => 'big_submit_button' %>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<%= render 'admin/settings/sidebar' %>

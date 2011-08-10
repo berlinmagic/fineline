@@ -1,0 +1,176 @@
+
+  <%= render 'shared/error', :item => f.object%>
+
+ ncvje ieeo e
+<div class="box">
+	
+	<% if Strangecms::Config[:show_site_name] %>
+		<div class="in_box first">
+			<h1><%= @seite.name %></h1><td class="field">
+			<%= f.text_field :name, :value => @backup.name, :class => 'name_field hidden' %></td>
+		</div>
+	<% end %>
+
+
+
+
+</div>
+<div class="abschnitte">
+
+	<div class="nested_form box edit" id="xxxxx">
+		<% f.fields_for :abschnitte do |builder| %>
+			<%= render "abschnitt_fields", :f => builder %>
+		<% end %>
+		<div class="box">
+		<p class="add_nested_form pic_link in_box">
+			<%= link_to_add_fields  image_tag('/images/btns/plus_16px.png')+"neuer Abschnitt", f, :abschnitte %>
+		</p>
+		</div>
+	</div>
+
+</div>
+
+<div class="box">
+  <div class="actions in_box">
+	
+<div class="left pic_link">
+	<%= link_to image_tag('/images/btns/einstellungen_16px.png')+ raw('Seiteneinstellungen <span id="more_link_text">bearbeiten</span>'), '#', :class => "more_button", :remote => true %>
+</div>
+<!--
+<div class="right entwurf_box">
+	<%# f.check_box :entwurf %> <%# f.label :entwurf, 'als Entwurf speichern' %>
+</div>
+-->
+<div class="clearfix"></div>
+<div class="no_show">
+	<br/>
+	<div class="clearfix"></div>
+	<div class="left seiten_einstl">
+		<div class="field">
+			<%= f.check_box :entwurf %> <%= f.label :entwurf, 'Diese Seite noch nicht veröffentlichen' %>
+		</div>
+		<br />
+		<div class="field">
+			<p><strong>Zeige einen Seitenlink:</strong></p>
+		</div>
+		
+		<div class="field checker_box">
+			<%= f.check_box :in_header %> <%= f.label :in_header, 'Im Header' %>
+		</div>
+		<div class="field checker_box">
+			<%= f.check_box :in_main_nav %> <%= f.label :in_main_nav, 'In der Hauptnavigation' %>
+		</div>
+		<div class="field checker_box">
+			<%= f.check_box :in_footer %> <%= f.label :in_footer, 'Im Footer' %>
+		</div>
+	</div>
+	<div class="right seiten_einstl">
+		<div class="field">
+			<%= f.label :elternseite_id, 'Unterseite von:' %><br />
+			<%= f.select :elternseite_id, Seite.all.map { |c| [c.name, c.id] }, :include_blank => true %>
+		</div>
+		<br />
+		<div class="field">
+			<p><strong>Weiterleitung auf externe Seite:</strong></p>
+		</div>
+		<div class="field checker_box">
+			<%= f.check_box :weiterleitung %> <%= f.label :weiterleitung, 'Weiterleiten' %>
+		</div>
+		<div class="field">
+			<%= f.label :externer_link, 'Externer Link:' %><br />
+			<%= f.text_field :externer_link, :value => 'http://' %>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+	<br class="clearfix" />
+	<br/>
+	<div class="einstll">
+		<div class="field">
+			<p><strong>SEO</strong> (Suchmaschienenoptimierung)</p>
+		</div>
+		<div class="field">
+			<%= f.label :titel, 'Browsertitel' %> (Fenstername)<br />
+			<%= f.text_field :titel %>
+		</div>
+		<div class="field">
+			<%= f.label :meta_keywords %> (Suchworte .. weniger ist mehr!)<br />
+			<%= f.text_field :meta_keywords, :value => @backup.meta_keywords, :size => '80' %>
+		</div>
+		<div class="field">
+			<%= f.label :meta_description %> (Beschreibung der Seite, für Google-Trefferliste)<br />
+			<%= f.text_area :meta_description, :value => @backup.meta_description, :size => '80x2' %>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+	<br class="clearfix" />
+	<br/>
+	<% if strange_master %>
+			<div class="box">
+				<div class="trenn_box">
+					<div class="top_trenner"></div>
+				</div>
+			</div>
+			<br/>
+		<div class="left seiten_einstl">
+			<p><strong>Admin Toolz:</strong></p>
+			<br/>
+		  	<div class="field checker_box">
+				<%= f.check_box :system_seite %><%= f.label :system_seite, 'System-Seite' %>
+			</div>
+			<br/>
+			<p>Seite ist damit gesperrt und kann nicht mehr gelöscht werden!</p>
+		</div>
+		<div class="right seiten_einstl">
+			<div class="field">
+				<%= f.label :system_name, 'System-Name' %>&nbsp;&nbsp;::&nbsp;&nbsp;<%= f.text_field :system_name %>
+			</div>
+			<br/>
+			<div class="field">
+				<%= f.label :slug, 'System-Slug' %>&nbsp;&nbsp;&nbsp;&nbsp;::&nbsp;&nbsp;<%= f.text_field :slug %>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+		<br/>
+	<% end %>
+	
+	
+
+</div>
+
+</div>
+</div>
+
+
+
+
+<% content_for :js_stuff do %>
+<script type="text/javascript" charset="utf-8">
+	
+	var fixWidthHelper = function(e, ui) {
+      ui.children().each(function() {
+        $(this).width($(this).width());
+      });
+      return ui;
+  };
+  $(function() {
+    $("#xxxxx").sortable({
+      axis: 'y',
+      handle: '.handle',
+      cursor: "move",
+      helper: fixWidthHelper,
+      
+      update: function(){
+        $.ajax({
+          type: 'post', 
+          data: $('#xxxxx').sortable('serialize'), 
+          dataType: 'script',
+          complete: function(request){
+            $('#xxxxx').effect('highlight');
+          },
+          url: "<%=reorder_abschnitte_url%>"
+        })
+      }
+		}).disableSelection();
+  });
+</script>
+<% end %>

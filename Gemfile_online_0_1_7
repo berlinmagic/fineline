@@ -1,0 +1,38 @@
+source 'http://rubygems.org'
+
+# => fineline CMS - Gemfile
+
+gem 'rails', '>= 3.0.5'
+
+gem 'rake', '>= 0.9.2'
+
+gem 'sqlite3'
+
+
+gem 'strangecms', :path => '../fineline_0_1_6/strangeCMS'
+
+gem 'strange_kontaktform', :path => '../fineline_0_1_6/strange_kontaktform'
+
+gem 'strange_header', :path => '../fineline_0_1_6/strange_header'
+
+gem 'strange_gallerie', :path => '../fineline_0_1_6/strange_gallerie'
+
+gem 'strange_backup', :path => '../fineline_0_1_6/strange_backup'
+
+gem 'strange_news', :path => '../fineline_0_1_6/strange_news'
+
+gem 'strange_comments', :path => '../fineline_0_1_6/strange_comments'
+
+gem 'strange_categories', :path => '../fineline_0_1_6/strange_categories'
+
+# => gem 'strange_sidebars', :path => '../fineline_0_1_6/strange_sidebars'
+
+# => gem 'strange_stylez', :path => '../fineline_0_1_6/strange_stylez'
+
+# => gem 'strange_newsletter', :path => '../fineline_0_1_6/strange_newsletter'
+
+
+
+### => gem 'strange_fineform', :path => '../fineline_0_1_6/strange_fineform'
+### => gem 'strange_mobilview', :path => '../fineline_0_1_6/strange_mobilview'
+### => gem 'strange_tags', :path => '../fineline_0_1_6/strange_tags'

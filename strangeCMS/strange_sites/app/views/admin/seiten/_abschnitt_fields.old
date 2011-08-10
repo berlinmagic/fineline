@@ -1,0 +1,86 @@
+
+<% if f.object.stuff_typ && f.object.stuff_typ == 'trenn_linie' %>
+<div class="abschnitt-inhalt fields box" id="<%= dom_id(f.object)%>">
+	<div class="box edit_in">
+		<div class="in_box">
+			<div class="deleted_abschnitt"><strong>X</strong> Gelöscht!</div>
+			<div class="abschnitt_admin_toolz">
+				<div class="remove_nested_form"><%= link_to_remove_fields dom_id(f.object), f %></div>
+			</div>
+			<span class="handle"></span>
+
+			<div class="trenn_linie"></div>
+
+		</div>
+	</div>
+</div>
+
+<%= hook :in_form_abschnitte, :f => f %>
+
+<% elsif f.object.text %>
+
+<div class="abschnitt-inhalt fields box" id="<%= dom_id(f.object)%>">
+	<div class="box edit_in">
+		<div class="in_box">
+			<div class="deleted_abschnitt"><strong>X</strong> Gelöscht!</div>
+			<div class="abschnitt_admin_toolz">
+				<% if f.object.system_stuff %>
+					<% if site_master %>
+						<div class="remove_nested_form"><%= link_to_remove_fields dom_id(f.object), f %></div>
+						<div class="edit_nested_form"><%= link_to "", '#', :class => "Pagez__toggle_remote_link tolltips_edit", :title => "Bearbeiten" %></div>
+					<% end %>
+				<% else %>
+					<div class="remove_nested_form"><%= link_to_remove_fields dom_id(f.object), f %></div>
+					<div class="edit_nested_form"><%= link_to "", '#', :class => "Pagez__toggle_remote_link tolltips_edit", :title => "Bearbeiten" %></div>
+				<% end %>
+				<div class="edit_admin">
+					<%= f.hidden_field :system_stuff, :value => f.object.system_stuff, :class => 'system_abschnitt' %>
+					<% if site_master %>
+					<%= link_to "", '#', :class => "admin_system_stuff_link tolltips_edit", :title => "System []" %>
+					<% end %>
+				</div>
+		
+			</div>	
+	
+			<span class="handle"></span>
+			<div class="show_text">	
+				<%= raw f.object.text.inhalt %>
+				<div class="clearfix"></div>
+			</div>
+			<div class="hidden">
+				<%= f.fields_for :text do |builder| %>
+    				<%= render "live_text_fields", :f => builder %>
+  				<% end %>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<% else %>
+<div class="abschnitt_toolz box">
+	<div class="box edit_in">
+		<div class="in_box">
+			<div class="deleted_abschnitt"><strong>X</strong> Gelöscht!</div>
+			<div class="abschnitt_admin_toolz">
+				<div class="remove_nested_form"><%= link_to_remove_fields dom_id(f.object), f %></div>
+			</div>
+			<div class="nested_form">
+				<% f.fields_for :text do |builder| %>
+					<%= render "text_fields", :f => builder %>
+				<% end %>
+		
+				<div class="abschnitt_choose_toolz">
+					<p class="nested_head">Inhalt wählen:</p>
+					<%= hook :abschnitt_content_choose do %>
+					<p class="add_nested_form add_text_field"><%= link_to_add_fck_fields "[T] Text", f, :text %></p>
+					<p class="add_trenn_linie"><%= link_to '[-] Trennlinie', '#' %></p>
+					<% end %>
+				</div>
+			</div>
+			<div class="hidden k_box"><%= f.hidden_field :stuff_typ, :value => '' %></div>
+		</div>
+	</div>
+</div>
+
+<% end %>

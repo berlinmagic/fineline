@@ -1,0 +1,10 @@
+<% data.each do |tag| %>
+<div class="selected_tag parent_box" id="<%= dom_id(tag)%>">
+	<%= tag.name %>
+	<%= strange_selected_delete( tag, :url => remove_admin_tag_bild_path(tag, @bild) ) %>
+	
+</div>
+	
+<% end %>
+<div class="clearfix"></div>
+<br/>

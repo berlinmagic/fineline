@@ -1,0 +1,27 @@
+<style>
+.clearfix:before, .clearfix:after { content: "\0020"; display: block; height: 0; visibility: hidden; }
+.clearfix:after { clear: both; }
+/* Fix clearfix: blueprintcss.lighthouseapp.com/projects/15318/tickets/5-extra-margin-padding-bottom-of-page */
+.clearfix { zoom: 1; }
+
+.left_box { float:left; width: 250px; padding: 10px; }
+.right_box { float:left; width: 400px; padding: 10px; }
+</style>
+Mail von<strong><%= ' '+@data.absender if @data.absender %></strong>:
+<hr/>
+<br/>
+<% @data.finemail_fields.each do |field| %>
+<div class="left_box">
+	<p><%= field.name %></p>
+</div>
+<div class="right_box">
+	<% if field.typ == 'multi_select' || field.typ == 'text' %>
+		<pre><%= field.inhalt %></pre>
+	<% elsif field.typ == 'file' %>
+		<%= link_to field.datei.name + ' .. (' + (field.datei.size / 1024).to_f.to_s + ' kb )', 'http://smackaho.st:3000'+field.datei.url() if field.datei %>
+	<% else %>
+		<p><%= field.inhalt %></p>
+	<%end%>
+</div>	
+<div class="clearfix"></div>
+<% end %>

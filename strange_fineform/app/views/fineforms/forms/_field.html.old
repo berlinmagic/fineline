@@ -1,0 +1,27 @@
+
+<% if field.feld_typ && field.feld_typ  == 'text' %>
+	<%= builder.hidden_field :typ, :value => 'text' %>
+	<%= builder.text_area :inhalt, :class => "#{' required ' if field.needed}", :size => '42x5' %>
+	
+<% elsif field.feld_typ && field.feld_typ  == 'file' %>
+
+		<%= builder.hidden_field :typ, :value => 'file' %>
+		
+		<%#= builder.file_field :datei %>
+		
+		<%= builder.file_field :datei, :class => "#{' required ' if field.needed}" %>
+		
+		<%#= file_field(builder, :datei, :class => 'file_input') %>
+			
+<% else %>
+
+	<%= builder.text_field :inhalt, :class => "#{' required ' if field.needed} #{' email ' if field.validat && field.validation_typ && field.validation_typ == 'email'} #{' fineform_default_email_field ' if field.system_stuff }", :size => '42' %>
+	
+	<% if field.validat && field.validation_typ && field.validation_typ == 'email' %>
+		<%= builder.hidden_field :um, :value => true %>
+	<% end %>
+	
+	
+	
+<% end %>
+<%= builder.hidden_field :validator, :value => field.needed %>

@@ -1,0 +1,40 @@
+
+<div class="box">
+	<div class="in_box white">
+		<div class="right">
+			<%= link_to 'Fertig', '#', :class => 'big_button', :remote => true, :id => 'close_available_box' %>
+		</div>
+		<h3>Tag´s wählen:</h3>
+
+		<div class="top_trenner"></div>
+		<br/>
+		<% data.each do |tag| %>
+			<div class="tag">
+				
+				<h4><%= link_to raw("&nbsp;&raquo;&nbsp;&nbsp;#{tag.name}"), select_bild_tags_admin_bild_tag_path(@bild,tag), :remote => true %></h4>
+			</div>
+		<% end %>
+		<div class="clearfix"></div>
+		<br/>
+		<h3>.. oder neuen Tag anlegen:</h3>
+		<div class="top_trenner"></div>
+		<br/>
+		<%= form_tag new_tag_admin_bild_path(@bild), :method => :post, :remote => true do %>
+		<%# form_for( :url => new_tag_admin_bild_path(@bild) ) do |f| %>
+			<h2>
+			<%# f.text_field :tag %>
+			<%# f.submit %>
+			
+			<%= text_field_tag 'new_tag_name' %>
+		
+			<div class="clearfix"></div>
+			<%= submit_tag 'Tag erstellen' %>
+			
+		<% end %>
+		<div class="clearfix"></div>
+		<br/>
+	</div>
+</div>
+
+
+

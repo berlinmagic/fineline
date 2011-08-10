@@ -1,0 +1,151 @@
+<%= form_for(@kontakt_formular) do |f| %>
+<%= render 'shared/error', :item => f.object%>
+
+<tabel id="kontakt_form">
+	
+	<tr class="field">
+		<th class="kontakt_label">
+			
+		</th>
+		<td class="kontakt_field">
+			
+		</td>
+	</tr>
+	
+	<tr class="field">
+		<th class="kontakt_label">
+			
+		</th>
+		<td class="kontakt_field">
+			
+		</td>
+	</tr>
+	
+	<tr class="field">
+		<th class="kontakt_label">
+			
+		</th>
+		<td class="kontakt_field">
+			
+		</td>
+	</tr>
+	
+</table>
+
+<% if Strangecms::Config[:anrede] %>
+  <div class="field">
+    <%= f.label :anrede %><br />
+    <%= f.text_field :anrede %>
+  </div>
+<% end %>
+
+<% if Strangecms::Config[:titel] %>
+  <div class="field">
+    <%= f.label :titel %><br />
+    <%= f.text_field :titel %>
+  </div>
+<% end %>
+<% if Strangecms::Config[:vorname] %>
+  <div class="field">
+    <%= f.label :vorname %><br />
+    <%= f.text_field :vorname %>
+  </div>
+<% end %>
+<% if Strangecms::Config[:name] %>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+<% end %>
+<% if Strangecms::Config[:firma] %>
+  <div class="field">
+    <%= f.label :firma %><br />
+    <%= f.text_field :firma %>
+  </div>
+<% end %>
+<% if Strangecms::Config[:abteiung_oder_position] %>
+  <div class="field">
+    <%= f.label :abteiung_oder_position %><br />
+    <%= f.text_field :abteiung_oder_position %>
+  </div>
+<% end %>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </div>
+
+<% if Strangecms::Config[:webseite] %>
+  <div class="field">
+    <%= f.label :webseite %><br />
+    <%= f.text_field :webseite %>
+  </div>
+<% end %>
+<% if Strangecms::Config[:strasse] %>
+  <div class="field">
+    <%= f.label :strasse %><br />
+    <%= f.text_field :strasse %>
+  </div>
+<% end %>
+<% if Strangecms::Config[:plz] %>
+  <div class="field">
+    <%= f.label :plz %><br />
+    <%= f.text_field :plz %>
+  </div>
+<% end %>
+<% if Strangecms::Config[:ort] %>
+  <div class="field">
+    <%= f.label :ort %><br />
+    <%= f.text_field :ort %>
+  </div>
+<% end %>
+<% if Strangecms::Config[:bundesland] %>
+  <div class="field">
+    <%= f.label :bundesland %><br />
+    <%= f.text_field :bundesland %>
+  </div>
+<% end %>
+<% if Strangecms::Config[:land] %>
+  <div class="field">
+    <%= f.label :land %><br />
+    <%= f.text_field :land %>
+  </div>
+<% end %>
+<% if Strangecms::Config[:geburtstag] %>
+  <div class="field">
+    <%= f.label :geburtstag %><br />
+    <%= f.date_select :geburtstag %>
+  </div>
+<% end %>
+<% if Strangecms::Config[:telefon] %>
+  <div class="field">
+    <%= f.label :telefon %><br />
+    <%= f.text_field :telefon %>
+  </div>
+<% end %>
+<% if Strangecms::Config[:telefax] %>
+  <div class="field">
+    <%= f.label :telefax %><br />
+    <%= f.text_field :telefax %>
+  </div>
+<% end %>
+<% if Strangecms::Config[:mobil] %>
+  <div class="field">
+    <%= f.label :mobil %><br />
+    <%= f.text_field :mobil %>
+  </div>
+<% end %>
+<% if Strangecms::Config[:betreff] %>
+  <div class="field">
+    <%= f.label :betreff %><br />
+    <%= f.text_area :betreff %>
+  </div>
+<% end %>
+  <div class="field">
+    <%= f.label :inhalt %><br />
+    <%= f.text_area :inhalt %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

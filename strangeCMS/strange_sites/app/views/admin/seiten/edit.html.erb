@@ -1,0 +1,17 @@
+<%= render 'admin/shared/seiten_sub_menu' %>
+<%= render 'shared/fck_editor' %>
+
+
+<%= form_for @seite, :url => admin_seite_path  do |f| %>
+<%= render 'form', :f => f %>
+<div class="box">
+  <div class="actions in_box">
+    <%= f.submit %>
+	<div class="big_button_spacer"><%= t('or') %></div>
+	<%= link_to 'verwerfen', edit_admin_seite_path(@seite), :class => 'big_button' %>
+	<div class="clearfix"></div>
+  </div>
+</div>
+
+<% end %>
+

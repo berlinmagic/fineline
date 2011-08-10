@@ -1,0 +1,59 @@
+<h1><%= fform.name %></h1>
+<br/>
+<% @finemail ||= Finemail.new %>
+
+<%#= form_for(@finemail, :html => { :multipart => true, :id => 'fineform_box' }, :remote => true) do |f| %>
+<%= form_for(@finemail, :html => { :multipart => true, :id => 'fineform_box' }, :remote => true) do |f| %>
+		<%= render 'shared/fine_error', :item => f.object%>
+		<%= f.hidden_field :abs, :value => abs.id %>
+		<%= f.hidden_field :absender, :id => 'absender_feld' %>
+		<%= f.hidden_field :fineform_id, :value => fform.id %>
+		<%= f.hidden_field :typ, :value => fform.typ %>
+
+			
+			<% @this_fields = fform.fineform_fields %>
+			<% fform.fineform_fields.each_with_index do |field,index| %>
+			
+<% f.fields_for(:finemail_fields, @finemail.finemail_fields.build, :child_index => "new_finemail_field_#{index+1}") do |builder| %>
+				
+				<% if field.stil == 'list' %>
+					<div>
+						<%= field.name %>
+						<br/>
+						<%= builder.hidden_field :name, :value => field.name %>
+					
+						<%#= render 'fineforms/ff_field', :field => field, :builder => builder, :index => index %>
+						<%= render 'fineforms/forms/field', :field => field, :builder => builder, :index => index %>
+					
+						<%= builder.hidden_field :position, :value => field.position %>
+						<%= builder.hidden_field :fineform_field_id, :value => field.id %>
+						<br/><br/>
+					</div>
+
+							
+				<% else %>
+					<div>
+						<%= field.name %>
+						&nbsp;&nbsp;&nbsp;
+						<%= builder.hidden_field :name, :value => field.name %>
+					
+						<%#= render 'fineforms/ff_field', :field => field, :builder => builder, :index => index %>
+						<%= render 'fineforms/forms/field', :field => field, :builder => builder, :index => index %>
+					
+						<%= builder.hidden_field :position, :value => field.position %>
+						<%= builder.hidden_field :fineform_field_id, :value => field.id %>
+						<br/><br/>
+					</div>
+					
+							
+				<% end %>
+			<% end %>
+			
+			
+			<% end %>
+				<br/><br/>
+					<%= f.submit 'Senden' %>
+<br/><br/>
+		<br/>
+		
+<% end %>

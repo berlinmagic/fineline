@@ -1,0 +1,20 @@
+<script>
+	$('#close_available_box').live('click', function(event){
+		event.preventDefault();
+		$('#js_magick_place').html('');
+		$('.show_available').show();
+		$('.big_button_spacer').show();
+	});
+
+	
+	$('.js_pic_link').live('click', function(event){
+		var xlinkx = $('#js_pic_show');
+		$('.js_pic_link.aktiv').removeClass('aktiv');
+		$(this).addClass('aktiv');
+        event.preventDefault();
+        $.ajax({type: 'GET', url: this.href, data: ({authenticity_token: AUTH_TOKEN}), success: function(r){ xlinkx.html(r); $('.show_available').hide(); 		$('.big_button_spacer').hide(); } });
+	});
+	
+	
+	
+</script>

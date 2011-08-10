@@ -1,0 +1,11 @@
+<% if @seite && @seite.backups.count > 0 && admin_check %>
+	<div class="side_box">
+		<strong>BackUp´s:</strong> [ <%= bkp_count = @seite.backups.count %> ]
+		<ul id='sidebar_subnav'>
+			<% @seite.backups.each_with_index do |bkp,index| %>
+				<li><%= link_to 'Version '+(bkp_count - index).to_s+' - '+bkp.created_at.strftime('%d.%m.%Y-%H:%M').to_s, admin_backup_path(bkp) %></li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>
+

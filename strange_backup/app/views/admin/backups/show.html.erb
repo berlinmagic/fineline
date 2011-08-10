@@ -1,0 +1,63 @@
+<div class="box">
+	<% if Strangecms::Config[:show_site_name] %>
+	<div class="in_box first">
+		<h1><%= @backup.name %></h1>
+	</div>
+	<% end %>
+	
+
+<% @backup.safed_abschnitte.each_with_index do |abschnitt,index| %>
+
+	<% if abschnitt.stuff_typ && abschnitt.stuff_typ == 'k_form' %>
+	<div class="in_box<%= ' first' unless Strangecms::Config[:show_site_name] || index > 0 %>">
+		<%= render 'kontakt_formulare/k_form' %>
+		<div class="clearfix"></div>
+	</div>
+	<% elsif abschnitt.stuff_typ && abschnitt.stuff_typ == 'trenn_linie' %>
+	<div class="in_box<%= ' first' unless Strangecms::Config[:show_site_name] || index > 0 %>">
+		<div class="trenn_linie"></div>
+		<div class="clearfix"></div>
+	</div>
+	<% elsif abschnitt.inhalt %>
+
+	<div class="in_box<%= ' first' unless Strangecms::Config[:show_site_name] || index > 0 %>">
+		<%= raw abschnitt.inhalt %>
+		<div class="clearfix"></div>
+	</div>
+	<% end %>
+	
+<% end %>
+<br/>
+</div>
+
+
+
+<% content_for :sidebar do %>
+
+	<% if @backup.seite && @backup.seite.backups.count > 0 && admin_check %>
+		<div class="side_box">
+			<% bkp_count = @backup.seite.backups.count%>
+			<ul class='sidebar_subnav'>
+				<% @vn = '' %>
+				<li><%= link_to 'Aktuelle Seite', @backup.seite.slug %></li>
+				<li>&nbsp;&nbsp;&mdash;&nbsp;&nbsp;&nbsp;&mdash;&nbsp;&nbsp;&nbsp;&mdash;&nbsp;&nbsp;&nbsp;&mdash;
+					&nbsp;&nbsp;&nbsp;&mdash;&nbsp;&nbsp;&nbsp;&mdash;&nbsp;&nbsp;&nbsp;&mdash;</li>
+				<% @backup.seite.backups.each_with_index do |bkp,index| %>
+					<% if bkp == @backup %>
+						<% @vn = bkp_count - index %>
+					<% end %>
+					<li><%= link_to 'Version '+(bkp_count - index).to_s+' - '+bkp.created_at.strftime('%d.%m. - %H:%M').to_s, backup_path(bkp), :class => "#{'aktiv' if bkp == @backup}" %></li>
+				<% end %>
+				<li>&nbsp;&nbsp;&mdash;&nbsp;&nbsp;&nbsp;&mdash;&nbsp;&nbsp;&nbsp;&mdash;&nbsp;&nbsp;&nbsp;&mdash;
+					&nbsp;&nbsp;&nbsp;&mdash;&nbsp;&nbsp;&nbsp;&mdash;&nbsp;&nbsp;&nbsp;&mdash;</li>
+				<li><%= link_to 'Version '+@vn.to_s+' wiederherstellen', wiederherstellen_backup_path(@backup) %></li>
+				<li>&nbsp;</li>
+				<li><%= strange_rebuilder @backup, @vn.to_s, :url => wiederherstellen_backup_path(@backup) %></li>
+				<li>&nbsp;</li>
+			</ul>
+		</div>
+	<% end %>
+
+	
+
+<% end %>

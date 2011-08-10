@@ -1,0 +1,37 @@
+<%  @this_fields = [] %>
+<% @javatext = '' %>
+<% if abs %>
+
+<% if abs.stuff_param && abs.stuff_param != '' %>
+
+<% if fform = Fineform.find(abs.stuff_param) %>
+		
+		<% if fform.form_typ && fform.form_typ == "fieldset" %>
+		
+			<%#= render 'fineforms/forms/multi', :abs => abs, :fform => fform, :index => index %>
+			<%= render 'fineforms/forms/multi', :abs => abs, :fform => fform %>
+		
+		<% else %>
+		
+			<%= render 'fineforms/forms/single', :abs => abs, :fform => fform %>
+		
+		<% end %>
+		
+		<%= remotipart_response do %>
+		  // Display a Javascript alert
+		  alert('success!');
+		  <% if remotipart_submitted? %>
+		    alert('submitted via remotipart')
+		  <% else %>
+		    alert('submitted via native jquery-ujs')
+		  <% end %>
+		<% end %>
+		
+<% end %>
+
+<% end %>
+
+<% end %>
+
+<div class="clearfix"></div>
+

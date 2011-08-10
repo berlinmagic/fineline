@@ -1,0 +1,3 @@
+$("#data_tags_box").html("<%= escape_javascript(render(:partial => "admin/tags/objekt_tags", :locals => {:data => @data})) %>");
+$("#taggs_js_magick_place").html("<%= escape_javascript(render(:partial => "admin/tags/available_tags", :locals => {:data => @data, :available_tags => @available_tags})) %>");
+$("#new_tag_name").val("");

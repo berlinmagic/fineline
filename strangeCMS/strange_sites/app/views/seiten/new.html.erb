@@ -1,0 +1,75 @@
+<div class="box">
+	<div class="in_box first">
+		<h1>xxx Neue Seite</h1>
+	</div>
+	<div class="in_box">
+		<p>Hier haben Sie die Möglichkeit weitere Seiten zuerstellen und mit Inhalten zu versehen. 
+		Über die erweiterten Einstellungen können Sie Ihre einzelnen Seiten für Suchmaschinen optimieren.</p>
+	</div>
+	<div class="in_trenn_box">
+		<div class="trenn_linie"></div>
+	</div>
+</div>
+
+<%= render 'shared/fck_editor' %>
+
+<%= form_for @seite, :url => { :controller => 'seiten' } do |f| %>
+
+	<%= render 'shared/error', :item => f.object%>
+
+	<div id="fineline_seite_form">
+
+		<div class="box">
+			<div class="in_box field">
+				<%= f.label :name,			:class => 'inline tooltiped',
+				 							:title => Seite.human_attribute_name(:name) %> 
+				<%= f.text_field :name, 	:class => 'tipped tooltiped', 
+											:placeholder => Seite.human_attribute_name(:name), 
+											:title => Seite.human_attribute_name(:name), 
+											:size => '50' %>
+			</div>
+		</div>
+
+		<div class="box"<%= " style='display:none;'" unless @seite.use_headline %>>
+			<div class="in_box">
+				<%= f.label :headline,			:class => 'inline' %> 
+				<%= f.text_field :headline, 	:class => 'tipped tooltiped', 
+												:placeholder => Seite.human_attribute_name(:headline), 
+												:title => Seite.human_attribute_name(:headline), 
+												:size => '50' %>
+			</div>
+		</div>
+	
+		<div class="box">
+			<div class="in_trenn_box">
+				<div class="trenn_linie"></div>
+			</div>
+		</div>
+
+	
+	
+
+		<%= render 'form', :f => f %>
+
+		<div class="clearfix"></div>
+	
+		<div class="box">
+			<div class="in_trenn_box">
+				<div class="trenn_linie"></div>
+			</div>
+		</div>
+
+		<div class="box">
+		  <div class="actions in_box">
+		    <%= f.submit %>
+		 	<div class="big_button_spacer"><%= t('or') %></div>
+			<%= link_to 'verwerfen', "#{root_url}", :class => 'big_button' %>
+			<div class="clearfix"></div>
+		  </div>
+		</div>
+
+	</div>
+
+<% end %>
+
+

@@ -1,0 +1,160 @@
+de:
+##############################################################################################################################################
+#  =>  #  =>  #  =>  #  =>  #  =>  #  =>  #  =>  #  =>   S T R A N G E - C M S   <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #
+##############################################################################################################################################
+  models:
+      seite: "Seite"
+      aschnitt: "Abschnitt"
+  
+  attributes:
+      created_at: "erstellt am"
+      updated_at: "zuletzt geändert am"
+      seite:
+            name: "Name"
+            use_titel: "abweichender Browser-Titel"
+            titel: "Browser-Titel"
+            use_headline: "abweichende Seiten-Überschrift"
+            headline: "Überschrift"
+  activerecord:
+      models:
+        seite: "Seite"
+        aschnitt: "Abschnitt"
+      attributes:
+        seite:
+          name: "Name"
+          use_titel: "abweichender Browser-Titel"
+          titel: "Browser-Titel"
+          use_headline: "abweichende Seiten-Überschrift"
+          headline: "Überschrift"
+          no_headline: "keine Überschrift anzeigen"
+          meta_description: "Meta-Beschreibung (SEO)"
+          meta_keywords: "Meta-Schlagwörter (SEO)"
+          weiterleitung: "Weiterleitung"
+          externer_link: "externer Link"
+          typ: "Seiten-Typ"
+          status: "Seiten-Status"
+          stil: "Seiten-Stil"
+          template: "Seiten-Template"
+          in_header: "im Header"
+          in_main_nav: "in der Hauptnavigation"
+          in_footer: "im Footer"
+          protected: "Seite gesichert"
+          gruppe: "User-Gruppe"
+          verteiler: "Verteilerseite"
+          entwurf: "Seite noch nicht veröffentlichen"
+          breadcrumps: "Breadcrumps anzeigen"
+          elternseite_id: "Seite ist Unterseite von"
+          autor_id: "Autor"
+          last_autor_id: "zuletzt geändert durch"
+          deleted: "gelöscht"
+          system_seite: "System-Seite"
+          system_only: "reine System-Seite"
+          modul_seite: "Modul-Seite"
+          system_name: "System-Name"
+        abschnitt:
+          name: "Abschnitt-Name"
+          slug: "Abschnitt-Anker"
+          system_stuff: "System-Abschnitt"
+          protected: "Geschützter-Abschnitt"
+          gruppe: "User-Gruppe"
+          stuff_typ: "Abschnitt-Typ"
+          stuff_param: "Abschnitt-Parameter"
+          modul: "Abschnitt-Modul"
+          modul_typ: "Abschnitt-Modul-Typ"
+          modul_id: "Abschnitt-Modul-ID"
+          inhalt: "Inhalt"
+      errors:
+        models:
+          seite:
+            attributes:
+                name: "Name"
+                use_titel: "abweichender Browser-Titel"
+                titel: "Browser-Titel"
+                use_headline: "abweichende Seiten-Überschrift"
+                headline: "Überschrift"
+                no_headline: "keine Überschrift anzeigen"
+                meta_description: "Meta-Beschreibung (SEO)"
+                meta_keywords: "Meta-Schlagwörter (SEO)"
+                weiterleitung: "Weiterleitung"
+                externer_link: "externer Link"
+                typ: "Seiten-Typ"
+                status: "Seiten-Status"
+                stil: "Seiten-Stil"
+                template: "Seiten-Template"
+                in_header: "im Header"
+                in_main_nav: "in der Hauptnavigation"
+                in_footer: "im Footer"
+                protected: "Seite gesichert"
+                gruppe: "User-Gruppe"
+                verteiler: "Verteilerseite"
+                entwurf: "Seite noch nicht veröffentlichen"
+                breadcrumps: "Breadcrumps anzeigen"
+                elternseite_id: "Seite ist Unterseite von"
+                autor_id: "Autor"
+                last_autor_id: "zuletzt geändert durch"
+                deleted: "gelöscht"
+                system_seite: "System-Seite"
+                system_only: "reine System-Seite"
+                modul_seite: "Modul-Seite"
+                system_name: "System-Name"
+        abschnitt:
+            attributes:
+                name: "Abschnitt-Name"
+                slug: "Abschnitt-Anker"
+                system_stuff: "System-Abschnitt"
+                protected: "Geschützter-Abschnitt"
+                gruppe: "User-Gruppe"
+                stuff_typ: "Abschnitt-Typ"
+                stuff_param: "Abschnitt-Parameter"
+                modul: "Abschnitt-Modul"
+                modul_typ: "Abschnitt-Modul-Typ"
+                modul_id: "Abschnitt-Modul-ID"
+                inhalt: "Inhalt"
+##############################################################################################################################################
+#  =>  #  =>  #  =>  #  =>  #  =>  #  =>  #  =>  #  =>   S T R A N G E - C M S   <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #
+##############################################################################################################################################
+  strange_Backend: "Backend bearbeiten"
+  strange_Frontend: "zur Webseite wechseln"
+###  Linkz  ###
+  Show: "Anzeigen"
+  Edit: "Bearbeiten"
+  Destroy: "Löschen"
+  edit: "bearbeiten"
+  or: "oder"
+  back: "zurück"
+  cancel: "verwerfen"
+###  Meldungen  ###
+  confirm_delete: "Löschen bestätigen"
+  Are_you_sure: "Wirklich löschen, dies ist nicht Widerrufbar?"
+  are_you_sure: "Wirklich löschen, dies ist nicht Widerrufbar?"
+### =>   Seiten   <= ###
+  seiten_headline: "Seitenstruktur"
+  Neue_Seite: "Neue Seite"
+  Keine_standard_Seitennamen_verwenden: "Verwenden Sie keine vom System benötigten Namen!"
+  seite_wurde_erstellt: "Die Seite wurde erfolgreich erstellt."
+  seite_wurde_geändert: "Die Seite wurde erfolgreich geändert."
+###  Standard - Seiten  ###
+  std_seiten:
+      kontakt: "kontakt"
+      sitemap: "sitemap"
+      impressum: "impressum"
+###     Standard - Erweiterungen        ####
+  activerecord:
+      errors:
+          messages:
+              email_error_message: 'ist keine Gültige Email'
+###     Kontakt - Mailer        ###
+  kontakt_mailer:
+      kontakt_mail:
+          subject: "Neuen Kontakt erhalten von %{data.name}"
+      thankyou_mail:
+          subject: "Danke für Ihre E-Mail"
+  StrangeLocal:
+      change_language: "Sprache wechseln"
+      locale_changed: "Sprache wurde geändert"
+      locale_not_changed: "Sprache konnte nicht geändert werden"
+      de: "Deutsch"
+      en: "Englisch"
+##############################################################################################################################################
+#  =>  #  =>  #  =>  #  =>  #  =>  #  =>  #  =>  #  =>   S T R A N G E - C M S   <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #
+##############################################################################################################################################

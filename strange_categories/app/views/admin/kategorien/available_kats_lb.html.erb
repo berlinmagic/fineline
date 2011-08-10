@@ -1,0 +1,40 @@
+<% data ||= @data %>
+<% available_data ||= @available_data %>
+
+<h2 class="polymorphe_form_head_toggle aktiv">
+	<%= link_to 'Kategorie hinzufügen', "#", :remote => true %>
+</h2>
+
+<div class="polymorphe_form_box">
+	
+	<div id="kat_form_available_tags">
+		<%= render 'admin/kategorien/a_kats', :data => data, :available_data => available_data %>
+	</div>
+
+	<div class="clearfix"></div>
+	<br/>
+	<div class="top_trenner"></div>
+	<br/>
+	<%= form_tag "/admin/#{data.class.to_s.tableize}/#{data.id}/kategorien/new_kategorie", :method => :post, :remote => true do %>
+		
+		<p>Neue Kategorie anlegen:</p>
+		<div class="field">
+			<%= text_field_tag 'new_kat_name', '', :class => 'tipped', :placeholder => 'Kategorie-Name' %>
+		</div>
+		
+		
+		<div class="field">
+			<%= text_area_tag 'new_kat_desc', '', :class => 'tipped', :placeholder => 'Kategorie-Beschreibung' %>
+		</div>
+		<br/>
+		<div class="clearfix"></div>
+
+		<%= submit_tag 'Kategorie erstellen' %>
+	
+	<% end %>
+	<div class="clearfix"></div>
+	<br/>
+			
+</div>
+
+

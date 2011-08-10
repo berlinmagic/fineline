@@ -1,0 +1,195 @@
+<div class="admin_box">
+	
+	
+	<h1>User</h1>
+	<div class="admin_in_box">
+		<div class="box">
+			<div class="in_box">
+				
+				<h2>User :: <span class="cool"><%= @user.name %></span></h2>
+	
+			</div>
+		</div>
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<div class="account_card">
+					<% if @user.bild %>
+						<% if @user.bild_cropping%>
+							<%= image_tag @user.bild.thumb(@user.bild_cropping).thumb("66x76").url %>
+						<% else %>
+							<%= image_tag @user.bild.thumb("66x76").url %>
+						<% end %>
+					<% else %>
+						<% if @user.anrede == 'frau' %>
+							<%= image_tag '/images/account_default_frau.png' %>
+						<% elsif @user.anrede == 'herr' %>
+							<%= image_tag '/images/account_default_man.png' %>
+						<% else %>
+							<%= image_tag '/images/account_default_admin.png' %>
+						<% end %>
+					<% end %>
+					<div class="c_name">
+						<%= @user.vorname.capitalize %> <%= @user.name.capitalize %>
+					</div>
+					<div class="c_id">
+						<strong>ID:</strong>&nbsp;&nbsp;<%= @user.strange_id %>
+					</div>
+					<div class="c_mail">
+						<%= @user.email %>
+					</div>
+				</div>
+				<table>
+					<tr>
+						<td>Account_Name</td>
+						<th><%= @user.nick_name %></th>
+					</tr>
+					<tr>
+						<td>Anrede</td>
+						<th><%= @user.anrede %></th>
+					</tr>
+					<tr>
+						<td>Name</td>
+						<th><%= @user.name %></th>
+					</tr>
+					<tr>
+						<td>Vorname</td>
+						<th><%= @user.vorname %></th>
+					</tr>
+					<tr>
+						<td>E-Mail</td>
+						<th><%= @user.email %></th>
+					</tr>
+				</table>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		
+		<% if @user == current_user %>
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<p>Das ist Ihr Konto:</p>
+			</div>
+		</div>
+		
+			<% unless @user.confirmed_at%>
+		
+			<div class="box">
+				<div class="trenn_box">
+					<div class="top_trenner"></div>
+				</div>
+			</div>
+			<div class="box">
+				<div class="in_box">
+					<h2><span class="panic">Achtung</span>, Ihr Konto ist noch nicht Bestätigt!</h2>
+					<br/>
+					<p>Sie haben hier die Möglichkeit, eine neue Bestätigungs-Mail an Ihre E-Mail-Adresse zu versenden .. </p>
+					<p>Bitte prüfen Sie Ihr Postfach.</p>
+					<br/>
+					<div class="clearfix"></div>
+					<%= form_for(@user, :url => confirmation_path(@user), :html => { :method => :post }) do |f| %>
+					  <%= f.hidden_field :email %>
+					  <%= f.submit "Bestätigungs-Mail erneut senden!" %>
+					<% end %>
+					
+					
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		
+			<% end %>
+		<% end %>
+		
+		<% if @user.locked_at %>
+		
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<h2 class="panic">Konto ist gerade gesperrt !</h2>
+				<br/>
+				<p>Dies kann viele Ursachen haben, zB. zu viele fehlgeschlagene Anmelde-Versuche. In diesem Fall wird automatisch eine E-Mail mit Anweisungen zum entsperren des Kontos versendet.</p>
+			</div>
+		</div>
+		
+		<% end %>
+		
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		
+		<div class="box">
+			<div class="in_box ">
+				<table>
+					<tr>
+						<th>Rang:</th>
+						<td><strong><span class="cool"><%= user_rang(@user) %></span></strong></td>
+					</tr>
+					<tr>
+						<th>E-Mail:</th>
+						<td><strong><span class="cool"><%= @user.email %></span></strong></td>
+					</tr>
+				</table>
+				
+				<br/>
+				
+				<table>
+					<tr>
+						<th>Konto Bestätigt</th>
+						<td><%= @user.confirmed_at ? "Ja (#{@user.confirmed_at.strftime('%m.%Y')})" : 'Muss noch Bestätigt werden!' %></td>
+					</tr>
+					<tr>
+						<th>Letzter Login</th>
+						<td><%= @user.last_sign_in_at.nil? ? 'noch nie' : "#{@user.last_sign_in_at.strftime('%d.%m.%Y um %H:%M Uhr')}" %></td>
+					</tr>
+					<% if @user.invitation_sent_at %>
+					<tr>
+						<th>Einladung gesendet</th>
+						<td><%= @user.invitation_sent_at.strftime('%d.%m.%Y um %H:%M Uhr') %></td>
+					</tr>
+					<% end %>
+				</table>
+				
+			</div>
+		</div>
+		
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		
+		<div class="box">
+			<div class="in_box">
+				<% if admin_check || current_user == @user %>
+					<%= link_to 'Bild hochladen', bild_upload_admin_user_path(@user), :class => 'big_submit_button' %>
+					<% if @user.bild %>
+						<div class="big_button_spacer"></div>
+						<%= link_to 'Bild neu zuschneiden', crop_admin_user_path(@user), :class => 'big_submit_button' %>
+					<% end %>
+					<div class="big_button_spacer"></div>
+					<%= link_to 'Account bearbeiten', edit_admin_user_path(@user), :class => 'big_submit_button' %>
+				<% end %>
+				<div class="clearfix"></div>
+				
+
+				
+			</div>
+		</div>
+		
+	</div>
+</div>

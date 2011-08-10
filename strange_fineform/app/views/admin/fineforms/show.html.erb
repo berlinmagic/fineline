@@ -1,0 +1,226 @@
+<%= render 'admin/shared/module_sub_menu' %>
+
+<div class="admin_box">
+	<h1><%= t('fineform_show') %></h1>
+	<div class="admin_in_box">
+		<div class="box">
+			<div class="in_box">
+				<p>Hier haben Sie die Möglichkeit weitere Felder zum Formular '<%= @fineform.name %>' hinzuzufügen.</p>
+			</div>
+		</div>
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<div class="left">
+					<table>
+						<tr>
+							<th>Name:</th>
+							<td><%= @fineform.name %></td>
+							<th>Stil:</th>
+							<td><%= @fineform.stil %></td>
+						</tr>
+						<tr>
+							<th>Seite:</th>
+							<td><%= @fineform.seite.titel if @fineform.seite %></td>
+							<th>Typ:</th>
+							<td><%= @fineform.typ %></td>
+						</tr>
+					</table>
+				</div>
+				<div class="right">
+					<p>Beschreibung:</p>
+					<p><%= @fineform.beschreibung %></p>
+				</div>
+				<div class="clearfix"></div>
+				
+			</div>
+		</div>
+		
+	<% if @fineform.form_typ == 'fieldset' %>
+	
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<br/>
+				<h3>Multipart-Formular .. [ <span id="fsets_counta"><%= @fineform.fineform_fieldsets.count %></span> ] 
+					Fieldsets => [ <span id="ffelder_counta"><%= @fineform.fineform_fields.count %></span> ] Felder:</h3>
+				<br/>
+			</div>
+		</div>
+	
+	
+	<% else %>
+		
+        <div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+			
+			<div class="box">
+				<div class="in_box">
+					<h2>[ <span id="ffelder_counta"><%= @fineform.fineform_fields.count %></span> ] Felder:</h2>
+				</div>
+			</div>
+			<div class="box">
+				<div class="in_box white">
+					
+					<table id="finefields_box" class="fineline_table">
+						<%= render 'fields', :data => @fineform %>
+					</table>
+					<div class="clearfix"></div>
+					<br/>
+					
+					
+					
+				</div>
+			</div>
+			
+
+				<div class="box">
+					<div class="in_box">
+						<h3>Neues Feld hinzufügen:</h3>
+						<%= form_tag new_field_admin_fineform_path(@fineform), :method => :post, :remote => true do %>
+							<div class="top_trenner"></div>
+							<div class="right hidden" id="reloada">
+								<%= link_to 'zum sortieren Neuladen', '', :class => 'big_button' %>
+							</div>
+
+							<div id="fff_table">
+								<%= render 'field_form' %>
+							</div>
+							
+							<%= hidden_field_tag 'field[fineform_id]', @fineform.id %>
+							<div class="clearfix"></div>
+							<br/>
+							<%= submit_tag 'Feld erstellen' %>
+							<div class="clearfix"></div>
+							<br/>
+						<% end %>
+					</div>
+				</div>
+		
+		<% end %>
+		
+		<div id="js_magick_place"></div>
+		
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		
+		<div class="box">
+			<div class="in_box">
+				<% if @fineform.form_typ == 'fieldset' %>
+					<%= link_to 'neuen Formular-Abschnitt', new_admin_fineform_fineform_fieldset_path(@fineform), :class => 'big_button' %>
+					<div class="big_button_spacer"> </div>
+				<% end %>
+				<%= link_to 'Formular bearbeiten', edit_admin_fineform_path(@fineform), :class => 'big_button' %>
+				
+				<%# link_to 'Bild hinzufügen', available_admin_gallerie_bilder_path(@fineform), :remote => true, :class => 'big_submit_button show_available' %>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		
+	</div>
+</div>
+
+
+<% if @fineform.form_typ == 'fieldset' %>
+<div id="finefieldsets_box">
+<% @fineform.fineform_fieldsets.each_with_index do |fieldset, index| %>
+<br/>
+
+
+	
+<div class="admin_box" style="position:relative" id="<%= dom_id(fieldset) %>">
+	<h1>Fieldset [<%= index + 1 %>] . <strong><%= fieldset.name %></strong> .. <span id="ffsets_counta"><%= fieldset.fineform_fields.count %></span> <%= fieldset.fineform_fields.count == 1 ? 'Feld' : 'Felder' %></h1>
+	<div class="admin_in_box">
+		<% if @fineform.fineform_fieldsets.count > 1 %>
+		<span class="handle"></span>
+		<% end %>
+		<div class="box">
+			<div class="in_box">
+				<p>Hier haben Sie die Möglichkeit weitere Felder zum Formular-Teil '<%= fieldset.name %>' hinzuzufügen.</p>
+			</div>
+		</div>
+
+		
+		<div class="box">
+			<div class="in_box white">
+				<table id="set_finefields_box_<%= fieldset.id %>" class="fineline_table set_finefields_SortBox">
+					<%= render 'fields', :data => fieldset %>
+				</table>
+				<div class="clearfix"></div>
+				<br/>
+			</div>
+		</div>
+		
+		
+		<%= form_tag new_fieldset_field_admin_fineform_path(@fineform), :method => :post, :remote => true do %>
+		<div class="box">
+			<div class="in_box">
+				
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<a href="#" class="show_field_form"><h3>Neues Feld hinzufügen:</h3></a>
+				<br/>
+				<div class="form_box hidden">
+					
+					<div class="right hidden reloada">
+						<%= link_to 'zum sortieren Neuladen', '', :class => 'big_button' %>
+					</div>
+					<%= hidden_field_tag 'fineform_fieldset', fieldset.id %>
+					<div id="fff_table_<%= fieldset.id %>">
+						<%= render 'field_form' %>
+					</div>
+					<%= hidden_field_tag 'field[fineform_fieldset_id]', fieldset.id %>
+					<div class="clearfix"></div>
+					<%= submit_tag 'Feld erstellen' %>
+					<div class="clearfix"></div>
+					<br/>
+				</div>
+			</div>
+		</div>
+		
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		
+		<div class="box">
+			<div class="in_box">
+				
+					
+			</div>
+		</div>
+		
+		<% end %>
+		<%= link_to ' ', edit_admin_fineform_fineform_fieldset_path(@fineform,fieldset), :id => 'btn_edit' %>
+		<% unless fieldset.system_stuff %>
+		<%= fineline_delete fieldset, :url => admin_fineform_fineform_fieldset_path(@fineform,fieldset) %>
+		<% end %>
+
+	</div>
+</div>
+
+
+
+<% end %>
+</div>
+<% end %>
+
+<%= render 'admin/fineforms/sidebar' %>
+

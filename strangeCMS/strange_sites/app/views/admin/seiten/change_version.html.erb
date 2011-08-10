@@ -1,0 +1,24 @@
+<%= @new_site %><br/>
+<%= @new_site.id %><br/><br/>
+<%= @seite %><br/>
+<%= @old_site %><br/><br/>
+
+	<h1>Safed-Data:</h1>
+	<em>nur für Seiten-Admin sichtbar .. Sie sind <strong><%= user_rang(current_user) %></strong></em><br/>
+	<% @seite.attributes.each do |a, b| %>
+		<%= a %> = <%= b %><br/>
+	<% end %>
+
+	<% @seite.abschnitte.each do |ab| %>
+		<br/>
+		<strong>Abschnitt: <%= ab.id %></strong><br/>
+		<% ab.attributes.each do |a, b| %>
+			<%= a %> = <%= b %><br/>
+		<% end %>
+		<% if ab.text %>
+			<strong>Text: </strong><br/>
+			<% ab.text.attributes.each do |a, b| %>
+				<%= a %> = <%= b %><br/>
+			<% end %>
+		<% end %>
+	<% end %>

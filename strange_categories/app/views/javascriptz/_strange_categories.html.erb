@@ -1,0 +1,17 @@
+
+
+
+<script type="text/javascript" charset="utf-8">
+
+$('.polymorphe_form_box .tipped').defaultValue();
+
+
+$('.polymorphe_form_head_toggle a').live('click', function(event){
+	event.preventDefault();
+	$(this).parent().next('.polymorphe_form_box').slideToggle();
+	$(this).parent().toggleClass('aktiv');
+});
+
+
+
+</script>

@@ -1,0 +1,4 @@
+<% Fineform.all.each do |ff| %>
+<!--<p class='add_ff_form'><%# link_to "[fineform] :: #{ff.name}", admin_site_pic_K_form_path, :remote => true %></p>-->
+<p class='add_ff_form'><%= link_to "[fineform] :: #{ff.name}", site_pic_fineform_path, :remote => true %><span class='ffform_id hidden'><%= ff.id %></span></p>
+<% end %>

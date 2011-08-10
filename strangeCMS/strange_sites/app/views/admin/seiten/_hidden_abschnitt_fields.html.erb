@@ -1,0 +1,19 @@
+
+<% if f.object.stuff_typ &&  f.object.stuff_typ != '' %>
+			<%= f.hidden_field :system_stuff, :value => f.object.system_stuff %>
+			<%= f.hidden_field :stuff_typ, :value => f.object.stuff_typ %>
+			<%= f.hidden_field :position, :value => f.object.position %>
+			<%= f.hidden_field :id, :value => f.object.id %>
+<% elsif f.object.text %>
+
+			<%= f.hidden_field :system_stuff, :value => f.object.system_stuff %>
+			<%= f.hidden_field :position, :value => f.object.position %>
+			<%= f.hidden_field :id, :value => f.object.id %>
+			<%= f.fields_for :text do |builder| %>
+	    		<%= render "hidden_text_fields", :f => builder %>
+	  		<% end %>
+<% else %>
+			<%= f.hidden_field :system_stuff, :value => f.object.system_stuff %>
+			<%= f.hidden_field :position, :value => f.object.position %>
+			<%= f.hidden_field :id, :value => f.object.id %>
+<% end %>

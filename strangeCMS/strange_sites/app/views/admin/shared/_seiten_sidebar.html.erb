@@ -1,0 +1,14 @@
+<% content_for :sidebar do %>
+<div id="sidebar">
+			<ul id="sidebar_navi">
+				<li><%= link_to 'Alle', admin_seiten_url, :class => "#{'aktiv' if @u_aktiv == 'all'}" %></li>
+				<li><%= link_to 'Aktiv', {:controller => "admin/seiten", :action => "index", :show => 'all'}, :class => "#{'aktiv' if @u_aktiv == 'aktiv'}" %></li>
+				
+				<li><%= link_to 'Entwürfe', {:controller => "admin/seiten", :action => "index", :show => 'entwurf'}, :class => "#{'aktiv' if @u_aktiv == 'entwurf'}" %></li>
+				<li><%= link_to "Papierkorb", {:controller => "admin/seiten", :action => "index", :show => 'papierkorb'}, :class => "#{'aktiv' if @u_aktiv == 'papierkorb'}" %></li>
+				<li>&nbsp;</li>
+				<li><%= link_to t('Neue_Seite'), new_admin_seite_url, :class => "#{'aktiv' if @u_aktiv == 'new'}" %></li>
+			</ul>
+			<br class="clear" />
+</div>
+<% end %>

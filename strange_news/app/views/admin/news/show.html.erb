@@ -1,0 +1,152 @@
+<%# render 'admin/shared/module_sub_menu' %>
+<%= render 'shared/fck_editor' %>
+
+<div class="admin_box">
+	<h1><%= @news.headline %></h1>
+	<div class="admin_in_box">
+		<div class="box">
+			<div class="in_box">
+				<% if @news.file %>
+					<%= image_tag @news.file.thumb("690x300>").url, :alt => @news.slug %>
+				<% else %>
+					<strong>Beschreibung:</strong>
+				<% end %>
+				<br/>
+				<% @id_muster = /\w+_id/ %>
+				<% params.each do |key,value| %>
+					<% if @id_muster.match(key) %>
+						Yeah:  <%= @objekt_type = key.gsub('_id', '') %>
+						<br/>
+						<%= @objekt_type.classify.constantize.find(value).headline %>
+					<% end %>
+					<%= key %> = <%= value %><br/>
+				<% end %>
+
+				<br/>
+				<br/>
+				<% muster = /\d/ %>
+				<%= params.grep(muster) %>
+				<br/>
+				<br/>
+				<%= 'news'.classify.constantize.find(1).headline %>
+				<br/>
+				<br/>
+				<%= 'news_id'.gsub('_id', '').classify.constantize.find(1).headline %>
+				
+				
+				<%= @id_muster.match('news_id') %>
+
+				
+			</div>
+		</div>
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<%= @news.beschreibung %>
+			</div>
+		</div>
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+
+				<strong>Datum:</strong> <%= @news.datum.strftime('%d.%m.%Y - %H:%M') %>
+				
+			</div>
+		</div>
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+
+				<strong>Inhalt:</strong>
+				
+			</div>
+		</div>
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				
+				<% @news.news_abschnitte.each do |abs| %>
+					<%= raw abs.inhalt %>
+					<div class="clearfix"></div>
+				<% end %>
+			</div>
+		</div>
+		
+		<% if @news.kommentierbar %>
+		<div id="kommetar_area" class="<%= 'hidden' unless @news.kommentare.count > 0 %>">
+
+
+			<div class="in_box">
+				<div class="top_trenner"></div>
+				<div class="clearfix"></div>
+			</div>
+
+			<div class="box">
+				<div class="in_box kommentare_index_box">
+					<h2 class="komentare_headline">Kommentare</h2>
+
+					<% @news.kommentare.each do |kmt| %>
+
+						<%= render 'kommentare/kommentar', :kommentar => kmt %>
+
+					<% end %>
+				</div>
+			</div>
+
+
+		</div>
+
+
+
+		<% end %>
+		
+		<% if @news.kommentierbar %>
+
+		<div class="in_box">
+			<div class="top_trenner"></div>
+			<div class="clearfix"></div>
+		</div>
+
+		<div class="box">
+			<div class="in_box">
+				<%= render 'kommentare/ajax_form', :this_target => 'News', :this_id => @news.id, :this_back_url => admin_news_path(@news) %>
+				<div class="clearfix"></div>
+				<br/>
+			</div>
+		</div>
+		<div class="in_box">
+			<div class="top_trenner"></div>
+			<div class="clearfix"></div>
+		</div>
+		<% end %>
+		
+		
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+
+
+		<%= render 'admin/tags/tags_show', :data => @news %>
+		
+	</div>
+</div>
+
+<%= render 'sidebar' %>

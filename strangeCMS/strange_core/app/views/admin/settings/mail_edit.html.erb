@@ -1,0 +1,143 @@
+<div class="admin_box">
+	<h1><%= t('strange_preferences.mail_server_preferences') %> <%= t('edit')%></h1>
+	<div class="admin_in_box">
+		<div class="box">
+			<div class="in_box">
+				
+				<p>Einstellungen Mail-Server bearbeiten (<strong>nur für erfahrene User!</strong>):</p>
+	
+			</div>
+		</div>
+		
+		<%= form_tag(admin_setting_path(@name), :method => :put) do -%>
+		<%= hidden_field_tag('name', @name, :size => 50 ) %>
+		
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		
+		<div class="box">
+			<div class="in_box">
+				<br/>
+				<table class="settings">
+					<tr>
+						<th colspan="2" class="u_kat"><%= t('strange_preferences.general')%></th>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.enable_mail_delivery') %></th>
+						<td>
+							<%= hidden_field_tag('preferences[enable_mail_delivery]', Strangecms::Config[:enable_mail_delivery]) %>
+							<%= link_to '', '#', :class => "on_off_schalter #{Strangecms::Config[:enable_mail_delivery] ? 'an' : 'aus'}" %>
+						</td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.send_mails_as') %></th>
+						<td><%= text_field_tag('preferences[mails_from]', Strangecms::Config[:mails_from], :maxlength => 256)%></td>
+					</tr>
+					<tr class="info">
+						<td colspan="2"><%= t('strange_preferences.smtp_send_all_emails_as_from_following_address')%></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.send_copy_of_all_mails_to') %></th>
+						<td><%= text_field_tag('preferences[mail_bcc]', Strangecms::Config[:mail_bcc], :maxlength => 256)%></td>
+					</tr>
+					<tr class="info">
+						<td colspan="2"><%= t('strange_preferences.smtp_send_copy_to_this_addresses')%></td>
+					</tr>
+				</table>
+				<br/>
+			</div>
+		</div>
+		
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		
+		<div class="box">
+			<div class="in_box ">
+				<br/>
+				<div class="left pic_link">
+			<%= link_to image_tag('/images/btns/einstellungen_16px.png')+ raw('Erweiterte Server-Einstellungen <span id="more_link_text">bearbeiten</span>'), '#', :class => "more_button", :remote => true %>
+				</div>
+
+				<div class="clearfix"></div>
+
+				<div class="no_show">
+					<br/>
+					<h2 class="panic">ACHTUNG, ändern Sie diese Einstellungen nur, wenn Sie wissen was Sie tun!</h2>
+					<br/>
+					<table class="settings">
+						<tr>
+							<th colspan="2" class="u_kat"><%= t('strange_preferences.smtp_settings')%></th>
+						</tr>
+						<tr>
+							<th><%= t('strange_preferences.smtp_domain') %></th>
+							<td><%= text_field_tag('preferences[mail_domain]', Strangecms::Config[:mail_domain]) %></td>
+						</tr>
+						<tr>
+							<th><%= t('strange_preferences.smtp_mail_host') %></th>
+							<td><%= text_field_tag('preferences[mail_host]', Strangecms::Config[:mail_host])%></td>
+						</tr>
+						<tr>
+							<th><%= t('strange_preferences.smtp_port') %></th>
+							<td><%= text_field_tag('preferences[mail_port]', Strangecms::Config[:mail_port])%></td>
+						</tr>
+						<tr>
+							<th><%= t('strange_preferences.secure_connection_type') %></th>
+							<td><%= select_tag('preferences[secure_connection_type]',
+		        								options_for_select(
+		        								AppConfiguration::SECURE_CONNECTION_TYPES, 
+		        								Strangecms::Config[:secure_connection_type])) %></td>
+						</tr>
+						<tr>
+							<th><%= t('strange_preferences.smtp_authentication_type') %></th>
+							<td><%= select_tag('preferences[mail_auth_type]',
+		        								options_for_select(AppConfiguration::MAIL_AUTH, 
+		        								Strangecms::Config[:mail_auth_type])) %></td>
+						</tr>
+						<tr>
+							<th><%= t('strange_preferences.smtp_username') %></th>
+							<td><%= text_field_tag('preferences[smtp_username]', Strangecms::Config[:smtp_username])%></td>
+						</tr>
+						<tr>
+							<th><%= t('strange_preferences.smtp_password') %></th>
+							<td><%= password_field_tag('preferences[smtp_password]', Strangecms::Config[:smtp_password])%></td>
+						</tr>
+					</table>
+				</div>
+				<br/>
+			</div>
+		</div>
+		
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		
+		<div class="box">
+			<div class="in_box ">
+				<%= render 'edit_buttons' %>
+			</div>
+		</div>
+		
+		<% end %>
+
+		
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		
+	</div>
+</div>
+
+
+
+<%= render 'sidebar' %>
+

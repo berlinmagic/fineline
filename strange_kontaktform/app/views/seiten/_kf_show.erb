@@ -1,0 +1,6 @@
+<% if abschnitt.stuff_typ && abschnitt.stuff_typ == 'k_form' %>
+	<div class="in_box<%= ' first' unless Strangecms::Config[:show_site_name] || index > 0 %>">
+		<%= render 'kontakt_formulare/k_form', :abs => abschnitt, :index => index %>
+		<div class="clearfix"></div>
+	</div>
+<% end %>

@@ -1,0 +1,229 @@
+<div class="admin_box">
+	<h1><%= t('strange_preferences.kontakt_settings')%> <%= t('edit')%></h1>
+	<div class="admin_in_box">
+		<div class="box">
+			<div class="in_box">
+				<p>Wählen Sie hier alle Felder aus, welche im Kontakt-Formular angezeigt werden sollen. Weiterhin können Sie einstellen welche Felder Pflichtfelder sind, also ausgefüllt werden müssen.</p>
+			</div>
+		</div>
+		<%= form_tag(admin_kontakt_settings_update_path, :method => :put) do -%>
+		<%= hidden_field_tag('name', @name, :size => 50 ) %>
+		
+		<div class="box">
+			<div class="in_box white">
+				<h2>Angaben zur Person</h2>
+				<table class="settings kontakt">
+					<tr>
+						<th>Anrede</th>
+						<td>
+							<%= hidden_field_tag('preferences[anrede]', Strangecms::Kontakt::Config[:anrede]) %>
+							<%= link_to '', '#', :class => "on_off_schalter #{Strangecms::Kontakt::Config[:anrede] ? 'an' : 'aus'}" %>
+						</td>
+						<td>
+				<%= select_tag 'preferences[validate_anrede]', options_for_select({ 'Pflichtfeld' => true, 'Optional' => false }, Strangecms::Kontakt::Config[:validate_anrede])    %>
+						</td>
+					</tr>
+					<tr>
+						<th>Titel</th>
+						<td>
+							<%= hidden_field_tag('preferences[titel]', Strangecms::Kontakt::Config[:titel]) %>
+							<%= link_to '', '#', :class => "on_off_schalter #{Strangecms::Kontakt::Config[:titel] ? 'an' : 'aus'}" %>
+						</td>
+						<td>
+				<%= select_tag 'preferences[validate_titel]', options_for_select({ 'Pflichtfeld' => true, 'Optional' => false }, Strangecms::Kontakt::Config[:validate_titel])    %>
+						</td>
+					</tr>
+					<tr>
+						<th>Name</th>
+						<td>
+							<%= hidden_field_tag('preferences[name]', Strangecms::Kontakt::Config[:name]) %>
+							<%= link_to '', '#', :class => "on_off_schalter #{Strangecms::Kontakt::Config[:name] ? 'an' : 'aus'}" %>
+						</td>
+						<td>
+				<%= select_tag 'preferences[validate_name]', options_for_select({ 'Pflichtfeld' => true, 'Optional' => false }, Strangecms::Kontakt::Config[:validate_name])    %>
+						</td>
+					</tr>
+					<tr>
+						<th>Vorname</th>
+						<td>
+							<%= hidden_field_tag('preferences[vorname]', Strangecms::Kontakt::Config[:vorname]) %>
+							<%= link_to '', '#', :class => "on_off_schalter #{Strangecms::Kontakt::Config[:vorname] ? 'an' : 'aus'}" %>
+						</td>
+						<td>
+				<%= select_tag 'preferences[validate_vorname]', options_for_select({ 'Pflichtfeld' => true, 'Optional' => false }, Strangecms::Kontakt::Config[:validate_vorname])    %>
+						</td>
+					</tr>
+					<tr>
+						<th>Geburtstag</th>
+						<td>
+							<%= hidden_field_tag('preferences[geburtstag]', Strangecms::Kontakt::Config[:geburtstag]) %>
+							<%= link_to '', '#', :class => "on_off_schalter #{Strangecms::Kontakt::Config[:geburtstag] ? 'an' : 'aus'}" %>
+						</td>
+						<td>
+				<%= select_tag 'preferences[validate_geburtstag]', options_for_select({ 'Pflichtfeld' => true, 'Optional' => false }, Strangecms::Kontakt::Config[:validate_geburtstag])    %>
+						</td>
+					</tr>
+				</table>
+				
+				<h2>Betreff-Feld anzeigen</h2>
+				<table class="settings kontakt">
+					<tr>
+						<th>Betreff</th>
+						<td>
+							<%= hidden_field_tag('preferences[betreff]', Strangecms::Kontakt::Config[:betreff]) %>
+							<%= link_to '', '#', :class => "on_off_schalter #{Strangecms::Kontakt::Config[:betreff] ? 'an' : 'aus'}" %>
+						</td>
+						<td>
+				<%= select_tag 'preferences[validate_betreff]', options_for_select({ 'Pflichtfeld' => true, 'Optional' => false }, Strangecms::Kontakt::Config[:validate_betreff])    %>
+						</td>
+					</tr>
+				</table>
+				
+				<h2>Angaben zur Position</h2>
+				<table class="settings kontakt">
+					<tr>
+						<th>Firma</th>
+						<td>
+							<%= hidden_field_tag('preferences[firma]', Strangecms::Kontakt::Config[:firma]) %>
+							<%= link_to '', '#', :class => "on_off_schalter #{Strangecms::Kontakt::Config[:firma] ? 'an' : 'aus'}" %>
+						</td>
+						<td>
+				<%= select_tag 'preferences[validate_firma]', options_for_select({ 'Pflichtfeld' => true, 'Optional' => false }, Strangecms::Kontakt::Config[:validate_firma])    %>
+						</td>
+					</tr>
+					<tr>
+						<th>Abteilung / Position</th>
+						<td>
+							<%= hidden_field_tag('preferences[abteiung_oder_position]', Strangecms::Kontakt::Config[:abteiung_oder_position]) %>
+							<%= link_to '', '#', :class => "on_off_schalter #{Strangecms::Kontakt::Config[:abteiung_oder_position] ? 'an' : 'aus'}" %>
+						</td>
+						<td>
+				<%= select_tag 'preferences[validate_abteiung_oder_position]', options_for_select({ 'Pflichtfeld' => true, 'Optional' => false }, Strangecms::Kontakt::Config[:validate_abteiung_oder_position])    %>
+						</td>
+					</tr>
+				</table>
+				
+				<h2>Angaben zur Anschrift</h2>
+				<table class="settings kontakt">
+					<tr>
+						<th>Strasse</th>
+						<td>
+							<%= hidden_field_tag('preferences[strasse]', Strangecms::Kontakt::Config[:strasse]) %>
+							<%= link_to '', '#', :class => "on_off_schalter #{Strangecms::Kontakt::Config[:strasse] ? 'an' : 'aus'}" %>
+						</td>
+						<td>
+				<%= select_tag 'preferences[validate_strasse]', options_for_select({ 'Pflichtfeld' => true, 'Optional' => false }, Strangecms::Kontakt::Config[:validate_strasse])    %>
+						</td>
+					</tr>
+					<tr>
+						<th>PLZ</th>
+						<td>
+							<%= hidden_field_tag('preferences[plz]', Strangecms::Kontakt::Config[:plz]) %>
+							<%= link_to '', '#', :class => "on_off_schalter #{Strangecms::Kontakt::Config[:plz] ? 'an' : 'aus'}" %>
+						</td>
+						<td>
+				<%= select_tag 'preferences[validate_plz]', options_for_select({ 'Pflichtfeld' => true, 'Optional' => false }, Strangecms::Kontakt::Config[:validate_plz])    %>
+						</td>
+					</tr>
+					<tr>
+						<th>Ort</th>
+						<td>
+							<%= hidden_field_tag('preferences[ort]', Strangecms::Kontakt::Config[:ort]) %>
+							<%= link_to '', '#', :class => "on_off_schalter #{Strangecms::Kontakt::Config[:ort] ? 'an' : 'aus'}" %>
+						</td>
+						<td>
+				<%= select_tag 'preferences[validate_ort]', options_for_select({ 'Pflichtfeld' => true, 'Optional' => false }, Strangecms::Kontakt::Config[:validate_ort])    %>
+						</td>
+					</tr>
+					<tr>
+						<th>Bundesland</th>
+						<td>
+							<%= hidden_field_tag('preferences[bundesland]', Strangecms::Kontakt::Config[:bundesland]) %>
+							<%= link_to '', '#', :class => "on_off_schalter #{Strangecms::Kontakt::Config[:bundesland] ? 'an' : 'aus'}" %>
+						</td>
+						<td>
+				<%= select_tag 'preferences[validate_bundesland]', options_for_select({ 'Pflichtfeld' => true, 'Optional' => false }, Strangecms::Kontakt::Config[:validate_bundesland])    %>
+						</td>
+					</tr>
+					<tr>
+						<th>Land</th>
+						<td>
+							<%= hidden_field_tag('preferences[land]', Strangecms::Kontakt::Config[:land]) %>
+							<%= link_to '', '#', :class => "on_off_schalter #{Strangecms::Kontakt::Config[:land] ? 'an' : 'aus'}" %>
+						</td>
+						<td>
+				<%= select_tag 'preferences[validate_land]', options_for_select({ 'Pflichtfeld' => true, 'Optional' => false }, Strangecms::Kontakt::Config[:validate_land])    %>
+						</td>
+					</tr>
+				</table>
+				
+				<h2>Angaben zur Erreichbarkeit</h2>
+				<table class="settings kontakt">
+					<tr>
+						<th>Webseite</th>
+						<td>
+							<%= hidden_field_tag('preferences[webseite]', Strangecms::Kontakt::Config[:webseite]) %>
+							<%= link_to '', '#', :class => "on_off_schalter #{Strangecms::Kontakt::Config[:webseite] ? 'an' : 'aus'}" %>
+						</td>
+						<td>
+				<%= select_tag 'preferences[validate_webseite]', options_for_select({ 'Pflichtfeld' => true, 'Optional' => false }, Strangecms::Kontakt::Config[:validate_webseite])    %>
+						</td>
+					</tr>
+					<tr>
+						<th>Telefon</th>
+						<td>
+							<%= hidden_field_tag('preferences[telefon]', Strangecms::Kontakt::Config[:telefon]) %>
+							<%= link_to '', '#', :class => "on_off_schalter #{Strangecms::Kontakt::Config[:telefon] ? 'an' : 'aus'}" %>
+						</td>
+						<td>
+				<%= select_tag 'preferences[validate_telefon]', options_for_select({ 'Pflichtfeld' => true, 'Optional' => false }, Strangecms::Kontakt::Config[:validate_telefon])    %>
+						</td>
+					</tr>
+					<tr>
+						<th>Fax</th>
+						<td>
+							<%= hidden_field_tag('preferences[telefax]', Strangecms::Kontakt::Config[:telefax]) %>
+							<%= link_to '', '#', :class => "on_off_schalter #{Strangecms::Kontakt::Config[:telefax] ? 'an' : 'aus'}" %>
+						</td>
+						<td>
+				<%= select_tag 'preferences[validate_telefax]', options_for_select({ 'Pflichtfeld' => true, 'Optional' => false }, Strangecms::Kontakt::Config[:validate_telefax])    %>
+						</td>
+					</tr>
+					<tr>
+						<th>Mobil-Telefon</th>
+						<td>
+							<%= hidden_field_tag('preferences[mobil]', Strangecms::Kontakt::Config[:mobil]) %>
+							<%= link_to '', '#', :class => "on_off_schalter #{Strangecms::Kontakt::Config[:mobil] ? 'an' : 'aus'}" %>
+						</td>
+						<td>
+				<%= select_tag 'preferences[validate_mobil]', options_for_select({ 'Pflichtfeld' => true, 'Optional' => false }, Strangecms::Kontakt::Config[:validate_mobil])    %>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<%= submit_tag t('save_settings') %>
+				<div class="big_button_spacer"><%= t('or') %></div>
+				<%= link_to t('cancel'), admin_kontakt_settings_path, :class => 'big_button' %>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		
+		<div class="box">
+			<div class="in_box">
+				<p><strong>Achtung!</strong> die Felder 'E-Mail' und 'Inhalt' sind generell vorhanden und werden validiert, was heißt auf Richtigkeit geprüft.</p>
+			</div>
+		</div>
+		<% end %>
+	</div>
+</div>
+
+
+
+
+
+
+
+<%= render 'admin/settings/sidebar' %>

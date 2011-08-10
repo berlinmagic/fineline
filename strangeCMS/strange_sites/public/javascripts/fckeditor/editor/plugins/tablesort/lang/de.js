@@ -1,0 +1,13 @@
+FCKLang.TableSort = "Tabelle sortieren..." ;
+FCKLang.DlgTableSortAlphanumeric = "Alphabetisch" ;
+FCKLang.DlgTableSortBody = "Tabellen Inhalt Sortieren" ;
+FCKLang.DlgTableSortBy = "Sortieren nach" ;
+FCKLang.DlgTableSortDate = "Datum" ;
+FCKLang.DlgTableSortFoot = "Tabellen Fusszeile Sortieren" ;
+FCKLang.DlgTableSortHead = "Tabellen Kopfzeile Sortieren" ;
+FCKLang.DlgTableSortNumeric = "Numerisch" ;
+FCKLang.DlgTableSortOrder = "Sortierungsart" ;
+FCKLang.DlgTableSortTitle = "Tabelle sortieren" ;
+FCKLang.DlgTableSortType = "Sort type" ;
+FCKLang.DlgTableSortAsc = "Aufsteigend" ;
+FCKLang.DlgTableSortDesc = "Abfallend" ;

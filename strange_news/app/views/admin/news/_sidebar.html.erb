@@ -1,0 +1,10 @@
+<% content_for :sidebar do %>
+<div id="sidebar">
+			<ul id="sidebar_navi">
+				<li><%= link_to 'News', admin_news_index_path, :class => "#{'aktiv' if @u_aktiv == 'news'}" %></li>
+				<li><%= link_to '+ neue News', new_admin_news_url %></li>
+				
+			</ul>
+			<br class="clear" />
+</div>
+<% end %>

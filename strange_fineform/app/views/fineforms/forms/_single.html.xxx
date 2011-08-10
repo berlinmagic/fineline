@@ -1,0 +1,76 @@
+<h1><%= fform.name %></h1>
+<br/>
+<% @finemail ||= Finemail.new %>
+<% fform.fineform_fields.count.times do %>
+<% @finemail.finemail_fields.build %>
+<% end %>
+
+
+
+<%= form_for(@finemail, :html => { :multipart => true, :id => 'fineform_box' }) do |f| %>
+		<%= render 'shared/fine_error', :item => f.object%>
+		<%= f.hidden_field :abs, :value => abs.id %>
+		<%= f.hidden_field :absender, :id => 'absender_feld' %>
+		<%= f.hidden_field :fineform_id, :value => fform.id %>
+		<%= f.hidden_field :typ, :value => fform.typ %>
+			
+		<% @this_fields = fform.fineform_fields %>
+		
+		<%= f.file_field :datei  %>
+		<%# fform.fineform_fields.each_with_index do |field,index| %>
+		
+		<%# end %>
+				
+				<% @xx = 0 %>
+				<% f.fields_for :finemail_fields do |builder| %>
+					<% ff_field = fform.fineform_fields[@xx] %>
+					
+					
+					<%= ff_field.name %>
+					<br/>
+					<%= builder.hidden_field :name, :value => ff_field.name %>
+				
+					
+					
+					<% if ff_field.feld_typ && ff_field.feld_typ  == 'text' %>
+						<%= builder.hidden_field :typ, :value => 'text' %>
+						<%= builder.text_area :inhalt, :class => "#{' required ' if ff_field.needed}", :size => '42x5' %>
+
+					<% elsif ff_field.feld_typ && ff_field.feld_typ  == 'file' %>
+
+							<%= builder.hidden_field :typ, :value => 'file' %>
+							<%= builder.file_field :datei, :class => "#{' required ' if ff_field.needed}" %>
+
+							<%#= file_field(builder, :datei, :class => 'file_input') %>
+
+					<% else %>
+
+						<%= builder.text_field :inhalt, :class => "#{' required ' if ff_field.needed} #{' email ' if ff_field.validat && ff_field.validation_typ && ff_field.validation_typ == 'email'} #{' fineform_default_email_field ' if ff_field.system_stuff }", :size => '42' %>
+
+						<% if ff_field.validat && ff_field.validation_typ && ff_field.validation_typ == 'email' %>
+							<%= builder.hidden_field :um, :value => true %>
+						<% end %>
+
+
+
+					<% end %>
+					<%= builder.hidden_field :validator, :value => ff_field.needed %>
+					
+					
+					
+				
+					<%= builder.hidden_field :position, :value => ff_field.position %>
+					<%= builder.hidden_field :fineform_field_id, :value => ff_field.id %>
+					<br/><br/>
+					
+					<% @xx += 1 %>
+				<% end %>
+			
+			
+		
+				<br/><br/>
+					<%= f.submit 'Senden' %>
+<br/><br/>
+		<br/>
+		
+<% end %>

@@ -1,0 +1,5 @@
+
+	$("#data_kats_box").html("<%= escape_javascript(render(:partial => "admin/kategorien/objekt_kats", :locals => {:data => @data})) %>");
+
+	$("#kat_form_available_tags").html(
+		"<%= escape_javascript(render(:partial => "admin/kategorien/a_kats", :locals => {:data => @data, :available_data => @available_kategorien})) %>");

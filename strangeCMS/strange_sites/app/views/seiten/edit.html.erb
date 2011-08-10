@@ -1,0 +1,62 @@
+<h1><%= @seite.name %> - Seite bearbeiten</h1>
+
+<%= render 'shared/fck_editor' %>
+
+<div class="box">
+	<div class="in_box">
+		<p>Hier haben Sie die Möglichkeit diese Seite zu verändern oder mit weiteren Inhalten zu versehen. 
+		Über die erweiterten Einstellungen können Sie Ihre einzelnen Seiten für Suchmaschinen optimieren.</p>
+	</div>
+</div>
+<%= form_for @seite  do |f| %>
+
+	<%= render 'shared/error', :item => f.object%>
+	<%= f.hidden_field :this_autor, :value => current_user.id %>
+
+<div class="trenn_linie"></div>
+<div class="clearfix"></div>
+
+<div id="fineline_seite_form">
+	
+	<br/>
+
+	<div class="box"<%= " style='display:none;'" if @seite.use_headline %>>
+		<div class="in_box field">
+			<%= f.label :name,			:class => 'inline tooltiped',
+			 							:title => Seite.human_attribute_name(:name) %> 
+			<%= f.text_field :name, 	:class => 'tipped tooltiped', 
+										:placeholder => Seite.human_attribute_name(:name), 
+										:title => Seite.human_attribute_name(:name), 
+										:size => '50' %>
+		</div>
+	</div>
+
+	<div class="box"<%= " style='display:none;'" unless @seite.use_headline %>>
+		<div class="in_box">
+			<%= f.label :headline,			:class => 'inline' %> 
+			<%= f.text_field :headline, 	:class => 'tipped tooltiped', 
+											:placeholder => Seite.human_attribute_name(:headline), 
+											:title => Seite.human_attribute_name(:headline), 
+											:size => '50' %>
+		</div>
+	</div>
+
+	
+
+
+	<%= render 'form', :f => f %>
+
+	<div class="box">
+	  <div class="actions in_box">
+	    <%= f.submit %>
+	 	<div class="big_button_spacer"><%= t('or') %></div>
+		<%= link_to 'verwerfen', "#{@seite.link}", :class => 'big_button' %>
+		<div class="clearfix"></div>
+	  </div>
+	</div>
+
+
+</div>
+<%= f.hidden_field :yml_form, :value => f.object.to_yaml.to_s %>
+<% end %>
+

@@ -1,0 +1,8 @@
+$("#set_finefields_box_<%= @fineform_fieldset.id %>").html("<%= escape_javascript(render(:partial => "admin/fineforms/fields", :locals => {:data => @fineform_fieldset})) %>");
+$('#ffelder_counta').html("<%= @fineform_fieldset.fineform_fields.count %>");
+$('#ffsets_counta').html("<%= @fineform_fieldset.fineform_fields.count %>");
+
+
+$('#fff_table_<%= @fineform_fieldset.id %>').html("<%= escape_javascript(render(:partial => "admin/fineforms/field_form")) %>");
+
+$('.handler').hide();

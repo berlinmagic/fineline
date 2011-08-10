@@ -1,0 +1,106 @@
+<% content_for :head do %>
+<%= theme_stylesheet_link_tag 'jquery.Jcrop' %>
+<% end %>
+
+<% bild_dims = bild_dim(@bild) %>
+<% bild_breite = bild_dims[:bild_breite] %>
+<% bild_hoehe = bild_dims[:bild_hoehe] %>
+<% thumb_breite = bild_dims[:thumb_breite] %>
+<% thumb_hoehe = bild_dims[:thumb_hoehe] %>
+
+<% content_for :js_stuff do %>
+
+<%= theme_javascript_include_tag 'jquery.Jcrop.min' %>
+
+<script language="Javascript">
+
+function showPreview(coords)
+{	
+  var aspect_ratio = <%= @bild.file_width %> / <%= @bild.file_height %>;
+  var scale = <%= 1.0 * @bild.file_width / bild_breite %>;
+  var crop_str = Math.round(coords.w * scale) + 'x' + Math.round(coords.h * scale) +
+           '+' + Math.round(coords.x * scale) + '+' + Math.round(coords.y * scale);
+  $('#file_cropping').val(crop_str);
+
+  var rx = <%= bild_breite %> / coords.w ;
+  var ry = <%= bild_hoehe %> / coords.h;
+  $('#preview').css({
+    width: Math.round(rx * <%= bild_breite %>) + 'px',
+    height: Math.round(ry * <%= bild_breite * @bild.file_height / @bild.file_width %>) + 'px',
+    marginLeft: '-' + Math.round(rx * coords.x) + 'px',
+    marginTop: '-' + Math.round(ry * coords.y) + 'px'
+  });
+}
+
+$(function() {
+  $('#cropbox').Jcrop({
+      onSelect: showPreview,
+      onChange: showPreview,
+      setSelect:   [ 0, 0, 240, 240 ],
+      aspectRatio: <%= @bild.stil == 'spezial' ? @bild.file_width : bild_breite %>/<%= @bild.stil == 'spezial' ? @bild.file_height : bild_hoehe %>
+    });
+});
+
+</script>
+<% end %>
+
+<div class="admin_box">
+	<h1><%= @bild.name %> zuschneiden</h1>
+	<div class="admin_in_box">
+		<div class="box">
+			<div class="in_box">
+				<h3>Original:</h3>
+			</div>
+		</div>
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<p><%= image_tag @bild.file.thumb("#{bild_breite}x").url, :id => 'cropbox' %></p>
+			</div>
+		</div>
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<%= form_for @bild, :url => admin_bild_path(@bild) do |f| %>
+				  <%= f.hidden_field :file_cropping, :id => 'file_cropping' %><br />
+				  <%= f.submit "zuschneiden!" %>
+				<% end %>
+				<div class="clearfix"></div>
+				<br/>
+			</div>
+		</div>
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<h3>Vorschau:</h3>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<p><div style="width:<%= bild_breite %>px;height:<%= bild_hoehe %>px;overflow:hidden">
+				  <%= image_tag @bild.file.thumb("#{bild_breite}x").url, :id => 'preview' %>
+				</div></p>
+			</div>
+		</div>
+		
+
+	</div>
+</div>
+
+
+
+
+
+

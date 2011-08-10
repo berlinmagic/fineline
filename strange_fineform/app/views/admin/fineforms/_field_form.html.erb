@@ -1,0 +1,70 @@
+<table>
+	<tr>
+		<th>Feld-Name</th>
+		<td><%= text_field_tag 'field[name]' %></td>
+	</tr>
+	<tr>
+		<th>Feld-Typ</th>
+		<td>
+			<%# select_tag :seite_id, Seite.all.map { |c| [c.name, c.id] }, :include_blank => true %>
+			<%= select_tag('field[feld_typ]',
+								options_for_select(
+								Fineform::FELD_TYPEN.map { |c| [t("strange_fineform.#{c}"), c] })) %>
+		</td>
+	</tr>
+	<tr>
+		<th>Werteliste</th>
+		<td>
+			<%# select_tag :seite_id, Seite.all.map { |c| [c.name, c.id] }, :include_blank => true %>
+			<%= select_tag('field[werteliste_id]',
+								options_for_select(
+								Werteliste.all.map { |c| [c.name, c.id] }), :include_blank => true) %>
+		</td>
+	</tr>
+	
+	<tr>
+		<th>Feld-Stil</th>
+		<td>
+			<%= select_tag('field[stil]',
+								options_for_select(
+								Fineform::FELD_STYLE.map { |c| [t("strange_fineform.#{c}"), c] }), :include_blank => true) %>
+		</td>
+	</tr>
+	
+	<tr>
+		<th></th>
+		<td>
+			<%= check_box_tag 'field[needed]' %>&nbsp;&nbsp;&nbsp;<strong>Pflichtfeld</strong>
+		</td>
+	</tr>
+	
+	<!--
+	<tr>
+		<th></th>
+		<td>
+			<%# check_box_tag 'field[validat]' %>&nbsp;&nbsp;&nbsp;<strong>Feld prüfen</strong>
+		</td>
+	</tr>
+	<tr>
+		<th>Prüfart</th>
+		<td>
+			<%# select_tag('field[validation_typ]',
+								options_for_select(
+								Fineform::VALI_TYPEN.map { |c| [t(c), c] }), :include_blank => true) %>
+		</td>
+	</tr>
+	<tr>
+		<th>inhalt</th>
+		<td>
+			<%# select_tag :seite_id, Seite.all.map { |c| [c.name, c.id] }, :include_blank => true %>
+			<%# select_tag('field[inhalt]',
+								options_for_select(
+								Fineform::INHALT_TYP.map { |c| [t(c), c] })) %>
+		</td>
+	</tr>
+	-->
+	
+	
+	
+
+</table>

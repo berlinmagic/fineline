@@ -1,0 +1,13 @@
+<% if abschnitt.stuff_typ && abschnitt.stuff_typ == 'gallerie' %>
+	<div id="gallerie_show" class="in_box<%= ' first' unless Strangecms::Config[:show_site_name] || index > 0 %>">
+		<%= render 'gallerien/gallerie', :abs => abschnitt, :index => index  %>
+		<div class="clearfix"></div>
+	</div>
+<% end %>
+
+<% if abschnitt.stuff_typ && abschnitt.stuff_typ == 'main_gallerie' %>
+	<div id="gallerie_show" class="in_box<%= ' first' unless Strangecms::Config[:show_site_name] || index > 0 %>">
+		<%= render 'gallerien/main_gallerie', :abs => abschnitt, :index => index  %>
+		<div class="clearfix"></div>
+	</div>
+<% end %>

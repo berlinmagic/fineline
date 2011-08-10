@@ -1,0 +1,11 @@
+<% flash.each do |key, value| %>
+	<div id="<%= key %>" class="flash round <%= key %>"><div id="in_flash"><%= value %></div></div>
+<% end %>
+<% if notice %>
+	<div id="notice" class="flash"><div id="in_flash"><%= notice %></div></div>
+<% end %>
+<% if alert %>
+	<div id="alert" class="flash"><div id="in_flash"><%= alert %></div></div>
+<% end %>
+
+	

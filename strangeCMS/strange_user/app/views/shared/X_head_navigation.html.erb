@@ -1,0 +1,9 @@
+<nav id="head_navigation">
+	
+	<%= render 'devise/menu/login' %>
+	
+	<%= link_to t('std_seiten.kontakt'), '/kontakt', :class => "strange_head_button #{'aktiv' if @aktivio && @aktivio == 'kontakt'}" %>
+	<%= link_to t('std_seiten.impressum'), '/impressum', :class => "strange_head_button #{'aktiv' if @aktivio && @aktivio == 'impressum'}" %>
+	<%= link_to t('std_seiten.sitemap'), '/sitemap', :class => "strange_head_button" %>
+	
+</nav>

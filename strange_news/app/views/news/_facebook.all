@@ -1,0 +1,12 @@
+<div class="in_box">
+	<iframe src="http://www.facebook.com/plugins/like.php?app_id=<%= Strangecms::Config[:facebook_app_id] %>&amp;href=<%= "#{Strangecms::Config[:site_url]}#{@news.news_site_slug}" + @news.slug %>&amp;send=false&amp;layout=standard&amp;width=700&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font=lucida+grande&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:35px;" allowTransparency="true"></iframe>
+	<div class="clearfix"></div>
+</div>
+
+
+
+<div class="in_box">	
+	<div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#appId=<%= Strangecms::Config[:facebook_app_id] %>&amp;xfbml=1"></script><fb:like href="<%= "#{Strangecms::Config[:site_url]}#{@news.news_site_slug}" + @news.slug + '/' %>" send="true" width="700" show_faces="false" font="lucida grande"></fb:like>
+	
+	<div class="clearfix"></div>
+</div>

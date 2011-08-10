@@ -1,0 +1,121 @@
+<%= render 'admin/shared/seiten_sub_menu' %>
+
+<div class="admin_box">
+	<h1><%= t('header_headline') %></h1>
+	<div class="admin_in_box">
+		<div class="box">
+			<div class="in_box">
+				<p>Hier haben Sie die Möglichkeit die Reihenfolge bestehender Headerbilder zu verändern und weitere Bilder hinzuzufügen.</p>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<div class="trenn_linie"></div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<%= form_tag admin_change_header_path, :id => 'changer_form' do |f| %>
+				<%= select_tag :id, options_for_select( Header.all.map { |c| [c.name, c.id] }, @header.id ), :class => 'changer' %>
+				<% end %>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<div class="trenn_linie"></div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<div class="left">
+					<h2><%= @header.name.to_s %></h2>
+					<br/>
+					<%= raw("<h3>Seite:&nbsp;&nbsp;&nbsp;#{@header.seite.titel.to_s}</h3>") if @header.seite %>
+					<br/>
+					<h3>Bilder:</h3>
+				</div>
+				<div class="right">
+					<table>
+						<tr>
+							<th>Stil:</th>
+							<td><strong><%= @header.stil.upcase %></strong></td>
+						</tr>
+						<tr>
+							<th>breite:</th>
+							<td><%= Strangecms::Config[:site_width] %> px</td>
+						</tr>
+						<tr>
+							<th>höhe:</th>
+							<td><%= @header.header_height %> px</td>
+						</tr>
+					</table>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box white">
+				<% @header.header_pics.each do |head| %>
+					<div style="position:relative" id="<%= dom_id(head)%>">
+						<div class="left">
+							<% if head.bild_cropping %>
+							<%= image_tag head.bild.thumb(head.bild_cropping).thumb("300x150>").url, :alt => 'small_avatar' %>
+							<% else %>
+							<%= image_tag head.bild.thumb("330x#{(@header.header_height / 3)}#").url %>
+							
+							<%end%>
+						</div>
+						<p><strong><%= head.name %></strong> </p>
+						<p><%= truncate(head.inhalt, :length => 50, :omission => "...") %></p>
+						<p>
+							<%= fineline_button( 'bearbeiten', 	:link_text => 'bearbeiten', 
+																:url => edit_admin_header_header_pic_path(@header,head), 
+																:class => "remote_form_link" ) %>
+							&nbsp;&nbsp;|&nbsp;&nbsp;
+							<%= fineline_button( 'zuschneiden', :link_text => 'zuschneiden', 
+																:url => crop_admin_header_header_pic_path(@header,head) ) %>
+							&nbsp;&nbsp;|&nbsp;&nbsp;
+							<%= fineline_button_delete( head, 	:link_text => 'loeschen', 
+																:url => admin_header_pic_path(head),
+																:title => 'löschen' ) %>
+						</p>
+						<div class="clearfix"></div>
+						<br/>
+					</div>
+				<% end %>
+			</div>
+		</div>
+		
+		<div class="box">
+			<div class="in_box">
+				<br/>
+				<%= fineline_button( 'neu', 		:link_text => 'neues Bild', 
+													:url => new_admin_header_header_pic_path(@header), 
+													:class => "remote_form_link" ) %>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		
+	</div>
+</div>
+
+<div id="remote_stuff">
+	
+</div>
+
+<%= render 'show_sidebar' %>
+
+<% content_for :js_stuff do %>
+<script>
+
+$('.remote_form_link').click(function (event) {
+    event.preventDefault();
+    $.ajax({type: 'GET', url: this.href, data: ({authenticity_token: AUTH_TOKEN}), success: function(r){ $('#remote_stuff').html(r);} });
+  });
+$('.changer').change(function () {
+	$("#changer_form").submit();
+});
+
+</script>
+<% end %>

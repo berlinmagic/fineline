@@ -1,0 +1,8 @@
+$("#finefields_box").html("<%= escape_javascript(render(:partial => "admin/fineforms/fields", :locals => {:data => @fineform})) %>");
+$('#ffelder_counta').html("<%= @fineform.fineform_fields.count %>");
+
+$('#fff_table').html("<%= escape_javascript(render(:partial => "admin/fineforms/field_form")) %>");
+
+$('#reloada').removeClass('hidden');
+
+$('.handler').hide();

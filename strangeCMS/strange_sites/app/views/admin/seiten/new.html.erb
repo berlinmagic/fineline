@@ -1,0 +1,22 @@
+<h1>Neue Seite</h1>
+
+
+
+<%= render 'shared/fck_editor' %>
+
+
+<%= I18n.t('activerecord.attributes.seite.name') %>
+
+<%= form_for @seite, :url => { :controller => 'admin/seiten'}  do |f| %>
+<%= render 'form', :f => f %>
+<div class="box">
+  <div class="actions in_box">
+    <%= f.submit %>
+	<div class="big_button_spacer"><%= t('or') %></div>
+	<%= link_to 'verwerfen', admin_seiten_path, :class => 'big_button' %>
+	<div class="clearfix"></div>
+  </div>
+</div>
+<% end %>
+
+

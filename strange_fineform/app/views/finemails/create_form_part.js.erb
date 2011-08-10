@@ -1,0 +1,9 @@
+<% if @last_part %>
+	$('#fineform_show').html("<%= escape_javascript( raw( Strangecms::Fineform::Config[:std_antwort] ) ) %>");
+<% else %>
+	$('#fineform_show').html("<%= escape_javascript(render(:partial => "fineforms/fineform_part", :locals => {:fineform => @fineform, :finemail => @finemail, :fineform_fieldset => @fineform_fieldset})) %>");
+<% end %>
+
+<% if @erroar %>
+		$('#fineform_show').html("<%= @erroar %>");
+<% end %>

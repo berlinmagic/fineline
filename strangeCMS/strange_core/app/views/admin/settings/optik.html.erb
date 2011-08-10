@@ -1,0 +1,70 @@
+<div class="admin_box">
+	<h1><%= t('strange_preferences.look_settings')%></h1>
+	<div class="admin_in_box">
+		<div class="box">
+			<div class="in_box">
+				
+				<h2>Einstellungen Optik:</h2>
+	
+			</div>
+		</div>
+		
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		
+		<div class="box">
+			<div class="in_box">
+				<table class="settings">
+					<tr>
+						<th><%= t('strange_preferences.site_width') %></th>
+						<td><%= Strangecms::Config[:site_width] %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.theme') %></th>
+						<td><%= Strangecms::Config[:theme] %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.strange_logo') %></th>
+						<td><%= Strangecms::Config[:strange_logo] %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.strange_admin_logo') %></th>
+						<td><%= Strangecms::Config[:strange_admin_logo] %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.stylesheets') %></th>
+						<td><%= Strangecms::Config[:stylesheets] %></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		
+		<div class="box">
+			<div class="in_box ">
+				<%= render 'edit_buttons' %>
+			</div>
+		</div>
+
+		
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		
+	</div>
+</div>
+
+
+
+<%= render 'sidebar' %>
+

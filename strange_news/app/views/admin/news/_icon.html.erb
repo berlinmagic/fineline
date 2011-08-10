@@ -1,0 +1,44 @@
+<div class="finelineModulBox_Icon">
+	<a class="module_icon" href="<%= admin_news_index_path %>">
+		<div class="module_pic">
+			<%# image_tag '/images/icon_news.png' %>
+			<%= image_tag '/images/modul_icons/smal_80/news_2.png'%>
+		</div>
+		<p><strong>News</strong>&nbsp;&nbsp;[<%= StrangeNews::VERSION.to_s %>]</p>
+	</a>
+</div>
+
+<div class="finelineModulBox_List">
+	<div class="clearfix"></div>
+	<div class="box">
+		<div class="in_box">
+			<div class="trenn_linie"></div>
+		</div>
+	</div>
+
+	<div class="box">
+		<div class="in_box">
+		<a class="finelineModulLinkBox" href="<%= admin_news_index_path %>">
+			<div class="fineModulActionBox">
+				installiert
+			</div>
+			<div class="fineModulIconBox">
+				<%= image_tag '/images/modul_icons/smal_80/news_2.png'%>
+			</div>
+			<div class="fineModulInfoBox">
+				<p class="fineModulHeadline">News</p>
+				<p><%= StrangeNews::name.to_s %> <%= StrangeNews::VERSION.to_s %></p>
+				<br/>
+				<p>News-Modul.</p>
+			</div>
+
+
+			<div class="clearfix"></div>
+		</a>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</div>
+
+
+

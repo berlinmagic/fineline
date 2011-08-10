@@ -1,0 +1,12 @@
+<% content_for :sidebar do %>
+<div id="sidebar">
+			<ul id="gallerie_navi">
+				<li><%= link_to 'Formulare', admin_fineforms_url, :class => "#{'aktiv' if @u_aktiv == 'fineforms'}" %></li>
+				<li><%= link_to 'neues Formular', new_admin_fineform_url, :class => "#{'aktiv' if @u_aktiv == 'ff_new'}" %></li>
+				<li>&nbsp;</li>
+				<li><%= link_to 'Wertelisten', admin_wertelisten_url, :class => "#{'aktiv' if @u_aktiv == 'werteliste'}" %></li>
+				<li><%= link_to 'neue Werteliste', new_admin_werteliste_url, :class => "#{'aktiv' if @u_aktiv == 'wl_new'}" %></li>
+			</ul>
+			<br class="clear" />
+</div>
+<% end %>

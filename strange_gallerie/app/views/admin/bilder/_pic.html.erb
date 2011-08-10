@@ -1,0 +1,7 @@
+<% pic_dim = format_thumb(bild, 200, 200) %>
+<% thumb_breite = pic_dim[:breite] %>
+<% thumb_hoehe = pic_dim[:hoehe] %>
+<a class="bild_box" href="<%= admin_bild_path(bild) %>">
+	<%= image_tag bild.file.thumb(bild.file_cropping).thumb("#{thumb_breite}x#{thumb_hoehe}").url, 
+					:style => "margin: #{(200-thumb_hoehe)/2}px #{(200-thumb_breite)/2}px" %>
+</a>

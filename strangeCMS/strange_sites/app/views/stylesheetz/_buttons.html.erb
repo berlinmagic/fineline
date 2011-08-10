@@ -1,0 +1,196 @@
+<%# @button_box_shaddow = '1px 1px 3px 1px #888' %>
+<%# @button_box_shaddow_hover = 'inset 1px 1px 3px 1px #888' %>
+<% @button_radius = '1px' %>
+<% @fl_button_radius = '3px' %>
+<% @button_box_shaddow = 'none' %>
+<% @button_box_shaddow_hover = 'none' %>
+<% @button_box_shaddow_click = 'inset 1px 1px 1px 1px rgba(0,51,102,.5)' %>
+<%#		inset? ( = nach innen ) _ horizontaler abstand _ verticaler abstand _ optional rausch abstand _ optional größer als box	 %>
+<%# @button_text_shaddow = '-1px -1px 0px rgba(106,106,106,.50)' %>
+<%# @button_text_shaddow_hover = '-1px -1px 0px rgba(255,255,255,.50)' %>
+
+<% @button_text_shaddow = 'none' %>
+<% @button_text_shaddow_hover = 'none' %>
+
+
+<% @button_bg_color = 'rgb(153,153,153)' %>
+<% @button_bg_color_hover = 'rgb(62,115,169)' %>
+<% @button_bg_color_click = '#165891' %>
+
+<% @button_bg_image = 'verlauf50' %>
+
+<% @big_button_radius = "3px" %>
+<%  %>
+<%  %>
+
+
+<style type="text/css" media="screen">
+	
+	.fineline_button { 
+		min-width: 16px; min-height: 16px; 
+		padding: 0; border: solid 1px transparent; 
+		position:relative; display:inline-block;
+		background: <%= @button_bg_color %> url('/images/fineline/button_bg/buttonBG_<%= @button_bg_image %>.png') left center repeat-x;
+		
+		
+		
+		-webkit-border-radius: 	<%= @button_radius %>; 
+		-moz-border-radius: 	<%= @button_radius %>; 
+		-o-border-radius: 		<%= @button_radius %>; 
+		-ms-border-radius: 		<%= @button_radius %>; 
+		border-radius: 			<%= @button_radius %>;
+		
+		-moz-box-shadow: 		<%= @button_box_shaddow %>;
+		-webkit-box-shadow: 	<%= @button_box_shaddow %>;
+		box-shadow: 			<%= @button_box_shaddow %>;
+	}
+	
+	.fineline_button img, .fineline_button a img { vertical-align: top !important; padding:0 !important; margin:0 !important;}
+	
+	.fineline_button, .fineline_button a { 
+		line-height: 16px; font-weight:normal; color: #fefefe; 
+		text-shadow: 			<%= @button_text_shaddow %>;
+		-o-text-shadow: 		<%= @button_text_shaddow %>;
+		-webkit-text-shadow: 	<%= @button_text_shaddow %>; 
+		-moz-text-shadow: 		<%= @button_text_shaddow %>;
+		-ms-text-shadow: 		<%= @button_text_shaddow %>;
+		
+	}
+	
+	.fineline_button:hover, a:hover .fineline_button { 
+		background: <%= @button_bg_color_hover %> url('/images/fineline/button_bg/buttonBG_<%= @button_bg_image %>.png') left center repeat-x;
+		-moz-box-shadow: 		<%= @button_box_shaddow_hover %>;
+		-webkit-box-shadow: 	<%= @button_box_shaddow_hover %>;
+		box-shadow: 			<%= @button_box_shaddow_hover %>;
+	}
+	
+	
+	.fineline_button:active, a:active .fineline_button { 
+		background: <%= @button_bg_color_click %> url('/images/fineline/button_bg/buttonBG_<%= @button_bg_image %>.png') left center repeat-x;
+		-moz-box-shadow: 		<%= @button_box_shaddow_click %>;
+		-webkit-box-shadow: 	<%= @button_box_shaddow_click %>;
+		box-shadow: 			<%= @button_box_shaddow_click %>;
+	}
+	
+	.fineline_button:hover, .fineline_button:hover a {
+		color: #666666;
+		text-shadow: 			<%= @button_text_shaddow_hover %>;
+		-o-text-shadow: 		<%= @button_text_shaddow_hover %>; 
+		-webkit-text-shadow: 	<%= @button_text_shaddow_hover %>; 
+		-moz-text-shadow: 		<%= @button_text_shaddow_hover %>;
+		-ms-text-shadow: 		<%= @button_text_shaddow_hover %>;
+	}
+
+/*	
+	a.big_button { 	background: transparent url('/images/btns/cancel_bg.png') left center repeat; 
+			float:left; padding: 7px 20px 7px; margin: 5px 5px 5px 5px; color: #444; font-weight: bold; font-size: 15px;
+			border: solid 1px #777; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; }
+	
+	a.big_button:hover { -webkit-box-shadow: 2px 2px 3px rgba(50,50,50,.9); 
+			background: transparent url('/images/btns/cancel_bg_o.png') left center repeat; color: #fff;}
+
+	input[type="submit"], a.big_submit_button { background: transparent url('/images/btns/submit_bg.png') left center repeat; 
+			float:left; padding: 7px 20px 8px; margin: 5px 5px 5px 0;
+			border: solid 1px #3e5d0b; 	-webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; 
+			color: #fff; font-weight: bold; font-size: 15px; 
+			-webkit-text-shadow: 0px 0px 2px #3e5d0b; -moz-text-shadow: 0px 0px 2px #3e5d0b; text-shadow: 0px 0px 2px #3e5d0b; }
+	
+	input[type="submit"]:hover, a.big_submit_button:hover {
+			-webkit-box-shadow: 2px 2px 3px rgba(50,50,50,.9); -webkit-text-shadow: 0px 0px 3px #000; text-shadow: 0px 0px 3px #000;}
+*/
+	
+	a.big_button {   float:left; padding: 7px 20px 7px; margin: 5px 5px 5px 5px; color: #444; font-weight: bold; font-size: 15px;
+			border: solid 1px #777; 
+			-webkit-border-radius: 	<%= @big_button_radius %>; 
+			-moz-border-radius: 	<%= @big_button_radius %>; 
+			-o-border-radius: 		<%= @big_button_radius %>; 
+			-ms-border-radius: 		<%= @big_button_radius %>; 
+			border-radius: 			<%= @big_button_radius %>; 
+			background: rgb(243,243,243); /* Old browsers */
+			background: -moz-linear-gradient(top, rgba(243,243,243,1) 0%, rgba(143,168,181,1) 100%); /* FF3.6+ */
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(243,243,243,1)), color-stop(100%,rgba(143,168,181,1))); /* Chrome,Safari4+ */
+			background: -webkit-linear-gradient(top, rgba(243,243,243,1) 0%,rgba(143,168,181,1) 100%); /* Chrome10+,Safari5.1+ */
+			background: -o-linear-gradient(top, rgba(243,243,243,1) 0%,rgba(143,168,181,1) 100%); /* Opera11.10+ */
+			background: -ms-linear-gradient(top, rgba(243,243,243,1) 0%,rgba(143,168,181,1) 100%); /* IE10+ */
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f3f3f3', endColorstr='#8fa8b5',GradientType=0 ); /* IE6-9 */
+			background: linear-gradient(top, rgba(243,243,243,1) 0%,rgba(143,168,181,1) 100%); /* W3C */}
+	
+	a.big_button:hover { color: #fff;
+			background: rgb(181,189,200); /* Old browsers */
+			background: -moz-linear-gradient(top, rgba(181,189,200,1) 0%, rgba(130,140,149,1) 36%, rgba(40,52,59,1) 100%); /* FF3.6+ */
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(181,189,200,1)), color-stop(36%,rgba(130,140,149,1)), color-stop(100%,rgba(40,52,59,1))); /* Chrome,Safari4+ */
+			background: -webkit-linear-gradient(top, rgba(181,189,200,1) 0%,rgba(130,140,149,1) 36%,rgba(40,52,59,1) 100%); /* Chrome10+,Safari5.1+ */
+			background: -o-linear-gradient(top, rgba(181,189,200,1) 0%,rgba(130,140,149,1) 36%,rgba(40,52,59,1) 100%); /* Opera11.10+ */
+			background: -ms-linear-gradient(top, rgba(181,189,200,1) 0%,rgba(130,140,149,1) 36%,rgba(40,52,59,1) 100%); /* IE10+ */
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b5bdc8', endColorstr='#28343b',GradientType=0 ); /* IE6-9 */
+			background: linear-gradient(top, rgba(181,189,200,1) 0%,rgba(130,140,149,1) 36%,rgba(40,52,59,1) 100%); /* W3C */}
+			
+	
+	input[type="submit"], a.big_submit_button { float:left;  padding: 7px 20px 8px;  margin: 5px 5px 5px 0;
+			border: solid 1px #3e5d0b; 
+			-webkit-border-radius: 	<%= @big_button_radius %>; 
+			-moz-border-radius: 	<%= @big_button_radius %>; 
+			-o-border-radius: 		<%= @big_button_radius %>; 
+			-ms-border-radius: 		<%= @big_button_radius %>; 
+			border-radius: 			<%= @big_button_radius %>;
+			color: #fff; font-weight: bold; font-size: 15px; 
+			-webkit-text-shadow: 0px 0px 2px #3e5d0b; 
+			-moz-text-shadow: 0px 0px 2px #3e5d0b; 
+			text-shadow: 0px 0px 2px #3e5d0b; 
+			background: rgb(64,112,172); /* Old browsers */
+			background: -moz-linear-gradient(top, rgba(64,112,172,1) 0%, rgba(42,86,142,1) 100%); /* FF3.6+ */
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(64,112,172,1)), color-stop(100%,rgba(42,86,142,1))); /* Chrome,Safari4+ */
+			background: -webkit-linear-gradient(top, rgba(64,112,172,1) 0%,rgba(42,86,142,1) 100%); /* Chrome10+,Safari5.1+ */
+			background: -o-linear-gradient(top, rgba(64,112,172,1) 0%,rgba(42,86,142,1) 100%); /* Opera11.10+ */
+			background: -ms-linear-gradient(top, rgba(64,112,172,1) 0%,rgba(42,86,142,1) 100%); /* IE10+ */
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4070ac', endColorstr='#2a568e',GradientType=0 ); /* IE6-9 */
+			background: linear-gradient(top, rgba(64,112,172,1) 0%,rgba(42,86,142,1) 100%); /* W3C */	}
+	
+	input[type="submit"]:hover, a.big_submit_button:hover {
+			background: #606c88; /* Old browsers */
+			background: -moz-linear-gradient(top, #606c88 0%, #3f4c6b 100%); /* FF3.6+ */
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#606c88), color-stop(100%,#3f4c6b)); /* Chrome,Safari4+ */
+			background: -webkit-linear-gradient(top, #606c88 0%,#3f4c6b 100%); /* Chrome10+,Safari5.1+ */
+			background: -o-linear-gradient(top, #606c88 0%,#3f4c6b 100%); /* Opera11.10+ */
+			background: -ms-linear-gradient(top, #606c88 0%,#3f4c6b 100%); /* IE10+ */
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#606c88', endColorstr='#3f4c6b',GradientType=0 ); /* IE6-9 */
+			background: linear-gradient(top, #606c88 0%,#3f4c6b 100%); /* W3C */	}
+	
+	.big_button_spacer { padding: 7px 20px 8px; background: transparent; border: solid 1px transparent; font-size: 15px; 
+			margin: 5px 5px 5px 0; color:#444; float:left;}
+	
+	
+	/************************************		N E W  -  I C O N s  	******************************************************/
+	a.finelineButton, div.finelineButton { 		display: inline-block; 	padding:1px; 	margin:0; 
+		-webkit-border-radius: 	<%= @fl_button_radius %>; 
+		-moz-border-radius: 	<%= @fl_button_radius %>; 
+		-o-border-radius: 		<%= @fl_button_radius %>; 
+		-ms-border-radius: 		<%= @fl_button_radius %>; 
+		border-radius: 			<%= @fl_button_radius %>;
+		border: solid 1px #336699;
+		background: rgb(64,112,172); /* Old browsers */
+		background: -moz-linear-gradient(top, rgba(64,112,172,1) 0%, rgba(42,86,142,1) 100%); /* FF3.6+ */
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(64,112,172,1)), color-stop(100%,rgba(42,86,142,1))); /* Chrome,Safari4+ */
+		background: -webkit-linear-gradient(top, rgba(64,112,172,1) 0%,rgba(42,86,142,1) 100%); /* Chrome10+,Safari5.1+ */
+		background: -o-linear-gradient(top, rgba(64,112,172,1) 0%,rgba(42,86,142,1) 100%); /* Opera11.10+ */
+		background: -ms-linear-gradient(top, rgba(64,112,172,1) 0%,rgba(42,86,142,1) 100%); /* IE10+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4070ac', endColorstr='#2a568e',GradientType=0 ); /* IE6-9 */
+		background: linear-gradient(top, rgba(64,112,172,1) 0%,rgba(42,86,142,1) 100%); /* W3C */	}
+	a.finelineButton:hover, div.finelineButton:hover {
+		background: #606c88; /* Old browsers */
+		background: -moz-linear-gradient(top, #606c88 0%, #3f4c6b 100%); /* FF3.6+ */
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#606c88), color-stop(100%,#3f4c6b)); /* Chrome,Safari4+ */
+		background: -webkit-linear-gradient(top, #606c88 0%,#3f4c6b 100%); /* Chrome10+,Safari5.1+ */
+		background: -o-linear-gradient(top, #606c88 0%,#3f4c6b 100%); /* Opera11.10+ */
+		background: -ms-linear-gradient(top, #606c88 0%,#3f4c6b 100%); /* IE10+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#606c88', endColorstr='#3f4c6b',GradientType=0 ); /* IE6-9 */
+		background: linear-gradient(top, #606c88 0%,#3f4c6b 100%); /* W3C */
+	} 
+	.finelineButton.kreis.flb18 { -webkit-border-radius:10px; -moz-border-radius:10px; -o-border-radius:10px; -ms-border-radius:10px; border-radius:10px; }
+	.finelineButton.kreis.flb24 { -webkit-border-radius:13px; -moz-border-radius:13px; -o-border-radius:13px; -ms-border-radius:13px; border-radius:13px; }
+	.finelineButton.kreis.flb32 { -webkit-border-radius:17px; -moz-border-radius:17px; -o-border-radius:17px; -ms-border-radius:17px; border-radius:17px; }
+	.finelineButton.kreis.flb48 { -webkit-border-radius:25px; -moz-border-radius:25px; -o-border-radius:25px; -ms-border-radius:25px; border-radius:25px; }
+	
+	a.finelineButton:hover div.hell, div.finelineButton:hover div.hell { }
+	
+</style>

@@ -1,0 +1,15 @@
+<% content_for :sub_menu do %>
+
+<div id="in_sub">
+	<div class="kasten">
+		<nav id="sub_navigation">
+		    <%= hook :admin_module_sub_tabs do %>
+				
+				<%= link_to 'Übersicht', admin_module_path, :class => "#{'aktiv' if @sub_aktivio == 'module' }"%>
+				
+		    <% end %>
+		 </nav>
+	</div>
+</div>
+
+<% end %>

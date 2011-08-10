@@ -1,0 +1,30 @@
+de:
+##############################################################################################################################################
+#  =>  #  =>  #  =>  #  =>  #  =>  #  =>  #  =>  #  =>   S T R A N G E - C M S   <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #
+##############################################################################################################################################
+  strange_fineform:
+      std_form: "Normales Formular"
+      fieldset: "großes Formular => Etappenweise"
+      string: "Text (Wort)"
+      text: "Text (Satz)"
+      integer: "Zahlen"
+      select: "Auswahl"
+      multi_select: "(mehrfach-) Auswahl"
+      email: "E-Mail Feld"
+      passwort: "Passwort - Feld"
+      date: "Datum"
+      time: "Zeit"
+      datetime: "Datum & Zeit"
+      radio: "(Radio-) Knöpfe"
+      standard: "Standard"
+      tipped: "Feld mit Tip"
+      file: "Datei-Feld"
+  fineform:
+      mail_von: 'E-Mail Sende-Adresse'
+      mail_an: 'Formular Empfangs-E-Mail'
+      mail_bcc: 'E-Mail BCC'
+      std_antwort: 'Sende Bestätigung'
+      mail_antwort: 'E-Mail Antwort'
+##############################################################################################################################################
+#  =>  #  =>  #  =>  #  =>  #  =>  #  =>  #  =>  #  =>   S T R A N G E - C M S   <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #
+##############################################################################################################################################

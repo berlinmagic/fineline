@@ -1,0 +1,121 @@
+
+
+<script type="text/javascript" charset="utf-8">
+
+$(document)
+  .delegate('#fineform_box', 'ajax:success', function(e, data, status, xhr){
+	// e.preventDefault();
+    var $this = $(this),
+        $container = $('#new-comment-links'),
+        $responseText = $(xhr.responseText),
+        $cancelButton = $responseText.find('#cancel-button');
+    $container.replaceWith($responseText)
+    $cancelButton.click(function(e){
+      $cancelButton.parent().replaceWith($container);
+      e.preventDefault();
+    });
+  })
+.delegate('#fineform_box', 'ajax:before', function(){
+	// e.preventDefault();
+    $('#fineform_box').append('<div class="loader_overlay_box"></div>');
+  })
+  .delegate('form[data-remote]', 'ajax:aborted:required', function(){
+    var $form = $(this),
+        errorDivId = 'ajax-validation-errors',
+        $errorDiv = $form.find('#' + errorDivId);
+    if ( ! $errorDiv.length ) {
+      $errorDiv = $('<div>', { id: errorDivId});
+      $form.prepend($errorDiv)
+    }
+    $errorDiv.html($('<h2>', {
+      text: 'You must fill in all required fields!'
+    }));
+});
+
+$.validator.methods.equal = function(value, element, param) {
+	return value == param;
+};
+$.validator.methods.unequal = function(value, element, param) {
+	return value != param;
+};
+
+jQuery.validator.addClassRules({
+name: {
+	required: true,
+	minlength: 2
+	},
+zip: {
+    required: true,
+    digits: true,
+    minlength: 5,
+    maxlength: 5
+	},
+mobil: {
+	required: true,
+    digits: true,
+	minlength: 9
+	},	
+math: {
+	required:true,
+	equal: 6	
+},
+selector: {
+	required: true,
+	equal: 'berlin'
+}
+
+});
+
+
+
+jQuery(function() {
+	// show a simple loading indicator
+	/*
+	var v = jQuery("#fineform_box").validate({
+		submitHandler: function(form) {
+		  			 	// $("#fineform_box").ajaxForm();
+						jQuery.ajax({
+							type: 'POST', 
+							url: form.action, 
+							dataType: 'script',
+							data: $("#fineform_box").serialize(), 
+							success: function(r){ 
+								// jQuery('#fineform_box').html(r);
+								alert($(form).serialize());
+							} 
+						});
+// 	alert($(form).serialize());
+				  }
+
+			    }); */
+	
+	
+	var v = jQuery("#fineform_box").validate();
+	
+	jQuery("#reset").click(function() {
+		v.resetForm();
+	});
+});
+
+$('.add_ff_form a').live('click', function(event){
+	event.preventDefault();
+	var ffform = $(this).parent().find('span.ffform_id').html();
+	$(this).parent().parent().parent().find('.new_abs_stuff_param input').val(ffform);
+	$(this).parent().parent().parent().find('.new_abs_stuff_typ input').val('fineform');
+	$(this).parent().parent().html('<br/><h2> [:: fineform - Formular ::] </h2><br/>');
+});
+
+
+
+
+
+jQuery(function($){
+              $('.fineform_default_email_field').live('change', function(){
+                var xxyxx = $('.fineform_default_email_field').val();
+				$('#absender_feld').val(xxyxx);
+              });
+            });
+
+</script>
+
+

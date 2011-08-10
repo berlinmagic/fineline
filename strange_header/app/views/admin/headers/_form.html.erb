@@ -1,0 +1,28 @@
+<div class="box">
+	<div class="in_box">
+		<%= render 'shared/error', :item => f.object%>
+	</div>
+</div>	<div class="box">
+		<div class="trenn_box">
+			<div class="top_trenner"></div>
+		</div>
+	</div>
+
+<table>
+	<tr>
+		<th><%= f.label :name %></th>
+		<td><div class="field"><%= f.text_field :name %></div></th>
+	</tr>
+	<tr>
+		<th><%= f.label :header_height %></th>
+		<td><div class="field"><%= f.text_field :header_height %></div></th>
+	</tr>
+	<tr>
+		<th><%= f.label :stil %></th>
+		<td><div class="field"><%= f.select :stil, Header::HEADER_STYLES.map { |c| [c, c] } %></div></th>
+	</tr>
+	<tr>
+		<th><%= f.label :seite %></th>
+		<td><div class="field"><%= f.select :seite_id, Seite.all.map { |c| [c.name, c.id] }, :include_blank => true %></div></th>
+	</tr>
+</table>

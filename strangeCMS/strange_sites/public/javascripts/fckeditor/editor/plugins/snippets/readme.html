@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Untitled Document</title>
+<style type="text/css">
+<!--
+.style1 {color: #FF6600}
+.style3 {color: #333399}
+body {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+-->
+</style>
+</head>
+
+<body>
+<h1>Snippets - A plugin for FCKeditor</h1>
+<h3>Overview</h3>
+<blockquote>
+  <p>The snippets plugin allows you to give users of <a href="http://www.fckeditor.net/">FCKeditor</a> the ability to insert small blocks of predefined HTML code. It is similar to the Templates function of the editor.</p>
+</blockquote>
+<h3>Installation and Configuration </h3>
+<ol>
+  <li>Unzip the files into the plugins folder.</li>
+  <li>Open the <em>snippets.xml </em>file and configure to your liking. (see below section) </li>
+  <li>Upload the Snippets plugin directory</li>
+  <li>Configure the editor to see the plugin. In your editor configuration file, add the line below:<br />
+    <br />
+    <span class="style1">FCKConfig.Plugins.Add( 'snippets','en') ;</span><br />
+  <br />
+  </li>
+  <li>Add the toolbar button to your preferred menu.<br />
+    <br />
+    <span class="style1">FCKConfig.ToolbarSets[    &quot;Default&quot;] = [<br />
+    ['Source','DocProps','-','Save','NewPage','Preview','-','Templates',<span class="style3">'Snippets'</span>],</span><br />
+    <br />
+  </li>
+  <li>Save and upload your configuration file. If all goes well, you should see the Snippets icon <img src="Snippets.gif" alt="Snippets" width="21" height="20" />on your toolbar. </li>
+</ol>
+<h3>Adding your own snippets </h3>
+<blockquote>
+  <p>The format of the snippets XML file is almost exactly the same as the one the Templates feature. You can read about configuring HTML templates <a href="http://wiki.fckeditor.net/Developer's_Guide/Configuration/Templates">here</a>. A basic overview is below. Make sure your HTML is enclosed between CDATA tags or the XML may become unreadable. </p>
+  <p class="style1">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;<br />
+    &nbsp;&lt;Snippets&gt;<br />
+  &nbsp;&nbsp;&lt;Snippet title=&quot;<span class="style3">Title of the snippet</span>&quot; image=&quot;<span class="style3">name of preview image - optional</span>&quot;&gt;<br />
+  &nbsp;&nbsp;&nbsp;&lt;Description&gt;<br />
+    <span class="style3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Detailed description of the snippet - optional </span><br />
+  &nbsp;&nbsp;&nbsp;&lt;/Description&gt;<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&lt;Html&gt;<br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;![CDATA[ <br />
+  <span class="style3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;html content goes here</span><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]]&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/Html&gt;<br />
+&nbsp;&nbsp;&nbsp;&lt;/Snippet&gt;<br />
+  &lt;/Snippets&gt;</p>
+  <p>Images should go in the <em>images</em> folder located in the <em>snippets</em> folder. Images are not mandatory but look nice! If you don't want an image, remove the entire image attribute. </p>
+  <p>To test your XML syntax, simply open the file in Internet Explorer. It will let you know if it's valid or not. </p>
+</blockquote>
+<h3>Questions</h3>
+<blockquote>
+  <p>Questions and ideas go to <a href="mailto:greggp@pobox.com">greggp@pobox.com</a>. I'll try answer as soon as possible. </p>
+</blockquote>
+<p>&nbsp;</p>
+<p>&nbsp; </p>
+</body>
+</html>

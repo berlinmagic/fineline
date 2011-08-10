@@ -1,0 +1,209 @@
+<div id="k_fom">
+<% @kontak_formular ||= KontaktFormular.new %>
+
+	
+
+<%= form_for(@kontak_formular, :remote => true) do |f| %>
+
+<table id="kontakt_form">
+<% if Strangecms::Kontakt::Config[:anrede] %>	
+	<tr class="field">
+		<th class="kontakt_label">
+			<%= f.label :anrede %>
+		</th>
+		<td class="kontakt_field">
+			<%= f.select :anrede, geschlechter.map { |c| [c, c] }, :include_blank => true %>
+		</td>
+	</tr>
+<% end %>
+<% if Strangecms::Kontakt::Config[:titel] %>
+	<tr class="field">
+		<th class="kontakt_label">
+			<%= f.label :titel %>
+		</th>
+		<td class="kontakt_field">
+			<%= f.text_field :titel %>
+		</td>
+	</tr>
+<% end %>
+<% if Strangecms::Kontakt::Config[:name] %>
+	<tr class="field">
+		<th class="kontakt_label">
+			<%= f.label :name %>
+		</th>
+		<td class="kontakt_field">
+			<%= f.text_field :name %>
+		</td>
+	</tr>
+<% end %>
+<% if Strangecms::Kontakt::Config[:vorname] %>
+	<tr class="field">
+		<th class="kontakt_label">
+			<%= f.label :vorname %>
+		</th>
+		<td class="kontakt_field">
+			<%= f.text_field :vorname %>
+		</td>
+	</tr>
+<% end %>
+<% if Strangecms::Kontakt::Config[:firma] %>
+	<tr class="field">
+		<th class="kontakt_label">
+			<%= f.label :firma %>
+		</th>
+		<td class="kontakt_field">
+			<%= f.text_field :firma %>
+		</td>
+	</tr>
+<% end %>
+<% if Strangecms::Kontakt::Config[:abteiung_oder_position] %>
+	<tr class="field">
+		<th class="kontakt_label">
+			<%= f.label :abteiung_oder_position %>
+		</th>
+		<td class="kontakt_field">
+			<%= f.text_field :abteiung_oder_position %>
+		</td>
+	</tr>
+<% end %>
+
+	<tr class="field">
+		<th class="kontakt_label">
+			<%= f.label :email %>
+		</th>
+		<td class="kontakt_field">
+			<%= f.text_field :email %>
+		</td>
+	</tr>
+
+<% if Strangecms::Kontakt::Config[:webseite] %>
+	<tr class="field">
+		<th class="kontakt_label">
+			<%= f.label :webseite %>
+		</th>
+		<td class="kontakt_field">
+			<%= f.text_field :webseite %>
+		</td>
+	</tr>
+<% end %>
+<% if Strangecms::Kontakt::Config[:strasse] %>
+	<tr class="field">
+		<th class="kontakt_label">
+			<%= f.label :strasse %>
+		</th>
+		<td class="kontakt_field">
+			<%= f.text_field :strasse %>
+		</td>
+	</tr>
+<% end %>
+<% if Strangecms::Kontakt::Config[:plz] %>
+	<tr class="field">
+		<th class="kontakt_label">
+			<%= f.label :plz %>
+		</th>
+		<td class="kontakt_field">
+			<%= f.text_field :plz %>
+		</td>
+	</tr>
+<% end %>
+<% if Strangecms::Kontakt::Config[:ort] %>
+	<tr class="field">
+		<th class="kontakt_label">
+			<%= f.label :ort %>
+		</th>
+		<td class="kontakt_field">
+			<%= f.text_field :ort %>
+		</td>
+	</tr>
+<% end %>
+<% if Strangecms::Kontakt::Config[:bundesland] %>
+	<tr class="field">
+		<th class="kontakt_label">
+			<%= f.label :bundesland %>
+		</th>
+		<td class="kontakt_field">
+			<%= f.text_field :bundesland %>
+		</td>
+	</tr>
+<% end %>
+<% if Strangecms::Kontakt::Config[:land] %>
+	<tr class="field">
+		<th class="kontakt_label">
+			<%= f.label :land %>
+		</th>
+		<td class="kontakt_field">
+			<%= f.text_field :land %>
+		</td>
+	</tr>
+<% end %>
+<% if Strangecms::Kontakt::Config[:geburtstag] %>
+	<tr class="field">
+		<th class="kontakt_label">
+			<%= f.label :geburtstag %>
+		</th>
+		<td class="kontakt_field">
+			<%= f.date_select :geburtstag %>
+		</td>
+	</tr>
+<% end %>
+<% if Strangecms::Kontakt::Config[:telefon] %>
+	<tr class="field">
+		<th class="kontakt_label">
+			<%= f.label :telefon %>
+		</th>
+		<td class="kontakt_field">
+			<%= f.text_field :telefon %>
+		</td>
+	</tr>
+<% end %>
+<% if Strangecms::Kontakt::Config[:telefax] %>
+	<tr class="field">
+		<th class="kontakt_label">
+			<%= f.label :telefax %>
+		</th>
+		<td class="kontakt_field">
+			<%= f.text_field :telefax %>
+		</td>
+	</tr>
+<% end %>
+<% if Strangecms::Kontakt::Config[:mobil] %>
+	<tr class="field">
+		<th class="kontakt_label">
+			<%= f.label :mobil %>
+		</th>
+		<td class="kontakt_field">
+			<%= f.text_field :mobil %>
+		</td>
+	</tr>
+<% end %>
+<% if Strangecms::Kontakt::Config[:betreff] %>
+	<tr class="field">
+		<th class="kontakt_label">
+			<%= f.label :betreff %>
+		</th>
+		<td class="kontakt_field">
+			<%= f.text_field :betreff %>
+		</td>
+	</tr>
+<% end %>
+	<tr class="field">
+		<th class="kontakt_label">
+			<%= f.label :inhalt %>
+		</th>
+		<td class="kontakt_field">
+			<%= f.text_area :inhalt, :size => '50x7' %>
+		</td>
+	</tr>
+
+	<tr class="actions">
+		<th class="kontakt_label">
+			
+		</th>
+		<td class="kontakt_field">
+			<%= f.submit 'senden' %><%= link_to 'verwerfen', kontakt_path, :class => 'big_button' %>
+		</td>
+	</tr>
+</table>
+
+<% end %>
+</div>

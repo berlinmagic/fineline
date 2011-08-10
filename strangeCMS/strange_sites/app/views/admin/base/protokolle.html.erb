@@ -1,0 +1,26 @@
+<div class="box">
+	<div class="in_box first">
+		<h1>Protokollierten Ereignisse</h1>
+	</div>
+</div>
+
+<div class="box">
+	<div class="in_box">
+		<p>Hier sehen Sie alle <%= @protokolle.count %> protokollierten Seiten-Änderungen</p>
+	</div>
+</div>
+
+<div class="box">
+	<div class="in_box">
+		<% @protokolle.each do |pro| %>
+			<p><%= pro.created_at.strftime('%d.%m.%Y - %H:%M') %> . <strong><%= pro.user.name %></strong>[<%= user_rang(pro.user) %>] . <%= t("#{pro.aktion}")%> . <strong><%= link_to pro.seite.name, admin_seite_path(pro.seite.id) %></strong></p>
+			<br/>
+		<% end %>
+	</div>
+</div>
+
+<div class="box">
+	<div class="in_box">
+		<p>Hier sehen Sie alle protokollierten Seiten-Änderungen</p>
+	</div>
+</div>

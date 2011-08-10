@@ -1,0 +1,6 @@
+<% if abschnitt.stuff_typ && abschnitt.stuff_typ == 'fineform' %>
+	<div id="fineform_show" class="in_box<%= ' first' unless Strangecms::Config[:show_site_name] || index > 0 %>">
+		<%= render 'fineforms/fineform', :abs => abschnitt, :index => index %>
+		
+	</div>
+<% end %>

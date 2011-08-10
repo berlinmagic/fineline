@@ -1,0 +1,79 @@
+<div class="admin_box">
+	<h1><%= t('strange_preferences.look_settings')%> <%= t('edit')%></h1>
+	<div class="admin_in_box">
+		<div class="box">
+			<div class="in_box">
+				
+				<h2>Einstellungen Optik bearbeiten:</h2>
+	
+			</div>
+		</div>
+		
+		<%= form_tag(admin_setting_path(@name), :method => :put) do -%>
+		<%= hidden_field_tag('name', @name, :size => 50 ) %>
+		
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		
+		<div class="box">
+			<div class="in_box">
+				<table class="settings">
+					<tr>
+						<th><%= t('strange_preferences.theme') %></th>
+						<td><%= select_tag 'preferences[theme]', options_for_select(StrangeThemes.available_theme_names.map { |c| [c, c] }, Strangecms::Config[:theme])    %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.strange_logo') %></th>
+						<td><%= text_field_tag('preferences[strange_logo]', Strangecms::Config[:strange_logo], :size => 50 )%></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.strange_admin_logo') %></th>
+						<td><%= text_field_tag('preferences[strange_admin_logo]', Strangecms::Config[:strange_admin_logo], :size => 50 )%></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.stylesheets') %></th>
+						<td><%= text_field_tag('preferences[stylesheets]', Strangecms::Config[:stylesheets], :size => 50 )%></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.site_width') %></th>
+						<td><%= text_field_tag('preferences[site_width]', Strangecms::Config[:site_width], :size => 50 )%></td>
+					</tr>
+					<tr>
+						<th colspan="2" class="u_kat">Achtung, bisher nicht implementiert!</th>
+					</tr>
+				</table>
+			</div>
+		</div>
+		
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		
+		<div class="box">
+			<div class="in_box ">
+				<%= render 'update_buttons' %>
+			</div>
+		</div>
+		
+		<% end %>
+
+		
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		
+	</div>
+</div>
+
+
+
+<%= render 'sidebar' %>
+
+

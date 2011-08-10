@@ -1,0 +1,61 @@
+<%= render 'admin/shared/module_sub_menu' %>
+
+<div class="admin_box">
+	<h1><%= t('bild_new') %></h1>
+	<div class="admin_in_box">
+		<%= form_for(@bild, :html => { :multipart => true }, :url => { :controller => 'admin/bilder'}) do |f| %>
+		<div class="box">
+			<div class="in_box">
+				<p>Hier haben Sie die Möglichkeit weitere Bilder hinzuzufügen.</p>
+			</div>
+		</div>
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<%= render 'shared/error', :item => f.object%>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box white">
+				<table>
+					<tr>
+						<th><%= f.label :name %></th>
+						<td><%= f.text_field :name, :size => '50' %></td>
+					</tr>
+					<tr>
+						<th><%= f.label :file, 'Bild' %></th>
+						<td><%= f.file_field :file %></td>
+					</tr>
+					<tr>
+						<th><%= f.label :beschreibung %></th>
+						<td><%= f.text_area :beschreibung, :size => '50x5' %></td>
+					</tr>
+					<tr>
+						<th><%= f.label :stil %></th>
+						<td><%= f.select :stil, options_for_select( Bild::BILD_STILE.map { |c| [I18n.t(c), c] }) %></td>
+						<%# select_tag :view, options_for_select( Bild::BILD_STILE.map { |c| [I18n.t(c), c] }, @mail_view) %>
+					</tr>
+					<tr>
+						<th><%= f.label :datum %></th>
+						<td><%= f.date_select :datum %></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		
+		<div class="box">
+			<div class="in_box">
+				<%= f.submit %>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		
+		<% end %>
+	</div>
+</div>
+
+<%= render 'admin/gallerien/sidebar' %>

@@ -1,0 +1,164 @@
+<div class="admin_box">
+	<h1>Gallerie-Einstellungen <%= t('edit')%></h1>
+	<div class="admin_in_box">
+		<div class="box">
+			<div class="in_box">
+				<h2><strong>Achtung</strong> die Bild-Größen beeinflussen das Design, ändern Sie diese nur wenn Sie sich sicher sind.</h2>
+				<br/>
+				<p>alle Formate in .. [ <strong>Breite &times; Höhe</strong> ] .. Pixel</p>
+			</div>
+		</div>
+		<%= form_tag(admin_gallerie_settings_update_path, :method => :put) do -%>
+		<%= hidden_field_tag('name', @name, :size => 50 ) %>
+		
+		<div class="box">
+			<div class="in_box white">
+				<br/>
+				<table class="settings kontakt">
+					<tr>
+						<th>Standard-Format</th>
+						<td colspan="3"><%= select_tag('preferences[standard_format]',
+	        								options_for_select(Bild::BILD_STILE, 
+	        								Strangecms::Gallerie::Config[:standard_format])) %></td>
+					</tr>
+					<tr>
+						<th colspan="4"><br/><br/><strong>Hochformat</strong></th>
+					</tr>
+					<tr>
+						<th>Groß</th>
+						<td>
+							<%= text_field_tag('preferences[hochformat_width]', Strangecms::Gallerie::Config[:hochformat_width], :size => 20 )%>
+						</td>
+						<td>&times;</td>
+						<td>
+							<%= text_field_tag('preferences[hochformat_height]', Strangecms::Gallerie::Config[:hochformat_height], :size => 20 )%>
+						</td>
+					</tr>
+					<tr>
+						<th>Miniatur</th>
+						<td>
+							<%= text_field_tag('preferences[hochformat_thumb_width]', Strangecms::Gallerie::Config[:hochformat_thumb_width], :size => 20 )%>
+						</td>
+						<td>&times;</td>
+						<td>
+							<%= text_field_tag('preferences[hochformat_thumb_height]', Strangecms::Gallerie::Config[:hochformat_thumb_height], :size => 20 )%>
+						</td>
+					</tr>
+					<tr>
+						<th colspan="4"><br/><br/><strong>Querformat</strong></th>
+					</tr>
+					<tr>
+						<th>Groß</th>
+						<td>
+							<%= text_field_tag('preferences[querformat_width]', Strangecms::Gallerie::Config[:querformat_width], :size => 20 )%>
+						</td>
+						<td>&times;</td>
+						<td>
+							<%= text_field_tag('preferences[querformat_height]', Strangecms::Gallerie::Config[:querformat_height], :size => 20 )%>
+						</td>
+					</tr>
+					<tr>
+						<th>Miniatur</th>
+						<td>
+							<%= text_field_tag('preferences[querformat_thumb_width]', Strangecms::Gallerie::Config[:querformat_thumb_width], :size => 20 )%>
+						</td>
+						<td>&times;</td>
+						<td>
+							<%= text_field_tag('preferences[querformat_thumb_height]', Strangecms::Gallerie::Config[:querformat_thumb_height], :size => 20 )%>
+						</td>
+					</tr>
+					<tr>
+						<th colspan="4"><br/><br/><strong>Panorama-Format</strong></th>
+					</tr>
+					<tr>
+						<th>Groß</th>
+						<td>
+							<%= text_field_tag('preferences[panorama_width]', Strangecms::Gallerie::Config[:panorama_width], :size => 20 )%>
+						</td>
+						<td>&times;</td>
+						<td>
+							<%= text_field_tag('preferences[panorama_height]', Strangecms::Gallerie::Config[:panorama_height], :size => 20 )%>
+						</td>
+					</tr>
+					<tr>
+						<th>Miniatur</th>
+						<td>
+							<%= text_field_tag('preferences[panorama_thumb_width]', Strangecms::Gallerie::Config[:panorama_thumb_width], :size => 20 )%>
+						</td>
+						<td>&times;</td>
+						<td>
+							<%= text_field_tag('preferences[panorama_thumb_height]', Strangecms::Gallerie::Config[:panorama_thumb_height], :size => 20 )%>
+						</td>
+					</tr>
+					<tr>
+						<th colspan="4"><br/><br/><strong>Spezial-Format</strong> (Maximale-Ausmaße .. Format nutzt Original-Seitenverhälniss)</th>
+					</tr>
+					<tr>
+						<th>Groß</th>
+						<td>
+							<%= text_field_tag('preferences[spezial_width]', Strangecms::Gallerie::Config[:spezial_width], :size => 20 )%>
+						</td>
+						<td>&times;</td>
+						<td>
+							<%= text_field_tag('preferences[spezial_height]', Strangecms::Gallerie::Config[:spezial_height], :size => 20 )%>
+						</td>
+					</tr>
+					<tr>
+						<th>Miniatur</th>
+						<td>
+							<%= text_field_tag('preferences[spezial_thumb_width]', Strangecms::Gallerie::Config[:spezial_thumb_width], :size => 20 )%>
+						</td>
+						<td>&times;</td>
+						<td>
+							<%= text_field_tag('preferences[spezial_thumb_height]', Strangecms::Gallerie::Config[:spezial_thumb_height], :size => 20 )%>
+						</td>
+					</tr>
+					<tr>
+						<th colspan="4"><br/><br/><strong>Ausfall-Format</strong> (wird verwendet wenn kein Format zugewiesen werden kann)</th>
+					</tr>
+					<tr>
+						<th>Groß</th>
+						<td>
+							<%= text_field_tag('preferences[default_width]', Strangecms::Gallerie::Config[:default_width], :size => 20 )%>
+						</td>
+						<td>&times;</td>
+						<td>
+							<%= text_field_tag('preferences[default_height]', Strangecms::Gallerie::Config[:default_height], :size => 20 )%>
+						</td>
+					</tr>
+					<tr>
+						<th>Miniatur</th>
+						<td>
+							<%= text_field_tag('preferences[default_thumb_width]', Strangecms::Gallerie::Config[:default_thumb_width], :size => 20 )%>
+						</td>
+						<td>&times;</td>
+						<td>
+							<%= text_field_tag('preferences[default_thumb_height]', Strangecms::Gallerie::Config[:default_thumb_height], :size => 20 )%>
+						</td>
+					</tr>
+					
+				</table>
+				<br/>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<%= submit_tag t('save_settings') %>
+				<div class="big_button_spacer"><%= t('or') %></div>
+				<%= link_to t('cancel'), admin_gallerie_settings_path, :class => 'big_button' %>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		
+	
+		<% end %>
+	</div>
+</div>
+
+
+
+
+
+
+
+<%= render 'admin/settings/sidebar' %>

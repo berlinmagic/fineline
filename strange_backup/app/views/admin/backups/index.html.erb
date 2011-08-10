@@ -1,0 +1,61 @@
+<%= render 'admin/shared/module_sub_menu' %>
+
+<div class="admin_box">
+	<h1>BackUp´s</h1>
+	<div class="admin_in_box">
+		<div class="box">
+			<div class="in_box">
+				<% if strange_master %>
+				<div class="right">
+					<%= link_to 'Alle Löschen !', admin_kill_all_backups_path, :class => 'big_button', :remote => true %>
+				</div>
+				<% end %>
+				<% if @backups.count > 1 %>
+					<h2>Aktuell sind <%= @backups.count %> BackUp´s vorhanden.</h2>
+				<% elsif @backups.count == 1 %>
+					<h2>Aktuell ist <%= @backups.count %> BackUp vorhanden.</h2>
+				<% else %>
+					<h2>Aktuell sind keine BackUp´s vorhanden.</h2>
+				<% end %>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<div class="trenn_linie"></div>
+			</div>
+		</div>
+
+		<div class="box">
+			<div class="in_box white">
+				<br/>
+				<table id="backup_box" class="mb_table">
+					<% @backups.each do |backup| %>
+						<tr id="<%= dom_id(backup)%>">
+							<td class="sorter"></td>
+
+							<td class="title"><%= link_to raw('<strong>&raquo; '+backup.name+'</strong>&nbsp;&nbsp;&nbsp;( '+backup.created_at.strftime('%d.%m.%Y-%H:%M')+' )'), admin_backup_path(backup) %></td>
+							<td class="aktiv"></td>
+							<td class="actions">
+
+								<%# link_to 'kill', admin_kill_wl_wert_path(:wert => wert.id), :remote => true, :method => :post %>
+
+								<%= strange_delete_link( backup, :url => admin_backup_path(backup) ) %>
+
+							</td>
+						</tr>
+						
+					<% end %>
+				</table>
+				
+				
+					
+					<br/>
+					
+					
+				
+				<br/>
+			</div>
+		</div>
+		
+	</div>
+</div>

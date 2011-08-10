@@ -1,0 +1,269 @@
+de:
+  date:
+    formats:
+      default: "%d.%m.%Y"
+      short: "%e. %b"
+      long: "%e. %B %Y"
+      only_day: "%e"
+
+    day_names: [Sonntag, Montag, Dienstag, Mittwoch, Donnerstag, Freitag, Samstag]
+    abbr_day_names: [So, Mo, Di, Mi, Do, Fr, Sa]
+    month_names: [~, Januar, Februar, März, April, Mai, Juni, Juli, August, September, Oktober, November, Dezember]
+    abbr_month_names: [~, Jan, Feb, Mär, Apr, Mai, Jun, Jul, Aug, Sep, Okt, Nov, Dez]
+#    order: [ :day, :month, :year ]
+    order:
+      - :day
+      - :month
+      - :year
+  
+  time:
+    formats:
+      default: "%A, %d. %B %Y, %H:%M Uhr"
+      short: "%d. %B, %H:%M Uhr"
+      long: "%A, %d. %B %Y, %H:%M Uhr"
+      time: "%H:%M"
+
+    am: "vormittags"
+    pm: "nachmittags"
+      
+  datetime:
+    distance_in_words:
+      half_a_minute: 'eine halbe Minute'
+      less_than_x_seconds:
+        one: 'weniger als eine Sekunde'
+        other: 'weniger als %{count} Sekunden'
+      x_seconds:
+        one: 'eine Sekunde'
+        other: '%{count} Sekunden'
+      less_than_x_minutes:
+        one: 'weniger als eine Minute'
+        other: 'weniger als %{count} Minuten'
+      x_minutes:
+        one: 'eine Minute'
+        other: '%{count} Minuten'
+      about_x_hours:
+        one: 'etwa eine Stunde'
+        other: 'etwa %{count} Stunden'
+      x_days:
+        one: 'ein Tag'
+        other: '%{count} Tage'
+      about_x_months:
+        one: 'etwa ein Monat'
+        other: 'etwa %{count} Monate'
+      x_months:
+        one: 'ein Monat'
+        other: '%{count} Monate'
+      almost_x_years:
+        one: 'fast ein Jahr'
+        other: 'fast %{count} Jahre'
+      about_x_years:
+        one: 'etwa ein Jahr'
+        other: 'etwa %{count} Jahre'
+      over_x_years:
+        one: 'mehr als ein Jahr'
+        other: 'mehr als %{count} Jahre'
+    prompts:
+      second: "Sekunden"
+      minute: "Minuten"
+      hour: "Stunden"
+      day: "Tag"
+      month: "Monat"
+      year: "Jahr"
+
+  number:
+    format:
+      precision: 2
+      separator: ','
+      delimiter: '.'
+      significant: false
+      strip_insignificant_zeros: false
+    currency:
+      format:
+        unit: '€'
+        format: '%n%u'
+        separator: ","
+        delimiter: ""
+        precision: 2
+        significant: false
+        strip_insignificant_zeros: false
+    percentage:
+      format:
+        delimiter: ""
+    precision:
+      format:
+        delimiter: ""
+    human:
+      format:
+        delimiter: ""
+        precision: 1
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        # Storage units output formatting.
+        # %u is the storage unit, %n is the number (default: 2 MB)
+        format: "%n %u"
+        units:
+          byte:
+            one:   "Byte"
+            other: "Bytes"
+          kb: "KB"
+          mb: "MB"
+          gb: "GB"
+          tb: "TB"
+      decimal_units:
+        format: "%n %u"
+        units:
+          unit: ""
+          thousand: Tausend
+          million: Millionen
+          billion: 
+            one: Milliarde
+            others: Milliarden
+          trillion: Billionen
+          quadrillion: 
+            one: Billiarde
+            others: Billiarden
+
+  support:
+    array:
+      words_connector: ", "
+      two_words_connector: " und "
+      last_word_connector: " und "
+    select:
+      prompt: "Bitte wählen:"
+
+  activemodel:
+    errors:
+      template:
+        header:
+          one:    "Konnte %{model} nicht speichern: ein Fehler."
+          other:  "Konnte %{model} nicht speichern: %{count} Fehler."
+        body: "Bitte überprüfen Sie die folgenden Felder:"
+  helpers:
+    select:
+      prompt: "Bitte wählen"
+
+    submit:
+      create: '%{model} erstellen'
+      update: '%{model} aktualisieren'
+      submit: '%{model} speichern'
+
+  errors:
+    format: "%{attribute} %{message}"
+
+    messages: &errors_messages
+      inclusion: "ist kein gültiger Wert"
+      exclusion: "ist nicht verfügbar"
+      invalid: "ist nicht gültig"
+      confirmation: "stimmt nicht mit der Bestätigung überein"
+      accepted: "muss akzeptiert werden"
+      empty: "muss ausgefüllt werden"
+      blank: "muss ausgefüllt werden"
+      too_long: "ist zu lang (nicht mehr als %{count} Zeichen)"
+      too_short: "ist zu kurz (nicht weniger als %{count} Zeichen)"
+      wrong_length: "hat die falsche Länge (muss genau %{count} Zeichen haben)"
+      not_a_number: "ist keine Zahl"
+      greater_than: "muss größer als %{count} sein"
+      greater_than_or_equal_to: "muss größer oder gleich %{count} sein"
+      equal_to: "muss genau %{count} sein"
+      less_than: "muss kleiner als %{count} sein"
+      less_than_or_equal_to: "muss kleiner oder gleich %{count} sein"
+      odd: "muss ungerade sein"
+      even: "muss gerade sein"
+      not_an_integer: "muss ganzzahlig sein"
+      not_safed: "%{count} Fehler verhindern, das %{resource} gespeichert werden kann."
+      
+  activerecord:
+    errors:
+      template:
+        header:
+          one:    "Konnte %{model} nicht speichern: ein Fehler."
+          other:  "Konnte %{model} nicht speichern: %{count} Fehler."
+        body: "Bitte überprüfen Sie die folgenden Felder:"
+
+      messages:        
+        taken: "ist bereits vergeben"
+        record_invalid: "Gültigkeitsprüfung ist fehlgeschlagen: %{errors}"
+        <<: *errors_messages
+
+      full_messages:
+        format: "%{attribute}%{message}"
+
+##############################################################################################################################################
+#  =>  #  =>  #  =>  #  =>  #  =>  #  =>  #  =>  #  =>   S T R A N G E - C M S   <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #
+##############################################################################################################################################
+###     Standard - Erweiterungen        ####
+  activerecord:
+      errors:
+          messages:
+              email_error_message: 'ist keine Gültige Email'
+###     Kontakt - Mailer        ###
+  kontakt_mailer:
+      kontakt_mail:
+          subject: "Neuen Kontakt erhalten von %{data.name}"
+      thankyou_mail:
+          subject: "Danke für Ihre E-Mail"
+  StrangeLocal:
+      change_language: "Sprache wechseln"
+      locale_changed: "Sprache wurde geändert"
+      locale_not_changed: "Sprache konnte nicht geändert werden"
+      de: "Deutsch"
+      en: "Englisch"
+###     Preferences         ###
+  save_settings: "Einstellungen speichern"
+  edit_settings: "Einstellungen bearbeiten"
+  System_Locale:
+      de: "Deutsch"
+      en: "English"
+  strange_preferences:
+        Preferences: "Einstellungen"
+        editPreferences: "Einstellungen bearbeiten"
+        site_settings: "Seiten Einstellungen"
+        site_name: "Seiten Name"
+        site_url: "Seiten Domain"
+        owner_settings: "Besitzer Einstellungen"
+        stange_owner_name: "Name"
+        stange_owner_vorname: "Vorname"
+        stange_owner_street: "Strasse, Hausnummer"
+        stange_owner_zip: "Plz"
+        stange_owner_city: "Stadt"
+        stange_owner_country: "Land"
+        stange_owner_fon: "Telefon"
+        stange_owner_fax: "Fax"
+        stange_owner_mobile: "Mobil"
+        stange_owner_firma: "Unternehmen"
+        look_settings: "Optik Einstellungen"
+        strange_logo: "Seiten-Logo"
+        strange_admin_logo: "Admin-Logo"
+        stylesheets: "CSS-Dateien"
+        locale_settings: "Sprach Einstellungen"
+        allow_locale_switching: "Wechseln der SystemSprache erlauben"
+        default_locale: "Standard Sprache"
+        show_site_name: "Name = Überschrift"
+        show_site_name_explain: "Der Seiten-Name wird auf jeder Seite als Überschrift angezeigt"
+        system_pflicht_feld: "System-Feld .. wird generell geprüft"
+        mail_server_preferences: "E-Mail - Server Einstellungen"
+        enable_mail_delivery: "E-Mail - Versand"
+        general: "Allgemein"
+        send_mails_as: "Absender-Adresse"
+        smtp_send_all_emails_as_from_following_address: "Alle ausgehenden E-Mails werden von dieser Adresse verschickt."
+        send_copy_of_all_mails_to: "Kopie aller Mails (bcc)"
+        smtp_send_copy_to_this_addresses: "Eine Kopie aller E-Mails wird an diese Adresse versendet."
+        smtp_settings: "SMTP - Einstellungen"
+        smtp_domain: "SMTP - Domain"
+        smtp_mail_host: "SMTP - Server"
+        smtp_port: "SMTP - Port"
+        secure_connection_type: "Sicherer Verbindungstyp"
+        smtp_authentication_type: "SMTP - Authentifizierungstyp"
+        smtp_username: "SMTP - Benutzername"
+        smtp_password: "SMTP - Passwort"
+        kontakt_settings: "Kontakt Einstellungen"
+        settings_updated: "Einstellungen wurden aktualisiert."
+        updated_error: "Fehler beim speichern der Einstellungen."
+        parameter_error: "Fehler .. falsche Parameter"
+        google_settings: "Google-API Einstellungen"
+        analytics_key: "Google-Analytics - Key"
+        g_maps_key: "Google-Maps - Key"
+##############################################################################################################################################
+#  =>  #  =>  #  =>  #  =>  #  =>  #  =>  #  =>  #  =>   S T R A N G E - C M S   <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #
+##############################################################################################################################################

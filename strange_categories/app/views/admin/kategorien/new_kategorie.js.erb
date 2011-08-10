@@ -1,0 +1,9 @@
+
+	$("#data_kats_box").html(
+		"<%= escape_javascript(render(:partial => "admin/kategorien/objekt_kats", :locals => {:data => @data})) %>" );
+	
+	$("#katts_js_magick_place").html(
+		"<%= escape_javascript(render(:partial => "admin/kategorien/available_kats", :locals => {:data => @data, :available_data => @available_kategorien})) %>" );
+	
+	$("#new_kat_name").val("");
+	$("#new_kat_desc").val("");

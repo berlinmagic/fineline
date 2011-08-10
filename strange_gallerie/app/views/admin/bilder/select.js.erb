@@ -1,0 +1,3 @@
+$("#gallerie_pics").html("<%= escape_javascript(render(:partial => "admin/gallerien/g_pics", :locals => {:data => @bilder, :klasse => @klasse})) %>");
+$("#js_magick_place").html("<%= escape_javascript(render(:partial => "admin/bilder/available", :locals => {:data => @available_bilder})) %>");
+$("#data_counta").html("<%= @bilder.count %>");
