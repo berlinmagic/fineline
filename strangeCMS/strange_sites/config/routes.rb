@@ -38,6 +38,10 @@ Rails.application.routes.draw do
     root :to => "base#dashboard"
   end
   
+  scope "/system" do
+    match '/dynamic_stylesheet.:format' => "base#dynamic_stylesheet"
+  end
+  
   match 'reorder_seiten' => 'admin/seiten#reorder'
   match 'reorder_abschnitte' => 'admin/seiten#abschnitt_reorder'
   

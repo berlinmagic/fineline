@@ -5,6 +5,12 @@ class BaseController < ApplicationController
   
   layout proc { |controller| controller.request.xhr? ? false : 'fineline' }
   
+  def dynamic_stylesheet
+      respond_to do |format|
+        format.css { render :template => 'stylesheetz/all' }
+      end
+  end
+  
   def elfinder_old
     h, r = ElFinder::Connector.new(
       :root => File.join(Rails.public_path, 'uploads'),
