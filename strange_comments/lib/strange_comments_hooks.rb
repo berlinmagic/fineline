@@ -18,12 +18,15 @@ class StrangeCommentsHooks < Strangecms::ThemeSupport::HookListener
     "<%= link_to 'Kommentare', admin_kommentare_url, :class => ('aktiv' if @sub_aktivio == 'kommentare') %>"
   end
   
-  insert_after :admin_after_head do
-    "<%= render 'stylesheetz/strange_comments' %>"
-  end
+  # => insert_after :admin_after_head do
+  # =>   "<%= render 'stylesheetz/strange_comments' %>"
+  # => end
+  # => insert_after :site_after_head do
+  # =>   "<%= render 'stylesheetz/strange_comments' %>"
+  # => end
   
-  insert_after :site_after_head do
-    "<%= render 'stylesheetz/strange_comments' %>"
+  insert_after :finestyles do
+    "<%= render 'stylesheetz/comments' %>"
   end
   
   insert_after :strange_admin_js_stuff do

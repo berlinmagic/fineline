@@ -8,9 +8,11 @@
 <head>
 <%= render 'shared/head' %>
 
-<%= render 'stylesheetz/all' %>
+<%#= render 'stylesheetz/all' %>
 
-<%= stylesheet_link_tag '/system/dynamic_stylesheet' %>
+<%= stylesheet_link_tag '/system/finestyle' %>
+
+<%= yield :front_styles %>
 
 </head>
 

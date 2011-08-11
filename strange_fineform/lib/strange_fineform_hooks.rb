@@ -25,8 +25,15 @@ class StrangeFineformHooks < Strangecms::ThemeSupport::HookListener
   end
   
   
-  insert_after :admin_after_head do
-    "<%= render 'admin/fineforms/stylesheet' %>"
+  # => insert_after :admin_after_head do
+  # =>   "<%= render 'admin/fineforms/stylesheet' %>"
+  # => end
+  # => insert_after :site_after_head do
+  # =>   "<%= render 'fineforms/stylesheet' %>"
+  # => end
+  
+  insert_after :finestyles do
+    "<%= render 'stylesheetz/fineform' %>"
   end
   
   insert_after :strange_admin_js_stuff do
@@ -55,10 +62,6 @@ class StrangeFineformHooks < Strangecms::ThemeSupport::HookListener
   
   insert_after :admin_settings_sidebar do
     "<li><%= link_to 'Formulare (fine)', admin_fineform_settings_path, :class => ('aktiv' if @u_aktiv == 'fineform_settings') %></li>"
-  end
-  
-  insert_after :site_after_head do
-    "<%= render 'fineforms/stylesheet' %>"
   end
   
   insert_after :admin_dashboard do

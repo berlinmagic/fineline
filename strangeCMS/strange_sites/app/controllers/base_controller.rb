@@ -5,7 +5,7 @@ class BaseController < ApplicationController
   
   layout proc { |controller| controller.request.xhr? ? false : 'fineline' }
   
-  def dynamic_stylesheet
+  def finestyle
       respond_to do |format|
         format.css { render :template => 'stylesheetz/all' }
       end

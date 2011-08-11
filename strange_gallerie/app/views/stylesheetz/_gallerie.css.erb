@@ -1,0 +1,88 @@
+/* = = = = = = = = = = = = = = =   MODUL::  Gallerie   = = = = = = = = = = = = = = = = = = = = = = = = = = = */
+.bild_box_folder { float: left; position: relative;
+	width: 200px; height: 240px;
+	margin: 10px; padding: 10px 3px;
+	border: ridge 1px #efefef;
+	background: #fff url("/images/back.png") left top repeat;
+	-webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;
+	}
+.bild_box_folder p { font-size: 15px; font-weight: bold; padding: 10px 5px; text-align: center;}
+.bild_box_folder:hover { border: solid 1px #3878ae; background: #fff url("/images/back.png") left top repeat; }
+
+.bild_box { float: left; position: relative;
+   width: 200px; height: 150px;
+   margin: 10px 10px 10px 0; padding: 3px;
+   border: ridge 1px #efefef; 
+   background:#fff;
+   -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;
+   }
+.bild_box:hover { border: solid 1px #3878ae; background: #fff url("/images/back.png") left top repeat; }
+
+#sidebar #gallerie_navi { list-style: none; margin:0; padding: 0; }
+#sidebar #gallerie_navi li { margin: 0 0 5px; }
+#sidebar #gallerie_navi li a { padding: 8px 10px 7px 30px; display: block; text-decoration:none; font-weight: bold; border: inset 1px #ececec; 
+	background: #ececec; color: #666; line-height: 18px; }
+#sidebar #gallerie_navi li a.aktiv, #sidebar #sidebar_navi li a:hover { background: rgba(0,153,255,.9) url('/images/admin/sidebar_aktiv_bg.png') left top repeat-x; color: #fff; border: inset 1px #1a5189; }
+
+#sidebar #gallerie_navi li ul.inner_gallerie_navi { list-style: none; margin:0; padding: 0 10px 5px; }
+#sidebar #gallerie_navi li ul.inner_gallerie_navi li { margin: 0 0 3px; }
+#sidebar #gallerie_navi li ul.inner_gallerie_navi li a { padding: 2px 20px 2px; display: block; text-decoration:none; font-weight: normal; background: transparent; border: 0;
+	color: #666; line-height: 18px; }
+#sidebar #gallerie_navi li ul.inner_gallerie_navi li a:hover, #sidebar #gallerie_navi li ul.inner_gallerie_navi li a.aktiv {  color: #444; border: 0; font-weight: bold; }
+
+a.pic_btn_del {  width: 16px; height: 16px; position:absolute; top:0; background: transparent url('/images/btns/loeschen_16px.png') 0px 0px no-repeat; right: 5px; display:block; opacity: 0;}
+
+.selected_tag:hover a.pic_btn_del { opacity: .65; }
+.bild_box_folder:hover a.pic_btn_del { opacity: .65; }
+.bild_box:hover a.pic_btn_del { opacity: .65; }
+a.pic_btn_del:hover { opacity: 1; }
+
+.left_meta { width: 40%; padding: 0 5%; float:left; }
+.right_meta { width: 40%; padding: 0 5%; float:right; }
+
+.right_meta table, .left_meta table { width: 100%; }
+.right_meta table th, .left_meta table th { padding: 5px 10px 5px 0px; }
+.right_meta table td, .left_meta table td { padding: 5px 10px 5px 0px; }
+
+.gpix_box {
+	float: left; position: relative;
+	margin: 5px 15px 5px 0;
+	background: transparent;
+	border: solid 1px transparent;
+}
+
+.gpix_box:hover { border: solid 1px #3878ae; background: #fff; }
+
+
+/* +++++++++++++++++++++++++++++++++++++++++++++++   Gallerie - Admin   ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+.bild_box:hover { border: solid 1px #3878ae; background: #fff url("/images/back.png") left top repeat; }
+
+.selected_tag { position: relative; padding: 15px 42px 13px 15px; display: block; float: left; font-weight: bold; color: #555; }
+.selected_tag:hover { background: #fff; }
+
+#sidebar #gallerie_navi { list-style: none; margin:0; padding: 0; }
+#sidebar #gallerie_navi li { margin: 0 0 5px; }
+#sidebar #gallerie_navi li a { padding: 8px 10px 7px 30px; display: block; text-decoration:none; font-weight: bold; border: inset 1px #ececec; 
+	background: #ececec; color: #666; line-height: 18px; }
+#sidebar #gallerie_navi li a.aktiv, #sidebar #sidebar_navi li a:hover { background: rgba(0,153,255,.9) url('/images/admin/sidebar_aktiv_bg.png') left top repeat-x; color: #fff; border: inset 1px #1a5189; }
+
+#sidebar #gallerie_navi li ul.inner_gallerie_navi { list-style: none; margin:0; padding: 0 10px 5px; }
+#sidebar #gallerie_navi li ul.inner_gallerie_navi li { margin: 0 0 3px; }
+#sidebar #gallerie_navi li ul.inner_gallerie_navi li a { padding: 2px 20px 2px; display: block; text-decoration:none; font-weight: normal; background: transparent; border: 0;
+	color: #666; line-height: 18px; }
+#sidebar #gallerie_navi li ul.inner_gallerie_navi li a:hover, #sidebar #gallerie_navi li ul.inner_gallerie_navi li a.aktiv {  color: #444; border: 0; font-weight: bold; }
+
+a.pic_btn_del {  width: 16px; height: 16px; position:absolute; top:0; background: transparent url('/images/btns/loeschen_16px.png') 0px 0px no-repeat; right: 5px; display:block; opacity: 0;}
+
+.selected_tag:hover a.pic_btn_del { opacity: .65; }
+.bild_box_folder:hover a.pic_btn_del { opacity: .65; }
+.bild_box:hover a.pic_btn_del { opacity: .65; }
+a.pic_btn_del:hover { opacity: 1; }
+
+.left_meta { width: 40%; padding: 0 5%; float:left; }
+.right_meta { width: 40%; padding: 0 5%; float:right; }
+
+.right_meta table, .left_meta table { width: 100%; }
+.right_meta table th, .left_meta table th { padding: 5px 10px 5px 0px; }
+.right_meta table td, .left_meta table td { padding: 5px 10px 5px 0px; }
+

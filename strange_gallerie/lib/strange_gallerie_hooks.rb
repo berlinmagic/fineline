@@ -23,14 +23,17 @@ class StrangeGallerieHooks < Strangecms::ThemeSupport::HookListener
     "<li><%= link_to 'Gallerie-Bilder', admin_gallerie_settings_path, :class => ('aktiv' if @u_aktiv == 'gallerie_settings') %></li>"
   end
   
-  insert_after :site_after_head do
-    "<%= render 'stylesheetz/strange_gallerie' %>"
-  end
+  # => insert_after :site_after_head do
+  # =>   "<%= render 'stylesheetz/strange_gallerie' %>"
+  # => end
+  # => 
+  # => insert_after :admin_after_head do
+  # =>   "<%= render 'stylesheetz/strange_gallerie_admin' %>"
+  # => end
   
-  insert_after :admin_after_head do
-    "<%= render 'stylesheetz/strange_gallerie_admin' %>"
+  insert_after :finestyles do
+    "<%= render 'stylesheetz/gallerie' %>"
   end
-  
   
   insert_after :strange_admin_js_stuff do
     "<%= render 'javascriptz/strange_gallerie_admin' %>"

@@ -39,7 +39,7 @@ Rails.application.routes.draw do
   end
   
   scope "/system" do
-    match '/dynamic_stylesheet.:format' => "base#dynamic_stylesheet"
+    match '/finestyle.:format' => "base#finestyle"
   end
   
   match 'reorder_seiten' => 'admin/seiten#reorder'

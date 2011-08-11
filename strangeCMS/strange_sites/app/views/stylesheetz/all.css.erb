@@ -86,15 +86,71 @@ h1, h2, h3, h4, h5, h6 { font-weight: bold; }
 a, a:active, a:visited { color: #607890; text-decoration:none; }
 a:hover { color: #000; }
 
+<%#		inset? ( = nach innen ) _ horizontaler abstand _ verticaler abstand _ optional rausch abstand _ optional größer als box	 %> 
+
+<% 		@finestyle 						= 	{}	 -%>
+<% 		@finestyle[:button]				= 	{}	 -%>
+<% 		@finestyle[:big_button] 		= 	{}	 -%>
+<% 		@finestyle[:fl_button]			= 	{}	 -%>
+<% 		@finestyle[:fl_select]			= 	{}	 -%>
+<% 		@finestyle[:edit_box]			= 	{}	 -%>
+<% 		@finestyle[:footer]				= 	{}	 -%>
+<% 		@finestyle[:main_nav_button]	= 	{}	 -%>
+<% 		@finestyle[:main_nav_subnav]	= 	{}	 -%>
 
 
+<%	 @finestyle[:button][:box_shaddow] 					= 	'1px 1px 3px 1px #888' -%>
+<%	 @finestyle[:button][:box_shaddow_hover] 			= 	'inset 1px 1px 3px 1px #888' -%>
+<%	 @finestyle[:button][:radius] 						= 	'1px' -%>
+<%	 @finestyle[:button][:box_shaddow] 					= 	'none' -%>
+<%	 @finestyle[:button][:box_shaddow_hover] 			= 	'none' -%>
+<%	 @finestyle[:button][:box_shaddow_click] 			= 	'inset 1px 1px 1px 1px rgba(0,51,102,.5)' -%>
+<%	 @finestyle[:button][:text_shaddow] 				= 	'none' -%>
+<%	 @finestyle[:button][:text_shaddow_hover] 			= 	'none' -%>
+<%	 @finestyle[:button][:bg_color] 					= 	'rgb(153,153,153)' -%>
+<%	 @finestyle[:button][:bg_color_hover] 				= 	'rgb(62,115,169)' -%>
+<%	 @finestyle[:button][:bg_color_click] 				= 	'#165891' -%>
+<%	 @finestyle[:button][:bg_image] 					= 	'verlauf50' -%>
 
+<%	 @finestyle[:footer][:shaddow] 						= 	'inset 0px 2px 3px 3px rgba(0,0,0,.9)' -%>
+                                                		
+<%	 @finestyle[:big_button][:radius] 					= 	"3px" -%>
+                                                		
+<%	 @finestyle[:fl_button][:radius] 					= 	'3px' -%>
+<%	 @finestyle[:fl_button][:box_shaddow_hover] 		= 	'inset 1px 1px 1px 0px rgba(255,255,255,.4)' -%>
+<%	 @finestyle[:fl_button][:box_shaddow_click] 		= 	'inset 1px 1px 1px 0px rgba(0,0,0,.4)' -%>
+                                                		
+<%	 @finestyle[:fl_select][:radius] 					= 	"3px" -%>
+                                                		
+<%	 @finestyle[:edit_box][:radius] 					= 	"5px" -%>
+                                                		
+<%	 @finestyle[:edit_box][:shaddow] 					= 	'inset 0px 2px 3px 3px rgba(0,0,0,.9)' -%>
 
+<%	 @finestyle[:main_nav_button][:bg_color] 			= 	'#336699' -%>
+<%	 @finestyle[:main_nav_button][:bg_color_hover] 		= 	'rgb(62,115,169)' -%>
+<%	 @finestyle[:main_nav_button][:bg_color_click] 		= 	'rgb(153,153,153)' -%>
+<%	 @finestyle[:main_nav_button][:bg_color_aktiv] 		= 	'rgba(255,255,255,.9)' -%>
+<%	 @finestyle[:main_nav_button][:bg_image] 			= 	'verlauf50' -%>
+<%	 @finestyle[:main_nav_button][:radius] 				= 	'3px' -%>
 
+<%	 @finestyle[:main_nav_subnav][:radius] 				= 	'7px' -%>
 
+/* ####################################     fineline - generated - styles     ######################################################### */
+<%= render 'stylesheetz/css/jq_ui' %>
+<%= render 'stylesheetz/css/grid960_48' %>
+<%= render 'stylesheetz/css/fonts', 		:finestyle => @finestyle %>
+<%= render 'stylesheetz/css/classes', 		:finestyle => @finestyle %>
+<%= render 'stylesheetz/css/content', 		:finestyle => @finestyle %>
+<%= render 'stylesheetz/css/main', 			:finestyle => @finestyle %>
+<%= render 'stylesheetz/css/buttons', 		:finestyle => @finestyle %>
+<%= render 'stylesheetz/css/forms', 		:finestyle => @finestyle %>
+<%= render 'stylesheetz/css/lists', 		:finestyle => @finestyle %>
+<%= render 'stylesheetz/css/navigation', 	:finestyle => @finestyle %>
+<%= render 'stylesheetz/css/sidebars', 		:finestyle => @finestyle %>
+<%= render 'stylesheetz/css/spezials', 		:finestyle => @finestyle %>
 
-
-
+<%= hook :finestyles %>
+/* ####################################     ..End of - generated - styles     ######################################################### */
 
 
 

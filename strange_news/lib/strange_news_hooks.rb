@@ -40,12 +40,15 @@ class StrangeNewsHooks < Strangecms::ThemeSupport::HookListener
      '<%= render "seiten/news_sidebar" %>'
   end
   
-  insert_after :admin_after_head do
-    "<%= render 'stylesheetz/strange_news' %>"
-  end
+  # => insert_after :admin_after_head do
+  # =>   "<%= render 'stylesheetz/strange_news' %>"
+  # => end
+  # => insert_after :site_after_head do
+  # =>   "<%= render 'stylesheetz/strange_news' %>"
+  # => end
   
-  insert_after :site_after_head do
-    "<%= render 'stylesheetz/strange_news' %>"
+  insert_after :finestyles do
+    "<%= render 'stylesheetz/news' %>"
   end
   
 end

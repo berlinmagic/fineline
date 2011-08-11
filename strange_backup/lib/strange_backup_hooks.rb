@@ -23,12 +23,15 @@ class StrangeBackupHooks < Strangecms::ThemeSupport::HookListener
   end
   
   
-  insert_after :admin_after_head do
-    "<%= render 'stylesheetz/strange_backup' %>"
-  end
+  # => insert_after :admin_after_head do
+  # =>   "<%= render 'stylesheetz/strange_backup' %>"
+  # => end
+  # => insert_after :site_after_head do
+  # =>   "<%= render 'stylesheetz/strange_backup' %>"
+  # => end
   
-  insert_after :site_after_head do
-    "<%= render 'stylesheetz/strange_backup' %>"
+  insert_after :finestyles do
+    "<%= render 'stylesheetz/backup' %>"
   end
   
   insert_after :strange_admin_js_stuff do

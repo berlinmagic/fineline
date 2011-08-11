@@ -1,0 +1,34 @@
+<% finestyle ||= @finestyle -%>
+#login_help_links { display: none; }
+
+.box { position: relative; padding: 0;}
+
+.box .in_box { padding: 12px 20px 12px; /* border-top: solid 1px #999; */ position:relative;}
+
+.box .in_box.first { padding: 7px 20px 12px; }
+
+.box .in_trenn_box { padding: 10px 15px 10px; position:relative; }
+
+
+a.pic_link, .pic_link a { font-size: 15px; font-weight: bold;}
+a.pic_link:hover , .pic_link a:hover { text-decoration: none;}
+a.pic_link img, .pic_link a img { padding: 0 5px 5px 0; vertical-align: middle;}
+
+
+.box .trenn_box { padding: 3px 13px 3px; /* border-top: solid 1px #999; */ position:relative;}
+
+.top_trenner { height: 3px; background: transparent url('/images/top_trenner.png') left center no-repeat; margin-top: 0px; }
+
+a.in_box_top_delete { position:absolute; top:0; right: 5px; display:block; }
+.parent_box a.in_box_top_delete { visibility: hidden; }
+.parent_box { position:relative; }
+.parent_box:hover a.in_box_top_delete { visibility: visible; }
+
+img.topping { margin-top: 0px; position: relative; z-index: 5;}
+
+
+.flash_player_box { display:block; padding:5px; border:1px solid #ccc; border-radius:5px; 
+			background: #f4f2f2 url('/images/back.png') left top repeat; float: left; }
+.flash_player_box .flash_player { display:block; background: transparent url('/images/button_play.png') center center no-repeat; }
+.flash_player_box .flash_player:hover { background: transparent url('/images/button_play_over.png') center center no-repeat; }
+.flash_player_box .flash_player:active { background: transparent url('/images/button_play_on.png') center center no-repeat; }

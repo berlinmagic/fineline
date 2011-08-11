@@ -1,0 +1,14 @@
+<% backup_tab_button_radius = '3px' -%>
+/* = = = = = = = = = = = = = = =   MODUL::  Backups   = = = = = = = = = = = = = = = = = = = = = = = = = = = */
+.backup_change_tag { position: relative; padding: 10px; background: #f3f3f3; border: solid 1px #ccc; margin: 33px 0 10px; }
+
+ul.backup_change_tag_Tab_nav { position: absolute; margin:0; padding:0; list-style: none; top: -25px; left: 20px; }
+ul.backup_change_tag_Tab_nav li { margin:0; padding:0; list-style: none; float: left; display: inline-block; }
+ul.backup_change_tag_Tab_nav li a { margin:0; padding:3px 10px; display: block; line-height:18px; background: #f3f3f3; 
+			-webkit-border-top-left-radius: <%=  backup_tab_button_radius %>; -webkit-border-top-right-radius: <%=  backup_tab_button_radius %>; 
+			-moz-border-radius-topleft: <%=  backup_tab_button_radius %>; -moz-border-radius-topright: <%=  backup_tab_button_radius %>; 
+			border-top-left-radius: <%=  backup_tab_button_radius %>; border-top-right-radius: <%=  backup_tab_button_radius %>;}
+
+ul.backup_change_tag_Tab_nav li a.aktiv { margin:0 1px 0; padding:3px 10px; display: block; line-height:18px; background: #fff; border: 1px solid #ccc; border-bottom:0;}
+
+.field_value_box { background: #fff; }

@@ -49,12 +49,15 @@ class StrangeCategoriesHooks < Strangecms::ThemeSupport::HookListener
                                           :modul_info => 'Modul zum erstellen und verwalten von Kategorien.' %>"
   end
   
-  insert_after :admin_after_head do
-    "<%= render 'stylesheetz/strange_categories' %>"
-  end
+  # => insert_after :admin_after_head do
+  # =>   "<%= render 'stylesheetz/strange_categories' %>"
+  # => end
+  # => insert_after :site_after_head do
+  # =>   "<%= render 'stylesheetz/strange_categories' %>"
+  # => end
   
-  insert_after :site_after_head do
-    "<%= render 'stylesheetz/strange_categories' %>"
+  insert_after :finestyles do
+    "<%= render 'stylesheetz/categories' %>"
   end
   
   insert_after :strange_admin_js_stuff do
