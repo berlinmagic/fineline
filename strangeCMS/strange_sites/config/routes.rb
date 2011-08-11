@@ -40,6 +40,7 @@ Rails.application.routes.draw do
   
   scope "/system" do
     match '/finestyle.:format' => "base#finestyle"
+    match '/grid_test' => "base#grid_test"
   end
   
   match 'reorder_seiten' => 'admin/seiten#reorder'

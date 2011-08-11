@@ -11,6 +11,10 @@ class BaseController < ApplicationController
       end
   end
   
+  def grid_test
+    render :layout => 'fineline_blanko', :template => 'base/testarea'
+  end
+  
   def elfinder_old
     h, r = ElFinder::Connector.new(
       :root => File.join(Rails.public_path, 'uploads'),
