@@ -1,28 +1,28 @@
 This is strangeCMS a super simple but mighty cms build on Ruby on Rails.
 
 
-Code for this GEM is inspired and adopted from following great stuff:
+Code for this GEMset is inspired and adopted from following great stuff:
 
 Spree Commerce
-Spree (Spree)						::		http://spreecommerce.com/	/	https://github.com/spree/spree
+Spree (Spree)   ::   http://spreecommerce.com/  /  https://github.com/spree/spree
 
 Lucas Florio
-lucasefe (themes_for_rails)			::		https://github.com/lucasefe/themes_for_rails
+lucasefe (themes_for_rails)   ::   https://github.com/lucasefe/themes_for_rails
 
 
 Gastón Ramos
-gramos (easy-fckeditor)				::		https://github.com/gramos/easy-fckeditor
+gramos (easy-fckeditor)   ::   https://github.com/gramos/easy-fckeditor
 
 
 Philip Hallstrom
-phallstrom (el_finder)				::		https://github.com/phallstrom/el_finder
+phallstrom (el_finder)   ::   https://github.com/phallstrom/el_finder
 
 
 
 .. and of course from:
 
 Ryan
-ryanb (Railscasts)					::		http://railscasts.com/		/		https://github.com/ryanb/railscasts-episodes/
+ryanb (Railscasts)   ::   http://railscasts.com/  /  https://github.com/ryanb/railscasts-episodes/
 
 
 
