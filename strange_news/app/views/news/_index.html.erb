@@ -37,6 +37,6 @@
 <% end %>
 <% end %>
 
-<%= paginate @news, :params => {:controller => 'news', :action => 'index'}  %>
+<%= paginate @news, :theme => 'bottom', :params => {:controller => 'news', :action => 'index'}  %>
 
 <%= render :partial => 'news/sidebar' %>

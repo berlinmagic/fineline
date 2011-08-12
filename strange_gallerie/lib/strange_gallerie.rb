@@ -11,6 +11,8 @@
   require 'strange_gallerie_hooks'
   
   require 'gallerie/config'
+  
+  require 'strange_gallerie/routes'
 
 
 module StrangeGallerie

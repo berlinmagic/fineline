@@ -11,11 +11,11 @@
 <% page_url 		||=		@page_url 		-%>
 <% last 	= 	current_page == num_pages ? 	true : false  	-%>
 <% first 	= 	current_page == 1 ? 			true : false 	-%>
-<%   -%>
+<% style    = 	style || ''  -%>
 
 <% if @fineline_array_paginated && num_pages > 1 %>
 
-		<nav class="pagination">
+		<nav class="pagination<%= ' '+style if !style.blank? %>">
 			<strong>Seite <%= current_page %> von <%= num_pages %> </strong>&nbsp;&nbsp;&nbsp;
 		    
 			<%# first_page_tag unless current_page.first? %>

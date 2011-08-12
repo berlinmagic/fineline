@@ -1,8 +1,14 @@
 
 
-<% @bilder = Bild.all %>
+<% @bilder ||= Bild.all %>
 	
 <% if @bilder.count > 0 %>
+	
+	<%= paginate @bilder, :params => {:controller => 'gallerien', :action => 'index'}  %>
+	
+	<div class="clearfix"></div>
+	<div class="vert_space"></div>
+	<div class="clearfix"></div>
 	
 	<% @bilder.each_with_index do |bild,index| %>
 			
@@ -24,6 +30,7 @@
 		<div class="clearfix"></div>
 	<% end %>
 		
+	<%= paginate @bilder, :theme => 'bottom', :params => {:controller => 'gallerien', :action => 'index'}  %>
 	
 <% else %>
 	

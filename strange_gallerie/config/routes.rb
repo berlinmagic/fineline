@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   
   match '/system/gallerie/lightbox/:id' => 'gallerien#show_pic'
   
+  strange_gallerie
+  
   namespace :admin do
         resources :gallerien do
             collection do
