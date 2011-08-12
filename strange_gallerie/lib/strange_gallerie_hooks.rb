@@ -57,7 +57,9 @@ class StrangeGallerieHooks < Strangecms::ThemeSupport::HookListener
     '<%= render "gallerien/gallerie_chooser" %>'
   end
   
-  
+  insert_after :fineline_sidbar_content do
+     '<%= render "gallerien/sidebar" %>'
+  end
   
 
   

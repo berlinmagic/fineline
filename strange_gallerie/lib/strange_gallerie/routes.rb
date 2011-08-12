@@ -16,16 +16,16 @@ module StrangeGallerie
               
               get 'page/:page', :action => :index
               
-              get 'by_tag/:tag', :action => :show_news_by_tag
-              get 'by_tag/:tag/page/:page', :action => :show_news_by_tag
+              get 'by_tag/:tag', :action => :show_by_tag
+              get 'by_tag/:tag/page/:page', :action => :show_by_tag
               
-              get 'by_kategorie/:kategorie', :action => :show_news_by_kategorie
-              get 'by_kategorie/:kategorie/page/:page', :action => :show_news_by_kategorie
+              get 'by_kategorie/:kategorie', :action => :show_by_kategorie
+              get 'by_kategorie/:kategorie/page/:page', :action => :show_by_kategorie
               
-              get 'by_date/:year/page/:page', :action => :show_news_by_date
-              get 'by_date/:year(/:month)/page/:page', :action => :show_news_by_date
-              get 'by_date/:year(/:month(/:day))/page/:page', :action => :show_news_by_date
-              get 'by_date/:year(/:month(/:day))', :action => :show_news_by_date
+              get 'by_date/:year/page/:page', :action => :show_by_date
+              get 'by_date/:year(/:month)/page/:page', :action => :show_by_date
+              get 'by_date/:year(/:month(/:day))/page/:page', :action => :show_by_date
+              get 'by_date/:year(/:month(/:day))', :action => :show_by_date
             end
           end
         

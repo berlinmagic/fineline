@@ -1,6 +1,18 @@
 # encoding: utf-8
 class Bild < ActiveRecord::Base
   
+  #****************************************************************************************************************************************************
+  # =>                     S C O P E S
+  #****************************************************************************************************************************************************
+  scope :nach_jahr, lambda { |jahr| where("bilder.jahr = ?", jahr) }
+  scope :nach_monat, lambda { |monat| where("bilder.monat = ?", monat) }
+  scope :nach_tag, lambda { |tag| where("bilder.tag = ?", tag) }
+  
+  default_scope :order => "datum DESC"
+  
+  
+  
+  
   BILD_STILE = %w(standard_format hochformat querformat panorama spezial)
   
   has_many :bilder_bild_kategorien
@@ -16,6 +28,12 @@ class Bild < ActiveRecord::Base
   
   has_many :taggings, :as => :target
   has_many :tags, :through => :taggings, :as => :target, :uniq => true
+  
+  def gallerie_slug
+    if Seite.where("system_name = ? AND deleted = ?", 'gallerie', false).count > 0
+      Seite.where("system_name = ? AND deleted = ?", 'gallerie', false).first.link
+    end
+  end
   
   before_save :set_paramatas
   
