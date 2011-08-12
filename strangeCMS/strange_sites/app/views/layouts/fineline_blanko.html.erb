@@ -26,14 +26,18 @@
 <body lang="de">
   <div id="container">
 <%= hook :user_part do %>
-	<%= render 'shared/user_navigation' %>
+	<%= render 'navigation/user' %>
 <% end %>
 
 <header>
 	<div id="top_area">
-		<div class="kasten">
-			<%= link_to( image_tag("#{Strangecms::Config[:strange_logo]}"), root_url, :id => "strange_LOGO" ) %>
-			<%= render 'shared/head_navigation' %>
+		<div class="container_48">
+			<div class="fl_box_310">
+				<%= link_to( image_tag("#{Strangecms::Config[:strange_logo]}"), root_url, :id => "strange_LOGO" ) %>
+			</div>
+			<div class="fl_box_630">
+				<%= render 'navigation/header' %>
+			</div>
 		</div>
 	</div>
 </header>

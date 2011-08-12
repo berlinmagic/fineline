@@ -1,45 +1,17 @@
-<%# encoding: utf-8 %>
 <div id="fine_footer_nav">
-	
 	<% Seite.aktiv.main.footer.each_with_index do |seite,index| %>
-	
 		<div class="fine_footer_box">
-			
 			<a href="<%= seite.link %>"><%= seite.name %></a> <br/>
-			
 			<% if seite.unter_seiten.aktiv.count > 0 %>
-				
 				<% seite.unter_seiten.aktiv.footer.each do |u_seite| %>
-				
 					<a href="<%= u_seite.link %>">&rArr; <%= u_seite.name %></a> <br/>
-					
 					<% if u_seite.unter_seiten.aktiv.count > 0 %>
-
 						<% u_seite.unter_seiten.aktiv.footer.each do |uu_seite| %>
-
 							<a href="<%= uu_seite.link %>">&rArr; &rArr; <%= uu_seite.name %></a> <br/>
-
 						<% end %>
-
 					<% end %>
-					
 				<% end %>
-				
 			<% end %>
-			
 		</div>
-	
 	<% end %>
-	
-	
 </div>
-
-<style>
-
-#fine_footer_nav {float: right;}
-
-#fine_footer_nav .fine_footer_box { float: left; margin:0; padding: 2px 15px; border-left: 1px solid #999; }
-#fine_footer_nav .fine_footer_box:first-child { border:0; }
-#fine_footer_nav .fine_footer_box:last-child { padding-right:0px; }
-
-</style>

@@ -19,34 +19,71 @@
 <body lang="de">
   <div id="container">
 
+<%= render 'shared/notice' %>
 
 <%= hook :user_part do %>
-	<%= render 'shared/user_navigation' %>
+	<%= render 'navigation/user' %>
 <% end %>
 
 <header>
 	<div id="top_area">
-		<div class="kasten">
-			<%= link_to( image_tag("#{Strangecms::Config[:strange_logo]}"), root_url, :id => "strange_LOGO" ) %>
-			<%= render 'shared/head_navigation' %>
+		<div class="container_48">
+			<div class="fl_box_310">
+				<%= link_to( image_tag("#{Strangecms::Config[:strange_logo]}"), root_url, :id => "strange_LOGO" ) %>
+			</div>
+			<div class="fl_box_630">
+				<%= render 'navigation/header' %>
+			</div>
 		</div>
 	</div>
 </header>
 
 
 <div id="banner">
-	<div class="kasten">
-		<%= hook :strange_banner %>
-		
-		<%= render 'shared/notice' %>
-		
-		<%= render 'shared/main_navigation' %>
-	</div>
+	<%= hook :strange_banner %>
+	<%= render 'navigation/main' %>
 </div>
 
 
 
 <div id="main" role="main">
+	<div class="container_48">
+		<div class="fl_box_710">
+			
+			<%= yield %>
+			
+		</div>
+		<div class="fl_box_210 push_1">
+			<%= yield :sidebar %>
+			
+			<%= yield :modul_sidebar %>
+			
+			<%= hook :strange_sidebar_test do %>
+				<div class="side_box">
+					<div class="sidebar_head">
+						<a href="#">fineline-Sidebar</a>
+					</div>
+					<ul class='sidebar'>
+						<% if current_user %>
+							<li><%= link_to 'neue Seite', new_seite_url %></li>
+						<% else %>
+							<li><p>Beispiel Sidebar</p></li>
+							<li><p>Modul-Sidebars:</p></li>
+							<li><p>- News_Modul</p></li>
+							<li><p>- Bild_Modul</p></li>
+						<% end %>
+					</ul>
+				</div>
+			<% end %>
+			
+			<%= hook :strange_sidebar %>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+	<div class="clearfix"></div>
+	<hr/>
+	<div class="clearfix"></div>
+	
 	<div class="kasten">
 		<div id="content">
 			
@@ -88,7 +125,7 @@
 	<div class="kasten">
 		<div class="right">
 			<br/><br/>
-			<%= render 'shared/footer_navigation' %>
+			<%= render 'navigation/footer' %>
 			<div class="clearfix"></div>
 			<br/>
 			<p>Copyright &copy; 2011 <%= link_to 'Orangenwerk', 'http://orangenwerk.com' %> - Creators of BestCMSever</p>

@@ -3,13 +3,10 @@
 	<div class="kasten">
 		<nav id="user_nav">
 			<%= hook :backend_button do %>
-				<!--	###		Achtung - Ändern!!!		###		-->
 				<%= link_to t('strange_Backend'), admin_root_url, :id => 'strange_admin_button' %>
 			<% end %>
 			<div class="right_user_nav">
-				<%= hook :login_buttons do %>
-					Login
-				<% end %>
+				<%= hook :login_buttons %>
 			</div>
 		</nav>
 	</div>

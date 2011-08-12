@@ -10,7 +10,7 @@ class StrangeUserHooks < Strangecms::ThemeSupport::HookListener
   
   replace :user_part do
     "<% if admin_check %>
-      <%= render 'shared/user_navigation' %>
+      <%= render 'navigation/user' %>
      <% end %>"
   end
   

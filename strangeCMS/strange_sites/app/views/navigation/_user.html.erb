@@ -1,0 +1,16 @@
+<div id="user_area">
+	<div class="container_48">
+		<div class="fl_box_470">
+			<nav id="user_nav">
+				<%= hook :backend_button do %>
+					<%= link_to finelineIcon(:icon => 10)+' '+t('strange_Backend'), admin_root_url, :id => 'strange_admin_button' %>
+				<% end %>
+			</nav>
+		</div>
+		<div class="fl_box_470">
+			<div class="right_user_nav">
+				<%= hook :login_buttons %>
+			</div>
+		</div>
+	</div>
+</div>
