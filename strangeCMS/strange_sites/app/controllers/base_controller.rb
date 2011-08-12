@@ -6,6 +6,7 @@ class BaseController < ApplicationController
   layout proc { |controller| controller.request.xhr? ? false : 'fineline' }
   
   def finestyle
+      @style4 = params[:to_style] if params[:to_style]
       respond_to do |format|
         format.css { render :template => 'stylesheetz/all' }
       end

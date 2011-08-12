@@ -15,10 +15,10 @@
 
 		<% end %>
 		<br/>
-		<span class='news_vorschau_text'>
+		<p class='news_vorschau_text'>
 			<%= image_tag news.file.thumb("300x100>").url, :class => 'news_thumb_image' if news.file %>
 			<%= news.beschreibung %>
-		</span>
+		</p>
 		<div class="clearfix"></div>
 	</a>
 		<% if news.ilike %>

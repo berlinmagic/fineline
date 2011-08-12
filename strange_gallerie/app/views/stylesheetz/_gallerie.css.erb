@@ -1,4 +1,8 @@
 /* = = = = = = = = = = = = = = =   MODUL::  Gallerie   = = = = = = = = = = = = = = = = = = = = = = = = = = = */
+
+#gallerie_show { padding: 0; margin: 0 -5px; }
+
+
 .bild_box_folder { float: left; position: relative;
 	width: 200px; height: 240px;
 	margin: 10px; padding: 10px 3px;
@@ -45,10 +49,13 @@ a.pic_btn_del:hover { opacity: 1; }
 .right_meta table td, .left_meta table td { padding: 5px 10px 5px 0px; }
 
 .gpix_box {
-	float: left; position: relative;
-	margin: 5px 15px 5px 0;
+	position: relative;
+	display: block;
+	margin: 0;
+	padding: 4px;
 	background: transparent;
-	border: solid 1px transparent;
+	border: solid 1px #cccccc;
+	background: #f3f3f3 url('/images/back.png');
 }
 
 .gpix_box:hover { border: solid 1px #3878ae; background: #fff; }

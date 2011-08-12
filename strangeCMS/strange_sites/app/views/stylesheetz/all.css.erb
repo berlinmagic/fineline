@@ -80,7 +80,7 @@ body, select, input, textarea {
   /* #444 looks better than black: twitter.com/H_FJ/statuses/11800719859 */
   /* Set your base font here, to apply evenly */
   /* font-family: Georgia, serif;  */
-  color: #444;		}
+  color: #444; line-height: 20px; }
 /* Headers (h1, h2, etc) have no default font-size or margin; define those yourself */
 h1, h2, h3, h4, h5, h6 { font-weight: bold; }
 a, a:active, a:visited { color: #607890; text-decoration:none; }
@@ -136,9 +136,12 @@ a:hover { color: #000; }
 <%	 @finestyle[:main_nav_subnav][:radius] 				= 	'7px' -%>
 
 /* ####################################     fineline - generated - styles     ######################################################### */
+<% unless @style4 && @style4 == 'fck' %>
 <%= render 'stylesheetz/css/jq_ui' %>
 <%= render 'stylesheetz/css/grid960_48' %>
 <%= render 'stylesheetz/css/finegrid' %>
+<% end %>
+
 <%= render 'stylesheetz/css/fonts', 		:finestyle => @finestyle %>
 <%= render 'stylesheetz/css/classes', 		:finestyle => @finestyle %>
 <%= render 'stylesheetz/css/content', 		:finestyle => @finestyle %>
@@ -151,6 +154,13 @@ a:hover { color: #000; }
 <%= render 'stylesheetz/css/spezials', 		:finestyle => @finestyle %>
 
 <%= hook :finestyles %>
+
+<% if @style4 && @style4 == 'admin' %>
+	<%= render 'stylesheetz/css/admin' %>
+<% end %>
+<% if @style4 && @style4 == 'fck' %>
+	<%= render 'stylesheetz/css/fck' %>
+<% end %>
 /* ####################################     ..End of - generated - styles     ######################################################### */
 .alpha, .apollo, .erster {margin-left:0}
 .omega, .zeus, .letzter {margin-right:0}

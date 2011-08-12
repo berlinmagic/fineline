@@ -81,43 +81,6 @@
 		<div class="clearfix"></div>
 	</div>
 	<div class="clearfix"></div>
-	<hr/>
-	<div class="clearfix"></div>
-	
-	<div class="kasten">
-		<div id="content">
-			
-				
-			<%= yield %>
-		</div>
-		<aside class="right">
-			<%= yield :sidebar %>
-			
-			<%= yield :modul_sidebar %>
-			
-			<%= hook :strange_sidebar_test do %>
-				<div class="side_box">
-					<div class="sidebar_head">
-						<a href="#">fineline-Sidebar</a>
-					</div>
-					<ul class='sidebar'>
-						<% if current_user %>
-							<li><%= link_to 'neue Seite', new_seite_url %></li>
-						<% else %>
-							<li><p>Beispiel Sidebar</p></li>
-							<li><p>Modul-Sidebars:</p></li>
-							<li><p>- News_Modul</p></li>
-							<li><p>- Bild_Modul</p></li>
-						<% end %>
-					</ul>
-				</div>
-			<% end %>
-			
-			<%= hook :strange_sidebar %>
-		</aside>
-		<div class="clearfix"></div>
-		<br/>
-	</div>
 </div>
 
 <div class="clearfix"></div>

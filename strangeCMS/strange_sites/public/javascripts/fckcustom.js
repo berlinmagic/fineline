@@ -121,7 +121,10 @@ FCKConfig.AutoGrowMax = 600 ;
 FCKConfig.DefaultLanguage		= 'de' ;
 FCKConfig.ForcePasteAsPlainText	= true ;
 
-FCKConfig.EditorAreaCSS = '/stylesheets/fck_styles.css' ;
+// FCKConfig.EditorAreaCSS = '/stylesheets/fck_styles.css' ;
+FCKConfig.EditorAreaCSS = '/system/editor_finestyle.css' ;
+
+
 FCKConfig.BodyClass = 'edit' ;
 FCKConfig.BodyId = 'edit' ;
 FCKConfig.CustomStyles =

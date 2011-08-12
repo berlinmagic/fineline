@@ -39,7 +39,9 @@ Rails.application.routes.draw do
   end
   
   scope "/system" do
-    match '/finestyle.:format' => "base#finestyle"
+    match '/finestyle.:format' => "base#finestyle", :to_style => 'seite'
+    match '/admin_finestyle.:format' => "base#finestyle", :to_style => 'admin'
+    match '/editor_finestyle.:format' => "base#finestyle", :to_style => 'fck'
     match '/grid_test' => "base#grid_test"
   end
   
