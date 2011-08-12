@@ -56,12 +56,18 @@ a.pic_btn_del:hover { opacity: 1; }
 	margin: 0;
 	padding: 4px;
 	background: transparent;
-	border: solid 1px #cccccc;
-	background: #f3f3f3 url('/images/back.png');
+	border: solid 1px #336699;
+	/*background: #f3f3f3 url('/images/back.png');*/
+	background: #fff;
 }
 
 a.gpix_box:hover { border: solid 1px #3878ae; background: #fff; }
 
+a.pic_nav_prev { position: absolute; left: 1%; top: 50%; bottom: 50%; padding:3px; background: #fff; display:block;}
+a.pic_nav_next { position: absolute; right: 1%; top: 50%; bottom: 50%; padding:3px; background: #fff; display:block;}
+
+a.pic_nav_prev, a.pic_nav_next { 
+	-webkit-border-radius: 30px; -moz-border-radius: 30px; border-radius: 30px; height: 28px; }
 
 /* +++++++++++++++++++++++++++++++++++++++++++++++   Gallerie - Admin   ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 .bild_box:hover { border: solid 1px #3878ae; background: #fff url("/images/back.png") left top repeat; }

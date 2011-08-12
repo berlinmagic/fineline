@@ -27,6 +27,12 @@ class GallerienController< ApplicationController
   def show
     @seite = Seite.where('system_name = ?', 'gallerie').first
     @bild = Bild.find(params[:id])
+    @pic_box = []
+    Bild.all.each do |pic|
+      @pic_box << pic.id
+    end
+    @prev_pic = @pic_box[ ( @pic_box.index(@bild.id) - 1 ) < 0 ? ( @pic_box.size - 1 ) : ( @pic_box.index(@bild.id) - 1 ) ]
+    @next_pic = @pic_box[ ( @pic_box.index(@bild.id) + 1 ) > ( @pic_box.size - 1 ) ? 0 : ( @pic_box.index(@bild.id) + 1 ) ]
     # => render :template => 'base/seite'
   end
    

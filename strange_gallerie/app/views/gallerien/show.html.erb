@@ -8,6 +8,15 @@
 <div class="clearfix"></div>
 
 	<div class="gpix_box">
+		<% if admin_check %>
+			<div class="in_box_admin_toolz">
+				<%= link_to finelineButton(:icon => 30, :color => 'hell'), "#" %>
+				<%= link_to finelineButton(:icon => 14, :color => 'hell'), "#" %>
+			</div>
+		<% end %>
+			<%= link_to finelineButton(:icon => 1, :size => 24, :class => 'kreis', :color => 'hell'), "#{ gallerien_path }/#{ @prev_pic.to_s }", :class => 'pic_nav_prev' %>
+			<%= link_to finelineButton(:icon => 2, :size => 24, :class => 'kreis', :color => 'hell'), "#{ gallerien_path }/#{ @next_pic.to_s }", :class => 'pic_nav_next' %>
+			
 			<%= image_tag @bild.file.thumb( @bild.file_cropping ).thumb("#{700}x#{600}").url %>
 	</div>
 
@@ -19,4 +28,9 @@
 <div class="clearfix"></div>
 <div class="vert_space"></div>
 <div class="clearfix"></div>
+<p><%= @bild.beschreibung %></p>
 
+<%= render 'admin/tags/tags_show', :data => @bild %>
+
+
+<%= render 'admin/kategorien/kategorie_show', :data => @bild %>

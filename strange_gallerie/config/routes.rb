@@ -62,7 +62,10 @@ Rails.application.routes.draw do
           #    get :available_bild_tags
           #  end
           #end
+          
           strange_tag_admin_routes
+          strange_kategorie_admin_routes
+          
           member do
             get :zuschneiden
             post :new_tag
