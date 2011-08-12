@@ -9,6 +9,11 @@ module StrangeGallerie
         
           resources :gallerien, :path => Seite.where('system_name = ?', 'gallerie').first.link do
             collection do
+              
+              
+              get 'xxl/page/:page', :action => :xxl_index
+              get 'xxl', :action => :xxl_index
+              
               get 'page/:page', :action => :index
               
               get 'by_tag/:tag', :action => :show_news_by_tag

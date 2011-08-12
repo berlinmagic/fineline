@@ -1,0 +1,22 @@
+<h1><%=  @bild.name %></h1>
+<div class="clearfix"></div>
+<div class="vert_space"></div>
+<div class="clearfix"></div>
+<div class="trenn_linie"></div>
+<div class="clearfix"></div>
+<div class="vert_space"></div>
+<div class="clearfix"></div>
+
+	<div class="gpix_box">
+			<%= image_tag @bild.file.thumb( @bild.file_cropping ).thumb("#{700}x#{600}").url %>
+	</div>
+
+<div class="clearfix"></div>
+<div class="vert_space"></div>
+<div class="clearfix"></div>
+
+<div class="trenn_linie"></div>
+<div class="clearfix"></div>
+<div class="vert_space"></div>
+<div class="clearfix"></div>
+

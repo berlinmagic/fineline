@@ -1,6 +1,9 @@
 # encoding: utf-8
 class GallerieConfiguration < Configuration
   
+  PIC_SHOWS     =   %w(lightbox show_pic)
+  PIC_DETAIL    =   %w(full std)
+  
   # => standard, hochformat, querformat, panorama, spezial
   
   preference :hochformat_width, :integer, :default => 600
@@ -29,5 +32,10 @@ class GallerieConfiguration < Configuration
   preference :default_thumb_height, :integer, :default => 150
   
   preference :standard_format, :string, :default => 'querformat'
+  
+  preference :pic_show, :string, :default => PIC_SHOWS[0]
+  
+  preference :pic_detail, :string, :default => PIC_DETAIL[0]
+  
 
 end

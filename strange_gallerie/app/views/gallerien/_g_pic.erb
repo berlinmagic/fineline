@@ -5,8 +5,20 @@
 <% thumb_breite = pic_dim[:breite] %>
 <% thumb_hoehe = pic_dim[:hoehe] %>
 
-<a class="gpix_box colorB" href="/system/gallerie/lightbox/<%= bild.id %>">
+<% if Strangecms::Gallerie::Config[:pic_show] == 'lightbox' %>
+
+	<a class="gpix_box colorB" href="/system/gallerie/lightbox/<%= bild.id %>">
 	
-	<%= image_tag bild.file.thumb(bild.file_cropping).thumb("#{thumb_breite}x#{thumb_hoehe}").url, 
-					:style => "margin: #{(gpic_height-thumb_hoehe)/2}px #{(gpic_width-thumb_breite)/2}px" %>
-</a>
+		<%= image_tag bild.file.thumb(bild.file_cropping).thumb("#{thumb_breite}x#{thumb_hoehe}").url, 
+						:style => "margin: #{(gpic_height-thumb_hoehe)/2}px #{(gpic_width-thumb_breite)/2}px" %>
+	</a>
+
+<% else %>
+
+	<a class="gpix_box" href="<%= gallerie_path(bild) %>">
+	
+		<%= image_tag bild.file.thumb(bild.file_cropping).thumb("#{thumb_breite}x#{thumb_hoehe}").url, 
+						:style => "margin: #{(gpic_height-thumb_hoehe)/2}px #{(gpic_width-thumb_breite)/2}px" %>
+	</a>
+
+<% end %>
