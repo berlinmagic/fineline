@@ -1,125 +1,7 @@
-<%# cache do %>
-/* ###  Variabelen  ### */
-<% submit_verlauf = "background: #4786bb;
-background: -moz-linear-gradient(top, #4786bb 0%, #336699 100%);
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#4786bb), color-stop(100%,#336699));
-background: -webkit-linear-gradient(top, #4786bb 0%,#336699 100%);
-background: -o-linear-gradient(top, #4786bb 0%,#336699 100%);
-background: -ms-linear-gradient(top, #4786bb 0%,#336699 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4786bb', endColorstr='#336699',GradientType=0 );
-background: linear-gradient(top, #4786bb 0%,#336699 100%);" -%>
-
-<% submit_over_verlauf = "background: #3a7ab0;
-background: -moz-linear-gradient(top, #3a7ab0 0%, #082f55 100%);
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#3a7ab0), color-stop(100%,#082f55));
-background: -webkit-linear-gradient(top, #3a7ab0 0%,#082f55 100%);
-background: -o-linear-gradient(top, #3a7ab0 0%,#082f55 100%);
-background: -ms-linear-gradient(top, #3a7ab0 0%,#082f55 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3a7ab0', endColorstr='#082f55',GradientType=0 );
-background: linear-gradient(top, #3a7ab0 0%,#082f55 100%);" -%>
-<% submit_click_verlauf = "background: #3a7ab0;
-background: -moz-linear-gradient(top, #3a7ab0 0%, #082f55 100%);
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#3a7ab0), color-stop(100%,#082f55));
-background: -webkit-linear-gradient(top, #3a7ab0 0%,#082f55 100%);
-background: -o-linear-gradient(top, #3a7ab0 0%,#082f55 100%);
-background: -ms-linear-gradient(top, #3a7ab0 0%,#082f55 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3a7ab0', endColorstr='#082f55',GradientType=0 );
-background: linear-gradient(top, #3a7ab0 0%,#082f55 100%);" -%>
-<%  -%>
-<%  -%>
-<%  -%>
-<%  -%>
-
-
-/* ======================================================================================================================================== */
-/* =====================================   BoilerPlate - first-part   ============================================================== */
-/* ======================================================================================================================================== */
-/*  * HTML5 &#10032;Boilerplate * *  HTML5 display definitions   ========================================================================== */
-article,aside,details,figcaption,figure,footer,header,hgroup,nav,section{display:block}audio,canvas,video{display:inline-block;*display:inline;*zoom:1}audio:not([controls]){display:none}[hidden]{display:none}
-/* ============================   Base   =====================================*/
-/* 	* 1. Correct text resizing oddly in IE6/7 when body font-size is set using em units 
-	* 2. Force vertical scrollbar in non-IE 
-	* 3. Prevent iOS text size adjust on device orientation change,without disabling user zoom:h5bp.com/g*/
-html{font-size:100%;overflow-y:scroll;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}body{margin:0;font-size:13px;line-height:1.231}body,button,input,select,textarea{font-family:sans-serif;color:#222}
-/*  * Remove text-shadow in selection highlight:h5bp.com/i 
-	* These selection declarations have to be separate 
-	* Also:hot pink! (or customize the background color to match your design) */
-::-moz-selection{background:#ff6a04;color:#fff;text-shadow:none}::selection{background:#ff6a04;color:#fff;text-shadow:none}
-/* ============================  Links   ======================================*/
-/* j.mp/webkit-tap-highlight-color */
-a:link { -webkit-tap-highlight-color: #ff6a04; }
-
-a{color:#000}
-a:visited{ color:#666 }
-a:hover{ color:#369;  }
-a:focus{outline:thin dotted}
-
-/* Improve readability when focused and hovered in all browsers:h5bp.com/h */
-a:hover,a:active{outline:0}
-/* ============================   Typography   =================================*/
-abbr[title]{border-bottom:1px dotted}b,strong{font-weight:bold}blockquote{margin:1em 40px}dfn{font-style:italic}hr{display:block;height:1px;border:0;border-top:1px solid #ccc;margin:1em 0;padding:0}ins{background:#ff9;color:#000;text-decoration:none}mark{background:#ff0;color:#000;font-style:italic;font-weight:bold}
-/* Redeclare monospace font family:h5bp.com/j */
-pre,code,kbd,samp{font-family:monospace,monospace;_font-family:'courier new',monospace;font-size:1em}
-/* Improve readability of pre-formatted text in all browsers */
-pre{white-space:pre;white-space:pre-wrap;word-wrap:break-word}q{quotes:none}q:before,q:after{content:"";content:none}small{font-size:85%}
-/* Position subscript and superscript content without affecting line-height:h5bp.com/k */
-sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sup{top:-0.5em}sub{bottom:-0.25em}
-/* =============================   Lists   =======================================*/
-ul,ol{margin:1em 0;padding:0 0 0 40px}dd{margin:0 0 0 40px}nav ul,nav ol{list-style:none;list-style-image:none;margin:0;padding:0}
-/* =============================   Embedded content   ============================*/
-/* 	* 1. Improve image quality when scaled in IE7:h5bp.com/d 
-	* 2. Remove the gap between images and borders on image containers:h5bp.com/e  */
-img{border:0;-ms-interpolation-mode:bicubic;vertical-align:middle}
-/* * Correct overflow not hidden in IE9  */
-svg:not(:root){overflow:hidden}
-/* =============================   Figures   ======================================*/
-figure{margin:0}
-/* =============================   Forms   ========================================*/
-form{margin:0}fieldset{border:0;margin:0;padding:0}
-/* Indicate that 'label' will shift focus to the associated form element */
-label{cursor:pointer}
-/*  	* 1. Correct color not inheriting in IE6/7/8/9  
-		* 2. Correct alignment displayed oddly in IE6/7  */
-legend{border:0;*margin-left:-7px;padding:0}
-/* 		* 1. Correct font-size not inheriting in all browsers 
-		* 2. Remove margins in FF3/4 S5 Chrome 
-		* 3. Define consistent vertical alignment display in all browsers */
-button,input,select,textarea{font-size:100%;margin:0;vertical-align:baseline;*vertical-align:middle}
-/* 		* 1. Define line-height as normal to match FF3/4 (set using !important in the UA stylesheet) 
-		* 2. Correct inner spacing displayed oddly in IE6/7 */
-button,input{line-height:normal;*overflow:visible}
-/* * Reintroduce inner spacing in 'table' to avoid overlap and whitespace issues in IE6/7 */
-table button,table input{*overflow:auto}
-/* 		* 1. Display hand cursor for clickable form elements 
-		* 2. Allow styling of clickable form elements in iOS */
-button,input[type="button"],input[type="reset"],input[type="submit"]{cursor:pointer;-webkit-appearance:button}
-/* * Consistent box sizing and appearance */
-input[type="checkbox"],input[type="radio"]{box-sizing:border-box}input[type="search"]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}input[type="search"]::-webkit-search-decoration{-webkit-appearance:none}
-/*  * Remove inner padding and border in FF3/4:h5bp.com/l  */
-button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
-/*  * 1. Remove default vertical scrollbar in IE6/7/8/9  * 2. Allow only vertical resizing */
-textarea{overflow:auto;vertical-align:top;resize:vertical}
-/* Colors for form validity */
-input:valid,textarea:valid{}input:invalid,textarea:invalid{background-color:#f0dddd}
-/* ============================   Tables   ==========================================*/
-table{border-collapse:collapse;border-spacing:0}td{vertical-align:top}
-
-/* ======================================================================================================================================== */
-/* =====================================            fineline - part          ============================================================== */
-/* ======================================================================================================================================== */
-
-body, select, input, textarea {
-  /* #444 looks better than black: twitter.com/H_FJ/statuses/11800719859 */
-  /* Set your base font here, to apply evenly */
-  /* font-family: Georgia, serif;  */
-  color: #444; line-height: 20px; }
-/* Headers (h1, h2, etc) have no default font-size or margin; define those yourself */
-h1, h2, h3, h4, h5, h6 { font-weight: bold; }
-a, a:active, a:visited { color: #607890; text-decoration:none; }
-a:hover { color: #000; }
-
-<%#		inset? ( = nach innen ) _ horizontaler abstand _ verticaler abstand _ optional rausch abstand _ optional größer als box	 %> 
-
+/* ============================================================================================================================================ */
+/* =====================================        f i n e l i n e - C S S          ============================================================== */
+/* ============================================================================================================================================ */
+<%# /*	inset? ( = nach innen ) _ horizontaler abstand _ verticaler abstand _ optional rausch abstand _ optional größer als box	 */ -%> 
 <% 		@finestyle 						= 	{}	 -%>
 <% 		@finestyle[:button]				= 	{}	 -%>
 <% 		@finestyle[:big_button] 		= 	{}	 -%>
@@ -131,8 +13,7 @@ a:hover { color: #000; }
 <% 		@finestyle[:main_nav_subnav]	= 	{}	 -%>
 <% 		@finestyle[:submit_button]		= 	{}	 -%>
 <% 		@finestyle[:cancel_button]		= 	{}	 -%>
-
-
+<%# -%>
 <%	 @finestyle[:button][:box_shaddow] 					= 	'1px 1px 3px 1px #888' -%>
 <%	 @finestyle[:button][:box_shaddow_hover] 			= 	'inset 1px 1px 3px 1px #888' -%>
 <%	 @finestyle[:button][:radius] 						= 	'1px' -%>
@@ -145,106 +26,95 @@ a:hover { color: #000; }
 <%	 @finestyle[:button][:bg_color_hover] 				= 	'rgb(62,115,169)' -%>
 <%	 @finestyle[:button][:bg_color_click] 				= 	'#165891' -%>
 <%	 @finestyle[:button][:bg_image] 					= 	'verlauf50' -%>
-
+<%# -%>
 <%	 @finestyle[:footer][:shaddow] 						= 	'inset 0px 2px 3px 3px rgba(0,0,0,.9)' -%>
-
-                                                		
+<%# -%>
 <%	 @finestyle[:submit_button][:radius] 				= 	"2px" -%>
 <%	 @finestyle[:submit_button][:box_shaddow] 			= 	'inset 1px 1px 1px 0px rgba(255,255,255,.4)' -%>
 <%	 @finestyle[:submit_button][:box_shaddow_click] 	= 	'inset 1px 1px 1px rgba(8,47,85,.6)' -%>
-
-<%	 @finestyle[:submit_button][:bg] 					= 	submit_verlauf -%>
-<%	 @finestyle[:submit_button][:bg_hover] 				= 	submit_over_verlauf -%>
-<%	 @finestyle[:submit_button][:bg_click] 				= 	submit_click_verlauf -%>
-
-
+<%# -%>
+<%	 @finestyle[:submit_button][:bg] 					= 	"#{ fine_backgroundGradient( '#4786bb', '#336699 ' ) }" -%>
+<%	 @finestyle[:submit_button][:bg_hover] 				= 	fine_backgroundGradient( '#3a7ab0', '#082f55' ) -%>
+<%	 @finestyle[:submit_button][:bg_click] 				= 	fine_backgroundGradient( '#3a7ab0', '#082f55' ) -%>
+<%# -%>
 <%	 @finestyle[:cancel_button][:radius] 				= 	"2px" -%>
 <%	 @finestyle[:cancel_button][:box_shaddow] 			= 	'inset 1px 1px 1px 0px rgba(255,255,255,.4)' -%>
 <%	 @finestyle[:cancel_button][:box_shaddow_click] 	= 	'inset 1px 1px 1px rgba(0,0,0,.4)' -%>
-
-                                              		
+<%# -%>
 <%	 @finestyle[:fl_button][:radius] 					= 	'3px' -%>
 <%	 @finestyle[:fl_button][:box_shaddow_hover] 		= 	'inset 1px 1px 1px 0px rgba(255,255,255,.4)' -%>
 <%	 @finestyle[:fl_button][:box_shaddow_click] 		= 	'inset 1px 1px 1px 0px rgba(0,0,0,.4)' -%>
-                                                		
+<%# -%>
 <%	 @finestyle[:fl_select][:radius] 					= 	"3px" -%>
-                                                		
+<%# -%>
 <%	 @finestyle[:edit_box][:radius] 					= 	"5px" -%>
-                                                		
+<%# -%>
 <%	 @finestyle[:edit_box][:shaddow] 					= 	'inset 0px 2px 3px 3px rgba(0,0,0,.9)' -%>
-
+<%# -%>
 <%	 @finestyle[:main_nav_button][:bg_color] 			= 	'#336699' -%>
 <%	 @finestyle[:main_nav_button][:bg_color_hover] 		= 	'rgb(62,115,169)' -%>
 <%	 @finestyle[:main_nav_button][:bg_color_click] 		= 	'rgb(153,153,153)' -%>
 <%	 @finestyle[:main_nav_button][:bg_color_aktiv] 		= 	'rgba(255,255,255,.9)' -%>
 <%	 @finestyle[:main_nav_button][:bg_image] 			= 	'verlauf50' -%>
 <%	 @finestyle[:main_nav_button][:radius] 				= 	'3px' -%>
-
+<%# -%>
 <%	 @finestyle[:main_nav_subnav][:radius] 				= 	'7px' -%>
-
-/* ####################################     fineline - generated - styles     ######################################################### */
-<% unless @style4 && @style4 == 'fck' %>
-<%= render 'stylesheetz/css/jq_ui' %>
-<%= render 'stylesheetz/css/grid960_48' %>
-<%= render 'stylesheetz/css/finegrid' %>
-<% end %>
-
-<%= render 'stylesheetz/css/fonts', 		:finestyle => @finestyle %>
-<%= render 'stylesheetz/css/classes', 		:finestyle => @finestyle %>
-<%= render 'stylesheetz/css/content', 		:finestyle => @finestyle %>
-<%= render 'stylesheetz/css/main', 			:finestyle => @finestyle %>
-<%= render 'stylesheetz/css/buttons', 		:finestyle => @finestyle %>
-<%= render 'stylesheetz/css/forms', 		:finestyle => @finestyle %>
-<%= render 'stylesheetz/css/lists', 		:finestyle => @finestyle %>
-<%= render 'stylesheetz/css/navigation', 	:finestyle => @finestyle %>
-<%= render 'stylesheetz/css/sidebars', 		:finestyle => @finestyle %>
-<%= render 'stylesheetz/css/spezials', 		:finestyle => @finestyle %>
-
-<%= hook :finestyles %>
-
-<% if @style4 && @style4 == 'admin' %>
-	<%= render 'stylesheetz/css/admin' %>
-<% end %>
+<%#/* ####################################     fineline - generated - styles     ############################################################# */ -%>
 <% if @style4 && @style4 == 'fck' %>
-	<%= render 'stylesheetz/css/fck' %>
+	<%# cache do %>
+<%= fine_minify( "#{ render 'stylesheetz/css/boiler1' }" ) %>
+<%= fine_minify( "#{ render 'stylesheetz/css/fonts', :finestyle => @finestyle }" ) %>
+<%= fine_minify( "#{ render 'stylesheetz/css/classes', :finestyle => @finestyle }" ) %>
+<%= fine_minify( "#{ render 'stylesheetz/css/content', :finestyle => @finestyle }" ) %>
+<%= fine_minify( "#{ render 'stylesheetz/css/main', :finestyle => @finestyle }" ) %>
+<%= fine_minify( "#{ render 'stylesheetz/css/buttons', :finestyle => @finestyle }" ) %>
+<%= fine_minify( "#{ render 'stylesheetz/css/forms', :finestyle => @finestyle }" ) %>
+<%= fine_minify( "#{ render 'stylesheetz/css/lists', :finestyle => @finestyle }" ) %>
+<%= fine_minify( "#{ render 'stylesheetz/css/navigation', :finestyle => @finestyle }" ) %>
+<%= fine_minify( "#{ render 'stylesheetz/css/sidebars', :finestyle => @finestyle }" ) %>
+<%= fine_minify( "#{ render 'stylesheetz/css/spezials', :finestyle => @finestyle }" ) %>
+<%= fine_minify( "#{ render 'stylesheetz/css/fck'  }" ) %>
+<%= fine_minify( "#{ render 'stylesheetz/css/boiler2'  }" ) %>
+	<%# end %>
+<% elsif @style4 && @style4 == 'admin' %>
+	<%# cache do %>
+<%= fine_minify( "#{ render 'stylesheetz/css/boiler1' }" ) %>
+<%= fine_minify( "#{ render 'stylesheetz/css/jq_ui' }" ) %>
+<%= fine_minify( "#{ render 'stylesheetz/css/grid960_48' }" ) %>
+<%= fine_minify( "#{ render 'stylesheetz/css/finegrid' }" ) %>
+<%= fine_minify( "#{ render 'stylesheetz/css/fonts', :finestyle => @finestyle }" ) %>
+<%= fine_minify( "#{ render 'stylesheetz/css/classes', :finestyle => @finestyle }" ) %>
+<%= fine_minify( "#{ render 'stylesheetz/css/content', :finestyle => @finestyle }" ) %>
+<%= fine_minify( "#{ render 'stylesheetz/css/main', :finestyle => @finestyle }" ) %>
+<%= fine_minify( "#{ render 'stylesheetz/css/buttons', :finestyle => @finestyle }" ) %>
+<%= fine_minify( "#{ render 'stylesheetz/css/forms', :finestyle => @finestyle }" ) %>
+<%= fine_minify( "#{ render 'stylesheetz/css/lists', :finestyle => @finestyle }" ) %>
+<%= fine_minify( "#{ render 'stylesheetz/css/navigation', :finestyle => @finestyle }" ) %>
+<%= fine_minify( "#{ render 'stylesheetz/css/sidebars', :finestyle => @finestyle }" ) %>
+<%= fine_minify( "#{ render 'stylesheetz/css/spezials', :finestyle => @finestyle }" ) %>
+<%= fine_minify( "#{ render 'stylesheetz/css/admin' }" ) %>
+<%= fine_minify( "#{ hook :finestyles }" ) %>
+<%= fine_minify( "#{ render 'stylesheetz/css/boiler2'  }" ) %>
+	<%# end %>
+<% else %>
+	<%# cache do %>
+<%= fine_minify( "#{ render 'stylesheetz/css/boiler1' }" ) %>
+<%= fine_minify( "#{ render 'stylesheetz/css/jq_ui' }" ) %>
+<%= fine_minify( "#{ render 'stylesheetz/css/grid960_48' }" ) %>
+<%= fine_minify( "#{ render 'stylesheetz/css/finegrid' }" ) %>
+<%= fine_minify( "#{ render 'stylesheetz/css/fonts', :finestyle => @finestyle }" ) %>
+<%= fine_minify( "#{ render 'stylesheetz/css/classes', :finestyle => @finestyle }" ) %>
+<%= fine_minify( "#{ render 'stylesheetz/css/content', :finestyle => @finestyle }" ) %>
+<%= fine_minify( "#{ render 'stylesheetz/css/main', :finestyle => @finestyle }" ) %>
+<%= fine_minify( "#{ render 'stylesheetz/css/buttons', :finestyle => @finestyle }" ) %>
+<%= fine_minify( "#{ render 'stylesheetz/css/forms', :finestyle => @finestyle }" ) %>
+<%= fine_minify( "#{ render 'stylesheetz/css/lists', :finestyle => @finestyle }" ) %>
+<%= fine_minify( "#{ render 'stylesheetz/css/navigation', :finestyle => @finestyle }" ) %>
+<%= fine_minify( "#{ render 'stylesheetz/css/sidebars', :finestyle => @finestyle }" ) %>
+<%= fine_minify( "#{ render 'stylesheetz/css/spezials', :finestyle => @finestyle }" ) %>
+<%= fine_minify( "#{ hook :finestyles }" ) %>
+<%= fine_minify( "#{ render 'stylesheetz/css/boiler2'  }" ) %>
+	<%# end %>
 <% end %>
 /* ####################################     ..End of - generated - styles     ######################################################### */
-.alpha, .apollo, .erster {margin-left:0}
-.omega, .zeus, .letzter {margin-right:0}
 
-
-/* ======================================================================================================================================== */
-/* =====================================      BoilerPlate - second-part      ============================================================== */
-/* ======================================================================================================================================== */
-/* ==|== non-semantic helper classes =========   Please define your styles before this section.   ================================*/
-/* For image replacement */
-.ir{display:block;border:0;text-indent:-999em;overflow:hidden;background-color:transparent;background-repeat:no-repeat;text-align:left;direction:ltr}.ir br{display:none}
-/* Hide from both screenreaders and browsers:h5bp.com/u */
-.hidden{display:none !important;visibility:hidden}
-/* Hide only visually,but have it available for screenreaders:h5bp.com/v */
-.visuallyhidden{border:0;clip:rect(0 0 0 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px}
-/* Extends the .visuallyhidden class to allow the element to be focusable when navigated to via the keyboard:h5bp.com/p */
-.visuallyhidden.focusable:active,.visuallyhidden.focusable:focus{clip:auto;height:auto;margin:0;overflow:visible;position:static;width:auto}
-/* Hide visually and from screenreaders,but maintain layout */
-.invisible{visibility:hidden}
-/* Contain floats:h5bp.com/q */
-.clearfix:before,.clearfix:after{content:"";display:table}.clearfix:after{clear:both}.clearfix{zoom:1}
-/* ==|== media queries ==================   PLACEHOLDER Media Queries for Responsive Design.   
-		These override the primary ('mobile first') styles   Modify as content requires.   ===================================*/
-@media only screen and (min-width:480px){ /* Style adjustments for viewports 480px and over go here */ }
-@media only screen and (min-width:768px){ /* Style adjustments for viewports 768px and over go here */ }
-/* ==|== print styles ===================  Print styles.   Inlined to avoid required HTTP connection:h5bp.com/r   ===========================*/
-@media print{ 
-		*{background:transparent !important;color:black !important;text-shadow:none !important;filter:none !important;-ms-filter:none !important}
-		/* Black prints faster:h5bp.com/s */ 
-		a,a:visited{text-decoration:underline} a[href]:after{content:"("attr(href) ")"} abbr[title]:after{content:"("attr(title) ")"} 
-		.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""} 
-		/* Don't show links for images,or javascript/internal links */ 
-		pre,blockquote{border:1px solid #999;page-break-inside:avoid} thead{display:table-header-group}
-		/* h5bp.com/t */ 
-		tr,img{page-break-inside:avoid}
-		img{max-width:100% !important}
-		@page{margin:0.5cm}
-		p,h2,h3{orphans:3;widows:3}
-		h2,h3{page-break-after:avoid} 	}
-<%# end %>

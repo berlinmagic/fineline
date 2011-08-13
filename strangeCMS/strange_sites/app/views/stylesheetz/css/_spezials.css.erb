@@ -306,8 +306,4 @@ ul#language-bar a#en { background: url(/images/flags/en.jpg) no-repeat; }
 .cboxIE6 #cboxMiddleLeft{background:url(/images/ie6/borderMiddleLeft.png);}
 .cboxIE6 #cboxMiddleRight{background:url(/images/ie6/borderMiddleRight.png);}
 
-.cboxIE6 #cboxTopLeft, .cboxIE6 #cboxTopCenter, .cboxIE6 #cboxTopRight, .cboxIE6 #cboxBottomLeft, 
-.cboxIE6 #cboxBottomCenter, .cboxIE6 #cboxBottomRight, .cboxIE6 #cboxMiddleLeft,
-.cboxIE6 #cboxMiddleRight {
-    _behavior: expression(this.src = this.src ? this.src : this.currentStyle.backgroundImage.split('"')[1], this.style.background = "none", this.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src=" + this.src + ", sizingMethod='scale')");
-}
+

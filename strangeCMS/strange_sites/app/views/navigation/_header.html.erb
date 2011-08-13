@@ -1,19 +1,22 @@
-<nav id="header_navigation">
+<div id="header_navigation">
+	<ul>
 	
 	<%= hook :before_system_navigation %>
 		
 	<% Seite.aktiv.header.each do |seite| %>
-		<li class="fine_header_nav<%= ' aktiv' if @seite && ((@seite == seite) || (@seite.hauptseite == seite)) %>">
+		<li class="fine_header_nav<%= ' nav_aktiv' if @seite && ((@seite == seite) || (@seite.hauptseite == seite)) %>">
 			<%= link_to seite.name.upcase, seite.link, :class => "#{'aktiv' if @seite && ((@seite == seite) || (@seite.hauptseite == seite))}" %>
 		</li>
 	<% end %>
 	
 	<%= hook :system_navigation do %>
-		<li class="fine_header_nav sitemap<%= ' aktiv' if @is_sitemap %>">
+		<li class="fine_header_nav sitemap<%= ' nav_aktiv' if @is_sitemap %>">
 			<%= link_to t('std_seiten.sitemap').upcase, '/sitemap', :class => "strange_head_button #{' aktiv' if @is_sitemap }" %>
 		</li>
 	<% end %>
 	
 	<%= hook :after_system_navigation %>
-	
-</nav>
+		
+		<div class="clearfix"></div>
+	</ul>
+</div>

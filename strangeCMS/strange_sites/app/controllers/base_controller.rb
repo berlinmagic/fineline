@@ -1,6 +1,8 @@
 # encoding: utf-8
 class BaseController < ApplicationController
   
+  include FinestyleHelp
+  
   skip_before_filter :verify_authenticity_token, :only => ['elfinder']
   
   layout proc { |controller| controller.request.xhr? ? false : 'fineline' }
