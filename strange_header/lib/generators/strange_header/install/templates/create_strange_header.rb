@@ -10,8 +10,6 @@ class CreateStrangeHeader < ActiveRecord::Migration
       t.integer       :hoehe                  # => höhe des Headers   ... eh. header_height
       t.references    :seite                  # => evtl. Überflüssig
       # 
-      
-      
       t.string        :standzeit
       t.string        :wechelzeit
       t.string        :sortierung
