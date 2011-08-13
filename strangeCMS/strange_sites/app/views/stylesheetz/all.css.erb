@@ -1,4 +1,36 @@
 <%# cache do %>
+/* ###  Variabelen  ### */
+<% submit_verlauf = "background: #4786bb;
+background: -moz-linear-gradient(top, #4786bb 0%, #336699 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#4786bb), color-stop(100%,#336699));
+background: -webkit-linear-gradient(top, #4786bb 0%,#336699 100%);
+background: -o-linear-gradient(top, #4786bb 0%,#336699 100%);
+background: -ms-linear-gradient(top, #4786bb 0%,#336699 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4786bb', endColorstr='#336699',GradientType=0 );
+background: linear-gradient(top, #4786bb 0%,#336699 100%);" -%>
+
+<% submit_over_verlauf = "background: #3a7ab0;
+background: -moz-linear-gradient(top, #3a7ab0 0%, #082f55 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#3a7ab0), color-stop(100%,#082f55));
+background: -webkit-linear-gradient(top, #3a7ab0 0%,#082f55 100%);
+background: -o-linear-gradient(top, #3a7ab0 0%,#082f55 100%);
+background: -ms-linear-gradient(top, #3a7ab0 0%,#082f55 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3a7ab0', endColorstr='#082f55',GradientType=0 );
+background: linear-gradient(top, #3a7ab0 0%,#082f55 100%);" -%>
+<% submit_click_verlauf = "background: #3a7ab0;
+background: -moz-linear-gradient(top, #3a7ab0 0%, #082f55 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#3a7ab0), color-stop(100%,#082f55));
+background: -webkit-linear-gradient(top, #3a7ab0 0%,#082f55 100%);
+background: -o-linear-gradient(top, #3a7ab0 0%,#082f55 100%);
+background: -ms-linear-gradient(top, #3a7ab0 0%,#082f55 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3a7ab0', endColorstr='#082f55',GradientType=0 );
+background: linear-gradient(top, #3a7ab0 0%,#082f55 100%);" -%>
+<%  -%>
+<%  -%>
+<%  -%>
+<%  -%>
+
+
 /* ======================================================================================================================================== */
 /* =====================================   BoilerPlate - first-part   ============================================================== */
 /* ======================================================================================================================================== */
@@ -97,6 +129,8 @@ a:hover { color: #000; }
 <% 		@finestyle[:footer]				= 	{}	 -%>
 <% 		@finestyle[:main_nav_button]	= 	{}	 -%>
 <% 		@finestyle[:main_nav_subnav]	= 	{}	 -%>
+<% 		@finestyle[:submit_button]		= 	{}	 -%>
+<% 		@finestyle[:cancel_button]		= 	{}	 -%>
 
 
 <%	 @finestyle[:button][:box_shaddow] 					= 	'1px 1px 3px 1px #888' -%>
@@ -113,9 +147,22 @@ a:hover { color: #000; }
 <%	 @finestyle[:button][:bg_image] 					= 	'verlauf50' -%>
 
 <%	 @finestyle[:footer][:shaddow] 						= 	'inset 0px 2px 3px 3px rgba(0,0,0,.9)' -%>
+
                                                 		
-<%	 @finestyle[:big_button][:radius] 					= 	"3px" -%>
-                                                		
+<%	 @finestyle[:submit_button][:radius] 				= 	"2px" -%>
+<%	 @finestyle[:submit_button][:box_shaddow] 			= 	'inset 1px 1px 1px 0px rgba(255,255,255,.4)' -%>
+<%	 @finestyle[:submit_button][:box_shaddow_click] 	= 	'inset 1px 1px 1px rgba(8,47,85,.6)' -%>
+
+<%	 @finestyle[:submit_button][:bg] 					= 	submit_verlauf -%>
+<%	 @finestyle[:submit_button][:bg_hover] 				= 	submit_over_verlauf -%>
+<%	 @finestyle[:submit_button][:bg_click] 				= 	submit_click_verlauf -%>
+
+
+<%	 @finestyle[:cancel_button][:radius] 				= 	"2px" -%>
+<%	 @finestyle[:cancel_button][:box_shaddow] 			= 	'inset 1px 1px 1px 0px rgba(255,255,255,.4)' -%>
+<%	 @finestyle[:cancel_button][:box_shaddow_click] 	= 	'inset 1px 1px 1px rgba(0,0,0,.4)' -%>
+
+                                              		
 <%	 @finestyle[:fl_button][:radius] 					= 	'3px' -%>
 <%	 @finestyle[:fl_button][:box_shaddow_hover] 		= 	'inset 1px 1px 1px 0px rgba(255,255,255,.4)' -%>
 <%	 @finestyle[:fl_button][:box_shaddow_click] 		= 	'inset 1px 1px 1px 0px rgba(0,0,0,.4)' -%>

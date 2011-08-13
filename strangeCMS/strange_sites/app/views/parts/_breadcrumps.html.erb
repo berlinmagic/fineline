@@ -1,0 +1,23 @@
+<div id="bread">
+	
+	<div class="container_48">
+		
+		<div class="fl_box_950">
+			
+			<% if @seite && @seite.breadcrumps %>
+				<div id="fineBreadcrumps">
+					Sie befinden sich hier: <strong><%= @seite.name %></strong>
+				</div>
+			<% elsif @is_sitemap %>
+				<div id="fineBreadcrumps">
+					Sie befinden sich hier: <strong>Sitemap</strong>
+				</div>
+			<% end %>
+			
+		</div>
+		
+		<div class="clearfix"></div>
+		
+	</div>
+
+</div>

@@ -6,7 +6,7 @@ class StrangeUserHooks < Strangecms::ThemeSupport::HookListener
   
   replace :admin_login_buttons, :partial => "devise/menu/login_items"
   
-  insert_before :system_navigation, :partial => "devise/menu/login"
+  insert_after :after_system_navigation, :partial => "devise/menu/login"
   
   replace :user_part do
     "<% if admin_check %>

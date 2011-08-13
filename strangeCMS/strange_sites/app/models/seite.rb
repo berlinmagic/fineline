@@ -37,6 +37,7 @@ class Seite < ActiveRecord::Base
   
   has_many      :unter_seiten,    :class_name => 'Seite',   :foreign_key => :elternseite_id
   belongs_to    :ueber_seite,     :class_name => 'Seite',   :foreign_key => :elternseite_id
+  belongs_to    :hauptseite,      :class_name => 'Seite',   :foreign_key => :hauptseite_id
   
   belongs_to    :gruppe
   belongs_to    :autor,           :class_name => 'User',    :foreign_key => :autor_id

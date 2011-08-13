@@ -20,22 +20,7 @@
 <%= hook :strange_admin_page do %>
     
 <%= hook :admin_user_part do %>
-<div id="user_area">
-	<div class="container_48">
-		<div class="fl_box_470">
-			<nav id="user_nav">
-				<%= hook :admin_frontend_button do %>
-  					<%= link_to finelineIcon(:icon => 9)+' '+t('strange_Frontend'), root_url, :id => 'strange_admin_button' %>
-				<% end %>
-			</nav>
-		</div>
-		<div class="fl_box_470">
-			<div class="right_user_nav">
-				<%= hook :admin_login_buttons %>
-			</div>
-		</div>
-	</div>
-</div>
+	<%= render 'navigation/user' %>
 <% end %>
 
 <header>

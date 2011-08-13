@@ -36,12 +36,13 @@ class GallerienController< ApplicationController
   end
   
   def show_by_date
+    @date_pics = []
     if params[:day]
-      @date_pics = Bilder.all.nach_jahr(params[:year]).nach_monat(params[:month]).nach_tag(params[:day])
+      @date_pics = Bild.nach_jahr(params[:year]).nach_monat(params[:month]).nach_tag(params[:day])
     elsif params[:month]
-       @date_pics = Bilder.all.nach_jahr(params[:year]).nach_monat(params[:month])
+       @date_pics = Bild.nach_jahr(params[:year]).nach_monat(params[:month])
     else      
-      @date_pics = Bilder.all.nach_jahr(params[:year])
+      @date_pics = Bild.nach_jahr(params[:year])
     end
     @page_url = @page_uri+'/by_date'+"/#{params[:year]}"+"#{'/'+params[:month] if params[:month]}"+"#{'/'+params[:day] if params[:day]}"
     per_page = 16
@@ -79,14 +80,17 @@ class GallerienController< ApplicationController
     Kat.where(:target_type => 'Bild', :kategorie_id => @kategorie.id).each do |tagging|
         @kat_pics << Bild.find(tagging.target_id)
     end
-    per_page = 16
-    @page_count = @kat_pics.count / per_page + 1 
-    @page_url = @page_uri + '/by_kategorie' + @kategorie.slug
+    per_page      =   16
+    @page_count   =   @kat_pics.count / per_page + 1 
+    @page_url     =   @page_uri + '/by_kategorie' + @kategorie.slug
+    
     if @kat_pics.count > per_page
+      
         @fineline_array_paginated = true
-        @news = @kat_pics.fine_paginated(@page, per_page) 
+        @bilder   =   @kat_pics.fine_paginated(@page, per_page)
+         
     else
-        @news = @kat_pics
+        @bilder   =   @kat_pics
     end
     render 'gallerien/show_by'
   end

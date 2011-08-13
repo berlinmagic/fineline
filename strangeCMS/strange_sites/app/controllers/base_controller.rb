@@ -65,6 +65,7 @@ class BaseController < ApplicationController
   end
   
   def sitemap
+    @is_sitemap = true
     @public_dir = root_url
     @pages = Seite.sitemap
     respond_to do |format|

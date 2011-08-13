@@ -1,6 +1,8 @@
 # encoding: utf-8
 Admin::BaseController.class_eval do
   
+  before_filter :admin_params_loader
+  
   include StrangeSitesHelp
   
   def dashboard
@@ -29,6 +31,10 @@ Admin::BaseController.class_eval do
         format.xml  { render :xml => @text.errors, :status => :unprocessable_entity }
       end
     end
+  end
+  
+  def admin_params_loader
+    @in_admin = true
   end
   
 end

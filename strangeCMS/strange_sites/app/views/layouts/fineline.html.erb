@@ -25,18 +25,7 @@
 	<%= render 'navigation/user' %>
 <% end %>
 
-<header>
-	<div id="top_area">
-		<div class="container_48">
-			<div class="fl_box_310">
-				<%= link_to( image_tag("#{Strangecms::Config[:strange_logo]}"), root_url, :id => "strange_LOGO" ) %>
-			</div>
-			<div class="fl_box_630">
-				<%= render 'navigation/header' %>
-			</div>
-		</div>
-	</div>
-</header>
+<%= render 'parts/header'%>
 
 
 <div id="banner">
@@ -44,7 +33,7 @@
 	<%= render 'navigation/main' %>
 </div>
 
-
+<%= render 'parts/breadcrumps' %>
 
 <div id="main" role="main">
 	<div class="container_48">

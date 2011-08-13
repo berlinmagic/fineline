@@ -1,16 +1,32 @@
 <div id="user_area">
 	<div class="container_48">
+		
 		<div class="fl_box_470">
 			<nav id="user_nav">
-				<%= hook :backend_button do %>
-					<%= link_to finelineIcon(:icon => 10)+' '+t('strange_Backend'), admin_root_url, :id => 'strange_admin_button' %>
+				<% if @in_admin %>
+						
+				<%= hook :admin_frontend_button do %>
+		  	<%= link_to finelineIcon(:icon => 9, :color => 'hell')+' '+t('strange_Frontend'), root_url, :id => 'fineAdminExit', :class => 'fineline_submit' %>
 				<% end %>
+				
+				<% else %>
+				
+				<%= hook :backend_button do %>
+				<%= link_to finelineIcon(:icon => 10)+' '+t('strange_Backend'), admin_root_url, :id => 'fineAdminEnter', :class => 'fineline_cancel' %>
+				<% end %>
+				
+				<% end %>
+				<div class="clearfix"></div>
 			</nav>
 		</div>
+		
 		<div class="fl_box_470">
 			<div class="right_user_nav">
 				<%= hook :login_buttons %>
 			</div>
 		</div>
+		
+		<div class="clearfix"></div>
+		
 	</div>
 </div>
