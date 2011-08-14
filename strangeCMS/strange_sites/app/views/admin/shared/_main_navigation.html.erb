@@ -1,16 +1,23 @@
-<nav id="main_navigation">
-	<%= hook :admin_main_navigation do %>
-		
-		<%= link_to 'Dashboard', admin_root_url, :class => "#{'aktiv' if @aktivio && @aktivio == 'dashboard'}" %>
-		<%= link_to 'Seiten', admin_seiten_url, :class => "#{'aktiv' if @aktivio && @aktivio == 'seiten'}" %>
+<div class="grid_32">
+	<div id="admin_main_navigation">
+		<%= hook :admin_main_navigation do %>
 
-	<% end %>
-</nav>
+			<%= link_to 'Dashboard', admin_root_url, :class => "#{'aktiv' if @aktivio && @aktivio == 'dashboard'}" %>
+			<%= link_to 'Seiten', admin_seiten_url, :class => "#{'aktiv' if @aktivio && @aktivio == 'seiten'}" %>
 
-<nav id="main_right_navigation">
-	<%= hook :admin_main_right_navigation do %>
-		
-		<%= link_to 'Module', admin_module_url, :class => "#{'aktiv' if @aktivio && @aktivio == 'module'}" %>
+		<% end %>
+	</div>
+	<div class="clearfix"></div>
+</div>
 
-	<% end %>
-</nav>
+<div class="grid_16">
+	<div id="admin_system_navigation">
+		<%= hook :admin_main_right_navigation do %>
+
+			<%= link_to 'Module', admin_module_url, :class => "#{'aktiv' if @aktivio && @aktivio == 'module'}" %>
+
+		<% end %>
+	</div>
+	<div class="clearfix"></div>
+</div>
+

@@ -23,13 +23,13 @@
 	<%= render 'navigation/user' %>
 <% end %>
 
-<header>
-	<div id="top_area">
-		<div class="kasten">
+<div id="admin_header">
+		<div class="container_48">
 			<%= render 'admin/shared/main_navigation' %>
+			<div class="clearfix"></div>
 		</div>
-	</div>
-</header>
+</div>
+
 <div id="sub-menu">
     <%= yield :sub_menu %>
     <div class="clearfix"></div>

@@ -11,31 +11,7 @@ h2 { font-size:16px; line-height: 22px;}
 em { font-style:italic; }
 
 
-header { height: 44px; background: #fff url('/images/admin/head_nav_bg.jpg') left top repeat-x; border-bottom: solid 1px #c6c6c6;}
-#main_navigation { height: 34px; position:absolute; top: 10px; left: 0px; display:block; }
-#main_navigation a { line-height: 18px; padding: 6px 10px 5px; border: solid 1px transparent; border-bottom: solid 1px #c6c6c6; margin: 5px 3px 0 0; position:relative; display:block; float:left; background: transparent url('/images/strange_admin_navigation_bg.jpg') left top repeat;
--webkit-border-top-left-radius: 2px; -webkit-border-top-right-radius: 2px; -moz-border-radius-topleft: 2px; border: 0;
-	-moz-border-radius-topright: 2px; border-top-left-radius: 2px; border-top-right-radius: 2px; color: #fff; font-size: 15px;}
-#main_navigation a:hover, #main_navigation a.aktiv { padding: 7px 10px 5px; margin-top: 3px; background: #fff url('/images/admin/head_nav_aktiv.jpg') left top repeat-x; color:#336699; border: solid 1px #bdbcbd; border-bottom: solid 1px transparent;}
-#main_navigation a.aktiv:hover { color: #444; }
 
-
-#main_right_navigation { height: 34px; position:absolute; top: 10px; right: 0px; display:block; }
-#main_right_navigation a { line-height: 18px; padding: 6px 10px 5px; border: solid 1px transparent; border-bottom: solid 1px #c6c6c6; margin: 5px 3px 0 0; position:relative; display:block; float:left; background: transparent url('/images/strange_admin_navigation_bg.jpg') left top repeat;
--webkit-border-top-left-radius: 2px; -webkit-border-top-right-radius: 2px; -moz-border-radius-topleft: 2px; border: 0;
-	-moz-border-radius-topright: 2px; border-top-left-radius: 2px; border-top-right-radius: 2px; color: #fff; font-size: 15px;}
-#main_right_navigation a:hover, #main_right_navigation a.aktiv { padding: 7px 10px 5px; margin-top: 3px; background: #fff url('/images/admin/head_nav_aktiv.jpg') left top repeat-x; color:#336699; border: solid 1px #bdbcbd; border-bottom: solid 1px transparent;}
-#main_right_navigation a.aktiv:hover { color: #444; }
-
-#sub-menu #in_sub { height: 33px; background: #fff url('/images/admin/head_sub_nav_bg.jpg') left top repeat-x; border-bottom: solid 1px #c6c6c6;}
-
-#sub-menu #in_sub .kasten {height: 33px; }
-
-#sub-menu #in_sub .kasten #sub_navigation { height: 27px; position: absolute; top: 2px; left: 0; }
-#sub-menu #in_sub .kasten #sub_navigation a { line-height: 18px; padding: 4px 10px 3px; border: solid 1px transparent; border-bottom:0; margin: 5px 3px 0 0; position:relative; display:block; float:left; background: transparent;
--webkit-border-top-left-radius: 2px; -webkit-border-top-right-radius: 2px; -moz-border-radius-topleft: 2px; -moz-border-radius-topright: 2px; border-top-left-radius: 2px; border-top-right-radius: 2px; color: #666; font-size: 15px;}
-#sub-menu #in_sub .kasten #sub_navigation a:hover, #sub-menu #in_sub .kasten #sub_navigation a.aktiv { background: #fff; border: 1px solid #c6c6c6; border-bottom: solid 1px #fff; color: #336699;}
-#sub-menu #in_sub .kasten #sub_navigation a.aktiv:hover{ color: #444;}
 
 #main { min-height: 420px; background: #fff url('/images/fineline_BG.jpg') center top no-repeat; padding: 0 0 70px;}
 #main .kasten { width: 990px; padding:20px 0; min-height: 550px;}
@@ -184,22 +160,7 @@ a.module_icon:hover { background: #efefef url('/images/back.png') left top repea
 a.module_icon:hover p { color: #444; }
 
 
-div.flash { 
-	position:relative;
-	border: solid 1px #aaa; 
-	padding: 5px 5%;
-	width:90%;
-	font-weight:normal;
-	-webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px;
-	color: #444; 
-	background:#fff; 
-}
-#notice, #now { background-color: #e6ffe1; border-color: #66a366; color: #666; }
-#alert { background-color: #f6e0e0; border-color: #d74242; color: #9c0000;}
 
-div.flash #in_flash { font-size: 18px; line-height: 18px; padding: 22px 30px 20px 65px;}
-#notice #in_flash, #now #in_flash { background: transparent url('/images/icn_notice.png') 0px 9px no-repeat; }
-#alert #in_flash { background: transparent url('/images/icn_alert.png') 0px 9px no-repeat; font-weight: bold;}
 
 
 div.abschnitt-inhalt { position: relative; background: #fff; }
@@ -216,24 +177,6 @@ div.edit_admin a {  width: 16px; height: 16px; position:absolute; top:0; backgro
 div.edit_admin a:hover { background-position: 0px 0px;}
 div.edit_admin a.aktiv { background-position: 0px -16px;}
 div.edit_admin a.aktiv:hover { background-position: -16px 0px;}
-
-/* tooltip styling. by default the element to be styled is .tooltip  */
-.tooltip {
-	display:none;
-	background:transparent url(/images/tips/tip_k.png);
-	font-size:18px; font-weight: bold;
-	line-height: 20px;
-	text-align: left;
-	height:31px;
-	width: 170px;
-	padding:25px 15px;
-	color:#725311;	
-	text-shadow: 0px 0px 3px #fff;
-}
-.tooltip.del_link { color:#000; }
-.tooltip.del_link span { width: 32px; height:32px; margin: -5px 12px 0 10px; background: url('/images/btns/delete_b.png'); float: left;}
-
-.tooltip.edit_link span { width: 32px; height:32px; margin: -5px 10px 0 8px; background: url('/images/btns/edit_b.png'); float: left;}
 
 
 .box { position: relative; padding: 0 0 0 11px;}
@@ -280,7 +223,7 @@ ul#language-bar li { display: block; float: left; margin-right: 2px; }
 ul#language-bar a#de { background: url(/images/flags/de.jpg) no-repeat; }
 ul#language-bar a#en { background: url(/images/flags/en.jpg) no-repeat; }
 
-.trenn_linie { height: 0px; border-top: solid 1px #777; border-bottom: solid 1px #ddd; margin: 0 -16px;}
+
 
 
 
@@ -301,5 +244,35 @@ div.account_card .c_mail { position:absolute; bottom: 10px; left: 10px; font-siz
 
 /* =========================================    N E U ======================================================== */
 
+#admin_header { height: 44px; background: #fff url('/images/admin/head_nav_bg.jpg') left top repeat-x; border-bottom: solid 1px #c6c6c6; }
+
+#admin_main_navigation { height: 34px; float:left; display:block; margin-top:10px;}
+#admin_system_navigation { height: 34px; position:absolute; top: 10px; right: 0px; display:block; }
+
+#admin_main_navigation a, #admin_system_navigation a { line-height: 18px; padding: 6px 10px 5px; border: solid 1px transparent; border-bottom: solid 1px #c6c6c6; margin: 5px 3px 0 0; position:relative; display:block; float:left; 
+	/* background: transparent url('/images/strange_admin_navigation_bg.jpg') left top repeat; */
+	<%= fine_backgroundGradient( 'rgba(40,106,160,.6)', 'rgba(71,134,187,.6)' ) %>
+-webkit-border-top-left-radius: 3px; -webkit-border-top-right-radius:3px; -moz-border-radius-topleft: 3px; border: 0;
+	-moz-border-radius-topright: 3px; border-top-left-radius: 3px; border-top-right-radius: 3px; color: #336699; font-size: 15px;}
+#admin_main_navigation a:hover, #admin_system_navigation a:hover { padding: 7px 10px 5px; margin-top: 3px; 
+	/* background: #fff url('/images/admin/head_nav_aktiv.jpg') left top repeat-x; */
+	<%= fine_backgroundGradient( '#4786bb', '#336699' ) %>
+	color:#fff; border: solid 1px #bdbcbd; border-bottom: solid 1px transparent; }
+#admin_main_navigation a.aktiv, #main_right_navigation a.aktiv { <%= fine_backgroundGradient( '#3a7ab0', '#082f55' ) %> color: #fff; }
+#admin_main_navigation a.aktiv:hover, #admin_system_navigation a.aktiv:hover { color: #444; }
+
+
+
+
+
+#sub-menu { background: #fff url('/images/admin/head_sub_nav_bg.jpg') left top repeat-x; border-bottom: solid 1px #c6c6c6; }
+
+#sub-menu #in_sub .fl_box_950 {height: 33px; }
+
+#sub-menu #in_sub #sub_navigation { height: 27px; position: absolute; top: 2px; left: 0; }
+#sub-menu #in_sub #sub_navigation a { line-height: 18px; padding: 4px 10px 3px; border: solid 1px transparent; border-bottom:0; margin: 5px 3px 0 0; position:relative; display:block; float:left; background: transparent;
+-webkit-border-top-left-radius: 2px; -webkit-border-top-right-radius: 2px; -moz-border-radius-topleft: 2px; -moz-border-radius-topright: 2px; border-top-left-radius: 2px; border-top-right-radius: 2px; color: #666; font-size: 15px;}
+#sub-menu #in_sub #sub_navigation a:hover, #sub-menu #in_sub #sub_navigation a.aktiv { background: #fff; border: 1px solid #c6c6c6; border-bottom: solid 1px #fff; color: #336699;}
+#sub-menu #in_sub #sub_navigation a.aktiv:hover{ color: #444;}
 
 

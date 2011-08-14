@@ -5,7 +5,7 @@
 <% end %>
 <style type="text/css">
 	#banner { height: <%= @header.header_height %>px; }
-	#banner .kasten { height: <%= @header.header_height %>px;}
+	#banner #main_nav_holder { height: <%= @header.header_height %>px;}
 </style>
 
 <% if @header.header_pics.count > 1 %>
@@ -29,7 +29,7 @@
 		       </div><!-- .coda-slider -->
 		</div><!-- .coda-slider-wrapper -->
 		<div id="coda-nav-right-1" class="coda-nav-right"><a href="#" title="Slide right">&#187;</a></div>
-		<%# content_for :front_js do %>
+		<%= content_for :front_js do %>
 			<%= theme_javascript_include_tag 'coda_slider' %>
 			<script type="text/javascript" charset="utf-8">
 				$().ready(function() {
@@ -39,7 +39,7 @@
 					});
 				});
 			</script>
-		<%# end %>
+		<% end %>
 		
 
 	<% elsif @header.stil == 'fader' %>
@@ -66,13 +66,13 @@
 			<% end %>
 			<% javatext +=']); });</script>' %>	
 			
-			<%# content_for :front_js do %>
+			<%= content_for :front_js do %>
 				<%= theme_javascript_include_tag 'cross_slide' %>
 				<%= raw(javatext) %>
 				<style>
-				#banner_box { width: 990px; height: <%= @header.header_height %>px; left: 0; top: 0; position:absolute; border: 0; text-align:center; }
+				#banner_box { width: 990px; height: <%= @header.header_height %>px;  left:50%; right:50%; top: 0; position:absolute; border: 0; text-align:center; }
 				</style>
-			<%# end %>
+			<% end %>
 	
 	<% elsif @header.stil == 's3-slider' %>
 		<div id="slider_wrapper">
@@ -99,7 +99,7 @@
 		
 
 			<style type="text/css">
-				#slider_wrapper { position: absolute; left:0; top: 0; width: 990px; height: <%= @header.header_height %>px; }
+				#slider_wrapper { position: absolute; left:50%; margin-right: -445px; top: 0; width: 990px; height: <%= @header.header_height %>px; }
 				#slider {
 				    width: 990px; /* important to be same as image width */
 				    height: <%= @header.header_height %>px; /* important to be same as image height */
@@ -119,7 +119,7 @@
 				#slider ul { list-style-type: none;}
 			</style>
 		
-		<%# content_for :front_js do %>
+		<%= content_for :front_js do %>
 			<%= theme_javascript_include_tag 's3_slider' %>
 			<script type="text/javascript" charset="utf-8">
 				$().ready(function() {
@@ -128,12 +128,13 @@
 					});
 				});
 			</script>
-		<%# end %>
+		<% end %>
 		
 	<% end %>
 
 <% elsif @header.header_pics.count == 1 %>
 
+<div id="banner_pic_holder">
 	<% @header.header_pics.each do |slider| %>
 		<% if slider.bild_cropping %>
 			<%= image_tag slider.bild.thumb(slider.bild_cropping).thumb("990x#{@header.header_height}").url, :alt => 'small_avatar' %>
@@ -141,5 +142,11 @@
 			<%= image_tag slider.bild.thumb("990x#{@header.header_height}").url %>
 		<%end%>
 	<% end %>
+</div>
+
+<style>
+#banner_pic_holder { width: 990px; height: <%= @header.header_height %>px; left:50%; margin-left: -445px; top: 0; position:absolute; border: 0; text-align:center; }
+</style>
+	
 
 <% end %>

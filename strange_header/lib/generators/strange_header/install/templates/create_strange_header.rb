@@ -41,6 +41,7 @@ class CreateStrangeHeader < ActiveRecord::Migration
       t.text :inhalt
       t.integer :position
       t.references :header
+      t.string  :cropping
       t.timestamps
     end
     

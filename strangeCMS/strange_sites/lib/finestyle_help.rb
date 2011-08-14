@@ -72,7 +72,7 @@ module FinestyleHelp
       css = css.gsub(';}', '}')
       css = css.gsub(', ', ',')
       css = css.to_s.gsub(/\s+/, " ")
-      return old_css
+      return css
     end
     
     
