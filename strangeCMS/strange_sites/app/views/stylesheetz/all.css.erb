@@ -61,7 +61,7 @@
 <%	 @finestyle[:main_nav_subnav][:radius] 				= 	'7px' -%>
 <%#/* ####################################     fineline - generated - styles     ############################################################# */ -%>
 <% if @style4 && @style4 == 'fck' %>
-	<% cache do %>
+	<%# cache do %>
 <%= fine_minify( "#{ render 'stylesheetz/css/boiler1' }" ) %>
 <%= fine_minify( "#{ render 'stylesheetz/css/fonts', :finestyle => @finestyle }" ) %>
 <%= fine_minify( "#{ render 'stylesheetz/css/classes', :finestyle => @finestyle }" ) %>
@@ -75,9 +75,9 @@
 <%= fine_minify( "#{ render 'stylesheetz/css/spezials', :finestyle => @finestyle }" ) %>
 <%= fine_minify( "#{ render 'stylesheetz/css/fck'  }" ) %>
 <%= fine_minify( "#{ render 'stylesheetz/css/boiler2'  }" ) %>
-	<% end %>
+	<%# end %>
 <% elsif @style4 && @style4 == 'admin' %>
-	<% cache do %>
+	<%# cache do %>
 <%= fine_minify( "#{ render 'stylesheetz/css/boiler1' }" ) %>
 <%= fine_minify( "#{ render 'stylesheetz/css/jq_ui' }" ) %>
 <%= fine_minify( "#{ render 'stylesheetz/css/grid960_48' }" ) %>
@@ -95,9 +95,9 @@
 <%= fine_minify( "#{ render 'stylesheetz/css/admin' }" ) %>
 <%= fine_minify( "#{ hook :finestyles }" ) %>
 <%= fine_minify( "#{ render 'stylesheetz/css/boiler2'  }" ) %>
-	<% end %>
+	<%# end %>
 <% else %>
-	<% cache do %>
+	<%# cache do %>
 <%= fine_minify( "#{ render 'stylesheetz/css/boiler1' }" ) %>
 <%= fine_minify( "#{ render 'stylesheetz/css/jq_ui' }" ) %>
 <%= fine_minify( "#{ render 'stylesheetz/css/grid960_48' }" ) %>
@@ -114,7 +114,7 @@
 <%= fine_minify( "#{ render 'stylesheetz/css/spezials', :finestyle => @finestyle }" ) %>
 <%= fine_minify( "#{ hook :finestyles }" ) %>
 <%= fine_minify( "#{ render 'stylesheetz/css/boiler2'  }" ) %>
-	<% end %>
+	<%# end %>
 <% end %>
 /* ####################################     ..End of - generated - styles     ######################################################### */
 

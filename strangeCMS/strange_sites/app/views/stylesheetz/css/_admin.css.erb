@@ -244,34 +244,44 @@ div.account_card .c_mail { position:absolute; bottom: 10px; left: 10px; font-siz
 
 /* =========================================    N E U ======================================================== */
 
-#admin_header { height: 44px; background: #fff url('/images/admin/head_nav_bg.jpg') left top repeat-x; border-bottom: solid 1px #c6c6c6; }
+#admin_header { height: 44px; background: #fff url('/images/admin/head_nav_bg.jpg') left top repeat-x; border-bottom: 0; }
 
 #admin_main_navigation { height: 34px; float:left; display:block; margin-top:10px;}
 #admin_system_navigation { height: 34px; position:absolute; top: 10px; right: 0px; display:block; }
 
-#admin_main_navigation a, #admin_system_navigation a { line-height: 18px; padding: 6px 10px 5px; border: solid 1px transparent; border-bottom: solid 1px #c6c6c6; margin: 5px 3px 0 0; position:relative; display:block; float:left; 
+#admin_main_navigation a, #admin_system_navigation a { 
+	padding: 6px 10px 5px; margin: 5px 3px 0 0; 
+	border: solid 1px transparent; border-bottom: solid 1px #c6c6c6; 
+	position:relative; display:block; float:left; 
+	color: #336699; font-size: 15px; line-height: 18px;
 	/* background: transparent url('/images/strange_admin_navigation_bg.jpg') left top repeat; */
 	<%= fine_backgroundGradient( 'rgba(40,106,160,.6)', 'rgba(71,134,187,.6)' ) %>
--webkit-border-top-left-radius: 3px; -webkit-border-top-right-radius:3px; -moz-border-radius-topleft: 3px; border: 0;
-	-moz-border-radius-topright: 3px; border-top-left-radius: 3px; border-top-right-radius: 3px; color: #336699; font-size: 15px;}
-#admin_main_navigation a:hover, #admin_system_navigation a:hover { padding: 7px 10px 5px; margin-top: 3px; 
+	-webkit-border-top-left-radius: 3px 3px 0 0; -moz-border-radius-topleft: 3px 3px 0 0; border: 0;
+	border-top-left-radius: 3px 3px 0 0; }
+
+#admin_main_navigation a:hover, #admin_system_navigation a:hover { 
+	padding: 7px 10px 5px; margin-top: 3px; 
 	/* background: #fff url('/images/admin/head_nav_aktiv.jpg') left top repeat-x; */
 	<%= fine_backgroundGradient( '#4786bb', '#336699' ) %>
 	color:#fff; border: solid 1px #bdbcbd; border-bottom: solid 1px transparent; }
-#admin_main_navigation a.aktiv, #main_right_navigation a.aktiv { <%= fine_backgroundGradient( '#3a7ab0', '#082f55' ) %> color: #fff; }
+#admin_main_navigation a.aktiv, #admin_system_navigation a.aktiv { <%= fine_backgroundGradient( '#3a7ab0', '#082f55' ) %> color: #fff; }
 #admin_main_navigation a.aktiv:hover, #admin_system_navigation a.aktiv:hover { color: #444; }
 
 
 
 
 
-#sub-menu { background: #fff url('/images/admin/head_sub_nav_bg.jpg') left top repeat-x; border-bottom: solid 1px #c6c6c6; }
+#sub-menu { border-bottom: solid 1px #c6c6c6;
+	/* background: #fff url('/images/admin/head_sub_nav_bg.jpg') left top repeat-x; */ 
+	<%= fine_backgroundGradient( '#082f55', '#3a7ab0' ) %> 
+	<%= fine_boxShadow( 'inset 0 -5px 5px 0 rgba(0,0,0,.5)' ) %> 
+	 }
 
 #sub-menu #in_sub .fl_box_950 {height: 33px; }
 
 #sub-menu #in_sub #sub_navigation { height: 27px; position: absolute; top: 2px; left: 0; }
 #sub-menu #in_sub #sub_navigation a { line-height: 18px; padding: 4px 10px 3px; border: solid 1px transparent; border-bottom:0; margin: 5px 3px 0 0; position:relative; display:block; float:left; background: transparent;
--webkit-border-top-left-radius: 2px; -webkit-border-top-right-radius: 2px; -moz-border-radius-topleft: 2px; -moz-border-radius-topright: 2px; border-top-left-radius: 2px; border-top-right-radius: 2px; color: #666; font-size: 15px;}
+-webkit-border-top-left-radius: 2px; -webkit-border-top-right-radius: 2px; -moz-border-radius-topleft: 2px; -moz-border-radius-topright: 2px; border-top-left-radius: 2px; border-top-right-radius: 2px;  color: rgba(255,255,255,.7); font-size: 15px;}
 #sub-menu #in_sub #sub_navigation a:hover, #sub-menu #in_sub #sub_navigation a.aktiv { background: #fff; border: 1px solid #c6c6c6; border-bottom: solid 1px #fff; color: #336699;}
 #sub-menu #in_sub #sub_navigation a.aktiv:hover{ color: #444;}
 

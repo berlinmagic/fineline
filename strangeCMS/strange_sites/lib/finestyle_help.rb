@@ -58,7 +58,7 @@ module FinestyleHelp
     end
     
     def fine_minify(css)
-      old_css = css
+      ocss = css
       one_line = Regexp.new(/\/\*.*?\*\//)              # Only match one-line comments
       multi_line = Regexp.new(/\/\*.*?\*\//m)           # Match single and multi-line comments   alt:  /\/\*[\\s\\S]*?\\*/
       css = css.to_s.gsub(/\s+/, " ")
@@ -72,7 +72,7 @@ module FinestyleHelp
       css = css.gsub(';}', '}')
       css = css.gsub(', ', ',')
       css = css.to_s.gsub(/\s+/, " ")
-      return css
+      return ocss
     end
     
     
