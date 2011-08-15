@@ -15,7 +15,9 @@ class StrangeCommentsHooks < Strangecms::ThemeSupport::HookListener
   end
   
   insert_after :admin_module_sub_tabs do
-    "<%= link_to 'Kommentare', admin_kommentare_url, :class => ('aktiv' if @sub_aktivio == 'kommentare') %>"
+    "<li class='<%= 'nav_aktiv' if @sub_aktivio == 'kommentare' %>'>
+          <%= link_to 'Kommentare', admin_kommentare_url, :class => ('aktiv' if @sub_aktivio == 'kommentare') %>
+    </li>"
   end
   
   # => insert_after :admin_after_head do

@@ -2,7 +2,9 @@
 class StrangeHeaderHooks < Strangecms::ThemeSupport::HookListener
   
   insert_after :admin_seiten_sub_tabs do
-    "<%= link_to 'Header', admin_headers_path, :class => ('aktiv' if @sub_aktivio == 'headers') %>"
+    "<li class='<%= ' nav_aktiv' if @sub_aktivio == 'headers' %>'>
+        <%= link_to 'Header', admin_headers_path, :class => ('aktiv' if @sub_aktivio == 'headers') %>
+    </li>"
   end
   
   # => insert_after :admin_module_list do

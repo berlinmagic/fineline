@@ -23,6 +23,19 @@ module FinestyleHelp
         	 -ms-border-radius: 		  #{cc == 'lt' ? r2 : r1} #{cc == 'rt' ? r2 : r1} #{cc == 'rb' ? r2 : r1} #{cc == 'lb' ? r2 : r1};
         	 border-radius: 			    #{cc == 'lt' ? r2 : r1} #{cc == 'rt' ? r2 : r1} #{cc == 'rb' ? r2 : r1} #{cc == 'lb' ? r2 : r1};  "
     end
+    
+    def fineBorderRadius(lt=nil,rt=nil,rb=nil,lb=nil)
+        lt = lt.blank? || lt == 'none' ? 0 : lt
+        rt = rt.blank? || rt == 'none' ? 0 : rt
+        rb = rb.blank? || rb == 'none' ? 0 : rb
+        lb = lb.blank? || lb == 'none' ? 0 : lb
+        "  -khtml-border-radius: 	  #{ lt } #{ rt } #{ rb } #{ lb };
+           -webkit-border-radius: 	#{ lt } #{ rt } #{ rb } #{ lb }; 
+        	 -moz-border-radius: 	    #{ lt } #{ rt } #{ rb } #{ lb }; 
+        	 -o-border-radius: 		    #{ lt } #{ rt } #{ rb } #{ lb }; 
+        	 -ms-border-radius: 		  #{ lt } #{ rt } #{ rb } #{ lb };
+        	 border-radius: 			    #{ lt } #{ rt } #{ rb } #{ lb };  "
+    end
 
     def fine_backgroundGradient(top,bottom=nil)
         bottom = bottom.blank? ? top : bottom
@@ -83,6 +96,7 @@ module FinestyleHelp
     receiver.send :include, InstanceMethods
     receiver.send :helper_method, 'fine_borderRadius'
     receiver.send :helper_method, 'fine3_borderRadius'
+    receiver.send :helper_method, 'fineBorderRadius'
     receiver.send :helper_method, 'fine_backgroundGradient'
     receiver.send :helper_method, 'fine_boxShadow'
     receiver.send :helper_method, 'fine_textShadow'

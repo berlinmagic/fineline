@@ -6,7 +6,9 @@ class StrangeFineformHooks < Strangecms::ThemeSupport::HookListener
   end
   
   insert_after :admin_module_sub_tabs do
-    "<%= link_to 'fineforms', admin_fineforms_path, :class => ('aktiv' if @sub_aktivio == 'fineform') %>"
+    "<li class='<%= 'nav_aktiv' if @sub_aktivio == 'fineform' %>'>
+          <%= link_to 'fineforms', admin_fineforms_path, :class => ('aktiv' if @sub_aktivio == 'fineform') %>
+    </li>"
   end
   
   

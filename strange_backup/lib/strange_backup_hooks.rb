@@ -19,7 +19,9 @@ class StrangeBackupHooks < Strangecms::ThemeSupport::HookListener
   end
   
   insert_after :admin_module_sub_tabs do
-    "<%= link_to 'Backups', admin_backups_path, :class => ('aktiv' if @sub_aktivio == 'backup') %>"
+    "<li class='<%= 'nav_aktiv' if @sub_aktivio == 'backup' %>'>
+        <%= link_to 'Backups', admin_backups_path, :class => ('aktiv' if @sub_aktivio == 'backup') %>
+    </li>"
   end
   
   

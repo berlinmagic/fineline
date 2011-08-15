@@ -3,14 +3,18 @@
 <div id="in_sub" class="container_48">
 			
 	<div class="fl_box_950">
-		<nav id="sub_navigation">
+		<ul id="sub_navigation">
 		    <%= hook :admin_seiten_sub_tabs do %>
 				
+				<li class="<%= 'nav_aktiv' if @sub_aktivio == 'seiten' %>">
 				<%= link_to 'Inhaltsseiten', admin_seiten_path, :class => "#{'aktiv' if @sub_aktivio == 'seiten' }"%>
+				</li>
 				
 		    <% end %>
-		 </nav>
+		 </ul>
+		<div class="clearfix"></div>
 	</div>
+	<div class="clearfix"></div>
 </div>
 
 <% end %>

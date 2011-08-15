@@ -83,16 +83,18 @@ z-index:100;
 
 /* =====================================   Main   =================================== */
 #main { /*background: #e5e5e5;*/ padding: 10px 0; min-height: 420px;
-		background: #f3f3f3; /* Old browsers */
-		background: -moz-linear-gradient(top, #f3f3f3 0%, #f3f3f3 6%, #ffffff 56%, #ffffff 100%); /* FF3.6+ */
-		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f3f3f3), color-stop(6%,#f3f3f3), color-stop(56%,#ffffff), color-stop(100%,#ffffff)); /* Chrome,Safari4+ */
-		background: -webkit-linear-gradient(top, #f3f3f3 0%,#f3f3f3 6%,#ffffff 56%,#ffffff 100%); /* Chrome10+,Safari5.1+ */
-		background: -o-linear-gradient(top, #f3f3f3 0%,#f3f3f3 6%,#ffffff 56%,#ffffff 100%); /* Opera11.10+ */
-		background: -ms-linear-gradient(top, #f3f3f3 0%,#f3f3f3 6%,#ffffff 56%,#ffffff 100%); /* IE10+ */
-		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f3f3f3', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
-		background: linear-gradient(top, #f3f3f3 0%,#f3f3f3 6%,#ffffff 56%,#ffffff 100%); /* W3C */   	}
+		<%= fine_backgroundGradient( '#f3f3f3', '#ffffff' ) %>
+		/*
+		background: #f3f3f3;
+		background: -moz-linear-gradient(top, #f3f3f3 0%, #f3f3f3 6%, #ffffff 56%, #ffffff 100%);
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f3f3f3), color-stop(6%,#f3f3f3), color-stop(56%,#ffffff), color-stop(100%,#ffffff));
+		background: -webkit-linear-gradient(top, #f3f3f3 0%,#f3f3f3 6%,#ffffff 56%,#ffffff 100%);
+		background: -o-linear-gradient(top, #f3f3f3 0%,#f3f3f3 6%,#ffffff 56%,#ffffff 100%);
+		background: -ms-linear-gradient(top, #f3f3f3 0%,#f3f3f3 6%,#ffffff 56%,#ffffff 100%); 
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f3f3f3', endColorstr='#ffffff',GradientType=0 );
+		background: linear-gradient(top, #f3f3f3 0%,#f3f3f3 6%,#ffffff 56%,#ffffff 100%); */   	}
 		
-#main #content { width: 762px; float:left; }
+
 
 /* =====================================   Footer   =================================== */
 footer { min-height: 105px; width: 100%; /*background: #d9d9d9 url('/images/strange_footer_bg.jpg') repeat-x;*/ position: relative; 

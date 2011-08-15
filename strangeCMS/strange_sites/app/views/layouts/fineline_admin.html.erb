@@ -34,23 +34,22 @@
     <%= yield :sub_menu %>
     <div class="clearfix"></div>
 </div>
+<div id="white_spacer"> </div>
 
 <div id="main" role="main">
-	<div class="kasten">
-		<!--
-		<div id="notice_area">
-		
+	<div id="in_main">
+		<div class="container_48">
+			<div id="content" class="fl_box_710">
+				<%= yield %>
+			</div>
+			<div class="fl_box_210 push_1">
+				<%= yield :sidebar %>
+				<%= hook :strange_admin_sidebar %>
+			</div>
+			<div class="clearfix"></div>
+			<br/>
 		</div>
-		-->
-		<div id="content">
-			<%= yield %>
-		</div>
-		<aside class="right">
-			<%= yield :sidebar %>
-			<%= hook :strange_admin_sidebar %>
-		</aside>
 		<div class="clearfix"></div>
-		<br/>
 	</div>
 </div>
 

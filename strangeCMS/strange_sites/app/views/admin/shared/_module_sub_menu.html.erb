@@ -3,14 +3,16 @@
 <div id="in_sub" class="container_48">
 			
 	<div class="fl_box_950">
-		<nav id="sub_navigation">
+		<ul id="sub_navigation">
 		    <%= hook :admin_module_sub_tabs do %>
-				
+				<li class="<%= 'nav_aktiv' if @sub_aktivio == 'module' %>">
 				<%= link_to 'Übersicht', admin_module_path, :class => "#{'aktiv' if @sub_aktivio == 'module' }"%>
-				
+				</li>
 		    <% end %>
-		 </nav>
+		 </ul>
+		<div class="clearfix"></div>
 	</div>
+	<div class="clearfix"></div>
 </div>
 
 <% end %>

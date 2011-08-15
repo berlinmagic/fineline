@@ -2,7 +2,9 @@
 class StrangeGallerieHooks < Strangecms::ThemeSupport::HookListener
   
   insert_after :admin_module_sub_tabs do
-    "<%= link_to 'Gallerie', admin_bilder_url, :class => ('aktiv' if @sub_aktivio == 'gallerie') %>"
+    "<li class='<%= 'nav_aktiv' if @sub_aktivio == 'gallerie' %>'>
+          <%= link_to 'Gallerie', admin_bilder_url, :class => ('aktiv' if @sub_aktivio == 'gallerie') %>
+    </li>"
   end
   
   # => insert_after :admin_module_list do

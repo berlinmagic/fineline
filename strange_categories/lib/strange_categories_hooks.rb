@@ -12,7 +12,9 @@ class StrangeCategoriesHooks < Strangecms::ThemeSupport::HookListener
   # => end
   
   insert_after :admin_module_sub_tabs do
-    "<%= link_to 'Listen', admin_listen_path, :class => ('aktiv' if @sub_aktivio == 'listen') %>"
+    "<li class='<%= 'nav_aktiv' if @sub_aktivio == 'listen' %>'>
+          <%= link_to 'Listen', admin_listen_path, :class => ('aktiv' if @sub_aktivio == 'listen') %>
+    </li>"
   end
   
   # => insert_after :admin_module_list do
