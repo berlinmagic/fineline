@@ -9,8 +9,8 @@ h2 { font-size:16px; line-height: 22px;}
 
 
 
-.admin_box { padding: 10px; border: solid 1px #cccccc; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; background: #fff;}
-.admin_in_box { padding: 5px; border: solid 1px #cccccc; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; background: #f6f2f1; }
+.admin_box { padding: 10px; border: solid 1px #cdcdcd; <%= fineBorderRadius( '0', '8px', '8px', '8px' ) %> background: #fff;}
+.admin_in_box { padding: 5px; border: solid 1px #cdcdcd; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; background: #e2e2e2; }
 
 .admin_box h1 { color: #336699; font-size: 16px; font-weight: normal; line-height: 24px; background: transparent url('/images/admin/ue_pfeil_d.png') 5px 11px no-repeat; padding: 5px 10px 5px 25px;}
 
@@ -173,7 +173,7 @@ div.edit_admin a.aktiv:hover { background-position: -16px 0px;}
 .box.geloescht .in_box .deleted_abschnitt { display:block; }
 
 .admin_box .admin_in_box .box { padding: 0;}
-.admin_box .admin_in_box .box .in_box.white { background: #fff; border: solid 1px #999;}
+.admin_box .admin_in_box .box .in_box.white { background: #fff; border: solid 1px #cdcdcd;}
 
 #btn_edit {  width: 16px; height: 16px; position:absolute; top:0; background: transparent url('/images/btns/bearbeiten_16px.png') 0px 0px no-repeat; right: 36px; display:block; opacity: .5;}
 #btn_edit:hover { opacity: 1; }
@@ -286,4 +286,4 @@ z-index:100;
 #white_spacer { height: 5px; background: #fff; }
 
 #main { <%= fine_backgroundGradient( '#f3f3f3', '#ffffff' ) %> padding:0; margin:0;}
-#in_main { min-height: 420px; background: transparent url('/images/fineline/bg.png') center top repeat; padding: 10px 0 70px;}
+#in_main { min-height: 420px; /*background: transparent url('/images/fineline/bg.png') center top repeat;*/ padding: 10px 0 70px;}
