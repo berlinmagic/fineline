@@ -7,8 +7,8 @@ Gem::Specification.new do |s|
   s.version     = StrangeFineform::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Austin Strange"]
-  s.email       = ["austin@2strange.net"]
-  s.homepage    = ""
+  s.email       = ["austin@orangenwerk.com"]
+  s.homepage    = "http://orangenwerk.com"
   s.summary     = %q{StrangeCMS module}
   s.description = %q{module strangeCMS the easy one!}
 

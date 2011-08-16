@@ -3,8 +3,9 @@ class Header < ActiveRecord::Base
   
   HEADER_STYLES = ['fader', 'slider', 's3-slider']
   
-  belongs_to :seite
+  has_many :seiten
   
-  has_many :header_pics
+  has_many :headers_hpics, :dependent => :destroy
+  has_many :hpics, :through => :headers_hpics
   
 end

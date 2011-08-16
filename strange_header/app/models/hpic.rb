@@ -1,10 +1,11 @@
 # encoding: utf-8
-class HeaderPic < ActiveRecord::Base
+class Hpic < ActiveRecord::Base
   THUMB_W = 990
   THUMB_H = 210
   CROP_W = 990
   
-  belongs_to :header
+  has_many :headers_hpics, :dependent => :destroy
+  has_many :headers, :through => :headers_hpics
   
   #has_attached_file :bild,
   #  # => :default_url => "/images/emergency_:style.png",
@@ -27,5 +28,22 @@ class HeaderPic < ActiveRecord::Base
     md = self.avatar_cropping.match('(\d+):(\d+):(\d+)x(\d+)')
     { :x => md[1], :y => md[2],  :width  => md[3], :height => md[4] }
   end
+  
+  before_save :set_paramatas
+  
+  
+  private
+	
+	  def set_paramatas
+  	  if self.bild
+  	    if xy_pic = self.bild.name.split('.')
+  	      xy_pic.delete(xy_pic.last)
+  	      unless self.name && self.name != ''
+  	        self.name = xy_pic.last
+  	      end
+  	    end
+  	  end
+  	end
+  
 
 end
