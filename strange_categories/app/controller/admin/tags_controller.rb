@@ -85,6 +85,26 @@ class Admin::TagsController < Admin::BaseController
     # => render :nothing => true
   end
   
+  def by_tag
+    @tag = Tag.find_by_name(params[:tag]) || Tag.find_by_slug(params[:tag]) || Tag.find_by_slug('/'+params[:tag])
+    @tag_data = []
+    Tagging.where(:target_type => @objekt_type, :tag_id => @tag.id).each do |tagging|
+        @tag_data << @objekt_type.constantize.find(tagging.target_id)
+    end
+    @page = params[:page] ? params[:page].to_i : 1
+    per_page = Strangecms::Config[:per_page]
+    @page_count = @tag_data.count / per_page + 1 
+    # => @page_url = News.first.news_site_slug + '/by_tag' + @tag.slug
+    if @tag_data.count > per_page
+        @fineline_array_paginated = true
+        @data = @tag_data.fine_paginated(@page, per_page) 
+    else
+        @data = @tag_data
+    end
+    render 'news/show_by'
+  end
+  
+  # => === === === === === === === === === === === === === === === === === === === === === === === === === === === === === === === === 
   def load_data
     @id_muster = /\w+_id/
     params.each do |key,value|

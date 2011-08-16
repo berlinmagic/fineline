@@ -30,6 +30,8 @@ class AppConfiguration < Configuration
   preference :stylesheets, :string, :default => 'screen' # Comma separate multiple stylesheets, e.g. 'screen,mystyle'
   preference :strange_admin_logo, :string, :default => "/images/strangeCMS.png"
   
+  preference :per_page, :integer, :default => 9
+  
   preference :site_width, :integer, :default => 990
   
   preference :theme, :string, :default => 'default'

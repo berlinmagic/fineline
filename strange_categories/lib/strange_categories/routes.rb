@@ -1,6 +1,9 @@
 module StrangeCategories
   module Routes
     def strange_tag_admin_routes
+      collection do
+        match 'by_tag/:tag' => 'admin/tags#by_tag', :as => 'by_tag'
+      end
       resources :tags do
         member do
           post    :select_data_tags
