@@ -36,7 +36,7 @@
 					<% @tags.uniq.sort.each do |tag| %>
 						<% tg = Tag.where(:name => tag).first %>
 						<li><%= link_to raw("&raquo;&nbsp;#{ tag }&nbsp;&nbsp;
-							[ #{ Tagging.where(:target_type => 'Bild', :tag_id => tg.id).count } ]"), by_tag_admin_bilder(tg) %></li>
+							[ #{ Tagging.where(:target_type => 'Bild', :tag_id => tg.id).count } ]"), "/admin/bilder/by_tag#{tg.slug}" %></li>
 					<% end %>
 						</ul>
 					</li>
