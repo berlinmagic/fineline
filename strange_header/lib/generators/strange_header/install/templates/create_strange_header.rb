@@ -8,10 +8,10 @@ class CreateStrangeHeader < ActiveRecord::Migration
       t.string        :typ                    # => fader  /  slider  /  etc.
       t.string        :stil                   # => fader  /  slider  /  etc.
       
-      t.integer       :breite
-      t.integer       :hoehe                  # => höhe des Headers   ... eh. header_height
+      t.integer       :width
+      t.integer       :height                  # => höhe des Headers   ... eh. header_height
       
-      t.references    :seite                  # => evtl. Überflüssig
+      # => t.references    :seite                  # => evtl. Überflüssig
 
       t.integer       :staytime               # => Fader / Slider
       t.integer       :changetime             # => Fader

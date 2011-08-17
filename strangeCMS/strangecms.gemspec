@@ -1,7 +1,7 @@
 # encoding: utf-8
 version = File.read(File.expand_path("../CMS_VERSION",__FILE__)).strip
-$:.push File.expand_path("../lib", __FILE__)
-require "strangecms/version"
+# => $:.push File.expand_path("../lib", __FILE__)
+# => require "strangecms/version"
 
 Gem::Specification.new do |s|
   s.name        = "strangecms"

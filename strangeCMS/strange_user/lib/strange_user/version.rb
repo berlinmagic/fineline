@@ -1,5 +1,5 @@
 module StrangeUser
-  VERSION = File.read(File.expand_path("../../../../CMS_VERSION", __FILE__)).strip
+  VERSION = '0.1.8'
   def self.version
     VERSION
   end
