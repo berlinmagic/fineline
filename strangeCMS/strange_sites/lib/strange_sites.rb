@@ -16,8 +16,6 @@
   require 'strange_sites/fckeditor_version'
   require 'strange_sites/fckeditor_file_utils'
   
-  require 'strange_sites/version'
-
   require 'strange_sites_help'
 
 module StrangeSites

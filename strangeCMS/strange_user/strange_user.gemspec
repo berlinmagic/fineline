@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Austin Strange"]
   s.email       = ["austin@orangenwerk.com"]
   s.homepage    = "http://orangenwerk.com"
-  s.summary     = %q{StrangeCMS core functionality}
-  s.description = %q{strangeCMS the easy one!}
+  s.summary     = %q{strangeCMS user-modul}
+  s.description = %q{strangeCMS .. from orangenwerk.com}
 
   s.rubyforge_project = "strange_user"
 

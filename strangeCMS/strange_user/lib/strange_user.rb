@@ -11,8 +11,6 @@ require 'strange_core'
   
   require 'strange_user_hooks'
   
-  require 'strange_user/version'
-  
   require 'strange_user_helper'
 
 module StrangeUser

@@ -8,16 +8,14 @@ Gem::Specification.new do |s|
   s.authors     = ["Austin Strange"]
   s.email       = ["austin@orangenwerk.com"]
   s.homepage    = "http://orangenwerk.com"
-  s.summary     = %q{StrangeCMS core functionality}
-  s.description = %q{strangeCMS the easy one!}
+  s.summary     = %q{strangeCMS themes-modul}
+  s.description = %q{strangeCMS .. from orangenwerk.com}
 
   s.rubyforge_project = "strange_themes"
 
   s.files        = Dir['app/**/*', 'lib/**/*']
   s.require_paths = ["lib"]
   s.requirements << 'none'
-  
-  s.add_dependency('rails', '>= 3.0.5')
   
   s.add_dependency('strange_core', version)
   

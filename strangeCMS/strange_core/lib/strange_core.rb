@@ -17,6 +17,5 @@
   require 'strange_base'
   require 'strange_base_admin'
   
-  require 'strange_core/version'
   require 'strange_core/railtie'
   

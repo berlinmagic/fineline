@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Austin Strange"]
   s.email       = ["austin@orangenwerk.com"]
   s.homepage    = "http://orangenwerk.com"
-  s.summary     = %q{StrangeCMS core functionality}
-  s.description = %q{strangeCMS the easy one!}
+  s.summary     = %q{strangeCMS sites-modul}
+  s.description = %q{strangeCMS .. from orangenwerk.com}
 
 
   s.rubyforge_project = "strange_sites"
@@ -18,16 +18,15 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.requirements << 'none'
   
-  s.add_dependency('rails', '>= 3.0.5')
   s.add_dependency('el_finder', '>= 1.0.13')
   s.add_dependency('acts_as_list', '>= 0.1.2')
   
-  #s.add_dependency('will_paginate', '~> 3.0.pre4')
+  # s.add_dependency('will_paginate', '~> 3.0.pre4')
+  # s.add_dependency('paperclip',  "= 2.3.8")
   
   s.add_dependency('kaminari', '~> 0.12.4')
   
-  s.add_dependency('paperclip',  "= 2.3.8")
-  
   s.add_dependency('strange_core', version)
   s.add_dependency('strange_user', version)
+  
 end

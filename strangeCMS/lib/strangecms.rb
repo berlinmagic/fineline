@@ -2,11 +2,8 @@
 require "rails/all"
 
 require 'strange_core'
-
 require 'strange_sites'
-
 require 'strange_user'
-
 require 'strange_themes'
 
 
