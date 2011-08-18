@@ -6,7 +6,7 @@ require 'strange_sites'
 require 'strange_user'
 require 'strange_themes'
 
-require 'version'
+require 'strangecms/version'
 
 
 

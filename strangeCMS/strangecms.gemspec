@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   
   s.rubyforge_project = "strangecms"
 
-  s.files        = Dir['lib/**/*']
+  s.files        = Dir['lib/**/*', 'CMS_VERSION']
   s.require_path = 'lib'
   s.requirements << 'none'
   
