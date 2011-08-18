@@ -1,7 +1,6 @@
   require "rails/all"
   
   require 'strange_core'
-  
   require 'strange_user'
   
   

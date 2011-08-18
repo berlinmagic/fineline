@@ -1,4 +1,5 @@
   require "rails/all"
+  
   require "strange_core"
   
   require 'strangecms/core_ext/array'

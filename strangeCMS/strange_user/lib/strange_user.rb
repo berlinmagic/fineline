@@ -1,5 +1,4 @@
-
-require 'strange_core'
+  require 'strange_core'
     
   require "devise"
   require "devise_invitable"
