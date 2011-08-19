@@ -9,9 +9,13 @@ class Header < ActiveRecord::Base
   VWERTE = %W(top center bottom)
   RWERTE = %w(xrepeat yrepeat repeat norepeat)
   
-  has_many :seiten
+  # => has_many :seiten
   
-  has_many :headers_hpics, :dependent => :destroy
-  has_many :hpics, :through => :headers_hpics
+  has_many :header_seiten, :dependent => :destroy
+  has_many :seiten, :through => :header_seiten
+  
+  has_many :header_hpics, :dependent => :destroy
+  has_many :hpics, :through => :header_hpics
+  
   
 end

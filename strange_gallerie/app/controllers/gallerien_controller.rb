@@ -99,7 +99,7 @@ class GallerienController< ApplicationController
   
     def load_stuff
       @seite      =   Seite.where("system_name = ?", 'gallerie').first
-      @page_uri   =   Bild.first.gallerie_slug
+      @page_uri   =   Bild.first.gallerie_slug if Bild.all.count > 0
       @page       =   params[:page] ? params[:page].to_i : 1
     end
   

@@ -1,5 +1,5 @@
 # encoding: utf-8
-class HeadersHpic < ActiveRecord::Base
+class HeaderHpic < ActiveRecord::Base
   THUMB_W = 990
   THUMB_H = 210
   CROP_W = 990

@@ -50,7 +50,7 @@ fineline-cms.com
 probieren Sie es aus!', :user_ip => '00.00.00.00', :neu => true, :firma => 'orangenwerk', :webseite => 'http://orangenwerk.com', :created_at => (Time.now - 14.days)
 
 email_2 = KontaktFormular.create! :anrede => 'Herr', :name => 'fineline-Team', :email => 'cms@orangenwerk.com', :betreff => 'Herrzlich Willkommen', 
-:strasse => 'Stralsunder Str. 20', :plz => '16515', :ort => 'Oranienburg', :land => 'Deutschland', :inhalt => 'Wir begrüssen Sie auf Ihrer neuen Seite und wünschen viel spass und erfolg damit.
+:strasse => 'Stralsunder Str. 20', :plz => '16515', :ort => 'Oranienburg', :inhalt => 'Wir begrüssen Sie auf Ihrer neuen Seite und wünschen viel spass und erfolg damit.
 Sollten Sie fragen oder anregungen zu unserem CMS haben, kontaktieren Sie uns.
 
 orangenwerk

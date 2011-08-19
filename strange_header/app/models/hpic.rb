@@ -4,23 +4,12 @@ class Hpic < ActiveRecord::Base
   THUMB_H = 210
   CROP_W = 990
   
-  has_many :headers_hpics, :dependent => :destroy
-  has_many :headers, :through => :headers_hpics
+  has_many :header_hpics, :dependent => :destroy
+  has_many :headers, :through => :header_hpics
   
-  #has_attached_file :bild,
-  #  # => :default_url => "/images/emergency_:style.png",
-  #  :url => "/images/:class/:attachment/:id/:style_:basename.:extension",
-  #  :path => ":rails_root/public/images/:class/:attachment/:id/:style_:basename.:extension",
-  #  :styles => {
-  #    :thumb => "165x35#",
-  #    :medium => "330x70#",
-  #    :header => "990x210#",
-  #    :original => "1400x650>"
-  #  }
-  
-  image_accessor :bild
+  image_accessor        :bild
   validates_presence_of :bild
-  # => validates_property    :mime_type, :of => :bild, :in => %w(image/jpeg image/png image/gif)
+  validates_property    :mime_type, :of => :bild, :in => %w(image/jpeg image/png image/gif)
   
   def crop_hash
     # 0:78:90x68

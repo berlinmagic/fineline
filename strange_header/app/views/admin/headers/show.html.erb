@@ -1,7 +1,7 @@
 <%= render 'admin/shared/seiten_sub_menu' %>
 
 <div class="admin_box">
-	<h1><%= t('header_headline') %></h1>
+	<h1 class="admin"><%= finelineIcon(:icon => 49, :color => 'dunkel', :size => 32, :blur => 50) %><%= t('header_show_headline') %></h1>
 	<div class="admin_in_box">
 		<div class="box">
 			<div class="in_box">
@@ -9,9 +9,7 @@
 			</div>
 		</div>
 		<div class="box">
-			<div class="in_box">
 				<div class="trenn_linie"></div>
-			</div>
 		</div>
 		<div class="box">
 			<div class="in_box">
@@ -31,7 +29,10 @@
 				<div class="left">
 					<h2><%= @header.name.to_s %></h2>
 					<br/>
-					<%= raw("<h3>Seite:&nbsp;&nbsp;&nbsp;#{@header.seite.titel.to_s}</h3>") if @header.seite %>
+					<h3>Seiten:</h3>
+					<% @header.seiten.each do |hs| %>
+						<%= hs.name.to_s %><br/>
+					<% end %>
 					<br/>
 					<h3>Bilder:</h3>
 				</div>
@@ -43,11 +44,11 @@
 						</tr>
 						<tr>
 							<th>breite:</th>
-							<td><%= Strangecms::Config[:site_width] %> px</td>
+							<td><%= @header.width %> px</td>
 						</tr>
 						<tr>
 							<th>höhe:</th>
-							<td><%= @header.header_height %> px</td>
+							<td><%= @header.height %> px</td>
 						</tr>
 					</table>
 				</div>
@@ -56,13 +57,13 @@
 		</div>
 		<div class="box">
 			<div class="in_box white">
-				<% @header.header_pics.each do |head| %>
+				<% @header.hpics.each do |head| %>
 					<div style="position:relative" id="<%= dom_id(head)%>">
 						<div class="left">
 							<% if head.bild_cropping %>
 							<%= image_tag head.bild.thumb(head.bild_cropping).thumb("300x150>").url, :alt => 'small_avatar' %>
 							<% else %>
-							<%= image_tag head.bild.thumb("330x#{(@header.header_height / 3)}#").url %>
+							<%= image_tag head.bild.thumb("330x#{(@header.height / 3)}#").url %>
 							
 							<%end%>
 						</div>

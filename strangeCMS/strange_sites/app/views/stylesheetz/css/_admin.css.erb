@@ -9,11 +9,11 @@ h2 { font-size:16px; line-height: 22px;}
 
 
 
-.admin_box { padding: 10px; border: solid 1px #cdcdcd; <%= fineBorderRadius( '0', '8px', '8px', '8px' ) %> background: #fff;}
-.admin_in_box { padding: 5px; border: solid 1px #cdcdcd; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; background: #e2e2e2; }
 
+
+/*
 .admin_box h1 { color: #336699; font-size: 16px; font-weight: normal; line-height: 24px; background: transparent url('/images/admin/ue_pfeil_d.png') 5px 11px no-repeat; padding: 5px 10px 5px 25px;}
-
+*/
 
 table { /* width: 100%; */ }
 table tr.neu { font-weight: bold; }
@@ -216,6 +216,9 @@ div.account_card .c_mail { position:absolute; bottom: 10px; left: 10px; font-siz
 
 
 /* =========================================    N E U ======================================================== */
+/* =========================================    N E U ======================================================== */
+/* =========================================    N E U ======================================================== */
+
 
 #admin_header { height: 44px; background: #fff url('/images/admin/head_nav_bg.jpg') left top repeat-x; border-bottom: 0; }
 
@@ -256,34 +259,28 @@ div.account_card .c_mail { position:absolute; bottom: 10px; left: 10px; font-siz
 	<%= fine_boxShadow( 'inset 0 -5px 5px 0 rgba(0,0,0,.5)' ) %> 
 	padding:0; margin:0; padding-top: 10px;
 	 }
-
 #sub-menu #in_sub { }
-
 #sub-menu #in_sub #sub_navigation { float: left; display:block; margin: 0; position:relative; padding:0; list-style: none; margin-bottom:-2px;}
-
 #sub-menu #in_sub #sub_navigation li { float: left; display:block; margin: 0; position:relative; padding:0; list-style: none; }
 #sub-menu #in_sub #sub_navigation li.nav_aktiv { background: transparent url('/images/fineline/navi/eckenavi_whiteblue100.png') center bottom no-repeat; }
-
-#sub-menu #in_sub #sub_navigation a { 
-	line-height: 20px; padding: 5px 10px 10px; margin: 0 3px 0 0; 
-	position:relative; display:block; float:left; 
-	border:0; 
-	background: transparent;
-  	color: rgba(255,255,255,.7); font-size: 15px;}
-
+#sub-menu #in_sub #sub_navigation a { line-height: 20px; padding: 5px 10px 10px; margin: 0 3px 0 0; 
+	position:relative; display:block; float:left; border:0; background: transparent; color: rgba(255,255,255,.7); font-size: 15px;}
 #sub-menu #in_sub #sub_navigation a:hover, #sub-menu #in_sub #sub_navigation a.aktiv {
 	 color: #fff;  }
-
 #sub-menu #in_sub #sub_navigation a.aktiv:hover{ color: #f3f3f3;}
-
-#sub-menu #in_sub #sub_navigation div.fineHoverBox{
-border:0;
-background: transparent url('/images/fineline/navi/eckenavi_whiteblue100.png') center bottom no-repeat;
-position:absolute;
-z-index:100;
-}
+#sub-menu #in_sub #sub_navigation div.fineHoverBox{ border:0; position:absolute; z-index:100;
+background: transparent url('/images/fineline/navi/eckenavi_whiteblue100.png') center bottom no-repeat; }
 
 #white_spacer { height: 5px; background: #fff; }
 
 #main { <%= fine_backgroundGradient( '#f3f3f3', '#ffffff' ) %> padding:0; margin:0;}
 #in_main { min-height: 420px; /*background: transparent url('/images/fineline/bg.png') center top repeat;*/ padding: 10px 0 70px;}
+
+h1 { font-size:17px; line-height: 32px; color: #333; font-weight: normal; margin-bottom: 5px;}
+
+.admin_box { padding: 9px; border: solid 1px #ccc; <%= fineBorderRadius( '0', '8px', '8px', '8px' ) %> background: #fff;}
+.admin_in_box { padding: 10px; <%= fineBorderRadius( '1px', '5px', '5px', '5px' ) %> background: #f4f2f2; }
+
+.admin_box .admin_in_box .box { padding: 0; border: 0; }
+.admin_box .admin_in_box .box .in_box { padding: 10px 20px; border: solid 1px #f4f2f2; }
+.admin_box .admin_in_box .box .in_box.white { background: #fff; border: solid 1px #ccc; <%= fineBorderRadius( '1px', '5px', '5px', '5px' ) %>}

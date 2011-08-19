@@ -11,8 +11,6 @@ class CreateStrangeHeader < ActiveRecord::Migration
       t.integer       :width
       t.integer       :height                  # => höhe des Headers   ... eh. header_height
       
-      # => t.references    :seite                  # => evtl. Überflüssig
-
       t.integer       :staytime               # => Fader / Slider
       t.integer       :changetime             # => Fader
             
@@ -23,7 +21,6 @@ class CreateStrangeHeader < ActiveRecord::Migration
       t.string        :navstil                # => Auswahl
       
       t.string        :button_set             # => Auswahl
-      
       
       t.string        :hintergrund            # => Auswahl Hingrund => Farbe / Verlauf / Bild / alles
       
@@ -41,35 +38,29 @@ class CreateStrangeHeader < ActiveRecord::Migration
     end
     
     create_table :hpics do |t|
-      t.string        :name
-      t.string        :titel
-      t.text          :inhalt
-      
-      t.integer       :position
-      
-      # => t.references :header
-      
-      t.string        :bild_uid
-      t.string        :bild_cropping
+      t.string        :name                   # => Bild / Datei - Name
+      t.string        :titel                  # => Titel für S3 Slider
+      t.text          :inhalt                 # => Inhalt .. text für S3-Slider
+      t.integer       :position               # => Sortierung
+      t.string        :bild_uid               # => Dragonfly
+      t.string        :bild_cropping          # => Std-Cropping
 
       t.timestamps
     end
     
-    create_table :headers_hpics do |t|
-      t.references    :hpic
-      t.references    :header
+    create_table :header_hpics do |t|
+      t.references    :hpic                   # => HeaderBild
+      t.references    :header                 # => Header
       
-      t.string        :titel
-      t.text          :inhalt
-      
-      t.integer       :position
-      
-      t.string        :cropping
+      t.string        :titel                  # => Titel für S3 Slider
+      t.text          :inhalt                 # => Inhalt .. text für S3-Slider
+      t.integer       :position               # => Sortierung
+      t.string        :cropping               # => this-Cropping
       
       t.timestamps
     end
     
-    create_table :headers_seiten do |t|
+    create_table :header_seiten do |t|
       t.references    :seite
       t.references    :header
       
@@ -77,13 +68,15 @@ class CreateStrangeHeader < ActiveRecord::Migration
     end
     
     
-    add_column :seiten, :header_id, :integer
+    # => add_column :seiten, :header_id, :integer
     
   end
 
   def self.down
     drop_table :headers
-    drop_table :header_pics
+    drop_table :hpics
+    drop_table :header_hpics
+    drop_table :header_seiten
   end
   
   

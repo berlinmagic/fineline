@@ -4,11 +4,11 @@
 	<% @header = Header.first %>
 <% end %>
 <style type="text/css">
-	#banner { height: <%= @header.header_height %>px; }
-	#banner #main_nav_holder { height: <%= @header.header_height %>px;}
+	#banner { height: <%= @header.height %>px; }
+	#banner #main_nav_holder { height: <%= @header.height %>px;}
 </style>
 
-<% if @header.header_pics.count > 1 %>
+<% if @header.hpics.count > 1 %>
 
 	<% if @header.stil == 'slider' %>
 
@@ -19,9 +19,9 @@
 		       		<div class="panel">
 		           		<div class="panel-wrapper">
 							<% if slider.bild_cropping %>
-								<%= image_tag slider.bild.thumb(slider.bild_cropping).thumb("990x#{@header.header_height}").url, :alt => 'small_avatar' %>
+								<%= image_tag slider.bild.thumb(slider.bild_cropping).thumb("990x#{@header.height}").url, :alt => 'small_avatar' %>
 							<% else %>
-								<%= image_tag slider.bild.thumb("990x#{@header.header_height}").url %>
+								<%= image_tag slider.bild.thumb("990x#{@header.height}").url %>
 							<%end%>
 		            	</div>
 		           </div>
@@ -56,11 +56,11 @@
 					doubleFade: true
 			    }, [ // Bilder
 			       ' %>
-			<% @header.header_pics.each do |slider| %>
+			<% @header.hpics.each do |slider| %>
 				<% if slider.bild_cropping %>
-					<% javatext +='{ src: "'+slider.bild.thumb(slider.bild_cropping).thumb("990x#{@header.header_height}").url+'"}, ' %>
+					<% javatext +='{ src: "'+slider.bild.thumb(slider.bild_cropping).thumb("#{@header.width}x#{@header.height}").url+'"}, ' %>
 				<% else %>
-					<% javatext +='{ src: "'+slider.bild.thumb("990x#{@header.header_height}").url+'"}, ' %>
+					<% javatext +='{ src: "'+slider.bild.thumb("#{@header.width}x#{@header.height}").url+'"}, ' %>
 				<%end%>
 				
 			<% end %>
@@ -70,7 +70,7 @@
 				<%= theme_javascript_include_tag 'cross_slide' %>
 				<%= raw(javatext) %>
 				<style>
-				#banner_box { width: 990px; height: <%= @header.header_height %>px;  left:50%; right:50%; top: 0; position:absolute; border: 0; text-align:center; }
+				#banner_box { width: <%= @header.width %>px; height: <%= @header.height %>px;  left:50%; margin-left: -<%= @header.width / 2 %>px; top: 0; position:absolute; border: 0; text-align:center; }
 				</style>
 			<% end %>
 	
@@ -78,12 +78,12 @@
 		<div id="slider_wrapper">
 			<div id="slider">
 				<ul id="sliderContent">
-					<% @header.header_pics.each do |slider| %>
+					<% @header.hpics.each do |slider| %>
 					<li class="sliderImage">
 						<% if slider.bild_cropping %>
-							<%= image_tag slider.bild.thumb(slider.bild_cropping).thumb("990x#{@header.header_height}").url, :alt => 'small_avatar' %>
+							<%= image_tag slider.bild.thumb(slider.bild_cropping).thumb("#{@header.width}x#{@header.height}").url, :alt => 'small_avatar' %>
 						<% else %>
-							<%= image_tag slider.bild.thumb("990x#{@header.header_height}").url %>
+							<%= image_tag slider.bild.thumb("#{@header.width}x#{@header.height}").url %>
 						<%end%>
 						
 						<span class="<%= cycle('right', 'left') %>">
@@ -99,23 +99,23 @@
 		
 
 			<style type="text/css">
-				#slider_wrapper { position: absolute; left:50%; margin-right: -445px; top: 0; width: 990px; height: <%= @header.header_height %>px; }
+				#slider_wrapper { position: absolute; left:50%; margin-right: -<%= @header.width / 2 %>px; top: 0; width: <%= @header.width %>px; height: <%= @header.height %>px; }
 				#slider {
-				    width: 990px; /* important to be same as image width */
-				    height: <%= @header.header_height %>px; /* important to be same as image height */
+				    width: <%= @header.width %>px; /* important to be same as image width */
+				    height: <%= @header.height %>px; /* important to be same as image height */
 				    position: relative; /* important */
 					top:0; left:0;
 					overflow: hidden; /* important */
 				}
-				#sliderContent { width: 990px; position: absolute; top: 0; margin-left: 0; }
+				#sliderContent { width: <%= @header.width %>px; position: absolute; top: 0; margin-left: 0; }
 				.sliderImage { float: left; position: relative; display: none; }
 				.sliderImage span { position: absolute; font: 15px Arial, Helvetica, sans-serif; padding: 10px 13px;
 				    width: 694px; background-color: #000; filter: alpha(opacity=70); -moz-opacity: 0.7; -khtml-opacity: 0.7;
 				    opacity: 0.7; color: #fff; display: none; z-index: 15;}
 				.clear { clear: both; }
 				.sliderImage span strong { font-size: 14px; }
-				#slider_wrapper #slider .left { top: 0; left: 0; width: 200px !important; height: <%= @header.header_height.to_i - 20 %>px; }
-				#slider_wrapper #slider .right { right: 0; bottom: 0; width: 210px !important; height: <%= @header.header_height.to_i - 10 %>px; }
+				#slider_wrapper #slider .left { top: 0; left: 0; width: 200px !important; height: <%= @header.height.to_i - 20 %>px; }
+				#slider_wrapper #slider .right { right: 0; bottom: 0; width: 210px !important; height: <%= @header.height.to_i - 10 %>px; }
 				#slider ul { list-style-type: none;}
 			</style>
 		
@@ -132,20 +132,20 @@
 		
 	<% end %>
 
-<% elsif @header.header_pics.count == 1 %>
+<% elsif @header.hpics.count == 1 %>
 
 <div id="banner_pic_holder">
-	<% @header.header_pics.each do |slider| %>
+	<% @header.hpics.each do |slider| %>
 		<% if slider.bild_cropping %>
-			<%= image_tag slider.bild.thumb(slider.bild_cropping).thumb("990x#{@header.header_height}").url, :alt => 'small_avatar' %>
+			<%= image_tag slider.bild.thumb(slider.bild_cropping).thumb("#{@header.width}x#{@header.height}").url, :alt => 'small_avatar' %>
 		<% else %>
-			<%= image_tag slider.bild.thumb("990x#{@header.header_height}").url %>
+			<%= image_tag slider.bild.thumb("#{@header.width}x#{@header.height}").url %>
 		<%end%>
 	<% end %>
 </div>
 
 <style>
-#banner_pic_holder { position:absolute; width: 990px; height: <%= @header.header_height %>px; left:50%; margin-left: -495px; top: 0; border: 0; text-align:center; display: block; }
+#banner_pic_holder { position:absolute; width: <%= @header.width %>px; height: <%= @header.height %>px; left:50%; margin-left: -<%= @header.width / 2 %>px; top: 0; border: 0; text-align:center; display: block; }
 </style>
 	
 
