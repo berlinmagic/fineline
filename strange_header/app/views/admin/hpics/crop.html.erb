@@ -1,0 +1,112 @@
+<div id="fine_header">
+		<div class="container_48">
+			<div class="grid_32" style="padding:5px 0 0">
+					<h1 class="admin"><%= finelineIcon(:icon => 16, :color => 'dunkel', :size => 32, :blur => 50, :aktion => true) %><%= t('header_crop_preview_headline') %></h1>
+			</div>
+
+
+			<div class="clearfix"></div>
+		</div>
+</div>
+<div id="white_spacer"> </div>
+<div class="prev_box" style="height: <%= @header.height %>px; position:relative; border-top:dashed 2px #ccc; border-bottom:dashed 2px #ccc;">
+	<div style="width:<%= @header.width %>px;height:<%= @header.height %>px; overflow:hidden; position:absolute; left: 50%; top: 0; margin-left: -<%= @header.width / 2 %>px;">
+	  <%= image_tag @hpic.bild.thumb("#{@header.width}x").url, :id => 'preview' %>
+	</div>
+</div>
+
+
+<% content_for :head do %>
+<%= theme_stylesheet_link_tag 'jquery.Jcrop' %>
+<% end %>
+
+<% content_for :js_stuff do %>
+
+<%= theme_javascript_include_tag 'jquery.Jcrop.min' %>
+
+<script language="Javascript">
+
+function showPreview(coords)
+{
+  var aspect_ratio = <%= @hpic.bild.width %> / <%= @hpic.bild.height %>;
+  var scale = <%= 1.0 * @hpic.bild.width / 710 %>;
+  var crop_str = Math.round(coords.w * scale) + 'x' + Math.round(coords.h * scale) +
+           '+' + Math.round(coords.x * scale) + '+' + Math.round(coords.y * scale);
+  $('#bild_cropping').val(crop_str);
+
+  var rx = <%= @header.width %> / coords.w ;
+  var ry = <%= @header.height %> / coords.h;
+  $('#preview').css({
+    width: Math.round(rx * <%= 710 %>) + 'px',
+    height: Math.round(ry * <%= 710 * @hpic.bild.height / @hpic.bild.width %>) + 'px',
+    marginLeft: '-' + Math.round(rx * coords.x) + 'px',
+    marginTop: '-' + Math.round(ry * coords.y) + 'px'
+  });
+}
+
+$(function() {
+  $('#cropbox').Jcrop({
+      onSelect: showPreview,
+      onChange: showPreview,
+      setSelect:   [ 0, 0, 240, 240 ],
+      aspectRatio: <%= @header.width %>/<%= @header.height %>
+    });
+});
+
+</script>
+<% end %>
+
+<div id="main" role="main">
+	<div id="in_main">
+		<div class="container_48">
+			<div id="content" class="fl_box_470">
+				<h1 class="admin">
+					<%= finelineIcon(:icon => 49, :color => 'dunkel', :size => 32, :blur => 50) %><%= t('header_crop_headline') %>
+				</h1>
+			</div>
+			<div class="fl_box_470">
+				<%= form_for @hpic, :url => admin_hpic_path(@hpic) do |f| %>
+				  <%= f.hidden_field :bild_cropping, :id => 'bild_cropping' %>
+				  <%= f.submit "speichen" %>
+				<%= link_to 'verwerfen', :back, :class => 'big_button' %>
+				<div class="clearfix"></div>
+				<% end %>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+		<div class="clearfix"></div>
+		
+		<div class="container_48">
+			<div id="content" class="fl_box_710">
+				
+				
+				<%= image_tag @hpic.bild.thumb("710x").url, :id => 'cropbox' %>
+			</div>
+			<div class="fl_box_210 push_1">
+				Sidebar
+			</div>
+			<div class="clearfix"></div>
+			<br/>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+</div>
+
+
+
+
+<p>
+  <b>Name:</b>
+  <%= @hpic.name %>
+</p>
+
+<p>
+  <b>Avatar:</b>
+  
+<br/><br/>
+
+</p>
+
+
+
+

@@ -7,6 +7,23 @@ de:
   header_was_created: "Header wurde erstellt."
   header_was_updated: "Header wurde aktualisiert."
   header_show_headline: "Headerinhalte verwalten"
+  header_new_headline: "Header erstellen"
+  header_crop_headline: "Headerbild zuschneiden"
+  header_crop_preview_headline: "Headerbild Vorschau"
+  strange_header:
+      std_header_desc: "Standardheader, dieser wird auf allen Seiten angezeigt, die keinen individuellen Header besitzen."
+      header_choose: "Header:"
+      typ_choose: "Headertyp:"
+      header_use: "Verwendung:"
+      header_format: "Headerformat:"
+      header_format_desc: "Breite x Höhe:"
+      header_inhalt_verwalten_desc: "Hier haben Sie die Möglichkeit die Reihenfolge bestehender Headerbilder zu verändern und weitere Bilder hinzuzufügen."
+      titel: "Bildtitel:"
+      inhalt: "Bildtext:"
+      edit_hpic: "Headerbild bearbeiten"
+      crop_hpic: "Headerbild neu zuschneiden"
+      add_site: "Seite hinzufügen"
+      staytime: "Bild-Standzeit"
 ##############################################################################################################################################
 #  =>  #  =>  #  =>  #  =>  #  =>  #  =>  #  =>  #  =>   S T R A N G E - C M S   <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #
 ##############################################################################################################################################

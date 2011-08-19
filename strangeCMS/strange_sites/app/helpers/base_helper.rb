@@ -49,7 +49,7 @@ module BaseHelper
     url = options[:url]
     size = opt_pix.include?(options[:size]) ? options[:size] : 18
     raw( 
-        "<#{ url ? 'a href="' + url + '"' : 'div' } class='flb#{size} finelineButton#{' '+options[:class] if options[:class]}'>#{ 
+        "<#{ url ? 'a href="' + url + '"' : 'div' } class='flb#{size} finelineButton#{' '+options[:class] if options[:class]}#{' tooltiped' if options[:tooltip] }'#{ ' title="'+ options[:title] +'"' if options[:title] }>#{ 
                 finelineIcon(     :icon => options[:icon], 
                                   :blur => options[:blur], 
                                   :color => options[:color], 

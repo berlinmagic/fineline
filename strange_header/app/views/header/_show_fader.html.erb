@@ -1,0 +1,31 @@
+<div id="banner_box">lade..</div>
+
+	<% javatext = '' %>
+	<% javatext = '<script type="text/javascript">
+	  $(function() {
+	    $("#banner_box").crossSlide({
+			fade: 3,
+			sleep: 3,
+			shuffle: true,
+			doubleFade: true
+	    }, [ // Bilder
+	       ' %>
+	<% @header.hpics.each do |slider| %>
+		<% if slider.bild_cropping %>
+			<% javatext +='{ src: "'+slider.bild.thumb(slider.bild_cropping).thumb("#{@header.width}x#{@header.height}").url+'"}, ' %>
+		<% else %>
+			<% javatext +='{ src: "'+slider.bild.thumb("#{@header.width}x#{@header.height}").url+'"}, ' %>
+		<%end%>
+		
+	<% end %>
+	<% javatext +=']); });</script>' %>	
+	
+<%= content_for :front_js do %>
+
+		<%= theme_javascript_include_tag 'cross_slide' %>
+		<%= raw(javatext) %>
+		<style>
+		#banner_box { width: <%= @header.width %>px; height: <%= @header.height %>px;  left:50%; margin-left: -<%= @header.width / 2 %>px; top: 0; position:absolute; border: 0; text-align:center; }
+		</style>
+
+<% end %>

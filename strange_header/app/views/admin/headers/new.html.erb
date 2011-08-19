@@ -1,9 +1,11 @@
 <%= render 'admin/shared/seiten_sub_menu' %>
 
+<%= form_for(@header, :url => { :controller => 'admin/headers'}) do |f| %>
+
 <div class="admin_box">
-	<h1><%= t('header_new') %></h1>
+	<h1 class="admin"><%= finelineIcon(:icon => 49, :color => 'dunkel', :size => 32, :blur => 50) %><%= t('header_new_headline') %></h1>
 	<div class="admin_in_box">
-		<%= form_for(@header, :url => { :controller => 'admin/headers'}) do |f| %>
+		
 		<div class="box">
 			<div class="in_box">
 				<p>Hier haben Sie die Möglichkeit die Reihenfolge bestehender Headerbilder zu verändern und weitere Bilder hinzuzufügen.</p>
@@ -16,20 +18,20 @@
 		</div>
 
 		<div class="box">
-			<div class="in_box white">
+			<div class="in_box">
 				<%= render 'form', :f => f %>
 			</div>
 		</div>
 		
-		<div class="box">
-			<div class="in_box">
-				<%= f.submit %>
-				<div class="clearfix"></div>
-			</div>
-		</div>
-		
-		<% end %>
+	</div>
+	<div class="box">
+
+			<%= f.submit 'speichern' %>
+			<div class="clearfix"></div>
+
 	</div>
 </div>
+
+<% end %>
 
 <%= render 'sidebar' %>

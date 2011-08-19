@@ -273,7 +273,8 @@ background: transparent url('/images/fineline/navi/eckenavi_whiteblue100.png') c
 
 #white_spacer { height: 5px; background: #fff; }
 
-#main { <%= fine_backgroundGradient( '#f3f3f3', '#ffffff' ) %> padding:0; margin:0;}
+#main { <%= fine_backgroundGradient( '#f3f3f3', '#ffffff' ) %> background: #efefef url('/images/back.png') left top repeat; 
+		padding:0; margin:0;}
 #in_main { min-height: 420px; /*background: transparent url('/images/fineline/bg.png') center top repeat;*/ padding: 10px 0 70px;}
 
 h1 { font-size:17px; line-height: 32px; color: #333; font-weight: normal; margin-bottom: 5px;}
@@ -281,6 +282,27 @@ h1 { font-size:17px; line-height: 32px; color: #333; font-weight: normal; margin
 .admin_box { padding: 9px; border: solid 1px #ccc; <%= fineBorderRadius( '0', '8px', '8px', '8px' ) %> background: #fff;}
 .admin_in_box { padding: 10px; <%= fineBorderRadius( '1px', '5px', '5px', '5px' ) %> background: #f4f2f2; }
 
+.admin_box .admin_in_box .in_box { <%= fineBorderRadius( '1px', '5px', '5px', '5px' ) %> }
+
 .admin_box .admin_in_box .box { padding: 0; border: 0; }
 .admin_box .admin_in_box .box .in_box { padding: 10px 20px; border: solid 1px #f4f2f2; }
-.admin_box .admin_in_box .box .in_box.white { background: #fff; border: solid 1px #ccc; <%= fineBorderRadius( '1px', '5px', '5px', '5px' ) %>}
+.admin_box .admin_in_box .box .in_box.white { background: #fff; border: solid 1px #ccc; }
+
+.admin_box .admin_in_box .work_box { padding: 0; margin: 0 -10px; }
+.admin_box .admin_in_box .work_box .in_box { padding: 0; border: 0; display:block;}
+.admin_box .admin_in_box .work_box .in_box.white { background: #fff; border: 0; padding: 1px 0;}
+
+.admin_box .admin_in_box .work_box .in_box .moover_box { padding: 10px 30px; margin: 10px 0; background: #f4f2f2; display:block; position: relative;}
+.admin_box .admin_in_box .work_box .in_box .moover_box:hover { background: #e6e6fe; }
+
+
+.inbox_admin_toolz { position: absolute; top:0; right:0; text-align: right; }
+
+.admin_box .work_box .moover_box .inbox_admin_toolz { top: -10px; right: 0; visibility: hidden; }
+.admin_box .work_box .moover_box:hover .inbox_admin_toolz { visibility: visible; }
+
+
+table.mini { margin: 0; padding:0; }
+table.mini th { padding: 0 10px 0 0; font-weight:normal; vertical-align: top; }
+table.mini td { padding: 0; vertical-align: top; }
+

@@ -3,84 +3,185 @@
 <div class="admin_box">
 	<h1 class="admin"><%= finelineIcon(:icon => 49, :color => 'dunkel', :size => 32, :blur => 50) %><%= t('header_show_headline') %></h1>
 	<div class="admin_in_box">
+		
 		<div class="box">
 			<div class="in_box">
-				<p>Hier haben Sie die Möglichkeit die Reihenfolge bestehender Headerbilder zu verändern und weitere Bilder hinzuzufügen.</p>
-			</div>
-		</div>
-		<div class="box">
-				<div class="trenn_linie"></div>
-		</div>
-		<div class="box">
-			<div class="in_box">
-				<%= form_tag admin_change_header_path, :id => 'changer_form' do |f| %>
-				<%= select_tag :id, options_for_select( Header.all.map { |c| [c.name, c.id] }, @header.id ), :class => 'changer' %>
-				<% end %>
-				<div class="clearfix"></div>
-			</div>
-		</div>
-		<div class="box">
-			<div class="in_box">
-				<div class="trenn_linie"></div>
-			</div>
-		</div>
-		<div class="box">
-			<div class="in_box">
-				<div class="left">
-					<h2><%= @header.name.to_s %></h2>
-					<br/>
-					<h3>Seiten:</h3>
-					<% @header.seiten.each do |hs| %>
-						<%= hs.name.to_s %><br/>
+				<div class="fl_box_110 erster">
+					<%= t('strange_header.header_choose') %>
+				</div>
+				<div class="fl_box_350">
+					<%= form_tag admin_change_header_path, :id => 'changer_form' do |f| %>
+						<div class="fineline_select">
+							<a href="#" class="fineline_select_trigger"></a>
+							<div class="fineline_select_box hidden">
+								<ul>
+									<% Header.all.each do |hdr| %>
+										<li class="level_0"><%= link_to hdr.name, hdr.id.to_s %></li>
+									<% end %>
+								</ul>
+							</div>
+							<span class="fineline_select_text selected"><%= @header.name %></span>
+							<%= hidden_field_tag :header, :id, :value => @header.id.to_s, :class => 'fineline_select_box_input changer' %>
+						</div>
+						<div class="clearfix"></div>
 					<% end %>
-					<br/>
-					<h3>Bilder:</h3>
+					<div class="clearfix"></div>
 				</div>
-				<div class="right">
-					<table>
-						<tr>
-							<th>Stil:</th>
-							<td><strong><%= @header.stil.upcase %></strong></td>
-						</tr>
-						<tr>
-							<th>breite:</th>
-							<td><%= @header.width %> px</td>
-						</tr>
-						<tr>
-							<th>höhe:</th>
-							<td><%= @header.height %> px</td>
-						</tr>
-					</table>
+				<div class="clearfix"></div>
+				<br/>
+				<div class="fl_box_110 erster">
+					<%= t('strange_header.typ_choose') %>
 				</div>
+				<div class="fl_box_350">
+					<div class="fineline_select">
+						<a href="#" class="fineline_select_trigger"></a>
+						<div class="fineline_select_box hidden">
+							<ul>
+								<li class="blank"><%= link_to ' - - - - - ', '' %></li>
+								<% Header::HEADER_STYLES.each do |gruppe| %>
+									<li class="level_0"><%= link_to t(gruppe), gruppe %></li>
+								<% end %>
+							</ul>
+						</div>
+						<span class="fineline_select_text selected"><%= @header.typ %></span>
+						<%= hidden_field_tag :header, :typ, :value => @header.typ, :class => 'fineline_select_box_input' %>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				<div class="clearfix"></div>
+				
+				<br/>
+				<div class="fl_box_110 erster">
+					<%= t('strange_header.header_use') %>
+				</div>
+				<div class="fl_box_350">
+					<% @header.seiten.each do |seite| %>
+						<%= seite.name %><br/>
+					<% end %>
+					<% if @header.name == 'Standard_Header' %>
+						<%= t('strange_header.std_header_desc')  %>
+					<% else %>
+						<%= form_tag admin_add_header_site_path, :id => 'site_add_form' do |f| %>
+						<%= hidden_field :form, :header, :value => @header.id %>
+						<div class="fineline_select">
+							<a href="#" class="fineline_select_trigger"></a>
+							<div class="fineline_select_box hidden">
+								<ul>
+									<li class="blank"><%= link_to ' - Seite wählen - ', '' %></li>
+									<% Seite.aktiv.main.each do |seite| %>
+										<% unless seite == @seite %>
+										<li class="level_0"><%= link_to seite.name, seite.id.to_s %></li>
+											<% if seite.unter_seiten.count > 0 %>
+												<% seite.unter_seiten.each do |u_seite| %>
+													<% unless u_seite == @seite %>
+													<li class="level_1"><%= link_to u_seite.name, u_seite.id.to_s %></li>
+														<% if u_seite.unter_seiten.count > 0 %>
+															<% u_seite.unter_seiten.each do |uu_seite| %>
+																<% unless uu_seite == @seite %>
+																<li class="level_2"><%= link_to uu_seite.name, uu_seite.id.to_s %></li>
+																<% end %>
+															<% end %>
+														<% end %>
+													<% end %>
+												<% end %>
+											<% end %>
+										<% end %>
+									<% end %>
+								</ul>
+							</div>
+							<span class="fineline_select_text selected"> - Seite wählen - </span>
+							<%= hidden_field :form, :seite, :value => '', :class => 'fineline_select_box_input' %>
+						</div>&nbsp;
+						<%= finelineButton(			:icon => 88, 
+													:blur => 70, 
+													:size => 24,
+													:color => 'hell',
+													:url => '#',
+													:class => "submitter",
+													:title => t('strange_header.add_site') ) %>
+						<div class="clearfix"></div>
+						<% end %>
+					<% end %>
+				</div>
+				<div class="clearfix"></div>
+				
+				<br/>
+				<div class="fl_box_110 erster">
+					<%= t('strange_header.header_format') %>
+				</div>
+				<div class="fl_box_350">
+					<%= t('strange_header.header_format_desc') %> <%= @header.width %> x <%= @header.height %> pixel
+				</div>
+				<div class="clearfix"></div>
+				
 				<div class="clearfix"></div>
 			</div>
 		</div>
+		
 		<div class="box">
+				<div class="trenn_linie"></div>
+		</div>
+		
+		<div class="box">
+			<div class="in_box">
+				<p><%= t('strange_header.header_inhalt_verwalten_desc') %></p>
+			</div>
+		</div>
+		
+		<div class="box">
+				<div class="trenn_linie"></div>
+		</div>
+		
+
+		<div class="work_box">
 			<div class="in_box white">
 				<% @header.hpics.each do |head| %>
-					<div style="position:relative" id="<%= dom_id(head)%>">
-						<div class="left">
+					<div class="moover_box" id="<%= dom_id(head)%>">
+						<div class="fl_box_310 erster">
 							<% if head.bild_cropping %>
-							<%= image_tag head.bild.thumb(head.bild_cropping).thumb("300x150>").url, :alt => 'small_avatar' %>
+							<%= image_tag head.bild.thumb(head.bild_cropping).thumb("310x90>").url, :alt => 'small_avatar' %>
 							<% else %>
-							<%= image_tag head.bild.thumb("330x#{(@header.height / 3)}#").url %>
+							<%= image_tag head.bild.thumb("310x90").url %>
 							
 							<%end%>
 						</div>
-						<p><strong><%= head.name %></strong> </p>
-						<p><%= truncate(head.inhalt, :length => 50, :omission => "...") %></p>
-						<p>
-							<%= fineline_button( 'bearbeiten', 	:link_text => 'bearbeiten', 
-																:url => edit_admin_header_header_pic_path(@header,head), 
-																:class => "remote_form_link" ) %>
-							&nbsp;&nbsp;|&nbsp;&nbsp;
-							<%= fineline_button( 'zuschneiden', :link_text => 'zuschneiden', 
-																:url => crop_admin_header_header_pic_path(@header,head) ) %>
-							&nbsp;&nbsp;|&nbsp;&nbsp;
-							<%= fineline_button_delete( head, 	:link_text => 'loeschen', 
-																:url => admin_header_pic_path(head),
-																:title => 'löschen' ) %>
-						</p>
+						<div class="fl_box_310 letzter">
+							<table class="mini">
+								<tr>
+									<th class="norm3"><%= t('strange_header.titel') %></th>
+									<td class="norm2"><%= head.name %></td>
+								</tr>
+								<tr>
+									<th class="norm3"><%= t('strange_header.inhalt') %></th>
+									<td class="norm1"><%= truncate(head.inhalt, :length => 75, :omission => "...") %></td>
+								</tr>
+							</table>
+							
+							<div class="inbox_admin_toolz">
+								<%= finelineButton(			:icon => 30, 
+															:blur => 70, 
+															:color => 'hell',
+															:url => edit_admin_header_hpic_path(@header,head),
+															:class => "remote_form_link",
+															:title => t('strange_header.edit_hpic') ) %>
+								
+								<%= finelineButton(			:icon => 64, 
+															:blur => 70, 
+															:color => 'hell',
+															:url => crop_admin_header_hpic_path(@header,head),
+															:title => t('strange_header.crop_hpic') ) %>
+								
+								
+								<%= fineline_button( 'bearbeiten', 	:url => edit_admin_header_hpic_path(@header,head), 
+																	:class => "remote_form_link" ) %>
+								&nbsp;
+								<%= fineline_button( 'zuschneiden', :url => crop_admin_header_hpic_path(@header,head) ) %>
+								&nbsp;
+								<%= fineline_button_delete( head, 	:url => admin_hpic_path(head),
+																	:title => 'löschen' ) %>
+							</div>
+						</div>
+						
 						<div class="clearfix"></div>
 						<br/>
 					</div>
@@ -88,15 +189,6 @@
 			</div>
 		</div>
 		
-		<div class="box">
-			<div class="in_box">
-				<br/>
-				<%= fineline_button( 'neu', 		:link_text => 'neues Bild', 
-													:url => new_admin_header_header_pic_path(@header), 
-													:class => "remote_form_link" ) %>
-				<div class="clearfix"></div>
-			</div>
-		</div>
 		
 	</div>
 </div>
@@ -117,6 +209,18 @@ $('.remote_form_link').click(function (event) {
 $('.changer').change(function () {
 	$("#changer_form").submit();
 });
+
+$('.changer').live('change', function () {
+	$("#changer_form").submit();
+});
+$('.changer').bind("DOMSubtreeModified",function(){
+  $("#changer_form").submit();
+ });
+
+$('.submitter').live('click', function () {
+	$("#site_add_form").submit();
+});
+
 
 </script>
 <% end %>

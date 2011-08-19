@@ -1,0 +1,28 @@
+<div id="coda-nav-left-1" class="coda-nav-left"><a href="#" title="Slide left">&#171;</a></div>
+<div class="coda-slider-wrapper">
+       <div class="coda-slider preload" id="coda-slider">
+		<% @header.header_pics.each do |slider| %>
+       		<div class="panel">
+           		<div class="panel-wrapper">
+					<% if slider.bild_cropping %>
+						<%= image_tag slider.bild.thumb(slider.bild_cropping).thumb("990x#{@header.height}").url, :alt => 'small_avatar' %>
+					<% else %>
+						<%= image_tag slider.bild.thumb("990x#{@header.height}").url %>
+					<%end%>
+            	</div>
+           </div>
+          <% end %>
+       </div><!-- .coda-slider -->
+</div><!-- .coda-slider-wrapper -->
+<div id="coda-nav-right-1" class="coda-nav-right"><a href="#" title="Slide right">&#187;</a></div>
+<%= content_for :front_js do %>
+	<%= theme_javascript_include_tag 'coda_slider' %>
+	<script type="text/javascript" charset="utf-8">
+		$().ready(function() {
+			jQuery('#coda-slider').codaSlider({
+			       dynamicArrows: false,
+			       dynamicTabs: false
+			});
+		});
+	</script>
+<% end %>

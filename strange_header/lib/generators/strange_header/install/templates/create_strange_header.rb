@@ -5,34 +5,34 @@ class CreateStrangeHeader < ActiveRecord::Migration
     create_table :headers do |t|
       t.string        :name                   # => evtl. Überflüssig
       
-      t.string        :typ                    # => fader  /  slider  /  etc.
-      t.string        :stil                   # => fader  /  slider  /  etc.
+      t.string        :typ,             :default => 'fader'           # => fader  /  slider  /  etc.
+      t.string        :stil                                           # => Stil / Style evtl. nützlich ???
       
-      t.integer       :width
-      t.integer       :height                  # => höhe des Headers   ... eh. header_height
+      t.integer       :width,           :default => 960               # => breite des Headers   ... eh. header_height
+      t.integer       :height,          :default => 960               # => höhe des Headers   ... eh. header_height
       
-      t.integer       :staytime               # => Fader / Slider
-      t.integer       :changetime             # => Fader
+      t.integer       :staytime,        :default => 5                 # => Fader / Slider
+      t.integer       :changetime,      :default => 2                 # => Fader
             
-      t.boolean       :sort                   # => Sortiert / Zufällig
+      t.boolean       :sort,            :default => false             # => Sortiert / Zufällig
       
-      t.boolean       :autoplay               # => Autoplay:  Ja / Nein
-      t.boolean       :shownav                # => Navi:  Ja / Nein
-      t.string        :navstil                # => Auswahl
+      t.boolean       :autoplay,        :default => true              # => Autoplay:  Ja / Nein
+      t.boolean       :shownav,         :default => true              # => Navi:  Ja / Nein
+      t.string        :navstil,         :default => 'fineline'        # => Auswahl
       
-      t.string        :button_set             # => Auswahl
+      t.string        :button_set,      :default => 'fineline'        # => Auswahl
       
-      t.string        :hintergrund            # => Auswahl Hingrund => Farbe / Verlauf / Bild / alles
+      t.string        :hintergrund,     :default => 'verlauf'         # => Auswahl Hingrund => Farbe / Verlauf / Bild / alles
       
-      t.string        :farbe1                 # => Standardfarbe für Hintergrund
-      t.string        :farbe2                 # => Farbe2 falls Verlauf 
+      t.string        :farbe1,          :default => '#003366'         # => Standardfarbe für Hintergrund
+      t.string        :farbe2,          :default => '#00213f'         # => Farbe2 falls Verlauf 
       
-      t.string        :bg_pic_uid             # => Hintergrund -Bild/ -Grafik
-      t.string        :bg_pic_cropping        # => möglichst freier Zuschnitt  (zwecks Kacheln)
-      
-      t.string        :bg_pos_h               # => Bild Position horizontal   =>  left / center / right
-      t.string        :bg_pos_v               # => Bild Position vertical   =>   top / center / bottom
-      t.string        :bg_repeat              # => Bild-Wiederholung   =>   keine / horizontal / vertikal / alle Richtung
+      t.string        :bg_pic_uid                                     # => Hintergrund -Bild/ -Grafik
+      t.string        :bg_pic_cropping                                # => möglichst freier Zuschnitt  (zwecks Kacheln)
+                                                                      
+      t.string        :bg_pos_h                                       # => Bild Position horizontal   =>  left / center / right
+      t.string        :bg_pos_v                                       # => Bild Position vertical   =>   top / center / bottom
+      t.string        :bg_repeat                                      # => Bild-Wiederholung   =>   keine / horizontal / vertikal / beide
       
       t.timestamps
     end

@@ -3,8 +3,9 @@ Rails.application.routes.draw do
   namespace :admin do
     
     match 'change_header' => 'headers#change_header'
+    match 'add_header_site' => 'headers#add_site'
     resources :headers do
-      resources :header_pics do
+      resources :hpics do
         member do
           get :crop
           get :select
@@ -17,7 +18,7 @@ Rails.application.routes.draw do
         end
       end
     end
-    resources :header_pics
+    resources :hpics
     
   end
   

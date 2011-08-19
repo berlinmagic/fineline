@@ -4,7 +4,7 @@
 				<li class="plus"><%= link_to 'Header bearbeiten', edit_admin_header_path(@header), :class => "#{'aktiv' if @u_aktiv == 'edit'}" %></li>
 				<li class="plus">
 					<%#= link_to 'Neues Bild', new_admin_header_header_pic_path(@header), :class => "remote_form_link #{'aktiv' if @u_aktiv == 'new'}" %>
-					<%= link_to 'Neues Bild', new_admin_header_header_pic_path(@header), :class => "colorB #{'aktiv' if @u_aktiv == 'new'}" %>
+					<%= link_to 'Neues Bild', new_admin_header_hpic_path(@header), :class => "colorB #{'aktiv' if @u_aktiv == 'new'}" %>
 				</li>
 				<li class="plus"><%= link_to 'Neuer Header', new_admin_header_path, :class => "colorB #{'aktiv' if @u_aktiv == 'new'}" %></li>
 				<% if @header && @header.name != 'Standard_Header' %>

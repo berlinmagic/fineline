@@ -26,11 +26,13 @@
 						</div>
 						
 						<div class="aktiv">
-							<%= head.header_pics.count %>
+							<%= head.hpics.count %>
 						</div>
 						
 					    <div class="second">
-							<%= head.seite.name if head.seite %>
+							<%= head.seiten.each do |seite| %>
+								<%= seite.name %>
+							<% end %>
 						</div>
 					
 						<div class="actions">

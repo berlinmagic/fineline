@@ -67,6 +67,13 @@ class Admin::HeadersController < Admin::BaseController
     redirect_to admin_header_path(@new_header)
   end
   
+  def add_site
+    @header = Header.find(params[:form][:header])
+    @seite = Seite.find(params[:form][:seite])
+    @header.seiten << @seite
+    redirect_to admin_header_path(@header)
+  end
+  
   def destroy
     @header = Header.find(params[:id])
     @header.destroy
