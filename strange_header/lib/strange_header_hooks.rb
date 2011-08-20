@@ -27,4 +27,13 @@ class StrangeHeaderHooks < Strangecms::ThemeSupport::HookListener
   
   replace :strange_banner, 'header/show'
   
+  insert_after :strange_admin_js_stuff do
+    "<%= render 'javascriptz/strange_header' %>"
+  end
+  
+  
+  insert_after :strange_front_js_stuff do
+    "<%= render 'javascriptz/strange_header' %>"
+  end
+  
 end

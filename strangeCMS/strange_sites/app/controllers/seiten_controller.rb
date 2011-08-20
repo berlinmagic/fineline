@@ -1,5 +1,8 @@
 # encoding: utf-8
 class SeitenController < ApplicationController
+  
+  include FinestyleHelp
+  
   def index
     redirect_to root_url 
   end

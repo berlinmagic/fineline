@@ -59,7 +59,7 @@ module StrangeSiteHelper
   
   
   def abschnitt_anker_field(this)
-    this_html   =   '<div class="abschnitt_inhalt_anker_feld"><span>Anker-Name</span>'
+    this_html   =   '<div class="abschnitt_inhalt_anker_feld"><label>Anker-Name</label>'
     this_html   +=  this.text_field :name, 	:class => 'anker_feld tipped tooltiped', 
 										:placeholder => 'Namen eingeben und Anker setzten', 
 										:title => Seite.human_attribute_name(:name), 

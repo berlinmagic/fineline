@@ -3,7 +3,7 @@ class Header < ActiveRecord::Base
   
   HEADER_STYLES = ['fader', 'slider', 's3-slider']
   
-  BG_STYLES = ['farbe', 'verlauf', 'bild']
+  BG_STYLES = ['farbe', 'verlauf', 'bild', 'bild_farbe', 'bild_verlauf']
   
   HWERTE = %W(left center top)
   VWERTE = %W(top center bottom)

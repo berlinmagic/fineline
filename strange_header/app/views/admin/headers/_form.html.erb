@@ -1,29 +1,23 @@
-<div class="box">
-	<div class="in_box">
-		<%= render 'shared/error', :item => f.object%>
-	</div>
-</div>
+<%= render 'shared/error', :item => f.object%>
 
 
 <div class="fl_box_110 erster">
-	<%= f.label :name %>
+	<label><%= t('strange_header.name') %></label>
 </div>
 <div class="fl_box_350">
 	<%= f.text_field :name, :class => 'full' %>
 </div>
-<div class="clearfix"></div>
-<br/>
+<div class="vspacer"></div>
 
 
 <div class="fl_box_110 erster">
 	<label><%= t('strange_header.typ_choose') %></label>
 </div>
 <div class="fl_box_350">
-	<div class="fineline_select">
+	<div class="fineline_select full">
 		<a href="#" class="fineline_select_trigger"></a>
 		<div class="fineline_select_box hidden">
 			<ul>
-				<li class="blank"><%= link_to ' - - - - - ', '' %></li>
 				<% Header::HEADER_STYLES.each do |gruppe| %>
 					<li class="level_0"><%= link_to t(gruppe), gruppe %></li>
 				<% end %>
@@ -34,9 +28,7 @@
 	</div>
 	<div class="clearfix"></div>
 </div>
-<div class="clearfix"></div>
-
-<br/>
+<div class="vspacer"></div>
 
 <div class="fl_box_110 erster">
 	<label><%= t('strange_header.header_format_desc') %></label>
@@ -44,65 +36,6 @@
 <div class="fl_box_350">
 	<%= f.text_field :width, :class => 'half' %><%= f.text_field :height, :class => 'half' %>
 </div>
-<div class="clearfix"></div>
-<br/>
+<div class="vspacer"></div>
 
 
-<div class="in_box">
-	<%= link_to fineline_button('erweitert')+ raw(' Seiteneinstellungen <span id="more_link_text">bearbeiten</span>'), '#', :class => "more_button", :remote => true %>
-</div>
-
-<div class="clearfix"></div>
-
-<div class="no_show hidden">
-	
-	<br/>
-	
-	<div class="fl_box_110 erster">
-		<label><%= t('strange_header.staytime') %></label>
-	</div>
-	<div class="fl_box_110">
-		<%= f.text_field :staytime, :class => 'half' %>
-	</div>
-	<div class="fl_box_350 slider_holder">
-		<div id="staytime_slider"></div>
-	</div>
-	<div class="clearfix"></div>
-	<br/>
-	
-	<div class="fl_box_110 erster">
-		<label><%= t('strange_header.staytime') %></label>
-	</div>
-	<div class="fl_box_110">
-		<%= f.text_field :changetime, :class => 'half' %>
-	</div>
-	<div class="fl_box_350 slider_holder">
-		<div id="changetime_slider"></div>
-	</div>
-	<div class="clearfix"></div>
-	<br/>
-	
-</div>
-<style>
-.slider_holder { padding: 7px 10px;}
-</style>
-
-<% content_for :js_stuff do %>
-<script language="Javascript">
-$(function() {
-		$( "#staytime_slider" ).slider({ range: "max", min: 1, max: 10, value: <%= @header.staytime || 5 %>, 
-		slide: function( event, ui ) {
-				$( "#header_staytime" ).val( ui.value );
-			}
-		});
-		$( "#header_staytime" ).val( $( "#staytime_slider" ).slider( "value" ) );
-		
-		$( "#changetime_slider" ).slider({ range: "max", min: 1, max: 10, value: <%= @header.changetime || 2 %>, 
-		slide: function( event, ui ) {
-				$( "#header_changetime" ).val( ui.value );
-			}
-		});
-		$( "#header_changetime" ).val( $( "#changetime_slider" ).slider( "value" ) );
-});
-</script>
-<% end %>

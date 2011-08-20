@@ -1,7 +1,7 @@
 <%= render 'admin/shared/seiten_sub_menu' %>
 
 <div class="admin_box">
-	<h1 class="admin"><%= finelineIcon(:icon => 49, :color => 'dunkel', :size => 32, :blur => 50) %><%= t('header_show_headline') %></h1>
+	<h1 class="admin"><%= finelineIcon(:icon => 49, :color => 'dunkel', :size => 24, :blur => 50) %><%= t('header_show_headline') %></h1>
 	<div class="admin_in_box">
 		
 		<div class="box">
@@ -171,6 +171,13 @@
 															:url => crop_admin_header_hpic_path(@header,head),
 															:title => t('strange_header.crop_hpic') ) %>
 								
+								<%= finelineDelete( head,	:icon => 24, 
+															:blur => 70, 
+															:color => 'hell',
+															:url => admin_hpic_path(head),
+															:title => t('strange_header.del_pic') ) %>
+								
+								
 								
 								<%= fineline_button( 'bearbeiten', 	:url => edit_admin_header_hpic_path(@header,head), 
 																	:class => "remote_form_link" ) %>
@@ -183,7 +190,7 @@
 						</div>
 						
 						<div class="clearfix"></div>
-						<br/>
+
 					</div>
 				<% end %>
 			</div>

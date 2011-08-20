@@ -11,6 +11,7 @@ class AppConfiguration < Configuration
   preference :put_site_name_bevore_title, :boolean, :default => false
   preference :title_seperator, :string, :default => ' | '
   
+  preference :show_help, :boolean, :default => true
   
   preference :show_site_name, :boolean, :default => true
   preference :stange_owner_name, :string, :default => 'Name'

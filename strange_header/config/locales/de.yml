@@ -8,9 +8,16 @@ de:
   header_was_updated: "Header wurde aktualisiert."
   header_show_headline: "Headerinhalte verwalten"
   header_new_headline: "Header erstellen"
+  header_edit_headline: "Header bearbeiten"
   header_crop_headline: "Headerbild zuschneiden"
   header_crop_preview_headline: "Headerbild Vorschau"
+  header_headline: "Headervewaltung"
   strange_header:
+      name: "Bezeichnung:"
+      farbe1: "Grundfarbe:"
+      farbe2: "Zusatzfarbe:"
+      h_hintergrund: "Hintergrund:"
+      sort: "Bildsortierung:"
       std_header_desc: "Standardheader, dieser wird auf allen Seiten angezeigt, die keinen individuellen Header besitzen."
       header_choose: "Header:"
       typ_choose: "Headertyp:"
@@ -22,8 +29,20 @@ de:
       inhalt: "Bildtext:"
       edit_hpic: "Headerbild bearbeiten"
       crop_hpic: "Headerbild neu zuschneiden"
+      del_pic: "Headerbild löschen"
       add_site: "Seite hinzufügen"
-      staytime: "Bild-Standzeit"
+      staytime: "Standzeit"
+      changetime: "Wechselzeit"
+      new_header_help_text: "Hier haben Sie die Möglichkeit einen neuen Header zu erstellen, bestimmen Sie höhe, breite und wechseleffekt Ihres neuen Headers."
+      edit_header_help_text: "Etwas vergessen oder nicht nach Ihren Wünschen, hier haben Sie die Möglichkeit die Header-Eigenschaften zu verändern."
+      sorted: "sortiert"
+      unsorted: "zufällig"
+      hintergrund:
+          farbe: "Farbe"
+          verlauf: "Verlauf"
+          bild: "Bild"
+          bild_farbe: "Bild auf Farbe"
+          bild_verlauf: "Bild auf Verlauf"
 ##############################################################################################################################################
 #  =>  #  =>  #  =>  #  =>  #  =>  #  =>  #  =>  #  =>   S T R A N G E - C M S   <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #
 ##############################################################################################################################################

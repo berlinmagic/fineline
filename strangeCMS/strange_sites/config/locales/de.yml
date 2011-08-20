@@ -12,6 +12,9 @@ de:
         last: "&raquo;"
   strange_Backend: "Backend bearbeiten"
   strange_Frontend: "zur Webseite wechseln"
+  help_text_link: "Hilfetext"
+  help_text_link_show: "einblenden"
+  help_text_link_hide: "ausblenden"
 ###  Linkz  ###
   Show: "Anzeigen"
   Edit: "Bearbeiten"

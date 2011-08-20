@@ -5,4 +5,12 @@
 			</ul>
 			<br class="clear" />
 </div>
+<div class="side_box">
+	<div class="sidebar_head aktiv_box">
+		<a href="#">Hilfe</a>
+	</div>
+	<ul class='sidebar'>
+		<li><%= link_to raw("#{ t('help_text_link') } <span class='link_help_show#{' hidden' if Strangecms::Config[:show_help] }'>#{t('help_text_link_show')}</span> <span class='link_help_show#{' hidden' unless Strangecms::Config[:show_help] }'>#{t('help_text_link_hide')}</span>"), '#', :class => 'show_system_help' %></li>
+	</ul>
+</div>
 <% end %>

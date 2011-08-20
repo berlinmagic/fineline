@@ -9,7 +9,7 @@ class CreateStrangeHeader < ActiveRecord::Migration
       t.string        :stil                                           # => Stil / Style evtl. nützlich ???
       
       t.integer       :width,           :default => 960               # => breite des Headers   ... eh. header_height
-      t.integer       :height,          :default => 960               # => höhe des Headers   ... eh. header_height
+      t.integer       :height,          :default => 210               # => höhe des Headers   ... eh. header_height
       
       t.integer       :staytime,        :default => 5                 # => Fader / Slider
       t.integer       :changetime,      :default => 2                 # => Fader
@@ -24,8 +24,8 @@ class CreateStrangeHeader < ActiveRecord::Migration
       
       t.string        :hintergrund,     :default => 'verlauf'         # => Auswahl Hingrund => Farbe / Verlauf / Bild / alles
       
-      t.string        :farbe1,          :default => '#003366'         # => Standardfarbe für Hintergrund
-      t.string        :farbe2,          :default => '#00213f'         # => Farbe2 falls Verlauf 
+      t.string        :farbe1,          :default => '003366'         # => Standardfarbe für Hintergrund
+      t.string        :farbe2,          :default => '00213f'         # => Farbe2 falls Verlauf 
       
       t.string        :bg_pic_uid                                     # => Hintergrund -Bild/ -Grafik
       t.string        :bg_pic_cropping                                # => möglichst freier Zuschnitt  (zwecks Kacheln)

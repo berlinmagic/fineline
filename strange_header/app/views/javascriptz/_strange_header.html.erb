@@ -1,0 +1,14 @@
+
+
+<script type="text/javascript" charset="utf-8">
+
+	$('.show_system_help').live('click', function(event){
+		event.preventDefault();
+		$('.system_help_text.hidden').hide().removeClass('hidden');
+		$('.system_help_text').slideToggle(500);
+		$('.link_help_show').toggleClass('hidden');
+	});
+
+</script>
+
+

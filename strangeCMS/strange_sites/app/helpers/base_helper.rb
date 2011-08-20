@@ -60,4 +60,41 @@ module BaseHelper
     
   end
   
+  def finelineDelete(helpa, options = {})
+    options.assert_valid_keys(:icon,  :blur,  :color,   :size,  :aktion, :url, :caption, :title, :dataType, :success, :stuff, :link_text, :class, :tooltip)
+    options.reverse_merge! :url => "#{helpa.class.to_s.pluralize.downcase}/#{helpa.id}" unless options.key? :url
+    options.reverse_merge! :link_text => nil unless options.key? :link_text
+    options.reverse_merge! :caption => t('are_you_sure')
+    options.reverse_merge! :class => '' unless options.key? :class
+    options.reverse_merge! :tooltip => t("Destroy") unless options.key? :tooltip
+    options.reverse_merge! :title => t('confirm_delete')
+    options.reverse_merge! :dataType => 'script'
+    options.reverse_merge! :icon    => 1      unless options.key? :icon
+    options.reverse_merge! :blur    => 1.0    unless options.key? :blur
+    options.reverse_merge! :color   => nil    unless options.key? :class
+    options.reverse_merge! :size    => 18     unless options.key? :size
+    options.reverse_merge! :aktion  => nil    unless options.key? :aktion
+    opt_pix = [18, 24, 32, 48]
+    size = opt_pix.include?(options[:size]) ? options[:size] : 18
+    options.reverse_merge! :success => "function(r){ jQuery('##{dom_id helpa}').fadeOut('hide'); }"
+    link_to_function raw( "<div class='flb#{size} finelineButton#{' '+options[:class] if options[:class]}#{' tooltiped' if options[:tooltip] }'#{ ' title="'+ options[:title] +'"' if options[:title] }>#{ 
+                finelineIcon(     :icon => options[:icon], 
+                                  :blur => options[:blur], 
+                                  :color => options[:color], 
+                                  :size => options[:size], 
+                                  :aktion => options[:aktion]   ) 
+            }</div>" 
+        ), "jConfirm('#{options[:caption]}', '#{options[:title]}', function(r) {
+      if(r){
+        jQuery.ajax({
+          type: 'POST',
+          url: '#{options[:url]}',
+          data: ({_method: 'delete', authenticity_token: AUTH_TOKEN}),
+          dataType:'#{options[:dataType]}',
+          success: #{options[:success]}
+        });
+      }
+    });", :title => options[:tooltip], :class => 'tooltiped'
+  end
+  
 end

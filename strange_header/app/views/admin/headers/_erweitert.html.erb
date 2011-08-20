@@ -1,0 +1,148 @@
+
+<h5><%= link_to finelineIcon(:icon => 54, :color => 'dunkel', :size => 24, :blur => 50)+ raw(' Seiteneinstellungen <span id="more_link_text">bearbeiten</span>'), '#', :class => "more_button" %></h5>
+
+
+<div class="clearfix"></div>
+
+<div class="no_show hidden">
+	
+	<div class="vspacer"></div>
+	
+	<div class="fl_box_110 erster">
+		<label class="no_view"><%= t('strange_header.staytime') %></label>
+	</div>
+	<div class="fl_box_150">
+		<%= f.text_field :staytime, :class => 'no_view' %> <span class="norm1"><%= t('datetime.prompts.second') %></span>
+	</div>
+	<div class="fl_box_150 slider_holder">
+		<div id="staytime_slider"></div>
+	</div>
+	
+	<div class="vspacer"></div>
+	
+	<div class="fl_box_110 erster">
+		<label class="no_view"><%= t('strange_header.changetime') %></label>
+	</div>
+	<div class="fl_box_150">
+		<%= f.text_field :changetime, :class => 'no_view' %> <span class="norm1"><%= t('datetime.prompts.second') %></span>
+	</div>
+	<div class="fl_box_150 slider_holder">
+		<div id="changetime_slider"></div>
+	</div>
+	
+	<div class="vspacer"></div>
+	
+	<div class="fl_box_110 erster">
+		<label><%= t('strange_header.sort') %></label>
+	</div>
+	<div class="fl_box_350">
+			<div class="fineline_select half">
+				<a href="#" class="fineline_select_trigger"></a>
+				<div class="fineline_select_box hidden">
+					<ul>
+						<li class="level_0"><%= link_to t('strange_header.sorted'), '0' %></li>
+						<li class="level_0"><%= link_to t('strange_header.unsorted'), '1' %></li>
+					</ul>
+				</div>
+				<span class="fineline_select_text selected"><%= @header.sort ? t('strange_header.sorted') : t('strange_header.unsorted') %></span>
+				<%= f.hidden_field :sort, :value => @header.sort, :class => 'fineline_select_box_input' %>
+			</div>
+			<div class="clearfix"></div>
+	</div>
+
+	<div class="vspacer"></div>
+	
+	<div class="fl_box_110 erster">
+		<label><%= t('strange_header.h_hintergrund') %></label>
+	</div>
+	<div class="fl_box_350">
+			<div class="fineline_select half">
+				<a href="#" class="fineline_select_trigger"></a>
+				<div class="fineline_select_box hidden">
+					<ul>
+						<% Header::BG_STYLES.each do |hbg| %>
+							<li class="level_0"><%= link_to t("strange_header.hintergrund.#{hbg}"), hbg %></li>
+						<% end %>
+					</ul>
+				</div>
+				<span class="fineline_select_text selected"><%= t("strange_header.hintergrund.#{@header.hintergrund}") %></span>
+				<%= f.hidden_field :hintergrund, :value => @header.hintergrund, :class => 'fineline_select_box_input' %>
+			</div>
+			<div class="clearfix"></div>
+	</div>
+
+	<div class="vspacer"></div>
+	
+	<div class="fl_box_110 erster">
+		<label><%= t('strange_header.farbe1') %></label>
+	</div>
+	<div class="fl_box_150">
+		<%= f.text_field :farbe1, :class => 'half' %>
+	</div>
+
+	<div class="vspacer"></div>
+	
+	<div class="fl_box_110 erster">
+		<label><%= t('strange_header.farbe2') %></label>
+	</div>
+	<div class="fl_box_150">
+		<%= f.text_field :farbe2, :class => 'half' %>
+	</div>
+
+	<div class="vspacer"></div>
+	
+</div>
+<style>
+.slider_holder { padding: 7px 0;}
+</style>
+
+<% content_for :js_stuff do %>
+
+<script type="text/javascript">        
+$(function()
+    {
+		$('#header_farbe1').jPicker({
+			localization:
+		  	{
+			    text:
+			    {
+			      title: 'Drag Markers To Pick A Color',
+			      newColor: 'new',
+			      currentColor: 'current',
+			      ok: 'übernehmen',
+			      cancel: 'verwerfen'
+			    }}
+			});
+
+		$('#header_farbe2').jPicker({
+			localization:
+		  	{
+			    text:
+			    {
+			      title: 'Drag Markers To Pick A Color',
+			      newColor: 'new',
+			      currentColor: 'current',
+			      ok: 'übernehmen',
+			      cancel: 'verwerfen'
+			    }}
+			});
+    });
+</script>
+<script language="Javascript">
+$(function() {
+		$( "#staytime_slider" ).slider({ min: 1, max: 10, value: <%= @header.staytime || 5 %>, 
+		slide: function( event, ui ) {
+				$( "#header_staytime" ).val( ui.value );
+			}
+		});
+		$( "#header_staytime" ).val( $( "#staytime_slider" ).slider( "value" ) );
+		
+		$( "#changetime_slider" ).slider({ min: 1, max: 10, value: <%= @header.changetime || 2 %>, 
+		slide: function( event, ui ) {
+				$( "#header_changetime" ).val( ui.value );
+			}
+		});
+		$( "#header_changetime" ).val( $( "#changetime_slider" ).slider( "value" ) );
+});
+</script>
+<% end %>

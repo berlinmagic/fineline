@@ -4,7 +4,13 @@
 	<% @header = Header.first %>
 <% end %>
 <style type="text/css">
-	#banner { height: <%= @header.height %>px; }
+	#banner { height: <%= @header.height %>px; 
+		<% if @header.hintergrund && @header.farbe1 && @header.farbe2 && @header.hintergrund == 'verlauf' %>
+			<%= fine_backgroundGradient('#' + @header.farbe1.to_s, '#' + @header.farbe2.to_s) %>
+		<% elsif @header.hintergrund && @header.farbe1 && @header.hintergrund == 'farbe' %>
+			background: <%= @header.farbe1 %>;
+		<% end %>
+		}
 	#banner #main_nav_holder { height: <%= @header.height %>px;}
 </style>
 

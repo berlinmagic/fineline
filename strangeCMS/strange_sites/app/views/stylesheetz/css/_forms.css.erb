@@ -17,9 +17,9 @@
 #fineline_seite_form_abschnitt_area { margin: 12px -13px 12px -42px; padding: 5px 0 20px; display: block; border: 0; position:relative; 
 		background: #fff; border-top: solid 3px #ccc; border-bottom: solid 3px #ccc; }
 
-.abschnitt_box { padding: 25px 13px 0px 42px; position:relative;}
+.abschnitt_box { padding: 25px 13px 0px 42px; position:relative; z-index:1; }
 
-.abschnitt_box .abschnitt_inhalt_box { padding: 10px; border: solid 1px transparent; position:relative;
+.abschnitt_box .abschnitt_inhalt_box { padding: 10px; border: solid 1px transparent; position:relative; z-index:2;
 		-webkit-border-radius: 	<%= finestyle[:edit_box][:radius]  %>; 
 		-moz-border-radius: 	<%= finestyle[:edit_box][:radius]  %>; 
 		-o-border-radius: 		<%= finestyle[:edit_box][:radius]  %>; 
@@ -46,6 +46,7 @@
 		position: absolute; top:-24px; left: 13px; line-height: 18px; color: #666;
 		margin: 0; padding: 0 5px;
 		border: 1px solid #ccc; border-bottom: 0; 
+		z-index: 10;
 		background: #f3f3f3;
 		-webkit-border-top-left-radius: 3px; 	-webkit-border-top-right-radius: 3px;
 		-moz-border-radius-topleft: 3px; 		-moz-border-radius-topright: 3px;
@@ -53,8 +54,8 @@
 		visibility: hidden;
 		}
 
-.abschnitt_box .abschnitt_inhalt_box .abschnitt_inhalt_anker_feld span { line-height: 16px; color: #666; padding: 0 10px 0 20px; display: block;
-		border: 0; border-right: solid 1px #999; float: left; margin: 3px 0; font-weight: bold;
+.abschnitt_box .abschnitt_inhalt_box .abschnitt_inhalt_anker_feld label { line-height: 16px;  padding: 0 10px 0 20px; display: block;
+		border: 0; border-right: solid 1px #999; float: left; margin: 3px 0; font-size: 12px; font-weight: normal; color: rgb(102,102,102); font-style: normal;
 		background: transparent url('/images/fineline/spezial/anker_16_50.png') 0px 0px no-repeat; }
 
 .abschnitt_box:hover .abschnitt_inhalt_box .abschnitt_inhalt_anker_feld { visibility: visible;}
@@ -90,17 +91,7 @@ div.edit_admin a.hidden { display:none !important; }
 
 p.nested_head {color: #666666; font-size: 15px; font-weight: bold;}
 
-div.no_show { background: #f3f3f3; padding: 5px; margin: 5px -11px;
-	border: solid 1px #ccc;
-	-webkit-border-radius: 	<%= finestyle[:edit_box][:radius]  %>; 
-	-moz-border-radius: 	<%= finestyle[:edit_box][:radius]  %>; 
-	-o-border-radius: 		<%= finestyle[:edit_box][:radius]  %>; 
-	-ms-border-radius: 		<%= finestyle[:edit_box][:radius]  %>; 
-	border-radius: 			<%= finestyle[:edit_box][:radius]  %>;
-	-webkit-box-shadow: 	inset 1px 1px 2px 2px rgba(153,153,153,.3); 
-	-moz-box-shadow: 		inset 1px 1px 2px 2px rgba(153,153,153,.3); 
-	box-shadow: 			inset 1px 1px 2px 2px rgba(153,153,153,.3);
-}
+div.no_show { padding: 10px 0; margin: 0; }
 div.seiten_einstl { width: 42%; padding: 0 3%;}
 div.seiten_einstl .field p { line-height: 24px; }
 div.einstll { width:94%; padding: 0 3%;}
@@ -113,27 +104,21 @@ table th { vertical-align: middle; }
 table td { padding: 5px 20px; }
 
 input[type='text'], input[type='password'], textarea { 
-	font-size: 13px; font-family: Verdana, Arial; color: #666; line-height: 18px; 
-	border: solid 1px #ccc; padding: 3px;
-	-webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;
-	-webkit-box-shadow: -1px -1px 1px rgba(55,55,55,.6); 
-	-moz-box-shadow: -1px -1px 1px rgba(197,197,197,.6); 
-	box-shadow: -1px -1px 1px rgba(197,197,197,.6);}
+	font-size: 12px; font-weight: normal; color: #333333; font-style: normal; line-height: 18px; 
+	border: solid 1px #ccc; padding: 3px; background: #fff;
+	<%= fine_borderRadius( '3px' ) %> <%= fine_boxShadow( 'inset 1px 1px 1px 1px rgba(153,153,153,.3)' ) %> }
 
-input[type='text'].anker_feld { font-size: 11px; color: #666; line-height: 15px; border: solid 0px transparent; 
+input[type='text'].anker_feld { font-size: 11px; color: #666; line-height: 15px; border: none; 
 	padding: 3px; margin: 0 0 0 5px;
-	background:transparent;
-	-webkit-box-shadow: none; 
-	-moz-box-shadow: none; 
-	box-shadow: none; }
+	z-index: 12;
+	background: #fff;
+	<%= fine_boxShadow(  ) %> }
 
 
 input[type='checkbox'] { vertical-align: baseline;}
 
 .field_with_errors input, .field_with_errors textarea { border: solid 1px #cc0000; 
-	-webkit-box-shadow: -1px -1px 1px rgba(200,0,0,.7); 
-	-moz-box-shadow: -1px -1px 1px rgba(200,0,0,.7); 
-	box-shadow: -1px -1px 1px rgba(200,0,0,.7); }
+	<%= fine_boxShadow( '-1px -1px 1px rgba(200,0,0,.7)' ) %> }
 
 
 .text-inhalt .nested_form iframe { margin: 0 -6px !important;}
@@ -143,12 +128,13 @@ input[type='checkbox'] { vertical-align: baseline;}
 
 
 
+input[type='text'].no_view { width: 20px; display: inline-block; border: 0; padding:0 5px; line-height: 20px; <%= fine_boxShadow( ) %> }
 
-
+label.no_view { line-height: 20px; padding:0;}
 
 
 label.inline { padding: 2px 0 0; line-height: 22px; width: 120px !important; 
-		display: inline-block; color: #666; font-weight:bold; font-size: 13px; }
+		display: inline-block; font-size: 12px; font-weight: normal; color: rgb(102,102,102); font-style: normal; }
 
 
 #fineline_seite_form input {vertical-align: top;}
@@ -176,17 +162,9 @@ textarea.seo_field { width: 632px !important; }
 
 
 
-.fineline_select, .fineline_select_box, a.fineline_select_trigger {
-		-webkit-border-radius: 	<%= finestyle[:fl_select][:radius]  %>; 
-		-moz-border-radius: 	<%= finestyle[:fl_select][:radius]  %>; 
-		-o-border-radius: 		<%= finestyle[:fl_select][:radius]  %>; 
-		-ms-border-radius: 		<%= finestyle[:fl_select][:radius]  %>; 
-		border-radius: 			<%= finestyle[:fl_select][:radius]  %>; }
+.fineline_select, .fineline_select_box, a.fineline_select_trigger { <%= fine_borderRadius( '3px' ) %> }
 
-.fineline_select, .fineline_select_box {
-		-webkit-box-shadow: 	inset 1px 1px 1px 1px rgba(153,153,153,.3); 
-		-moz-box-shadow: 		inset 1px 1px 1px 1px rgba(153,153,153,.3); 
-		box-shadow: 			inset 1px 1px 1px 1px rgba(153,153,153,.3); }
+.fineline_select, .fineline_select_box { <%= fine_boxShadow( 'inset 1px 1px 1px 1px rgba(153,153,153,.3)' ) %> }
 
 .fineline_select { line-height: 16px; padding: 3px; margin: 0; border: solid 1px #aaa; height: 18px; width: 222px; display: inline-block; position:relative; z-index: 13;
 	background: #f2f2f2; /* Old browsers */
@@ -224,6 +202,14 @@ a.fineline_select_trigger:hover { opacity: .60; border: solid 1px #369; }
 .fineline_select_text.selected { color: #444; font-size: bold; }
 
 
+.fineline_select.half { width: 142px; }
+.fineline_select.half a.fineline_select_trigger { background-position:132px 6px; }
+
+.fineline_select.full { width: 302px; }
+.fineline_select.full a.fineline_select_trigger { background-position: 292px 6px; }
+
+
+
 .toggle_trigger { color: #336699; font-style: italic; font-weight: normal; font-size: 13px; padding: 3px 18px; margin:0; display:block; font-style: italic; line-height: 18px;
 		background: transparent url('/images/fineline/spezial/closed_pulldown.png') 0px 3px no-repeat; cursor: pointer;	}
 .toggle_trigger.aktiv { background: transparent url('/images/fineline/spezial/pulldown.png') 0px 3px no-repeat; }
@@ -235,12 +221,12 @@ h3.toggle_trigger.aktiv { background: transparent url('/images/fineline/spezial/
 h3.toggle_trigger:hover { color: #666666; font-weight: bold; }
 h3.toggle_trigger small { font-weight: normal; color: #666; }
 
-p.group_label { color: #444; font-weight:bold; font-style: italic; font-size: 13px; padding: 5px 0 10px; }
+p.group_label { font-size: 12px; font-weight: normal; color: rgb(102,102,102); font-style: normal; padding: 5px 0 10px; }
 
 
 
 .field { padding: 5px 0; }
-label { padding: 2px 0 0; line-height: 22px; display: inline-block; color: #666; font-weight:bold; font-size: 13px; }
+label { padding: 2px 0 0; line-height: 22px; display: inline-block; font-size: 12px; font-weight: normal; color: rgb(102,102,102); font-style: normal; }
 input[type='checkbox'] { vertical-align: top; margin: 6px 7px 0 0; }
 
 .toggle_field { padding: 0 0 15px; display: block; margin: 0; }
@@ -249,5 +235,12 @@ input[type='checkbox'] { vertical-align: top; margin: 6px 7px 0 0; }
 border: solid 1px rgb(204,0,0); -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; }
 #error_explanation .fehler_liste { margin: 0 20px; }
 
-input.half { width: 102px !important; margin: 0 10px 0 0; }
-input.full { width: 222px !important; margin: 0 10px 0 0; }
+input.half { width: 142px !important; margin: 0 10px 0 0; }
+input.full { width: 302px !important; margin: 0 10px 0 0; }
+
+
+a.more_button { line-height:24px; position:relative; display:block; font-size: 12px; font-weight: normal; color: rgb(102,102,102); font-style: italic;}
+a.more_button .finelineIcon { position: absolute; left: -27px; top:0; }
+
+
+
