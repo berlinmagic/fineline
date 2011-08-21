@@ -5,6 +5,7 @@
 <% end %>
 <style type="text/css">
 	#banner { height: <%= @header.height %>px; 
+		<%= fine_boxShadow( 'inset 0 10px 5px 0 rgba(0,0,0,.7)' ) %>
 		<% if @header.hintergrund && @header.farbe1 && @header.farbe2 && @header.hintergrund == 'verlauf' %>
 			<%= fine_backgroundGradient('#' + @header.farbe1.to_s, '#' + @header.farbe2.to_s) %>
 		<% elsif @header.hintergrund && @header.farbe1 && @header.hintergrund == 'farbe' %>

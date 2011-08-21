@@ -69,8 +69,11 @@ class Admin::HeadersController < Admin::BaseController
   
   def add_site
     @header = Header.find(params[:form][:header])
-    @seite = Seite.find(params[:form][:seite])
-    @header.seiten << @seite
+    if params[:form][:seite] && !params[:form][:seite].blank?
+      if @seite = Seite.find(params[:form][:seite])
+        @header.seiten << @seite
+      end
+    end
     redirect_to admin_header_path(@header)
   end
   
@@ -78,6 +81,17 @@ class Admin::HeadersController < Admin::BaseController
     @header = Header.find(params[:id])
     @header.destroy
     redirect_to admin_headers_path
+  end
+  
+  def remove_site
+    @seite = Seite.find(params[:seite_id])
+    @header = Header.find(params[:id])
+
+    @killa = HeaderSeite.where("seite_id = ? AND header_id = ?", @seite.id, @header.id)
+    @killa.each do |kill|
+      kill.destroy
+    end
+    redirect_to admin_header_path(@header), :notice => t('header_seite_was_deleted', :name => @seite.name)
   end
   
   

@@ -1,6 +1,8 @@
 # encoding: utf-8
 class NewsController < ApplicationController
   
+  include FinestyleHelp
+  
   before_filter :load_news_site
 
   def index

@@ -65,7 +65,7 @@ $(function() {
 				</h1>
 			</div>
 			<div class="fl_box_470">
-				<%= form_for @hpic, :url => admin_hpic_path(@hpic) do |f| %>
+				<%= form_for @hpic, :url => admin_header_hpic_path(@header,@hpic) do |f| %>
 				  <%= f.hidden_field :bild_cropping, :id => 'bild_cropping' %>
 				  <%= f.submit "speichen" %>
 				<%= link_to 'verwerfen', :back, :class => 'big_button' %>

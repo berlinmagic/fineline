@@ -97,4 +97,18 @@ module BaseHelper
     });", :title => options[:tooltip], :class => 'tooltiped'
   end
   
+  def fine_handle(options = {})
+    options.assert_valid_keys(  :icon,  :blur,  :color,   :size,  :aktion )
+    options.reverse_merge! :icon    => 77        unless options.key? :icon       # => 1 - 90  /  1 - 25
+    options.reverse_merge! :blur    => 1.0      unless options.key? :blur       # => 0.01 - 1.0  /  01 - 100
+    options.reverse_merge! :color   => 'dunkel' unless options.key? :color      # => 'dunkel'  /  'hell'
+    options.reverse_merge! :size    => 32       unless options.key? :size       # => 18 / 24 / 32* / 48*
+    options.reverse_merge! :aktion  => false    unless options.key? :aktion     # => 'std'  /  'aktion'  =>  normal / groß
+    raw("<span class='fine_handle'>#{ finelineIcon(   :icon => options[:icon], 
+                                                      :blur => options[:blur], 
+                                                      :color => options[:color], 
+                                                      :size => options[:size], 
+                                                      :aktion => options[:aktion]) }</span>")
+  end
+  
 end

@@ -18,6 +18,17 @@ Rails.application.routes.draw do
         end
       end
     end
+    
+    resources :seiten do
+      resources :headers do
+        member do
+          post :remove_site
+          get :remove_site
+          delete :remove_site
+        end
+      end
+    end
+          
     resources :hpics
     
   end

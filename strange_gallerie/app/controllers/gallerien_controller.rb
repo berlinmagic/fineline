@@ -1,6 +1,8 @@
 # encoding: utf-8
 class GallerienController< ApplicationController
   
+  include FinestyleHelp
+  
   before_filter :load_stuff
   
   def pic_bg_form

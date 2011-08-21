@@ -109,7 +109,7 @@ class Admin::HpicsController < Admin::BaseController
   end
   
   def remove
-    @killa = Hpic.where("id = ?", params[:id])
+    @killa = HeaderHpic.where("hpic_id = ? AND header_id = ?", params[:id], @header.id)
     @killa.each do |kill|
       kill.destroy
     end

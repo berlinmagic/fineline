@@ -56,7 +56,7 @@
 				</div>
 				<div class="fl_box_350">
 					<% @header.seiten.each do |seite| %>
-						<%= seite.name %><br/>
+						<%= seite.name %> <%= finelineButton(:icon => 25, :size => 24, :url => remove_site_admin_seite_header_path(seite,@header)) %><br/>
 					<% end %>
 					<% if @header.name == 'Standard_Header' %>
 						<%= t('strange_header.std_header_desc')  %>
@@ -89,10 +89,10 @@
 									<% end %>
 								</ul>
 							</div>
-							<span class="fineline_select_text selected"> - Seite wählen - </span>
+							<span class="fineline_select_text selected"> - Seite hinzufügen - </span>
 							<%= hidden_field :form, :seite, :value => '', :class => 'fineline_select_box_input' %>
 						</div>&nbsp;
-						<%= finelineButton(			:icon => 88, 
+						<%= finelineButton(			:icon => 15, 
 													:blur => 70, 
 													:size => 24,
 													:color => 'hell',
@@ -134,14 +134,15 @@
 		
 
 		<div class="work_box">
-			<div class="in_box white">
-				<% @header.hpics.each do |head| %>
+			<div class="in_box white" id="Hpics_Box">
+				<% @header.header_hpics.each do |head| %>
 					<div class="moover_box" id="<%= dom_id(head)%>">
+						<%= fine_handle( :icon => 77, :color => 'hell', :blur => 70) %>
 						<div class="fl_box_310 erster">
-							<% if head.bild_cropping %>
-							<%= image_tag head.bild.thumb(head.bild_cropping).thumb("310x90>").url, :alt => 'small_avatar' %>
+							<% if head.hpic.bild_cropping %>
+							<%= image_tag head.hpic.bild.thumb(head.hpic.bild_cropping).thumb("310x90>").url, :alt => 'small_avatar' %>
 							<% else %>
-							<%= image_tag head.bild.thumb("310x90").url %>
+							<%= image_tag head.hpic.bild.thumb("310x90").url %>
 							
 							<%end%>
 						</div>
@@ -149,11 +150,11 @@
 							<table class="mini">
 								<tr>
 									<th class="norm3"><%= t('strange_header.titel') %></th>
-									<td class="norm2"><%= head.name %></td>
+									<td class="norm2"><%= head.hpic.titel %></td>
 								</tr>
 								<tr>
 									<th class="norm3"><%= t('strange_header.inhalt') %></th>
-									<td class="norm1"><%= truncate(head.inhalt, :length => 75, :omission => "...") %></td>
+									<td class="norm1"><%= truncate(head.hpic.inhalt, :length => 75, :omission => "...") %></td>
 								</tr>
 							</table>
 							
@@ -174,18 +175,8 @@
 								<%= finelineDelete( head,	:icon => 24, 
 															:blur => 70, 
 															:color => 'hell',
-															:url => admin_hpic_path(head),
+															:url => remove_admin_header_hpic_path(@header,head),
 															:title => t('strange_header.del_pic') ) %>
-								
-								
-								
-								<%= fineline_button( 'bearbeiten', 	:url => edit_admin_header_hpic_path(@header,head), 
-																	:class => "remote_form_link" ) %>
-								&nbsp;
-								<%= fineline_button( 'zuschneiden', :url => crop_admin_header_hpic_path(@header,head) ) %>
-								&nbsp;
-								<%= fineline_button_delete( head, 	:url => admin_hpic_path(head),
-																	:title => 'löschen' ) %>
 							</div>
 						</div>
 						
@@ -195,7 +186,9 @@
 				<% end %>
 			</div>
 		</div>
-		
+		<div class="box">
+				<div class="trenn_linie"></div>
+		</div>
 		
 	</div>
 </div>
@@ -229,5 +222,43 @@ $('.submitter').live('click', function () {
 });
 
 
+var fixWidthHelper = function(e, ui) {
+	ui.children().each(function() {
+		$(this).width($(this).width());
+	});
+	return ui;
+};
+$(function() {
+	$("#Hpics_Box").sortable({
+		axis: 'y',
+		handle: '.fine_handle',
+		cursor: "move",
+		helper: fixWidthHelper,
+		update: function(){
+			$.ajax({
+				type: 'post', 
+				data: 'authenticity_token='+AUTH_TOKEN+'&'+ $('#Hpics_Box').sortable('serialize') , 
+				dataType: 'script',
+				complete: function(request){
+					$('#Hpics_Box').effect('highlight');
+				},
+				url: "<%= admin_reorder_stuff_path %>"
+			})
+		}
+		}).disableSelection();
+	});
+
+
 </script>
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+
+      jQuery('#new_image_link').click(function (event) {
+        event.preventDefault();
+        jQuery(this).hide();
+        jQuery.ajax({type: 'GET', url: this.href, data: ({authenticity_token: AUTH_TOKEN}), success: function(r){ jQuery('#images').html(r);} });
+      });
+
+    });
+  </script>
 <% end %>

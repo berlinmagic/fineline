@@ -12,6 +12,7 @@ de:
   header_crop_headline: "Headerbild zuschneiden"
   header_crop_preview_headline: "Headerbild Vorschau"
   header_headline: "Headervewaltung"
+  header_seite_was_deleted: "Header wurde von Seite '%{name}' entfernt."
   strange_header:
       name: "Bezeichnung:"
       farbe1: "Grundfarbe:"

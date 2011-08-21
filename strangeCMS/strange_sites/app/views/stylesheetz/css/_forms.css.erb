@@ -64,12 +64,10 @@
 
 
 span.handle { cursor:pointer; width: 18px; height: 34px; 
-		background: <%= @button_bg_color_hover %> url('/images/fineline/button_bg/buttonBG_<%= @button_bg_image %>.png'); 
+		background: #336699; 
 		position: absolute; left: -19px; top: 16px; 
 		border: 1px solid rgb(54,104,156); border-right: 0;
-		-webkit-border-top-left-radius: 3px; 	-webkit-border-bottom-left-radius: 3px;
-		-moz-border-radius-topleft: 3px; 		-moz-border-radius-bottomleft: 3px;
-		border-top-left-radius: 3px; 			border-bottom-left-radius: 3px;}
+		<%= fineBorderRadius( '3px', '0', '0', '3px' ) %>}
 
 span.handle.smallhandle { width: 18px; height: 20px; top: 0px !important; }
 
