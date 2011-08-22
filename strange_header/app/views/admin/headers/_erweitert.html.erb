@@ -36,7 +36,7 @@
 		<label><%= t('strange_header.sort') %></label>
 	</div>
 	<div class="fl_box_350">
-			<div class="fineline_select half">
+			<div class="fineline_select half std_select">
 				<a href="#" class="fineline_select_trigger"></a>
 				<div class="fineline_select_box hidden">
 					<ul>
@@ -56,7 +56,7 @@
 		<label><%= t('strange_header.h_hintergrund') %></label>
 	</div>
 	<div class="fl_box_350">
-			<div class="fineline_select half">
+			<div class="fineline_select half" id="header_hg_typer">
 				<a href="#" class="fineline_select_trigger"></a>
 				<div class="fineline_select_box hidden">
 					<ul>
@@ -73,93 +73,103 @@
 
 	<div class="vspacer"></div>
 	
-	<div class="fl_box_110 erster">
-		<label><%= t('strange_header.farbe1') %></label>
+	<div id="farbe1_box" class="<%= 'hidden' unless (@header.hintergrund == 'farbe') || (@header.hintergrund == 'verlauf') || (@header.hintergrund == 'bild_farbe') || (@header.hintergrund == 'bild_verlauf') %>">
+		<div class="fl_box_110 erster">
+			<label><%= t('strange_header.farbe1') %></label>
+		</div>
+		<div class="fl_box_150">
+			<%= f.text_field :farbe1, :class => 'half' %>
+		</div>
+		<div class="vspacer"></div>
 	</div>
-	<div class="fl_box_150">
-		<%= f.text_field :farbe1, :class => 'half' %>
+	
+	<div id="farbe2_box" class="<%= 'hidden' unless (@header.hintergrund == 'verlauf') || (@header.hintergrund == 'bild_verlauf') %>">
+		<div class="fl_box_110 erster">
+			<label><%= t('strange_header.farbe2') %></label>
+		</div>
+		<div class="fl_box_150">
+			<%= f.text_field :farbe2, :class => 'half' %>
+		</div>
+		<div class="vspacer"></div>
 	</div>
+	
+	<div id="hgpic_box" class="<%= 'hidden' if (@header.hintergrund == 'farbe') || (@header.hintergrund == 'verlauf') || (@header.hintergrund == 'none') %>">
+		
+		<div class="fl_box_110 erster">
+			<label><%= t('strange_header.bg_pic') %></label>
+		</div>
+		<div class="fl_box_150">
+			<%= f.file_field :bg_pic %>
+		</div>
 
-	<div class="vspacer"></div>
-	
-	<div class="fl_box_110 erster">
-		<label><%= t('strange_header.farbe2') %></label>
-	</div>
-	<div class="fl_box_150">
-		<%= f.text_field :farbe2, :class => 'half' %>
-	</div>
+		<div class="vspacer"></div>
 
-	<div class="vspacer"></div>
-	
-	
-	<div class="fl_box_110 erster">
-		<label><%= t('strange_header.bg_pic') %></label>
-	</div>
-	<div class="fl_box_150">
-		<%= f.file_field :bg_pic %>
-	</div>
+		<div class="fl_box_110 erster">
+			<label><%= t('strange_header.bg_pos_h') %></label>
+		</div>
+		<div class="fl_box_350">
+				<div class="fineline_select half std_select">
+					<a href="#" class="fineline_select_trigger"></a>
+					<div class="fineline_select_box hidden">
+						<ul>
+							<% Header::HWERTE.each do |hbg| %>
+								<li class="level_0"><%= link_to t("strange_header.bg_pos_hs.#{hbg}"), hbg %></li>
+							<% end %>
+						</ul>
+					</div>
+					<span class="fineline_select_text selected"><%= t("strange_header.bg_pos_hs.#{@header.bg_pos_h}") if !@header.bg_pos_h.blank? %></span>
+					<%= f.hidden_field :bg_pos_h, :value => @header.bg_pos_h, :class => 'fineline_select_box_input' %>
+				</div>
+				<div class="clearfix"></div>
+		</div>
+		<div class="vspacer"></div>
 
-	<div class="vspacer"></div>
-	
-	<div class="fl_box_110 erster">
-		<label><%= t('strange_header.bg_pos_h') %></label>
-	</div>
-	<div class="fl_box_350">
-			<div class="fineline_select half">
-				<a href="#" class="fineline_select_trigger"></a>
-				<div class="fineline_select_box hidden">
-					<ul>
-						<% Header::HWERTE.each do |hbg| %>
-							<li class="level_0"><%= link_to t("strange_header.bg_pos_hs.#{hbg}"), hbg %></li>
-						<% end %>
-					</ul>
+		<div class="fl_box_110 erster">
+			<label><%= t('strange_header.bg_pos_h') %></label>
+		</div>
+		<div class="fl_box_350">
+				<div class="fineline_select half std_select" id="header_s_bg_pos_v">
+					<a href="#" class="fineline_select_trigger"></a>
+					<div class="fineline_select_box hidden">
+						<ul>
+							<% Header::VWERTE.each do |hbg| %>
+								<li class="level_0"><%= link_to t("strange_header.bg_pos_vs.#{hbg}"), hbg %></li>
+							<% end %>
+						</ul>
+					</div>
+					<span class="fineline_select_text selected"><%= t("strange_header.bg_pos_vs.#{@header.bg_pos_v}") if !@header.bg_pos_v.blank? %></span>
+					<%= f.hidden_field :bg_pos_v, :value => @header.bg_pos_v, :class => 'fineline_select_box_input' %>
 				</div>
-				<span class="fineline_select_text selected"><%= t("strange_header.bg_pos_hs.#{@header.bg_pos_h}") if !@header.bg_pos_h.blank? %></span>
-				<%= f.hidden_field :bg_pos_h, :value => @header.bg_pos_h, :class => 'fineline_select_box_input' %>
-			</div>
-			<div class="clearfix"></div>
-	</div>
-	<div class="vspacer"></div>
-	
-	<div class="fl_box_110 erster">
-		<label><%= t('strange_header.bg_pos_h') %></label>
-	</div>
-	<div class="fl_box_350">
-			<div class="fineline_select half" id="header_s_bg_pos_v">
-				<a href="#" class="fineline_select_trigger"></a>
-				<div class="fineline_select_box hidden">
-					<ul>
-						<% Header::VWERTE.each do |hbg| %>
-							<li class="level_0"><%= link_to t("strange_header.bg_pos_vs.#{hbg}"), hbg %></li>
-						<% end %>
-					</ul>
+				<div class="clearfix"></div>
+		</div>
+		<div class="vspacer"></div>
+
+		<div class="fl_box_110 erster">
+			<label><%= t('strange_header.bg_repeat') %></label>
+		</div>
+		<div class="fl_box_350">
+				<div class="fineline_select half std_select">
+					<a href="#" class="fineline_select_trigger"></a>
+					<div class="fineline_select_box hidden">
+						<ul>
+							<% Header::RWERTE.each do |hbg| %>
+								<li class="level_0"><%= link_to t("strange_header.bg_repeats.#{hbg}"), hbg %></li>
+							<% end %>
+						</ul>
+					</div>
+					<span class="fineline_select_text selected"><%= t("strange_header.bg_repeats.#{@header.bg_repeat}") if !@header.bg_repeat.blank? %></span>
+					<%= f.hidden_field :bg_repeat, :value => @header.bg_repeat, :class => 'fineline_select_box_input' %>
 				</div>
-				<span class="fineline_select_text selected"><%= t("strange_header.bg_pos_vs.#{@header.bg_pos_v}") if !@header.bg_pos_v.blank? %></span>
-				<%= f.hidden_field :bg_pos_v, :value => @header.bg_pos_v, :class => 'fineline_select_box_input' %>
-			</div>
-			<div class="clearfix"></div>
+				<div class="clearfix"></div>
+		</div>
+		<div class="vspacer"></div>
+		
 	</div>
-	<div class="vspacer"></div>
 	
-	<div class="fl_box_110 erster">
-		<label><%= t('strange_header.bg_repeat') %></label>
-	</div>
-	<div class="fl_box_350">
-			<div class="fineline_select half">
-				<a href="#" class="fineline_select_trigger"></a>
-				<div class="fineline_select_box hidden">
-					<ul>
-						<% Header::RWERTE.each do |hbg| %>
-							<li class="level_0"><%= link_to t("strange_header.bg_repeats.#{hbg}"), hbg %></li>
-						<% end %>
-					</ul>
-				</div>
-				<span class="fineline_select_text selected"><%= t("strange_header.bg_repeats.#{@header.bg_repeat}") if !@header.bg_repeat.blank? %></span>
-				<%= f.hidden_field :bg_repeat, :value => @header.bg_repeat, :class => 'fineline_select_box_input' %>
-			</div>
-			<div class="clearfix"></div>
-	</div>
-	<div class="vspacer"></div>
+	
+	
+	
+	
 	
 
 </div>

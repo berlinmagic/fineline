@@ -1,6 +1,6 @@
 <%= render 'admin/shared/seiten_sub_menu' %>
 
-<%= form_for(@header, :url => admin_header_path) do |f| %>
+<%= form_for(@header, :url => admin_header_path, :html => { :multipart => true }) do |f| %>
 
 <div class="admin_box">
 	<h1 class="admin"><%= finelineIcon(:icon => 49, :color => 'dunkel', :size => 24, :blur => 50) %><%= t('header_edit_headline') %></h1>

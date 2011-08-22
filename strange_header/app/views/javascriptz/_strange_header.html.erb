@@ -9,21 +9,53 @@
 		$('.link_help_show').toggleClass('hidden');
 	});
 	
-	$('#header_s_bg_pos_v').finelineSelect();
+	$('.fineline_select.std_select').finelineSelect();
+	
 	
 	$('#show_header_Changer').finelineSelect({
-	            changed:function(text){
+	            changed:function(thing){
 	                $("#changer_form").submit();
 	            }
 	});
 	
-	
-	
-	$('#header_typ_changer').finelineSelect();
-	
-	$('#show_header_Changer').finelineSelect({
-	            changed:function(text){
-	                $("#changer_form").submit();
+	$('#header_hg_typer').finelineSelect({
+	            changed: function(thing){
+					var wert = $('#header_hg_typer').find('.fineline_select_box_input').val();
+					$("#farbe1_box").hide().removeClass('hidden');
+					$("#farbe2_box").hide().removeClass('hidden');
+					$("#hgpic_box").hide().removeClass('hidden');
+					
+					if ( wert == 'none' ){
+						$("#farbe1_box").hide();
+						$("#farbe2_box").hide();
+						$("#hgpic_box").hide();
+					}
+					
+					if ( wert == 'farbe' ){
+						$("#farbe1_box").fadeIn();
+						$("#farbe2_box").hide();
+						$("#hgpic_box").hide();
+					}
+					
+	                if ( wert == 'verlauf' ){
+						$("#farbe1_box").fadeIn();
+						$("#farbe2_box").fadeIn();
+						$("#hgpic_box").hide();
+					}
+					if ( wert == 'bild' || wert == 'bild_farbe' || wert == 'bild_verlauf'){
+						if ( wert == 'bild_farbe' || wert == 'bild_verlauf') {
+							$("#farbe1_box").fadeIn();
+						} else {
+							$("#farbe1_box").hide();
+						}
+						if ( wert == 'bild_verlauf') {
+							$("#farbe2_box").fadeIn();
+						} else {
+							$("#farbe2_box").hide();
+						}
+						
+						$("#hgpic_box").fadeIn();
+					}
 	            }
 	});
 

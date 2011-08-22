@@ -61,10 +61,12 @@ z-index:100;
 
 /* =====================================   Banner   =================================== */
 
-#fine_banner_box { width: 100%;  overflow: hidden; }
+#fine_banner_box { width: 100%;  overflow: hidden; background: transparent; }
 #banner {min-height: 34px; width: 100%;  position: relative; z-index:1; overflow: hidden;
-	 /* background: #073768 url('/images/strange_banner_bg.jpg') repeat-x; */
-	<%= fine_backgroundGradient('#003366', '#00213f') %>
+	 /* background: #073768 url('/images/strange_banner_bg.jpg') repeat-x;
+	<%#= fine_backgroundGradient('#003366', '#00213f') %> */
+	
+	background: transparent;
 	<%= fine_boxShadow( 'inset 0 7px 5px 0 rgba(0,0,0,.3))' ) %>		}
 
 #banner #main_nav_holder { min-height: 34px; }

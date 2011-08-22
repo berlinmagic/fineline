@@ -216,13 +216,13 @@
 	
 	(function($)
 	{    
-	    $.fn.finelineSelect = function(options){
+	    $.fn.finolineSelect = function(options){
 	        return this.each(function(){   
 	            $.finelineSelect(this, options);
 	        });
 	    };
 
-	    $.finelineSelect = function(element,options){
+	    $.finolineSelect = function(element,options){
 
 	        settings = jQuery.extend({
 	            action:false,
@@ -277,6 +277,62 @@
 	        if(typeof(settings.after) == "function")
 	            settings.after($(element).html());
 	    }
+	})(jQuery);
+	
+	
+	(function($){
+		$.fn.finelineSelect = function(options) {
+			var defaults = {
+				action:false,
+				before:function(){},
+				after:function(){},
+				change:function(){}
+			};
+			var options = $.extend(defaults, options);
+			return this.each(function() {
+				var obj = $(this);
+				
+				if(typeof(options.before) == "function")
+		            options.before(obj.html());
+				
+				obj.find('.fineline_select_trigger').live('click', function(event){
+					event.preventDefault();
+					obj.css('z-index', '1');
+					$(this).parent().css('z-index', '42');
+					$(this).parent().find('.fineline_select_box.hidden').hide().removeClass('hidden');
+					$(this).parent().find('.fineline_select_box').slideDown(500);
+				});
+
+				obj.find('ul li a').live('click', function(event){
+					event.preventDefault();
+					var this_href = $(this).attr('href');
+					var this_text = $(this).html();
+					obj.find('.fineline_select_text').html( this_text );
+					obj.find('.fineline_select_box').slideUp(500);
+					var preval = obj.find('.fineline_select_box_input').val();
+					if ( $(this).parent().hasClass('blank') ) {
+						obj.find('.fineline_select_text').removeClass('selected');
+						obj.find('.fineline_select_box_input').val('');
+						if ( preval != '' ) {
+							if(typeof(options.changed) == "function")
+					            options.changed(obj.html());
+						}
+					} else {
+						obj.find('.fineline_select_text').addClass('selected');
+						obj.find('.fineline_select_box_input').val( this_href );
+						if ( preval != this_href ) {
+							if(typeof(options.changed) == "function")
+					            options.changed(obj.html());
+						}
+					}
+
+					obj.css('z-index', '3');
+				});
+
+		        if(typeof(options.after) == "function")
+		            options.after(obj.html());
+			});
+		};
 	})(jQuery);
 
 

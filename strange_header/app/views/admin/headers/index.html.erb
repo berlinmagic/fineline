@@ -21,6 +21,43 @@
 				<% @headers.each do |head| %>
 					<div class="moover_box" id="<%= dom_id(head)%>">
 						<div class="fl_box_310 erster">
+							<% linkstil = "" %>
+							<% divstil = "" %>
+							<% stdstil = 'display: block; padding: 0; margin: 0; ' %>
+							<% rpt = 'no-repeat' %>
+							<% if head.bg_repeat %>
+								<% rpt = 'repeat-x' if head.bg_repeat == 'xrepeat' %>
+								<% rpt = 'repeat-y' if head.bg_repeat == 'yrepeat' %>
+								<% rpt = 'repeat' if head.bg_repeat == 'repeat' %>
+								<% rpt = 'no-repeat' if head.bg_repeat == 'norepeat' %>
+							<% end %>
+
+							<% if head.hintergrund && head.farbe1 && head.farbe2 && head.hintergrund == 'verlauf' %>
+
+								<% divstil = "#{ fine_backgroundGradient('#' + head.farbe1.to_s, '#' + head.farbe2.to_s) }" %>
+
+							<% elsif head.hintergrund && head.farbe1 && head.farbe2 && head.bg_pic && head.hintergrund == 'bild_verlauf' %>
+
+								<% linkstil = "#{ fine_backgroundGradient('#' + head.farbe1.to_s, '#' + head.farbe2.to_s) }" %>
+								<% divstil = "background: transparent url('#{ head.bg_pic.url() }') #{ head.bg_pos_h } #{ head.bg_pos_v } #{ rpt };" %>
+
+							<% elsif head.hintergrund && head.farbe1 && head.hintergrund == 'farbe' %>
+
+								<% divstil = "background: ##{ head.farbe1 };" %>
+
+							<% elsif head.hintergrund && head.farbe1 && head.bg_pic && head.hintergrund == 'bild_farbe'  %>
+
+								<% linkstil = "background: ##{ head.farbe1 };" %>
+								<% divstil = "background: transparent url('#{ head.bg_pic.url() }') #{ head.bg_pos_h } #{ head.bg_pos_v } #{ rpt };" %>
+
+							<% elsif head.bg_pic && head.hintergrund == 'bild'  %>
+
+								<% divstil = "background: transparent url('#{ head.bg_pic.url() }') #{ head.bg_pos_h } #{ head.bg_pos_v } #{ rpt };" %>
+
+
+							<% end %>
+							
+							<a href="<%= admin_header_path(head) %>" style="<%= stdstil %><%= linkstil %>">
 							<% if head.hpics.count > 0 %>
 								<% @hp_stil = '' %>
 								<% hpic = head.hpics.first %>
@@ -29,7 +66,7 @@
 									<% hg = hpic.bild.thumb(hpic.bild_cropping).thumb("310x80>").height %>
 									<% @hp_stil += "margin-left: #{((310-wt)/2).to_i.to_s}px;" if wt < 310 %>
 									<% @hp_stil += "margin-top: #{((80-hg)/2).to_i.to_s}px;" if hg < 80 %>
-									<div class="fake_header_pic" style="<% if head.hintergrund && head.farbe1 && head.farbe2 && head.hintergrund == 'verlauf' %><%= fine_backgroundGradient('#' + head.farbe1.to_s, '#' + head.farbe2.to_s) %><% elsif head.hintergrund && head.farbe1 && head.hintergrund == 'farbe' %>background: #<%= head.farbe1 %>;<% end %>">
+									<div class="fake_header_pic"  style="<%= stdstil %><%= divstil %>">
 										<%= image_tag hpic.bild.thumb(hpic.bild_cropping).thumb("310x80>").url, :style => @hp_stil %>
 										
 									</div>
@@ -37,13 +74,15 @@
 									<% wt = hpic.bild.thumb("310x80>").height %>
 									<% @hp_stil += "margin-left: #{((310-wt)/2).to_i.to_s}px;" if wt < 310 %>
 									<% @hp_stil += "margin-top: #{((80-hg)/2).to_i.to_s}px;" if hg < 80 %>
-									<div class="fake_header_pic" style="<% if head.hintergrund && head.farbe1 && head.farbe2 && head.hintergrund == 'verlauf' %><%= fine_backgroundGradient('#' + head.farbe1.to_s, '#' + head.farbe2.to_s) %><% elsif head.hintergrund && head.farbe1 && head.hintergrund == 'farbe' %>background: #<%= head.farbe1 %>;<% end %>">
+									<div class="fake_header_pic" style="<%= stdstil %><%= divstil %>">
 										<%= image_tag hpic.bild.thumb("310x80").url, :style => @hp_stil %>
 									</div>
 								<% end %>
 							<% else %>
-								<div class="fake_header_pic" style="<% if head.hintergrund && head.farbe1 && head.farbe2 && head.hintergrund == 'verlauf' %><%= fine_backgroundGradient('#' + head.farbe1.to_s, '#' + head.farbe2.to_s) %><% elsif head.hintergrund && head.farbe1 && head.hintergrund == 'farbe' %>background: #<%= head.farbe1 %>;<% end %>"></div>
+								<div class="fake_header_pic" style="<%= stdstil %><%= divstil %>"></div>
 							<% end %>
+							<div class="clearfix"></div>
+							</a>
 						</div>
 						<div class="fl_box_310 letzter">
 							<table class="mini">
@@ -92,7 +131,7 @@
 								<%= finelineButton(			:icon => 29, 
 															:blur => 70, 
 															:color => 'hell',
-															:url => edit_admin_header_path(head),
+															:url => admin_header_path(head),
 															:class => "remote_form_link",
 															:title => t('strange_header.links.show') ) %>
 								

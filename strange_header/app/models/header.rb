@@ -9,6 +9,9 @@ class Header < ActiveRecord::Base
   VWERTE = %W(top center bottom)
   RWERTE = %w(xrepeat yrepeat repeat norepeat)
   
+  image_accessor        :bg_pic
+  validates_property    :mime_type, :of => :bg_pic, :in => %w(image/jpeg image/png image/gif)
+  
   # => has_many :seiten
   
   has_many :header_seiten, :dependent => :destroy

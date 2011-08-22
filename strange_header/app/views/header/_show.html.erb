@@ -4,14 +4,46 @@
 	<% @header = Header.first %>
 <% end %>
 <style type="text/css">
-	#banner { height: <%= @header.height %>px; 
-		<%= fine_boxShadow( 'inset 0 0 9px 10px rgba(0,0,0,.7)' ) %> margin: 0 -30px; padding: 0 30px;
-		<% if @header.hintergrund && @header.farbe1 && @header.farbe2 && @header.hintergrund == 'verlauf' %>
-			<%= fine_backgroundGradient('#' + @header.farbe1.to_s, '#' + @header.farbe2.to_s) %>
-		<% elsif @header.hintergrund && @header.farbe1 && @header.hintergrund == 'farbe' %>
-			background: #<%= @header.farbe1 %>;
-		<% end %>
-		}
+#banner { height: <%= @header.height %>px; <%= fine_boxShadow( 'inset 0 0 9px 10px rgba(0,0,0,.7)' ) %> margin: 0 -30px; padding: 0 30px; }
+#fine_banner_box {}
+<% rpt = 'no-repeat' %>
+<% if @header.bg_repeat %>
+	<% rpt = 'repeat-x' if @header.bg_repeat == 'xrepeat' %>
+	<% rpt = 'repeat-y' if @header.bg_repeat == 'yrepeat' %>
+	<% rpt = 'repeat' if @header.bg_repeat == 'repeat' %>
+	<% rpt = 'no-repeat' if @header.bg_repeat == 'norepeat' %>
+<% end %>
+
+<% if @header.hintergrund && @header.farbe1 && @header.farbe2 && @header.hintergrund == 'verlauf' %>
+			
+	#banner { <%= fine_backgroundGradient('#' + @header.farbe1.to_s, '#' + @header.farbe2.to_s) %> }
+
+<% elsif @header.hintergrund && @header.farbe1 && @header.farbe2 && @header.bg_pic && @header.hintergrund == 'bild_verlauf' %>
+	
+	#fine_banner_box { <%= fine_backgroundGradient('#' + @header.farbe1.to_s, '#' + @header.farbe2.to_s) %> }
+	#banner { background: transparent url('<%= @header.bg_pic.url() %>') <%= @header.bg_pos_h %> <%= @header.bg_pos_v %> <%= rpt %>; }
+	
+<% elsif @header.hintergrund && @header.farbe1 && @header.hintergrund == 'farbe' %>
+			
+	#banner { background: #<%= @header.farbe1 %>; }
+
+<% elsif @header.hintergrund && @header.farbe1 && @header.bg_pic && @header.hintergrund == 'bild_farbe'  %>
+			
+	#fine_banner_box { background: #<%= @header.farbe1 %>; }
+	#banner { background: transparent url('<%= @header.bg_pic.url() %>') <%= @header.bg_pos_h %> <%= @header.bg_pos_v %> <%= rpt %>; }
+		
+<% elsif @header.bg_pic && @header.hintergrund == 'bild'  %>
+	
+	#banner { background: transparent url('<%= @header.bg_pic.url() %>') <%= @header.bg_pos_h %> <%= @header.bg_pos_v %> <%= rpt %>; }
+	
+	
+<% else %>
+
+	#fine_banner_box { background: transparent; }
+	#banner { background: transparent; }
+
+<% end %>
+
 	#banner #main_nav_holder { height: <%= @header.height %>px;}
 </style>
 
