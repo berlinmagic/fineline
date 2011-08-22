@@ -12,8 +12,18 @@
 	$('#header_s_bg_pos_v').finelineSelect();
 	
 	$('#show_header_Changer').finelineSelect({
-	            after:function(text){
-	                alert("Nachher: "+text);
+	            changed:function(text){
+	                $("#changer_form").submit();
+	            }
+	});
+	
+	
+	
+	$('#header_typ_changer').finelineSelect();
+	
+	$('#show_header_Changer').finelineSelect({
+	            changed:function(text){
+	                $("#changer_form").submit();
 	            }
 	});
 

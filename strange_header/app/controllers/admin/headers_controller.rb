@@ -63,7 +63,7 @@ class Admin::HeadersController < Admin::BaseController
   end
   
   def change_header
-    @new_header = Header.find_by_id(params[:id])
+    @new_header = Header.find_by_id(params[:header])
     redirect_to admin_header_path(@new_header)
   end
   
