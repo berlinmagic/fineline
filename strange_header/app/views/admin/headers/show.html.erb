@@ -6,10 +6,10 @@
 		
 		<div class="box">
 			<div class="in_box">
-				<div class="fl_box_110 erster">
+				<div class="fl_box_110 erster norm1">
 					<%= t('strange_header.header_choose') %>
 				</div>
-				<div class="fl_box_350">
+				<div class="fl_box_350 norm2">
 					<%= form_tag admin_change_header_path, :id => 'changer_form' do |f| %>
 						<div class="fineline_select" id="show_header_Changer">
 							<a href="#" class="fineline_select_trigger"></a>
@@ -29,32 +29,20 @@
 				</div>
 				<div class="clearfix"></div>
 				<br/>
-				<div class="fl_box_110 erster">
+				<div class="fl_box_110 erster norm1">
 					<%= t('strange_header.typ_choose') %>
 				</div>
-				<div class="fl_box_350">
-					<div class="fineline_select std_select" id="header_typ_changer">
-						<a href="#" class="fineline_select_trigger"></a>
-						<div class="fineline_select_box hidden">
-							<ul>
-								<li class="blank"><%= link_to ' - - - - - ', '' %></li>
-								<% Header::HEADER_STYLES.each do |gruppe| %>
-									<li class="level_0"><%= link_to t(gruppe), gruppe %></li>
-								<% end %>
-							</ul>
-						</div>
-						<span class="fineline_select_text selected"><%= @header.typ %></span>
-						<%= hidden_field_tag :header, :typ, :value => @header.typ, :class => 'fineline_select_box_input' %>
-					</div>
+				<div class="fl_box_350 norm2">
+					<%= t("strange_header.header_typen.#{ @header.typ }") if !@header.typ.blank? %>
 					<div class="clearfix"></div>
 				</div>
 				<div class="clearfix"></div>
 				
 				<br/>
-				<div class="fl_box_110 erster">
+				<div class="fl_box_110 erster norm1">
 					<%= t('strange_header.header_use') %>
 				</div>
-				<div class="fl_box_350">
+				<div class="fl_box_350 norm2">
 					<% @header.seiten.each do |seite| %>
 						<div class="selcted_sites"><%= seite.name %></div> <%= finelineButton(:icon => 25, :color => 'hell', :url => remove_site_admin_seite_header_path(seite,@header), :blur => 70, :title => t('strange_header.delete_site') ) %><br/>
 					<% end %>
@@ -107,10 +95,10 @@
 				<div class="clearfix"></div>
 				
 				<br/>
-				<div class="fl_box_110 erster">
+				<div class="fl_box_110 erster norm1">
 					<%= t('strange_header.header_format') %>
 				</div>
-				<div class="fl_box_350">
+				<div class="fl_box_350 norm2">
 					<%= t('strange_header.header_format_desc') %> <%= @header.width %> x <%= @header.height %> pixel
 				</div>
 				<div class="clearfix"></div>

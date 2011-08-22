@@ -19,11 +19,11 @@
 		<div class="fineline_select_box hidden">
 			<ul>
 				<% Header::HEADER_STYLES.each do |gruppe| %>
-					<li class="level_0"><%= link_to t(gruppe), gruppe %></li>
+					<li class="level_0"><%= link_to t("strange_header.header_typen.#{ gruppe }"), gruppe %></li>
 				<% end %>
 			</ul>
 		</div>
-		<span class="fineline_select_text selected"><%= @header.typ %></span>
+		<span class="fineline_select_text selected"><%= t("strange_header.header_typen.#{ @header.typ }") if !@header.typ.blank? %></span>
 		<%= f.hidden_field :typ, :value => @header.typ, :class => 'fineline_select_box_input' %>
 	</div>
 	<div class="clearfix"></div>
