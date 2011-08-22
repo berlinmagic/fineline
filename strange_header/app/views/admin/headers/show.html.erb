@@ -11,7 +11,7 @@
 				</div>
 				<div class="fl_box_350">
 					<%= form_tag admin_change_header_path, :id => 'changer_form' do |f| %>
-						<div class="fineline_select">
+						<div class="fineline_select" id="show_header_Changer">
 							<a href="#" class="fineline_select_trigger"></a>
 							<div class="fineline_select_box hidden">
 								<ul>
@@ -56,11 +56,12 @@
 				</div>
 				<div class="fl_box_350">
 					<% @header.seiten.each do |seite| %>
-						<%= seite.name %> <%= finelineButton(:icon => 25, :size => 24, :url => remove_site_admin_seite_header_path(seite,@header)) %><br/>
+						<div class="selcted_sites"><%= seite.name %></div> <%= finelineButton(:icon => 25, :color => 'hell', :url => remove_site_admin_seite_header_path(seite,@header), :blur => 70, :title => t('strange_header.delete_site') ) %><br/>
 					<% end %>
 					<% if @header.name == 'Standard_Header' %>
 						<%= t('strange_header.std_header_desc')  %>
 					<% else %>
+						<br/>
 						<%= form_tag admin_add_header_site_path, :id => 'site_add_form' do |f| %>
 						<%= hidden_field :form, :header, :value => @header.id %>
 						<div class="fineline_select">
@@ -94,7 +95,7 @@
 						</div>&nbsp;
 						<%= finelineButton(			:icon => 15, 
 													:blur => 70, 
-													:size => 24,
+													:size => 18,
 													:color => 'hell',
 													:url => '#',
 													:class => "submitter",
@@ -197,7 +198,7 @@
 	
 </div>
 
-<%= render 'show_sidebar' %>
+<%= render 'sidebar' %>
 
 <% content_for :js_stuff do %>
 <script>

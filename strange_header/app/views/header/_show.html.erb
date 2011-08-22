@@ -5,11 +5,11 @@
 <% end %>
 <style type="text/css">
 	#banner { height: <%= @header.height %>px; 
-		<%= fine_boxShadow( 'inset 0 10px 5px 0 rgba(0,0,0,.7)' ) %>
+		<%= fine_boxShadow( 'inset 0 0 9px 10px rgba(0,0,0,.7)' ) %> margin: 0 -30px; padding: 0 30px;
 		<% if @header.hintergrund && @header.farbe1 && @header.farbe2 && @header.hintergrund == 'verlauf' %>
 			<%= fine_backgroundGradient('#' + @header.farbe1.to_s, '#' + @header.farbe2.to_s) %>
 		<% elsif @header.hintergrund && @header.farbe1 && @header.hintergrund == 'farbe' %>
-			background: <%= @header.farbe1 %>;
+			background: #<%= @header.farbe1 %>;
 		<% end %>
 		}
 	#banner #main_nav_holder { height: <%= @header.height %>px;}
@@ -24,7 +24,7 @@
 
 	<% elsif @header.typ == 'fader' %>
 	
-				<div id="banner_box">lade..</div>
+				<div id="banner_box">lade..<%= image_tag '/images/loading.gif' %></div>
 
 					<% javatext = '' %>
 					<% javatext = "<script type='text/javascript'>
@@ -56,7 +56,7 @@
 
 				<% end %>
 	
-	<% elsif @header.typ == 's3-slider' %>
+	<% elsif @header.typ == 's3_slider' %>
 		
 		<%= render 'show_sdrei' %>
 		

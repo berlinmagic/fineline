@@ -3,56 +3,130 @@
 <div class="admin_box">
 	<h1 class="admin"><%= finelineIcon(:icon => 49, :color => 'dunkel', :size => 24, :blur => 50) %><%= t('header_headline') %></h1>
 	<div class="admin_in_box">
-		<div class="box">
-			<div class="in_box">
-				<p>Hier haben Sie die Möglichkeit die Reihenfolge bestehender Headerbilder zu verändern und weitere Bilder hinzuzufügen.</p>
-			</div>
-		</div>
-		<div class="box">
-			<div class="in_box">
-				<div class="trenn_linie"></div>
-			</div>
-		</div>
-
-		
-		<div class="box">
-			<div class="in_box white">
-				<div class="fineline_table">
-					<% @headers.each do |head| %>
-					  <div class="row" id="<%= dom_id(head)%>">
-
-					    <div class="first">
-							<%= link_to head.name, admin_header_path(head) %>
-						</div>
-						
-						<div class="aktiv">
-							<%= head.hpics.count %>
-						</div>
-						
-					    <div class="second">
-							<% head.seiten.each_with_index do |seite,index| %><%= ', ' if index > 0 %><%= seite.name %><% end %>
-						</div>
-					
-						<div class="actions">
-							<%= fineline_button( 'ansehen', 	:url => admin_header_path(head) ) %>
-							&nbsp;&nbsp;
-							<%= fineline_button( 'bearbeiten', 	:url => edit_admin_header_path(head), 
-																:class => "remote_form_link" ) %>
-							&nbsp;&nbsp;
-							<%= fineline_button_delete( head, 	:url => admin_header_path(head),
-																:title => 'löschen' ) %>
-						</div>
-					
-					  </div>
-					<% end %>
-					<div class="clearfix">
-						
-					</div>
-					<br class="clear" />
+		<div class="system_help_text<%= ' hidden' unless Strangecms::Config[:show_help] %>">
+			<div class="box">
+				<div class="in_box">
+					<p class="sys_help"><%= t('strange_header.helptext.index') %></p>
 				</div>
 			</div>
 		</div>
 		
+		<div class="box">
+				<div class="trenn_linie"></div>
+		</div>
+		
+
+		<div class="work_box">
+			<div class="in_box white" id="Hpics_Box">
+				<% @headers.each do |head| %>
+					<div class="moover_box" id="<%= dom_id(head)%>">
+						<div class="fl_box_310 erster">
+							<% if head.hpics.count > 0 %>
+								<% @hp_stil = '' %>
+								<% hpic = head.hpics.first %>
+								<% if hpic.bild_cropping %>
+									<% wt = hpic.bild.thumb(hpic.bild_cropping).thumb("310x80>").width %>
+									<% hg = hpic.bild.thumb(hpic.bild_cropping).thumb("310x80>").height %>
+									<% @hp_stil += "margin-left: #{((310-wt)/2).to_i.to_s}px;" if wt < 310 %>
+									<% @hp_stil += "margin-top: #{((80-hg)/2).to_i.to_s}px;" if hg < 80 %>
+									<div class="fake_header_pic" style="<% if head.hintergrund && head.farbe1 && head.farbe2 && head.hintergrund == 'verlauf' %><%= fine_backgroundGradient('#' + head.farbe1.to_s, '#' + head.farbe2.to_s) %><% elsif head.hintergrund && head.farbe1 && head.hintergrund == 'farbe' %>background: #<%= head.farbe1 %>;<% end %>">
+										<%= image_tag hpic.bild.thumb(hpic.bild_cropping).thumb("310x80>").url, :style => @hp_stil %>
+										
+									</div>
+								<% else %>
+									<% wt = hpic.bild.thumb("310x80>").height %>
+									<% @hp_stil += "margin-left: #{((310-wt)/2).to_i.to_s}px;" if wt < 310 %>
+									<% @hp_stil += "margin-top: #{((80-hg)/2).to_i.to_s}px;" if hg < 80 %>
+									<div class="fake_header_pic" style="<% if head.hintergrund && head.farbe1 && head.farbe2 && head.hintergrund == 'verlauf' %><%= fine_backgroundGradient('#' + head.farbe1.to_s, '#' + head.farbe2.to_s) %><% elsif head.hintergrund && head.farbe1 && head.hintergrund == 'farbe' %>background: #<%= head.farbe1 %>;<% end %>">
+										<%= image_tag hpic.bild.thumb("310x80").url, :style => @hp_stil %>
+									</div>
+								<% end %>
+							<% else %>
+								<div class="fake_header_pic" style="<% if head.hintergrund && head.farbe1 && head.farbe2 && head.hintergrund == 'verlauf' %><%= fine_backgroundGradient('#' + head.farbe1.to_s, '#' + head.farbe2.to_s) %><% elsif head.hintergrund && head.farbe1 && head.hintergrund == 'farbe' %>background: #<%= head.farbe1 %>;<% end %>"></div>
+							<% end %>
+						</div>
+						<div class="fl_box_310 letzter">
+							<table class="mini">
+								<tr>
+									<th class="norm3"><%= t('strange_header.attribute.header') %></th>
+									<td class="norm2"><%= head.name %></td>
+								</tr>
+								<tr>
+									<th class="norm3"><%= t('strange_header.attribute.typ') %></th>
+									<td class="norm2">
+										<%= t("strange_header.header_typen.#{head.typ}") if !head.typ.blank? %>
+										<span class="system_help_text <%= 'hidden' unless Strangecms::Config[:show_help] %>">
+											<%= t("strange_header.helptext.#{head.typ}") if !head.typ.blank? %>
+										</span>
+									</td>
+								</tr>
+								<tr>
+									<th class="norm3"><%= t('strange_header.attribute.inhalt') %></th>
+									<td class="norm1">
+										<% if head.hpics.count == 0 %>
+											<%= t('strange_header.no_pics') %>
+										<% elsif head.hpics.count == 1 %>
+											<%= t('strange_header.one_pic') %>
+										<% else %>
+											<%= t('strange_header.n_pics', :count => head.hpics.count) %>
+										<% end %>
+									</td>
+								</tr>
+								<tr>
+									<th class="norm3"><%= t('strange_header.attribute.sites') %></th>
+									<td class="norm1">
+										<% if head.name == 'Standard_Header' %>
+											<%= t('strange_header.all_sites') %>
+										<% elsif head.seiten.count == 0 %>
+											<%= t('strange_header.no_sites') %>
+										<% else %>
+											<% head.seiten.each_with_index do |site,index| %>
+											<%= ', ' if index > 0 %><%= site.name %>
+											<% end %>
+										<% end %>
+									</td>
+								</tr>
+							</table>
+							
+							<div class="inbox_admin_toolz">
+								<%= finelineButton(			:icon => 29, 
+															:blur => 70, 
+															:color => 'hell',
+															:url => edit_admin_header_path(head),
+															:class => "remote_form_link",
+															:title => t('strange_header.links.show') ) %>
+								
+								<%= finelineButton(			:icon => 30, 
+															:blur => 70, 
+															:color => 'hell',
+															:url => edit_admin_header_path(head),
+															:title => t('strange_header.links.edit') ) %>
+								
+								<%= finelineDelete( head,	:icon => 24, 
+															:blur => 70, 
+															:color => 'hell',
+															:url => admin_header_path(head),
+															:title => t('strange_header.links.delete') ) %>
+							</div>
+						</div>
+						
+						<div class="clearfix"></div>
+
+					</div>
+				<% end %>
+			</div>
+		</div>
+		<div class="box">
+				<div class="trenn_linie"></div>
+		</div>
+		
+		<div class="system_help_text<%= ' hidden' unless Strangecms::Config[:show_help] %>">
+			<div class="box">
+				<div class="in_box">
+					<p class="sys_help"><%= t('strange_header.helptext.std_header') %></p>
+				</div>
+			</div>
+		</div>
 		
 	</div>
 </div>

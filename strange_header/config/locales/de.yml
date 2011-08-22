@@ -32,8 +32,14 @@ de:
       crop_hpic: "Headerbild neu zuschneiden"
       del_pic: "Headerbild löschen"
       add_site: "Seite hinzufügen"
+      delete_site: "Seite entfernen"
       staytime: "Standzeit"
       changetime: "Wechselzeit"
+      no_pics: "keine Bilder zugewiesen"
+      one_pic: "1 Bild"
+      n_pics: "%{count} Bilder"
+      all_sites: "alle Seiten *"
+      no_sites: "keine Seite zugewiesen"
       new_header_help_text: "Hier haben Sie die Möglichkeit einen neuen Header zu erstellen, bestimmen Sie höhe, breite und wechseleffekt Ihres neuen Headers."
       edit_header_help_text: "Etwas vergessen oder nicht nach Ihren Wünschen, hier haben Sie die Möglichkeit die Header-Eigenschaften zu verändern."
       sorted: "sortiert"
@@ -44,6 +50,46 @@ de:
           bild: "Bild"
           bild_farbe: "Bild auf Farbe"
           bild_verlauf: "Bild auf Verlauf"
+          none: "Keiner"
+      links:
+          index: "Headerverwaltung"
+          new: "Header erstellen"
+          edit: "Header bearbeiten"
+          show: "Inhalte verwalten"
+          delete: "Header löschen"
+          new_pic: "Neues Headerbild"
+      helptext:
+          index: 'Hier finden Sie alle auf den Seiten aktiven Header und können diese ansehen, bearbeiten oder auch entfernen. Über den Menüpunkt „Header erstellen“ in der rechten Sidebar, können Sie sich jederzeit einen neuen Header erstellen und anschliessend mit Inhalten füllen.'
+          show: ""
+          std_header: "* Dieser Header wird auf allen Seiten verwendet, welchen kein Header zugewiesen wurde."
+          fader: "(Blend-Effekt)"
+          slider: "(Schiebe-Effekt)"
+          s3_slider: "(Presentation)"
+      attribute:
+          typ: "Typ:"
+          inhalt: "Inhalt:"
+          sites: "Zuweisung:"
+          header: "Header:"
+      header_typen:
+          fader: "Fader"
+          slider: "Slider"
+          s3_slider: "S3-Slider"
+      bg_pos_h: "Position horizontal:"
+      bg_pos_hs:
+          left: "Links"
+          center: "Mittig"
+          right: "Rechts"
+      bg_pos_v: "Position vertikal:"
+      bg_pos_vs:
+          top: "Oben"
+          center: "Mittig"
+          bottom: "Unten"
+      bg_repeat: "Wiederholung:"
+      bg_repeats:
+          xrepeat: "horizontal"
+          yrepeat: "vertikal"
+          repeat: "beide"
+          norepeat: "keine"
 ##############################################################################################################################################
 #  =>  #  =>  #  =>  #  =>  #  =>  #  =>  #  =>  #  =>   S T R A N G E - C M S   <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #
 ##############################################################################################################################################

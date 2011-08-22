@@ -36,4 +36,8 @@ class StrangeHeaderHooks < Strangecms::ThemeSupport::HookListener
     "<%= render 'javascriptz/strange_header' %>"
   end
   
+  insert_after :finestyles do
+    "<%= render 'stylesheetz/header' %>"
+  end
+  
 end

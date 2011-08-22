@@ -1,34 +1,34 @@
 # encoding: utf-8
 class Admin::HeadersController < Admin::BaseController
   
+  include FinestyleHelp
+  
+  before_filter :get_navi_werte
+  
   def index
     if Header.all.count > 1
       @headers = Header.all
+      @u_aktiv = "index"
+      render :template => 'admin/headers/index'
     else
-      @aktivio = 'seiten'
-      @sub_aktivio = 'headers'
+      @u_aktiv = "show"
       @header = Header.find_by_name('Standard_Header')
       render :template => 'admin/headers/show'
     end
   end
   
   def new
-    @aktivio = 'seiten'
-    @sub_aktivio = 'headers'
     @u_aktiv = "new"
     @header = Header.new
   end
   
   def edit
-    @aktivio = 'seiten'
-    @sub_aktivio = 'headers'
     @u_aktiv = "edit"
     @header = Header.find(params[:id])
   end
   
   def show
-    @aktivio = 'seiten'
-    @sub_aktivio = 'headers'
+    @u_aktiv = "show"
     if params[:id]
       @header = Header.find(params[:id])
     else
@@ -94,5 +94,9 @@ class Admin::HeadersController < Admin::BaseController
     redirect_to admin_header_path(@header), :notice => t('header_seite_was_deleted', :name => @seite.name)
   end
   
+  def get_navi_werte
+    @aktivio = 'seiten'
+    @sub_aktivio = 'headers'
+  end
   
 end

@@ -8,6 +8,14 @@
 		$('.system_help_text').slideToggle(500);
 		$('.link_help_show').toggleClass('hidden');
 	});
+	
+	$('#header_s_bg_pos_v').finelineSelect();
+	
+	$('#show_header_Changer').finelineSelect({
+	            after:function(text){
+	                alert("Nachher: "+text);
+	            }
+	});
 
 </script>
 

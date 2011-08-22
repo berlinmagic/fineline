@@ -5,6 +5,8 @@ class CreateStrangeHeader < ActiveRecord::Migration
     create_table :headers do |t|
       t.string        :name                   # => evtl. Überflüssig
       
+      t.boolean       :system_stuff,    :default => false             # => Sortiert / Zufällig
+      
       t.string        :typ,             :default => 'fader'           # => fader  /  slider  /  etc.
       t.string        :stil                                           # => Stil / Style evtl. nützlich ???
       
@@ -28,11 +30,10 @@ class CreateStrangeHeader < ActiveRecord::Migration
       t.string        :farbe2,          :default => '00213f'         # => Farbe2 falls Verlauf 
       
       t.string        :bg_pic_uid                                     # => Hintergrund -Bild/ -Grafik
-      t.string        :bg_pic_cropping                                # => möglichst freier Zuschnitt  (zwecks Kacheln)
                                                                       
-      t.string        :bg_pos_h                                       # => Bild Position horizontal   =>  left / center / right
-      t.string        :bg_pos_v                                       # => Bild Position vertical   =>   top / center / bottom
-      t.string        :bg_repeat                                      # => Bild-Wiederholung   =>   keine / horizontal / vertikal / beide
+      t.string        :bg_pos_h,        :default => true              # => Bild Position horizontal   =>  left / center / right
+      t.string        :bg_pos_v,        :default => true              # => Bild Position vertical   =>   top / center / bottom
+      t.string        :bg_repeat,       :default => true              # => Bild-Wiederholung   =>   keine / horizontal / vertikal / beide
       
       t.timestamps
     end
@@ -44,6 +45,7 @@ class CreateStrangeHeader < ActiveRecord::Migration
       t.integer       :position               # => Sortierung
       t.string        :bild_uid               # => Dragonfly
       t.string        :bild_cropping          # => Std-Cropping
+      t.float         :h_ratio                # => Std-Cropping
 
       t.timestamps
     end
@@ -56,6 +58,7 @@ class CreateStrangeHeader < ActiveRecord::Migration
       t.text          :inhalt                 # => Inhalt .. text für S3-Slider
       t.integer       :position               # => Sortierung
       t.string        :cropping               # => this-Cropping
+      t.float         :h_ratio                # => Std-Cropping
       
       t.timestamps
     end

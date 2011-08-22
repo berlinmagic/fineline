@@ -129,7 +129,7 @@ module StrangeSiteLinkHelper
     options.reverse_merge! :title => t('confirm_delete')
     options.reverse_merge! :dataType => 'script'
     options.reverse_merge! :success => "function(r){ jQuery('##{dom_id helpa}').fadeOut('hide'); }"
-    link_to_function icon("delete")+' '+options[:link_text], "jConfirm('#{options[:caption]}', '#{options[:title]}', function(r) {
+    link_to_function options[:link_text], "jConfirm('#{options[:caption]}', '#{options[:title]}', function(r) {
       if(r){
         jQuery.ajax({
           type: 'POST',

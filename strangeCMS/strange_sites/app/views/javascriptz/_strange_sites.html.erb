@@ -117,7 +117,7 @@
 	});
 	*/
 	
-	$('.fineline_select a.fineline_select_trigger').live('click', function(event){
+	$('.fineline_selecto a.fineline_select_trigger').live('click', function(event){
 		event.preventDefault();
 		$('.fineline_select').css('z-index', '1');
 		$(this).parent().css('z-index', '42');
@@ -126,7 +126,7 @@
 		// $(this).parent().parent().find('.fineline_select_box').fadeIn(500);
 	});
 	
-	$('.fineline_select_box ul li a').live('click', function(event){
+	$('.fineline_select_boxo ul li a').live('click', function(event){
 		event.preventDefault();
 		var this_href = $(this).attr('href');
 		var this_text = $(this).html();
@@ -209,6 +209,92 @@
 			}
 		}
 	});
+	
+	
+	/* # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # */
+	
+	
+	(function($)
+	{    
+	    $.fn.finelineSelect = function(options){
+	        return this.each(function(){   
+	            $.finelineSelect(this, options);
+	        });
+	    };
+
+	    $.finelineSelect = function(element,options){
+
+	        settings = jQuery.extend({
+	            action:false,
+	            before:function(){},
+	            after:function(){},
+				change:function(){}
+	        },options);
+
+	        if(typeof(settings.before) == "function")
+	            settings.before($(element).html());
+
+	        if(settings.action) {
+				$.finelineSelect.setText(element,settings.text);
+			}
+			
+			$.finelineSelect.setTrigger(element);
+			
+			$.finelineSelect.setSelect(element);
+
+	        if(typeof(settings.after) == "function")
+	            settings.after($(element).html());
+	    }
+
+	    $.finelineSelect.setText = function(element, text){
+	        $(element).html(text);
+	    }
+
+	    $.finelineSelect.setTrigger = function(element){
+	        $(element).find('.fineline_select_trigger').live('click', function(event){
+				event.preventDefault();
+				$('.fineline_select').css('z-index', '1');
+				$(this).parent().css('z-index', '42');
+				$(this).parent().find('.fineline_select_box.hidden').hide().removeClass('hidden');
+				$(this).parent().find('.fineline_select_box').slideDown(500);
+				// $(this).parent().parent().find('.fineline_select_box').fadeIn(500);
+			});
+	    }
+		
+		$.finelineSelect.setSelect = function(element){
+	        $(element).find('.fineline_select_box ul li a').live('click', function(event){
+				event.preventDefault();
+				var this_href = $(this).attr('href');
+				var this_text = $(this).html();
+				$(element).find('.fineline_select_text').html( this_text );
+				$(element).find('.fineline_select_box').slideUp(500);
+				// $(this).parent().parent().parent().parent().find('.fineline_select_box').fadeOut(500);
+				var changed = '';
+				var preval = $(element).find('.fineline_select_box_input').val();
+				if ( $(this).parent().hasClass('blank') ) {
+					$(element).find('.fineline_select_text').removeClass('selected');
+					$(element).find('.fineline_select_box_input').val('');
+					if ( preval != '' ) {
+						var changed = 'yeah';
+					}
+				} else {
+					$(element).find('.fineline_select_text').addClass('selected');
+					$(element).find('.fineline_select_box_input').val( this_href );
+					if ( preval != this_href ) {
+						var changed = 'yeah';
+					}
+				}
+				if ( changed == 'yeah' ) {
+					if(typeof(settings.changed) == "function")
+			            settings.changed($(element).html());
+				}
+					
+				$(this).parent().parent().parent().parent().css('z-index', '3');
+			});
+	    }
+	})(jQuery);
+
+
 	
 </script>
 <% end %>
