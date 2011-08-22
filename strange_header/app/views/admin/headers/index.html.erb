@@ -114,7 +114,7 @@
 								<tr>
 									<th class="norm3"><%= t('strange_header.attribute.sites') %></th>
 									<td class="norm1">
-										<% if head.name == 'Standard_Header' %>
+										<% if head.system_stuff %>
 											<%= t('strange_header.all_sites') %>
 										<% elsif head.seiten.count == 0 %>
 											<%= t('strange_header.no_sites') %>
@@ -140,12 +140,13 @@
 															:color => 'hell',
 															:url => edit_admin_header_path(head),
 															:title => t('strange_header.links.edit') ) %>
-								
-								<%= finelineDelete( head,	:icon => 24, 
-															:blur => 70, 
-															:color => 'hell',
-															:url => admin_header_path(head),
-															:title => t('strange_header.links.delete') ) %>
+								<% unless head.system_stuff %>
+									<%= finelineDelete( head,	:icon => 24, 
+																:blur => 70, 
+																:color => 'hell',
+																:url => admin_header_path(head),
+																:title => t('strange_header.links.delete') ) %>
+								<% end %>
 							</div>
 						</div>
 						

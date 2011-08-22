@@ -19,7 +19,7 @@
 				<p><%= t('strange_header.links.edit') %></p>
 			<% end %>
 		</li>
-		<% if @header && @header.name && @header.name != 'Standard_Header' %>
+		<% if @header && !@header.system_stuff %>
 		<li>
 			<%= strange_delete_text_link( @header, :url => admin_header_path(@header), :link_text => t('strange_header.links.delete') ) %>
 		</li>

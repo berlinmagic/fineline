@@ -262,9 +262,9 @@
 					obj.find('.fineline_select_box').animate({
 					    	height: '24'
 					  		}, 500, function() {
-					    	$(this).hide();
-							$(this).css('height', 'auto');
-							obj.css('z-index', '3');
+					    		$(this).hide();
+								$(this).css('height', 'auto');
+								obj.css('z-index', '3');
 					  });
 					$(this).hide();
 				});
@@ -274,7 +274,15 @@
 					var this_href = $(this).attr('href');
 					var this_text = $(this).html();
 					obj.find('.fineline_select_text').html( this_text );
-					obj.find('.fineline_select_box').slideUp(500);
+					/* obj.find('.fineline_select_box').slideUp(500); */
+					obj.find('.fineline_select_box').animate({
+					    	height: '24'
+					  		}, 500, function() {
+					    		$(this).hide();
+								$(this).css('height', 'auto');
+								obj.css('z-index', '3');
+					  });
+					$('#fineSelect_overlay').hide();
 					var preval = obj.find('.fineline_select_box_input').val();
 					if ( $(this).parent().hasClass('blank') ) {
 						obj.find('.fineline_select_text').removeClass('selected');

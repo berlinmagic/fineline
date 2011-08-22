@@ -26,7 +26,10 @@ class Admin::HpicsController < Admin::BaseController
   def destroy
     @hpic = Hpic.find(params[:id])
     @hpic.destroy
-    render :nothing => true
+    respond_to do |format|
+      format.html { redirect_to admin_headers_path }
+      format.js  { render :nothing => true }
+    end
   end
   
   def update
@@ -114,7 +117,10 @@ class Admin::HpicsController < Admin::BaseController
       kill.destroy
     end
     @hpics = @header.hpics
-    render_js_for_destroy
+    respond_to do |format|
+      format.html { redirect_to admin_headers_path }
+      format.js  { render :nothing => true }
+    end
   end
 
   

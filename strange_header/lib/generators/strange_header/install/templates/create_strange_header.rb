@@ -31,9 +31,9 @@ class CreateStrangeHeader < ActiveRecord::Migration
       
       t.string        :bg_pic_uid                                     # => Hintergrund -Bild/ -Grafik
                                                                       
-      t.string        :bg_pos_h,        :default => true              # => Bild Position horizontal   =>  left / center / right
-      t.string        :bg_pos_v,        :default => true              # => Bild Position vertical   =>   top / center / bottom
-      t.string        :bg_repeat,       :default => true              # => Bild-Wiederholung   =>   keine / horizontal / vertikal / beide
+      t.string        :bg_pos_h                                       # => Bild Position horizontal   =>  left / center / right
+      t.string        :bg_pos_v                                       # => Bild Position vertical   =>   top / center / bottom
+      t.string        :bg_repeat                                      # => Bild-Wiederholung   =>   keine / horizontal / vertikal / beide
       
       t.timestamps
     end

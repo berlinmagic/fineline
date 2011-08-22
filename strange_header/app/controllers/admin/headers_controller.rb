@@ -79,8 +79,13 @@ class Admin::HeadersController < Admin::BaseController
   
   def destroy
     @header = Header.find(params[:id])
-    @header.destroy
-    redirect_to admin_headers_path
+    unless @header.system_stuff
+      @header.destroy
+    end
+    respond_to do |format|
+      format.html { redirect_to admin_headers_path }
+      format.js  { render :nothing => true }
+    end
   end
   
   def remove_site
