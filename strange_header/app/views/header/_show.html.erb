@@ -4,7 +4,12 @@
 	<% @header = Header.first %>
 <% end %>
 <style type="text/css">
-#banner { height: <%= @header.height %>px; <%= fine_boxShadow( 'inset 0 0 9px 10px rgba(0,0,0,.7)' ) %> margin: 0 -30px; padding: 0 30px; }
+
+#top_banner_shadow, #bottom_banner_shadow { position: absolute; left: 0; display:block; z-index: 9; width: 100%; padding: 0 30px; margin: 0 -30px; height: 13px;  }
+#top_banner_shadow { top: 0; <%= fine_boxShadow( 'inset 0 9px 9px 0px rgba(0,0,0,.7)' ) %> }
+#bottom_banner_shadow { bottom: 0; <%= fine_boxShadow( 'inset 0 -9px 9px 0px rgba(0,0,0,.7)' ) %> }
+
+#banner { height: <%= @header.height %>px; }
 #fine_banner_box {}
 <% rpt = 'no-repeat' %>
 <% if @header.bg_repeat %>
@@ -48,6 +53,9 @@
 </style>
 
 <% if @header.hpics.count > 1 %>
+
+	<div id="top_banner_shadow"></div>
+	<div id="bottom_banner_shadow"></div>
 
 	<% if @header.typ == 'slider' %>
 

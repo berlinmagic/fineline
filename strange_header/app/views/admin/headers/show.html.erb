@@ -114,7 +114,7 @@
 		<div class="system_help_text<%= ' hidden' unless Strangecms::Config[:show_help] %>">
 			<div class="box">
 				<div class="in_box">
-					<p><%= t('strange_header.header_inhalt_verwalten_desc') %></p>
+					<p class="sys_help"><%= t('strange_header.header_inhalt_verwalten_desc') %></p>
 				</div>
 			</div>
 
@@ -128,12 +128,61 @@
 					<div class="moover_box" id="<%= dom_id(head)%>">
 						<%= fine_handle( :icon => 77, :color => 'hell', :blur => 70) %>
 						<div class="fl_box_310 erster">
-							<% if head.hpic.bild_cropping %>
-							<%= image_tag head.hpic.bild.thumb(head.hpic.bild_cropping).thumb("310x90>").url, :alt => 'small_avatar' %>
-							<% else %>
-							<%= image_tag head.hpic.bild.thumb("310x90").url %>
 							
-							<%end%>
+							<% linkstil = "" %>
+							<% divstil = "" %>
+							<% stdstil = 'display: block; padding: 0; margin: 0; ' %>
+							<% rpt = 'no-repeat' %>
+							<% if @header.bg_repeat %>
+								<% rpt = 'repeat-x' if @header.bg_repeat == 'xrepeat' %>
+								<% rpt = 'repeat-y' if @header.bg_repeat == 'yrepeat' %>
+								<% rpt = 'repeat' if @header.bg_repeat == 'repeat' %>
+								<% rpt = 'no-repeat' if @header.bg_repeat == 'norepeat' %>
+							<% end %>
+							<% if @header.hintergrund && @header.farbe1 && @header.farbe2 && @header.hintergrund == 'verlauf' %>
+								<% divstil = "#{ fine_backgroundGradient('#' + @header.farbe1.to_s, '#' + @header.farbe2.to_s) }" %>
+							<% elsif @header.hintergrund && @header.farbe1 && @header.farbe2 && @header.bg_pic && @header.hintergrund == 'bild_verlauf' %>
+								<% linkstil = "#{ fine_backgroundGradient('#' + @header.farbe1.to_s, '#' + @header.farbe2.to_s) }" %>
+								<% divstil = "background: transparent url('#{ @header.bg_pic.url() }') #{ @header.bg_pos_h } #{ @header.bg_pos_v } #{ rpt };" %>
+							<% elsif @header.hintergrund && @header.farbe1 && @header.hintergrund == 'farbe' %>
+								<% divstil = "background: ##{ @header.farbe1 };" %>
+							<% elsif @header.hintergrund && @header.farbe1 && @header.bg_pic && @header.hintergrund == 'bild_farbe'  %>
+								<% linkstil = "background: ##{ @header.farbe1 };" %>
+								<% divstil = "background: transparent url('#{ @header.bg_pic.url() }') #{ @header.bg_pos_h } #{ @header.bg_pos_v } #{ rpt };" %>
+							<% elsif @header.bg_pic && @header.hintergrund == 'bild'  %>
+								<% divstil = "background: transparent url('#{ @header.bg_pic.url() }') #{ @header.bg_pos_h } #{ @header.bg_pos_v } #{ rpt };" %>
+							<% end %>
+							<div class="hpic_prew_box" style="<%= stdstil %><%= linkstil %>">
+								<% @wt_stil = '' %>
+								<% @hg_stil = '' %>
+							<% if @header.hpics.count > 0 %>
+								
+								<% hhpic = head %>
+								<% hpic = hhpic.hpic %>
+								<% if hhpic.cropping %>
+									<% wt = hpic.bild.thumb(hhpic.cropping).thumb("310x80>").width %>
+									<% hg = hpic.bild.thumb(hhpic.cropping).thumb("310x80>").height %>
+									<% @wt_stil += "margin-left: #{((310-wt)/2).to_i.to_s}px;" if wt < 310 %>
+									<% @hg_stil += "margin-top: #{((80-hg)/2).to_i.to_s}px;" if hg < 80 %>
+									<div style="<%= stdstil %> <%= divstil %> <%= @hg_stil %>">
+										<%= image_tag hpic.bild.thumb(hhpic.cropping).thumb("310x80>").url, :style => @wt_stil  %>
+
+									</div>
+								<% else %>
+									<% wt = hpic.bild.thumb("310x80>").width %>
+									<% hg = hpic.bild.thumb("310x80>").height %>
+									<% @wt_stil += "margin-left: #{((310-wt)/2).to_i.to_s}px;" if wt < 310 %>
+									<% @hg_stil += "margin-top: #{((80-hg)/2).to_i.to_s}px;" if hg < 80 %>
+									<div style="<%= stdstil %> <%= divstil %> <%= @hg_stil %>">
+										<%= image_tag hpic.bild.thumb("310x80").url, :style => @wt_stil %>
+									</div>
+								<% end %>
+							<% else %>
+								<div style="<%= stdstil %> <%= divstil %>"></div>
+							<% end %>
+							<div class="clearfix"></div>
+							</div>
+							
 						</div>
 						<div class="fl_box_310 letzter">
 							<table class="mini">
@@ -151,20 +200,20 @@
 								<%= finelineButton(			:icon => 30, 
 															:blur => 70, 
 															:color => 'hell',
-															:url => edit_admin_header_hpic_path(@header,head),
+															:url => edit_admin_header_hpic_hpic_path(head,head.hpic),
 															:class => "remote_form_link",
 															:title => t('strange_header.edit_hpic') ) %>
 								
 								<%= finelineButton(			:icon => 64, 
 															:blur => 70, 
 															:color => 'hell',
-															:url => crop_admin_header_hpic_path(@header,head),
+															:url => crop_admin_header_hpic_hpic_path(head,head.hpic),
 															:title => t('strange_header.crop_hpic') ) %>
 								
 								<%= finelineDelete( head,	:icon => 24, 
 															:blur => 70, 
 															:color => 'hell',
-															:url => remove_admin_header_hpic_path(@header,head),
+															:url => remove_admin_header_hpic_hpic_path(head,head.hpic),
 															:title => t('strange_header.del_pic') ) %>
 							</div>
 						</div>

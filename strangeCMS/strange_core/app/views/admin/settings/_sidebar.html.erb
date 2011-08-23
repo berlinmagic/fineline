@@ -1,20 +1,23 @@
 <% content_for :sidebar do %>
 
-<div id="sidebar">
-			<ul id="sidebar_navi">
-				<%= hook :admin_settings_sidebar do %>
-				<li><%= link_to 'Übersicht', admin_settings_path, :class => "#{'aktiv' if @u_aktiv == 'settings'}" %></li>
-				<li><%= link_to 'Account', admin_setting_path('user'), :class => "#{'aktiv' if @u_aktiv == 'user'}" %></li>
-				<%# @setting_names.each do |name| %>
-					<!-- <li><%# link_to name.to_s.upcase, admin_setting_path(name), :class => "#{'aktiv' if @u_aktiv == name}" %></li>-->
-				<%# end %>
-				<li><%= link_to 'C-M-S', admin_setting_path('cms'), :class => "#{'aktiv' if @u_aktiv == 'cms'}" %></li>
-				<li><%= link_to 'Optik', admin_setting_path('optik'), :class => "#{'aktiv' if @u_aktiv == 'optik'}" %></li>
-				<li><%# link_to 'Kontakt', admin_setting_path('kontakt'), :class => "#{'aktiv' if @u_aktiv == 'kontakt'}" %></li>
-				
-				<li><%= link_to 'Mail-Server', admin_setting_path('mail'), :class => "#{'aktiv' if @u_aktiv == 'mail'}" %></li>
-				<% end %>
-			</ul>
-			<br class="clear" />
+<div class="side_box">
+	<div class="sidebar_head <%= 'aktiv_box' if @header && @u_aktiv != "new" %>">
+		<a href="#"><%= t('fine_settings') %></a>
+	</div>
+	<ul class='sidebar'>
+		<%= hook :admin_settings_sidebar do %>
+		<li><%= link_to 'Übersicht', admin_settings_path, :class => "#{'aktiv' if @u_aktiv == 'settings'}" %></li>
+		<li><%= link_to 'Account', admin_setting_path('user'), :class => "#{'aktiv' if @u_aktiv == 'user'}" %></li>
+		<%# @setting_names.each do |name| %>
+			<!-- <li><%# link_to name.to_s.upcase, admin_setting_path(name), :class => "#{'aktiv' if @u_aktiv == name}" %></li>-->
+		<%# end %>
+		<li><%= link_to 'C-M-S', admin_setting_path('cms'), :class => "#{'aktiv' if @u_aktiv == 'cms'}" %></li>
+		<li><%= link_to 'Optik', admin_setting_path('optik'), :class => "#{'aktiv' if @u_aktiv == 'optik'}" %></li>
+		<li><%# link_to 'Kontakt', admin_setting_path('kontakt'), :class => "#{'aktiv' if @u_aktiv == 'kontakt'}" %></li>
+		
+		<li><%= link_to 'Mail-Server', admin_setting_path('mail'), :class => "#{'aktiv' if @u_aktiv == 'mail'}" %></li>
+		<% end %>
+	</ul>
 </div>
+
 <% end %>

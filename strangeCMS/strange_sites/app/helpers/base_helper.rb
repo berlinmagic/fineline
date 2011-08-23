@@ -104,11 +104,7 @@ module BaseHelper
     options.reverse_merge! :color   => 'dunkel' unless options.key? :color      # => 'dunkel'  /  'hell'
     options.reverse_merge! :size    => 32       unless options.key? :size       # => 18 / 24 / 32* / 48*
     options.reverse_merge! :aktion  => false    unless options.key? :aktion     # => 'std'  /  'aktion'  =>  normal / groß
-    raw("<span class='fine_handle'>#{ finelineIcon(   :icon => options[:icon], 
-                                                      :blur => options[:blur], 
-                                                      :color => options[:color], 
-                                                      :size => options[:size], 
-                                                      :aktion => options[:aktion]) }</span>")
+    raw("<span class='fine_handle' style='background-position: #{ options[:color] == 'hell' ? '0 0' : '16px 0'};'></span>")
   end
   
 end

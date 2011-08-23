@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       resources :hpics do
         member do
           get :crop
+          put :cropit
           get :select
           delete :remove
         end
@@ -18,6 +19,17 @@ Rails.application.routes.draw do
         end
       end
     end
+    
+    resources :header_hpics do
+      resources :hpics do
+        member do
+          get :crop
+          put :cropit
+          delete :remove
+        end
+      end
+    end
+        
     
     resources :seiten do
       resources :headers do

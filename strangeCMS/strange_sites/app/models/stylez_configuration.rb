@@ -16,5 +16,14 @@ class StylezConfiguration < Configuration
   preference :seiten_style, :string, :default => 'style'
   preference :admin_style, :string, :default => 'admin'
   
+  
+  preference :site_width, :integer, :default => 950
+  
+  preference :full_site_width, :integer, :default => 960
+  
+  preference :sidebar_width, :integer, :default => 210
+  
+  preference :content_width, :integer, :default => 710
+  
 
 end

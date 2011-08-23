@@ -60,14 +60,15 @@
 							<a href="<%= admin_header_path(head) %>" style="<%= stdstil %><%= linkstil %>">
 							<% if head.hpics.count > 0 %>
 								<% @hp_stil = '' %>
-								<% hpic = head.hpics.first %>
-								<% if hpic.bild_cropping %>
-									<% wt = hpic.bild.thumb(hpic.bild_cropping).thumb("310x80>").width %>
-									<% hg = hpic.bild.thumb(hpic.bild_cropping).thumb("310x80>").height %>
+								<% hhpic = head.header_hpics.first %>
+								<% hpic = hhpic.hpic %>
+								<% if hhpic.cropping %>
+									<% wt = hpic.bild.thumb(hhpic.cropping).thumb("310x80>").width %>
+									<% hg = hpic.bild.thumb(hhpic.cropping).thumb("310x80>").height %>
 									<% @hp_stil += "margin-left: #{((310-wt)/2).to_i.to_s}px;" if wt < 310 %>
 									<% @hp_stil += "margin-top: #{((80-hg)/2).to_i.to_s}px;" if hg < 80 %>
 									<div class="fake_header_pic"  style="<%= stdstil %><%= divstil %>">
-										<%= image_tag hpic.bild.thumb(hpic.bild_cropping).thumb("310x80>").url, :style => @hp_stil %>
+										<%= image_tag hpic.bild.thumb(hhpic.cropping).thumb("310x80>").url, :style => @hp_stil %>
 										
 									</div>
 								<% else %>
@@ -94,7 +95,7 @@
 									<th class="norm3"><%= t('strange_header.attribute.typ') %></th>
 									<td class="norm2">
 										<%= t("strange_header.header_typen.#{head.typ}") if !head.typ.blank? %>
-										<span class="system_help_text <%= 'hidden' unless Strangecms::Config[:show_help] %>">
+										<span class="sys_help system_help_text <%= 'hidden' unless Strangecms::Config[:show_help] %>">
 											<%= t("strange_header.helptext.#{head.typ}") if !head.typ.blank? %>
 										</span>
 									</td>

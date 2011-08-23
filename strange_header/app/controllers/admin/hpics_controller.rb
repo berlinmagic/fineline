@@ -1,12 +1,17 @@
 # encoding: utf-8
 class Admin::HpicsController < Admin::BaseController
   
+  include FinestyleHelp
+  
   before_filter :load_data
   
   def index
     @hpics = Hpic.all
-    @aktivio = 'seiten'
-    @sub_aktivio = 'headers'
+    
+  end
+  
+  def nested_index
+    @hpics = Hpic.all
   end
   
   def new
@@ -14,9 +19,31 @@ class Admin::HpicsController < Admin::BaseController
   end
   
   def crop
-    
     @hpic = Hpic.find(params[:id])
+    if params[:header_hpic_id]
+      @header = @header_hpic.header
+    elsif params[:header_id]
+      @header_hpic = HeaderHpic.where( 'hpic_id = ? AND header_id = ?', @hpic.id, @header.id ).first
+    end
     render :layout => 'fineline_admin_blank'
+  end
+  
+  def cropit
+    @hpic = Hpic.find(params[:id])
+    if params[:header_hpic_id]
+      @header = @header_hpic.header
+    elsif params[:header_id]
+      @header_hpic = HeaderHpic.where( 'hpic_id = ? AND header_id = ?', @hpic.id, @header.id ).first
+    end
+    @header_hpic.cropping = params[:hpic][:bild_cropping]
+    @header_hpic.h_ratio = params[:hpic][:h_ratio]
+    @header_hpic.save
+    if @hpic.bild_cropping.blank? && @hpic.h_ratio.blank? || @hpic.h_ratio == params[:hpic][:h_ratio]
+      @hpic.bild_cropping = params[:hpic][:bild_cropping]
+      @hpic.h_ratio = params[:hpic][:h_ratio]
+      @hpic.save
+    end
+    redirect_to(admin_header_path(@header), :notice => t('hpic_was_croped'))
   end
   
   def edit
@@ -59,10 +86,10 @@ class Admin::HpicsController < Admin::BaseController
     respond_to do |format|
       if @hpic.save
         if @header
-          @header.hpics << @hpic
+          @headerhpic = HeaderHpic.create! :header_id => @header.id, :hpic_id => @hpic.id
         end
         if params[:hpic][:bild].present?
-          format.html { redirect_to( crop_admin_header_hpic_path(@header,@hpic) ) }
+          format.html { redirect_to( crop_admin_header_hpic_hpic_path(@headerhpic,@hpic) ) }
         else
             format.html { redirect_to(admin_header_path(@header), :notice => t('hpic_was_created')) }
             format.xml  { render :xml => @hpic, :status => :created, :location => @hpic }
@@ -94,31 +121,31 @@ class Admin::HpicsController < Admin::BaseController
   def select
     @header = Header.find_by_id(params[:header_id])
     @hpic = Hpic.find(params[:id])
-    @header.hpics << @hpic
-    @header.save
-    @hpics = @header.hpics
-    render :layout => false
+    @headerhpic = HeaderHpic.create! :header_id => @header.id, :hpic_id => @hpic.id
+    redirect_to( crop_admin_header_hpic_hpic_path( @headerhpic, @hpic ) )
   end
   
   def available
 
     @available_hpics = Hpic.all
-    @available_hpics.delete_if { |hpic| @header.hpics.include?(hpic) }
+    # => @available_hpics.delete_if { |hpic| @header.hpics.include?(hpic) }
     respond_to do |format|
-      format.html
+      format.html { render :template => 'admin/hpics/index' }
       format.js {render :layout => false}
     end
-
+    
   end
   
   def remove
-    @killa = HeaderHpic.where("hpic_id = ? AND header_id = ?", params[:id], @header.id)
-    @killa.each do |kill|
-      kill.destroy
+    if @header_hpic
+      @header = @header_hpic.header
+      @header_hpic.destroy
+    elsif @header
+      @killa = HeaderHpic.where("hpic_id = ? AND header_id = ?", params[:id], @header.id).first
+      @killa.destroy
     end
-    @hpics = @header.hpics
     respond_to do |format|
-      format.html { redirect_to admin_headers_path }
+      format.html { redirect_to admin_header_path(@header) }
       format.js  { render :nothing => true }
     end
   end
@@ -127,8 +154,13 @@ class Admin::HpicsController < Admin::BaseController
   private
     
     def load_data
+      @aktivio = 'seiten'
+      @sub_aktivio = 'headers'
       if params[:header_id]
         @header = Header.find_by_id(params[:header_id])
+      end
+      if params[:header_hpic_id]
+        @header_hpic = HeaderHpic.find(params[:header_hpic_id])
       end
     end
     

@@ -11,8 +11,10 @@ de:
   header_edit_headline: "Header bearbeiten"
   header_crop_headline: "Headerbild zuschneiden"
   header_crop_preview_headline: "Headerbild Vorschau"
-  header_headline: "Headervewaltung"
+  header_headline: "Headerverwaltung"
+  header_add_hpic_headline: "Headerbild hinzufügen"
   header_seite_was_deleted: "Header wurde von Seite '%{name}' entfernt."
+  hpic_was_croped: "Headerbild wurde erfolgreich zugeschnitten."
   strange_header:
       name: "Bezeichnung:"
       farbe1: "Grundfarbe:"
@@ -35,6 +37,9 @@ de:
       delete_site: "Seite entfernen"
       staytime: "Standzeit"
       changetime: "Wechselzeit"
+      pic_formats: "Bildformate"
+      pic_crop: "Bildzuschnitt:"
+      original_pic: "Originalbild:"
       no_pics: "keine Bilder zugewiesen"
       one_pic: "1 Bild"
       n_pics: "%{count} Bilder"
@@ -57,7 +62,8 @@ de:
           edit: "Header bearbeiten"
           show: "Inhalte verwalten"
           delete: "Header löschen"
-          new_pic: "Neues Headerbild"
+          new_pic: "Neues Headerbild hochladen"
+          add_pic: "vorh. Headerbild auswählen"
       helptext:
           index: 'Hier finden Sie alle auf den Seiten aktiven Header und können diese ansehen, bearbeiten oder auch entfernen. Über den Menüpunkt „Header erstellen“ in der rechten Sidebar, können Sie sich jederzeit einen neuen Header erstellen und anschliessend mit Inhalten füllen.'
           show: ""

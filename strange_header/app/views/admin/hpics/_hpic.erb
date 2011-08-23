@@ -1,0 +1,15 @@
+<%# gpic_width = 350 %>
+<%# gpic_height = 300 %>
+
+
+<% thumb_breite = hpic.bild.thumb("#{gpic_width}x#{gpic_height}").width %>
+<% thumb_hoehe = hpic.bild.thumb("#{gpic_width}x#{gpic_height}").height %>
+
+
+
+	<a class="gpix_box" href="<%= select_admin_header_hpic_path(header,hpic) %>">
+	
+		<%= image_tag hpic.bild.thumb("#{gpic_width}x#{gpic_height}").url, 
+						:style => "margin: #{(gpic_height-thumb_hoehe)/2}px #{(gpic_width-thumb_breite)/2}px" %>
+	</a>
+

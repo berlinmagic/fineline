@@ -62,11 +62,15 @@ $().ready(function() {
 			if ( index == 0 ) {
 				$(this).find('.sidebar_head').addClass('aktiv_box');
 			} else {
-				if ( $(this).find('.sidebar_head').hasClass('aktiv_box')) {
+				if ( $(this).find('.sidebar_head').count > 0 ){
 					
-				} else {
-					$(this).find('ul.sidebar').slideToggle();
+					if ( $(this).find('.sidebar_head').hasClass('aktiv_box')) {
+
+					} else {
+						$(this).find('ul.sidebar').slideToggle();
+					}
 				}
+				
 			}
 		  });
 		$('.sidebar_head a').live('click', function(event){
