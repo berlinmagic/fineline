@@ -35,6 +35,8 @@ class CreateStrangeHeader < ActiveRecord::Migration
       t.string        :bg_pos_v                                       # => Bild Position vertical   =>   top / center / bottom
       t.string        :bg_repeat                                      # => Bild-Wiederholung   =>   keine / horizontal / vertikal / beide
       
+      t.float         :h_ratio                                        # => Seitenverhältniss
+      
       t.timestamps
     end
     
@@ -45,7 +47,7 @@ class CreateStrangeHeader < ActiveRecord::Migration
       t.integer       :position               # => Sortierung
       t.string        :bild_uid               # => Dragonfly
       t.string        :bild_cropping          # => Std-Cropping
-      t.float         :h_ratio                # => Std-Cropping
+      t.float         :h_ratio                # => Seitenverhältniss
 
       t.timestamps
     end
@@ -58,7 +60,7 @@ class CreateStrangeHeader < ActiveRecord::Migration
       t.text          :inhalt                 # => Inhalt .. text für S3-Slider
       t.integer       :position               # => Sortierung
       t.string        :cropping               # => this-Cropping
-      t.float         :h_ratio                # => Std-Cropping
+      t.float         :h_ratio                # => Seitenverhältniss
       
       t.timestamps
     end

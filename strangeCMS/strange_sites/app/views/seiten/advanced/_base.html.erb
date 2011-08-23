@@ -1,0 +1,88 @@
+<div class="fl_box_310 apollo">
+	<p class="norm1">Unterseite von:</p>
+	<div class="field">
+		<div class="fineline_select std_select">
+			<a href="#" class="fineline_select_trigger"></a>
+			<div class="fineline_select_box hidden">
+				<ul>
+					<li class="blank"><%= link_to ' - - - - - ', '' %></li>
+					<% Seite.aktiv.main.each do |seite| %>
+						<% unless seite == @seite %>
+						<li class="level_0"><%= link_to seite.name, seite.id.to_s %></li>
+							<% if seite.unter_seiten.count > 0 %>
+								<% seite.unter_seiten.each do |u_seite| %>
+									<% unless u_seite == @seite %>
+									<li class="level_1"><%= link_to u_seite.name, u_seite.id.to_s %></li>
+										<% if u_seite.unter_seiten.count > 0 %>
+											<% u_seite.unter_seiten.each do |uu_seite| %>
+												<% unless uu_seite == @seite %>
+												<li class="level_2"><%= link_to uu_seite.name, uu_seite.id.to_s %></li>
+												<% end %>
+											<% end %>
+										<% end %>
+									<% end %>
+								<% end %>
+							<% end %>
+						<% end %>
+					<% end %>
+				</ul>
+			</div>
+			<% if !@seite.elternseite_id.blank? && e_seite = Seite.find(@seite.elternseite_id) %>
+				 <span class="fineline_select_text selected"><%= e_seite.name %></span>
+			<% else %>
+				 <span class="fineline_select_text"> - - - - - </span>
+			<% end %>
+			<%= f.hidden_field :elternseite_id, :value => @seite.elternseite_id, :class => 'fineline_select_box_input' %>
+		</div>
+	</div>
+	
+	<div class="clearfix"></div>
+	<div class="vspacer"></div>
+	<div class="clearfix"></div>
+	
+	<div class="field toggle_check">
+		<%= f.check_box :use_headline %> <%= f.label :use_headline %>
+	</div>
+	<% if @seite.use_headline && !@seite.no_headline %>
+		<div class="field toggle_field">
+				<%= f.label :name,			:class => 'tooltiped norm1',
+				 							:title => Seite.human_attribute_name(:name) %><br/>
+				<%= f.text_field :name, 	:class => 'tipped full', 
+											:placeholder => Seite.human_attribute_name(:name) %>
+		</div>
+	<% else %>
+		<div class="field toggle_field"<%= " style='display:none;'" unless @seite.use_headline %>>
+				<%= f.label :headline,			:class => 'tooltiped norm1',
+				 								:title => Seite.human_attribute_name(:headline) %><br/>
+				<%= f.text_field :headline, 	:class => 'tipped full', 
+												:placeholder => Seite.human_attribute_name(:headline) %>
+		</div>
+	<% end %>
+	
+</div>
+
+<div class="grid_15 push_1">
+	
+	<p class="norm1">Zeige einen Seitenlink:</p>
+
+	<div class="field checker_box">
+		<%= f.check_box :in_header %> <%= f.label :in_header %>
+	</div>
+	<div class="field checker_box">
+		<%= f.check_box :in_main_nav %> <%= f.label :in_main_nav %>
+	</div>
+	<div class="field checker_box">
+		<%= f.check_box :in_footer %> <%= f.label :in_footer %>
+	</div>
+	
+	<br/>
+	
+	<div class="in_box field">
+		<%= f.check_box :entwurf %> <%= f.label :entwurf %>
+	</div>
+	
+</div>
+
+<div class="clearfix"></div>
+<div class="vspacer"></div>
+<div class="clearfix"></div>

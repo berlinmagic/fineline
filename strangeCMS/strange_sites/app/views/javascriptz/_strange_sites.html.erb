@@ -3,7 +3,11 @@
 <% content_for :js_stuff do %>
 <script type="text/javascript" charset="utf-8">
 	
+	<%= render 'javascriptz/backgroundPosition' %>
+	<%= render 'javascriptz/navHover' %>
 	<%= render 'javascriptz/plugins' %>
+	<%= render 'javascriptz/fineSelect' %>
+	
 	
 	jQuery(function($) {
 	// Animation der Header Navigation
@@ -128,10 +132,14 @@
 		}
 	});
 	
-	$('.toggle_trigger').live('click', function(event){
+	$('.toggle_trigger').toggle(function(event){
+		event.preventDefault();
 		$(this).next('.toggle_box.hidden').hide().removeClass('hidden');
-		$(this).next('.toggle_box').slideToggle();
-		$(this).toggleClass('aktiv');
+		$(this).next('.toggle_box').slideDown(600);
+		$(this).addClass('aktiv');
+	}, function() {
+			$(this).next('.toggle_box').slideUp(600);
+			$(this).removeClass('aktiv');
 	});
 	
 	$('a.more_button').toggle(function() {
@@ -143,6 +151,16 @@
 		$('#more_link_text').html('bearbeiten');
 	});
 	
+	$('a.advanced_button').toggle(function() {
+		$('.no_show.hidden').hide().removeClass('hidden');
+		$(this).parent().parent().css('border-color','#cccccc');
+		$('.no_show').slideDown('slow');
+		$('#more_link_text').html('ausblenden');
+	}, function() {
+		$('.no_show').slideUp('slow');
+		$(this).parent().parent().css('border-color','transparent');
+		$('#more_link_text').html('bearbeiten');
+	});
 	
 	$('span.handle').each(function(){
 		var p_height = $(this).parent().height();
@@ -189,101 +207,11 @@
 	
 	/* # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # */
 	
+	$('#advanced_site_settings').tabs();
 	
 	
-	(function($){
-		$.fn.finelineSelect = function(options) {
-			var defaults = {
-				action:false,
-				before:function(){},
-				after:function(){},
-				change:function(){}
-			};
-			function $div(id, cssText, div) { 
-					div = document.createElement('div');
-					if (id) {
-			            div.id = 'fineSelect_' + id;
-			        }
-					div.style.cssText = 'position: absolute; left:0px; top:0px; width: 100%; height: 100%; z-index: 35;';
-					return $(div);
-			}
-			
-			if ( $('#fineSelect_overlay').length == 0 ) {
-				$overlay = $div("overlay").hide();
-				$('body').prepend($overlay);
-			}
-			
-			
-			var options = $.extend(defaults, options);
-			return this.each(function() {
-				var obj = $(this);
-				
-				
-				
-				if(typeof(options.before) == "function")
-		            options.before(obj.html());
-				
-				obj.find('.fineline_select_trigger').live('click', function(event){
-					$overlay.show();
-					event.preventDefault();
-					obj.css('z-index', '1');
-					$(this).parent().css('z-index', '42');
-					$(this).parent().find('.fineline_select_box.hidden').hide().removeClass('hidden');
-					$(this).parent().find('.fineline_select_box').slideDown(700);
-				});
-				
-				$('#fineSelect_overlay').live('click', function(event){
-					event.preventDefault();
-					/* obj.find('.fineline_select_box').slideUp(400); */
-					obj.find('.fineline_select_box').animate({
-					    	height: '24'
-					  		}, 500, function() {
-					    		$(this).hide();
-								$(this).css('height', 'auto');
-								obj.css('z-index', '3');
-					  });
-					$(this).hide();
-				});
 
-				obj.find('ul li a').live('click', function(event){
-					event.preventDefault();
-					var this_href = $(this).attr('href');
-					var this_text = $(this).html();
-					obj.find('.fineline_select_text').html( this_text );
-					/* obj.find('.fineline_select_box').slideUp(500); */
-					obj.find('.fineline_select_box').animate({
-					    	height: '24'
-					  		}, 500, function() {
-					    		$(this).hide();
-								$(this).css('height', 'auto');
-								obj.css('z-index', '3');
-					  });
-					$('#fineSelect_overlay').hide();
-					var preval = obj.find('.fineline_select_box_input').val();
-					if ( $(this).parent().hasClass('blank') ) {
-						obj.find('.fineline_select_text').removeClass('selected');
-						obj.find('.fineline_select_box_input').val('');
-						if ( preval != '' ) {
-							if(typeof(options.changed) == "function")
-					            options.changed(obj.html());
-						}
-					} else {
-						obj.find('.fineline_select_text').addClass('selected');
-						obj.find('.fineline_select_box_input').val( this_href );
-						if ( preval != this_href ) {
-							if(typeof(options.changed) == "function")
-					            options.changed(obj.html());
-						}
-					}
-				});
-
-		        if(typeof(options.after) == "function")
-		            options.after(obj.html());
-			});
-		};
-	})(jQuery);
-
-
+	$('.fineline_select.std_select').finelineSelect();
 	
 </script>
 <% end %>

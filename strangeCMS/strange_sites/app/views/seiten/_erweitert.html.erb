@@ -1,309 +1,52 @@
 <div class="box">
-	<div class="in_box" id="advanced_setting">
+	<div class="advanced_box" id="advanced_settings">
 		
-		<h5><%= link_to finelineIcon(:icon => 54, :color => 'dunkel', :size => 24, :blur => 50)+ raw(' Seiteneinstellungen <span id="more_link_text">bearbeiten</span>'), '#', :class => "more_button" %></h5>
+		<h5><%= link_to finelineIcon(	:icon => 54, 
+										:color => 'dunkel', 
+										:size => 24, 
+										:blur => 50
+			)+ raw(' Seiteneinstellungen <span id="more_link_text">bearbeiten</span>'), '#', :class => "advanced_button" %></h5>
 
-<div class="clearfix"></div>
-
-<div class="no_show hidden">
-	<!--
-	<div class="in_trenn_box">
-		<div class="trenn_linie"></div>
-	</div>
-	-->
-	<div class="in_box field">
-		<%= f.check_box :entwurf %> <%= f.label :entwurf %>
-	</div>
-	<div class="trenn_box">
-		<div class="top_trenner"></div>
-	</div>
-	
-	
-	<div class="left seiten_einstl">
-				<p class="group_label">Unterseite von:</p>
-				<%#= f.label :elternseite_id, 'Unterseite von:' %>
-				<div class="field">
-					<div class="fineline_select">
-						<a href="#" class="fineline_select_trigger"></a>
-						<div class="fineline_select_box hidden">
-							<ul>
-								<li class="blank"><%= link_to ' - - - - - ', '' %></li>
-								<% Seite.aktiv.main.each do |seite| %>
-									<% unless seite == @seite %>
-									<li class="level_0"><%= link_to seite.name, seite.id.to_s %></li>
-										<% if seite.unter_seiten.count > 0 %>
-											<% seite.unter_seiten.each do |u_seite| %>
-												<% unless u_seite == @seite %>
-												<li class="level_1"><%= link_to u_seite.name, u_seite.id.to_s %></li>
-													<% if u_seite.unter_seiten.count > 0 %>
-														<% u_seite.unter_seiten.each do |uu_seite| %>
-															<% unless uu_seite == @seite %>
-															<li class="level_2"><%= link_to uu_seite.name, uu_seite.id.to_s %></li>
-															<% end %>
-														<% end %>
-													<% end %>
-												<% end %>
-											<% end %>
-										<% end %>
-									<% end %>
-								<% end %>
-							</ul>
-						</div>
-						<% if !@seite.elternseite_id.blank? && e_seite = Seite.find(@seite.elternseite_id) %>
-							 <span class="fineline_select_text selected"><%= e_seite.name %></span>
-						<% else %>
-							 <span class="fineline_select_text"> - - - - - </span>
-						<% end %>
-						<%= f.hidden_field :elternseite_id, :value => @seite.elternseite_id, :class => 'fineline_select_box_input' %>
-					</div>
-				</div>
-				<br/>
-				<div class="field toggle_check">
-					<%= f.check_box :use_headline %> <%= f.label :use_headline %>
-				</div>
-				<div class="field <%= 'hidden' unless @seite.use_headline %> toggle_field">
-					<%= f.label :headline, :class => 'inline' %>
-					<%= f.text_field :headline, :class => 'tipped', :placeholder => Seite.human_attribute_name(:headline) %>
-				</div>
-	
-	</div>
-	
-	<div class="right seiten_einstl">
-		
-				<p class="group_label">Zeige einen Seitenlink:</p>
-
-				<div class="field checker_box">
-					<%= f.check_box :in_header %> <%= f.label :in_header %>
-				</div>
-				<div class="field checker_box">
-					<%= f.check_box :in_main_nav %> <%= f.label :in_main_nav %>
-				</div>
-				<div class="field checker_box">
-					<%= f.check_box :in_footer %> <%= f.label :in_footer %>
-				</div>
-				
-				
-	</div>
-	
-	<div class="clearfix"></div>
-	
-	<div class="trenn_box">
-		<div class="top_trenner"></div>
-	</div>
-	
-	<div class="clearfix"></div>
-
-	<div class="einstll">
-				
-				<h3 class="toggle_trigger">S.E.O. <small>( Suchmaschienenoptimierung )</small></h3>
-				<div class="hidden toggle_box einstll">
-					<br/>
-					<div class="field toggle_check">
-						<%= f.check_box :use_titel %> <%= f.label :use_titel %>
-					</div>
-					<div class="field <%= 'hidden' unless @seite.use_titel %> toggle_field">
-						<%= f.label :titel %> (Fenstername)<br />
-						<%= f.text_field :titel, :class => 'tipped seo_field', :placeholder => Seite.human_attribute_name(:titel) %>
-					</div>
-					<div class="field">
-						<%= f.label :meta_keywords %> (Suchworte .. weniger ist mehr!)<br />
-						<%= f.text_field :meta_keywords, :size => '80', :class => 'tipped seo_field', :placeholder => Seite.human_attribute_name(:meta_keywords) %>
-					</div>
-					<div class="field">
-						<%= f.label :meta_description %> (Beschreibung der Seite, für Google-Trefferliste)<br />
-						<%= f.text_area :meta_description, :size => '80x4', :class => 'tipped seo_field', :placeholder => Seite.human_attribute_name(:meta_description) %>
-					</div>
-					<div class="toggle_trigger" id="gp_trigger" href="#">Google-Vorschau:</div>
-					<div class="google_preview hidden toggle_box">
-						<ol>
-							<li class="inaktiv">
-								<div class="google_preview_entry">
-									<span class="google_title">
-										<h3><a href="#"><em class="g_preview">fineline CMS</em>, das wohl durchdachteste CMS der Welt!</a></h3>
-									</span>
-									<div class="google_domain">
-										<cite>fineline-cms.com/<b>ueber-uns</b></cite>
-
-									</div>
-									<span class="google_text">
-										orangenwerk räumt den Markt auf, <em class="g_preview">fineline CMS</em> seit September online.<br/>
-										<em class="g_preview">fineline CMS</em> laut orangenwerk das wohl einfachste und komfortabelste <b>...</b><br></span>
-								</div>
-							</li>
-							<li>
-								<div class="google_preview_entry">
-									<span class="google_title">
-										<h3><a href="#" id="pg_titel"><%= @seite.titel %></a></h3>
-									</span>
-									<div class="google_domain">
-										<cite><%= request.host %>/<b><%= @seite.slug %></b></cite>
-
-									</div>
-									<span class="google_text" id="pg_text">
-										<%= @seite.meta_description %><br></span>
-								</div>
-							</li>
-							<li class="inaktiv">
-								<div class="google_preview_entry">
-									<span class="google_title">
-										<h3><a href="#"><em class="g_preview">fineline CMS</em>, das wohl durchdachteste CMS der Welt!</a></h3>
-									</span>
-									<div class="google_domain">
-										<cite>fineline-cms.com/<b>ueber-uns</b></cite>
-
-									</div>
-									<span class="google_text">
-										orangenwerk räumt den Markt auf, <em class="g_preview">fineline CMS</em> seit September online.<br/>
-										<em class="g_preview">fineline CMS</em> laut orangenwerk das wohl einfachste und komfortabelste <b>...</b><br></span>
-								</div>
-							</li>
-						</ol>
-					</div>
-					<br/>
-				</div>
-				
-
-	</div>
-	
-	<div class="clearfix"></div>
-	
-	<div class="trenn_box">
-		<div class="top_trenner"></div>
-	</div>
-	
-	<div class="clearfix"></div>
-	
-	<div class="einstll">
-		<h3 class="toggle_trigger">..mehr <small>( erweiterte Einstellungen vornehmen )</small></h3>
-		<div class="hidden toggle_box">
-
-			<div class="l_float wl_42">
-					
-					<div class="field">
-						<%= f.check_box :breadcrumps %> <%= f.label :breadcrumps %>
-					</div>
-					
-					<div class="field">
-						<%= f.check_box :no_headline %> <%= f.label :no_headline %>
-					</div>
-
-
-					
-
-					<div class="field toggle_check">
-						<%= f.check_box :protected_stuff %> <%= f.label :protected_stuff %>
-					</div>
-					<div class="field <%= 'hidden' unless @seite.protected_stuff %> toggle_field">
-						<%= f.label :gruppe_id, :class => 'inline' %>
-						<div class="fineline_select">
-							<a href="#" class="fineline_select_trigger"></a>
-							<div class="fineline_select_box hidden">
-								<ul>
-									<li class="blank"><%= link_to ' - - - - - ', '' %></li>
-									<% Gruppe.all.each do |gruppe| %>
-										<li class="level_0"><%= link_to gruppe.name, gruppe.id.to_s %></li>
-									<% end %>
-								</ul>
-							</div>
-							<% if !@seite.gruppe_id.blank? && this_gruppe = Gruppe.find(@seite.gruppe_id) %>
-								 <span class="fineline_select_text selected"><%= this_gruppe.name %></span>
-							<% else %>
-								 <span class="fineline_select_text"> - - - - - </span>
-							<% end %>
-							<%= f.hidden_field :gruppe_id, :value => @seite.gruppe_id, :class => 'fineline_select_box_input' %>
-						</div>
-					</div>
-			</div>
-			<div class="r_float wr_42">
-				<div class="field toggle_check">
-					<%= f.check_box :verteiler %> <%= f.label :verteiler %>
-				</div>
-				<div class="hidden toggle_field">
-					<p>Seite existiert nicht! Sie dient lediglich als Ordner für Unterseiten.</p>
-				</div>
-
-				<div class="field toggle_check">
-					<%= f.check_box :weiterleitung %> <%= f.label :weiterleitung %>
-				</div>
-				<div class="field <%= 'hidden' unless @seite.weiterleitung %> toggle_field">
-					<%= f.label :externer_link, :class => 'inline' %>
-					<%= f.text_field :externer_link, :class => 'tipped', :placeholder => Seite.human_attribute_name(:externer_link) %>
-				</div>
-				
-			</div>
-		</div>
-	</div>
-	
-	
-	<div class="clearfix"></div>
-
-	
-	<% if strange_master %>
-					<div class="box">
-						<div class="trenn_box">
-							<div class="top_trenner"></div>
-						</div>
-					</div>
-					
-				<div class="einstll">
-					<h3 class="toggle_trigger">Admin Toolz <small>(nur für Seiten- / Master-Admin sichtbar)</small></h3>
-					<div class="hidden toggle_box">
-						
-						<div class="l_float wl_42">
-							
-							<div class="field toggle_check">
-								<%= f.label :system_seite, :class => 'inline' %><%= f.check_box :system_seite %>
-							</div>
-							<div class="field <%= 'hidden' unless @seite.system_seite %> toggle_field">
-								<p>Seite ist damit gesperrt und kann nicht mehr gelöscht werden!</p>
-							</div>
-
-							<div class="field">
-								<%= f.label :system_name, :class => 'inline' %><%= f.text_field :system_name, :size => '20' %>
-							</div>
-
-							<div class="field">
-								<%= f.label :slug, :class => 'inline' %><%= f.text_field :slug, :size => '20' %>
-							</div>
-							
-							<div class="field">
-								<p>Modulseite: <strong><%= @seite.modul_seite %></strong></p>
-								<p>Modulname: <strong><%= @seite.modul_name %></strong></p>
-							</div>
-						</div>
-						
-						<div class="r_float wr_42">
-							
-							<div class="field">
-								<%= f.label :typ, :class => 'inline' %><%= f.text_field :typ, :size => '20' %>
-							</div>
-							<div class="field">
-								<%= f.label :status, :class => 'inline' %><%= f.text_field :status, :size => '20' %>
-							</div>
-							<div class="field">
-								<%= f.label :stil, :class => 'inline' %><%= f.text_field :stil, :size => '20' %>
-							</div>
-							<div class="field">
-								<%= f.label :template, :class => 'inline' %><%= f.text_field :template, :size => '20' %>
-							</div>
-							
-						</div>
-						
-						<div class="clearfix"></div>
-						<br/>
-						
-					</div>
-				</div>
-				
-	<% end %>
 		<div class="clearfix"></div>
-		<br/>
+		<div class="vspacer"></div>
+		<div class="clearfix"></div>
 
+		<div class="no_show hidden" id="advanced_site_settings">
+	
+			<ul id="advanced_nav">
+				<li>
+					<a href="#base">Grundeinstellungen</a>
+				</li>
+				<li>
+					<a href="#seo">Suchmaschienenoptimierung</a>
+				</li>
+				<li>
+					<a href="#more">Erweiterte Einstellungen</a>
+				</li>
+			</ul>
+		
+			<div class="in_advanced_box" id="base">
+				<div class="vspacer"></div>
+				<div class="clearfix"></div>
+				<%= render 'seiten/advanced/base', :f => f %>
+	
+			</div>
+			<div class="in_advanced_box" id="seo">
+				<div class="vspacer"></div>
+				<div class="clearfix"></div>
+				<%= render 'seiten/advanced/seo', :f => f %>
+	
+			</div>
+			<div class="in_advanced_box" id="more">	
+				<div class="vspacer"></div>
+				<div class="clearfix"></div>
+				<%= render 'seiten/advanced/more', :f => f %>
+	
+			</div>
+		
 		</div>
 		
-		
 	</div>
-	
 </div>
 
 

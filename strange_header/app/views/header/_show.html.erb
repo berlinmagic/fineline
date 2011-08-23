@@ -76,11 +76,11 @@
 							doubleFade: true
 					    }, [ // Bilder
 					       " %>
-					<% @header.hpics.each do |slider| %>
-						<% if slider.bild_cropping %>
-							<% javatext +='{ src: "'+slider.bild.thumb(slider.bild_cropping).thumb("#{@header.width}x#{@header.height}").url+'"}, ' %>
+					<% @header.header_hpics.each do |slider| %>
+						<% if slider.cropping %>
+							<% javatext +='{ src: "'+slider.hpic.bild.thumb(slider.cropping).thumb("#{@header.width}x#{@header.height}").url+'"}, ' %>
 						<% else %>
-							<% javatext +='{ src: "'+slider.bild.thumb("#{@header.width}x#{@header.height}").url+'"}, ' %>
+							<% javatext +='{ src: "'+slider.hpic.bild.thumb("#{@header.width}x#{@header.height}").url+'"}, ' %>
 						<%end%>
 
 					<% end %>
@@ -105,11 +105,11 @@
 <% elsif @header.hpics.count == 1 %>
 
 <div id="banner_pic_holder">
-	<% @header.hpics.each do |slider| %>
-		<% if slider.bild_cropping %>
-			<%= image_tag slider.bild.thumb(slider.bild_cropping).thumb("#{@header.width}x#{@header.height}").url %>
+	<% @header.header_hpics.each do |slider| %>
+		<% if slider.cropping %>
+			<%= image_tag slider.hpic.bild.thumb(slider.cropping).thumb("#{@header.width}x#{@header.height}").url %>
 		<% else %>
-			<%= image_tag slider.bild.thumb("#{@header.width}x#{@header.height}").url %>
+			<%= image_tag slider.hpic.bild.thumb("#{@header.width}x#{@header.height}").url %>
 		<%end%>
 	<% end %>
 </div>

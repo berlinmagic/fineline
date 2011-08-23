@@ -90,11 +90,16 @@ div.edit_admin a.hidden { display:none !important; }
 p.nested_head {color: #666666; font-size: 15px; font-weight: bold;}
 
 div.no_show { padding: 10px 0; margin: 0; }
+
+.advanced_box .no_show { margin: 0; padding: 0; background: transparent; }
+.advanced_box .in_advanced_box { margin: 0 -20px; padding: 0 20px; background: #f4f2f2; <%= fineBorderRadius( '1px', '5px', '5px', '5px' ) %> }
+
+
 div.seiten_einstl { width: 42%; padding: 0 3%;}
 div.seiten_einstl .field p { line-height: 24px; }
 div.einstll { width:94%; padding: 0 3%;}
 
-div.field.checker_box { padding: 5px 10px; font-size: 15px;}
+div.field.checker_box { padding: 0 10px; font-size: 12px; font-weight: normal; color: rgb(102,102,102); font-style: normal; }
 div.field.checker_box label { padding-left: 0px;}
 
 table { /* width: 100%; */ }
@@ -102,7 +107,7 @@ table th { vertical-align: middle; }
 table td { padding: 5px 20px; }
 
 input[type='text'], input[type='password'], textarea { 
-	font-size: 12px; font-weight: normal; color: #333333; font-style: normal; line-height: 18px; 
+	font-size: 12px ; font-weight: normal; color: #333333; font-style: normal; line-height: 18px; 
 	border: solid 1px #ccc; padding: 3px; background: #fff;
 	<%= fine_borderRadius( '3px' ) %> <%= fine_boxShadow( 'inset 1px 1px 1px 1px rgba(153,153,153,.3)' ) %> }
 
@@ -237,8 +242,22 @@ input.half { width: 142px !important; margin: 0 10px 0 0; }
 input.full { width: 302px !important; margin: 0 10px 0 0; }
 
 
-a.more_button { line-height:24px; position:relative; display:block; font-size: 12px; font-weight: normal; color: rgb(102,102,102); font-style: italic;}
-a.more_button .finelineIcon { position: absolute; left: -27px; top:0; }
+a.advanced_button, a.more_button { line-height:24px; position:relative; display:block; font-size: 12px; font-weight: normal; color: rgb(102,102,102); font-style: italic;}
+a.advanced_button .finelineIcon, a.more_button .finelineIcon { position: absolute; left: -27px; top:0; }
 
 
+#advanced_site_settings { border: none; }
 
+#advanced_site_settings input[type='text'], #advanced_site_settings input[type='password'], #advanced_site_settings textarea { 
+	font-size: 12px ; font-weight: normal; color: #333333; font-style: normal; line-height: 18px; 
+	border: solid 1px #ccc; padding: 3px; background: #fff;
+	<%= fine_borderRadius( '3px' ) %> <%= fine_boxShadow( 'inset 1px 1px 1px 1px rgba(153,153,153,.3)' ) %> }
+
+#advanced_nav { border: none; <%= fine_borderRadius( ) %> border-bottom: solid 1px #ccc; background: transparent; padding: 0px; margin: 0px; }
+#advanced_nav li { margin: 3px 0px 1px; background: #fff; }
+#advanced_nav li.ui-state-active { background: #f4f2f2; margin: 1px 0px -1px; }
+#advanced_nav li a { line-height: 20px; font-size: 13px; color: rgb(102,102,102); padding: 3px 10px; }
+#advanced_nav li.ui-state-active a { color: #336699; padding: 5px 10px; }
+
+
+.in_advanced_box { border:0; }
