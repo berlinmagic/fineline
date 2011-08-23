@@ -1,14 +1,40 @@
 <% content_for :sidebar do %>
-<div id="sidebar">
-			<ul id="sidebar_navi">
-				<li><%= link_to 'Alle', admin_seiten_url, :class => "#{'aktiv' if @u_aktiv == 'all'}" %></li>
-				<li><%= link_to 'Aktiv', {:controller => "admin/seiten", :action => "index", :show => 'all'}, :class => "#{'aktiv' if @u_aktiv == 'aktiv'}" %></li>
-				
-				<li><%= link_to 'Entwürfe', {:controller => "admin/seiten", :action => "index", :show => 'entwurf'}, :class => "#{'aktiv' if @u_aktiv == 'entwurf'}" %></li>
-				<li><%= link_to "Papierkorb", {:controller => "admin/seiten", :action => "index", :show => 'papierkorb'}, :class => "#{'aktiv' if @u_aktiv == 'papierkorb'}" %></li>
-				<li>&nbsp;</li>
-				<li><%= link_to t('Neue_Seite'), new_admin_seite_url, :class => "#{'aktiv' if @u_aktiv == 'new'}" %></li>
-			</ul>
-			<br class="clear" />
+
+<div class="side_box">
+	<div class="sidebar_head aktiv_box">
+		<a href="#">Seiten</a>
+	</div>
+	<ul class='sidebar'>
+		<li><%= link_to t('strange_sites.links.index'), admin_seiten_url, :class => "#{'aktiv' if @u_aktiv == 'all'}" %></li>
+		
+		<li><%= link_to 'Aktiv', {:controller => "admin/seiten", :action => "index", :show => 'all'}, :class => "#{'aktiv' if @u_aktiv == 'aktiv'}" %></li>
+		<li><%= link_to 'Entwürfe', {:controller => "admin/seiten", :action => "index", :show => 'entwurf'}, :class => "#{'aktiv' if @u_aktiv == 'entwurf'}" %></li>
+		<li><%= link_to "Papierkorb", {:controller => "admin/seiten", :action => "index", :show => 'papierkorb'}, :class => "#{'aktiv' if @u_aktiv == 'papierkorb'}" %></li>
+		
+		
+		
+		
+		<li><%= link_to t('strange_sites.links.new'), new_admin_seite_url, :class => "#{'aktiv' if @u_aktiv == 'new'}" %></li>
+		
+		
+		
+		<% if @seite %>
+			<% if @u_aktiv == "edit" %>
+				<li><%= link_to t('strange_sites.links.edit'), edit_admin_seite_path(@seite), :class => "aktiv" %></li>
+			<% elsif @u_aktiv != "new" %>
+				<li><%= link_to t('strange_sites.links.edit'), edit_admin_seite_path(@seite) %></li>
+			<% end %>
+		<% end %>
+		<% if @seite && !@seite.system_stuff && @u_aktiv != "new" %>
+		<li>
+			<%= strange_delete_text_link( @seite, :url => admin_seite_path(@seite), :link_text => t('strange_sites.links.delete') ) %>
+		</li>
+		<% end %>
+	</ul>
 </div>
+
+
+
+<%= help_link_box %>
+
 <% end %>

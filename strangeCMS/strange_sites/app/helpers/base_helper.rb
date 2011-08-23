@@ -107,4 +107,17 @@ module BaseHelper
     raw("<span class='fine_handle' style='background-position: #{ options[:color] == 'hell' ? '0 0' : '16px 0'};'></span>")
   end
   
+  def help_link_box
+    raw("
+        <div class='side_box'>
+        	<div class='info_sidebar_head'>
+        		Hilfe
+        	</div>
+        	<ul class='sidebar'>
+        		<li>#{ link_to raw("#{ t('help_text_link') } <span class='link_help_show#{' hidden' if Strangecms::Config[:show_help] }'>#{t('help_text_link_show')}</span> <span class='link_help_show#{' hidden' unless Strangecms::Config[:show_help] }'>#{t('help_text_link_hide')}</span>"), '#', :class => 'show_system_help' }</li>
+        	</ul>
+        </div>
+    ")
+  end
+  
 end

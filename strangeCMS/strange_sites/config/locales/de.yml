@@ -21,6 +21,18 @@ de:
   help_text_link: "Hilfetext"
   help_text_link_show: "einblenden"
   help_text_link_hide: "ausblenden"
+###  Sites  ###
+  strange_sites:
+      helptext:
+          index: "Hier können Sie Ihre bestehenden Seiten und Unterseiten ansehen, bearbeiten oder löschen. Sie können entscheiden, ob eine Seite veröffentlicht werden soll oder eine bestehende Seite ausblenden.<br/>Sollten Sie die Reihenfolge der Seiten untereinander verändern wollen, können Sie alle Seiten ganz einfach per Drag and Drop verschieben."
+      links:
+          index: "Seitenverwaltung"
+          new: "Neue Seite erstellen"
+          edit: "Seite bearbeiten"
+          delete: "Seite löschen"
+      headlines:
+          index: "Seitenverwaltung"
+      show_sites: "Anzeigen:"
 ###  Linkz  ###
   Show: "Anzeigen"
   Edit: "Bearbeiten"

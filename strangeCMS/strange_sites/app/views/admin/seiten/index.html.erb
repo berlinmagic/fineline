@@ -1,31 +1,58 @@
 <%= render 'admin/shared/seiten_sub_menu' %>
 
 <div class="admin_box">
-	<h1><%= t('seiten_headline') %></h1>
+	<h1 class="admin"><%= finelineIcon(:icon => 49, :color => 'dunkel', :size => 24, :blur => 50) %><%= t('strange_sites.headlines.index') %></h1>
 	<div class="admin_in_box">
+		
 		<div class="box">
 			<div class="in_box">
-				<p>Hier können Sie Ihre bestehenden Seiten und Unterseiten ansehen, bearbeiten oder löschen.  Sie können entscheiden ,
-				ob eine Seite veröffentlicht werden soll oder eine bestehende Seite ausblenden.</p>
+				<div class="fl_box_110 erster norm1">
+					<%= t('strange_sites.show_sites') %>
+				</div>
+				<div class="fl_box_350 norm2">
+					<%= form_tag admin_change_header_path, :id => 'changer_form' do |f| %>
+						<div class="fineline_select" id="show_header_Changer">
+							<a href="#" class="fineline_select_trigger"></a>
+							<div class="fineline_select_box hidden">
+								<ul>
+									<% Seite.all.each do |hdr| %>
+										<li class="level_0"><%= link_to hdr.name, hdr.id.to_s %></li>
+									<% end %>
+								</ul>
+							</div>
+							<span class="fineline_select_text selected"> -- </span>
+							<%= hidden_field_tag :header, :id, :value => "#{@seite.id.to_s if @seite}", :class => 'fineline_select_box_input changer' %>
+						</div>
+						<div class="clearfix"></div>
+					<% end %>
+					<div class="clearfix"></div>
+				</div>
+				<div class="clearfix"></div>
+				<br/>
 			</div>
 		</div>
-		<div class="box">
-			<div class="trenn_box">
-				<div class="top_trenner"></div>
+		
+		<div class="system_help_text<%= ' hidden' unless Strangecms::Config[:show_help] %>">
+			<div class="box">
+				<div class="in_box">
+					<p class="sys_help"><%= raw( t('strange_sites.helptext.index') ) %></p>
+				</div>
 			</div>
 		</div>
+		
 		<div class="box">
-			<div class="in_box">
-				<p>Sollten Sie die Reihenfolge der Seiten untereinander verändern wollen, können Sie alle Seiten ganz einfach per Drag and Drop verschieben.</p>
-			</div>
+				<div class="trenn_linie"></div>
 		</div>
-		<div class="box">
+		
+		
+
+		<div class="work_box">
 			<div class="in_box white">
-				<div class="mb_table">
+				<div class="fine_table">
 					<% @seiten.each do |seite| %>
 					  <div class="row" id="<%= dom_id(seite)%>">
 
-						<div class="sorter"><span class="handler"></span></div>
+						<div class="sorter"><%= fine_handle(:color => 'hell') %></div>
 
 					    <div class="title">
 							<%= seite.titel %>
@@ -85,9 +112,12 @@
 					<div class="clearfix">
 						
 					</div>
-					<br class="clear" />
 				</div>
 			</div>
+		</div>
+		
+		<div class="box">
+				<div class="trenn_linie"></div>
 		</div>
 		
 	</div>
@@ -107,19 +137,19 @@
       return ui;
   };
   $(function() {
-    $("div.mb_table").sortable({
+    $("div.fine_table").sortable({
       axis: 'y',
-      handle: '.handler',
+      handle: '.fine_handle',
       cursor: "move",
       helper: fixWidthHelper,
       
       update: function(){
         $.ajax({
           type: 'post', 
-          data: $('div.mb_table').sortable('serialize'), 
+          data: 'authenticity_token='+AUTH_TOKEN+'&'+ $('div.fine_table').sortable('serialize'), 
           dataType: 'script',
           complete: function(request){
-            $('div.mb_table').effect('highlight');
+            $('div.fine_table').effect('highlight');
           },
           url: "<%= reorder_seiten_url %>"
         })

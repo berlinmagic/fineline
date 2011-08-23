@@ -34,29 +34,30 @@ table.mb_table td.sorter span.handler { cursor:pointer; width: 22px; background:
 table.settings th.u_kat { color: #66cc00; padding: 10px 0 0;}
 
 
-div.mb_table {width: 100%; border-spacing: 0; border: 0; position: relative; display: table; line-height: 29px; }
+div.fine_table {width: 100%; border-spacing: 0; border: 0; position: relative; display: table; line-height: 29px; background: #fff url('/images/fineline/seitenverwaltung_2x60px.png'); margin: 10px 0;}
 
-div.mb_table .row { position: relative; width: 100%; display: table-row; }
+div.fine_table .row { position: relative; width: 100%; display: table-row; margin:0; border:0; padding:0; }
 
-div.mb_table .title { width: 60%; padding: 10px 5px; display: table-cell; }
-div.mb_table .sorter { width: 5%; padding: 2px 5px; display: table-cell; }
-div.mb_table .aktiv { width: 5%; padding: 10px 5px; display: table-cell; }
-div.mb_table .actions { width:30%; padding: 10px 5px; display: table-cell; }
+div.fine_table .title { width: 60%; padding: 0 5px; display: table-cell; line-height: 30px; margin:0; border:0; padding:0; }
+div.fine_table .sorter { position: relative; width: 5%; padding: 0 5px; display: table-cell; margin:0; border:0; padding:0; vertical-align: top;}
+div.fine_table .aktiv { width: 5%; padding: 0 5px; display: table-cell; line-height: 30px; margin:0; border:0; padding:0; }
+div.fine_table .actions { width:30%; padding: 0 5px; display: table-cell; line-height: 30px; margin:0; border:0; padding:0; }
 
 
-div.mb_table .row .actions { text-align:right;}
-div.mb_table .row .sorter span { visibility:hidden;}
-div.mb_table .row .actions a { visibility:hidden; }
+div.fine_table .row .actions { text-align:right;}
+div.fine_table .row .sorter span { visibility:hidden; top:1; margin:0;}
+div.fine_table .row .sorter span.fine_handle { visibility:hidden; position: relative; vertical-align: top; margin:1px;}
+div.fine_table .row .actions a { visibility:hidden; }
 
-div.mb_table .row:hover { background: rgba(5,230,30,.2); }
-div.mb_table .row:hover .actions a { visibility:visible; }
-div.mb_table .row:hover .sorter span { visibility:visible;}
+div.fine_table .row:hover { background: #ecf3fe; }
+div.fine_table .row:hover .actions a { visibility:visible; }
+div.fine_table .row:hover .sorter span { visibility:visible;}
+div.fine_table .row:hover .sorter span.fine_handle { visibility:visible; }
 
-div.mb_table .sorter span.handler { cursor:pointer; width: 22px; background: transparent url('/images/schieber_k.png'); height: 22px; position:relative; display:block; left:0; top:5px; vertical-align: center;}
 
-div.mb_table .row .unter_seiten {width: 90%; border-spacing: 0; border: 0; position: relative; display: table; }
-div.mb_table .row .unter_seiten .u_row { position: relative; width: 100%; display: table-row; }
-div.mb_table .row .unter_seiten .u_row > * {display: table-cell; vertical-align: top;}
+div.fine_table .row .unter_seiten {width: 90%; border-spacing: 0; border: 0; position: relative; display: table; }
+div.fine_table .row .unter_seiten .u_row { position: relative; width: 100%; display: table-row; }
+div.fine_table .row .unter_seiten .u_row > * {display: table-cell; vertical-align: top;}
 
 #xabc .section-group       {display: table; width: 100%;}
 #xabc .section-group-inner {display: table-row;}

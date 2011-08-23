@@ -25,13 +25,13 @@
 	$(function() {
 		$("#fineline_seite_form_abschnitt_area").sortable({
 			axis: 'y',
-			handle: '.handle',
+			handle: '.fine_handle',
 			cursor: "move",
 			helper: fixWidthHelper,
 			update: function(){
 				$.ajax({
 					type: 'post', 
-					data: $('#fineline_seite_form_abschnitt_area').sortable('serialize'), 
+					data: 'authenticity_token='+AUTH_TOKEN+'&'+ $('#fineline_seite_form_abschnitt_area').sortable('serialize'), 
 					dataType: 'script',
 					complete: function(request){
 						$('#fineline_seite_form_abschnitt_area').effect('highlight');
@@ -117,31 +117,7 @@
 	});
 	*/
 	
-	$('.fineline_selecto a.fineline_select_trigger').live('click', function(event){
-		event.preventDefault();
-		$('.fineline_select').css('z-index', '1');
-		$(this).parent().css('z-index', '42');
-		$(this).parent().find('.fineline_select_box.hidden').hide().removeClass('hidden');
-		$(this).parent().find('.fineline_select_box').slideDown(500);
-		// $(this).parent().parent().find('.fineline_select_box').fadeIn(500);
-	});
-	
-	$('.fineline_select_boxo ul li a').live('click', function(event){
-		event.preventDefault();
-		var this_href = $(this).attr('href');
-		var this_text = $(this).html();
-		$(this).parent().parent().parent().parent().find('.fineline_select_text').html( this_text );
-		$(this).parent().parent().parent().parent().find('.fineline_select_box').slideUp(500);
-		// $(this).parent().parent().parent().parent().find('.fineline_select_box').fadeOut(500);
-		if ( $(this).parent().hasClass('blank') ) {
-			$(this).parent().parent().parent().parent().find('.fineline_select_text').removeClass('selected');
-			$(this).parent().parent().parent().parent().find('.fineline_select_box_input').val('');
-		} else {
-			$(this).parent().parent().parent().parent().find('.fineline_select_text').addClass('selected');
-			$(this).parent().parent().parent().parent().find('.fineline_select_box_input').val( this_href );
-		}
-		$(this).parent().parent().parent().parent().css('z-index', '3');
-	});
+
 	
 	$('.toggle_check input:checkbox').live('change', function(){
 		if ( $(this).is(':checked') ) {
