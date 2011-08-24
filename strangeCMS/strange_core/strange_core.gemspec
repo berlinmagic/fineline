@@ -17,4 +17,11 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.requirements << 'none'
   
+  s.add_dependency('rack-cache')
+  # => s.add_dependency('dragonfly', '~> 0.8.5')
+  # => s.add_dependency('rmagick', '~> 2.13.1')
+  
+  s.add_dependency('dragonfly-rmagick', '~> 0.0.1')
+  
+  
 end

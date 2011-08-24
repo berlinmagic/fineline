@@ -6,7 +6,7 @@
   
   require "acts_as_list"
   require "el_finder"
-  require 'paperclip'
+  # => require 'paperclip'
   # => require 'will_paginate'
   require 'kaminari'
 

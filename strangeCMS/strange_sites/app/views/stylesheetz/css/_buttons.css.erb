@@ -28,11 +28,7 @@
 
 .fineline_button, .fineline_button a { 
 	line-height: 16px; font-weight:normal; color: #fefefe; 
-	text-shadow: 			<%= finestyle[:button][:text_shaddow] %>;
-	-o-text-shadow: 		<%= finestyle[:button][:text_shaddow] %>;
-	-webkit-text-shadow: 	<%= finestyle[:button][:text_shaddow] %>; 
-	-moz-text-shadow: 		<%= finestyle[:button][:text_shaddow] %>;
-	-ms-text-shadow: 		<%= finestyle[:button][:text_shaddow] %>;		}
+	text-shadow: 			<%= finestyle[:button][:text_shaddow] %>		}
 
 .fineline_button:hover, a:hover .fineline_button { 
 	background: <%= finestyle[:button][:bg_color_hover]  %> url('/images/fineline/button_bg/buttonBG_<%= finestyle[:button][:bg_image]  %>.png') 

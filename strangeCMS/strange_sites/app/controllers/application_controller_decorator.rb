@@ -3,6 +3,8 @@ ApplicationController.class_eval do
 
   include StrangeSitesHelp
   
+  caches_action :render_page_if_exists
+  
   # => before_filter :check_site_status
   
   # => before_filter :render_page_if_exists

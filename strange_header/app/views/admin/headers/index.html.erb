@@ -19,6 +19,16 @@
 		<div class="work_box">
 			<div class="in_box white" id="Hpics_Box">
 				<% @headers.each do |head| %>
+					<% @wrong_pic = 0 %>
+					<% head.header_hpics.each do |hhpic| %>
+						<% @wrong_pic += 1 if head.ratio != hhpic.h_ratio %>
+					<% end %>
+					<% unless @wrong_pic == 0 %>
+						<div class="wrong_header_ratio">
+							<h2 class="panic"><%= t('strange_header.wrong_ratio_pics', :pic_count => @wrong_pic) %></h2>
+						</div>
+					<% end %>
+					
 					<div class="moover_box" id="<%= dom_id(head)%>">
 						<div class="fl_box_310 erster">
 							<% linkstil = "" %>

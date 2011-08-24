@@ -9,7 +9,7 @@
 
 	<a class="gpix_box" href="<%= select_admin_header_hpic_path(header,hpic) %>">
 	
-		<%= image_tag hpic.bild.thumb("#{gpic_width}x#{gpic_height}").url, 
+		<%= image_tag hpic.bild.thumb("#{gpic_width}x#{gpic_height}").process(:add_fade).url, 
 						:style => "margin: #{(gpic_height-thumb_hoehe)/2}px #{(gpic_width-thumb_breite)/2}px" %>
 	</a>
 

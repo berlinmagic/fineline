@@ -35,7 +35,7 @@ class CreateStrangeHeader < ActiveRecord::Migration
       t.string        :bg_pos_v                                       # => Bild Position vertical   =>   top / center / bottom
       t.string        :bg_repeat                                      # => Bild-Wiederholung   =>   keine / horizontal / vertikal / beide
       
-      t.float         :h_ratio                                        # => Seitenverhältniss
+      t.float         :ratio                                        # => Seitenverhältniss
       
       t.timestamps
     end

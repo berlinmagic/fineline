@@ -38,6 +38,7 @@ class Admin::HeadersController < Admin::BaseController
   
   def create
     @header = Header.new(params[:header])
+    @header.ratio = ( params[:header][:width].to_f / params[:header][:height].to_f )
     respond_to do |format|
       if @header.save
         format.html { redirect_to(admin_headers_path, :notice => t('header_was_created')) }
@@ -51,6 +52,7 @@ class Admin::HeadersController < Admin::BaseController
   
   def update
     @header = Header.find(params[:id])
+    @header.ratio = ( params[:header][:width].to_f / params[:header][:height].to_f )
     respond_to do |format|
       if @header.update_attributes(params[:header])
         format.html { redirect_to(admin_headers_path, :notice => t('header_was_updated')) }

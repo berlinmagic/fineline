@@ -22,8 +22,5 @@ Gem::Specification.new do |s|
   s.add_dependency('devise', '= 1.4.2')
   s.add_dependency('devise_invitable', '= 0.5.4')
   # => s.add_dependency('cancan', '= 1.4.1')
-  
-  s.add_dependency('rack-cache')
-  s.add_dependency('dragonfly', '~>0.8.2')
 
 end

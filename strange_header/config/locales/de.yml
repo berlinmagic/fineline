@@ -49,6 +49,8 @@ de:
       edit_header_help_text: "Etwas vergessen oder nicht nach Ihren Wünschen, hier haben Sie die Möglichkeit die Header-Eigenschaften zu verändern."
       sorted: "sortiert"
       unsorted: "zufällig"
+      wrong_ratio: "ACHTUNG, bitte Bild neu zuschneiden!"
+      wrong_ratio_pics: "ACHTUNG, %{pic_count} Bilder neu zuschneiden!"
       hintergrund:
           farbe: "Farbe"
           verlauf: "Verlauf"

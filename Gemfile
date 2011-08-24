@@ -1,4 +1,5 @@
 source 'http://rubygems.org'
+source 'http://fineline:QYKCj83x8VxrvUzi71h75GrYbeQysmuYfcNN2Xm0jq@user26331663-1.zeta.railshoster.de/'
 
 # => fineline CMS - Gemfile
 

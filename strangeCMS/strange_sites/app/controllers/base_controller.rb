@@ -3,6 +3,8 @@ class BaseController < ApplicationController
   
   include FinestyleHelp
   
+  caches_page :finestyle
+  
   skip_before_filter :verify_authenticity_token, :only => ['elfinder']
   
   layout proc { |controller| controller.request.xhr? ? false : 'fineline' }

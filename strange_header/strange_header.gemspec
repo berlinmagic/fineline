@@ -18,11 +18,6 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.requirements << 'none'
   
-  s.add_dependency('strangecms',  ">= 0.0.2")
-  
-  #s.add_dependency('paperclip',  ">= 2.3.8")
-  
-  s.add_dependency('rack-cache')
-  s.add_dependency('dragonfly', '~>0.8.2')
+  s.add_dependency('strangecms',  ">= 0.1.15")
   
 end
