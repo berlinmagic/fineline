@@ -17,3 +17,4 @@ Magick::OverCompositeOp)
     end 
   end 
 end
+

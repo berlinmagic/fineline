@@ -17,7 +17,12 @@
 			<%= link_to finelineButton(:icon => 1, :size => 24, :class => 'kreis', :color => 'hell'), "#{ gallerien_path }/#{ @prev_pic.to_s }", :class => 'pic_nav_prev' %>
 			<%= link_to finelineButton(:icon => 2, :size => 24, :class => 'kreis', :color => 'hell'), "#{ gallerien_path }/#{ @next_pic.to_s }", :class => 'pic_nav_next' %>
 			
-			<%= image_tag @bild.file.thumb( @bild.file_cropping ).thumb("#{700}x#{600}").process(:add_watermark, :path => "#{Rails.root}/public/images/fineline_logo_klein.png").url %>
+			<%#= image_tag @bild.file.thumb( @bild.file_cropping ).thumb("#{700}x#{600}").process(:add_watermark, :path => "#{Rails.root}/public/images/fineline_logo_klein.png").url %>
+			
+			<%= image_tag @bild.file.thumb( @bild.file_cropping ).thumb("#{700}x#{600}").process(:convert, '-alpha set -virtual-pixel transparent -channel A \
+			          -morphology Distance Euclidean:1,10\!').url %>
+			
+			
 	</div>
 
 <div class="clearfix"></div>

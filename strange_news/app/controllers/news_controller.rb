@@ -4,6 +4,13 @@ class NewsController < ApplicationController
   include FinestyleHelp
   
   before_filter :load_news_site
+  
+  caches_action :index
+  caches_action :show
+  caches_action :show_news
+  caches_action :show_news_by_date
+  caches_action :show_news_by_tag
+  caches_action :show_news_by_kategorie
 
   def index
     # => @news = News.aktiv

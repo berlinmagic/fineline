@@ -63,6 +63,8 @@
 		
 
 	<% elsif @header.typ == 'fader' %>
+		
+		<%# cache(:action => 'show_seite', :part => 'fade_headers') do %>
 	
 				<div id="banner_box">lade..<%= image_tag '/images/loading.gif' %></div>
 
@@ -95,6 +97,8 @@
 						</style>
 
 				<% end %>
+		
+		<%# end %>
 	
 	<% elsif @header.typ == 's3_slider' %>
 		

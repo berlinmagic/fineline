@@ -43,6 +43,8 @@ class Admin::HpicsController < Admin::BaseController
       @hpic.h_ratio = params[:hpic][:h_ratio]
       @hpic.save
     end
+    expire_action :controller => 'admin/headers', :action => "index"
+    expire_action :controller => 'admin/headers', :action => "show", :id => @header_hpic.header.id
     redirect_to(admin_header_path(@header), :notice => t('hpic_was_croped'))
   end
   
@@ -53,6 +55,8 @@ class Admin::HpicsController < Admin::BaseController
   def destroy
     @hpic = Hpic.find(params[:id])
     @hpic.destroy
+    expire_action :controller => 'admin/headers', :action => "index"
+    expire_action :controller => 'admin/headers', :action => "show", :id => @hpic.header.id
     respond_to do |format|
       format.html { redirect_to admin_headers_path }
       format.js  { render :nothing => true }
@@ -63,6 +67,8 @@ class Admin::HpicsController < Admin::BaseController
     @hpic = Hpic.find(params[:id])
     respond_to do |format|
       if @hpic.update_attributes(params[:hpic])
+        expire_action :controller => 'admin/headers', :action => "index"
+        expire_action :controller => 'admin/headers', :action => "show", :id => @hpic.header.id
         if params[:hpic][:bild].present?
           render :action => 'crop'
         else
@@ -85,6 +91,8 @@ class Admin::HpicsController < Admin::BaseController
     @hpic = Hpic.new(params[:hpic])
     respond_to do |format|
       if @hpic.save
+        expire_action :controller => 'admin/headers', :action => "index"
+        expire_action :controller => 'admin/headers', :action => "show", :id => @hpic.header.id
         if @header
           @headerhpic = HeaderHpic.create! :header_id => @header.id, :hpic_id => @hpic.id
         end
@@ -122,6 +130,8 @@ class Admin::HpicsController < Admin::BaseController
     @header = Header.find_by_id(params[:header_id])
     @hpic = Hpic.find(params[:id])
     @headerhpic = HeaderHpic.create! :header_id => @header.id, :hpic_id => @hpic.id
+    expire_action :controller => 'admin/headers', :action => "index"
+    expire_action :controller => 'admin/headers', :action => "show", :id => @header.id
     redirect_to( crop_admin_header_hpic_hpic_path( @headerhpic, @hpic ) )
   end
   
@@ -140,9 +150,13 @@ class Admin::HpicsController < Admin::BaseController
     if @header_hpic
       @header = @header_hpic.header
       @header_hpic.destroy
+      expire_action :controller => 'admin/headers', :action => "index"
+      expire_action :controller => 'admin/headers', :action => "show", :id => @header_hpic.header.id
     elsif @header
       @killa = HeaderHpic.where("hpic_id = ? AND header_id = ?", params[:id], @header.id).first
       @killa.destroy
+      expire_action :controller => 'admin/headers', :action => "index"
+      expire_action :controller => 'admin/headers', :action => "show", :id => @header.id
     end
     respond_to do |format|
       format.html { redirect_to admin_header_path(@header) }
