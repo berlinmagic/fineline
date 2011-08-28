@@ -1,7 +1,8 @@
+# encoding: utf-8
    
 
 
-# encoding: utf-8
+
 
 puts 'INFO: erstelle News-Seite'
 news_site = Seite.create!           :name => 'Aktuelles', 
