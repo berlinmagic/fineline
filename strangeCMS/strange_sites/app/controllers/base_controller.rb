@@ -3,8 +3,8 @@ class BaseController < ApplicationController
   
   include FinestyleHelp
   
-  caches_page :finestyle
-  caches_page :show_seite
+  # => caches_page :finestyle
+  # => caches_page :show_seite
   
   skip_before_filter :verify_authenticity_token, :only => ['elfinder']
   

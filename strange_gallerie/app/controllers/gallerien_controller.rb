@@ -3,13 +3,13 @@ class GallerienController< ApplicationController
   
   include FinestyleHelp
   
-  caches_action :index
-  caches_action :show_pic
-  caches_action :show
-  caches_action :xxl_index
-  caches_action :show_by_date
-  caches_action :show_by_tag
-  caches_action :show_by_kategorie
+  # => caches_action :index
+  # => caches_action :show_pic
+  # => caches_action :show
+  # => caches_action :xxl_index
+  # => caches_action :show_by_date
+  # => caches_action :show_by_tag
+  # => caches_action :show_by_kategorie
   
   before_filter :load_stuff
   
