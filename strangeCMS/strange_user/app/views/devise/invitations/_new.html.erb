@@ -1,8 +1,8 @@
 <div class="admin_box">
 	
 	<div id='inviting_form'>
-		
-	<h1><%= t("Send_invitation") %></h1>
+
+	<h1 class="admin"><%= finelineIcon(:icon => 42, :color => 'dunkel', :size => 24, :blur => 50) %><%= t('Send_invitation') %></h1>
 	
 	<div class="admin_in_box">
 		<div class="box">
@@ -52,8 +52,8 @@
 							<td></td>
 						</tr>
 						<tr>
-							<th><%= f.label :crew, t('crew') %></th>
-							<td><%= f.select :crew, User::CREW_ROLES.map { |c| [t(c),c] } %></td>
+							<th><%= f.label :gruppe_id, t('gruppe') %></th>
+							<td><%= f.select :gruppe_id, Gruppe.all.map { |c| [c.name,c.id] } %></td>
 						</tr>
 						<% end %>
 					</table>

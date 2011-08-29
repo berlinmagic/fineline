@@ -205,7 +205,7 @@
 															:blur => 70, 
 															:color => 'hell',
 															:url => edit_admin_header_hpic_hpic_path(head,head.hpic),
-															:class => "remote_form_link",
+															:class => "colorB",
 															:title => t('strange_header.edit_hpic') ) %>
 								
 								<%= finelineButton(			:icon => 64, 
@@ -241,66 +241,4 @@
 
 <%= render 'sidebar' %>
 
-<% content_for :js_stuff do %>
-<script>
 
-$('.remote_form_link').click(function (event) {
-    event.preventDefault();
-    $.ajax({type: 'GET', url: this.href, data: ({authenticity_token: AUTH_TOKEN}), success: function(r){ $('#remote_stuff').html(r);} });
-  });
-$('.changer').change(function () {
-	$("#changer_form").submit();
-});
-
-$('.changer').live('change', function () {
-	$("#changer_form").submit();
-});
-$('.changer').bind("DOMSubtreeModified",function(){
-  $("#changer_form").submit();
- });
-
-$('.submitter').live('click', function () {
-	$("#site_add_form").submit();
-});
-
-
-var fixWidthHelper = function(e, ui) {
-	ui.children().each(function() {
-		$(this).width($(this).width());
-	});
-	return ui;
-};
-$(function() {
-	$("#Hpics_Box").sortable({
-		axis: 'y',
-		handle: '.fine_handle',
-		cursor: "move",
-		helper: fixWidthHelper,
-		update: function(){
-			$.ajax({
-				type: 'post', 
-				data: 'authenticity_token='+AUTH_TOKEN+'&'+ $('#Hpics_Box').sortable('serialize') , 
-				dataType: 'script',
-				complete: function(request){
-					$('#Hpics_Box').effect('highlight');
-				},
-				url: "<%= admin_reorder_stuff_path %>"
-			})
-		}
-		}).disableSelection();
-	});
-
-
-</script>
-<script type="text/javascript">
-    jQuery(document).ready(function(){
-
-      jQuery('#new_image_link').click(function (event) {
-        event.preventDefault();
-        jQuery(this).hide();
-        jQuery.ajax({type: 'GET', url: this.href, data: ({authenticity_token: AUTH_TOKEN}), success: function(r){ jQuery('#images').html(r);} });
-      });
-
-    });
-  </script>
-<% end %>

@@ -14,7 +14,7 @@
 		
 		
 		
-		<li><%= link_to t('strange_sites.links.new'), new_admin_seite_url, :class => "#{'aktiv' if @u_aktiv == 'new'}" %></li>
+		
 		
 		
 		
@@ -33,7 +33,18 @@
 	</ul>
 </div>
 
+<div class="side_box">
+	<div class="sidebar_head aktiv_box">
+		<a href="#">Aktionen</a>
+	</div>
+	<ul class='sidebar'>
 
+		<li><%= link_to t('strange_sites.links.new'), new_admin_seite_url, :class => "#{'aktiv' if @u_aktiv == 'new'}" %></li>
+		
+		<li><%= link_to t('strange_sites.links.sort'), admin_seiten_sorting_path, :class => "colorB sortable_trigger " %></li>
+
+	</ul>
+</div>
 
 <%= help_link_box %>
 

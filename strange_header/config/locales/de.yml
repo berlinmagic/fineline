@@ -51,6 +51,9 @@ de:
       unsorted: "zufällig"
       wrong_ratio: "ACHTUNG, bitte Bild neu zuschneiden!"
       wrong_ratio_pics: "ACHTUNG, %{pic_count} Bilder neu zuschneiden!"
+      headlines:
+          new_hpic: "Neues Headerbild hochladen"
+          edit_hpic: "Headerbild bearbeiten"
       hintergrund:
           farbe: "Farbe"
           verlauf: "Verlauf"

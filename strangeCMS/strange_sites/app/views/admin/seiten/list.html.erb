@@ -1,0 +1,63 @@
+<style>
+
+ol.sortable_list { list-style:none; }
+
+</style>
+
+
+<div class="admin_box" style="width:500px">
+	<h1 class="admin"><%= finelineIcon(:icon => 49, :color => 'dunkel', :size => 24, :blur => 50) %><%= t('header_headline') %></h1>
+	<div class="admin_in_box">
+		<div class="system_help_text<%= ' hidden' unless Strangecms::Config[:show_help] %>">
+			<div class="box">
+				<div class="in_box">
+					<p class="sys_help"><%= t('strange_header.helptext.index') %></p>
+				</div>
+			</div>
+		</div>
+		
+		<div class="box">
+				<div class="trenn_linie"></div>
+		</div>
+		
+
+		<div class="work_box">
+			<div class="in_box white" id="Hpics_Box">
+				
+				<ol class='sortable_list'>
+				  <%= render :partial => "seite",
+				             :collection => @seiten,
+				             :locals => { :collection => @seiten }  %>
+				</ol>
+				
+			</div>
+		</div>
+		<div class="box">
+				<div class="trenn_linie"></div>
+		</div>
+		
+		<div class="system_help_text<%= ' hidden' unless Strangecms::Config[:show_help] %>">
+			<div class="box">
+				<div class="in_box">
+					<p class="sys_help"><%= t('strange_header.helptext.std_header') %></p>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</div>
+
+<script type="text/javascript">
+$('.sortable_list').nestedSortable({
+	disableNesting: 'no-nest',
+	forcePlaceholderSize: true,
+	handle: 'div',
+	items: 'li',
+	maxLevels: 3,
+	opacity: .6,
+	placeholder: 'placeholder',
+	revert: 250,
+	tabSize: 25,
+	tolerance: 'pointer'
+	});
+</script>

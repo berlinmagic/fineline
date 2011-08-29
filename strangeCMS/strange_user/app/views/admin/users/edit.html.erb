@@ -63,8 +63,8 @@
 							<td></td>
 						</tr>
 						<tr>
-							<th><%= f.label :crew, t('crew') %></th>
-							<td><%= f.select :crew, User::CREW_ROLES.map { |c| [t(c),c] } %></td>
+							<th><%= f.label :gruppe_id, t('gruppe') %></th>
+							<td><%= f.select :gruppe_id, Gruppe.all.map { |c| [c.name,c.id] } %></td>
 						</tr>
 						<% end %>
 					</table>

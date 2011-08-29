@@ -5,8 +5,8 @@ class Admin::HeadersController < Admin::BaseController
   
   before_filter :get_navi_werte
   
-  caches_action :index
-  caches_action :show
+  # => caches_action :index
+  # => caches_action :show
   
   def index
     if Header.all.count > 1
@@ -15,7 +15,7 @@ class Admin::HeadersController < Admin::BaseController
       render :template => 'admin/headers/index'
     else
       @u_aktiv = "show"
-      @header = Header.find_by_name('Standard_Header')
+      @header = Header.all.first
       render :template => 'admin/headers/show'
     end
   end

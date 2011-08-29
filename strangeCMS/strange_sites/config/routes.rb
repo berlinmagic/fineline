@@ -36,6 +36,9 @@ Rails.application.routes.draw do
     match 'module' => 'base#module'
     
     root :to => "base#dashboard"
+    scope "/system" do
+      match '/seiten_sorting' => "seiten#sortable_sites"
+    end
   end
   
   scope "/system" do

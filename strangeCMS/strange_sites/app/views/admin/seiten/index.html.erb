@@ -128,7 +128,7 @@
 
 
 <% content_for :js_stuff do %>
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript">
 	
 	var fixWidthHelper = function(e, ui) {
       ui.children().each(function() {
@@ -137,7 +137,7 @@
       return ui;
   };
   $(function() {
-    $("div.fine_table").sortable({
+    $("div.fine_tableo").sortable({
       axis: 'y',
       handle: '.fine_handle',
       cursor: "move",
@@ -156,5 +156,14 @@
       }
 		}).disableSelection();
   });
+
+$('.sortable_trigger').live('click', function(event) {
+	event.preventDefault();
+	$(this).toggleClass('aktiv');
+	$(".fine_table").toggleClass('sortable');
+})
+
+
+
 </script>
 <% end %>

@@ -27,6 +27,11 @@ class Admin::SeitenController < Admin::BaseController
       format.xml  { render :xml => @seiten }
     end
   end
+  
+  def sortable_sites
+    @seiten = Seite.aktiv.main
+    render :template => 'admin/seiten/list'
+  end
 
 
   def show
