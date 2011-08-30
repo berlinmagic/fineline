@@ -6,14 +6,16 @@ module Dragonfly
       include Dragonfly::RMagick::Utils 
       include Dragonfly::Configurable 
       configurable_attr :use_filesystem, true 
-      def add_extend(temp_object, opts={}) 
+      def blowup(temp_object, opts={}) 
+
         rmagick_image(temp_object) do |image| 
-          img.extent do
-            self.width = "2500"
-            self.height = "1000"
-             self.shadow_color = "none"
-             self.pointsize = 12
-          end
+          width   =   opts[:width]  || 2000
+          height  =   opts[:height] || 1000
+          x_off   =   (width - image.columns) / -2
+          y_off   =   (height - image.rows) / -2
+          
+          image.extent(width, height, x_off, y_off)
+          
         end 
       end 
     end 

@@ -1,7 +1,7 @@
 # encoding: utf-8
 class BaseController < ApplicationController
   
-  include FinestyleHelp
+  
   
   # => caches_page :finestyle
   # => caches_page :show_seite

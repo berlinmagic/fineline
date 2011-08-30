@@ -5,34 +5,43 @@ module Dragonfly
     class FadeProcessor 
       include Dragonfly::RMagick::Utils 
       include Dragonfly::Configurable 
-      configurable_attr :use_filesystem, true 
-      def add_fade(temp_object, opts={}) 
+      configurable_attr :use_filesystem, true
+      
+      FADER_STYLEZ = %w(horizontal vertical all)
+      
+      def fader(temp_object, opts={})
         
-        steps = opts[:steps] || 20
-        step = Magick::TransparentOpacity / steps.to_f
-        
+        size = opts[:size]    ||  50
+        style = opts[:style]   ||  FADER_STYLEZ[0]
+        x_position = (style == 'all') || (style == 'horizontal') ? size / 2 : 0
+        y_position = (style == 'all') || (style == 'vertical') ? size / 2 : 0
+        x_blur = (style == 'all') || (style == 'horizontal') ? size : 0
+        y_blur = (style == 'all') || (style == 'vertical') ? size : 0
         rmagick_image(temp_object) do |image|
-
-          rows = image.rows
-          cols = image.columns
+          this_pic = Magick::Image.read(temp_object.path).first
+          mask = Magick::Image.new(this_pic.columns, this_pic.rows) {self.background_color = 'black'}
+          form = Magick::Draw.new
+          form.stroke('white')
+          form.fill('white')
+          form.rectangle(x_position,y_position, "#{this_pic.columns - x_position}", "#{this_pic.rows - y_position}" )
+          form.draw(mask)
+          mask = mask.blur_image(y_blur, x_blur)
+          # => this_pic.alpha(ActivateAlphaChannel)      # =>  klappt nicht ?!  .. bild muss ein png sein !
+          # => this_pic.matte = true      # Ensure the ballerina image's opacity channel is enabled. >>> macht gif = schlechte Quali !
+          mask.matte = false
           
+          this_pic = this_pic.composite(mask, Magick::CenterGravity, Magick::CopyOpacityCompositeOp)
+          image = this_pic
+          # => checkerboard = Magick::Image.read('pattern:checkerboard') {self.size = "#{this_pic.columns}x#{this_pic.rows}"}
+          # => vignette = wm.composite(this_pic, Magick::CenterGravity, Magick::OverCompositeOp)
+          # => image = vignette
           
-          rows.times { |y|
-              pixels = image.get_pixels(0, y, cols, 1)
-              pixels.each_with_index do |p,x|
-                if (x + 1) < steps
-                  p.opacity = (steps - x) * step
-                elsif (cols - x) < steps
-                  p.opacity = (steps - (cols - x)) * step
-                end
-              end
-              pic.store_pixels(0, y, cols, 1, pixels)
-              image = pic
-          }
-          
-        end 
+        end
+        
       end 
+      
     end 
   end 
 end
+
 

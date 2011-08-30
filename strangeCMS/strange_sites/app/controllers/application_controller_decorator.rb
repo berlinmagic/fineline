@@ -2,6 +2,7 @@
 ApplicationController.class_eval do
 
   include StrangeSitesHelp
+  include FinestyleHelp
   
   # => caches_action :render_page_if_exists
   

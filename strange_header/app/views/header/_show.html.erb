@@ -74,15 +74,15 @@
 					    $('#banner_box').crossSlide({
 							fade: #{@header.changetime},
 							sleep: #{@header.staytime},
-							shuffle: true,
+							shuffle: #{!@header.sort},
 							doubleFade: true
 					    }, [ // Bilder
 					       " %>
 					<% @header.header_hpics.each do |slider| %>
 						<% if slider.cropping %>
-							<% javatext +='{ src: "'+slider.hpic.bild.thumb(slider.cropping).thumb("#{@header.width}x#{@header.height}").url+'"}, ' %>
+							<% javatext +='{ src: "'+slider.hpic.bild.thumb(slider.cropping).thumb("#{@header.width}x#{@header.height}").encode(:png).process(:fader, :size => 50).url+'"}, ' %>
 						<% else %>
-							<% javatext +='{ src: "'+slider.hpic.bild.thumb("#{@header.width}x#{@header.height}").url+'"}, ' %>
+							<% javatext +='{ src: "'+slider.hpic.bild.thumb("#{@header.width}x#{@header.height}").encode(:png).process(:fader, :size => 50).url+'"}, ' %>
 						<%end%>
 
 					<% end %>
