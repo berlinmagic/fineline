@@ -40,6 +40,37 @@ module Dragonfly
         
       end 
       
+      def side_fade(temp_object, opts={})
+        
+        size = opts[:size]    ||  50
+        
+        
+        rmagick_image(temp_object) do |image|
+          
+          this_pic  = Magick::Image.read(temp_object.path).first
+          
+          rows        = this_pic.rows
+          cols        = this_pic.columns
+          opac        = "#fff"
+          trans       = "#000"
+
+          right_fill  = Magick::GradientFill.new(0, 0, 0, size, trans, opac)
+          left_fill   = Magick::GradientFill.new(0, 0, 0, size, opac, trans)
+          vr          = Magick::Image.new(size, rows, right_fill)
+          vl          = Magick::Image.new(size, rows, left_fill)
+          mask        = Magick::Image.new(cols, rows);
+          mask        = mask.composite(vr, Magick::WestGravity, Magick::OverCompositeOp)
+          mask        = mask.composite(vl, Magick::EastGravity, Magick::OverCompositeOp)
+
+          
+          this_pic    = this_pic.composite(mask, Magick::WestGravity, Magick::CopyOpacityCompositeOp)
+          
+          image       = this_pic
+          
+        end
+        
+      end
+      
     end 
   end 
 end

@@ -11,7 +11,7 @@ class Hpic < ActiveRecord::Base
   validates_presence_of :bild
   validates_property    :mime_type, :of => :bild, :in => %w(image/jpeg image/png image/gif)
   
-  attr_accessor       :header_id
+  attr_accessor       :header_id, :this_fade
   
   def crop_hash
     # 0:78:90x68

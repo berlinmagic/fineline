@@ -7,10 +7,31 @@
 
 
 
-	<a class="gpix_box" href="<%= select_admin_header_hpic_path(header,hpic) %>">
-	
-		<%= image_tag hpic.bild.thumb("#{gpic_width}x#{gpic_height}").process(:convert, '-alpha set -virtual-pixel transparent -channel A \
-		          -morphology Distance Euclidean:1,10\!').url, 
+	<a class="hpic_choose_box" href="<%= select_admin_header_hpic_path(header,hpic) %>">
+		
+		<div class="fl_box_310 erster">
+			<%= image_tag hpic.bild.thumb("#{gpic_width}x#{gpic_height}").url %>
+			<%#= image_tag hpic.bild.thumb("#{gpic_width}x#{gpic_height}").url, 
 						:style => "margin: #{(gpic_height-thumb_hoehe)/2}px #{(gpic_width-thumb_breite)/2}px" %>
+						<div class="clearfix"></div>
+		</div>
+		<div class="fl_box_310 letzter">
+			<table class="mini">
+				<tr>
+					<th class="norm3"><%= t('strange_header.hpic_attribute.name') %></th>
+					<td class="norm2"><%= hpic.name %></td>
+				</tr>
+				<tr>
+					<th class="norm3"><%= t('strange_header.hpic_attribute.titel') %></th>
+					<td class="norm2"><%= hpic.titel %></td>
+				</tr>
+				<tr>
+					<th class="norm3"><%= t('strange_header.hpic_attribute.inhalt') %></th>
+					<td class="norm1"><%= truncate(hpic.inhalt, :length => 75, :omission => "...") %></td>
+				</tr>
+			</table>
+			<div class="clearfix"></div>
+		</div>
+		<div class="clearfix"></div>
 	</a>
 

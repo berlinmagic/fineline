@@ -165,21 +165,66 @@
 								<% hhpic = head %>
 								<% hpic = hhpic.hpic %>
 								<% if hhpic.cropping %>
-									<% wt = hpic.bild.thumb(hhpic.cropping).thumb("310x80>").width %>
-									<% hg = hpic.bild.thumb(hhpic.cropping).thumb("310x80>").height %>
+									
+									<% if hhpic.extendit %>
+										<% wt = hpic.bild.process(:blowup).thumb(hhpic.cropping).thumb("310x80>").width %>
+										<% hg = hpic.bild.process(:blowup).thumb(hhpic.cropping).thumb("310x80>").height %>
+									<% else %>
+										<% wt = hpic.bild.thumb(hhpic.cropping).thumb("310x80>").width %>
+										<% hg = hpic.bild.thumb(hhpic.cropping).thumb("310x80>").height %>
+									<% end %>
 									<% @wt_stil += "margin-left: #{((310-wt)/2).to_i.to_s}px;" if wt < 310 %>
 									<% @hg_stil += "margin-top: #{((80-hg)/2).to_i.to_s}px;" if hg < 80 %>
 									<div style="<%= stdstil %> <%= divstil %> <%= @hg_stil %>">
-										<%= image_tag hpic.bild.thumb(hhpic.cropping).thumb("310x80>").url, :style => @wt_stil  %>
+										
+										<% if hhpic.fadeit && hhpic.extendit %>
+										
+											<%= image_tag hpic.bild.encode(:png).process(:side_fade, :size => hhpic.fade_factor.to_i ).process(:blowup).thumb(hhpic.cropping).thumb("310x80>").url, :style => @wt_stil  %>
+										
+										<% elsif hhpic.extendit %>
+											
+											<%= image_tag hpic.bild.encode(:png).process(:blowup).thumb(hhpic.cropping).thumb("310x80>").url, :style => @wt_stil  %>
+										
+										<% elsif hhpic.fadeit %>
+											
+											<%= image_tag hpic.bild.encode(:png).thumb(hhpic.cropping).process(:side_fade, :size => hhpic.fade_factor.to_i ).thumb("310x80>").url, :style => @wt_stil  %>
+										
+										<% else %>
+										
+											<%= image_tag hpic.bild.thumb(hhpic.cropping).thumb("310x80>").url, :style => @wt_stil  %>
+										
+										<% end %>
+										
 
 									</div>
 								<% else %>
-									<% wt = hpic.bild.thumb("310x80>").width %>
-									<% hg = hpic.bild.thumb("310x80>").height %>
+									<% if hhpic.extendit %>
+										<% wt = hpic.bild.process(:blowup).thumb("310x80>").width %>
+										<% hg = hpic.bild.process(:blowup).thumb("310x80>").height %>
+									<% else %>
+										<% wt = hpic.bild.thumb("310x80>").width %>
+										<% hg = hpic.bild.thumb("310x80>").height %>
+									<% end %>
 									<% @wt_stil += "margin-left: #{((310-wt)/2).to_i.to_s}px;" if wt < 310 %>
 									<% @hg_stil += "margin-top: #{((80-hg)/2).to_i.to_s}px;" if hg < 80 %>
 									<div style="<%= stdstil %> <%= divstil %> <%= @hg_stil %>">
-										<%= image_tag hpic.bild.thumb("310x80").url, :style => @wt_stil %>
+										<% if hhpic.fadeit && hhpic.extendit %>
+										
+											<%= image_tag hpic.bild.encode(:png).process(:side_fade, :size => hhpic.fade_factor.to_i ).process(:blowup).thumb("310x80>").url, :style => @wt_stil  %>
+										
+										<% elsif hhpic.extendit %>
+											
+											<%= image_tag hpic.bild.encode(:png).process(:blowup).thumb("310x80>").url, :style => @wt_stil  %>
+										
+										<% elsif hhpic.fadeit %>
+											
+											<%= image_tag hpic.bild.encode(:png).process(:side_fade, :size => hhpic.fade_factor.to_i ).thumb("310x80>").url, :style => @wt_stil  %>
+										
+										<% else %>
+										
+											<%= image_tag hpic.bild.thumb("310x80>").url, :style => @wt_stil  %>
+										
+										<% end %>
 									</div>
 								<% end %>
 							<% else %>
@@ -192,11 +237,15 @@
 						<div class="fl_box_310 letzter">
 							<table class="mini">
 								<tr>
-									<th class="norm3"><%= t('strange_header.titel') %></th>
+									<th class="norm3"><%= t('strange_header.hpic_attribute.name') %></th>
+									<td class="norm2"><%= head.hpic.name %></td>
+								</tr>
+								<tr>
+									<th class="norm3"><%= t('strange_header.hpic_attribute.titel') %></th>
 									<td class="norm2"><%= head.hpic.titel %></td>
 								</tr>
 								<tr>
-									<th class="norm3"><%= t('strange_header.inhalt') %></th>
+									<th class="norm3"><%= t('strange_header.hpic_attribute.inhalt') %></th>
 									<td class="norm1"><%= truncate(head.hpic.inhalt, :length => 75, :omission => "...") %></td>
 								</tr>
 							</table>

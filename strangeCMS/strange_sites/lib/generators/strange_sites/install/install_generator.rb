@@ -36,10 +36,9 @@ module StrangeSites
       
       def seed_sites
         if File.exist?("db/seeds.rb")
-          append_to_file "db/seeds.rb",  File.read( "#{self.class.source_root}/seed_strange_sites.rb" )
-        else
-          create_file "db/seeds.rb",  File.read( "#{self.class.source_root}/seed_strange_sites.rb" )
+          File.delete( "db/seeds.rb" )
         end
+        create_file "db/seeds.rb",  File.read( "#{self.class.source_root}/seed_strange_sites.rb" )
       end
       
       def mirror_assets

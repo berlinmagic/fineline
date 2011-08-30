@@ -1,7 +1,9 @@
-   
-
-
 # encoding: utf-8
+#
+# finelineCMS - Database Seed
+#
+
+
 
 puts 'INFO: ERSTELLE SEITEN:'
 home = Seite.create!          :name => 'Start',

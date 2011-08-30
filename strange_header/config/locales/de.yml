@@ -6,6 +6,7 @@ de:
   header_pic_was_created: "Header-Bild wurde erstellt."
   header_was_created: "Header wurde erstellt."
   header_was_updated: "Header wurde aktualisiert."
+  hpic_was_blownup: "Bild wurde erweitert"
   header_show_headline: "Headerinhalte verwalten"
   header_new_headline: "Header erstellen"
   header_edit_headline: "Header bearbeiten"
@@ -38,6 +39,10 @@ de:
       staytime: "Standzeit"
       changetime: "Wechselzeit"
       pic_formats: "Bildformate"
+      pic_action: "Bildaktionen"
+      pic_actions:
+          blowup: "Bild erweitern"
+          unblow: "Urspüngliches Bild"
       pic_crop: "Bildzuschnitt:"
       original_pic: "Originalbild:"
       no_pics: "keine Bilder zugewiesen"
@@ -76,11 +81,18 @@ de:
           fader: "(Blend-Effekt)"
           slider: "(Schiebe-Effekt)"
           s3_slider: "(Presentation)"
+          add_hpic: "Hier haben Sie die Möglichkeit ein bereits vorhandenes Headerbild zu wählen. Anschliessend werden Sie zum zuschneiden weitergeleitet, keine Angst der zuschnitt in anderen Headern bleibt unberührt."
+          hpic_fade_desc: "Achtung, dies funktioniert nur bei Fotos oder anderen Bildern ohne Transparenzen!"
       attribute:
           typ: "Typ:"
           inhalt: "Inhalt:"
           sites: "Zuweisung:"
           header: "Header:"
+      hpic_attribute:
+          name: "Bildname:"
+          titel: "Bildtitel:"
+          inhalt: "Bildtext:"
+          fadeit: "Bildränder sanft Ausblenden"
       header_typen:
           fader: "Fader"
           slider: "Slider"

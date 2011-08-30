@@ -16,5 +16,20 @@ class HeaderHpic < ActiveRecord::Base
     md = self.avatar_cropping.match('(\d+):(\d+):(\d+)x(\d+)')
     { :x => md[1], :y => md[2],  :width  => md[3], :height => md[4] }
   end
+  
+  before_validation :make_position
+  
+  def make_position
+    unless new_record?
+      return unless prev_position = HeaderHpic.find(self.id).position
+      unless self.position.nil?
+        if prev_position > self.position
+          HeaderHpic.update_all("position = position + 1", ["? <= position AND position < ?", self.position, prev_position])
+        elsif prev_position < self.position
+          HeaderHpic.update_all("position = position - 1", ["? < position AND position <= ?", prev_position,  self.position])
+        end
+      end
+    end
+  end
 
 end

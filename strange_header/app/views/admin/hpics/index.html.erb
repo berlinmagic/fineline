@@ -1,13 +1,13 @@
 <% hpics = @hpics || @available_hpics %>
 
-<div class="admin_box">
+<div class="admin_box in_LB">
 	<h1 class="admin"><%= finelineIcon(:icon => 90, :color => 'dunkel', :size => 24, :blur => 50) %><%= t('header_add_hpic_headline') %></h1>
 	<div class="admin_in_box">
 		
 		<div class="system_help_text<%= ' hidden' unless Strangecms::Config[:show_help] %>">
 			<div class="box">
 				<div class="in_box">
-					<p class="sys_help"><%= t('strange_header.new_header_help_text') %></p>
+					<p class="sys_help"><%= t('strange_header.helptext.add_hpic') %></p>
 				</div>
 			</div>
 
@@ -15,11 +15,12 @@
 		</div>
 		
 
-		<div class="box">
-			<div class="in_box">
+		<div class="work_box">
+			<div class="in_box white">
 				<% hpics.each do |hp| %>
-					<%= render 'admin/hpics/hpic', :hpic => hp, :header => @header, :gpic_width => 160, :gpic_height => 122 %>
+					<%= render 'admin/hpics/hpic', :hpic => hp, :header => @header, :gpic_width => 300, :gpic_height => 200 %>
 				<% end %>
+				<div class="clearfix"></div>
 			</div>
 		</div>
 		

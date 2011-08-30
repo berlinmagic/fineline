@@ -8,11 +8,20 @@ module Dragonfly
       configurable_attr :use_filesystem, true 
       def blowup(temp_object, opts={}) 
 
-        rmagick_image(temp_object) do |image| 
-          width   =   opts[:width]  || 2000
-          height  =   opts[:height] || 1000
+        rmagick_image(temp_object) do |image|
+          
+          image = image.write('PNG')
+           
+          width   =   opts[:width]  || 3000
+          height  =   opts[:height] || 1500
+          
+          width   = (image.columns * 3) if image.columns > width
+          height   = (image.rows * 3) if image.rows > height
+          
           x_off   =   (width - image.columns) / -2
           y_off   =   (height - image.rows) / -2
+          
+          image.background_color = "rgba(0,0,0,0.0)"
           
           image.extent(width, height, x_off, y_off)
           

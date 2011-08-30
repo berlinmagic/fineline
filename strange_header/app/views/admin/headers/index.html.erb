@@ -73,20 +73,63 @@
 								<% hhpic = head.header_hpics.first %>
 								<% hpic = hhpic.hpic %>
 								<% if hhpic.cropping %>
-									<% wt = hpic.bild.thumb(hhpic.cropping).thumb("310x80>").width %>
-									<% hg = hpic.bild.thumb(hhpic.cropping).thumb("310x80>").height %>
+									<% if hhpic.extendit %>
+										<% wt = hpic.bild.process(:blowup).thumb(hhpic.cropping).thumb("310x80>").width %>
+										<% hg = hpic.bild.process(:blowup).thumb(hhpic.cropping).thumb("310x80>").height %>
+									<% else %>
+										<% wt = hpic.bild.thumb(hhpic.cropping).thumb("310x80>").width %>
+										<% hg = hpic.bild.thumb(hhpic.cropping).thumb("310x80>").height %>
+									<% end %>
 									<% @hp_stil += "margin-left: #{((310-wt)/2).to_i.to_s}px;" if wt < 310 %>
 									<% @hp_stil += "margin-top: #{((80-hg)/2).to_i.to_s}px;" if hg < 80 %>
 									<div class="fake_header_pic"  style="<%= stdstil %><%= divstil %>">
-										<%= image_tag hpic.bild.thumb(hhpic.cropping).thumb("310x80>").url, :style => @hp_stil %>
+										<% if hhpic.fadeit && hhpic.extendit %>
+										
+											<%= image_tag hpic.bild.encode(:png).process(:side_fade, :size => hhpic.fade_factor.to_i ).process(:blowup).thumb(hhpic.cropping).thumb("310x80>").url, :style => @wt_stil  %>
+										
+										<% elsif hhpic.extendit %>
+											
+											<%= image_tag hpic.bild.encode(:png).process(:blowup).thumb(hhpic.cropping).thumb("310x80>").url, :style => @wt_stil  %>
+										
+										<% elsif hhpic.fadeit %>
+											
+											<%= image_tag hpic.bild.encode(:png).thumb(hhpic.cropping).process(:side_fade, :size => hhpic.fade_factor.to_i ).thumb("310x80>").url, :style => @wt_stil  %>
+										
+										<% else %>
+										
+											<%= image_tag hpic.bild.thumb(hhpic.cropping).thumb("310x80>").url, :style => @wt_stil  %>
+										
+										<% end %>
 										
 									</div>
 								<% else %>
-									<% wt = hpic.bild.thumb("310x80>").height %>
+									<% if hhpic.extendit %>
+										<% wt = hpic.bild.process(:blowup).thumb("310x80>").width %>
+										<% hg = hpic.bild.process(:blowup).thumb("310x80>").height %>
+									<% else %>
+										<% wt = hpic.bild.thumb("310x80>").width %>
+										<% hg = hpic.bild.thumb("310x80>").height %>
+									<% end %>
 									<% @hp_stil += "margin-left: #{((310-wt)/2).to_i.to_s}px;" if wt < 310 %>
 									<% @hp_stil += "margin-top: #{((80-hg)/2).to_i.to_s}px;" if hg < 80 %>
 									<div class="fake_header_pic" style="<%= stdstil %><%= divstil %>">
-										<%= image_tag hpic.bild.thumb("310x80").url, :style => @hp_stil %>
+										<% if hhpic.fadeit && hhpic.extendit %>
+										
+											<%= image_tag hpic.bild.encode(:png).process(:side_fade, :size => hhpic.fade_factor.to_i ).process(:blowup).thumb("310x80>").url, :style => @wt_stil  %>
+										
+										<% elsif hhpic.extendit %>
+											
+											<%= image_tag hpic.bild.encode(:png).process(:blowup).thumb("310x80>").url, :style => @wt_stil  %>
+										
+										<% elsif hhpic.fadeit %>
+											
+											<%= image_tag hpic.bild.encode(:png).process(:side_fade, :size => hhpic.fade_factor.to_i ).thumb("310x80>").url, :style => @wt_stil  %>
+										
+										<% else %>
+										
+											<%= image_tag hpic.bild.thumb("310x80>").url, :style => @wt_stil  %>
+										
+										<% end %>
 									</div>
 								<% end %>
 							<% else %>

@@ -1,0 +1,2 @@
+$('#content').html("");
+$('#content').html("<%= escape_javascript( image_tag @hpic.bild.process(:blowup).thumb("710x").url, :id => 'cropbox' )%>");

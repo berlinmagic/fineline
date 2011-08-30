@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       resources :hpics do
         member do
           get :crop
+          get :blowup
           put :cropit
           get :select
           delete :remove
@@ -23,6 +24,7 @@ Rails.application.routes.draw do
     resources :header_hpics do
       resources :hpics do
         member do
+          get :blowup
           get :crop
           put :cropit
           delete :remove
@@ -30,6 +32,7 @@ Rails.application.routes.draw do
       end
     end
         
+    resources :hpics
     
     resources :seiten do
       resources :headers do
@@ -41,7 +44,6 @@ Rails.application.routes.draw do
       end
     end
           
-    resources :hpics
     
   end
   

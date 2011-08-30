@@ -39,7 +39,12 @@
 <div style="<%= linkstil %>">
 	<div class="prev_box" style="<%= divstil %>">
 		<div style="width:<%= @header.width %>px;height:<%= @header.height %>px; overflow:hidden; position:absolute; left: 50%; top: 0; margin-left: -<%= @header.width / 2 %>px;">
-		  <%= image_tag @hpic.bild.thumb("#{@header.width}x").url, :id => 'preview' %>
+		  
+			<% if @header_hpic.extendit %>
+				<%= image_tag @hpic.bild.encode(:png).process(:blowup).thumb("#{@header.width}x").url, :id => 'preview' %>
+			<% else %>
+				<%= image_tag @hpic.bild.thumb("#{@header.width}x").url, :id => 'preview' %>
+			<% end %>
 		</div>
 	</div>
 </div>
@@ -62,12 +67,15 @@
 
 <%= theme_javascript_include_tag 'jquery.Jcrop.min' %>
 
+<% bild_width = @header_hpic.extendit ? @hpic.bild.process(:blowup).width : @hpic.bild.width %>
+<% bild_height = @header_hpic.extendit ? @hpic.bild.process(:blowup).height : @hpic.bild.height %>
+
 <script language="Javascript">
 
 function showPreview(coords)
 {
-  var aspect_ratio = <%= @hpic.bild.width %> / <%= @hpic.bild.height %>;
-  var scale = <%= 1.0 * @hpic.bild.width / 710 %>;
+  var aspect_ratio = <%= bild_width %> / <%= bild_height %>;
+  var scale = <%= 1.0 * bild_width / 710 %>;
   var crop_str = Math.round(coords.w * scale) + 'x' + Math.round(coords.h * scale) +
            '+' + Math.round(coords.x * scale) + '+' + Math.round(coords.y * scale);
   $('#bild_cropping').val(crop_str);
@@ -76,7 +84,7 @@ function showPreview(coords)
   var ry = <%= @header.height %> / coords.h;
   $('#preview').css({
     width: Math.round(rx * <%= 710 %>) + 'px',
-    height: Math.round(ry * <%= 710 * @hpic.bild.height / @hpic.bild.width %>) + 'px',
+    height: Math.round(ry * <%= 710 * bild_height / bild_width %>) + 'px',
     marginLeft: '-' + Math.round(rx * coords.x) + 'px',
     marginTop: '-' + Math.round(ry * coords.y) + 'px'
   });
@@ -96,6 +104,7 @@ $(function() {
 
 <div id="main" role="main">
 	<div id="in_main">
+		<%= form_for @hpic, :url => cropit_admin_header_hpic_hpic_path(@header_hpic,@hpic) do |f| %>
 		<div class="container_48">
 			<div id="content" class="fl_box_470">
 				<div id="l_border_box"></div>
@@ -105,15 +114,16 @@ $(function() {
 			</div>
 			<div class="fl_box_470">
 				<div id="r_border_box"></div>
-				<%= form_for @hpic, :url => cropit_admin_header_hpic_hpic_path(@header_hpic,@hpic) do |f| %>
+				
 				  <%= f.hidden_field :bild_cropping, :id => 'bild_cropping' %>
 				
 					<%= f.hidden_field :h_ratio, :value => ( @header.width.to_f / @header.height.to_f ) %>
 				
 				  <%= f.submit "speichen" %>
 				<%= link_to 'verwerfen', :back, :class => 'big_button' %>
+				
 				<div class="clearfix"></div>
-				<% end %>
+				
 			</div>
 			<div class="clearfix"></div>
 		</div>
@@ -122,8 +132,36 @@ $(function() {
 		<div class="container_48">
 			<div id="content" class="fl_box_710">
 				
+				<% if @header_hpic.extendit %>
+					<%= image_tag @hpic.bild.encode(:png).process(:blowup).thumb("710x").url, :id => 'cropbox' %>
+				<% else %>
+					<%= image_tag @hpic.bild.thumb("710x").url, :id => 'cropbox' %>
+				<% end %>
+				<div class="clearfix"></div>
+				<br/>
 				
-				<%= image_tag @hpic.bild.thumb("710x").url, :id => 'cropbox' %>
+				<div class="box">
+						<div class="trenn_linie"></div>
+				</div>
+				
+				<div class="box">
+					<div class="in_box">
+						<%= f.label :fadeit, t('strange_header.hpic_attribute.fadeit') %>
+						<%= hidden_field_tag('fadeit', @header_hpic.fadeit) %>
+						<%= link_to '', '#', :class => "on_off_schalter #{@header_hpic.fadeit ? 'an' : 'aus'}" %>
+					</div>
+				</div>
+				
+				<div class="system_help_text<%= ' hidden' unless Strangecms::Config[:show_help] %>">
+					<div class="box">
+						<div class="in_box">
+							<p class="sys_help"><%= t('strange_header.helptext.hpic_fade_desc') %></p>
+						</div>
+					</div>
+
+					<div class="trenn_linie"></div>
+				</div>
+				
 			</div>
 			<div class="fl_box_210 push_1">
 					<div class="side_box">
@@ -173,11 +211,28 @@ $(function() {
 							</li>
 						</ul>
 					</div>
+					<div class="side_box">
+						<div class="info_sidebar_head">
+							<%= t('strange_header.pic_action') %>
+						</div>
+						<ul class='sidebar'>
+							<% if @header_hpic.extendit %>
+								<li>
+							<%= link_to t('strange_header.pic_actions.unblow'), blowup_admin_header_hpic_hpic_path(@header_hpic,@hpic) %>
+								</li>
+							<% else %>
+								<li>
+							<%= link_to t('strange_header.pic_actions.blowup'), blowup_admin_header_hpic_hpic_path(@header_hpic,@hpic) %>
+								</li>
+							<% end %>
+						</ul>
+					</div>
 			</div>
 			<div class="clearfix"></div>
 			<br/>
 		</div>
 		<div class="clearfix"></div>
+		<% end %>
 	</div>
 </div>
 
