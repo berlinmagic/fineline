@@ -30,6 +30,7 @@ de:
           new: "Neue Seite erstellen"
           edit: "Seite bearbeiten"
           delete: "Seite löschen"
+          sort: "Seiten sortieren"
       headlines:
           index: "Seitenverwaltung"
       show_sites: "Anzeigen:"

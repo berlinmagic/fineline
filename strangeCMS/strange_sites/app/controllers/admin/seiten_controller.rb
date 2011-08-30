@@ -140,4 +140,18 @@ class Admin::SeitenController < Admin::BaseController
     render :nothing => true
   end
   
+  def reorder_nested_stuff
+    @pos = 0
+    params[:seite].each do |key,value|
+       if thing = Seite.find(key)
+         thing.position = @pos
+         thing.elternseite_id = (value == 'root') ? nil : value
+         thing.save
+         @pos = @pos + 1
+       end
+
+    end
+    render :nothing => true
+  end
+  
 end

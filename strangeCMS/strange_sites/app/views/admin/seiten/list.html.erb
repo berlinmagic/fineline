@@ -2,12 +2,13 @@
 
 ol.sortable_list { list-style:none; margin:0; padding:0; }
 
-ol.sortable_list ol { list-style:none; }
+ol.sortable_list ol { list-style:none;  margin:0; padding: 10px; }
 
-ol.sortable_list li { list-style:none; }
+ol.sortable_list li { list-style:none; margin: 0; padding: 5px; }
 
 .sortable_list_entry { width: 350px; padding: 0 30px; display: block; cursor:move; border: solid 1px transparent; }
 .sortable_list_entry:hover { background: #f3f2f2; border: solid 1px #ccc; }
+
 
 </style>
 
@@ -49,10 +50,28 @@ ol.sortable_list li { list-style:none; }
 					<p class="sys_help"><%= t('strange_header.helptext.std_header') %></p>
 				</div>
 			</div>
+			
+			<div class="box">
+					<div class="trenn_linie"></div>
+			</div>
+			
 		</div>
+		
+		<div class="box" id="serializeOutput">
+			<div class="vspacer">
+				
+			</div>
+		</div>
+
+		<div class="box">
+				<%= link_to 'senden', '#', :id => "send_sorted_list", :class => 'big_submit_button' %>
+				<div class="clearfix"></div>
+		</div>
+		
 		
 	</div>
 </div>
+
 
 <script type="text/javascript">
 $('.sortable_list').nestedSortable({
@@ -67,4 +86,19 @@ $('.sortable_list').nestedSortable({
 	tabSize: 25,
 	tolerance: 'pointer'
 	});
+
+	$('#send_sorted_list').click(function(e){
+				e.preventDefault();
+				serialized = $('ol.sortable_list').nestedSortable('serialize');
+				$('#serializeOutput').text(serialized+'\n\n');
+				$.ajax({
+					type: 'post', 
+					data: 'authenticity_token='+AUTH_TOKEN+'&'+ serialized, 
+					dataType: 'script',
+					complete: function(request){
+						window.location = "/admin/seiten/";
+					},
+					url: "<%= nestesd_seiten_reorder_path %>"
+				})
+			})
 </script>
