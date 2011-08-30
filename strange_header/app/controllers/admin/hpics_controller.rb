@@ -28,6 +28,23 @@ class Admin::HpicsController < Admin::BaseController
     render :layout => 'fineline_admin_blank'
   end
   
+  def blowup
+    @hpic = Hpic.find(params[:id])
+    @extend = true
+    if params[:header_hpic_id]
+      @header = @header_hpic.header
+    elsif params[:header_id]
+      @header_hpic = HeaderHpic.where( 'hpic_id = ? AND header_id = ?', @hpic.id, @header.id ).first
+    end
+    @hpic.this_fade = @header_hpic.fadeit
+    @header_hpic.extendit ? @header_hpic.extendit = false : @header_hpic.extendit = true
+    @header_hpic.save
+    respond_to do |format|
+      format.html { render :action => :crop, :layout => 'fineline_admin_blank', :notice => t('hpic_was_blownup') }
+      format.js {  }
+    end
+  end
+  
   def cropit
     @hpic = Hpic.find(params[:id])
     if params[:header_hpic_id]
@@ -37,6 +54,7 @@ class Admin::HpicsController < Admin::BaseController
     end
     @header_hpic.cropping = params[:hpic][:bild_cropping]
     @header_hpic.h_ratio = params[:hpic][:h_ratio]
+    @header_hpic.fadeit = params[:fadeit]
     @header_hpic.save
     if @hpic.bild_cropping.blank? && @hpic.h_ratio.blank? || @hpic.h_ratio == params[:hpic][:h_ratio]
       @hpic.bild_cropping = params[:hpic][:bild_cropping]
