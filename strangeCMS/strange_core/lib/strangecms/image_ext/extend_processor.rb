@@ -2,7 +2,7 @@ require 'RMagick'
 
 module Dragonfly 
   module Processing 
-    class EXtendProcessor 
+    class ExtendProcessor 
       include Dragonfly::RMagick::Utils 
       include Dragonfly::Configurable 
       configurable_attr :use_filesystem, true 

@@ -67,12 +67,13 @@ class Admin::HpicsController < Admin::BaseController
     @hpic = Hpic.find(params[:id])
     respond_to do |format|
       if @hpic.update_attributes(params[:hpic])
-        expire_action :controller => 'admin/headers', :action => "index"
-        expire_action :controller => 'admin/headers', :action => "show", :id => @hpic.header.id
+        
         if params[:hpic][:bild].present?
           render :action => 'crop'
         else
           if @header
+            expire_action :controller => 'admin/headers', :action => "index"
+            expire_action :controller => 'admin/headers', :action => "show", :id => @header.id
             format.html { redirect_to(admin_header_path(@header), :notice => t('hpic_was_updated')) }
             format.xml  { head :ok }
           else
@@ -91,9 +92,9 @@ class Admin::HpicsController < Admin::BaseController
     @hpic = Hpic.new(params[:hpic])
     respond_to do |format|
       if @hpic.save
-        expire_action :controller => 'admin/headers', :action => "index"
-        expire_action :controller => 'admin/headers', :action => "show", :id => @hpic.header.id
         if @header
+          expire_action :controller => 'admin/headers', :action => "index"
+          expire_action :controller => 'admin/headers', :action => "show", :id => @header.id
           @headerhpic = HeaderHpic.create! :header_id => @header.id, :hpic_id => @hpic.id
         end
         if params[:hpic][:bild].present?
