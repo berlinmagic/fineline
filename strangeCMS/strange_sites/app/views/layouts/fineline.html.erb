@@ -64,9 +64,15 @@
 						<a href="#">fineline-Sidebar</a>
 					</div>
 					<ul class='sidebar'>
+						<% if current_user && site_master %>
+							<li><p>Beispiel Sidebar</p></li>
+							<li><%= link_to ' ! reload Stylez ! ', expire_finestyles_path %></li>
+							<li><%= link_to ' ! reload Scriptz ! ', expire_finescripts_path %></li>
+						<% end %>
 						<% if current_user %>
 							<li><%= link_to 'neue Seite', new_seite_url %></li>
 						<% else %>
+						
 							<li><p>Beispiel Sidebar</p></li>
 							<li><p>Modul-Sidebars:</p></li>
 							<li><p>- News_Modul</p></li>
@@ -84,22 +90,8 @@
 </div>
 
 <div class="clearfix"></div>
-<footer>
-	<div class="kasten">
-		<div class="right">
-			<br/><br/>
-			<%= render 'navigation/footer' %>
-			<div class="clearfix"></div>
-			<br/>
-			<p>Copyright &copy; 2011 <%= link_to 'Orangenwerk', 'http://orangenwerk.com' %> - Creators of BestCMSever</p>
-		</div>
-		<%= hook :footer_before_language_changer%>
-		<%= render 'shared/language_changer' %>
-		
-		<div class="clearfix"></div>
-		<%# debug(params) if Rails.env.development? %>
-	</div>
-</footer>
+
+<%= render 'parts/footer' %>
 
 </div> <!--! end of #container -->
 

@@ -1,0 +1,33 @@
+<footer>
+	<div id="footer_top">
+		<div class="container_48">
+			<div class="fl_box_710">
+				<%= render 'navigation/footer' %>
+				<div class="clearfix"></div>
+			</div>
+			<div class="fl_box_210 push_1">
+				
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+	<div id="footer_bot">
+		<div class="container_48">
+			<div class="fl_box_710">
+				<br/><br/>
+				<div class="clearfix"></div>
+			</div>
+			<div class="fl_box_210 push_1">
+				<br/><br/>
+				<%= hook :footer_before_language_changer%>
+				<%= render 'shared/language_changer' %>
+				<div class="clearfix"></div>
+				<br/>
+				<p>&copy; 2011 FINELINE CMS</p>
+				<br/>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+</footer>
