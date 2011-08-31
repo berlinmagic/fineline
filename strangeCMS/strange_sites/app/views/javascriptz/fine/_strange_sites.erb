@@ -1,15 +1,4 @@
 
-
-<% content_for :js_stuff do %>
-<script type="text/javascript" charset="utf-8">
-	
-	<%= render 'javascriptz/backgroundPosition' %>
-	<%= render 'javascriptz/navHover' %>
-	<%= render 'javascriptz/plugins' %>
-	<%= render 'javascriptz/nested_sort' %>
-	<%= render 'javascriptz/fineSelect' %>
-	
-	
 	jQuery(function($) {
 	// Animation der Header Navigation
 		$('#header_navigation ul li').ahover({ toggleEffect: 'height', moveSpeed: 500, toggleSpeed: 300}); 
@@ -214,5 +203,3 @@
 
 	$('.fineline_select.std_select').finelineSelect();
 	
-</script>
-<% end %>

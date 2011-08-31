@@ -26,6 +26,8 @@ Gem::Specification.new do |s|
   
   s.add_dependency('kaminari', '~> 0.12.4')
   
+  s.add_dependency('yui-compressor', '~> 0.9.6')
+  
   s.add_dependency('strange_core', version)
   s.add_dependency('strange_user', version)
   

@@ -2,6 +2,8 @@
 module FinestyleHelp
   module InstanceMethods
     
+    require "yui/compressor"
+    
     def fine_borderRadius(radius=nil)
         radius = radius.blank? ? 'none' : radius
         " -khtml-border-radius: 	#{ radius };
@@ -70,7 +72,7 @@ module FinestyleHelp
           text-shadow:          #{ shadow };   "
     end
     
-    def fine_minify(css)
+    def my_fine_minify(css)
       ocss = css
       one_line = Regexp.new(/\/\*.*?\*\//)              # Only match one-line comments
       multi_line = Regexp.new(/\/\*.*?\*\//m)           # Match single and multi-line comments   alt:  /\/\*[\\s\\S]*?\\*/
@@ -85,7 +87,18 @@ module FinestyleHelp
       css = css.gsub(';}', '}')
       css = css.gsub(', ', ',')
       css = css.to_s.gsub(/\s+/, " ")
-      return ocss
+      return css
+    end
+    
+    def fine_minify(css)
+      compressor = YUI::CssCompressor.new
+      compressor.compress(css)
+    end
+    
+    def fine_js_minify(js)
+      compressor = YUI::JavaScriptCompressor.new(:optimize => true, :preserve_semicolons => false, :munge => true)
+      #compressor = YUI::JavaScriptCompressor.new
+      compressor.compress(js)
     end
     
     
@@ -101,6 +114,7 @@ module FinestyleHelp
     receiver.send :helper_method, 'fine_boxShadow'
     receiver.send :helper_method, 'fine_textShadow'
     receiver.send :helper_method, 'fine_minify'
+    receiver.send :helper_method, 'fine_js_minify'
   end
   
 end

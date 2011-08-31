@@ -45,6 +45,13 @@ Rails.application.routes.draw do
     match '/finestyle.:format' => "base#finestyle", :to_style => 'seite'
     match '/admin_finestyle.:format' => "base#finestyle", :to_style => 'admin'
     match '/editor_finestyle.:format' => "base#finestyle", :to_style => 'fck'
+    
+    match '/finescript.:format' => "base#finescript", :to_script => 'seite'
+    match '/admin_finescript.:format' => "base#finescript", :to_script => 'admin'
+    
+    match '/expire_finestyles' => "base#expire_finestyles"
+    match '/expire_finescripts' => "base#expire_finescripts"
+    
     match '/grid_test' => "base#grid_test"
     match 'nestesd_seiten_reorder' => 'admin/seiten#reorder_nested_stuff'
   end

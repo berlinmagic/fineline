@@ -1,0 +1,42 @@
+<%#= raw( fine_js_minify( "#{  }" ) ) %>
+<%#= raw( fine_js_minify( "#{  }" ) ) %>
+<%#= raw( fine_js_minify( "#{  }" ) ) %>
+/* ============================================================================================================================================ */
+/* =====================================       f i n e l i n e - javascript      ============================================================== */
+/* ============================================================================================================================================ */
+<%= raw( fine_js_minify( "#{ render 'javascriptz/libs/jquery_ujs' }" ) ) %>
+<%#= raw( fine_js_minify( "#{ render 'javascriptz/libs/rails' }" ) ) %>
+<%= raw( fine_js_minify( "#{ render 'javascriptz/fine/fineline' }" ) ) %>
+<%= raw( fine_js_minify( "#{ render 'javascriptz/libs/jquery_form' }" ) ) %>
+<%= raw( fine_js_minify( "#{ render 'javascriptz/libs/jquery_remotipart' }" ) ) %>
+<%= raw( fine_js_minify( "#{ render 'javascriptz/libs/jquery_validate' }" ) ) %>
+<%= raw( fine_js_minify( "#{ render 'javascriptz/libs/cbox' }" ) ) %>
+<%= raw( fine_js_minify( "#{ render 'javascriptz/libs/plugins' }" ) ) %>
+<%= raw( fine_js_minify( "#{ render 'javascriptz/libs/backgroundPosition' }" ) ) %>
+<%= raw( fine_js_minify( "#{ render 'javascriptz/libs/flowplayer' }" ) ) %>
+<%= raw( fine_js_minify( "#{ render 'javascriptz/fine/fineSelect' }" ) ) %>
+<%= raw( fine_js_minify( "#{ render 'javascriptz/fine/navHover' }" ) ) %>
+<%= raw( fine_js_minify( "#{ render 'javascriptz/fine/strange_sites' }" ) ) %>
+<%= raw( fine_js_minify( "#{ hook :all_js_scriptz }" ) ) %>
+<% if @script4 == 'admin' %>
+<%= raw( fine_js_minify( "#{ render 'javascriptz/libs/nested_sort' }" ) ) %>
+<%= raw( fine_js_minify( "#{ render 'javascriptz/fine/finePicker' }" ) ) %>
+<% end %>
+<% if @script4 == 'seite' %>
+<%= raw( fine_js_minify( "#{ hook :seite_js_scriptz }" ) ) %>
+<% end %>
+<% if @script4 == 'admin' %>
+<%= raw( fine_js_minify( "#{ hook :admin_js_scriptz }" ) ) %>
+<% end %>
+/* ####################################     ..End of - generated - scripts     ######################################################### */
+<%- # asynchronous google analytics: mathiasbynens.be/notes/async-analytics-snippet -%>
+<%- if Rails.env.production? && Strangecms::Config[:analytics_key] != 'UA-XXXXX-X' -%>
+var _gaq = [['_setAccount', '<%= Strangecms::Config[:analytics_key] %>'], ['_trackPageview']];
+(function(d, t) {
+ var g = d.createElement(t),
+     s = d.getElementsByTagName(t)[0];
+ g.async = true;
+ g.src = ('https:' == location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+ s.parentNode.insertBefore(g, s);
+})(document, 'script');
+<%- end -%>

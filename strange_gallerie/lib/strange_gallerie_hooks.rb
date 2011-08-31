@@ -37,12 +37,12 @@ class StrangeGallerieHooks < Strangecms::ThemeSupport::HookListener
     "<%= render 'stylesheetz/gallerie' %>"
   end
   
-  insert_after :strange_admin_js_stuff do
+  insert_after :admin_js_scriptz do
     "<%= render 'javascriptz/strange_gallerie_admin' %>"
   end
   
   
-  insert_after :strange_front_js_stuff do
+  insert_after :seite_js_scriptz do
     "<%= render 'javascriptz/strange_gallerie' %>"
   end
   

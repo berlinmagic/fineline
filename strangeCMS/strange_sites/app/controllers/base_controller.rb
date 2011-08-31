@@ -3,7 +3,8 @@ class BaseController < ApplicationController
   
   
   
-  # => caches_page :finestyle
+  caches_page :finestyle
+  caches_page :finescript
   # => caches_page :show_seite
   
   skip_before_filter :verify_authenticity_token, :only => ['elfinder']
@@ -15,6 +16,26 @@ class BaseController < ApplicationController
       respond_to do |format|
         format.css { render :template => 'stylesheetz/all' }
       end
+  end
+  
+  def finescript
+      @script4 = params[:to_script] if params[:to_script]
+      respond_to do |format|
+        format.js { render :template => 'javascriptz/all' }
+      end
+  end
+  
+  def expire_finestyles
+    expire_page	'/system/finestyle.css'
+    expire_page	'/system/admin_finestyle.css'
+    expire_page	'/system/editor_finestyle.css'
+    redirect_to :back, :notice => 'Stylez expired!'
+  end
+  
+  def expire_finescripts
+    expire_page	'/system/finescript.js'
+    expire_page	'/system/admin_finescript.js'
+    redirect_to :back, :notice => 'Scriptz expired!'
   end
   
   def grid_test

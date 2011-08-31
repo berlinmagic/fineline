@@ -38,15 +38,15 @@ class StrangeFineformHooks < Strangecms::ThemeSupport::HookListener
     "<%= render 'stylesheetz/fineform' %>"
   end
   
-  insert_after :strange_admin_js_stuff do
-    "<%= render 'admin/fineforms/javascript' %>"
+  insert_after :admin_js_scriptz do
+    "<%= render 'javascriptz/strange_fineform_admin' %>"
   end
   
   # => insert_after :strange_front_js_stuff do
   # =>   "<%= render 'fineforms/javascript' %>"
   # => end
   
-  insert_after :strange_front_js_stuff do
+  insert_after :seite_js_scriptz do
     "<%= render 'javascriptz/strange_fineform' %>"
   end
   
