@@ -172,7 +172,7 @@ module FinestyleHelp
       return css
     end
     
-    def fine_minify(css)
+    def fine_css_minify(css)
       compressor = YUI::CssCompressor.new
       if Strangecms::Config[:compress_stylez]
         this_css = compressor.compress(css)

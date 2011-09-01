@@ -30,54 +30,54 @@
 <%	 @finestyle[:main_nav_subnav][:radius] 				= 	'7px' -%>
 <%#/* ####################################     fineline - generated - styles     ############################################################# */ -%>
 <% if @style4 && @style4 == 'fck' %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/boiler1' }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/fonts' }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/classes' }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/content' }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/main' }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/buttons' }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/forms' }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/lists' }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/navigation', :finestyle => @finestyle }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/sidebars', :finestyle => @finestyle }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/spezials', :finestyle => @finestyle }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/fck'  }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/boiler2'  }" ) ) %>
+ <%= raw( fine_css_minify( "#{ render 'stylesheetz/css/boiler1' }" ) ) %>
+ <%= raw( fine_css_minify( "#{ render 'stylesheetz/css/fonts' }" ) ) %>
+ <%= raw( fine_css_minify( "#{ render 'stylesheetz/css/classes' }" ) ) %>
+ <%= raw( fine_css_minify( "#{ render 'stylesheetz/css/content' }" ) ) %>
+ <%= raw( fine_css_minify( "#{ render 'stylesheetz/css/main' }" ) ) %>
+ <%= raw( fine_css_minify( "#{ render 'stylesheetz/css/buttons' }" ) ) %>
+ <%= raw( fine_css_minify( "#{ render 'stylesheetz/css/forms' }" ) ) %>
+ <%= raw( fine_css_minify( "#{ render 'stylesheetz/css/lists' }" ) ) %>
+ <%= raw( fine_css_minify( "#{ render 'stylesheetz/css/navigation', :finestyle => @finestyle }" ) ) %>
+ <%= raw( fine_css_minify( "#{ render 'stylesheetz/css/sidebars', :finestyle => @finestyle }" ) ) %>
+ <%= raw( fine_css_minify( "#{ render 'stylesheetz/css/spezials', :finestyle => @finestyle }" ) ) %>
+ <%= raw( fine_css_minify( "#{ render 'stylesheetz/css/fck'  }" ) ) %>
+ <%= raw( fine_css_minify( "#{ render 'stylesheetz/css/boiler2'  }" ) ) %>
 <% elsif @style4 && @style4 == 'admin' %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/boiler1' }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/jq_ui' }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/grid960_48' }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/finegrid' }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/fonts' }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/classes' }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/content' }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/main' }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/buttons' }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/forms' }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/lists' }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/navigation', :finestyle => @finestyle }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/sidebars', :finestyle => @finestyle }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/spezials', :finestyle => @finestyle }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/admin' }" ) ) %>
- <%= raw( fine_minify( "#{ hook :finestyles }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/boiler2'  }" ) ) %>
+ <%= raw( fine_css_minify( "#{ render 'stylesheetz/css/boiler1' }" ) ) %>
+ <%= raw( fine_css_minify( "#{ render 'stylesheetz/css/jq_ui' }" ) ) %>
+ <%= raw( fine_css_minify( "#{ render 'stylesheetz/css/grid960_48' }" ) ) %>
+ <%= raw( fine_css_minify( "#{ render 'stylesheetz/css/finegrid' }" ) ) %>
+ <%= raw( fine_css_minify( "#{ render 'stylesheetz/css/fonts' }" ) ) %>
+ <%= raw( fine_css_minify( "#{ render 'stylesheetz/css/classes' }" ) ) %>
+ <%= raw( fine_css_minify( "#{ render 'stylesheetz/css/content' }" ) ) %>
+ <%= raw( fine_css_minify( "#{ render 'stylesheetz/css/main' }" ) ) %>
+ <%= raw( fine_css_minify( "#{ render 'stylesheetz/css/buttons' }" ) ) %>
+ <%= raw( fine_css_minify( "#{ render 'stylesheetz/css/forms' }" ) ) %>
+ <%= raw( fine_css_minify( "#{ render 'stylesheetz/css/lists' }" ) ) %>
+ <%= raw( fine_css_minify( "#{ render 'stylesheetz/css/navigation', :finestyle => @finestyle }" ) ) %>
+ <%= raw( fine_css_minify( "#{ render 'stylesheetz/css/sidebars', :finestyle => @finestyle }" ) ) %>
+ <%= raw( fine_css_minify( "#{ render 'stylesheetz/css/spezials', :finestyle => @finestyle }" ) ) %>
+ <%= raw( fine_css_minify( "#{ render 'stylesheetz/css/admin' }" ) ) %>
+ <%= raw( fine_css_minify( "#{ hook :finestyles }" ) ) %>
+ <%= raw( fine_css_minify( "#{ render 'stylesheetz/css/boiler2'  }" ) ) %>
 <% else %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/boiler1' }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/jq_ui' }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/grid960_48' }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/finegrid' }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/fonts' }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/classes' }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/content' }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/main' }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/buttons' }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/forms' }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/lists' }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/navigation', :finestyle => @finestyle }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/sidebars', :finestyle => @finestyle }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/spezials', :finestyle => @finestyle }" ) ) %>
- <%= raw( fine_minify( "#{ hook :finestyles }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/boiler2'  }" ) ) %>
+ <%= raw( fine_css_minify( "#{ render 'stylesheetz/css/boiler1' }" ) ) %>
+ <%= raw( fine_css_minify( "#{ render 'stylesheetz/css/jq_ui' }" ) ) %>
+ <%= raw( fine_css_minify( "#{ render 'stylesheetz/css/grid960_48' }" ) ) %>
+ <%= raw( fine_css_minify( "#{ render 'stylesheetz/css/finegrid' }" ) ) %>
+ <%= raw( fine_css_minify( "#{ render 'stylesheetz/css/fonts' }" ) ) %>
+ <%= raw( fine_css_minify( "#{ render 'stylesheetz/css/classes' }" ) ) %>
+ <%= raw( fine_css_minify( "#{ render 'stylesheetz/css/content' }" ) ) %>
+ <%= raw( fine_css_minify( "#{ render 'stylesheetz/css/main' }" ) ) %>
+ <%= raw( fine_css_minify( "#{ render 'stylesheetz/css/buttons' }" ) ) %>
+ <%= raw( fine_css_minify( "#{ render 'stylesheetz/css/forms' }" ) ) %>
+ <%= raw( fine_css_minify( "#{ render 'stylesheetz/css/lists' }" ) ) %>
+ <%= raw( fine_css_minify( "#{ render 'stylesheetz/css/navigation', :finestyle => @finestyle }" ) ) %>
+ <%= raw( fine_css_minify( "#{ render 'stylesheetz/css/sidebars', :finestyle => @finestyle }" ) ) %>
+ <%= raw( fine_css_minify( "#{ render 'stylesheetz/css/spezials', :finestyle => @finestyle }" ) ) %>
+ <%= raw( fine_css_minify( "#{ hook :finestyles }" ) ) %>
+ <%= raw( fine_css_minify( "#{ render 'stylesheetz/css/boiler2'  }" ) ) %>
 <% end %>
 /* ####################################     ..End of - generated - styles     ######################################################### */
 
