@@ -46,7 +46,7 @@ compress css if Strangecms::Config::compress_stylez is activ :: komprimiert CSS-
 ##	JS - Minify :: Javascript minimierung
 compress js if Strangecms::Config::compress_scriptz is activ :: komprimiert Javascript-Code wenn Strangecms::Config::compress_scriptz aktiv ist
 	
-	fine_js_minify
+	fine_js_minify( js_code )
 
 
 ##	
