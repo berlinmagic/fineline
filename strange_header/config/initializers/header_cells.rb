@@ -1,0 +1,1 @@
+Cell::Base.prepend_view_path( File.join("#{StrangeHeader::Engine.config.root}", "app", "cells") )

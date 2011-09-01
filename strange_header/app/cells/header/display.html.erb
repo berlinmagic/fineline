@@ -1,0 +1,79 @@
+<style type="text/css">
+
+#top_banner_shadow, #bottom_banner_shadow { position: absolute; left: 0; display:block; z-index: 9; width: 100%; padding: 0 30px; margin: 0 -30px; height: 13px;  }
+#top_banner_shadow { top: 0; <%= fine_boxShadow( 'inset 0 9px 9px 0px rgba(0,0,0,.7)' ) %> }
+#bottom_banner_shadow { bottom: 0; <%= fine_boxShadow( 'inset 0 -9px 9px 0px rgba(0,0,0,.7)' ) %> }
+
+#banner { height: <%= @header.height %>px; }
+#fine_banner_box {}
+<% rpt = 'no-repeat' %>
+<% if @header.bg_repeat %>
+	<% rpt = 'repeat-x' if @header.bg_repeat == 'xrepeat' %>
+	<% rpt = 'repeat-y' if @header.bg_repeat == 'yrepeat' %>
+	<% rpt = 'repeat' if @header.bg_repeat == 'repeat' %>
+	<% rpt = 'no-repeat' if @header.bg_repeat == 'norepeat' %>
+<% end %>
+
+<% if @header.hintergrund && @header.farbe1 && @header.farbe2 && @header.hintergrund == 'verlauf' %>
+			
+	#banner { <%= fine_backgroundGradient('#' + @header.farbe1.to_s, '#' + @header.farbe2.to_s) %> }
+
+<% elsif @header.hintergrund && @header.farbe1 && @header.farbe2 && @header.bg_pic && @header.hintergrund == 'bild_verlauf' %>
+	
+	#fine_banner_box { <%= fine_backgroundGradient('#' + @header.farbe1.to_s, '#' + @header.farbe2.to_s) %> }
+	#banner { background: transparent url('<%= @header.bg_pic.url() %>') <%= @header.bg_pos_h %> <%= @header.bg_pos_v %> <%= rpt %>; }
+	
+<% elsif @header.hintergrund && @header.farbe1 && @header.hintergrund == 'farbe' %>
+			
+	#banner { background: #<%= @header.farbe1 %>; }
+
+<% elsif @header.hintergrund && @header.farbe1 && @header.bg_pic && @header.hintergrund == 'bild_farbe'  %>
+			
+	#fine_banner_box { background: #<%= @header.farbe1 %>; }
+	#banner { background: transparent url('<%= @header.bg_pic.url() %>') <%= @header.bg_pos_h %> <%= @header.bg_pos_v %> <%= rpt %>; }
+		
+<% elsif @header.bg_pic && @header.hintergrund == 'bild'  %>
+	
+	#banner { background: transparent url('<%= @header.bg_pic.url() %>') <%= @header.bg_pos_h %> <%= @header.bg_pos_v %> <%= rpt %>; }
+	
+	
+<% else %>
+
+	#fine_banner_box { background: transparent; }
+	#banner { background: transparent; }
+
+<% end %>
+
+	#banner #main_nav_holder { height: <%= @header.height %>px;}
+</style>
+
+	<div id="top_banner_shadow"></div>
+	<div id="bottom_banner_shadow"></div>
+	
+<% if @header.hpics.count > 1 %>
+
+
+	<% if @header.typ == 'fader' %>
+	
+		<%= render_cell :header, :fader, :seite => @seite, :header => @header %>
+
+	<% end %>
+
+<% elsif @header.hpics.count == 1 %>
+
+	<div id="banner_pic_holder">
+		<% @header.header_hpics.each do |slider| %>
+			<% if slider.cropping %>
+				<%= image_tag slider.hpic.bild.thumb(slider.cropping).thumb("#{@header.width}x#{@header.height}").url %>
+			<% else %>
+				<%= image_tag slider.hpic.bild.thumb("#{@header.width}x#{@header.height}").url %>
+			<%end%>
+		<% end %>
+	</div>
+
+	<style>
+	#banner_pic_holder { position:absolute; width: <%= @header.width %>px; height: <%= @header.height %>px; left:50%; margin-left: -<%= @header.width / 2 %>px; top: 0; border: 0; text-align:center; display: block; }
+	</style>
+
+
+<% end %>

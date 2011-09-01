@@ -23,5 +23,6 @@ Gem::Specification.new do |s|
   
   s.add_dependency('dragonfly-rmagick', '~> 0.0.33')
   
+  s.add_dependency('cells', '~> 3.6.5')
   
 end

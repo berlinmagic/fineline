@@ -5,6 +5,13 @@ module BaseHelper
     'Unsere IconSets:'
   end
   
+  def render_cell_with_javascript(cell, action, options = nil, &block)
+    content_for :front_js do
+      'render_cell(cell, "#{action}_javascript", options, &block)'
+    end
+    render_cell cell, action, options, &block
+  end
+  
   
   def finelineIcon(options = {})
     options.assert_valid_keys(  :icon,  :blur,  :color,   :size,  :aktion )

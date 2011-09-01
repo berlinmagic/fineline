@@ -1,5 +1,7 @@
   require "rails/all"
   
+  require "cells"
+  
   require 'strangecms'
   require 'strange_core'
   

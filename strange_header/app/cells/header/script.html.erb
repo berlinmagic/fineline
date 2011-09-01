@@ -1,0 +1,17 @@
+<% if @header.hpics.count > 1 %>
+
+	<% if @header.typ == 'slider' %>
+
+		<!-- X X X -->
+		
+	<% elsif @header.typ == 'fader' %>
+	
+		<%= render_cell :header, :fader_js, :seite => @seite, :header => @header %>
+		
+	<% elsif @header.typ == 's3_slider' %>
+
+		<!-- X X X -->
+
+	<% end %>
+	
+<% end %>

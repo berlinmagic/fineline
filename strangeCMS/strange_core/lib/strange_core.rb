@@ -20,3 +20,5 @@
   
   require 'strange_core/railtie'
   
+  require 'cells'
+  

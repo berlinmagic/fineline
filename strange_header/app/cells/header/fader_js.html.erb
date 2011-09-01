@@ -1,0 +1,37 @@
+<% javatext = '' %>
+<% javatext = "<script type='text/javascript'>
+  $(function() {
+    $('#banner_box').crossSlide({
+		fade: #{@header.changetime},
+		sleep: #{@header.staytime},
+		shuffle: #{@header.sort ? 'false' : 'true'},
+		doubleFade: true
+    }, [ // Bilder
+       " %>
+<% @header.header_hpics.each do |slider| %>
+	<% if slider.cropping %>
+		<% if slider.fadeit && slider.extendit %>
+			<% javatext +='{ src: "'+slider.hpic.bild.encode(:png).process(:side_fade, :size => slider.fade_factor.to_i).process(:blowup).thumb(slider.cropping).thumb("#{@header.width}x#{@header.height}").url+'"}, ' %>
+		<% elsif slider.extendit %>
+			<% javatext +='{ src: "'+slider.hpic.bild.encode(:png).process(:blowup).thumb(slider.cropping).thumb("#{@header.width}x#{@header.height}").url+'"}, ' %>
+		<% elsif slider.fadeit %>
+			<% javatext +='{ src: "'+slider.hpic.bild.encode(:png).thumb(slider.cropping).process(:side_fade, :size => slider.fade_factor.to_i).thumb("#{@header.width}x#{@header.height}").url+'"}, ' %>
+		<% else %>
+			<% javatext +='{ src: "'+slider.hpic.bild.thumb(slider.cropping).thumb("#{@header.width}x#{@header.height}").url+'"}, ' %>
+		<% end %>
+	<% else %>
+		<% if slider.fadeit && slider.extendit %>
+			<% javatext +='{ src: "'+slider.hpic.bild.encode(:png).process(:side_fade, :size => slider.fade_factor.to_i).process( :blowup).thumb("#{@header.width}x#{@header.height}").url+'"}, ' %>
+		<% elsif slider.extendit %>
+			<% javatext +='{ src: "'+slider.hpic.bild.encode(:png).process(:blowup).thumb("#{@header.width}x#{@header.height}").url+'"}, ' %>
+		<% elsif slider.fadeit %>
+			<% javatext +='{ src: "'+slider.hpic.bild.encode(:png).process(:side_fade, :size => slider.fade_factor).thumb("#{@header.width}x#{@header.height}").url+'"}, ' %>
+		<% else %>
+			<% javatext +='{ src: "'+slider.hpic.bild.thumb("#{@header.width}x#{@header.height}").url+'"}, ' %>
+		<% end %>
+	<% end %>
+<% end %>
+<% javatext +=']); });</script>' %>
+
+<%= theme_javascript_include_tag 'cross_slide' %>
+<%= raw( javatext ) %>

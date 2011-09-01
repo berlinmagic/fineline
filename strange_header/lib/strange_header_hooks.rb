@@ -25,7 +25,15 @@ class StrangeHeaderHooks < Strangecms::ThemeSupport::HookListener
   #  "<%= render :partial => 'header/show' %>"
   #end
   
-  replace :strange_banner, 'header/show'
+  # => replace :strange_banner, 'header/show'
+  
+  replace :strange_banner do
+    "<%= render_cell :header, :display, :seite => @seite %>"
+  end
+  
+  insert_after :fineline_javascript do
+    "<%= render_cell :header, :script, :seite => @seite %>"
+  end
   
   insert_after :all_js_scriptz do
     "<%= render 'javascriptz/strange_header' %>"
