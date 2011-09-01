@@ -1,4 +1,3 @@
-<% finestyle ||= @finestyle -%>
 /* =============================   Navigation   ======================================== */
 /* ### LEVEL ONE ### */
 #main_navigation { height: 34px; position:absolute; bottom: 0; left:0; display:block; margin:0; padding: 0 10px; z-index:555; list-style:none; 
@@ -15,37 +14,23 @@
 
 /* ### LEVEL TWO ### */
 #main_navigation ul.sub_navigation { width: 220px; visibility: hidden; position: absolute; top: 100%; left: -1px; margin:0; 
-		background: #adadad; padding: 10px 0; 
-		background: #f3f3f3; /* Old browsers */
-		background: -moz-linear-gradient(top, #f3f3f3 0%, #f3f3f3 20%, #ffffff 75%, #ffffff 100%); /* FF3.6+ */
-		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f3f3f3), color-stop(20%,#f3f3f3), color-stop(75%,#ffffff), color-stop(100%,#ffffff)); /* Chrome,Safari4+ */
-		background: -webkit-linear-gradient(top, #f3f3f3 0%,#f3f3f3 20%,#ffffff 75%,#ffffff 100%); /* Chrome10+,Safari5.1+ */
-		background: -o-linear-gradient(top, #f3f3f3 0%,#f3f3f3 20%,#ffffff 75%,#ffffff 100%); /* Opera11.10+ */
-		background: -ms-linear-gradient(top, #f3f3f3 0%,#f3f3f3 20%,#ffffff 75%,#ffffff 100%); /* IE10+ */
-		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f3f3f3', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
-		background: linear-gradient(top, #f3f3f3 0%,#f3f3f3 20%,#ffffff 75%,#ffffff 100%); /* W3C */
+		padding: 10px 0; 
+		<%= fine_Gradient( 'vertikal', 0 => '#f3f3f3', 20 => '#f3f3f3', 75 => '#ffffff', 100 => '#ffffff' ) %>
 		border: solid 1px #cccccc;
 		border-top:0;
-		
-		
-		-webkit-border-bottom-left-radius: <%=  finestyle[:main_nav_subnav][:radius] %>; 
-		-webkit-border-bottom-right-radius: <%=  finestyle[:main_nav_subnav][:radius] %>; 
-		-moz-border-radius-bottomleft: <%=  finestyle[:main_nav_subnav][:radius] %>; 
-		-moz-border-radius-bottomright: <%=  finestyle[:main_nav_subnav][:radius] %>; 
-		border-bottom-left-radius: <%=  finestyle[:main_nav_subnav][:radius] %>; 
-		border-bottom-right-radius: <%=  finestyle[:main_nav_subnav][:radius] %>; 	}
+		<%= fineBorderRadius( '', '', '7px', '7px' ) %> }
 #main_navigation ul.sub_navigation li { background: transparent; border:0; float: none; margin:0; padding:0; width: 100%;}
 	
 #main_navigation ul.sub_navigation li a { background: transparent; padding: 7px 15px; float:none; color: #666; margin:0; font-weight:normal;
-		border: 0; -webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0;
+		border: 0; <%= fine_borderRadius( ) %>
 		border-bottom: 1px solid #fff; border-top: 1px solid #ccc; }
 			
 #main_navigation ul.sub_navigation li a.sub_aktiv { background: transparent; padding: 7px 15px; color: #336699; margin:0; font-weight:bold;
-		border: 0; -webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0;
+		border: 0; <%= fine_borderRadius( ) %>
 		border-bottom: 1px solid #fff; border-top: 1px solid #ccc;}
 
 #main_navigation ul.sub_navigation li a:hover { padding: 7px 15px; color: #336699; margin:0; 
-		border: 0; -webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0;
+		border: 0; <%= fine_borderRadius( ) %>
 		border-bottom: 1px solid #fff; border-top: 1px solid #ccc;
 		background: #f3f3f3; /* W3C */
 		}

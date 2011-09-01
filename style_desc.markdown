@@ -1,10 +1,10 @@
 #fineline Style-Helper
 The fineline Style Helpers produces Cross-Browser CSS3-Code! ... Better to read, better to maintain, better flexibility!
 
-##	Gradien :: Verlauf 	
+##	Gradient :: Verlauf 	
 horizontal / vertikal / radial / diagonal1 / diagonal2 ..+.. up to 9 colors:  % => 'color'
 	
-	fine_Gradient( 'vertikal', 0 => 'ccc', 40 => 'a00', 60 => '0a0', 100 => 'fff' )
+	fine_Gradient( 'vertikal', 0 => '#ccc', 40 => '#a00', 60 => '#0a0', 100 => '#fff' )
 
 
 ##	BorderRadius :: Runde Ecken

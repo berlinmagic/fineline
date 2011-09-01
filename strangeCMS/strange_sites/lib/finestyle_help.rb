@@ -52,23 +52,6 @@ module FinestyleHelp
       	  background: linear-gradient(top, #{ top } 0%,#{ bottom } 100%);    "
     end
     
-    def fine_vertikalGradient(pts={})
-        werte = []
-        pts.each do |key, value|
-          werte[key] = value
-        end
-        bottom = bottom.blank? ? top : bottom
-        " background: #{ top };
-          background: -khtml-gradient(linear, left top, left bottom, from(#{ top }), to(#{ bottom }));
-      	  background: -moz-linear-gradient(top, #{ top } 0%,  #{ bottom } 100%);
-      	  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#{ top }), color-stop(100%,#{ bottom }));
-      	  background: -webkit-linear-gradient(top, #{ top } 0%,#{ bottom } 100%);
-      	  background: -o-linear-gradient(top, #{ top } 0%,#{ bottom } 100%);
-      	  background: -ms-linear-gradient(top, #{ top } 0%,#{ bottom } 100%);
-      	  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{ top }', endColorstr='#{ bottom }',GradientType=0 );
-      	  background: linear-gradient(top, #{ top } 0%,#{ bottom } 100%);    "
-    end
-    
     def fine_Gradient(orientation=nil, pts={})
         orientationz = %w(horizontal vertikal radial diagonal1 diagonal2)
         way = !orientation.blank? && orientationz.include?(orientation) ? orientation : 'vertikal'  
@@ -108,21 +91,22 @@ module FinestyleHelp
         std_werte = ""
         werte.each_with_index do |w,i|
           unless w.blank?
-            std_werte = std_werte + ", ##{w} #{i}%"
+            std_werte = std_werte + ", #{w} #{i}%"
             unless (i == 0) || (i == 100)
-              wk_werte = wk_werte + ", color-stop(#{i}%, ##{w})"
+              wk_werte = wk_werte + ", color-stop(#{i}%, #{w})"
             end
           end
         end
-        std_bg = "background: ##{top};"
-        webkit = "background-image: -webkit-gradient(#{t}, #{x}, #{y}, from(##{top}), to(##{bottom})" + wk_werte + ");"
-        khtml = "background-image: -khtml-gradient(#{t}, #{x}, #{y}, from(##{top}), to(##{bottom})" + wk_werte + ");"
+        std_bg = "background: #{top};"
+        webkit = "background-image: -webkit-gradient(#{t}, #{x}, #{y}, from(#{top}), to(#{bottom})" + wk_werte + ");"
+        khtml = "background-image: -khtml-gradient(#{t}, #{x}, #{y}, from(#{top}), to(#{bottom})" + wk_werte + ");"
         wkit = "background-image: -webkit-#{t}-gradient(#{z}" + std_werte + ");"
         moz = "background-image: -moz-#{t}-gradient(#{z}" + std_werte + ");"
         o = "background-image: -o-#{t}-gradient(#{z}" + std_werte + ");"
         ms = "background-image: -ms-#{t}-gradient(#{z}" + std_werte + ");"
         all = "background-image: #{t}-gradient(#{z}" + std_werte + ");"
         ms_std = "filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{ top }', endColorstr='#{ bottom }',GradientType=#{ms_way} );"
+        
         " #{std_bg} 
           #{webkit}
           #{khtml}
@@ -141,17 +125,17 @@ module FinestyleHelp
          -moz-box-shadow:     #{ shadow };
          -ms-box-shadow:      #{ shadow };
          -khtml-box-shadow:   #{ shadow };
-         box-shadow:         #{ shadow };   "
+         box-shadow:          #{ shadow };"
     end
     
     def fine_textShadow(shadow=nil)
         shadow = shadow.blank? ? 'none' : shadow
-        " -o-text-shadow:       #{ shadow };
-          -webkit-text-shadow:  #{ shadow };
-          -moz-text-shadow:     #{ shadow };
-          -ms-text-shadow:      #{ shadow };
-          -khtml-text-shadow:   #{ shadow };
-          text-shadow:          #{ shadow };   "
+        # => -o-text-shadow:       #{ shadow };
+        # => -webkit-text-shadow:  #{ shadow };
+        # => -moz-text-shadow:     #{ shadow };
+        # => -ms-text-shadow:      #{ shadow };
+        # => -khtml-text-shadow:   #{ shadow };
+        "text-shadow:          #{ shadow };"
     end
     
     def my_fine_minify(css)
@@ -205,7 +189,7 @@ module FinestyleHelp
     receiver.send :helper_method, 'fine_Gradient'
     receiver.send :helper_method, 'fine_boxShadow'
     receiver.send :helper_method, 'fine_textShadow'
-    receiver.send :helper_method, 'fine_minify'
+    receiver.send :helper_method, 'fine_css_minify'
     receiver.send :helper_method, 'fine_js_minify'
   end
   

@@ -1,16 +1,39 @@
 <div id="fine_footer_nav">
 	<% Seite.aktiv.main.footer.each_with_index do |seite,index| %>
-		<div class="fine_footer_box">
-			<a href="<%= seite.link %>"><%= seite.name %></a> <br/>
+		<% if index > 0 %>
+			<div class="footer_nav_trenner">|</div>
+		<% end %>
+		<div class="fine_footer_box<%= ' aktiv' if @seite && ((@seite == seite) || (@seite.hauptseite == seite)) %>">
+			<a href="<%= seite.link %>"><%= seite.name.upcase %></a>
+			
 			<% if seite.unter_seiten.aktiv.count > 0 %>
-				<% seite.unter_seiten.aktiv.footer.each do |u_seite| %>
-					<a href="<%= u_seite.link %>">&rArr; <%= u_seite.name %></a> <br/>
-					<% if u_seite.unter_seiten.aktiv.count > 0 %>
-						<% u_seite.unter_seiten.aktiv.footer.each do |uu_seite| %>
-							<a href="<%= uu_seite.link %>">&rArr; &rArr; <%= uu_seite.name %></a> <br/>
+			
+				<div class="footer_subnav_ecke"></div>
+				<div class="footer_subnav">
+					
+					<ul id="footer_subnav_links">
+					<% seite.unter_seiten.aktiv.footer.each do |u_seite| %>
+						<li><a href="<%= u_seite.link %>"<%= " class='aktiv'" if @seite && @seite == u_seite %>><%= u_seite.name %></a>
+						<% if u_seite.unter_seiten.aktiv.count > 0 %>
+							<ul class="sub">
+							<% u_seite.unter_seiten.aktiv.footer.each do |uu_seite| %>
+								<li><a href="<%= uu_seite.link %>"<%= " class='aktiv'" if @seite && @seite == uu_seite %>><%= uu_seite.name %></a>
+									<% if uu_seite.unter_seiten.aktiv.count > 0 %>
+										<ul class="sub">
+											<% uu_seite.unter_seiten.aktiv.footer.each do |uuu_seite| %>
+												<li><a href="<%= uuu_seite.link %>"<%= " class='aktiv'" if @seite && @seite == uuu_seite %>><%= uuu_seite.name %></a></li>
+											<% end %>
+										</ul>
+									<% end %>
+								</li>
+							<% end %>
+							</ul>
 						<% end %>
+						</li>
 					<% end %>
-				<% end %>
+					</ul>
+					
+				</div>
 			<% end %>
 		</div>
 	<% end %>
