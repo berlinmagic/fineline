@@ -76,6 +76,22 @@
 					</tr>
 				</table>
 				
+				
+				<% if current_user && site_master %>
+				<table class="settings">
+				<tr>
+					<th colspan="2" class="u_kat"><%= t('strange_preferences.locale_settings')%></th>
+				</tr>
+				<tr>
+					<th><%= t('strange_preferences.compress_stylez') %></th>
+					<td><%= select_tag 'preferences[compress_stylez]', options_for_select({ 'Aktiv' => true, 'Inaktiv' => false }, Strangecms::Config[:compress_stylez])    %></td>
+				</tr>
+				<tr>
+					<th><%= t('strange_preferences.compress_scriptz') %></th>
+					<td><%= select_tag 'preferences[compress_scriptz]', options_for_select({ 'Aktiv' => true, 'Inaktiv' => false }, Strangecms::Config[:compress_scriptz])    %></td>
+				</tr>
+				</table>
+				<% end %>
 			</div>
 		</div>
 		<div class="box">

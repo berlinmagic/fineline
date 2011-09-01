@@ -81,6 +81,19 @@
 						<th><%= t('strange_preferences.default_locale') %></th>
 						<td><%= t("System_Locale.#{Strangecms::Config[:default_locale]}") %></td>
 					</tr>
+					<% if current_user && site_master %>
+					<tr>
+						<th colspan="2" class="u_kat"><%= t('strange_preferences.locale_settings')%></th>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.compress_stylez') %></th>
+						<td><%= Strangecms::Config[:compress_stylez] ? 'Ja' : 'Nein' %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.compress_scriptz') %></th>
+						<td><%= Strangecms::Config[:compress_scriptz] ? 'Ja' : 'Nein' %></td>
+					</tr>
+					<% end %>
 				</table>
 			</div>
 		</div>

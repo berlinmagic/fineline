@@ -1,14 +1,7 @@
-<% finestyle ||= @finestyle -%>
 /* ========================   Formulare   =========================== */
 .box.edit_in, .box.edit { padding:0;}
 .box.abschnitt-inhalt:hover { padding-top: 16px;}
-.box.abschnitt-inhalt:hover .box.edit_in, .box.abschnitt_toolz:hover .box.edit_in { background: #fff;
-	-webkit-border-radius: 	<%= finestyle[:edit_box][:radius]  %>; 
-	-moz-border-radius: 	<%= finestyle[:edit_box][:radius]  %>; 
-	-o-border-radius: 		<%= finestyle[:edit_box][:radius]  %>; 
-	-ms-border-radius: 		<%= finestyle[:edit_box][:radius]  %>; 
-	border-radius: 			<%= finestyle[:edit_box][:radius]  %>;
-	}
+.box.abschnitt-inhalt:hover .box.edit_in, .box.abschnitt_toolz:hover .box.edit_in { background: #fff; <%= fine_borderRadius( '5px' ) %> }
 .box.edit_in:focus { background: #fff; border: solid 2px #265289;}
 
 
@@ -20,11 +13,7 @@
 .abschnitt_box { padding: 25px 13px 0px 42px; position:relative; z-index:1; }
 
 .abschnitt_box .abschnitt_inhalt_box { padding: 10px; border: solid 1px transparent; position:relative; z-index:2;
-		-webkit-border-radius: 	<%= finestyle[:edit_box][:radius]  %>; 
-		-moz-border-radius: 	<%= finestyle[:edit_box][:radius]  %>; 
-		-o-border-radius: 		<%= finestyle[:edit_box][:radius]  %>; 
-		-ms-border-radius: 		<%= finestyle[:edit_box][:radius]  %>; 
-		border-radius: 			<%= finestyle[:edit_box][:radius]  %>;   }
+	<%= fine_borderRadius( '5px' ) %>}
 
 
 .abschnitt_box:hover .abschnitt_inhalt_box { border: solid 1px #ccc; background: #f3f3f3; }
@@ -48,11 +37,7 @@
 		border: 1px solid #ccc; border-bottom: 0; 
 		z-index: 10;
 		background: #f3f3f3;
-		-webkit-border-top-left-radius: 3px; 	-webkit-border-top-right-radius: 3px;
-		-moz-border-radius-topleft: 3px; 		-moz-border-radius-topright: 3px;
-		border-top-left-radius: 3px; 			border-top-right-radius: 3px;
-		visibility: hidden;
-		}
+		<%= fineBorderRadius( '3px', '3px' ) %> 	visibility: hidden; }
 
 .abschnitt_box .abschnitt_inhalt_box .abschnitt_inhalt_anker_feld label { line-height: 16px;  padding: 0 10px 0 20px; display: block;
 		border: 0; border-right: solid 1px #999; float: left; margin: 3px 0; font-size: 12px; font-weight: normal; color: rgb(102,102,102); font-style: normal;

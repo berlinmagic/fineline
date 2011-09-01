@@ -13,6 +13,12 @@ class AppConfiguration < Configuration
   
   preference :show_help, :boolean, :default => true
   
+  preference :compress_stylez, :boolean, :default => true
+  preference :compress_scriptz, :boolean, :default => true
+  
+  
+  
+  
   preference :show_site_name, :boolean, :default => true
   preference :stange_owner_name, :string, :default => 'Name'
   preference :stange_owner_vorname, :string, :default => 'Vorname'

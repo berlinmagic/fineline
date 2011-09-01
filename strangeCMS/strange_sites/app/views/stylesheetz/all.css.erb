@@ -14,25 +14,6 @@
 <% 		@finestyle[:submit_button]		= 	{}	 -%>
 <% 		@finestyle[:cancel_button]		= 	{}	 -%>
 <%# -%>
-<%	 @finestyle[:button][:box_shaddow] 					= 	'1px 1px 3px 1px #888' -%>
-<%	 @finestyle[:button][:box_shaddow_hover] 			= 	'inset 1px 1px 3px 1px #888' -%>
-<%	 @finestyle[:button][:radius] 						= 	'1px' -%>
-<%	 @finestyle[:button][:box_shaddow] 					= 	'none' -%>
-<%	 @finestyle[:button][:box_shaddow_hover] 			= 	'none' -%>
-<%	 @finestyle[:button][:box_shaddow_click] 			= 	'inset 1px 1px 1px 1px rgba(0,51,102,.5)' -%>
-<%	 @finestyle[:button][:text_shaddow] 				= 	'none' -%>
-<%	 @finestyle[:button][:text_shaddow_hover] 			= 	'none' -%>
-<%	 @finestyle[:button][:bg_color] 					= 	'rgb(153,153,153)' -%>
-<%	 @finestyle[:button][:bg_color_hover] 				= 	'rgb(62,115,169)' -%>
-<%	 @finestyle[:button][:bg_color_click] 				= 	'#165891' -%>
-<%	 @finestyle[:button][:bg_image] 					= 	'verlauf50' -%>
-<%# -%>
-<%	 @finestyle[:footer][:shaddow] 						= 	'inset 0px 2px 3px 3px rgba(0,0,0,.9)' -%>
-<%# -%>
-<%	 @finestyle[:cancel_button][:radius] 				= 	"2px" -%>
-<%	 @finestyle[:cancel_button][:box_shaddow] 			= 	'inset 1px 1px 1px 0px rgba(255,255,255,.4)' -%>
-<%	 @finestyle[:cancel_button][:box_shaddow_click] 	= 	'inset 1px 1px 1px rgba(0,0,0,.4)' -%>
-<%# -%>
 <%	 @finestyle[:fl_select][:radius] 					= 	"3px" -%>
 <%# -%>
 <%	 @finestyle[:edit_box][:radius] 					= 	"5px" -%>
@@ -50,13 +31,13 @@
 <%#/* ####################################     fineline - generated - styles     ############################################################# */ -%>
 <% if @style4 && @style4 == 'fck' %>
  <%= raw( fine_minify( "#{ render 'stylesheetz/css/boiler1' }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/fonts', :finestyle => @finestyle }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/classes', :finestyle => @finestyle }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/content', :finestyle => @finestyle }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/main', :finestyle => @finestyle }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/buttons', :finestyle => @finestyle }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/forms', :finestyle => @finestyle }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/lists', :finestyle => @finestyle }" ) ) %>
+ <%= raw( fine_minify( "#{ render 'stylesheetz/css/fonts' }" ) ) %>
+ <%= raw( fine_minify( "#{ render 'stylesheetz/css/classes' }" ) ) %>
+ <%= raw( fine_minify( "#{ render 'stylesheetz/css/content' }" ) ) %>
+ <%= raw( fine_minify( "#{ render 'stylesheetz/css/main' }" ) ) %>
+ <%= raw( fine_minify( "#{ render 'stylesheetz/css/buttons' }" ) ) %>
+ <%= raw( fine_minify( "#{ render 'stylesheetz/css/forms' }" ) ) %>
+ <%= raw( fine_minify( "#{ render 'stylesheetz/css/lists' }" ) ) %>
  <%= raw( fine_minify( "#{ render 'stylesheetz/css/navigation', :finestyle => @finestyle }" ) ) %>
  <%= raw( fine_minify( "#{ render 'stylesheetz/css/sidebars', :finestyle => @finestyle }" ) ) %>
  <%= raw( fine_minify( "#{ render 'stylesheetz/css/spezials', :finestyle => @finestyle }" ) ) %>
@@ -67,13 +48,13 @@
  <%= raw( fine_minify( "#{ render 'stylesheetz/css/jq_ui' }" ) ) %>
  <%= raw( fine_minify( "#{ render 'stylesheetz/css/grid960_48' }" ) ) %>
  <%= raw( fine_minify( "#{ render 'stylesheetz/css/finegrid' }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/fonts', :finestyle => @finestyle }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/classes', :finestyle => @finestyle }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/content', :finestyle => @finestyle }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/main', :finestyle => @finestyle }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/buttons', :finestyle => @finestyle }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/forms', :finestyle => @finestyle }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/lists', :finestyle => @finestyle }" ) ) %>
+ <%= raw( fine_minify( "#{ render 'stylesheetz/css/fonts' }" ) ) %>
+ <%= raw( fine_minify( "#{ render 'stylesheetz/css/classes' }" ) ) %>
+ <%= raw( fine_minify( "#{ render 'stylesheetz/css/content' }" ) ) %>
+ <%= raw( fine_minify( "#{ render 'stylesheetz/css/main' }" ) ) %>
+ <%= raw( fine_minify( "#{ render 'stylesheetz/css/buttons' }" ) ) %>
+ <%= raw( fine_minify( "#{ render 'stylesheetz/css/forms' }" ) ) %>
+ <%= raw( fine_minify( "#{ render 'stylesheetz/css/lists' }" ) ) %>
  <%= raw( fine_minify( "#{ render 'stylesheetz/css/navigation', :finestyle => @finestyle }" ) ) %>
  <%= raw( fine_minify( "#{ render 'stylesheetz/css/sidebars', :finestyle => @finestyle }" ) ) %>
  <%= raw( fine_minify( "#{ render 'stylesheetz/css/spezials', :finestyle => @finestyle }" ) ) %>
@@ -85,13 +66,13 @@
  <%= raw( fine_minify( "#{ render 'stylesheetz/css/jq_ui' }" ) ) %>
  <%= raw( fine_minify( "#{ render 'stylesheetz/css/grid960_48' }" ) ) %>
  <%= raw( fine_minify( "#{ render 'stylesheetz/css/finegrid' }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/fonts', :finestyle => @finestyle }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/classes', :finestyle => @finestyle }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/content', :finestyle => @finestyle }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/main', :finestyle => @finestyle }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/buttons', :finestyle => @finestyle }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/forms', :finestyle => @finestyle }" ) ) %>
- <%= raw( fine_minify( "#{ render 'stylesheetz/css/lists', :finestyle => @finestyle }" ) ) %>
+ <%= raw( fine_minify( "#{ render 'stylesheetz/css/fonts' }" ) ) %>
+ <%= raw( fine_minify( "#{ render 'stylesheetz/css/classes' }" ) ) %>
+ <%= raw( fine_minify( "#{ render 'stylesheetz/css/content' }" ) ) %>
+ <%= raw( fine_minify( "#{ render 'stylesheetz/css/main' }" ) ) %>
+ <%= raw( fine_minify( "#{ render 'stylesheetz/css/buttons' }" ) ) %>
+ <%= raw( fine_minify( "#{ render 'stylesheetz/css/forms' }" ) ) %>
+ <%= raw( fine_minify( "#{ render 'stylesheetz/css/lists' }" ) ) %>
  <%= raw( fine_minify( "#{ render 'stylesheetz/css/navigation', :finestyle => @finestyle }" ) ) %>
  <%= raw( fine_minify( "#{ render 'stylesheetz/css/sidebars', :finestyle => @finestyle }" ) ) %>
  <%= raw( fine_minify( "#{ render 'stylesheetz/css/spezials', :finestyle => @finestyle }" ) ) %>
