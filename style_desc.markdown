@@ -49,8 +49,5 @@ compress js if Strangecms::Config::compress_scriptz is activ :: komprimiert Java
 	fine_js_minify
 
 
-
-
-
-	
-	... by Austin Strange!
+##	
+... by Austin Strange!
