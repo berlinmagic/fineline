@@ -115,6 +115,7 @@
 			<div class="box">
 				<div class="in_box">
 					<p class="sys_help"><%= t('strange_header.header_inhalt_verwalten_desc') %></p>
+					<%= @header.class %>
 				</div>
 			</div>
 
@@ -126,6 +127,7 @@
 			<div class="in_box white" id="Hpics_Box">
 				<% @header.header_hpics.each do |head| %>
 					<div class="moover_box" id="<%= dom_id(head)%>">
+					<% cache(:part => "hhpic_#{head.id}") do %>
 						<%= fine_handle( :icon => 77, :color => 'hell', :blur => 70) %>
 						<% unless @header.ratio == head.h_ratio %>
 							<div class="wrong_header_ratio">
@@ -272,7 +274,7 @@
 						</div>
 						
 						<div class="clearfix"></div>
-
+					<% end %> <%# End of cache ! %>
 					</div>
 				<% end %>
 			</div>

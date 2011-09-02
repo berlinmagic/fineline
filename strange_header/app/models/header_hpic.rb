@@ -6,7 +6,9 @@ class HeaderHpic < ActiveRecord::Base
   
   belongs_to :header
   belongs_to :hpic
-
+  
+  acts_as_list
+  
   default_scope   :order => "position ASC"
 
   

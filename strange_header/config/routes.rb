@@ -5,6 +5,9 @@ Rails.application.routes.draw do
     match 'change_header' => 'headers#change_header'
     match 'add_header_site' => 'headers#add_site'
     resources :headers do
+      collection do
+        post :reorder_stuff
+      end
       resources :hpics do
         member do
           get :crop
@@ -17,6 +20,7 @@ Rails.application.routes.draw do
           post :available
           get  :selected
           get :available
+          post :reorder_stuff
         end
       end
     end

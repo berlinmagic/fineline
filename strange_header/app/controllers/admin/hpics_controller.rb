@@ -5,6 +5,8 @@ class Admin::HpicsController < Admin::BaseController
   
   before_filter :load_data
   
+  cache_sweeper :header_sweeper
+  
   def index
     @hpics = Hpic.all
     
@@ -61,6 +63,8 @@ class Admin::HpicsController < Admin::BaseController
       @hpic.h_ratio = params[:hpic][:h_ratio]
       @hpic.save
     end
+    expire_cell_state(HeaderCell, :fader, "headers/#{@header.id}")
+    expire_cell_state(HeaderCell, :fader_js, "headers/#{@header.id}") 
     expire_action :controller => 'admin/headers', :action => "index"
     expire_action :controller => 'admin/headers', :action => "show", :id => @header_hpic.header.id
     redirect_to(admin_header_path(@header), :notice => t('hpic_was_croped'))

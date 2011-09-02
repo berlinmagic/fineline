@@ -3,12 +3,14 @@ class HeaderCell < Cell::Rails
   include FinestyleHelp
   
   cache :fader do |cell, options|
-      options[:header]
+      "#{ options[:header].id.to_s }"
+  end
+  cache :fader_js do |cell, options|
+      "#{ options[:header].id.to_s }"
   end
   
-  cache :fader_js do |cell, options|
-      options[:header]
-  end
+  #cache :fader
+  #cache :fader_js
 
   def display(args)
     @seite = args[:seite]

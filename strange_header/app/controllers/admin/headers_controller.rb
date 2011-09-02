@@ -5,6 +5,8 @@ class Admin::HeadersController < Admin::BaseController
   
   before_filter :get_navi_werte
   
+  cache_sweeper :header_sweeper
+  
   # => caches_action :index
   # => caches_action :show
   
@@ -16,7 +18,8 @@ class Admin::HeadersController < Admin::BaseController
     else
       @u_aktiv = "show"
       @header = Header.all.first
-      render :template => 'admin/headers/show'
+      # => render :template => 'admin/headers/show'
+      redirect_to admin_header_path(@header)
     end
   end
   
@@ -115,6 +118,22 @@ class Admin::HeadersController < Admin::BaseController
   def get_navi_werte
     @aktivio = 'seiten'
     @sub_aktivio = 'headers'
+  end
+  
+  def reorder_stuff
+    params.each do |key,value|
+      unless key == 'authenticity_token'
+        if value.kind_of?(Array)
+          value.each_with_index do |val,index|
+            if thing = key.classify.constantize.find(val)
+              thing.position = index
+              thing.save
+            end
+          end
+        end
+      end
+    end
+    render :nothing => true
   end
   
 end
