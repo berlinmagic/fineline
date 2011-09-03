@@ -8,12 +8,47 @@ module StrangeThemes
     end
     
     def available_themes(&block)
-      Dir.glob(File.join(config.themes_path, "*"), &block) 
+      ths = []
+      ths = Dir.glob(File.join(config.themes_path, "*"), &block) 
+      if config.gem_theme_available?
+        config.gem_theme_pathes.each do |thp|
+          tgs = []
+          tgs = Dir.glob(File.join(thp, config.themes_dir, "*"), &block) 
+          tgs.each do |tg|
+            ths << tg
+          end
+        end
+      end
+      ths
     end
     alias each_theme_dir available_themes
     
     def available_theme_names
-      available_themes.map {|theme| File.basename(theme) } 
+      available_themes.map {|theme| File.basename(theme.to_s) } 
+    end
+    
+    def all_theme_hash
+      ath = {}
+      ths = Dir.glob(File.join(config.themes_path, "*")) 
+      ths.each do |tp|
+        ath["#{File.basename(tp.to_s)}"] = { "base" => "#{config.base_dir}", "theme_dir" => "#{File.join(config.base_dir, config.themes_dir)}", "theme" => "#{tp.to_s}"}
+      end
+      tgs = []
+      tgp = []
+      if config.gem_theme_available?
+        config.gem_theme_pathes.each do |thp|
+          xax = []
+          xax = Dir.glob(File.join(thp, config.themes_dir, "*")) 
+          xax.each do |axa|
+            tgs << axa
+          end
+          tgp << thp
+        end
+      end
+      tgs.each_with_index do |gtp, i|
+        ath["#{File.basename(gtp.to_s)}"] = { "base" => "#{tgp[i].to_s}", "theme_dir" => "#{File.join(tgp[i].to_s, config.themes_dir)}", "theme" => "#{gtp.to_s}"}
+      end
+      ath
     end
     
     def add_themes_path_to_sass
@@ -50,4 +85,5 @@ require 'strange_themes/assets_controller'
 require 'strange_themes/controller_methods'
 require 'strange_themes/railtie'
 require 'strange_themes/routes'
+require 'strange_themes/gemed_themes'
 require 'strange_themes_help'

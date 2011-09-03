@@ -3,17 +3,12 @@
   require "cells"
   
   require 'strangecms'
-  require 'strange_core'
-  
+
   #require 'paperclip'
   
   #require 'rack/cache'
   #require 'dragonfly/rails/images'
   
-  
-  require 'strange_core'
-  
-  require 'strange_sites'
   
   require 'strange_header_hooks'
 

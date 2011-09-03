@@ -21,6 +21,9 @@ class Admin::SettingsController < Admin::BaseController
     end
   end
   
+  def info
+  end
+  
   def edit
     @name = params[:name] || params[:id]
     if @setting_names.include?(@name)
