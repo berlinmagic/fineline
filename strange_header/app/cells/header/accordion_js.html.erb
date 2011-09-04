@@ -25,7 +25,7 @@
 			onActivate : function() { this.find('figcaption').fadeOut(); },
 			slideCallback : function() { this.find('figcaption').fadeIn(); },
 			
-			autoPlay : true, 
+			autoPlay : <%= @header.autoplay ? 'true' : 'false' %>, 
 			pauseOnHover : true,
 			cycleSpeed : <%= @header.staytime * 1000 %>,
 			slideSpeed : <%= @header.changetime * 100 %>,

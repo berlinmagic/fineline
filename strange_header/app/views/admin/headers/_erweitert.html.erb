@@ -65,7 +65,7 @@
 					</ul>
 				</div>
 				<span class="fineline_select_text selected"><%= @header.autoplay ? t('aktiv') : t('inaktiv') %></span>
-				<%= f.hidden_field :sort, :value => @header.autoplay, :class => 'fineline_select_box_input' %>
+				<%= f.hidden_field :autoplay, :value => @header.autoplay, :class => 'fineline_select_box_input' %>
 			</div>
 			<div class="clearfix"></div>
 	</div>
