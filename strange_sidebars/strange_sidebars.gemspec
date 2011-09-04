@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.requirements << 'none'
   
-  s.add_dependency('strangecms',  ">= 0.0.9")
+  s.add_dependency('strangecms',  ">= 0.1.20")
   s.add_dependency('strange_categories',  ">= 0.0.3")
   
 end

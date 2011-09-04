@@ -48,10 +48,11 @@ class CreateStrangeHeader < ActiveRecord::Migration
       t.string        :bild_uid                                       # => Dragonfly
       t.string        :bild_cropping                                  # => Std-Cropping
       t.float         :h_ratio                                        # => Seitenverhältniss
-      # Update  > Version 0.0.16
-      t.boolean       :extendit,        :default => false             # => Bild erweitern:  Ja / Nein
-      t.boolean       :fadeit,          :default => false             # => Bild seitlich ausfaden:  Ja / Nein
-      t.integer       :fade_factor,     :default => 13                # => Fade-Breite in Pixel
+      
+      # Update1  > Version 0.0.16
+      #.boolean       :extendit,        :default => false             # => Bild erweitern:  Ja / Nein
+      #.boolean       :fadeit,          :default => false             # => Bild seitlich ausfaden:  Ja / Nein
+      #.integer       :fade_factor,     :default => 13                # => Fade-Breite in Pixel
 
       t.timestamps
     end
@@ -64,10 +65,11 @@ class CreateStrangeHeader < ActiveRecord::Migration
       t.integer       :position                                       # => Sortierung
       t.string        :cropping                                       # => this-Cropping
       t.float         :h_ratio                                        # => Seitenverhältniss
-      # Update  > Version 0.0.16
-      t.boolean       :extendit,        :default => false             # => Autoplay:  Ja / Nein
-      t.boolean       :fadeit,          :default => false             # => Autoplay:  Ja / Nein
-      t.integer       :fade_factor,     :default => 13                # => Fade-Breite in Pixel
+      
+      # Update1  > Version 0.0.16
+      #.boolean       :extendit,        :default => false             # => Autoplay:  Ja / Nein
+      #.boolean       :fadeit,          :default => false             # => Autoplay:  Ja / Nein
+      #.integer       :fade_factor,     :default => 13                # => Fade-Breite in Pixel
       
       t.timestamps
     end

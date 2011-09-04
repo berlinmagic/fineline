@@ -20,7 +20,13 @@ module StrangeHeader
       def copy_migrations
         puts("Header:: create Migration-File")
         migration_template "create_strange_header.rb", "db/migrate/create_strange_header.rb"
-        # => migration_template "create_something_else.rb", "db/migrate/create_something_else.rb"
+        
+        libdirs = File.join(File.expand_path('../templates', __FILE__), "update*.*")
+           
+        Dir.glob(libdirs) do |file|
+          file_name = File.basename("#{file}")
+          migration_template "#{file}", "db/migrate/#{file_name}"
+        end
       end
       
       def seed_header

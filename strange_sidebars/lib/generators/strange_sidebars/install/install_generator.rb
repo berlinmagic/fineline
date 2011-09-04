@@ -1,7 +1,7 @@
 # encoding: utf-8
 require 'rails/generators/migration'
 
-module StrangeGallerie
+module StrangeSidebars
   module Generators
     class InstallGenerator < ::Rails::Generators::Base
       include Rails::Generators::Migration

@@ -2,11 +2,9 @@
   
   require 'strangecms'
   
-  require 'strange_core'
-  
-  require 'strange_sites'
-  
   require 'strange_sidebars_hooks'
+  
+  require 'sidebar/config'
 
 
 module StrangeSidebars

@@ -10,7 +10,7 @@ module Dragonfly
 
         rmagick_image(temp_object) do |image|
           
-          image = image.write('PNG')
+          # => image = image.write('PNG')
            
           width   =   opts[:width]  || 3000
           height  =   opts[:height] || 1500
@@ -21,7 +21,7 @@ module Dragonfly
           x_off   =   (width - image.columns) / -2
           y_off   =   (height - image.rows) / -2
           
-          image.background_color = "rgba(0,0,0,0.0)"
+          image.background_color = "rgba(0,0,0,0.00)"
           
           image.extent(width, height, x_off, y_off)
           
