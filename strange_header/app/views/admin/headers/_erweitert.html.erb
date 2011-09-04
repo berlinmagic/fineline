@@ -49,6 +49,26 @@
 			</div>
 			<div class="clearfix"></div>
 	</div>
+	
+	<div class="vspacer"></div>
+	
+	<div class="fl_box_110 erster">
+		<label><%= t('strange_header.autoplay') %></label>
+	</div>
+	<div class="fl_box_350">
+			<div class="fineline_select half std_select">
+				<a href="#" class="fineline_select_trigger"></a>
+				<div class="fineline_select_box hidden">
+					<ul>
+						<li class="level_0"><%= link_to t('aktiv'), '1' %></li>
+						<li class="level_0"><%= link_to t('inaktiv'), '0' %></li>
+					</ul>
+				</div>
+				<span class="fineline_select_text selected"><%= @header.autoplay ? t('aktiv') : t('inaktiv') %></span>
+				<%= f.hidden_field :sort, :value => @header.autoplay, :class => 'fineline_select_box_input' %>
+			</div>
+			<div class="clearfix"></div>
+	</div>
 
 	<div class="vspacer"></div>
 	

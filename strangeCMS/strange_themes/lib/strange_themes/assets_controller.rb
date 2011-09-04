@@ -6,6 +6,8 @@ module StrangeThemes
     include StrangeThemes::CommonMethods
     include StrangeThemes::UrlHelpers
     
+    # => caches_action :images
+    
     def stylesheets
       render_asset asset_path_for(params[:asset], 'stylesheets'), defaulft_asset_path_for(params[:asset], 'stylesheets'), app_asset_path_for(params[:asset], 'stylesheets'), mime_type_from(params[:asset])
     end
@@ -15,7 +17,7 @@ module StrangeThemes
     end
     
     def images
-      render_asset asset_path_for(params[:asset], 'images'), defaulft_asset_path_for(params[:asset], 'images'), app_asset_path_for(params[:asset], 'images'), mime_type_from(params[:asset])  
+      render_this_asset asset_path_for(params[:asset], 'images'), defaulft_asset_path_for(params[:asset], 'images'), app_asset_path_for(params[:asset], 'images'), mime_type_from(params[:asset])  
     end
     
     # =>  NEW:    safes Production-Bild-Error
@@ -85,6 +87,30 @@ module StrangeThemes
       elsif File.exists?(app)
         send_file app, :type => mime_type.to_s
         # => send_data File.read(app), :disposition => 'inline', :type => mime_type
+      else
+        render :text => 'not found', :status => 404
+      end
+    end
+    
+    def render_this_asset(asset, default, app, mime_type)
+      if File.exists?(asset)
+        if params[:InstanceName]
+          render :template => Rails.root+'/public/'+request.fullpath.to_s
+        else
+          send_file asset, :type => mime_type.to_s
+        end
+      elsif File.exists?(default)
+        if params[:InstanceName]
+          render :template => Rails.root+'/public/'+request.fullpath.to_s
+        else
+          send_file default, :type => mime_type.to_s
+        end
+      elsif File.exists?(app)
+        if params[:InstanceName]
+          render :template => Rails.root+'/public/'+request.fullpath.to_s
+        else
+          send_file app, :type => mime_type.to_s
+        end
       else
         render :text => 'not found', :status => 404
       end

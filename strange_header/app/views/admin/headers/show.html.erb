@@ -43,14 +43,15 @@
 					<%= t('strange_header.header_use') %>
 				</div>
 				<div class="fl_box_350 norm2">
+					<% if @header.name == 'Standard_Header' %>
+						<p class="norm1"><%= t('strange_header.std_header_desc')  %></p>
+					<% end %>
 					<% @header.seiten.each do |seite| %>
 						<div class="selcted_sites"><%= seite.name %></div> <%= finelineButton(:icon => 25, :color => 'hell', :url => remove_site_admin_seite_header_path(seite,@header), :blur => 70, :title => t('strange_header.delete_site') ) %><br/>
 					<% end %>
-					<% if @header.name == 'Standard_Header' %>
-						<%= t('strange_header.std_header_desc')  %>
-					<% else %>
-						<br/>
-						<%= form_tag admin_add_header_site_path, :id => 'site_add_form' do %>
+					
+					<br/>
+					<%= form_tag admin_add_header_site_path, :id => 'site_add_form' do %>
 						<%= hidden_field :form, :header, :value => @header.id %>
 						<div class="fineline_select std_select">
 							<a href="#" class="fineline_select_trigger"></a>
@@ -89,8 +90,8 @@
 													:class => "submitter",
 													:title => t('strange_header.add_site') ) %>
 						<div class="clearfix"></div>
-						<% end %>
 					<% end %>
+
 				</div>
 				<div class="clearfix"></div>
 				

@@ -41,8 +41,8 @@ module StrangeThemes
           xax = Dir.glob(File.join(thp, config.themes_dir, "*")) 
           xax.each do |axa|
             tgs << axa
+            tgp << thp
           end
-          tgp << thp
         end
       end
       tgs.each_with_index do |gtp, i|

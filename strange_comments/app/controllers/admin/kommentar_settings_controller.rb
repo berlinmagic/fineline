@@ -20,7 +20,7 @@ class Admin::KommentarSettingsController < Admin::BaseController
           
           redirect_to "admin/settings/kommentare/index"
         else
-          render :template => "admin/settings/kommentare/edit" 
+          render :template => "admin/kommentar_settings/edit" 
         end
 
   end
@@ -31,7 +31,7 @@ class Admin::KommentarSettingsController < Admin::BaseController
           
           redirect_to "admin/settings/kommentare/index"
         else
-          render :template => "admin/settings/kommentare/edit" 
+          render :template => "admin/kommentar_settings/edit" 
         end
 
   end
@@ -42,7 +42,7 @@ class Admin::KommentarSettingsController < Admin::BaseController
           
           redirect_to "admin/settings/kommentare/index"
         else
-          render :template => "admin/settings/kommentare/edit" 
+          render :template => "admin/kommentar_settings/edit" 
         end
 
   end

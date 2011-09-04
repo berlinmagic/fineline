@@ -38,6 +38,7 @@ de:
       delete_site: "Seite entfernen"
       staytime: "Standzeit"
       changetime: "Wechselzeit"
+      autoplay: "Automatisch abspielen"
       pic_formats: "Bildformate"
       pic_action: "Bildaktionen"
       pic_actions:
@@ -97,6 +98,7 @@ de:
           fader: "Fader"
           slider: "Slider"
           s3_slider: "S3-Slider"
+          accordion: "Akkordion"
       bg_pos_h: "Position horizontal:"
       bg_pos_hs:
           left: "Links"
@@ -113,6 +115,10 @@ de:
           yrepeat: "vertikal"
           repeat: "beide"
           norepeat: "keine"
+      settings: "Headereinstellungen"
+      setting:
+          generell_show_header: "Header generell anzeigen"
+          generell_show_header_help: "Header wird auf jeder Seite angezeigt, wenn die Seite keinen zugewiesenen Header besitzt wird der Standardheader angezeigt."
 ##############################################################################################################################################
 #  =>  #  =>  #  =>  #  =>  #  =>  #  =>  #  =>  #  =>   S T R A N G E - C M S   <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #
 ##############################################################################################################################################

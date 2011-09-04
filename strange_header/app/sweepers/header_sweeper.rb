@@ -37,6 +37,10 @@ class HeaderSweeper < ActionController::Caching::Sweeper
       expire_action :controller => 'admin/headers', :action => "index"
       expire_action :controller => 'admin/headers', :action => "show", :id => record.id
       
+      record.header_hpics.each do |hhp|
+        expire_fragment(:controller => 'admin/headers', :action => 'show', :id => record.id, :part => "hhpic_#{hhp.id}")
+      end
+      
       # Expire Cells
       expire_cell_state(HeaderCell, :fader, record.id)
       expire_cell_state(HeaderCell, :fader_js, record.id)

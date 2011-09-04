@@ -1,7 +1,7 @@
 # encoding: utf-8
 class Header < ActiveRecord::Base
   
-  HEADER_STYLES = ['fader', 'slider', 's3_slider']
+  HEADER_STYLES = ['fader', 'slider', 's3_slider', 'accordion']
   
   BG_STYLES = ['farbe', 'verlauf', 'bild', 'bild_farbe', 'bild_verlauf', 'none']
   

@@ -1,0 +1,71 @@
+<div class="admin_box">
+	<h1 class="admin"><%= finelineIcon(:icon => 49, :color => 'dunkel', :size => 24, :blur => 50) %><%= t('strange_header.settings') %> <%= t('edit')%></h1>
+	<div class="admin_in_box">
+		
+		<%= form_tag('/admin/settings/header/update', :method => :put) do -%>
+		<%= hidden_field_tag('name', @name, :size => 50 ) %>
+		
+		
+		<div class="box">
+			<div class="in_box">
+				<p>Wählen Sie hier alle Felder aus, welche im Kontakt-Formular angezeigt werden sollen. Weiterhin können Sie einstellen welche Felder Pflichtfelder sind, also ausgefüllt werden müssen.</p>
+			</div>
+		</div>
+
+		
+		<div class="box">
+			<div class="in_box white">
+				<table class="settings kontakt">
+						
+						
+						<tr>
+							<th>Kommentare sind </th>
+							<td>
+								<% if Strangecms::Header::Config[:aktiv] %>
+									<span class="cool">aktiv</span>
+								<% else %>
+									<span class="panic">Achtung, inaktiv!</span>
+								<% end %>
+								<% if site_master %>
+									<%= hidden_field_tag('preferences[aktiv]', Strangecms::Header::Config[:aktiv]) %>
+									<%= link_to '', '#', :class => "on_off_schalter #{Strangecms::Header::Config[:aktiv] ? 'an' : 'aus'}" %>
+								<%end%>
+							</td>
+						</tr>
+						
+						
+						
+						<tr>
+							<th><%= t('strange_header.setting.generell_show_header') %></th>
+							<td>
+								<%= hidden_field_tag('preferences[generell_show_header]', Strangecms::Header::Config[:generell_show_header]) %>
+								<%= link_to '', '#', :class => "on_off_schalter #{Strangecms::Header::Config[:generell_show_header] ? 'an' : 'aus'}" %>
+							</td>
+						</tr>
+
+						<tr>
+							<th colspan="2" class="norm1"><%= t('strange_header.setting.generell_show_header_help')%></th>
+						</tr>
+				</table>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<%= submit_tag t('save_settings') %>
+				<div class="big_button_spacer"><%= t('or') %></div>
+				<%= link_to t('cancel'), '/admin/settings/header', :class => 'big_button' %>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		
+		<% end %>
+	</div>
+</div>
+
+
+
+
+
+
+
+<%= render 'admin/settings/sidebar' %>

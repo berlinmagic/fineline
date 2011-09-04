@@ -36,18 +36,24 @@ module StrangeThemes
     
     def gem_theme_available?
       @xx = ''
-      Rails::Application.railties.engines.each do |key|
-        @xx = 'Yeah' if key.class.to_s.split('::').first.match(/StrangeTheme*/)
+      # => Rails::Application.railties.engines.each do |key|
+      # =>   @xx = 'Yeah' if key.class.to_s.split('::').first.match(/StrangeTheme*/)
+      # => end
+      StrangeThemes::GemedThemes::ThemeListener.subclasses.each do |theme_class|
+        @xx = 'Yeah'
       end
       true if @xx == 'Yeah'
     end
     
     def gem_theme_pathes
       @theme_paths = []
-      Rails::Application.railties.engines.each do |key|
-        if key.class.to_s.split('::').first.match(/StrangeTheme*/)
-          @theme_paths << "#{key.config.root}"
-        end
+      # => Rails::Application.railties.engines.each do |key|
+      # =>   if key.class.to_s.split('::').first.match(/StrangeTheme*/)
+      # =>     @theme_paths << "#{key.config.root}"
+      # =>   end
+      # => end
+      StrangeThemes::GemedThemes::ThemeListener.subclasses.each do |theme_class|
+        @theme_paths << "#{theme_class.to_s.gsub(/Theme$/, '').classify.constantize::Engine.config.root}"
       end
       return @theme_paths
     end

@@ -1,0 +1,37 @@
+<%= theme_javascript_include_tag 'accordion' %>
+<script>
+	$('#header_accordion').liteAccordion({
+			/*
+			containerWidth : 960,           // width of accordion (px)
+			containerHeight : 320,          // height of accordion (px)
+			headerWidth : 48,               // width of tabs (px)
+
+			firstSlide : 1,                 // number of the first active slide (integer)
+			onActivate : function() {},     // callback function triggered on tab click/mouseover (function)
+			slideSpeed : 800,               // speed of slide animation (time/ms)
+			slideCallback : function() {},  // callback function triggered after slide animation is complete (function)
+
+			autoPlay : false,               // automatically scroll through the slides, if true with pause on user click (boolean)
+			pauseOnHover : false,           // *NEW in 1.1* - pause slides on hover
+			cycleSpeed : 6000,              // time between slide activation (time/ms)
+
+			theme : 'basic',                // which theme to use ('basic', 'light'*, 'dark', or 'stitch'*)
+			rounded : false,                // whether to use rounded corners or not** (boolean)
+			enumerateSlides : false         // show slide number in tab
+			*/
+			containerWidth : <%= @header.width + @header.hpics.count * 40 %>,
+			containerHeight : <%= @header.height %>,
+			headerWidth : 40, 
+			onActivate : function() { this.find('figcaption').fadeOut(); },
+			slideCallback : function() { this.find('figcaption').fadeIn(); },
+			
+			autoPlay : true, 
+			pauseOnHover : true,
+			cycleSpeed : <%= @header.staytime * 1000 %>,
+			slideSpeed : <%= @header.changetime * 100 %>,
+			
+			theme : 'dark',
+			rounded : true,
+			enumerateSlides : true					
+	}).find('figcaption:first').show();
+</script>

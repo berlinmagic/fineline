@@ -11,6 +11,8 @@
   
   
   require 'strange_header_hooks'
+  
+  require 'header/config'
 
 
 module StrangeHeader

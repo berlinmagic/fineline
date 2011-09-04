@@ -43,7 +43,14 @@ class Admin::SettingsController < Admin::BaseController
       respond_to do |format|
         if Strangecms::Config.set(params[:preferences])
           Strangecms::Preferences::MailSettings.init if (@name == 'mail') || (@name == 'cms')
-          FileUtils.touch "#{Rails.root}/tmp/restart.txt" if (@name == 'optik')
+          if (@name == 'optik')
+            expire_page	'/system/finestyle.css'
+            expire_page	'/system/admin_finestyle.css'
+            expire_page	'/system/editor_finestyle.css'
+            expire_page	'/system/finescript.js'
+            expire_page	'/system/admin_finescript.js'
+            FileUtils.touch "#{Rails.root}/tmp/restart.txt"
+          end
           flash.now[:notice] = I18n.t('strange_preferences.settings_updated')
           format.html { render :template => "admin/settings/#{@name}" }
         else

@@ -15,17 +15,15 @@ class HeaderCell < Cell::Rails
   def display(args)
     @seite = args[:seite]
     if @seite
-      @header = @seite.header || Header.first
+      if @seite.header
+        @header = @seite.header
+      else
+        @header = Header.first if Strangecms::Header::Config[:generell_show_header]
+      end
     else
-      @header = Header.first
+      @header = Header.first if Strangecms::Header::Config[:generell_show_header]
     end
    render
-  end
-  
-  def fader(args)
-    @seite = args[:seite]
-    @header = args[:header]
-    render
   end
   
   def script(args)
@@ -38,11 +36,28 @@ class HeaderCell < Cell::Rails
     render
   end
   
+  def fader(args)
+    @seite = args[:seite]
+    @header = args[:header]
+    render
+  end
+  
   def fader_js(args)
     @seite = args[:seite]
     @header = args[:header]
     render
   end
   
+  def accordion(args)
+    @seite = args[:seite]
+    @header = args[:header]
+    render
+  end
+  
+  def accordion_js(args)
+    @seite = args[:seite]
+    @header = args[:header]
+    render
+  end
 
 end

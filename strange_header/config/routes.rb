@@ -2,6 +2,15 @@ Rails.application.routes.draw do
   
   namespace :admin do
     
+    namespace :settings do
+      resources :header do
+        collection do
+          get :edit
+          put :update
+        end
+      end
+    end
+      
     match 'change_header' => 'headers#change_header'
     match 'add_header_site' => 'headers#add_site'
     resources :headers do

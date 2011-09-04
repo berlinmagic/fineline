@@ -1,10 +1,10 @@
+<% if @header %>
 <style type="text/css">
 
 #top_banner_shadow, #bottom_banner_shadow { position: absolute; left: 0; display:block; z-index: 9; width: 100%; padding: 0 30px; margin: 0 -30px; height: 13px;  }
 #top_banner_shadow { top: 0; <%= fine_boxShadow( 'inset 0 9px 9px 0px rgba(0,0,0,.7)' ) %> }
 #bottom_banner_shadow { bottom: 0; <%= fine_boxShadow( 'inset 0 -9px 9px 0px rgba(0,0,0,.7)' ) %> }
 
-#banner { height: <%= @header.height %>px; }
 #fine_banner_box {}
 <% rpt = 'no-repeat' %>
 <% if @header.bg_repeat %>
@@ -44,22 +44,41 @@
 
 <% end %>
 
+
+
+<% if @header.typ == 'accordion' %>
+	#banner { height: <%= @header.height + 20 %>px; }
+	#banner #main_nav_holder { height: <%= @header.height + 20 %>px;}
+<% else %>
+	#banner { height: <%= @header.height %>px; }
 	#banner #main_nav_holder { height: <%= @header.height %>px;}
+<% end %>
+	
 </style>
 
-	<div id="top_banner_shadow"></div>
-	<div id="bottom_banner_shadow"></div>
+
+	
 	
 <% if @header.hpics.count > 1 %>
 
 
 	<% if @header.typ == 'fader' %>
+		
+		<div id="top_banner_shadow"></div>
+		<div id="bottom_banner_shadow"></div>
 	
 		<%= render_cell :header, :fader, :seite => @seite, :header => @header %>
+	
+	<% elsif @header.typ == 'accordion' %>
+
+		<%= render_cell :header, :accordion, :seite => @seite, :header => @header %>
 
 	<% end %>
 
 <% elsif @header.hpics.count == 1 %>
+
+<div id="top_banner_shadow"></div>
+<div id="bottom_banner_shadow"></div>
 
 	<div id="banner_pic_holder">
 		<% @header.header_hpics.each do |slider| %>
@@ -75,5 +94,7 @@
 	#banner_pic_holder { position:absolute; width: <%= @header.width %>px; height: <%= @header.height %>px; left:50%; margin-left: -<%= @header.width / 2 %>px; top: 0; border: 0; text-align:center; display: block; }
 	</style>
 
+
+<% end %>
 
 <% end %>

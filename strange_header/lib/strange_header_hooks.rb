@@ -43,4 +43,8 @@ class StrangeHeaderHooks < Strangecms::ThemeSupport::HookListener
     "<%= render 'stylesheetz/header' %>"
   end
   
+  insert_after :admin_settings_sidebar do
+    "<li><%= link_to 'Header', '/admin/settings/header', :class => ('aktiv' if @u_aktiv == 'header_settings') %></li>"
+  end
+  
 end
