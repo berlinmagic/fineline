@@ -4,7 +4,8 @@
 		<a href="#">Sidebars</a>
 	</div>
 	<ul class='sidebar'>
-		<li><%= link_to t('strange_header.links.index'), admin_headers_path, :class => "#{'aktiv' if @u_aktiv == 'index'}" %></li>
+		<li><%= link_to t('strange_sidebars.links.index'), admin_sidebars_path, :class => "#{'aktiv' if @u_aktiv == 'index'}" %></li>
+		<li><%= link_to t('strange_sidebars.links.new'), new_admin_sidebar_path, :class => "#{'aktiv' if @u_aktiv == 'new'}" %></li>
 	</ul>
 </div>
 

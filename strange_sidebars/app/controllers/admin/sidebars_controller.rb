@@ -6,6 +6,10 @@ class Admin::SidebarsController < Admin::BaseController
   def index
     @sidebars = Sidebar.all
   end
+  
+  def new
+    @sidebar = Sidebar.new
+  end
  
   
   def get_navi_werte
