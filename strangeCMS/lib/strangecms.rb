@@ -9,7 +9,6 @@ require 'strange_themes'
 require 'strangecms/version'
 
 
-
 module Strangecms
   class Engine < Rails::Engine
   end

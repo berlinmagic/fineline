@@ -1,7 +1,7 @@
 # encoding: utf-8
 class Admin::HpicsController < Admin::BaseController
   
-  include FinestyleHelp
+  # => include FinestyleHelp
   
   before_filter :load_data
   
@@ -63,10 +63,10 @@ class Admin::HpicsController < Admin::BaseController
       @hpic.h_ratio = params[:hpic][:h_ratio]
       @hpic.save
     end
-    expire_cell_state(HeaderCell, :fader, "headers/#{@header.id}")
-    expire_cell_state(HeaderCell, :fader_js, "headers/#{@header.id}") 
-    expire_action :controller => 'admin/headers', :action => "index"
-    expire_action :controller => 'admin/headers', :action => "show", :id => @header_hpic.header.id
+    # => expire_cell_state(HeaderCell, :fader, "headers/#{@header.id}")
+    # => expire_cell_state(HeaderCell, :fader_js, "headers/#{@header.id}") 
+    # => expire_action :controller => 'admin/headers', :action => "index"
+    # => expire_action :controller => 'admin/headers', :action => "show", :id => @header_hpic.header.id
     redirect_to(admin_header_path(@header), :notice => t('hpic_was_croped'))
   end
   
@@ -77,8 +77,8 @@ class Admin::HpicsController < Admin::BaseController
   def destroy
     @hpic = Hpic.find(params[:id])
     @hpic.destroy
-    expire_action :controller => 'admin/headers', :action => "index"
-    expire_action :controller => 'admin/headers', :action => "show", :id => @hpic.header.id
+    # => expire_action :controller => 'admin/headers', :action => "index"
+    # => expire_action :controller => 'admin/headers', :action => "show", :id => @hpic.header.id
     respond_to do |format|
       format.html { redirect_to admin_headers_path }
       format.js  { render :nothing => true }
@@ -94,8 +94,8 @@ class Admin::HpicsController < Admin::BaseController
           render :action => 'crop'
         else
           if @header
-            expire_action :controller => 'admin/headers', :action => "index"
-            expire_action :controller => 'admin/headers', :action => "show", :id => @header.id
+            # => expire_action :controller => 'admin/headers', :action => "index"
+            # => expire_action :controller => 'admin/headers', :action => "show", :id => @header.id
             format.html { redirect_to(admin_header_path(@header), :notice => t('hpic_was_updated')) }
             format.xml  { head :ok }
           else
@@ -115,8 +115,8 @@ class Admin::HpicsController < Admin::BaseController
     respond_to do |format|
       if @hpic.save
         if @header
-          expire_action :controller => 'admin/headers', :action => "index"
-          expire_action :controller => 'admin/headers', :action => "show", :id => @header.id
+          # => expire_action :controller => 'admin/headers', :action => "index"
+          # => expire_action :controller => 'admin/headers', :action => "show", :id => @header.id
           @headerhpic = HeaderHpic.create! :header_id => @header.id, :hpic_id => @hpic.id
         end
         if params[:hpic][:bild].present?

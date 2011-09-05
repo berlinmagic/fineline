@@ -16,8 +16,7 @@ class AppConfiguration < Configuration
   preference :compress_stylez, :boolean, :default => true
   preference :compress_scriptz, :boolean, :default => true
   
-  
-  
+  preference :logo_datei, :integer
   
   preference :show_site_name, :boolean, :default => true
   preference :stange_owner_name, :string, :default => 'Name'

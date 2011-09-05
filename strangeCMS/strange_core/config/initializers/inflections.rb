@@ -3,6 +3,7 @@
    inflect.irregular  'abschnitt',       'abschnitte'
    inflect.irregular  'adresse',         'adressen'
    inflect.irregular  'aktion',          'aktionen'
+   inflect.irregular  'anhang',          'anhaenge'
    
    inflect.irregular  'bereich',         'bereiche'
    inflect.irregular  'besonderheit',    'besonderheiten'

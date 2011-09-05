@@ -26,6 +26,34 @@
 						<th><%= t('strange_preferences.theme') %></th>
 						<td><%= Strangecms::Config[:theme] %></td>
 					</tr>
+					
+					<tr>
+						<th><%= t('strange_preferences.logo') %></th>
+						<td>
+							<% if Strangecms::Config[:logo_datei] && !Strangecms::Config[:logo_datei].blank? %>
+								<% if datei = Datei.find(Strangecms::Config[:logo_datei]) %>
+									<%= image_tag datei.file.url() %>
+								<% end %>
+							<% end %>
+						</td>
+					</tr>
+					<tr>
+						<th><%= t('edit') %></th>
+						<td>
+							<%= form_tag(new_pref_pic_admin_settings_path, :method => :post) do %>
+							
+								<%= hidden_field_tag :typ, :value => 'Front_Logo' %>
+								<%= hidden_field_tag :name, :value => 'optik' %>
+								<%= hidden_field_tag :back_link, :value => admin_root_path %>
+								<%= hidden_field_tag :key, :value => 'logo_datei' %>
+								
+								<%= submit_tag 'bearbeiten'%>
+								
+								
+							<% end %>
+						</td>
+					</tr>
+					
 					<tr>
 						<th><%= t('strange_preferences.strange_logo') %></th>
 						<td><%= Strangecms::Config[:strange_logo] %></td>

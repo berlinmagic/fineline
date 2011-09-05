@@ -25,6 +25,14 @@
 						<th><%= t('strange_preferences.theme') %></th>
 						<td><%= select_tag 'preferences[theme]', options_for_select(StrangeThemes.available_theme_names.map { |c| [c, c] }, Strangecms::Config[:theme])    %></td>
 					</tr>
+					
+					
+					<tr>
+						<th><%= t('strange_preferences.logo') %></th>
+						<td><%= file_field_tag('preferences[logo]') %></td>
+					</tr>
+					
+					
 					<tr>
 						<th><%= t('strange_preferences.strange_logo') %></th>
 						<td><%= text_field_tag('preferences[strange_logo]', Strangecms::Config[:strange_logo], :size => 50 )%></td>

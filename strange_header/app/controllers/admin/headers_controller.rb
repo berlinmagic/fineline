@@ -1,7 +1,7 @@
 # encoding: utf-8
 class Admin::HeadersController < Admin::BaseController
   
-  include FinestyleHelp
+  # => include FinestyleHelp
   
   before_filter :get_navi_werte
   
@@ -47,8 +47,8 @@ class Admin::HeadersController < Admin::BaseController
     @header.ratio = ( params[:header][:width].to_f / params[:header][:height].to_f )
     respond_to do |format|
       if @header.save
-        expire_action :action => "index"
-        expire_action :action => "show", :id => params[:id]
+        # => expire_action :action => "index"
+        # => expire_action :action => "show", :id => params[:id]
         format.html { redirect_to(admin_headers_path, :notice => t('header_was_created')) }
         format.xml  { render :xml => @header, :status => :created, :location => @header }
       else
@@ -63,8 +63,8 @@ class Admin::HeadersController < Admin::BaseController
     @header.ratio = ( params[:header][:width].to_f / params[:header][:height].to_f )
     respond_to do |format|
       if @header.update_attributes(params[:header])
-        expire_action :action => "index"
-        expire_action :action => "show", :id => params[:id]
+        # => expire_action :action => "index"
+        # => expire_action :action => "show", :id => params[:id]
         format.html { redirect_to(admin_headers_path, :notice => t('header_was_updated')) }
         format.xml  { head :ok }
       else
@@ -86,7 +86,7 @@ class Admin::HeadersController < Admin::BaseController
         @header.seiten << @seite
       end
     end
-    expire_action :action => "show", :id => @header.id
+    # => expire_action :action => "show", :id => @header.id
     redirect_to admin_header_path(@header)
   end
   
@@ -95,8 +95,8 @@ class Admin::HeadersController < Admin::BaseController
     unless @header.system_stuff
       @header.destroy
     end
-    expire_action :action => "index"
-    expire_action :action => "show", :id => params[:id]
+    # => expire_action :action => "index"
+    # => expire_action :action => "show", :id => params[:id]
     respond_to do |format|
       format.html { redirect_to admin_headers_path }
       format.js  { render :nothing => true }
@@ -111,7 +111,7 @@ class Admin::HeadersController < Admin::BaseController
     @killa.each do |kill|
       kill.destroy
     end
-    expire_action :action => "show", :id => @header.id
+    # => expire_action :action => "show", :id => @header.id
     redirect_to admin_header_path(@header), :notice => t('header_seite_was_deleted', :name => @seite.name)
   end
   

@@ -70,6 +70,38 @@ class Admin::SettingsController < Admin::BaseController
     @aktivio = 'settings'
   end
   
+  def new_pref_pic
+    @prefs     = params[:prefs]
+    @name      = params[:name]
+    @key       = params[:key]
+    @typ       = params[:typ]
+    @back_link = params[:back_link]
+    render :template => 'admin/settings/pref_pic_form'
+  end
+  
+  def edit_pref_pic
+    @prefs     = params[:prefs]
+    @name      = params[:name]
+    @key       = params[:key]
+    @typ       = params[:typ]
+    @back_link = params[:back_link]
+    render :template => 'admin/settings/pref_pic_form'
+  end
+  
+  def update_pref_pic
+    @prefs     = params[:prefs]
+    @key       = params[:key]
+    @typ       = params[:typ]
+    @back_link = params[:back_link]
+    @datei = Datei.create! params[:datei]
+    if !@prefs.blank?
+      "Strangecms::#{@prefs.classify.constantize}::Config".classify.constantize.set(@key => @datei.id)
+    else
+      Strangecms::Config.set(@key => @datei.id)
+    end
+    redirect_to @back_link
+  end
+  
   
   
 end

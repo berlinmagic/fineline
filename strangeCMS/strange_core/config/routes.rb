@@ -3,6 +3,8 @@ Rails.application.routes.draw do
     resources :settings do 
       collection do
         get  :info
+        post :new_pref_pic
+        put :update_pref_pic
       end
     end
     
