@@ -29,7 +29,7 @@
 					
 					<tr>
 						<th><%= t('strange_preferences.logo') %></th>
-						<td>
+						<td><%= Strangecms::Config[:logo_datei] %><br/>
 							<% if Strangecms::Config[:logo_datei] && !Strangecms::Config[:logo_datei].blank? %>
 								<% if datei = Datei.find(Strangecms::Config[:logo_datei]) %>
 									<%= image_tag datei.file.url() %>
@@ -42,10 +42,10 @@
 						<td>
 							<%= form_tag(new_pref_pic_admin_settings_path, :method => :post) do %>
 							
-								<%= hidden_field_tag :typ, :value => 'Front_Logo' %>
-								<%= hidden_field_tag :name, :value => 'optik' %>
-								<%= hidden_field_tag :back_link, :value => admin_root_path %>
-								<%= hidden_field_tag :key, :value => 'logo_datei' %>
+								<%= hidden_field_tag :typ, 'Front_Logo' %>
+								<%= hidden_field_tag :name, 'optik' %>
+								<%= hidden_field_tag :back_link, '/admin/settings/optik' %>
+								<%= hidden_field_tag :key, 'logo_datei' %>
 								
 								<%= submit_tag 'bearbeiten'%>
 								

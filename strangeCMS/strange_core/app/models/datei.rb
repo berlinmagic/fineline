@@ -7,26 +7,25 @@ class Datei < ActiveRecord::Base
   default_scope :order => "name ASC"
   
   
-  image_accessor          :file
-  validates_presence_of   :file
+  image_accessor :file
+  validates_presence_of :file
   
   
-  before_save :set_paramatas
+  after_save :set_paramatas
   
   private
 	
 	  def set_paramatas
-  	  if self.file
-  	    if xy_pic = self.file.name.split('.')
-  	        xy_pic = xy_pic.delete(xy_pic.last)
-  	      
-  	        self.name       = xy_pic.last unless self.name && !self.name.blank?
-  	        
-  	        self.mime_type  = self.file.mime_type
-  	        self.file_type  = self.file.format
-  	        self.image      = self.file.image?
-  	        
+	    if self.file
+  	    if xy_pic = file.bild.name.split('.')
+  	      xy_pic.delete(xy_pic.last)
+  	      unless self.name && self.name != ''
+  	        self.name = xy_pic.last
+  	      end
   	    end
+  	    #self.mime_type  = self.file.mime_type
+        # => self.file_type  = self.file.format
+        #self.image      = self.file.image?
   	  end
   	end
   

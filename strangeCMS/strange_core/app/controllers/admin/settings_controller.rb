@@ -93,7 +93,8 @@ class Admin::SettingsController < Admin::BaseController
     @key       = params[:key]
     @typ       = params[:typ]
     @back_link = params[:back_link]
-    @datei = Datei.create! params[:datei]
+    @datei = Datei.new( params[:datei] )
+    @datei.save
     if !@prefs.blank?
       "Strangecms::#{@prefs.classify.constantize}::Config".classify.constantize.set(@key => @datei.id)
     else

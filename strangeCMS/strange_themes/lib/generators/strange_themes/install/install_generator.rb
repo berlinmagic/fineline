@@ -33,176 +33,86 @@ module StrangeThemes
 
       # => if !!defined?StrangeCore
       # =>   def create_default_core_theme
-      # =>     puts("INFO: Spiegle _Core-views in default-Theme-view-Ordner")
-      # =>     Strangecms::FileUtilz.mirror_files( 
-      # =>           File.join("#{StrangeCore::Engine.config.root}", "app", "views"), 
-      # =>           File.join("#{StrangeThemes.config.themes_path}", "default", "views") 
-      # =>           )
+      # =>     make_modul_views( 'StrangeCore' )
       # =>   end
       # => end
       
       if !!defined?StrangeSites
         def create_default_sites_theme
-          # => puts("INFO: Spiegle _Sites-views in default-Theme-view-Ordner")
-          # => Strangecms::FileUtilz.mirror_files( 
-          # =>       File.join("#{StrangeSites::Engine.config.root}", "app", "views"), 
-          # =>       File.join("#{StrangeThemes.config.themes_path}", "default", "views") 
-          # =>       )
-          # => puts("INFO: Spiegle _Sites-Daten in default-Theme-public-Ordner")
-          # => Strangecms::FileUtilz.mirror_files( 
-          # =>       File.join("#{StrangeSites::Engine.config.root}", "/public"), 
-          # =>       File.join("#{StrangeThemes.config.themes_path}", '/default')
-          # =>       )
-          puts("INFO: Spiegle _Sites-Daten in App-Ordner")
-          Strangecms::FileUtilz.mirror_files( 
-                File.join("#{StrangeSites::Engine.config.root}", "/public"), 
-                File.join("#{Rails.root}", '/public')
-                )
+          # => make_modul_views( 'StrangeSites' )
+          # => make_modul_theme_publics( 'StrangeSites' )
+          make_modul_publics( 'StrangeSites' )
         end
       end
       
       # => if !!defined?StrangeUser
       # =>   def create_default_user_theme
-      # =>     puts("INFO: Spiegle _User-views in default-Theme-view-Ordner")
-      # =>     Strangecms::FileUtilz.mirror_files( 
-      # =>           File.join("#{StrangeUser::Engine.config.root}", "app", "views"), 
-      # =>           File.join("#{StrangeThemes.config.themes_path}", "default", "views") 
-      # =>           )
+      # =>     make_modul_views( 'StrangeUser' )
       # =>   end
       # => end
       
       
-      if !!defined?StrangeCategories
-        def create_default_categories_theme
-          puts("Categories :::::> Spiegle Dateien in Public-Ordner")
-          Strangecms::FileUtilz.mirror_files( 
-                File.join("#{StrangeCategories::Engine.config.root}", "/public"), 
-                File.join("#{Rails.root}", '/public')
-                )
-        end
+      def create_modul_themes
+        
+        make_modul_publics( 'StrangeCategories' )             if !!defined?StrangeCategories
+        make_modul_publics( 'StrangeKontaktform' )            if !!defined?StrangeKontaktform
+        make_modul_publics( 'StrangeHeader' )                 if !!defined?StrangeHeader
+        make_modul_publics( 'StrangeGallerie' )               if !!defined?StrangeGallerie
+        make_modul_publics( 'StrangeBackup' )                 if !!defined?StrangeBackup
+        make_modul_publics( 'StrangeFineform' )               if !!defined?StrangeFineform
+        make_modul_publics( 'StrangeSidebars' )               if !!defined?StrangeSidebars
+        make_modul_publics( 'StrangeNews' )                   if !!defined?StrangeNews
+        make_modul_publics( 'StrangeNewsletter' )             if !!defined?StrangeNewsletter
+        make_modul_publics( 'StrangeComments' )               if !!defined?StrangeComments
+        make_modul_publics( 'StrangeMobilview' )              if !!defined?StrangeMobilview
+        make_modul_publics( 'StrangeStylez' )                 if !!defined?StrangeStylez
+        
       end
       
       
-      if !!defined?StrangeKontaktform
-        def create_default_kontaktform_theme
-          puts("Kontaktform :::::> Spiegle Dateien in Public-Ordner")
+      private
+        
+        def make_modul_theme(modul)
+          puts("#{modul.gsub(/Strange/, '')}:: Spiegle views in default-Theme view-Ordner")
           Strangecms::FileUtilz.mirror_files( 
-                File.join("#{StrangeKontaktform::Engine.config.root}", "/public"), 
-                File.join("#{Rails.root}", '/public')
+                File.join("#{modul.classify.constantize::Engine.config.root}", "app", "views"), 
+                File.join("#{StrangeThemes.config.themes_path}", "default", "views") 
+                )
+          puts("#{modul.gsub(/Strange/, '')}:: Spiegle Daten in default-Theme public-Ordner")
+          Strangecms::FileUtilz.mirror_files( 
+                File.join("#{modul.classify.constantize::Engine.config.root}", "public"), 
+                File.join("#{StrangeThemes.config.themes_path}", 'default')
+                )
+          puts("#{modul.gsub(/Strange/, '')}:: Spiegle Daten in App public-Ordner")
+          Strangecms::FileUtilz.mirror_files( 
+                File.join("#{modul.classify.constantize::Engine.config.root}", "/public"), 
+                File.join("#{Rails.root}", 'public')
                 )
         end
-      end
-      
-      if !!defined?StrangeHeader
-        def create_default_header_theme
-          puts("Header :::::> Spiegle Dateien in Public-Ordner")
+        
+        def make_modul_views(modul)
+          puts("#{modul.gsub(/Strange/, '')}:: Spiegle views in default-Theme view-Ordner")
           Strangecms::FileUtilz.mirror_files( 
-                File.join("#{StrangeHeader::Engine.config.root}", "/public"), 
-                File.join("#{Rails.root}", '/public')
+                File.join("#{modul.classify.constantize::Engine.config.root}", "app", "views"), 
+                File.join("#{StrangeThemes.config.themes_path}", "default", "views") 
                 )
         end
-      end
-      
-      if !!defined?StrangeTags
-        def create_default_tags_theme
-          puts("Tags :::::> Spiegle Dateien in Public-Ordner")
+        
+        def make_modul_publics(modul)
+          puts("#{modul.gsub(/Strange/, '')}:: Spiegle Daten in App public-Ordner")
           Strangecms::FileUtilz.mirror_files( 
-                File.join("#{StrangeTags::Engine.config.root}", "/public"), 
-                File.join("#{Rails.root}", '/public')
+                File.join("#{modul.classify.constantize::Engine.config.root}", "/public"), 
+                File.join("#{Rails.root}", 'public')
                 )
         end
-      end
-      
-      if !!defined?StrangeGallerie
-        def create_default_gallerie_theme
-          puts("Gallerie :::::> Spiegle Dateien in Public-Ordner")
+        
+        def make_modul_theme_publics(modul)
+          puts("#{modul.gsub(/Strange/, '')}:: Spiegle Daten in default-Theme public-Ordner")
           Strangecms::FileUtilz.mirror_files( 
-                File.join("#{StrangeGallerie::Engine.config.root}", "/public"), 
-                File.join("#{Rails.root}", '/public')
+                File.join("#{modul.classify.constantize::Engine.config.root}", "public"), 
+                File.join("#{StrangeThemes.config.themes_path}", 'default')
                 )
         end
-      end
-      
-      if !!defined?StrangeBackup
-        def create_default_backup_theme
-          puts("BackUp :::::> Spiegle Dateien in Public-Ordner")
-          Strangecms::FileUtilz.mirror_files( 
-                File.join("#{StrangeBackup::Engine.config.root}", "/public"), 
-                File.join("#{Rails.root}", '/public')
-                )
-        end
-      end
-      
-      if !!defined?StrangeFineform
-        def create_default_fineform_theme
-          puts("Fineform :::::> Spiegle Dateien in Public-Ordner")
-          Strangecms::FileUtilz.mirror_files( 
-                File.join("#{StrangeFineform::Engine.config.root}", "/public"), 
-                File.join("#{Rails.root}", '/public')
-                )
-        end
-      end
-      
-      if !!defined?StrangeSidebars
-        def create_default_sidebars_theme
-          puts("Sidebars :::::> Spiegle Dateien in Public-Ordner")
-          Strangecms::FileUtilz.mirror_files( 
-                File.join("#{StrangeSidebars::Engine.config.root}", "/public"), 
-                File.join("#{Rails.root}", '/public')
-                )
-        end
-      end
-      
-      if !!defined?StrangeNews
-        def create_default_news_theme
-          puts("News :::::> Spiegle Dateien in Public-Ordner")
-          Strangecms::FileUtilz.mirror_files( 
-                File.join("#{StrangeNews::Engine.config.root}", "/public"), 
-                File.join("#{Rails.root}", '/public')
-                )
-        end
-      end
-      
-      if !!defined?StrangeNewsletter
-        def create_default_newsletter_theme
-          puts("Newsletter :::::> Spiegle Dateien in Public-Ordner")
-          Strangecms::FileUtilz.mirror_files( 
-                File.join("#{StrangeNewsletter::Engine.config.root}", "/public"), 
-                File.join("#{Rails.root}", '/public')
-                )
-        end
-      end
-      
-      if !!defined?StrangeComments
-        def create_default_comments_theme
-          puts("Comments :::::> Spiegle Dateien in Public-Ordner")
-          Strangecms::FileUtilz.mirror_files( 
-                File.join("#{StrangeComments::Engine.config.root}", "/public"), 
-                File.join("#{Rails.root}", '/public')
-                )
-        end
-      end
-      
-      if !!defined?StrangeMobilview
-        def create_default_mobilview_theme
-          puts("Mobilview :::::> Spiegle Dateien in Public-Ordner")
-          Strangecms::FileUtilz.mirror_files( 
-                File.join("#{StrangeMobilview::Engine.config.root}", "/public"), 
-                File.join("#{Rails.root}", '/public')
-                )
-        end
-      end
-      
-      if !!defined?StrangeStylez
-        def create_default_stylez_theme
-          puts("StrangeStylez :::::> Spiegle Dateien in Public-Ordner")
-          Strangecms::FileUtilz.mirror_files( 
-                File.join("#{StrangeStylez::Engine.config.root}", "/public"), 
-                File.join("#{Rails.root}", '/public')
-                )
-        end
-      end
-      
       
       
     end

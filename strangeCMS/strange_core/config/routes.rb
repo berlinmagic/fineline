@@ -4,7 +4,7 @@ Rails.application.routes.draw do
       collection do
         get  :info
         post :new_pref_pic
-        put :update_pref_pic
+        post :update_pref_pic
       end
     end
     

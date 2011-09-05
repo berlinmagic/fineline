@@ -90,13 +90,13 @@ module StrangeThemes
                 )
           puts("#{modul.gsub(/Strange/, '')}:: Spiegle Daten in default-Theme public-Ordner")
           Strangecms::FileUtilz.mirror_files( 
-                File.join("#{modul.classify.constantize::Engine.config.root}", "/public"), 
-                File.join("#{StrangeThemes.config.themes_path}", '/default')
+                File.join("#{modul.classify.constantize::Engine.config.root}", "public"), 
+                File.join("#{StrangeThemes.config.themes_path}", 'default')
                 )
           puts("#{modul.gsub(/Strange/, '')}:: Spiegle Daten in App public-Ordner")
           Strangecms::FileUtilz.mirror_files( 
                 File.join("#{modul.classify.constantize::Engine.config.root}", "/public"), 
-                File.join("#{Rails.root}", '/public')
+                File.join("#{Rails.root}", 'public')
                 )
         end
         
