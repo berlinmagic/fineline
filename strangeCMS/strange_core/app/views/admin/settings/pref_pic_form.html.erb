@@ -9,12 +9,12 @@
 			</div>
 		</div>
 		
-		<%= form_tag(update_pref_pic_admin_settings_path, :html => { :multipart => true }) do -%>
+		<%= form_for @datei, :url => update_pref_pic_admin_settings_path, :html => { :multipart => true } do |f| -%>
 		<%= hidden_field_tag('typ', @typ) %>
 		<%= hidden_field_tag('key', @key) %>
 		<%= hidden_field_tag('back_link', @back_link) %>
 		<%= hidden_field_tag('name', @name) %>
-		
+		<%= hidden_field_tag('prefs', @prefs) %>
 		<div class="box">
 			<div class="trenn_box">
 				<div class="top_trenner"></div>
@@ -25,23 +25,27 @@
 			<div class="in_box">
 				<table class="settings">
 					
+					<%= f.hidden_field :typ, :value => @typ %>
+					<%= f.hidden_field :modul, :value => @modul %>
+					<%= f.hidden_field :autor, :value => current_user.id %>
 					
 					<tr>
 						<th><%= t('strangecms.dateien.name') %></th>
-						<td><%= text_field_tag('datei[name]', '', :size => 50 )%></td>
+						<td><%= f.text_field :name, :size => 50 %></td>
 					</tr>
 					
 					<tr>
 						<th><%= t('strangecms.dateien.beschreibung') %></th>
-						<td><%= text_area_tag('datei[beschreibung]', '', :size => '50x5' )%></td>
+						<td><%= f.text_area :beschreibung, :size => '50x5' %></td>
 					</tr>
 					
 					
 					<tr>
 						<th><%= t('strangecms.dateien.file') %></th>
-						<td><%= file_field "datei", "file" %></td>
+						<td><%= f.file_field :file %></td>
 					</tr>
 					
+					/usr/local/bin/icalBuddy -nc -f eventsToday+2 | sed -e "s/*/--/" | sed -e "s/!/!!/"
 					
 					<tr>
 						<th colspan="2" class="norm1">Achtung, bisher nicht implementiert!</th>
@@ -58,7 +62,9 @@
 		
 		<div class="box">
 			<div class="in_box ">
-				<%= render 'update_buttons' %>
+				<%= f.submit 'safe' %>
+				<div class="clearfix"></div>
+				
 			</div>
 		</div>
 		

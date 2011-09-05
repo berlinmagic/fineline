@@ -86,7 +86,8 @@ class Admin::HeadersController < Admin::BaseController
         @header.seiten << @seite
       end
     end
-    # => expire_action :action => "show", :id => @header.id
+    expire_action :action => "show", :id => @header.id
+    expire_cellz(@header.id)
     redirect_to admin_header_path(@header)
   end
   
@@ -95,8 +96,9 @@ class Admin::HeadersController < Admin::BaseController
     unless @header.system_stuff
       @header.destroy
     end
-    # => expire_action :action => "index"
-    # => expire_action :action => "show", :id => params[:id]
+    expire_action :action => "index"
+    expire_action :action => "show", :id => params[:id]
+    expire_cellz(params[:id])
     respond_to do |format|
       format.html { redirect_to admin_headers_path }
       format.js  { render :nothing => true }
@@ -112,6 +114,7 @@ class Admin::HeadersController < Admin::BaseController
       kill.destroy
     end
     # => expire_action :action => "show", :id => @header.id
+    expire_cellz(@header.id)
     redirect_to admin_header_path(@header), :notice => t('header_seite_was_deleted', :name => @seite.name)
   end
   
@@ -135,5 +138,12 @@ class Admin::HeadersController < Admin::BaseController
     end
     render :nothing => true
   end
+  
+  private
+    
+    def expire_cellz(cell)
+      expire_cell_state(HeaderCell, :fader, cell)
+      expire_cell_state(HeaderCell, :fader_js, cell)
+    end
   
 end

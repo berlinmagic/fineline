@@ -21,50 +21,54 @@
 					<tr>
 						<th><%= t('strange_preferences.site_width') %></th>
 						<td><%= Strangecms::Config[:site_width] %></td>
+						<td></td>
 					</tr>
 					<tr>
 						<th><%= t('strange_preferences.theme') %></th>
 						<td><%= Strangecms::Config[:theme] %></td>
+						<td></td>
 					</tr>
 					
 					<tr>
 						<th><%= t('strange_preferences.logo') %></th>
-						<td><%= Strangecms::Config[:logo_datei] %><br/>
-							<% if Strangecms::Config[:logo_datei] && !Strangecms::Config[:logo_datei].blank? %>
+						<td><% if Strangecms::Config[:logo_datei] && !Strangecms::Config[:logo_datei].blank? %>
 								<% if datei = Datei.find(Strangecms::Config[:logo_datei]) %>
-									<%= image_tag datei.file.url() %>
+									<%= image_tag datei.file.thumb("100x350>").url() %>
 								<% end %>
 							<% end %>
 						</td>
-					</tr>
-					<tr>
-						<th><%= t('edit') %></th>
 						<td>
 							<%= form_tag(new_pref_pic_admin_settings_path, :method => :post) do %>
-							
+								<%= hidden_field_tag :prefs, '' %>
+								<%= hidden_field_tag :modul, 'fineline_optik' %>
 								<%= hidden_field_tag :typ, 'Front_Logo' %>
 								<%= hidden_field_tag :name, 'optik' %>
 								<%= hidden_field_tag :back_link, '/admin/settings/optik' %>
 								<%= hidden_field_tag :key, 'logo_datei' %>
-								
-								<%= submit_tag 'bearbeiten'%>
-								
+								<br/>
+								<%= submit_tag 'neu'%>
+								<div class="clearfix"></div>
+								<br/>
 								
 							<% end %>
 						</td>
 					</tr>
+
 					
 					<tr>
 						<th><%= t('strange_preferences.strange_logo') %></th>
 						<td><%= Strangecms::Config[:strange_logo] %></td>
+						<td></td>
 					</tr>
 					<tr>
 						<th><%= t('strange_preferences.strange_admin_logo') %></th>
 						<td><%= Strangecms::Config[:strange_admin_logo] %></td>
+						<td></td>
 					</tr>
 					<tr>
 						<th><%= t('strange_preferences.stylesheets') %></th>
 						<td><%= Strangecms::Config[:stylesheets] %></td>
+						<td></td>
 					</tr>
 				</table>
 			</div>

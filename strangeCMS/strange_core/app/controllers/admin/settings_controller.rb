@@ -76,6 +76,8 @@ class Admin::SettingsController < Admin::BaseController
     @key       = params[:key]
     @typ       = params[:typ]
     @back_link = params[:back_link]
+    @modul     = params[:modul]
+    @datei = Datei.new()
     render :template => 'admin/settings/pref_pic_form'
   end
   
@@ -85,6 +87,7 @@ class Admin::SettingsController < Admin::BaseController
     @key       = params[:key]
     @typ       = params[:typ]
     @back_link = params[:back_link]
+    @modul     = params[:modul]
     render :template => 'admin/settings/pref_pic_form'
   end
   

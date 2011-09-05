@@ -1,0 +1,40 @@
+source 'http://rubygems.org'
+source 'http://fineline:QYKCj83x8VxrvUzi71h75GrYbeQysmuYfcNN2Xm0jq@strangegems.net/'
+
+# => fineline CMS - Gemfile
+
+gem 'rails', '3.0.10'
+
+gem 'rake', '>= 0.9.2'
+
+gem 'sqlite3'
+
+gem "mysql2", "~> 0.2.11"
+
+
+gem 'strangecms', '>= 0.1.21'
+
+gem 'strange_kontaktform', '>= 0.0.10'
+
+gem 'strange_header', '>= 0.0.19'
+
+gem 'strange_gallerie', '>= 0.0.10'
+
+gem 'strange_backup', '>= 0.0.10'
+
+gem 'strange_news', '>= 0.0.10'
+
+gem 'strange_comments', '>= 0.0.10'
+
+gem 'strange_categories', '>= 0.0.7'
+
+gem 'strange_sidebars', '>= 0.0.1'
+
+# => gem 'strange_stylez'
+
+# => gem 'strange_newsletter'
+
+gem 'strange_fineform', '>= 0.0.8'
+
+
+gem 'strange_theme_munkelt', '>= 0.0.1'
