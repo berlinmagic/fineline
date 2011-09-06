@@ -47,7 +47,7 @@ module StrangeThemes
     
     # => def theme_path_for(name, base = StrangeThemes.config.base_dir, theme_dir = StrangeThemes.config.themes_dir)
     def theme_path_for(name, base = nil, theme_dir = StrangeThemes.config.themes_dir)
-      base ||= StrangeThemes.all_theme_hash[name]['base']
+      base = StrangeThemes.all_theme_hash[name]['base']
       File.join(base, theme_dir, name)
     end
   end

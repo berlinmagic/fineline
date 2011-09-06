@@ -34,8 +34,12 @@
 			</div>
 		</div>
 		
-		
-    
+		<%= StrangeThemes.all_theme_hash['fomu']['theme'] %>
+		<br/>
+		<%= File.exists? File.join(StrangeThemes.all_theme_hash['fomu']['theme'], 'images', Strangecms::Config[:strange_logo]) %>
+		<br/>
+    	<%= theme_image_path(Strangecms::Config[:strange_logo]) %>
+		<%= theme_image_tag(Strangecms::Config[:strange_logo]) %>
  
 		
 		<div class="box">

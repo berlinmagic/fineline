@@ -1,3 +1,15 @@
+require 'active_support/dependencies'
+require 'strange_themes/config'
+require 'strange_themes/common_methods'
+require 'strange_themes/url_helpers'
+require 'strange_themes/view_helpers'
+require 'strange_themes/assets_controller'
+require 'strange_themes/controller_methods'
+require 'strange_themes/railtie'
+require 'strange_themes/routes'
+require 'strange_themes/gemed_themes'
+require 'strange_themes_help'
+
 module StrangeThemes
   class << self
 
@@ -76,14 +88,4 @@ module StrangeThemes
   end
 end
 
-require 'active_support/dependencies'
-require 'strange_themes/config'
-require 'strange_themes/common_methods'
-require 'strange_themes/url_helpers'
-require 'strange_themes/view_helpers'
-require 'strange_themes/assets_controller'
-require 'strange_themes/controller_methods'
-require 'strange_themes/railtie'
-require 'strange_themes/routes'
-require 'strange_themes/gemed_themes'
-require 'strange_themes_help'
+

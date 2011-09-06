@@ -6,18 +6,23 @@ module StrangeThemes
     include StrangeThemes::CommonMethods
     include StrangeThemes::UrlHelpers
     
-    # => caches_action :images
+    caches_action :images
     
     def stylesheets
-      render_asset asset_path_for(params[:asset], 'stylesheets'), defaulft_asset_path_for(params[:asset], 'stylesheets'), app_asset_path_for(params[:asset], 'stylesheets'), mime_type_from(params[:asset])
+      render_asset asset_path_for(params[:asset], 'stylesheets', params[:theme]), defaulft_asset_path_for(params[:asset], 'stylesheets'), app_asset_path_for(params[:asset], 'stylesheets'), mime_type_from(params[:asset])
     end
     
     def javascripts
-      render_asset asset_path_for(params[:asset], 'javascripts'), defaulft_asset_path_for(params[:asset], 'javascripts'), app_asset_path_for(params[:asset], 'javascripts'), mime_type_from(params[:asset])  
+      render_asset asset_path_for(params[:asset], 'javascripts', params[:theme]), defaulft_asset_path_for(params[:asset], 'javascripts'), app_asset_path_for(params[:asset], 'javascripts'), mime_type_from(params[:asset])  
     end
     
     def images
-      render_this_asset asset_path_for(params[:asset], 'images'), defaulft_asset_path_for(params[:asset], 'images'), app_asset_path_for(params[:asset], 'images'), mime_type_from(params[:asset])  
+      render_this_asset(
+            asset_path_for( params[:asset], 'images', params[:theme] ), 
+            defaulft_asset_path_for( params[:asset], 'images' ), 
+            app_asset_path_for( params[:asset], 'images' ), 
+            mime_type_from( params[:asset] )
+            )  
     end
     
     # =>  NEW:    safes Production-Bild-Error
@@ -43,8 +48,8 @@ module StrangeThemes
     
   private
   
-    def asset_path_for(asset_url, asset_prefix)
-      File.join(theme_path_for(params[:theme]), asset_prefix, params[:asset])
+    def asset_path_for(asset_url, asset_prefix, theme='default')
+      File.join(StrangeThemes.all_theme_hash[theme]['theme'].to_s, asset_prefix, asset_url)
     end
     
     def defaulft_asset_path_for(asset_url, asset_prefix)

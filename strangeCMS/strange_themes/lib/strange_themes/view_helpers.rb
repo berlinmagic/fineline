@@ -25,8 +25,14 @@ module StrangeThemes
         base_theme_javascript_path(:theme => new_theme_name, :asset => "#{asset}.js")
       end
 
-      def theme_image_path(asset, new_theme_name = self.theme_name)
-        base_theme_image_path(:theme => new_theme_name, :asset => asset)
+      def theme_image_path(asset, theme_name = self.theme_name)
+        if File.exists?( File.join(StrangeThemes.all_theme_hash[theme_name]['theme'], 'images', asset) )
+          "/#{StrangeThemes.config.themes_dir}/#{theme_name}/images/#{ asset }"
+        elsif File.exists?( File.join(StrangeThemes.all_theme_hash['default']['theme'], 'images', asset) )
+          "/#{StrangeThemes.config.themes_dir}/default/images/#{ asset }"
+        elsif File.exists?( File.join("#{Rails.root}", 'images', asset) )
+          "/images/#{ asset }"
+        end
       end
       
       def theme_image_tag(source, options = {})
