@@ -10,7 +10,6 @@ module Strangecms
 
       def create_root_files
         empty_directory file_name
-        empty_directory "#{file_name}/config"
         empty_directory "#{file_name}/public"
         template "Rakefile.tt", "#{file_name}/Rakefile"
         template "README.md", "#{file_name}/README.md"
@@ -18,8 +17,12 @@ module Strangecms
         template "theme.gemspec.tt", "#{file_name}/#{file_name}.gemspec"
       end
 
-      def config_routes
-        template "routes.rb", "#{file_name}/config/routes.rb"
+      def create_config_files
+        empty_directory "#{file_name}/config"
+        template "config/routes.rb", "#{file_name}/config/routes.rb"
+        empty_directory "#{file_name}/config/locales"
+        template "config/locales/de.yml", "#{file_name}/config/locales/de.yml"
+        template "config/locales/en.yml", "#{file_name}/config/locales/en.yml"
       end
 
       #def install_rake
@@ -27,19 +30,31 @@ module Strangecms
       #end
 
       def create_app_dirs
-        empty_directory extension_dir('app')
-        empty_directory extension_dir( StrangeThemes.config.themes_dir )
-        empty_directory extension_dir('app/controllers')
-        empty_directory extension_dir('app/helpers')
-        empty_directory extension_dir('app/models')
-        empty_directory extension_dir('app/views')
-        empty_directory extension_dir('spec')
+        empty_directory "#{file_name}/app"
+        empty_directory "#{file_name}/#{StrangeThemes.config.themes_dir}"
+        empty_directory "#{file_name}/#{StrangeThemes.config.themes_dir}/#{file_name.gsub(/strange_/, '')}"
+        empty_directory "#{file_name}/app/controllers"
+        empty_directory "#{file_name}/app/helpers"
+        empty_directory "#{file_name}/app/models"
+        empty_directory "#{file_name}/app/views"
       end
 
       def create_lib_files
-        directory "lib", "#{file_name}/lib"
-        template 'extension/extension.rb.tt', "#{file_name}/lib/#{file_name}.rb"
-        template 'hooks.rb.tt', "#{file_name}/lib/#{file_name}_hooks.rb"
+        empty_directory "#{file_name}/lib"
+        template 'lib/modul.rb.tt', "#{file_name}/lib/#{file_name}.rb"
+        template 'lib/version.rb.tt', "#{file_name}/lib/#{file_name}/version.rb"
+        
+        template 'lib/modul_hooks.rb.tt', "#{file_name}/lib/#{file_name}_hooks.rb"
+        template 'lib/modul_theme.rb.tt', "#{file_name}/lib/#{file_name}_theme.rb"
+        
+        # => empty_directory "#{file_name}/lib/generators"
+        # => empty_directory "#{file_name}/lib/generators/#{file_name}"
+        # => template 'lib/install_generator.rb.tt', "#{file_name}/lib/generators/#{file_name}/install_generator.rb"
+        # => template 'lib/update_generator.rb.tt', "#{file_name}/lib/generators/#{file_name}/update_generator.rb"
+        # => empty_directory "#{file_name}/lib/generators/#{file_name}/templates"
+        # => template 'lib/templates/create_modul.rb.tt', "#{file_name}/lib/generators/#{file_name}/templates/create_#{file_name}.rb"
+        # => template 'lib/templates/update_modul.rb.tt', "#{file_name}/lib/generators/#{file_name}/templates/update_#{file_name}.rb"
+        # => template 'lib/templates/seed_modul.rb.tt', "#{file_name}/lib/generators/#{file_name}/templates/seed_#{file_name}.rb"
       end
 
       def create_spec_helper
