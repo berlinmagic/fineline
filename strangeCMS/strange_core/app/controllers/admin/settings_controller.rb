@@ -12,7 +12,7 @@ class Admin::SettingsController < Admin::BaseController
     if @setting_names.include?(@name)
       @u_aktiv = @name
       if @name == 'user'
-        @owners = User.where(:crew => 'owner')
+        @owners = User.where(:gruppe_id => 1)
       end
       render "admin/settings/#{@name}"
     else
