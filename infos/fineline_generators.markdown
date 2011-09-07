@@ -3,7 +3,7 @@
 Here is an summary of our generators:
 
 
-# ...
+# Usage
 
 	
 	$ rails g strangecms:install
@@ -24,5 +24,5 @@ generates a new theme-gem
 
 
 
-##	
+# Copyright	
 ... by Austin Strange!
