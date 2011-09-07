@@ -3,6 +3,8 @@
 Here is an summary of our generators:
 
 
+# ...
+
 	
 	$ rails g strangecms:install
 generates the CMS
