@@ -11,6 +11,7 @@
   require 'remotipart'
   
   require 'strange_fineform_hooks'
+  require 'strange_fineform_modul'
   
   require 'fineform/config'
 

@@ -46,6 +46,7 @@ module Strangecms
         
         template 'lib/modul_hooks.rb.tt', "#{file_name}/lib/#{file_name}_hooks.rb"
         template 'lib/modul_theme.rb.tt', "#{file_name}/lib/#{file_name}_theme.rb"
+        template 'lib/theme_modul.rb.tt', "#{file_name}/lib/#{file_name}_modul.rb"
         
         # => empty_directory "#{file_name}/lib/generators"
         # => empty_directory "#{file_name}/lib/generators/#{file_name}"

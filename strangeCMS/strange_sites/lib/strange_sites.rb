@@ -18,6 +18,7 @@
   require 'stylez/config'
   
   require 'strange_sites_help'
+  require 'strange_sites_modul'
 
 module StrangeSites
     class Engine < Rails::Engine

@@ -7,6 +7,7 @@
   require 'strange_sites'
   
   require 'strange_news_hooks'
+  require 'strange_news_modul'
   
   require 'newz/config'
   

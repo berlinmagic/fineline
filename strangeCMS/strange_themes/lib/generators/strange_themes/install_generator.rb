@@ -54,18 +54,32 @@ module StrangeThemes
       
       def create_modul_themes
         
-        make_modul_publics( 'StrangeCategories' )             if !!defined?StrangeCategories
-        make_modul_publics( 'StrangeKontaktform' )            if !!defined?StrangeKontaktform
-        make_modul_publics( 'StrangeHeader' )                 if !!defined?StrangeHeader
-        make_modul_publics( 'StrangeGallerie' )               if !!defined?StrangeGallerie
-        make_modul_publics( 'StrangeBackup' )                 if !!defined?StrangeBackup
-        make_modul_publics( 'StrangeFineform' )               if !!defined?StrangeFineform
-        make_modul_publics( 'StrangeSidebars' )               if !!defined?StrangeSidebars
-        make_modul_publics( 'StrangeNews' )                   if !!defined?StrangeNews
-        make_modul_publics( 'StrangeNewsletter' )             if !!defined?StrangeNewsletter
-        make_modul_publics( 'StrangeComments' )               if !!defined?StrangeComments
-        make_modul_publics( 'StrangeMobilview' )              if !!defined?StrangeMobilview
-        make_modul_publics( 'StrangeStylez' )                 if !!defined?StrangeStylez
+        Strangecms::CmsModul::FineModul.fine_modules.each do |modul|
+          unless modul.core?
+              if modul.mirror_views?
+                make_modul_views( modul.modul_name )
+              end
+              if modul.mirror_theme?
+                make_modul_theme_publics( modul.modul_name )
+              end
+              if modul.mirror_public?
+                make_modul_publics( modul.modul_name )
+              end
+          end
+        end
+        
+        # => make_modul_publics( 'StrangeCategories' )             if !!defined?StrangeCategories
+        # => make_modul_publics( 'StrangeKontaktform' )            if !!defined?StrangeKontaktform
+        # => make_modul_publics( 'StrangeHeader' )                 if !!defined?StrangeHeader
+        # => make_modul_publics( 'StrangeGallerie' )               if !!defined?StrangeGallerie
+        # => make_modul_publics( 'StrangeBackup' )                 if !!defined?StrangeBackup
+        # => make_modul_publics( 'StrangeFineform' )               if !!defined?StrangeFineform
+        # => make_modul_publics( 'StrangeSidebars' )               if !!defined?StrangeSidebars
+        # => make_modul_publics( 'StrangeNews' )                   if !!defined?StrangeNews
+        # => make_modul_publics( 'StrangeNewsletter' )             if !!defined?StrangeNewsletter
+        # => make_modul_publics( 'StrangeComments' )               if !!defined?StrangeComments
+        # => make_modul_publics( 'StrangeMobilview' )              if !!defined?StrangeMobilview
+        # => make_modul_publics( 'StrangeStylez' )                 if !!defined?StrangeStylez
         
       end
       
@@ -75,12 +89,12 @@ module StrangeThemes
         def make_modul_theme(modul)
           puts("#{modul.gsub(/Strange/, '')}:: Spiegle views in default-Theme view-Ordner")
           Strangecms::FileUtilz.mirror_files( 
-                File.join("#{modul.classify.constantize::Engine.config.root}", "app", "views"), 
+                File.join("#{modul.constantize::Engine.config.root}", "app", "views"), 
                 File.join("#{StrangeThemes.config.themes_path}", "default", "views") 
                 )
           puts("#{modul.gsub(/Strange/, '')}:: Spiegle Daten in default-Theme public-Ordner")
           Strangecms::FileUtilz.mirror_files( 
-                File.join("#{modul.classify.constantize::Engine.config.root}", "public"), 
+                File.join("#{modul.constantize::Engine.config.root}", "public"), 
                 File.join("#{StrangeThemes.config.themes_path}", 'default')
                 )
           puts("#{modul.gsub(/Strange/, '')}:: Spiegle Daten in App public-Ordner")
@@ -93,7 +107,7 @@ module StrangeThemes
         def make_modul_views(modul)
           puts("#{modul.gsub(/Strange/, '')}:: Spiegle views in default-Theme view-Ordner")
           Strangecms::FileUtilz.mirror_files( 
-                File.join("#{modul.classify.constantize::Engine.config.root}", "app", "views"), 
+                File.join("#{modul.constantize::Engine.config.root}", "app", "views"), 
                 File.join("#{StrangeThemes.config.themes_path}", "default", "views") 
                 )
         end
@@ -101,7 +115,7 @@ module StrangeThemes
         def make_modul_publics(modul)
           puts("#{modul.gsub(/Strange/, '')}:: Spiegle Daten in App public-Ordner")
           Strangecms::FileUtilz.mirror_files( 
-                File.join("#{modul.classify.constantize::Engine.config.root}", "/public"), 
+                File.join("#{modul.constantize::Engine.config.root}", "/public"), 
                 File.join("#{Rails.root}", 'public')
                 )
         end
@@ -109,7 +123,7 @@ module StrangeThemes
         def make_modul_theme_publics(modul)
           puts("#{modul.gsub(/Strange/, '')}:: Spiegle Daten in default-Theme public-Ordner")
           Strangecms::FileUtilz.mirror_files( 
-                File.join("#{modul.classify.constantize::Engine.config.root}", "public"), 
+                File.join("#{modul.constantize::Engine.config.root}", "public"), 
                 File.join("#{StrangeThemes.config.themes_path}", 'default')
                 )
         end

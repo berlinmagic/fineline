@@ -11,6 +11,7 @@
   
   
   require 'strange_header_hooks'
+  require 'strange_header_modul'
   
   require 'header/config'
 

@@ -9,6 +9,7 @@
   require 'strangecms/preferences/user_settings'
   
   require 'strange_user_hooks'
+  require 'strange_user_modul'
   
   require 'strange_user_helper'
 

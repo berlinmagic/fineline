@@ -7,6 +7,7 @@
   require 'strange_sites'
   
   require 'strange_comments_hooks'
+  require 'strange_comments_modul'
   
   require 'kommenta/config'
 

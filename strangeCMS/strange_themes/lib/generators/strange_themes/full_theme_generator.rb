@@ -53,30 +53,22 @@ module StrangeThemes
       
       def create_modul_themes
         
-        make_modul_theme( 'StrangeCategories' )             if !!defined?StrangeCategories
-        
-        make_modul_theme( 'StrangeKontaktform' )            if !!defined?StrangeKontaktform
-        
-        make_modul_theme( 'StrangeHeader' )                 if !!defined?StrangeHeader
-        
-        make_modul_theme( 'StrangeGallerie' )               if !!defined?StrangeGallerie
-        
-        make_modul_theme( 'StrangeBackup' )                 if !!defined?StrangeBackup
-        
-        make_modul_theme( 'StrangeFineform' )               if !!defined?StrangeFineform
-        
-        make_modul_theme( 'StrangeSidebars' )               if !!defined?StrangeSidebars
-        
-        make_modul_theme( 'StrangeNews' )                   if !!defined?StrangeNews
-        
-        make_modul_theme( 'StrangeNewsletter' )             if !!defined?StrangeNewsletter
-        
-        make_modul_theme( 'StrangeComments' )               if !!defined?StrangeComments
-        
-        make_modul_theme( 'StrangeMobilview' )              if !!defined?StrangeMobilview
-        
-        make_modul_theme( '' )
-        make_modul_theme( '' )
+        Strangecms::CmsModul::FineModul.fine_modules.each do |modul|
+          unless modul.core?
+              make_modul_theme( modul.modul_name )
+          end
+        end
+        # => make_modul_theme( 'StrangeCategories' )             if !!defined?StrangeCategories
+        # => make_modul_theme( 'StrangeKontaktform' )            if !!defined?StrangeKontaktform
+        # => make_modul_theme( 'StrangeHeader' )                 if !!defined?StrangeHeader
+        # => make_modul_theme( 'StrangeGallerie' )               if !!defined?StrangeGallerie
+        # => make_modul_theme( 'StrangeBackup' )                 if !!defined?StrangeBackup
+        # => make_modul_theme( 'StrangeFineform' )               if !!defined?StrangeFineform
+        # => make_modul_theme( 'StrangeSidebars' )               if !!defined?StrangeSidebars
+        # => make_modul_theme( 'StrangeNews' )                   if !!defined?StrangeNews
+        # => make_modul_theme( 'StrangeNewsletter' )             if !!defined?StrangeNewsletter
+        # => make_modul_theme( 'StrangeComments' )               if !!defined?StrangeComments
+        # => make_modul_theme( 'StrangeMobilview' )              if !!defined?StrangeMobilview
         
       end
       

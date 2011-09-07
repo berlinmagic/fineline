@@ -7,6 +7,7 @@
   require 'strange_sites'
   
   require 'strange_kontaktform_hooks'
+  require 'strange_kontaktform_modul'
   
   require 'kontakt/config'
 

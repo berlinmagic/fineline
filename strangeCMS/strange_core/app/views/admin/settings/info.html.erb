@@ -38,21 +38,44 @@
 		<br/>
 		<%= File.exists? File.join(StrangeThemes.all_theme_hash['fomu']['theme'], 'images', Strangecms::Config[:strange_logo]) %>
 		<br/>
-    	<%= theme_image_path(Strangecms::Config[:strange_logo]) %>
-		<%= theme_image_tag(Strangecms::Config[:strange_logo]) %>
+    	<%= theme_image_path(Strangecms::Config[:strange_logo].to_s) %>
+		<%#= theme_image_tag(Strangecms::Config[:strange_logo].to_s) %>
  
 		
 		<div class="box">
 			<div class="in_box">
-				<p><em>Hier eine kleine Übersicht der momentanen aktiven <strong>StrangeThemes::GemedThemes::ThemeListener</strong></em></p>
+				<p><em>momentan aktive <strong>StrangeThemes::GemedThemes::ThemeListener</strong></em></p>
 				<br/>
-
+				<%#= Strangecms::ThemeSupport::Hook.listeners.to_s %> <br/> 
 				<%#= StrangeThemes.available_theme_names.to_s %>
 				<% StrangeThemes::GemedThemes::ThemeListener.subclasses.each do |theme_class| %>
 					<%= theme_class.to_s %> <br/> 
 					<%= theme_class.to_s.gsub(/Theme$/, '')%> => <%= "#{theme_class.to_s.gsub(/Theme$/, '').classify.constantize::Engine.config.root}"%>
 				<% end %>
 				
+			</div>
+		</div>
+		
+		<div class="box">
+			<div class="in_box">
+				<p><em>momentan aktive <strong>HookListener</strong></em></p>
+				<br/>
+					<%#= Strangecms::CmsModul::FineModul.fine_modules.to_s %> <br/> 
+					<br/>
+					<br/>
+					<table style="font-size:10px; padding:0; margin:0;">
+					<% Strangecms::CmsModul::FineListener.subclasses.each do |theme_class| %>
+						<tr>
+							<td><strong><%= theme_class.modul_name %></strong></td>
+							<td><%= theme_class.gem_name %></td>
+							<td><%= 'core' if theme_class.core? %> <%= raw('<strong>Theme</strong>') if theme_class.theme? %></td>
+							<td><%= theme_class.version %></td>
+							<td><%= 'install' if theme_class.installable? %></td>
+							<td><%= 'update' if theme_class.updatable? %></td>
+							
+						</tr>
+					<% end %>
+					</table>
 			</div>
 		</div>
 	</div>

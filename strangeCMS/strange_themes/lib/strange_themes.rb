@@ -9,6 +9,7 @@ require 'strange_themes/railtie'
 require 'strange_themes/routes'
 require 'strange_themes/gemed_themes'
 require 'strange_themes_help'
+require 'strange_themes_modul'
 
 module StrangeThemes
   class << self

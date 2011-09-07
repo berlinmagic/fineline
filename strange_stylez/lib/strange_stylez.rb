@@ -1,11 +1,9 @@
   require "rails/all"
   
   require 'strangecms'
-  require 'strange_core'
-  require 'strange_sites'
-  require 'strange_themes'
   
   require 'strange_stylez_hooks'
+  require 'strange_stylez_modul'
   
   require 'stylez/config'
 

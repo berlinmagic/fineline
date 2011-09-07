@@ -2,6 +2,8 @@
   
   require "strange_core"
   
+  require 'strangecms/cms_modul'
+  
   require 'strangecms/core_ext/array'
   require 'strangecms/core_ext/string'
   require 'strangecms/core_ext/rfc822'
@@ -14,6 +16,7 @@
   require 'strangecms/config'
   
   require 'strange_core_hooks'
+  require 'strange_core_modul'
   
   require 'strange_base'
   require 'strange_base_admin'

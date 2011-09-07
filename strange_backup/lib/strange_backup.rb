@@ -7,6 +7,7 @@
   require 'strange_sites'
   
   require 'strange_backup_hooks'
+  require 'strange_backup_modul'
 
 
 module StrangeBackup

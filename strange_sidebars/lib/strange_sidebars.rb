@@ -3,6 +3,7 @@
   require 'strangecms'
   
   require 'strange_sidebars_hooks'
+  require 'strange_sidebars_modul'
   
   require 'sidebar/config'
 

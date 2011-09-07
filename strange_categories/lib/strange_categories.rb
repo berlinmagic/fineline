@@ -7,6 +7,7 @@
   require 'strange_sites'
   
   require 'strange_categories_hooks'
+  require 'strange_categories_modul'
   
   require 'strange_categories/routes'
 

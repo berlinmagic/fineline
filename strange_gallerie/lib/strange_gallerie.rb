@@ -9,6 +9,7 @@
   require 'strange_sites'
   
   require 'strange_gallerie_hooks'
+  require 'strange_gallerie_modul'
   
   require 'gallerie/config'
   
