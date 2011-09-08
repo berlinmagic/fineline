@@ -1,0 +1,74 @@
+/* =====================================   Standards   =================================== */
+<%= raw( fine_css_minify( "#{ render 'stylesheetz/admin/basics/boiler1' }" ) ) %>
+<%= raw( fine_css_minify( "#{ render 'stylesheetz/admin/basics/jq_ui' }" ) ) %>
+<%= raw( fine_css_minify( "#{ render 'stylesheetz/admin/basics/grid960_48' }" ) ) %>
+<%= raw( fine_css_minify( "#{ render 'stylesheetz/admin/basics/finegrid' }" ) ) %>
+
+/* =====================================   No - JS   =================================== */
+.nojs_alert_box {display:block; <%= fine_backgroundGradient( '#d1d1d1', '#f3f2f2' ) %> padding: 10px 0; text-align:center; }
+.nojs_alert_box h3 { font-size:18px; color: #c00; text-align:center; }
+
+/* =====================================   User-Area   =================================== */
+#user_area { width: 100%; background: #333; position: relative; }
+<%= raw( fine_css_minify( "#{ render 'stylesheetz/admin/site_parts/user_area' }" ) ) %>
+
+/* =====================================   Header   =================================== */
+#fine_header { position: relative; <%= fine_backgroundGradient('#ffffff','#cccccc') %> border: 0; }
+<%= raw( fine_css_minify( "#{ render 'stylesheetz/admin/site_parts/header' }" ) ) %>
+<%= raw( fine_css_minify( "#{ render 'stylesheetz/admin/site_parts/navigation' }" ) ) %>
+
+/* =====================================   Banner   =================================== */
+#fine_banner_box { width: 100%;  overflow: hidden; background: transparent; position:relative;}
+#banner {min-height: 34px; width: 100%;  position: relative; z-index:1; overflow: hidden;
+	 <%= fine_backgroundGradient('#003366', '#00213f') %>  }
+#banner #main_nav_holder { min-height: 34px; }
+#banner img { margin: 0 auto; }
+/* Achtung Header-Modul liefert die restlichen Styles */
+
+
+/* =====================================   BreadCrumps   =================================== */
+#bread { padding: 10px 0 0; background: #fff; border-bottom: solid 1px #ccc; }
+
+
+/* =====================================   Main - Seiten-Inhalte   =================================== */
+#main { padding: 10px 0; min-height: 420px; <%= fine_backgroundGradient( '#f3f3f3', '#ffffff' ) %> }
+<%= raw( fine_css_minify( "#{ render 'stylesheetz/admin/content/classes'  }" ) ) %>
+<%= raw( fine_css_minify( "#{ render 'stylesheetz/admin/content/content'  }" ) ) %>
+<%= raw( fine_css_minify( "#{ render 'stylesheetz/admin/content/fonts'  }" ) ) %>
+<%= raw( fine_css_minify( "#{ render 'stylesheetz/admin/content/lists'  }" ) ) %>
+<%= raw( fine_css_minify( "#{ render 'stylesheetz/admin/content/sidebars'  }" ) ) %>
+		
+
+
+/* =====================================   Footer   =================================== */
+footer { min-height: 105px; width: 100%; position: relative; }
+<%= raw( fine_css_minify( "#{ render 'stylesheetz/admin/site_parts/footer' }" ) ) %>
+
+
+/* =====================================   Formulare   =================================== */
+<%= raw( fine_css_minify( "#{ render 'stylesheetz/admin/forms/buttons'  }" ) ) %>
+<%= raw( fine_css_minify( "#{ render 'stylesheetz/admin/forms/forms'  }" ) ) %>
+
+
+/* =====================================   PlugIns   =================================== */
+<%= raw( fine_css_minify( "#{ render 'stylesheetz/admin/specials/lightbox'  }" ) ) %>
+<%= raw( fine_css_minify( "#{ render 'stylesheetz/admin/specials/tooltip'  }" ) ) %>
+<%= raw( fine_css_minify( "#{ render 'stylesheetz/admin/specials/pagination'  }" ) ) %>
+<%= raw( fine_css_minify( "#{ render 'stylesheetz/admin/specials/jq_alerts'  }" ) ) %>
+<%= raw( fine_css_minify( "#{ render 'stylesheetz/admin/specials/language_changer'  }" ) ) %>
+<%= raw( fine_css_minify( "#{ render 'stylesheetz/admin/specials/coda_slider'  }" ) ) %>
+<%= raw( fine_css_minify( "#{ render 'stylesheetz/admin/specials/ui_slider'  }" ) ) %>
+<%= raw( fine_css_minify( "#{ render 'stylesheetz/admin/specials/color_picker'  }" ) ) %>
+
+
+/* =====================================   A D M I N   =================================== */
+<%= raw( fine_css_minify( "#{ render 'stylesheetz/admin/base'  }" ) ) %>
+
+
+
+/* =====================================   Modul-Styles   =================================== */
+<%= raw( fine_css_minify( "#{ hook :finestyles }" ) ) %>
+
+
+/* =====================================   Standards   =================================== */
+<%= raw( fine_css_minify( "#{ render 'stylesheetz/admin/basics/boiler2'  }" ) ) %>

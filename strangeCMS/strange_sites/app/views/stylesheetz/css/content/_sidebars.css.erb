@@ -1,0 +1,61 @@
+/* ===============================   SideBars   ======================================= */
+.side_box ul.sidebar_subnav { padding: 0; list-style: none; margin: 0;}
+.side_box ul.sidebar_subnav li { padding: 0; margin: 2px 0; }
+.side_box ul.sidebar_subnav li a { padding: 7px 10px; display:block; background: #efefef; color: #666; font-size: 13px;}
+.side_box ul.sidebar_subnav li a.aktiv { background: #efefef url('/images/back.png') left top repeat; color: #444; font-weight:bold; }
+.side_box ul.sidebar_subnav li a:hover { background: #999; color: #fff; font-weight:bold; }
+
+
+aside { width: 195px;}
+
+div.side_box { border: 0; background: transparent; 
+	<%= fine_borderRadius( ) %> 
+	<%= fine_boxShadow( ) %> 
+	padding: 0; min-height: 20px; margin: 0 0 15px;}
+
+.side_box ul.sidebar { padding: 5px 7px 0 7px; list-style: none; margin: 0;}
+
+.side_box ul.sidebar li { padding: 0 0 0 0px; margin: 0; list-style: none; border: 0; border-top: solid 1px #fff; border-bottom: solid 1px #ddd; }
+
+
+
+
+.side_box ul.sidebar li a, .side_box ul.sidebar li p { padding: 3px 6px 3px 16px; display:block; background: transparent; color: #777; font-size: 12px;
+	position: relative; line-height:18px; }
+
+.side_box ul.sidebar li:first-child { border-top: 0; }
+.side_box ul.sidebar li:last-child { border-bottom: 0; }
+
+.side_box ul.sidebar li a.aktiv { background: transparent; color: #369; font-weight:bold; }
+.side_box ul.sidebar li a:hover { background: transparent; color: #444; font-weight:bold; }
+
+.side_box ul.sidebar li a .firstletter { color: #7B9CB8; font-weight:bold; position: absolute; left: 0px; font-size: 11px; line-height:18px; }
+
+.side_box ul.sidebar li.dot a.aktiv { background: transparent url('/images/fineline/spezial/aktiv_iconpunkt.png') 0px 6px no-repeat; }
+
+
+.side_box .sidebar_head { 
+	border: solid 1px #aebecd;
+	<%= fine_backgroundGradient( 'rgba(51,102,153,0.15)', 'rgba(33,76,99,0.15)' ) %>
+	
+	}
+
+.side_box .info_sidebar_head { 
+	border: solid 1px #aebecd; padding: 5px 13px 5px 23px;
+	color: rgb(102,102,102); font-weight: normal; font-size: 15px;
+
+			border: solid 1px #9a9a9a; 
+			<%= fine_borderRadius( '2px' ) %>
+			text-shadow: 		 0 0 3px #fff, 0 0 3px #fff;
+			<%= fine_backgroundGradient( '#f5f2f2', '#cdcdcd' ) %>
+	
+	}
+
+.side_box .sidebar_head a { padding: 5px 13px 5px 23px; display:block; color: #336699; font-size: 15px; 
+	background: transparent url('/images/fineline/spezial/pulldown12px-r_50.png') 6px 8px no-repeat; line-height:18px;  }
+
+.side_box .sidebar_head:hover { <%= fine_backgroundGradient( 'rgba(51,102,153,0.3)', 'rgba(33,76,99,0.3)' ) %> }
+
+.side_box .sidebar_head.aktiv_box { <%= fine_backgroundGradient( '#336699', '#214c63' ) %> }
+
+.side_box .sidebar_head.aktiv_box a { background-image: url('/images/fineline/spezial/pulldown12px_50.png'); color: #fff;}

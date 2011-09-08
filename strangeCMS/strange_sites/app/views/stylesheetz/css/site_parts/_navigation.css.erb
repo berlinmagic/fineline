@@ -1,0 +1,43 @@
+/* =============================   Navigation   ======================================== */
+/* ### LEVEL ONE ### */
+#main_navigation { height: 34px; position:absolute; bottom: 0; left:0; display:block; margin:0; padding: 0 10px; z-index:555; list-style:none; 
+			background: transparent; }
+
+#main_navigation li { font-weight: bold; float: left; zoom: 1; background: #ccc; list-style:none; background: transparent; position:relative; }
+#main_navigation li a:hover { padding: 7px 13px 4px; margin-top: 4px; border-color: transparent;  color:#ffffff; font-weight:thin;  }
+#main_navigation li a {  
+	padding: 4px 13px 4px; margin: 7px 3px 0 0; border: solid 1px transparent; border-bottom:0;
+	position:relative; display:block; float:left;  opacity: 1; line-height: 18px; color: #fff; font-weight:normal; font-size: 14px;
+	<%= fine_backgroundGradient( '#336699', '#214c63' ) %> <%= fineBorderRadius( '3px', '3px' ) %> }
+#main_navigation li a.aktiv { padding: 7px 13px 4px; margin-top: 4px; font-size: 15px; border-color: transparent;  color:#336699;
+	background: #ffffff;}
+
+/* ### LEVEL TWO ### */
+#main_navigation ul.sub_navigation { width: 220px; visibility: hidden; position: absolute; top: 100%; left: -1px; margin:0; 
+		padding: 10px 0; 
+		<%= fine_Gradient( 'vertikal', 0 => '#f3f3f3', 20 => '#f3f3f3', 75 => '#ffffff', 100 => '#ffffff' ) %>
+		border: solid 1px #cccccc;
+		border-top:0;
+		<%= fineBorderRadius( '', '', '7px', '7px' ) %> }
+#main_navigation ul.sub_navigation li { background: transparent; border:0; float: none; margin:0; padding:0; width: 100%;}
+	
+#main_navigation ul.sub_navigation li a { background: transparent; padding: 7px 15px; float:none; color: #666; margin:0; font-weight:normal;
+		border: 0; <%= fine_borderRadius( ) %>
+		border-bottom: 1px solid #fff; border-top: 1px solid #ccc; }
+			
+#main_navigation ul.sub_navigation li a.sub_aktiv { background: transparent; padding: 7px 15px; color: #336699; margin:0; font-weight:bold;
+		border: 0; <%= fine_borderRadius( ) %>
+		border-bottom: 1px solid #fff; border-top: 1px solid #ccc;}
+
+#main_navigation ul.sub_navigation li a:hover { padding: 7px 15px; color: #336699; margin:0; 
+		border: 0; <%= fine_borderRadius( ) %>
+		border-bottom: 1px solid #fff; border-top: 1px solid #ccc;
+		background: #f3f3f3; /* W3C */
+		}
+
+#main_navigation ul.sub_navigation li a:first-child { border-top:0; }
+#main_navigation ul.sub_navigation li a:last-child { border-bottom:0; }
+
+/* ### LEVEL THREE ### */
+#main_navigation ul.sub_navigation ul { left: 150%; top: 0; }
+#main_navigation li:hover > ul.sub_navigation { visibility: visible; }

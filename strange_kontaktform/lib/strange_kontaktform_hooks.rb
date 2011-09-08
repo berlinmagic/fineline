@@ -39,4 +39,8 @@ class StrangeKontaktformHooks < Strangecms::ThemeSupport::HookListener
     "<%= render 'admin/shared/kontakt_dash' %>"
   end
   
+  insert_after :finestyles do
+    "<%= render 'stylesheetz/header' %>"
+  end
+  
 end

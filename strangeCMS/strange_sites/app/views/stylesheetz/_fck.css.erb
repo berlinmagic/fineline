@@ -1,0 +1,29 @@
+/* =====================================   Standards   =================================== */
+<%= raw( fine_css_minify( "#{ render 'stylesheetz/css/basics/boiler1' }" ) ) %>
+<%#= raw( fine_css_minify( "#{ render 'stylesheetz/css/basics/jq_ui' }" ) ) %>
+<%#= raw( fine_css_minify( "#{ render 'stylesheetz/css/basics/grid960_48' }" ) ) %>
+<%#= raw( fine_css_minify( "#{ render 'stylesheetz/css/basics/finegrid' }" ) ) %>
+
+/* =====================================   Main - Seiten-Inhalte   =================================== */
+#main { padding: 10px 0; min-height: 420px; <%= fine_backgroundGradient( '#f3f3f3', '#ffffff' ) %> }
+<%= raw( fine_css_minify( "#{ render 'stylesheetz/css/content/classes'  }" ) ) %>
+<%= raw( fine_css_minify( "#{ render 'stylesheetz/css/content/content'  }" ) ) %>
+<%= raw( fine_css_minify( "#{ render 'stylesheetz/css/content/fonts'  }" ) ) %>
+<%= raw( fine_css_minify( "#{ render 'stylesheetz/css/content/lists'  }" ) ) %>
+
+
+/* =====================================   Formulare   =================================== */
+<%= raw( fine_css_minify( "#{ render 'stylesheetz/css/forms/buttons'  }" ) ) %>
+<%= raw( fine_css_minify( "#{ render 'stylesheetz/css/forms/forms'  }" ) ) %>
+
+
+/* =====================================   Modul-Styles   =================================== */
+<%= raw( fine_css_minify( "#{ hook :finestyles }" ) ) %>
+
+
+/* =====================================   FCK-Styles   =================================== */
+<%= raw( fine_css_minify( "#{ render 'stylesheetz/css/forms/fck'  }" ) ) %>
+
+
+/* =====================================   Standards   =================================== */
+<%= raw( fine_css_minify( "#{ render 'stylesheetz/css/basics/boiler2'  }" ) ) %>
