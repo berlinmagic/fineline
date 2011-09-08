@@ -52,10 +52,11 @@ class Bild < ActiveRecord::Base
 	
 	  def set_paramatas
   	  if self.file
-  	    if xy_pic = self.file.name.split('.')
+  	    if self.file.name
+  	      xy_pic = self.file.name.split('.')
   	      xy_pic.delete(xy_pic.last)
   	      unless self.name && self.name != ''
-  	        self.name = xy_pic.last
+  	        self.name = xy_pic.join('_')
   	      end
   	    end
   	  end
