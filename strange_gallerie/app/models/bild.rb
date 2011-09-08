@@ -51,14 +51,10 @@ class Bild < ActiveRecord::Base
   private
 	
 	  def set_paramatas
-  	  if self.file
-  	    if self.file.name
+  	  if self.file && self.file.name && self.name.blank?
   	      xy_pic = self.file.name.split('.')
   	      xy_pic.delete(xy_pic.last)
-  	      unless self.name && self.name != ''
-  	        self.name = xy_pic.join('_')
-  	      end
-  	    end
+  	      self.name = xy_pic.join('_').to_s
   	  end
   	  self.jahr = self.datum.year
       self.monat = self.datum.month

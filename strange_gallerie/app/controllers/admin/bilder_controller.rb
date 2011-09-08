@@ -4,6 +4,8 @@ class Admin::BilderController < Admin::BaseController
   before_filter :get_navi_werte
   before_filter :load_data
   
+  cache_sweeper :bild_sweeper
+  
   helper :bilder
   
   def index
@@ -47,6 +49,7 @@ class Admin::BilderController < Admin::BaseController
   
   def update
     @bild = Bild.find(params[:id])
+    
     if @bild.update_attributes(params[:bild])
       if params[:bild][:file].present?
         redirect_to( zuschneiden_admin_bild_path(@bild) )

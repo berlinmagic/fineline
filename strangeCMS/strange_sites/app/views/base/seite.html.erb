@@ -1,54 +1,52 @@
-<% cache do %>
 <div class="box">
+<%# cache(:part => "inhalt") do %>
 	<% if Strangecms::Config[:show_site_name] %>
 	<div class="in_box first">
 		<h1><%= @seite.headline %></h1>
 	</div>
 	<% end %>
 	
-	
-	
-<% @seite.abschnitte.each_with_index do |abschnitt,index| %>
+	<% @seite.abschnitte.each_with_index do |abschnitt,index| %>
 
-	<%= hook :seiten_abschnitte_if, :abschnitt => abschnitt, :index => index %>
+		<%= hook :seiten_abschnitte_if, :abschnitt => abschnitt, :index => index %>
 	
+		<% if abschnitt.stuff_typ == 'trenn_linie' %>
+		<div class="in_box<%= ' first' unless Strangecms::Config[:show_site_name] || index > 0 %>">
+			<div class="trenn_linie"></div>
+			<div class="clearfix"></div>
+		</div>
+		<% end %>
+
+		<%# if abschnitt.text %>
+		<% if abschnitt.stuff_typ == 'text' %>
+		<div class="in_box<%= ' first' unless Strangecms::Config[:show_site_name] || index > 0 %>">
+			<%= raw abschnitt.inhalt %>
+			<div class="clearfix"></div>
+		</div>
+		<% end %>
 	
-	<% if abschnitt.stuff_typ == 'trenn_linie' %>
-	<div class="in_box<%= ' first' unless Strangecms::Config[:show_site_name] || index > 0 %>">
-		<div class="trenn_linie"></div>
-		<div class="clearfix"></div>
-	</div>
 	<% end %>
 
-	<%# if abschnitt.text %>
-	<% if abschnitt.stuff_typ == 'text' %>
-	<div class="in_box<%= ' first' unless Strangecms::Config[:show_site_name] || index > 0 %>">
-		<%= raw abschnitt.inhalt %>
-		<div class="clearfix"></div>
-	</div>
-	<% end %>
-	
-	
-	
-<% end %>
+	<%= hook :seiten_abschnitte_ende %>
 
-<%= hook :seiten_abschnitte_ende %>
-
-<% end %>
-
-	<% if admin_check %>
-<% xtitel = @seite.titel %>
-<%# if @seite.system_name && @seite.system_name == 'start' %>
-<%= link_to '', '/seiten/'+@seite.id.to_s+'/edit', :id => 'btn_edit' %>
-<%# else %>
-<%# link_to '', '/seiten'+@seite.slug+'/edit', :id => 'btn_edit' %>
 <%# end %>
-<% if site_master || @seite.system_seite == false %>
-<%= strange_delete @seite, :url => admin_seite_path(@seite.id) %>
-<% end %>
 
+<% if admin_check %>
+	<% xtitel = @seite.titel %>
+	<%# if @seite.system_name && @seite.system_name == 'start' %>
+	<%= link_to '', '/seiten/'+@seite.id.to_s+'/edit', :id => 'btn_edit' %>
+	<%# else %>
+	<%# link_to '', '/seiten'+@seite.slug+'/edit', :id => 'btn_edit' %>
+	<%# end %>
+	<% if site_master || @seite.system_seite == false %>
+		<%= strange_delete @seite, :url => admin_seite_path(@seite.id) %>
+	<% end %>
 <% end %>
 </div>
+
+
+
+
 
 <%= content_for :sidebar do %>
 <% if Seite.where(:elternseite_id => @seite.id).count > 0 %>
