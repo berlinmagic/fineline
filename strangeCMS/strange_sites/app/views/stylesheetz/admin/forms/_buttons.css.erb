@@ -75,17 +75,32 @@ a.finelineButton, div.finelineButton { display: inline-block; padding:0; margin:
 	line-height: 18px;
 	<%= fine_borderRadius( '3px' ) %>
 	border: solid 1px #336699;
-	background: #336699; cursor: pointer;}
-a.finelineButton:hover, div.finelineButton:hover {
-	background: #336699; /* W3C */
-} 
+	cursor: pointer;
+	<% if Strangecms::Stylez::Config[:admin_finelineButton_bg_style] == "verlauf" %>
+		<%=  fine_backgroundGradient( "##{Strangecms::Stylez::Config[:admin_finelineButton_bg_color1]}", "##{Strangecms::Stylez::Config[:admin_finelineButton_bg_color2]}" ) %>
+	<% else %>
+		background: #<%= Strangecms::Stylez::Config[:admin_finelineButton_bg_color1]  %>;
+	<% end %>
+	}
+
 .finelineButton.kreis.flb18 { <%= fine_borderRadius( '10px' ) %> }
 .finelineButton.kreis.flb24 { <%= fine_borderRadius( '13px' ) %> }
 .finelineButton.kreis.flb32 { <%= fine_borderRadius( '17px' ) %> }
 .finelineButton.kreis.flb48 { <%= fine_borderRadius( '25px' ) %> }
 
-a.finelineButton:hover, div.finelineButton:hover { <%= fine_boxShadow( 'inset 1px 1px 1px 0px rgba(255,255,255,.4)' ) %>  }
+a.finelineButton:hover, div.finelineButton:hover { <%= fine_boxShadow( 'inset 1px 1px 1px 0px rgba(255,255,255,.4)' ) %>  
+		<% if Strangecms::Stylez::Config[:admin_finelineButton_bg_style_hover] == "verlauf" %>
+			<%=  fine_backgroundGradient( "##{Strangecms::Stylez::Config[:admin_finelineButton_bg_color1_hover]}", "##{Strangecms::Stylez::Config[:admin_finelineButton_bg_color2_hover]}" ) %>
+		<% else %>
+			background: #<%= Strangecms::Stylez::Config[:admin_finelineButton_bg_color1_hover]  %>;
+		<% end %> }
 
-a.finelineButton:active, div.finelineButton:active { <%= fine_boxShadow( 'inset 1px 1px 1px 0px rgba(0,0,0,.4)' ) %> color: #fff; }
+a.finelineButton:active, div.finelineButton:active { <%= fine_boxShadow( 'inset 1px 1px 1px 0px rgba(0,0,0,.4)' ) %> color: #fff; 
+		<% if Strangecms::Stylez::Config[:admin_finelineButton_bg_style_active] == "verlauf" %>
+			<%=  fine_backgroundGradient( "##{Strangecms::Stylez::Config[:admin_finelineButton_bg_color1_active]}", "##{Strangecms::Stylez::Config[:admin_finelineButton_bg_color2_active]}" ) %>
+		<% else %>
+			background: #<%= Strangecms::Stylez::Config[:admin_finelineButton_bg_color1_active]  %>;
+		<% end %> }
 
-a.finelineButton:hover div.hell, div.finelineButton:hover div.hell { }
+
+
