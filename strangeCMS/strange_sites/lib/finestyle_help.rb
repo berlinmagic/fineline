@@ -14,6 +14,24 @@ module FinestyleHelp
       end
     end
     
+    def fine_font_family( font_family=nil, inherit=true )
+      if font_family == 'Google_one'
+        "font-family: #{Strangecms::Stylez::Config[:google_font_one].gsub(/(:)(.)*/, '')}, #{Strangecms::Stylez::Config[:google_font_default_one]};"
+      elsif font_family == 'Google_two'
+        "font-family: #{Strangecms::Stylez::Config[:google_font_two].gsub(/(:)(.)*/, '')}, #{Strangecms::Stylez::Config[:google_font_default_two]};"
+      elsif font_family == 'Google_three'
+        "font-family: #{Strangecms::Stylez::Config[:google_font_three].gsub(/(:)(.)*/, '')}, #{Strangecms::Stylez::Config[:google_font_default_three]};"
+      elsif font_family.blank?
+        if inherit
+          "font-family: inherit;"
+        else
+          "font-family: sans-serif;"
+        end
+      else
+        "font-family: #{ StylezConfiguration::FONTZ[ Strangecms::Stylez::Config[:front_body_font_family] ].to_s };"
+      end
+    end
+    
     def fine_borderRadius(radius=nil)
         radius = radius.blank? ? 'none' : radius
         " -khtml-border-radius: 	#{ radius };
@@ -193,6 +211,7 @@ module FinestyleHelp
     #receiver.extend         ClassMethods
     receiver.send :include, InstanceMethods
     receiver.send :helper_method, 'finestyler'
+    receiver.send :helper_method, 'fine_font_family'
     receiver.send :helper_method, 'fine_borderRadius'
     receiver.send :helper_method, 'fine3_borderRadius'
     receiver.send :helper_method, 'fineBorderRadius'

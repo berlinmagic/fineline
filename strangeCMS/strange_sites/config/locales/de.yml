@@ -155,6 +155,14 @@ de:
       settings: "Style Einstellungen"
       front_stylez: "Seiten Styles"
       admin_stylez: "Backend Styles"
+      fontz: "Schriftarten"
+      front_body_font_family: "Body Schriftart"
+      google_font_one: "Google Webfont 1:"
+      google_font_default_one: "Webfont1 alternativ:"
+      google_font_two: "Google Webfont 2:"
+      google_font_default_two: "Webfont2 alternativ:"
+      google_font_three: "Google Webfont 3:"
+      google_font_default_three: "Webfont3 alternativ:"
       headline_icon: "Überschriften-Icon"
       headline_icon_size: "Icon-Größe"
       headline_icon_color: "Icon-Farbe"
@@ -171,6 +179,16 @@ de:
       colors:
           hell: "Hell"
           dunkel: "Dunkel"
+      font_namez:
+          Trebuchet: "Trebuchet MS - sans-serif"
+          Arial: "Arial - sans-serif"
+          Times: "Times New Roman - serif"
+          Courier: "Courier New - monospace"
+          Georgia: "Georgia - serif"
+          Verdana: "Verdana - sans-serif"
+          Google_one: "Google Webfont 1"
+          Google_two: "Google Webfont 2"
+          Google_three: "Google Webfont 3"
 ##############################################################################################################################################
 #  =>  #  =>  #  =>  #  =>  #  =>  #  =>  #  =>  #  =>   S T R A N G E - C M S   <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #
 ##############################################################################################################################################

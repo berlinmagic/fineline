@@ -19,6 +19,35 @@
 						<th colspan="4" class="u_kat"><%= t('strange_stylez.front_stylez')%></th>
 					</tr>
 					<tr>
+						<th colspan="4" class="group"><%= t('strange_stylez.fontz')%></th>
+					</tr>
+					<tr>
+						<th><%= t('strange_stylez.google_font_one') %></th>
+						<td><%= Strangecms::Stylez::Config[:google_font_one].gsub(/(:)(.)*/, '') %></td>
+						<td><%= t('strange_stylez.google_font_default_one') %></td>
+						<td><%= Strangecms::Stylez::Config[:google_font_default_one] %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_stylez.google_font_two') %></th>
+						<td><%= Strangecms::Stylez::Config[:google_font_two].gsub(/(:)(.)*/, '') %></td>
+						<td><%= t('strange_stylez.google_font_default_two') %></td>
+						<td><%= Strangecms::Stylez::Config[:google_font_default_two] %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_stylez.google_font_three') %></th>
+						<td><%= Strangecms::Stylez::Config[:google_font_three].gsub(/(:)(.)*/, '') %></td>
+						<td><%= t('strange_stylez.google_font_default_three') %></td>
+						<td><%= Strangecms::Stylez::Config[:google_font_default_three] %></td>
+					</tr>
+					<tr><th colspan="4" class="group">&nbsp;</th></tr>
+					<tr>
+						<th><%= t('strange_stylez.front_body_font_family') %></th>
+						<td colspan="3"><%= t("strange_stylez.font_namez.#{ Strangecms::Stylez::Config[:front_body_font_family] }") %></td>
+					</tr>
+					
+					<tr><th colspan="4" class="group">&nbsp;</th></tr>
+					<tr><th colspan="4" class="group">&nbsp;</th></tr>
+					<tr>
 						<th colspan="4" class="group"><%= t('strange_stylez.headline_icon')%></th>
 					</tr>
 					<tr>
@@ -89,11 +118,17 @@
 					</tr>
 					
 					
-					
-					
-					<tr>
-						<th colspan="4" class="group"> - - - </th>
-					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box white">
+				<table class="settings">
 					<tr>
 						<th colspan="4" class="u_kat"><%= t('strange_stylez.admin_stylez')%></th>
 					</tr>
@@ -166,7 +201,6 @@
 						<td><%= Strangecms::Stylez::Config[:admin_finelineButton_bg_color1_active] %></td>
 						<td><%= Strangecms::Stylez::Config[:admin_finelineButton_bg_color2_active] unless Strangecms::Stylez::Config[:admin_finelineButton_bg_style_active] == 'farbe' %></td>
 					</tr>
-					
 				</table>
 			</div>
 		</div>

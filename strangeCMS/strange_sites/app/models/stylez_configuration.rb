@@ -6,6 +6,43 @@ class StylezConfiguration < Configuration
   ICON_SIZE = %w[18 24 32 48]
   BUTTON_BG_STYLEZ = %w[farbe verlauf]
   BUTTON_STYLEZ = %w[eckig gerunded rund]
+  FONTS_ALTS = ["serif", "sans-serif", "cursive", "fantasy", "monospace"]
+  FONTZ = {
+      'Trebuchet' => '"Trebuchet MS", Arial, sans-serif',
+      'Arial' => 'Arial, Helvetica, sans-serif',
+      'Times' => '"Times New Roman", Times, serif',
+      'Courier' => '"Courier New", Courier, monospace',
+      'Georgia' => 'Georgia, "Times New Roman", Times, serif',
+      'Verdana' => 'Verdana, Arial, Helvetica, sans-serif'
+    }
+  FONTZ_TYPES = [
+      'Trebuchet',
+      'Arial',
+      'Times',
+      'Courier',
+      'Georgia',
+      'Verdana',
+      'Google_one',
+      'Google_two',
+      'Google_three'
+    ]
+  
+  ### F O N T Z :
+  preference :front_body_font_family, :string, :default => FONTZ_TYPES[0]
+  
+  
+  preference :google_font_one, :string, :default => 'Tangerine:700,400'
+  preference :google_font_two, :string, :default => 'Julee'
+  preference :google_font_three, :string, :default => 'Montez'
+  
+  preference :google_font_default_one, :string, :default => 'cursive'
+  preference :google_font_default_two, :string, :default => 'cursive'
+  preference :google_font_default_three, :string, :default => 'cursive'
+  
+  
+  
+  
+  
   
   # => Buttons
   
@@ -13,21 +50,7 @@ class StylezConfiguration < Configuration
   preference :button_border_color, :string, :default => '#cccccc'
   preference :button_border_width, :integer, :default => 1
   preference :button_border_style, :string, :default => BORDER_STYLEZ[1]
-  
-  
-  
-  
-  preference :seiten_style, :string, :default => 'style'
-  preference :admin_style, :string, :default => 'admin'
-  
-  
-  preference :site_width, :integer, :default => 950
-  
-  preference :full_site_width, :integer, :default => 960
-  
-  preference :sidebar_width, :integer, :default => 210
-  
-  preference :content_width, :integer, :default => 710
+
   
   
   # => front H1-Icon
@@ -57,6 +80,10 @@ class StylezConfiguration < Configuration
   preference :front_finelineButton_bg_color1_active, :string, :default => 336699
   preference :front_finelineButton_bg_color2_active, :string, :default => 336699
   
+  
+  
+  
+  # ==================================================  ADMIN ===================================================================== #
   # => admin H1-Icon
   preference :admin_headline_icon_size, :integer, :default => ICON_SIZE[1]
   preference :admin_headline_icon_color, :string, :default => ICON_COLOR[1]
