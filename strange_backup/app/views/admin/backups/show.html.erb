@@ -1,7 +1,8 @@
 <div class="box">
 	<% if Strangecms::Config[:show_site_name] %>
 	<div class="in_box first">
-		<h1><%= @backup.name %></h1>
+		<h1 class="icon"><%= finelineIcon(:icon => 61, :color => finestyler('headline_icon_color'), :size => finestyler('headline_icon_size'), :blur => finestyler('headline_icon_blur')) %><%= @backup.name %></h1>
+
 	</div>
 	<% end %>
 	

@@ -3,7 +3,8 @@
 <%= form_for(@header, :url => admin_header_path, :html => { :multipart => true }) do |f| %>
 
 <div class="admin_box">
-	<h1 class="admin"><%= finelineIcon(:icon => 49, :color => 'dunkel', :size => 24, :blur => 50) %><%= t('header_edit_headline') %></h1>
+	<h1 class="icon"><%= finelineIcon(:icon => 49, :color => finestyler('headline_icon_color'), :size => finestyler('headline_icon_size'), :blur => finestyler('headline_icon_blur')) %><%= t('header_edit_headline') %></h1>
+
 	<div class="admin_in_box">
 		
 		<div class="system_help_text<%= ' hidden' unless Strangecms::Config[:show_help] %>">

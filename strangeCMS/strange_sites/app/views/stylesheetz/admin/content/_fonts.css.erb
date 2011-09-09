@@ -77,3 +77,8 @@ h5:hover, a:hover h5, h5:hover a { color: #082f55; }
 
 
 h1.admin { line-height: 24px; margin-bottom: 5px; }
+
+h1.icon { 	margin-bottom: 5px; 
+			line-height: <%= Strangecms::Stylez::Config[:admin_headline_icon_size] %>px; 
+			color: #<%= Strangecms::Stylez::Config[:admin_headline_color] %>; }
+h1.icon .finelineIcon { margin-right: 5px; }

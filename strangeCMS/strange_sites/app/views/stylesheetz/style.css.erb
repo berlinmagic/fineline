@@ -1,0 +1,10 @@
+<% if @style4 && @style4 == 'fck' %>
+/* =============   fineline CMS  -  Stylesheets - Stand: <%= Time.now.strftime("%d.%m.%Y %H:%M") %>   ============= */
+<%= raw( fine_css_minify( "#{ render 'stylesheetz/fck' }" ) ) %>
+<% elsif @style4 && @style4 == 'admin' %>
+/* =============   fineline CMS  -  Backend-Styles - Stand: <%= Time.now.strftime("%d.%m.%Y %H:%M") %>    ============= */
+<%= raw( fine_css_minify( "#{ render 'stylesheetz/admin' }" ) ) %>
+<% else %>
+/* =============   fineline CMS  -  Stylesheets - Stand: <%= Time.now.strftime("%d.%m.%Y %H:%M") %>    ============= */
+<%= raw( fine_css_minify( "#{ render 'stylesheetz/fineline' }" ) ) %>
+<% end %>

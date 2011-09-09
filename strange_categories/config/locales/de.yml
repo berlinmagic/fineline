@@ -1,0 +1,18 @@
+# encoding: utf-8
+de:
+# ==========================================   S T R A N G E - C M S   ================================================ #
+  strange_categories:
+    headlines:
+        kategorie_index: "Kategorien"
+        kategorie_edit: "Kategorie bearbeiten"
+        kategorie_new: "Neue Kategorie anlegen"
+        kategorie_show: "Kategorie"
+        list: "Listen-Modul"
+        tags_index: "Tags"
+        tag_new: "Neuen Tag anlegen"
+        wert_edit: "Wert bearbeiten"
+        werteliste_edit: "Werteliste bearbeiten"
+        werteliste_index: "Wertelisten"
+        werteliste_new: "Neue Werteliste anlegen"
+        werteliste_show: "Werteliste"
+# ==========================================   S T R A N G E - C M S   ================================================ #

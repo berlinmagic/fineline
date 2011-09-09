@@ -16,6 +16,9 @@
 		<li><%# link_to 'Kontakt', admin_setting_path('kontakt'), :class => "#{'aktiv' if @u_aktiv == 'kontakt'}" %></li>
 		
 		<li><%= link_to 'Mail-Server', admin_setting_path('mail'), :class => "#{'aktiv' if @u_aktiv == 'mail'}" %></li>
+		
+		<li><%= link_to 'Stylez', admin_setting_path('stylez'), :class => "#{'aktiv' if @u_aktiv == 'stylez'}" %></li>
+		
 		<% end %>
 	</ul>
 </div>

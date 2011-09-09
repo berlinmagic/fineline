@@ -1,7 +1,8 @@
 <%= render 'admin/shared/module_sub_menu' %>
 
 <div class="admin_box">
-	<h1><%= t('bild_new') %></h1>
+	<h1 class="icon"><%= finelineIcon(:icon => 83, :color => finestyler('headline_icon_color'), :size => finestyler('headline_icon_size'), :blur => finestyler('headline_icon_blur')) %><%= t('strange_categories.headlines.tag_new') %></h1>
+
 	<div class="admin_in_box">
 		<%= form_for(@tag, :url => { :controller => 'admin/tags'}) do |f| %>
 		<div class="box">

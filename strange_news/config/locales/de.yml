@@ -4,6 +4,11 @@ de:
 #  =>  #  =>  #  =>  #  =>  #  =>  #  =>  #  =>  #  =>   S T R A N G E - C M S   <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #
 ##############################################################################################################################################
   Keine_standard_Newsnamen_verwenden: "Bitte verwenden Sie keine Standardnamen!"
+  strange_news:
+      headlines:
+            index: "News"
+            new: "Neue News anlegen"
+            edit: "News bearbeiten"
   strange_preferences:
       strange_news:
           settings_headline: "News Einstellungen"

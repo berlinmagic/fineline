@@ -1,7 +1,8 @@
 <% hpics = @hpics || @available_hpics %>
 
 <div class="admin_box in_LB">
-	<h1 class="admin"><%= finelineIcon(:icon => 90, :color => 'dunkel', :size => 24, :blur => 50) %><%= t('header_add_hpic_headline') %></h1>
+	<h1 class="icon"><%= finelineIcon(:icon => 90, :color => finestyler('headline_icon_color'), :size => finestyler('headline_icon_size'), :blur => finestyler('headline_icon_blur')) %><%= t('header_add_hpic_headline') %></h1>
+
 	<div class="admin_in_box">
 		
 		<div class="system_help_text<%= ' hidden' unless Strangecms::Config[:show_help] %>">

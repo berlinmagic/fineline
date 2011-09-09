@@ -7,7 +7,13 @@ de:
   mail_out: "Postausgang"
   new_mails: "Neu E-Mails"
   old_mails: "gelesene E-Mails"
-  
+  strange_kontaktform:
+      headlines:
+          index: "E-Mails (Kontaktformular)"
+          answer: "Antwort"
+          mail_from: "E-Mail von: "
+          edit: "E-Mail bearbeiten"
+          new: "Neue E-Mail (an die Seite!) senden?"
 ##############################################################################################################################################
 #  =>  #  =>  #  =>  #  =>  #  =>  #  =>  #  =>  #  =>   S T R A N G E - C M S   <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #
 ##############################################################################################################################################

@@ -15,7 +15,8 @@ de:
     FORM_STYLEZ:
         tipped: "Felder mit 'Tip'"
         classic: "Klassiche Tabelle"
-    settings: "Kommentar Einstellungen"
+    headlines:
+        settings: "Kommentar Einstellungen"
     
     
     

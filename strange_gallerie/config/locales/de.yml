@@ -8,7 +8,19 @@ de:
   querformat: "Querformat"
   panorama: "Panorama-Format"
   spezial: 'Spezial-Format'
-  
+  strange_gallerie:
+      headlines:
+          gallerie_index: "Vorhandene Gallerie"
+          gallerie_new: "Neue Gallerie anlegen"
+          gallerie_edit: "Gallerie '%{name}' bearbeiten"
+          gallerie_show: "Gallerie '%{name}'"
+          bild_index: "Alle Bilder"
+          bild_new: "Neues Bild hochladen"
+          bild_edit: "Bild '%{name}' bearbeiten"
+          bild_show: "Bild '%{name}'"
+          bild_crop: "Bild '%{name}' zuschneiden"
+          settings: "Gallerie Einstellungen"
+          dash: "Bilder Übersicht"
 ##############################################################################################################################################
 #  =>  #  =>  #  =>  #  =>  #  =>  #  =>  #  =>  #  =>   S T R A N G E - C M S   <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #
 ##############################################################################################################################################

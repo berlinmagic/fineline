@@ -19,6 +19,18 @@ de:
       standard: "Standard"
       tipped: "Feld mit Tip"
       file: "Datei-Feld"
+      headlines:
+          mail_show: "E-Mail von: "
+          mail_index: "E-Mails (fineform)"
+          settings: "FineForm Einstellungen"
+          index: "Vorhandene Formulare"
+          edit: "Formular '%{name}' bearbeiten"
+          new: "Neues Formular erstellen"
+          show: "Formular '%{name}'"
+          
+          
+          
+          
   fineform:
       mail_von: 'E-Mail Sende-Adresse'
       mail_an: 'Formular Empfangs-E-Mail'

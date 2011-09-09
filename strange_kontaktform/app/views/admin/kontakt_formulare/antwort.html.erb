@@ -1,5 +1,6 @@
 <div class="admin_box">
-	<h1>Antwort</h1>
+	<h1 class="icon"><%= finelineIcon(:icon => 45, :color => finestyler('headline_icon_color'), :size => finestyler('headline_icon_size'), :blur => finestyler('headline_icon_blur')) %><%= t('strange_kontaktform.headlines.answer') %></h1>
+
 	<div class="admin_in_box">
 		<%= form_for @kontakt_formular, :url => { :controller => 'admin/kontakt_formulare'}, :method => :post do |f| %>
 		<div class="box">

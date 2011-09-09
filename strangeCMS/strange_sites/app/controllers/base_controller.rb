@@ -14,13 +14,7 @@ class BaseController < ApplicationController
   def finestyle
       @style4 = params[:to_style] if params[:to_style]
       respond_to do |format|
-        if @style4 == 'admin'
-          format.css { render :template => 'stylesheetz/admin' }
-        elsif @style4 == 'fck'
-          format.css { render :template => 'stylesheetz/fck' }
-        else
-          format.css { render :template => 'stylesheetz/fineline' }
-        end
+        format.css { render :template => 'stylesheetz/style' }
       end
   end
   

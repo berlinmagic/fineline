@@ -1,7 +1,8 @@
 <%= render 'admin/shared/module_sub_menu' %>
 
 <div class="admin_box">
-	<h1><%= t('bild_update') %></h1>
+	<h1 class="icon"><%= finelineIcon(:icon => 76, :color => finestyler('headline_icon_color'), :size => finestyler('headline_icon_size'), :blur => finestyler('headline_icon_blur')) %><%= t('strange_gallerie.headlines.bild_edit', :name => @bild.name) %></h1>
+
 	<div class="admin_in_box">
 		<%= form_for(@bild, :html => { :multipart => true }, :url => { :controller => 'admin/bilder', :action => :update}) do |f| %>
 		<div class="box">

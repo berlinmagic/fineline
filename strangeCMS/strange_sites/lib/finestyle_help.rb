@@ -4,6 +4,16 @@ module FinestyleHelp
     
     require "yui/compressor"
     
+    def finestyler(stuff)
+      if request.fullpath.start_with?('/admin/')
+        Strangecms::Stylez::Config["admin_#{stuff}"]
+      elsif request.fullpath.start_with?('/system/')
+        Strangecms::Stylez::Config["admin_#{stuff}"]
+      else
+        Strangecms::Stylez::Config["front_#{stuff}"]
+      end
+    end
+    
     def fine_borderRadius(radius=nil)
         radius = radius.blank? ? 'none' : radius
         " -khtml-border-radius: 	#{ radius };
@@ -182,6 +192,7 @@ module FinestyleHelp
   def self.included(receiver)
     #receiver.extend         ClassMethods
     receiver.send :include, InstanceMethods
+    receiver.send :helper_method, 'finestyler'
     receiver.send :helper_method, 'fine_borderRadius'
     receiver.send :helper_method, 'fine3_borderRadius'
     receiver.send :helper_method, 'fineBorderRadius'

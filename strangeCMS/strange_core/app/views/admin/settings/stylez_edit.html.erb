@@ -1,0 +1,291 @@
+<div class="admin_box">
+	<h1 class="icon"><%= finelineIcon(:icon => 71, :color => finestyler('headline_icon_color'), :size => finestyler('headline_icon_size'), :blur => finestyler('headline_icon_blur')) %><%= t('strange_stylez.settings') %> <%= t('edit')%></h1>
+	<div class="admin_in_box">
+		<%= form_tag(admin_setting_path(@name), :method => :put) do -%>
+		<%= hidden_field_tag('name', @name, :size => 50 ) %>
+		<div class="box">
+			<div class="in_box white">
+				
+				<table class="settings">
+					<tr>
+						<th colspan="4" class="headline"><%= t('strange_stylez.front_stylez')%></th>
+					</tr>
+					<tr>
+						<th colspan="4" class="group"><%= t('strange_stylez.headline_icon')%></th>
+					</tr>
+					<tr>
+						<th><%= t('strange_stylez.headline_icon_size') %></th>
+						<td colspan="3"><%= select_tag('preferences[front_headline_icon_size]',
+											options_for_select(StylezConfiguration::ICON_SIZE.map { |c| [c, c] }, 
+		        							Strangecms::Stylez::Config[:front_headline_icon_size])) %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_stylez.headline_icon_color') %></th>
+						<td colspan="3"><%= select_tag('preferences[front_headline_icon_color]',
+											options_for_select(StylezConfiguration::ICON_COLOR.map { |c| [t("strange_stylez.colors.#{c}"), c] }, 
+			        						Strangecms::Stylez::Config[:front_headline_icon_color])) %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_stylez.headline_icon_blur') %></th>
+						<td><%= text_field_tag('preferences[front_headline_icon_blur]', Strangecms::Stylez::Config[:front_headline_icon_blur], :class => 'no_view' )%></td>
+						<td colspan="2" class="slider_holder"><div id="front_headline_icon_blur_slider"></div></td>
+					</tr>
+					
+					<tr>
+						<th><%= t('strange_stylez.headline_color') %></th>
+						<td colspan="3"><%= text_field_tag('preferences[front_headline_color]', Strangecms::Stylez::Config[:front_headline_color], :class => 'half pick_color' )%></td>
+						
+					</tr>
+					
+					
+					
+					<tr><th colspan="4" class="group">&nbsp;</th></tr>
+					
+					<tr><th colspan="4" class="group"><%= t('strange_stylez.finelineButton_std')%></th></tr>
+					<tr>
+						<th><%= t('strange_stylez.finelineButton.style') %></th>
+						<td colspan="3"><%= select_tag('preferences[front_finelineButton_style]',
+											options_for_select(StylezConfiguration::BUTTON_STYLEZ.map { |c| [t("strange_stylez.colors.#{c}"), c] }, 
+			        						Strangecms::Stylez::Config[:front_finelineButton_style])) %></td>
+					</tr>
+					
+					<tr>
+						<th><%= t('strange_stylez.finelineButton.icon_size') %></th>
+						<td colspan="3"><%= select_tag('preferences[front_finelineButton_icon_size]',
+											options_for_select(StylezConfiguration::ICON_SIZE.map { |c| [c, c] }, 
+		        							Strangecms::Stylez::Config[:front_finelineButton_icon_size])) %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_stylez.finelineButton.icon_color') %></th>
+						<td colspan="3"><%= select_tag('preferences[front_finelineButton_icon_color]',
+											options_for_select(StylezConfiguration::ICON_COLOR.map { |c| [t("strange_stylez.colors.#{c}"), c] }, 
+			        						Strangecms::Stylez::Config[:front_finelineButton_icon_color])) %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_stylez.finelineButton.icon_blur') %></th>
+						<td><%= text_field_tag('preferences[front_finelineButton_icon_blur]', Strangecms::Stylez::Config[:front_finelineButton_icon_blur], :class => 'no_view' )%></td>
+						<td colspan="2" class="slider_holder"><div id="front_finelineButton_icon_blur_slider"></div></td>
+					</tr>
+					
+					
+					
+					<tr>
+						<th><%= t('strange_stylez.finelineButton.bg') %></th>
+						<td><%= select_tag('preferences[front_finelineButton_bg_style]',
+											options_for_select(StylezConfiguration::BUTTON_BG_STYLEZ.map { |c| [t("strange_stylez.colors.#{c}"), c] }, 
+			        						Strangecms::Stylez::Config[:front_finelineButton_bg_style]), :class => 'farbwahl') %></td>
+						<td><%= text_field_tag('preferences[front_finelineButton_bg_color1]', 
+									Strangecms::Stylez::Config[:front_finelineButton_bg_color1], :class => 'half' )%></td>
+						<td><div class="color_2 <%= 'invisible' if Strangecms::Stylez::Config[:front_finelineButton_bg_style] == 'farbe' %>"><%= text_field_tag('preferences[front_finelineButton_bg_color2]', 
+												Strangecms::Stylez::Config[:front_finelineButton_bg_color2], :class => 'half' )%></div></td>
+					</tr>
+					
+					<tr><th colspan="4" class="group">&nbsp;</th></tr>
+					
+					<tr>
+						<th colspan="4" class="group"><%= t('strange_stylez.finelineButton_hover')%></th>
+					</tr>
+					<tr>
+						<th><%= t('strange_stylez.finelineButton.bg') %></th>
+						<td><%= select_tag('preferences[front_finelineButton_bg_style_hover]',
+												options_for_select(StylezConfiguration::BUTTON_BG_STYLEZ.map { |c| [t("strange_stylez.colors.#{c}"), c] }, 
+				        						Strangecms::Stylez::Config[:front_finelineButton_bg_style_hover]), :class => 'farbwahl') %></td>
+						<td><%= text_field_tag('preferences[front_finelineButton_bg_color1_hover]', 
+									Strangecms::Stylez::Config[:front_finelineButton_bg_color1_hover], :class => 'half' )%></td>
+						<td><div class="color_2 <%= 'invisible' if Strangecms::Stylez::Config[:front_finelineButton_bg_style_hover] == 'farbe' %>"><%= text_field_tag('preferences[front_finelineButton_bg_color2_hover]', 
+									Strangecms::Stylez::Config[:front_finelineButton_bg_color2_hover], :class => 'half' )%></div></td>
+					</tr>
+					
+					<tr><th colspan="4" class="group">&nbsp;</th></tr>
+					
+					<tr>
+						<th colspan="4" class="group"><%= t('strange_stylez.finelineButton_active')%></th>
+					</tr>
+					<tr>
+						<th><%= t('strange_stylez.finelineButton.bg') %></th>
+						<td><%= select_tag('preferences[front_finelineButton_bg_style_active]',
+												options_for_select(StylezConfiguration::BUTTON_BG_STYLEZ.map { |c| [t("strange_stylez.colors.#{c}"), c] }, 
+				        						Strangecms::Stylez::Config[:front_finelineButton_bg_style_active]), :class => 'farbwahl') %></td>
+						<td><%= text_field_tag('preferences[front_finelineButton_bg_color1_active]', 
+									Strangecms::Stylez::Config[:front_finelineButton_bg_color1_active], :class => 'half' )%></td>
+						<td><div class="color_2 <%= 'invisible' if Strangecms::Stylez::Config[:front_finelineButton_bg_style_active] == 'farbe' %>"><%= text_field_tag('preferences[front_finelineButton_bg_color2_active]', 
+									Strangecms::Stylez::Config[:front_finelineButton_bg_color2_active], :class => 'half' )%></div></td>
+					</tr>
+				</table>
+				<br/>
+				
+				
+				<% if current_user && site_master %>
+				<table class="settings">
+					<tr>
+						<th colspan="4" class="headline"><%= t('strange_stylez.admin_stylez')%></th>
+					</tr>
+					<tr>
+						<th colspan="4" class="group"><%= t('strange_stylez.headline_icon')%></th>
+					</tr>
+					<tr>
+						<th><%= t('strange_stylez.headline_icon_size') %></th>
+						<td colspan="3"><%= select_tag('preferences[admin_headline_icon_size]',
+											options_for_select(StylezConfiguration::ICON_SIZE.map { |c| [c, c] }, 
+											Strangecms::Stylez::Config[:admin_headline_icon_size])) %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_stylez.headline_icon_color') %></th>
+						<td colspan="3"><%= select_tag('preferences[admin_headline_icon_color]',
+											options_for_select(StylezConfiguration::ICON_COLOR.map { |c| [t("strange_stylez.colors.#{c}"), c] }, 
+											Strangecms::Stylez::Config[:admin_headline_icon_color])) %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_stylez.headline_icon_blur') %></th>
+						<td><%= text_field_tag('preferences[admin_headline_icon_blur]', Strangecms::Stylez::Config[:admin_headline_icon_blur], :class => 'no_view' )%></td>
+						<td colspan="2" class="slider_holder"><div id="admin_headline_icon_blur_slider"></div></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_stylez.headline_color') %></th>
+						<td colspan="3"><%= text_field_tag('preferences[admin_headline_color]', Strangecms::Stylez::Config[:admin_headline_color], :class => 'half pick_color' )%></td>
+						
+					</tr>
+
+					<tr><th colspan="4" class="group">&nbsp;</th></tr>
+
+					<tr><th colspan="4" class="group"><%= t('strange_stylez.finelineButton_std')%></th></tr>
+					<tr>
+						<th><%= t('strange_stylez.finelineButton.style') %></th>
+						<td colspan="3"><%= select_tag('preferences[admin_finelineButton_style]',
+											options_for_select(StylezConfiguration::BUTTON_STYLEZ.map { |c| [t("strange_stylez.colors.#{c}"), c] }, 
+											Strangecms::Stylez::Config[:admin_finelineButton_style])) %></td>
+					</tr>
+
+					<tr>
+						<th><%= t('strange_stylez.finelineButton.icon_size') %></th>
+						<td colspan="3"><%= select_tag('preferences[admin_finelineButton_icon_size]',
+											options_for_select(StylezConfiguration::ICON_SIZE.map { |c| [c, c] }, 
+											Strangecms::Stylez::Config[:admin_finelineButton_icon_size])) %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_stylez.finelineButton.icon_color') %></th>
+						<td colspan="3"><%= select_tag('preferences[admin_finelineButton_icon_color]',
+											options_for_select(StylezConfiguration::ICON_COLOR.map { |c| [t("strange_stylez.colors.#{c}"), c] }, 
+											Strangecms::Stylez::Config[:admin_finelineButton_icon_color])) %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_stylez.finelineButton.icon_blur') %></th>
+						<td><%= text_field_tag('preferences[admin_finelineButton_icon_blur]', Strangecms::Stylez::Config[:admin_finelineButton_icon_blur], :class => 'no_view' )%></td>
+						<td colspan="2" class="slider_holder"><div id="admin_finelineButton_icon_blur_slider"></div></td>
+					</tr>
+
+
+
+					<tr>
+						<th><%= t('strange_stylez.finelineButton.bg') %></th>
+						<td><%= select_tag('preferences[admin_finelineButton_bg_style]',
+											options_for_select(StylezConfiguration::BUTTON_BG_STYLEZ.map { |c| [t("strange_stylez.colors.#{c}"), c] }, 
+											Strangecms::Stylez::Config[:admin_finelineButton_bg_style]), :class => 'farbwahl') %></td>
+						<td><%= text_field_tag('preferences[admin_finelineButton_bg_color1]', 
+									Strangecms::Stylez::Config[:admin_finelineButton_bg_color1], :class => 'half' )%></td>
+						<td><div class="color_2 <%= 'invisible' if Strangecms::Stylez::Config[:admin_finelineButton_bg_style] == 'farbe' %>"><%= text_field_tag('preferences[admin_finelineButton_bg_color2]', 
+												Strangecms::Stylez::Config[:admin_finelineButton_bg_color2], :class => 'half' )%></div></td>
+					</tr>
+
+					<tr><th colspan="4" class="group">&nbsp;</th></tr>
+
+					<tr>
+						<th colspan="4" class="group"><%= t('strange_stylez.finelineButton_hover')%></th>
+					</tr>
+					<tr>
+						<th><%= t('strange_stylez.finelineButton.bg') %></th>
+						<td><%= select_tag('preferences[admin_finelineButton_bg_style_hover]',
+												options_for_select(StylezConfiguration::BUTTON_BG_STYLEZ.map { |c| [t("strange_stylez.colors.#{c}"), c] }, 
+					    						Strangecms::Stylez::Config[:admin_finelineButton_bg_style_hover]), :class => 'farbwahl') %></td>
+						<td><%= text_field_tag('preferences[admin_finelineButton_bg_color1_hover]', 
+									Strangecms::Stylez::Config[:admin_finelineButton_bg_color1_hover], :class => 'half' )%></td>
+						<td><div class="color_2 <%= 'invisible' if Strangecms::Stylez::Config[:admin_finelineButton_bg_style_hover] == 'farbe' %>"><%= text_field_tag('preferences[admin_finelineButton_bg_color2_hover]', 
+									Strangecms::Stylez::Config[:admin_finelineButton_bg_color2_hover], :class => 'half' )%></div></td>
+					</tr>
+
+					<tr><th colspan="4" class="group">&nbsp;</th></tr>
+
+					<tr>
+						<th colspan="4" class="group"><%= t('strange_stylez.finelineButton_active')%></th>
+					</tr>
+					<tr>
+						<th><%= t('strange_stylez.finelineButton.bg') %></th>
+						<td><%= select_tag('preferences[admin_finelineButton_bg_style_active]',
+												options_for_select(StylezConfiguration::BUTTON_BG_STYLEZ.map { |c| [t("strange_stylez.colors.#{c}"), c] }, 
+					    						Strangecms::Stylez::Config[:admin_finelineButton_bg_style_active]), :class => 'farbwahl') %></td>
+						<td><%= text_field_tag('preferences[admin_finelineButton_bg_color1_active]', 
+									Strangecms::Stylez::Config[:admin_finelineButton_bg_color1_active], :class => 'half' )%></td>
+						<td><div class="color_2 <%= 'invisible' if Strangecms::Stylez::Config[:admin_finelineButton_bg_style_active] == 'farbe' %>"><%= text_field_tag('preferences[admin_finelineButton_bg_color2_active]', 
+									Strangecms::Stylez::Config[:admin_finelineButton_bg_color2_active], :class => 'half' )%></div></td>
+					</tr>
+				</table>
+				<% end %>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<%= render 'update_buttons' %>
+			</div>
+		</div>
+		
+		<% end %>
+	</div>
+</div>
+
+
+
+
+<% content_for :js_stuff do %>
+
+<script type="text/javascript">
+$(function() {
+	
+	
+	$('#preferences_front_finelineButton_bg_color1').jPicker({ localization: { text: { ok: 'übernehmen', cancel: 'verwerfen' }} });
+	$('#preferences_front_finelineButton_bg_color2').jPicker({ localization: { text: { ok: 'übernehmen', cancel: 'verwerfen' }} });
+	$('#preferences_front_finelineButton_bg_color1_hover').jPicker({ localization: { text: { ok: 'übernehmen', cancel: 'verwerfen' }} });
+	$('#preferences_front_finelineButton_bg_color2_hover').jPicker({ localization: { text: { ok: 'übernehmen', cancel: 'verwerfen' }} });
+	$('#preferences_front_finelineButton_bg_color1_active').jPicker({ localization: { text: { ok: 'übernehmen', cancel: 'verwerfen' }} });
+	$('#preferences_front_finelineButton_bg_color2_active').jPicker({ localization: { text: { ok: 'übernehmen', cancel: 'verwerfen' }} });
+	
+	$('#preferences_admin_finelineButton_bg_color1').jPicker({ localization: { text: { ok: 'übernehmen', cancel: 'verwerfen' }} });
+	$('#preferences_admin_finelineButton_bg_color2').jPicker({ localization: { text: { ok: 'übernehmen', cancel: 'verwerfen' }} });
+	$('#preferences_admin_finelineButton_bg_color1_hover').jPicker({ localization: { text: { ok: 'übernehmen', cancel: 'verwerfen' }} });
+	$('#preferences_admin_finelineButton_bg_color2_hover').jPicker({ localization: { text: { ok: 'übernehmen', cancel: 'verwerfen' }} });
+	$('#preferences_admin_finelineButton_bg_color1_active').jPicker({ localization: { text: { ok: 'übernehmen', cancel: 'verwerfen' }} });
+	$('#preferences_admin_finelineButton_bg_color2_active').jPicker({ localization: { text: { ok: 'übernehmen', cancel: 'verwerfen' }} });
+	
+	$('.pick_color').jPicker({ localization: { text: { ok: 'übernehmen', cancel: 'verwerfen' }} });
+	
+	
+	$('.farbwahl').change(function(){
+		$(this).parent().parent().find('.color_2').toggleClass('invisible');
+	});
+	
+	
+	$( "#front_headline_icon_blur_slider" ).slider({ min: 1, max: 100, value: <%= Strangecms::Stylez::Config[:front_headline_icon_blur] || 50 %>, 
+	slide: function( event, ui ) { $( "#preferences_front_headline_icon_blur" ).val( ui.value ); } });
+	$( "#preferences_front_headline_icon_blur" ).val( $( "#front_headline_icon_blur_slider" ).slider( "value" ) );
+	
+	$( "#front_finelineButton_icon_blur_slider" ).slider({ min: 1, max: 100, value: <%= Strangecms::Stylez::Config[:front_headline_icon_blur] || 50 %>, 
+	slide: function( event, ui ) { $( "#preferences_front_finelineButton_icon_blur" ).val( ui.value ); } });
+	$( "#preferences_front_finelineButton_icon_blur" ).val( $( "#front_finelineButton_icon_blur_slider" ).slider( "value" ) );
+		
+	$( "#admin_headline_icon_blur_slider" ).slider({ min: 1, max: 100, value: <%= Strangecms::Stylez::Config[:admin_headline_icon_blur] || 50 %>, 
+	slide: function( event, ui ) { $( "#preferences_admin_headline_icon_blur" ).val( ui.value ); } });
+	$( "#preferences_admin_headline_icon_blur" ).val( $( "#admin_headline_icon_blur_slider" ).slider( "value" ) );
+	
+	$( "#admin_finelineButton_icon_blur_slider" ).slider({ min: 1, max: 100, value: <%= Strangecms::Stylez::Config[:admin_headline_icon_blur] || 50 %>, 
+	slide: function( event, ui ) { $( "#preferences_admin_finelineButton_icon_blur" ).val( ui.value ); } });
+	$( "#preferences_admin_finelineButton_icon_blur" ).val( $( "#admin_finelineButton_icon_blur_slider" ).slider( "value" ) );
+		
+});
+</script>
+<% end %>
+
+
+<style>
+.slider_holder { padding: 10px 0 0;}
+</style>
+
+<%= render 'sidebar' %>

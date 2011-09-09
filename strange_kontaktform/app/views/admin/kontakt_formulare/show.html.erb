@@ -1,5 +1,6 @@
 <div class="admin_box">
-	<h1>E-Mail von <%= @kontakt_formular.anrede %> <%= @kontakt_formular.name %></h1>
+	<h1 class="icon"><%= finelineIcon(:icon => 45, :color => finestyler('headline_icon_color'), :size => finestyler('headline_icon_size'), :blur => finestyler('headline_icon_blur')) %><%= t('strange_kontaktform.headlines.mail_from') %> <%= @kontakt_formular.anrede %> <%= @kontakt_formular.name %></h1>
+
 	<div class="admin_in_box">
 		<div class="box">
 			<div class="in_box">

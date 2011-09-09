@@ -41,21 +41,34 @@ class Admin::SettingsController < Admin::BaseController
     if @setting_names.include?(@name)
       @u_aktiv = @name
       respond_to do |format|
-        if Strangecms::Config.set(params[:preferences])
-          Strangecms::Preferences::MailSettings.init if (@name == 'mail') || (@name == 'cms')
-          if (@name == 'optik')
+        if @name == 'stylez'
+          if Strangecms::Stylez::Config.set(params[:preferences])
             expire_page	'/system/finestyle.css'
             expire_page	'/system/admin_finestyle.css'
             expire_page	'/system/editor_finestyle.css'
-            expire_page	'/system/finescript.js'
-            expire_page	'/system/admin_finescript.js'
-            FileUtils.touch "#{Rails.root}/tmp/restart.txt"
+            flash.now[:notice] = I18n.t('strange_preferences.settings_updated')
+            format.html { render :template => "admin/settings/#{@name}" }
+          else
+            flash.now[:alert] = I18n.t('strange_preferences.updated_error')
+            format.html { render :template => "admin/settings/#{@name}" }
           end
-          flash.now[:notice] = I18n.t('strange_preferences.settings_updated')
-          format.html { render :template => "admin/settings/#{@name}" }
         else
-          flash.now[:alert] = I18n.t('strange_preferences.updated_error')
-          format.html { render :template => "admin/settings/#{@name}" }
+          if Strangecms::Config.set(params[:preferences])
+            Strangecms::Preferences::MailSettings.init if (@name == 'mail') || (@name == 'cms')
+            if (@name == 'optik')
+              expire_page	'/system/finestyle.css'
+              expire_page	'/system/admin_finestyle.css'
+              expire_page	'/system/editor_finestyle.css'
+              expire_page	'/system/finescript.js'
+              expire_page	'/system/admin_finescript.js'
+              FileUtils.touch "#{Rails.root}/tmp/restart.txt"
+            end
+            flash.now[:notice] = I18n.t('strange_preferences.settings_updated')
+            format.html { render :template => "admin/settings/#{@name}" }
+          else
+            flash.now[:alert] = I18n.t('strange_preferences.updated_error')
+            format.html { render :template => "admin/settings/#{@name}" }
+          end
         end
       end
     else
@@ -66,7 +79,7 @@ class Admin::SettingsController < Admin::BaseController
   
   def load_strange_setting_names
     # @setting_names = ["cms", "account", "kontakt", "mail", "optik", "user"]
-    @setting_names = ["cms", "account", "mail", "optik", "user"]
+    @setting_names = ["cms", "account", "mail", "optik", "stylez", "user"]
     @aktivio = 'settings'
   end
   

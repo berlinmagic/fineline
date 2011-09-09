@@ -70,6 +70,7 @@ de:
   Resend_unlock_instructions: "Entsperr-Anweisungen erneut versenden"
 ################################################################################################################
   user_settings:
+      headline: "Nutzer-Sicherheits-Einstulngen"
       mailer_sender: "User-Mailer"
       timeout_in: "Abmelden nach"
       invite_for: "Einladung gillt"

@@ -34,6 +34,7 @@ de:
           sort: "Seiten sortieren"
       headlines:
           index: "Seitenverwaltung"
+          module: "Aktive Module"
       show_sites: "Anzeigen:"
 ###  Linkz  ###
   Show: "Anzeigen"
@@ -150,7 +151,26 @@ de:
                   not_safed: "%{count} Fehler verhindern, das %{resource} gespeichert werden kann."
                   taken: "ist bereits vergeben"
                   record_invalid: "Gültigkeitsprüfung ist fehlgeschlagen: %{errors}"
-                  
+  strange_stylez:
+      settings: "Style Einstellungen"
+      front_stylez: "Seiten Styles"
+      admin_stylez: "Backend Styles"
+      headline_icon: "Überschriften-Icon"
+      headline_icon_size: "Icon-Größe"
+      headline_icon_color: "Icon-Farbe"
+      headline_icon_blur: "Icon-Transparenz"
+      finelineButton_std: "Icon-Buttons"
+      finelineButton_hover: "Icon-Buttons (MouseOver)"
+      finelineButton_active: "Icon-Buttons (Click)"
+      finelineButton:
+          icon_size: "Icon-Größe"
+          icon_color: "Icon-Farbe"
+          icon_blur: "Icon-Transparenz"
+          style: "Button-Stil:"
+          bg: "Hintergrund"
+      colors:
+          hell: "Hell"
+          dunkel: "Dunkel"
 ##############################################################################################################################################
 #  =>  #  =>  #  =>  #  =>  #  =>  #  =>  #  =>  #  =>   S T R A N G E - C M S   <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #
 ##############################################################################################################################################
