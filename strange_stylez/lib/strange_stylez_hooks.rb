@@ -4,7 +4,9 @@ class StrangeStylezHooks < Strangecms::ThemeSupport::HookListener
   # => insert_after :admin_module_list do
   # =>   "<%= render 'admin/sidebars/icon' %>"
   # => end
-  
+  insert_after :admin_main_navigation do
+    "<%= link_to 'Stylez', '#admin_fine_styles_path', :class => ('aktiv' if @aktivio == 'stylez') %>"
+  end
   
   insert_after :admin_module_list do
     "<%= render 'admin/base/modul_icon',  :modul_titel => 'FreiStil', 

@@ -3,7 +3,7 @@ module Strangecms::Stylez
     class << self
       def instance
         return nil unless ActiveRecord::Base.connection.tables.include?('configurations')
-        KontaktConfiguration.find_or_create_by_name("Kontakt configuration")
+        StylezConfiguration.find_or_create_by_name("Stylez configuration")
       end
     end
   end

@@ -1,12 +1,10 @@
 # encoding: utf-8
 class StyleSet < ActiveRecord::Base
   
-  has_many :style_objekte, :dependent => :destroy
+  belongs_to :fine_style, :class_name => "FineStyle"
   
-  # => has_many :style_sheets, :dependent => :destroy
+  has_many :style_objects, :dependent => :destroy
   
-  attr_accessor :back_url
-  
-
+  attr_accessor :user, :theme
   
 end

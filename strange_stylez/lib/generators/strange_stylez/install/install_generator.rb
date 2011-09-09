@@ -9,18 +9,20 @@ module StrangeStylez
       desc "add the migrations"
       
       def self.next_migration_number(path)
-        unless @prev_migration_nr
-          @prev_migration_nr = Time.now.utc.strftime("%Y%m%d%H%M%S").to_i
-        else
-          @prev_migration_nr += 1
-        end
+        @prev_migration_nr ? @prev_migration_nr += 1 : @prev_migration_nr = Time.now.utc.strftime("%Y%m%d%H%M%S").to_i
         @prev_migration_nr.to_s
       end
 
       def copy_migrations
-        puts("Stylez:: create Migration-File")
-        migration_template "create_strange_stylez.rb", "db/migrate/create_strange_stylez.rb"
-        # => migration_template "create_something_else.rb", "db/migrate/create_something_else.rb"
+        puts("Core:: erstelle Migration")
+        Dir.glob( File.join(File.expand_path('../templates', __FILE__), "create*.*") ) do |file|
+          migration_template "#{file}", "db/migrate/#{File.basename(file.to_s)}"
+        end
+        # migrate Updates
+        puts("Core:: create update Migration-Files")
+        Dir.glob( File.join(File.expand_path('../templates', __FILE__), "update*.*") ) do |file|
+          migration_template "#{file}", "db/migrate/#{File.basename(file.to_s)}"
+        end
       end
       
       # => def seed_news_site

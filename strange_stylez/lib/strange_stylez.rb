@@ -4,6 +4,7 @@
   
   require 'strange_stylez_hooks'
   require 'strange_stylez_modul'
+  # => require 'default_theme'
   
   require 'stylez/config'
 
