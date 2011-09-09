@@ -13,12 +13,32 @@
 					<tr>
 						<th colspan="4" class="group"><%= t('strange_stylez.fontz')%></th>
 					</tr>
-					<tr>
-						<th><%= t('strange_stylez.front_body_font_family') %></th>
-						<td colspan="3"><%= select_tag('preferences[front_body_font_family]',
-											options_for_select(StylezConfiguration::FONTZ_TYPES.map { |c| [t("strange_stylez.font_namez.#{c}"), c] }, 
-		        							Strangecms::Stylez::Config[:front_body_font_family])) %></td>
-					</tr>
+					
+					<%#= ff_font_select_row( 'body', false ) %>
+					<%= ff_font_row( 'body', 'front', false ) %>
+					
+					<%= ff_font_row( 'p' ) %>
+					
+					<%= ff_font_row( 'h1' ) %>
+					<%= ff_font_row( 'h2' ) %>
+					<%= ff_font_row( 'h3' ) %>
+					<%= ff_font_row( 'h4' ) %>
+					<%= ff_font_row( 'h5' ) %>
+					<%= ff_font_row( 'h6' ) %>
+					
+					<%= ff_font_row( 'headline' ) %>
+					
+					<%= ff_font_row( 'pre' ) %>
+					
+
+					
+					<tr><th colspan="4" class="group">&nbsp;</th></tr>
+					<tr><th colspan="4" class="group">&nbsp;</th></tr>
+
+					<%= ff_google_font_row( 'one' ) %>
+					<%= ff_google_font_row( 'two' ) %>
+					<%= ff_google_font_row( 'three' ) %>
+					
 					<tr><th colspan="4" class="group">&nbsp;</th></tr>
 					
 					

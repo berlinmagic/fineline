@@ -1,6 +1,9 @@
 /* ===============================		Fonts		==================================== */
 body, select, input, textarea { color: #444; line-height: 20px;
 	<%= raw( "#{ fine_font_family( Strangecms::Stylez::Config[:front_body_font_family], false ) }" ) %> }
+	
+pre,code,kbd,samp{ <%= raw( "#{ fine_font_family( Strangecms::Stylez::Config[:front_pre_font_family] ) }" ) %> 
+	_font-family:'courier new',monospace; font-size:1em; }
 
 h1, h2, h3, h4, h5, h6 { font-weight: bold; }
 
@@ -14,7 +17,8 @@ h2 { font-size:16px; line-height: 22px;}
 
 em { font-style:italic; }
 
-p { padding: 0; margin: 0; line-height: 20px; }
+p { padding: 0; margin: 0; line-height: 20px; 
+	<%= raw( "#{ fine_font_family( Strangecms::Stylez::Config[:front_p_font_family] ) }" ) %>}
 
 
 
@@ -29,26 +33,33 @@ h1, h2, h3, h4, h5, h6, p { margin: 0; padding: 0; }
 .sys_subnav { font-size: 13px; font-weight: bold; color: #003366; font-style: normal; }
 
 /* Überschrift 1 - Lucida Grande 13 Punkte - Bold italic #336699 (Seitenüberschriften) */
-h1 { font-size: 13px; font-weight: bold; color: #336699; font-style: italic; }
+h1 { font-size: 13px; font-weight: bold; color: #336699; font-style: italic; 
+	<%= raw( "#{ fine_font_family( Strangecms::Stylez::Config[:front_h1_font_family] ) }" ) %>}
 
 /* Überschrift 1 - mit Icon */
-h1.icon { 	margin-bottom: 5px; 
+h1.icon { 	margin-bottom: 5px; <%= raw( "#{ fine_font_family( Strangecms::Stylez::Config[:front_headline_font_family] ) }" ) %>
 			line-height: <%= Strangecms::Stylez::Config[:front_headline_icon_size] %>px; 
-			color: #<%= Strangecms::Stylez::Config[:front_headline_color] %>; }
+			color: #<%= Strangecms::Stylez::Config[:front_headline_font_color] %>; }
 h1.icon .finelineIcon { margin-right: 5px; }
 
 /* Überschrift 2 - Lucida Grande 13 Punkte - Italic # 333333 (Systemüberschriften) */
-h2 { font-size: 14px; font-weight: normal; color: #333333; font-style: italic; }
+h2 { font-size: 14px; font-weight: normal; color: #333333; font-style: italic; 
+	<%= raw( "#{ fine_font_family( Strangecms::Stylez::Config[:front_h2_font_family] ) }" ) %>}
 
 /* Überschrift 3 - Lucida Grande 12 Punkte - Bold # 336699 (Beispieltitel) */
-h3 { font-size: 12px; font-weight: bold; color: #336699; font-style: normal; }
+h3 { font-size: 12px; font-weight: bold; color: #336699; font-style: normal; 
+	<%= raw( "#{ fine_font_family( Strangecms::Stylez::Config[:front_h3_font_family] ) }" ) %>}
 
 /* Überschrift 4 - Lucida Grande 12 Punkte - Bold # 333333  */
-h4 { font-size: 12px; font-weight: bold; color: #333333; font-style: normal; }
+h4 { font-size: 12px; font-weight: bold; color: #333333; font-style: normal; 
+	<%= raw( "#{ fine_font_family( Strangecms::Stylez::Config[:front_h4_font_family] ) }" ) %>}
 
 /* Überschrift 4 - Lucida Grande 12 Punkte - Bold # 333333  */
-h5, a h5, h5 a { font-size: 13px; font-weight: normal; color: #333333; font-style: italic; }
+h5, a h5, h5 a { font-size: 13px; font-weight: normal; color: #333333; font-style: italic; 
+	<%= raw( "#{ fine_font_family( Strangecms::Stylez::Config[:front_h5_font_family] ) }" ) %>}
 h5:hover, a:hover h5, h5:hover a { color: #082f55; }
+
+h6 { <%= raw( "#{ fine_font_family( Strangecms::Stylez::Config[:front_h6_font_family] ) }" ) %> }
 
 /* Normattext 1- Lucida Grande 12 Punkte - Regular # 666666 (Systemtext) */
 .norm1 { font-size: 12px !important; font-weight: normal !important; color: rgb(102,102,102) !important; font-style: normal !important; }

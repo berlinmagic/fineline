@@ -7,13 +7,21 @@ class StylezConfiguration < Configuration
   BUTTON_BG_STYLEZ = %w[farbe verlauf]
   BUTTON_STYLEZ = %w[eckig gerunded rund]
   FONTS_ALTS = ["serif", "sans-serif", "cursive", "fantasy", "monospace"]
+  FONT_WEIGHTS = ['normal', 'bold']
+  FONT_STYLES = ['normal', 'italic']
+  FONT_SIZES = (8..42).to_a
+  LINE_HEIGHTS = [18, 20, 22, 24, 26, 28, 30, 40, 42, 50]
   FONTZ = {
       'Trebuchet' => '"Trebuchet MS", Arial, sans-serif',
       'Arial' => 'Arial, Helvetica, sans-serif',
       'Times' => '"Times New Roman", Times, serif',
       'Courier' => '"Courier New", Courier, monospace',
       'Georgia' => 'Georgia, "Times New Roman", Times, serif',
-      'Verdana' => 'Verdana, Arial, Helvetica, sans-serif'
+      'Verdana' => 'Verdana, Arial, Helvetica, sans-serif',
+      'ArialBlack' => '"Arial Black", Impact,  Arial, sans-serif',
+      'Impact' => 'Impact, "Arial Black", Arial, sans-serif',
+      'ComicSans' => '"Comic Sans MS", fantasy'
+      
     }
   FONTZ_TYPES = [
       'Trebuchet',
@@ -22,6 +30,9 @@ class StylezConfiguration < Configuration
       'Courier',
       'Georgia',
       'Verdana',
+      'ArialBlack',
+      'Impact',
+      'ComicSans',
       'Google_one',
       'Google_two',
       'Google_three'
@@ -29,7 +40,77 @@ class StylezConfiguration < Configuration
   
   ### F O N T Z :
   preference :front_body_font_family, :string, :default => FONTZ_TYPES[0]
+  preference :front_body_font_style, :string, :default => FONT_STYLES[0]
+  preference :front_body_font_weight, :string, :default => FONT_WEIGHTS[0]
+  preference :front_body_font_size, :string, :default => 13
+  preference :front_body_font_color, :string, :default => 444444
+  preference :front_body_line_height, :string, :default => 20
   
+  preference :front_pre_font_family, :string, :default => FONTZ_TYPES[3]
+  preference :front_pre_font_style, :string, :default => FONT_STYLES[0]
+  preference :front_pre_font_weight, :string, :default => FONT_WEIGHTS[0]
+  preference :front_pre_font_size, :string, :default => 13
+  preference :front_pre_font_color, :string, :default => 444444
+  preference :front_pre_line_height, :string, :default => 20
+  
+  preference :front_p_font_family, :string, :default => FONTZ_TYPES[0]
+  preference :front_p_font_style, :string, :default => FONT_STYLES[0]
+  preference :front_p_font_weight, :string, :default => FONT_WEIGHTS[0]
+  preference :front_p_font_size, :string, :default => 13
+  preference :front_p_font_color, :string, :default => 444444
+  preference :front_p_line_height, :string, :default => 20
+  
+  preference :front_h1_font_family, :string, :default => FONTZ_TYPES[0]
+  preference :front_h1_font_style, :string, :default => FONT_STYLES[1]
+  preference :front_h1_font_weight, :string, :default => FONT_WEIGHTS[0]
+  preference :front_h1_font_size, :string, :default => 15
+  preference :front_h1_font_color, :string, :default => 444444
+  preference :front_h1_line_height, :string, :default => 20
+  
+  preference :front_h2_font_family, :string, :default => FONTZ_TYPES[0]
+  preference :front_h2_font_style, :string, :default => FONT_STYLES[1]
+  preference :front_h2_font_weight, :string, :default => FONT_WEIGHTS[0]
+  preference :front_h2_font_size, :string, :default => 15
+  preference :front_h2_font_color, :string, :default => 444444
+  preference :front_h2_line_height, :string, :default => 20
+  
+  preference :front_h3_font_family, :string, :default => FONTZ_TYPES[0]
+  preference :front_h3_font_style, :string, :default => FONT_STYLES[0]
+  preference :front_h3_font_weight, :string, :default => FONT_WEIGHTS[0]
+  preference :front_h3_font_size, :string, :default => 14
+  preference :front_h3_font_color, :string, :default => 444444
+  preference :front_h3_line_height, :string, :default => 20
+  
+  preference :front_h4_font_family, :string, :default => FONTZ_TYPES[0]
+  preference :front_h4_font_style, :string, :default => FONT_STYLES[0]
+  preference :front_h4_font_weight, :string, :default => FONT_WEIGHTS[0]
+  preference :front_h4_font_size, :string, :default => 14
+  preference :front_h4_font_color, :string, :default => 444444
+  preference :front_h4_line_height, :string, :default => 20
+  
+  preference :front_h5_font_family, :string, :default => FONTZ_TYPES[0]
+  preference :front_h5_font_style, :string, :default => FONT_STYLES[0]
+  preference :front_h5_font_weight, :string, :default => FONT_WEIGHTS[0]
+  preference :front_h5_font_size, :string, :default => 13
+  preference :front_h5_font_color, :string, :default => 444444
+  preference :front_h5_line_height, :string, :default => 20
+  
+  preference :front_h6_font_family, :string, :default => FONTZ_TYPES[0]
+  preference :front_h6_font_style, :string, :default => FONT_STYLES[0]
+  preference :front_h6_font_weight, :string, :default => FONT_WEIGHTS[0]
+  preference :front_h6_font_size, :string, :default => 13
+  preference :front_h6_font_color, :string, :default => 444444
+  preference :front_h6_line_height, :string, :default => 20
+  
+  # => front H1-Icon
+  preference :front_headline_icon_size, :integer, :default => ICON_SIZE[1]
+  preference :front_headline_icon_color, :string, :default => ICON_COLOR[1]
+  preference :front_headline_icon_blur, :integer, :default => 50
+  preference :front_headline_font_color, :string, :default => 666666
+  preference :front_headline_font_style, :string, :default => FONT_STYLES[1]
+  preference :front_headline_font_weight, :string, :default => FONT_WEIGHTS[0]
+  preference :front_headline_font_size, :string, :default => 15
+  preference :front_headline_font_family, :string, :default => FONTZ_TYPES[0]
   
   preference :google_font_one, :string, :default => 'Tangerine:700,400'
   preference :google_font_two, :string, :default => 'Julee'
@@ -53,11 +134,7 @@ class StylezConfiguration < Configuration
 
   
   
-  # => front H1-Icon
-  preference :front_headline_icon_size, :integer, :default => ICON_SIZE[1]
-  preference :front_headline_icon_color, :string, :default => ICON_COLOR[1]
-  preference :front_headline_icon_blur, :integer, :default => 50
-  preference :front_headline_color, :string, :default => 666666
+  
   
   
   

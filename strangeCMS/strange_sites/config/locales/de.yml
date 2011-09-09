@@ -156,7 +156,17 @@ de:
       front_stylez: "Seiten Styles"
       admin_stylez: "Backend Styles"
       fontz: "Schriftarten"
-      front_body_font_family: "Body Schriftart"
+      fonts:
+          body: "Body:"
+          pre: "Formartiert:"
+          p: "Paragraph:"
+          h1: "Überschrift 1:"
+          h2: "Überschrift 2:"
+          h3: "Überschrift 3:"
+          h4: "Überschrift 4:"
+          h5: "Überschrift 5:"
+          h6: "Überschrift 6:"
+          headline: "Icon-Überschrift:"
       google_font_one: "Google Webfont 1:"
       google_font_default_one: "Webfont1 alternativ:"
       google_font_two: "Google Webfont 2:"
@@ -189,6 +199,22 @@ de:
           Google_one: "Google Webfont 1"
           Google_two: "Google Webfont 2"
           Google_three: "Google Webfont 3"
+          font_inherit: "wie Body"
+      font_alts:
+          sans-serif: "sans-serif"
+          serif: "serif"
+          cursive: "cursive"
+          monospace: "monospace"
+          fantasy: "fantasy"
+      font_styles:
+          nomal: "Normal"
+          bold: "Fett"
+          italic: "Kursiv"
+      font_color: "Schriftfarbe:"
+      font_size: "Schriftgröße:"
+      font_style: "Schriftstil:"
+      line_height: "Zeilenhöhe:"
+      font_weight: "Schriftstärke:"
 ##############################################################################################################################################
 #  =>  #  =>  #  =>  #  =>  #  =>  #  =>  #  =>  #  =>   S T R A N G E - C M S   <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #
 ##############################################################################################################################################

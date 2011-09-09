@@ -28,7 +28,7 @@ module FinestyleHelp
           "font-family: sans-serif;"
         end
       else
-        "font-family: #{ StylezConfiguration::FONTZ[ Strangecms::Stylez::Config[:front_body_font_family] ].to_s };"
+        "font-family: #{ StylezConfiguration::FONTZ[ font_family ].to_s };"
       end
     end
     
@@ -210,6 +210,7 @@ module FinestyleHelp
   def self.included(receiver)
     #receiver.extend         ClassMethods
     receiver.send :include, InstanceMethods
+    receiver.send :helper, 'fine_form'
     receiver.send :helper_method, 'finestyler'
     receiver.send :helper_method, 'fine_font_family'
     receiver.send :helper_method, 'fine_borderRadius'
