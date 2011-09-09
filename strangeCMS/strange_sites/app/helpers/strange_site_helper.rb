@@ -16,41 +16,57 @@ module StrangeSiteHelper
     options.reverse_merge! :protect =>    nil   unless    options.key? :protect
     abschnitt_text = "<div class='deleted_abschnitt'><strong>X</strong> Gelöscht!</div>
 		<div class='abschnitt_admin_toolz'>"
-    if this.object.system_stuff
-        if site_master
-            if options[:delete]
-                abschnitt_text += "<div class='remove_nested_forms'>#{ link_to_remove_fields dom_id(this.object), this }</div>"
-            end
-            if options[:edit]
-                abschnitt_text += "<div class='edit_nested_form'>#{ link_to fineline_button('bearbeiten'), '#', 
-    									:class => "Pagez__toggle_remote_link tolltips_edit", 
-    									:title => "Abschnitt bearbeiten" }</div>"
-            end
-        end
-    else
-      if options[:delete]
-          abschnitt_text += "<div class='remove_nested_forms'>#{ link_to_remove_fields dom_id(this.object), this }</div>"
-      end
-      if options[:edit]
-          abschnitt_text += "<div class='edit_nested_form'>
-    					#{ link_to fineline_button('bearbeiten'), '#', 
-    								:class => "Pagez__toggle_remote_link tooltip", 
-    								:title => "Abschnitt bearbeiten" }</div>"
-      end
-    end
     if options[:safe]
         if site_master
         
-            abschnitt_text += "<div class='edit_admin'>
-                #{ this.hidden_field :system_stuff, :value => this.object.system_stuff, :class => 'system_abschnitt' }
-                #{ link_to fineline_button('system-close'), '#', 
-                      :class => "admin_system_stuff_link tooltip #{'hidden' if this.object.system_stuff}", 
-                      :title => "Abschnitt sperren" }
-                #{ link_to fineline_button('system-open'), '#', 
-                      :class => "admin_system_stuff_unlink tooltip #{'hidden' unless this.object.system_stuff}", 
-                      :title => "Abschnitt freigeben" }</div>"
+            abschnitt_text += this.hidden_field( :system_stuff, :value => this.object.system_stuff, :class => 'system_abschnitt' )
+                
+            abschnitt_text += finelineButton(		:icon => 36, 
+                                                :blur => 50, 
+                                                :color => 'hell', 
+                                                :size => 18, 
+                                                :class => "system admin_system_stuff_link#{' hidden' if this.object.system_stuff}", 
+                                                :url => '#', 
+                                                :tooltip => t("strange_sites.links.protect_abschnitt")  )
+            abschnitt_text += finelineButton(		:icon => 37, 
+                                                :blur => 50, 
+                                                :color => 'hell', 
+                                                :size => 18, 
+                                                :class => "system admin_system_stuff_unlink#{' hidden' unless this.object.system_stuff}", 
+                                                :url => '#', 
+                                                :tooltip => t("strange_sites.links.unprotect_abschnitt")  )
         end
     end
+    if this.object.system_stuff
+        if site_master
+            if options[:edit]
+                abschnitt_text += finelineButton(		:icon => 30, 
+            								                        :blur => 50, 
+            								                        :color => 'hell', 
+            								                        :size => 18, 
+            								                        :class => "system Pagez__toggle_remote_link", 
+            								                        :url => '#', 
+            								                        :tooltip => t("strange_sites.links.edit_abschnitt")  )
+            end
+            if options[:delete]
+                abschnitt_text += link_to_remove_fields( dom_id(this.object), this )
+            end
+        end
+    else
+      if options[:edit]
+          abschnitt_text += finelineButton(		:icon => 30, 
+                                              :blur => 50, 
+                                              :color => 'hell', 
+                                              :size => 18, 
+                                              :class => "system Pagez__toggle_remote_link", 
+                                              :url => '#', 
+                                              :tooltip => t("strange_sites.links.edit_abschnitt")  )
+      end
+      if options[:delete]
+          abschnitt_text += link_to_remove_fields( dom_id(this.object), this )
+      end
+    end
+    
     abschnitt_text += "</div>"
     
     raw(abschnitt_text)

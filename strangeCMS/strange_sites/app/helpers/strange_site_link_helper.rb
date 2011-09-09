@@ -60,19 +60,32 @@ module StrangeSiteLinkHelper
     options.reverse_merge! :caption => t('are_you_sure')
     options.reverse_merge! :title => t('confirm_delete')
     options.reverse_merge! :dataType => 'script'
+    options.reverse_merge! :tooltip => t("strange_sites.links.delete_abschnitt")
+    options.reverse_merge! :icon => 24
+    options.reverse_merge! :blur => 50
+    options.reverse_merge! :size => 18
+    options.reverse_merge! :color => 'hell'
     
     options.reverse_merge! :success => "function(r){ $(link).prev('input[type=hidden]').val('1');	$(link).closest('.fields').hide(); }"
-    f.hidden_field(:_destroy, :class => "remova_"+helpa) + link_to_function(fineline_button('loeschen', :title => 'Abschnitt löschen', :class => 'tooltiped'), "jConfirm('#{options[:caption]}', '#{options[:title]}', function(r) {
-      if(r){
+    f.hidden_field(:_destroy, :class => "remova_"+helpa) + link_to_function(
+    
+    finelineButton(		:icon => options[:icon], 
+								      :blur => options[:blur], 
+								      :color => options[:color], 
+								      :size => options[:size], 
+								      :class => "system", 
+								      :tooltip => options[:tooltip] ), 
+      "jConfirm('#{options[:caption]}', '#{options[:title]}', function(r) {
+          if(r){
         
-          $('##{'remova_'+helpa}').prev('input[type=hidden]').val('1');
-          $('##{'remova_'+helpa}').parent().parent().parent().parent().addClass('geloescht');
-          $('##{'remova_'+helpa}').parent().parent().parent().find('span.handle').hide();
-          $('##{'remova_'+helpa}').parent().parent().hide();
+              $('##{'remova_'+helpa}').prev('input[type=hidden]').val('1');
+              $('##{'remova_'+helpa}').parent().parent().parent().parent().addClass('geloescht');
+              $('##{'remova_'+helpa}').parent().parent().parent().find('span.handle').hide();
+              $('##{'remova_'+helpa}').parent().parent().hide();
           
       
-      }
-    });", :class => 'strange_icon_link tolltips_del', :title => 'Abschnitt löschen', :id => "remova_"+helpa)
+          }
+          });", :class => 'strange_icon_link tolltips_del', :title => 'Abschnitt löschen', :id => "remova_"+helpa)
   end
   
   def strange_show_link(helpa)

@@ -45,7 +45,7 @@ module BaseHelper
     options.assert_valid_keys(  :icon,  :blur,  :color,   :size,  :aktion, :tooltip, :title, :url, :class )
     options.reverse_merge! :url     => nil    unless options.key? :url
     options.reverse_merge! :title   => nil    unless options.key? :title
-    options.reverse_merge! :tooltip => true   unless options.key? :tooltip
+    options.reverse_merge! :tooltip => nil   unless options.key? :tooltip
     options.reverse_merge! :class   => nil    unless options.key? :class
     options.reverse_merge! :icon    => 1      unless options.key? :icon
     options.reverse_merge! :blur    => 1.0    unless options.key? :blur
@@ -56,7 +56,7 @@ module BaseHelper
     url = options[:url]
     size = opt_pix.include?(options[:size]) ? options[:size] : 18
     raw( 
-        "<#{ url ? 'a href="' + url + '"' : 'div' } class='flb#{size} finelineButton#{' '+options[:class] if options[:class]}#{' tooltiped' if options[:tooltip] }'#{ ' title="'+ options[:title] +'"' if options[:title] }>#{ 
+        "<#{ url ? 'a href="' + url + '"' : 'div' } class='flb#{size} finelineButton#{' '+options[:class] if options[:class]}#{' tooltiped' if options[:tooltip] }'#{ ' title="'+ options[:tooltip] +'"' if options[:tooltip] }>#{ 
                 finelineIcon(     :icon => options[:icon], 
                                   :blur => options[:blur], 
                                   :color => options[:color], 

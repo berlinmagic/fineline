@@ -32,15 +32,26 @@
 <%# end %>
 
 <% if admin_check %>
-	<% xtitel = @seite.titel %>
-	<%# if @seite.system_name && @seite.system_name == 'start' %>
-	<%= link_to '', '/seiten/'+@seite.id.to_s+'/edit', :id => 'btn_edit' %>
-	<%# else %>
-	<%# link_to '', '/seiten'+@seite.slug+'/edit', :id => 'btn_edit' %>
-	<%# end %>
+	<div id="seite_admin_toolz">
+		<%= finelineButton(		:icon => 30, 
+								:blur => 50, 
+								:color => 'hell', 
+								:size => 18, 
+								:class => "system", 
+								:url => '/seiten/'+@seite.id.to_s+'/edit', 
+								:tooltip => t("strange_sites.links.edit")  ) %>
 	<% if site_master || @seite.system_seite == false %>
-		<%= strange_delete @seite, :url => admin_seite_path(@seite.id) %>
+		<%= finelineDelete(		@seite,
+								:icon => 24, 
+								:blur => 50, 
+								:color => 'hell', 
+								:size => 18, 
+								:class => "system", 
+								:url => admin_seite_path(@seite.id), 
+								:tooltip => t("strange_sites.links.delete")  ) %>
 	<% end %>
+		<div class="clearfix"></div>
+	</div>
 <% end %>
 </div>
 

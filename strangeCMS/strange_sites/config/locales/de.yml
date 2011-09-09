@@ -32,6 +32,10 @@ de:
           edit: "Seite bearbeiten"
           delete: "Seite löschen"
           sort: "Seiten sortieren"
+          delete_abschnitt: "Abschnitt löschen"
+          edit_abschnitt: "Abschnitt bearbeiten"
+          unprotect_abschnitt: "Abschnitt freigeben"
+          protect_abschnitt: "Abschnitt sperren"
       headlines:
           index: "Seitenverwaltung"
           module: "Aktive Module"
