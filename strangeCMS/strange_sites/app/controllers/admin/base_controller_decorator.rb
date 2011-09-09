@@ -4,6 +4,7 @@ Admin::BaseController.class_eval do
   before_filter :admin_params_loader
   
   include StrangeSitesHelp
+  include FinestyleHelp
   
   def dashboard
     @aktivio = 'dashboard'

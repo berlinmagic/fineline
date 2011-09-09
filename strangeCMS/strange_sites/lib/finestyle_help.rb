@@ -5,9 +5,9 @@ module FinestyleHelp
     require "yui/compressor"
     
     def finestyler(stuff)
-      if request.fullpath.start_with?('/admin/')
+      if request.fullpath.start_with?('/admin')
         Strangecms::Stylez::Config["admin_#{stuff}"]
-      elsif request.fullpath.start_with?('/system/')
+      elsif request.fullpath.start_with?('/system')
         Strangecms::Stylez::Config["admin_#{stuff}"]
       else
         Strangecms::Stylez::Config["front_#{stuff}"]
