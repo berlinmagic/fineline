@@ -4,7 +4,8 @@
 	background:
 		color:
 		verlauf:
-		bild:
+		image:
+		position:
 		
 	
 	font:
@@ -27,12 +28,28 @@
 		1
 		
 	
-	display: block, inline, inline-block
+	display: block, inline, inline-block, none
+	
+	visibility: ..
+	
+	size:
+		height:
+		width:
+		min- / max- ..
+	
 	
 	box:
 		shadow:
 		
 	position: relative, absolute
+	left:
+	top:
+	bottom:
+	right:
+	
+	z-index:
+	
+	overflow:
 	
 	border:
 		style:
@@ -44,4 +61,11 @@
 	float: left, right, none
 	
 	vertical-align: top, center / middle, bottom
+	
+	list-style:
+		..
+		..
+		
+	
+	
 	
