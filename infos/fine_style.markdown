@@ -1,6 +1,8 @@
 # fineline Style-Modul
 
-
+	bla bla ..
+	
+# elemente
 	background:
 		color:
 		verlauf:
@@ -67,5 +69,15 @@
 		..
 		
 	
+# Pseudo
+	
+	:active	Hyperlink 
+	:first-child 
+	:last-child 
+	:focus 
+	:hover 
+	:lang 
+	:link 
+	:visited
 	
 	
