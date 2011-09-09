@@ -28,6 +28,7 @@
 		white-space	       Textumbruch	normal, pre, nowrap, pre-line, pre-wrap, Inherit
 		word-spacing	   Wortabstand	Längenangabe, normal, Inherit
 		text-shadow	       Textschatten	Farbangabe, Längenangabe
+		color					Vordergrundfarbe	Farbangabe, Inherit
 		
 	
 	Rahmen:
@@ -43,52 +44,71 @@
 		
 	
 	Außenabstände:
-		margin	Außenabstand	Längenangabe, Prozentangabe, auto, Inherit
-		margin-bottom	Außenabstand unten	Längenangabe, Prozentangabe, auto, Inherit
-		margin-left	Außenabstand links	Längenangabe, Prozentangabe, auto, Inherit
-		margin-right	Außenabstand rechts	Längenangabe, Prozentangabe, auto, Inherit
-		margin-top	Außenabstand oben	Längenangabe, Prozentangabe, auto, Inherit
+		margin				Außenabstand	Längenangabe, Prozentangabe, auto, Inherit
+		margin-bottom		Außenabstand unten	Längenangabe, Prozentangabe, auto, Inherit
+		margin-left			Außenabstand links	Längenangabe, Prozentangabe, auto, Inherit
+		margin-right		Außenabstand rechts	Längenangabe, Prozentangabe, auto, Inherit
+		margin-top			Außenabstand oben	Längenangabe, Prozentangabe, auto, Inherit
 		
 	
 	
 	Innenabstände:
-		padding	Innenabstand	Längenangabe, Prozentangabe, Inherit
-		padding-bottom	Innenabstand unten	Längenangabe, Prozentangabe, Inherit
-		padding-left	Innenabstand links	Längenangabe, Prozentangabe, Inherit
-		padding-right	Innenabstand rechts	Längenangabe, Prozentangabe, Inherit
-		padding-top	Innenabstand oben	Längenangabe, Prozentangabe, Inherit
+		padding				Innenabstand	Längenangabe, Prozentangabe, Inherit
+		padding-bottom		Innenabstand unten	Längenangabe, Prozentangabe, Inherit
+		padding-left		Innenabstand links	Längenangabe, Prozentangabe, Inherit
+		padding-right		Innenabstand rechts	Längenangabe, Prozentangabe, Inherit
+		padding-top			Innenabstand oben	Längenangabe, Prozentangabe, Inherit
 		
+	
+	
+	Position:
+		bottom				Position unten	Längenangabe, Prozentangabe, auto, Inherit
+		clear				Text umfließen beenden	left, right, both, none, Inherit
+		clip				Ausschnitt	rect(), auto, Inherit
+		display				Anzeigeart	none, block, inline, inline-block, list-item, compact, run-in, table-..., Inherit
+		float				Text umfließen	left, right, none, Inherit
+		height				Höhe	Längenangabe, Prozentangabe, auto, Inherit
+		left				Position links	Längenangabe, Prozentangabe, auto, Inherit
+		max-height			Maximale Höhe	Längenangabe, Prozentangabe, none, Inherit
+		max-width			Maximale Breite	Längenangabe, Prozentangabe, none, Inherit
+		min-height			Minimale Höhe	Längenangabe, Prozentangabe, Inherit
+		min-width			Minimale Breite	Längenangabe, Prozentangabe, Inherit
+		overflow			Überlauf	visible, hidden, scroll, auto, Inherit
+		position			Positionsart	absolute, relative, static, fixed, Inherit
+		right				Position rechts	Längenangabe, Prozentangabe, auto, Inherit
+		top					Position oben	Längenangabe, Prozentangabe, auto, Inherit
+		visibility			Unsichtbar	visible,hidden, collapse, Inherit
+		width				Breite	Längenangabe, Prozentangabe, auto, Inherit
+		z-index				Überlappung	Zahl, auto, Inherit
 	
 	
 	Listen & Tabellen:
 		listen:
-		list-style	Listen	Die Werte für
-		list-style-image, list-style-position, list-style-type
-		list-style-image	Aufzählungsgrafik	none, url(), Inherit
-		list-style-position	Listenzeichen einrücken	inside, outside, Inherit
-		list-style-type	Aufzählungszeichen	none,circle,square,disc, decimal, lower-alpha, upper-alpha, lower-roman, upper-roman, lower-greek, decimal-leading-zero, hebrew, armenian, georgian, cjk-ideographic, hiragana, katakana, hiragana-iroha, katakana-iroha
+		list-style				list-style-image, list-style-position, list-style-type
+		list-style-image		Aufzählungsgrafik	none, url(), Inherit
+		list-style-position		Listenzeichen einrücken	inside, outside, Inherit
+		list-style-type			Aufzählungszeichen	none,circle,square,disc, decimal, lower-alpha, upper-alpha, lower-roman, upper-roman, lower-greek, decimal-leading-zero, hebrew, armenian, georgian, cjk-ideographic, hiragana, katakana, hiragana-iroha, katakana-iroha
 		tabellen:
-		border-collapse	Tabellenrahmen	collapse, separate, Inherit
-		border-spacing	Tabellenrahmenabstände	Längenangabe, Inherit
-		caption-side	Tabellenüberschrift	top, bottom, Inherit
-		empty-cells	Leere Zellen	show, hide, Inherit
-		table-layout	Tabellenlayout	auto, fixed, Inherit
+		border-collapse		Tabellenrahmen	collapse, separate, Inherit
+		border-spacing		Tabellenrahmenabstände	Längenangabe, Inherit
+		caption-side		Tabellenüberschrift	top, bottom, Inherit
+		empty-cells			Leere Zellen	show, hide, Inherit
+		table-layout		Tabellenlayout	auto, fixed, Inherit
 		
 	
 	
 	Hintergrund:
-		background	Hintergrund	Werte für:
-		background-color, background-image, background-attachment, background-repeat, background-position, Inherit
+		background				background-color, background-image, background-attachment, background-repeat, background-position, Inherit
 		background-attachment	Hintergrund fixieren	fixed, scroll, Inherit
-		background-image	Hintergrundbild	url(), none, Inherit
-		background-position	Hintergrundbild positionieren	left, right, center, top, bottom, center, Kombinationen:
-		Längenangabe Längenangabe
-		Prozentangabe Längenangabe
-		Längenangabe Prozentangabe
-		Schlüsselwort Schlüsselwort, Inherit
-		background-repeat	Hintergrund wiederholen	no-repeat, repeat, repeat-x, repeat-y, Inherit
-		background-color	Hintergrundfarbe	transparent, Farbangabe, Inherit
-		color	Vordergrundfarbe	Farbangabe, Inherit
+		background-image		Hintergrundbild	url(), none, Inherit
+		background-position		Hintergrundbild positionieren	left, right, center, top, bottom, center, Kombinationen:
+								Längenangabe Längenangabe
+								Prozentangabe Längenangabe
+								Längenangabe Prozentangabe
+								Schlüsselwort Schlüsselwort, Inherit
+		background-repeat		Hintergrund wiederholen	no-repeat, repeat, repeat-x, repeat-y, Inherit
+		background-color		Hintergrundfarbe	transparent, Farbangabe, Inherit
+		color					Vordergrundfarbe	Farbangabe, Inherit
 		
 
 
