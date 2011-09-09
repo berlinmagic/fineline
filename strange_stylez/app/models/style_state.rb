@@ -1,7 +1,9 @@
 # encoding: utf-8
 class StyleState < ActiveRecord::Base
   
+  
   belongs_to :style_object
+  
   
   has_many :style_sheets, :dependent => :destroy
   

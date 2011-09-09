@@ -1,0 +1,25 @@
+<% content_for :sidebar do %>
+<div class="side_box">
+	<div class="sidebar_head aktiv_box">
+		<a href="#">Stylez</a>
+	</div>
+	<ul class='sidebar'>
+		<li><%= link_to t('strange_stylez.links.index'), admin_headers_path, :class => "#{'aktiv' if @u_aktiv == 'index'}" %></li>
+		<li><%= link_to t('strange_stylez.links.init'), "/admin/fine_styles/init/DefaultThemeInit" %></li>
+	</ul>
+</div>
+
+
+<div class="side_box">
+	<%= form_tag(:controller => 'admin/fine_styles', :action => :initiate) do -%>
+		<%= hidden_field :init, 'DefaultThemeInit' %>
+		<%= hidden_field :path, 'DefaultThemeInit' %>
+		<%= submit_tag %>
+	<% end %>
+</div>
+
+
+
+<%= help_link_box %>
+
+<% end %>

@@ -1,0 +1,82 @@
+<%= render 'admin/shared/stylez_sub_menu' %>
+
+<div class="admin_box">
+	<h1 class="icon"><%= finelineIcon(:icon => 71, :color => finestyler('headline_icon_color'), :size => finestyler('headline_icon_size'), :blur => finestyler('headline_icon_blur')) %><%= t('strange_stylez.headlines.show') %></h1>
+
+	<div class="admin_in_box">
+		<div class="system_help_text<%= ' hidden' unless Strangecms::Config[:show_help] %>">
+			<div class="box">
+				<div class="in_box">
+					<p class="sys_help"><%= t('strange_stylez.helptext.show') %></p>
+				</div>
+			</div>
+		</div>
+		
+		<div class="box">
+				<div class="trenn_linie"></div>
+		</div>
+		
+
+		<div class="work_box">
+			<div class="in_box white">
+				<ul class="toggle_list">
+					<% @fine_style.style_sets.each do |style| %>
+						
+						<li>
+							<%= style.name  %>
+							<% if style.style_objects.count > 0 %>
+							<ul class="toggle_sublist">
+								<% style.style_objects.each do |st_obj| %>
+									<li>
+										<%= st_obj.name %>
+										<% if st_obj.style_sheets.count > 0 %>
+											<ul class="toggle_sublist">
+											<% st_obj.style_sheets.each do |css| %>
+												<li>
+													<%= css.style_attribute %> 
+													<%= css.style_property %> .. 
+													<%= css.style_param1 %> 
+													<%= css.style_param2 %> 
+													<%= css.style_param3 %> 
+													<%= css.style_value1 %> 
+													<%= css.style_value2 %> 
+													<%= css.style_value3 %> 
+													<%= css.style_value4 %> 
+													<%= css.style_unit %> 
+												</li>
+											<% end %>
+											</ul>
+										<% end %>
+										
+									</li>
+									<% if st_obj.style_states.count > 0 %>
+										<% st_obj.style_states.each do |st_st| %>
+											
+										<% end %>
+									<% end %>
+									<% if st_obj.child_objects.count > 0 %>
+										<% st_obj.child_objects.each do |sto_obj| %>
+											
+										<% end %>
+									<% end %>
+								<% end %>
+							</div>
+							<% end %>
+						</li>
+						
+					<% end %>
+				</ul>
+			</div>
+		</div>
+		<div class="box">
+				<div class="trenn_linie"></div>
+		</div>
+		
+
+		
+	</div>
+</div>
+
+<%= render 'sidebar' %>
+
+
