@@ -22,16 +22,16 @@ module StrangeSiteHelper
             abschnitt_text += this.hidden_field( :system_stuff, :value => this.object.system_stuff, :class => 'system_abschnitt' )
                 
             abschnitt_text += finelineButton(		:icon => 36, 
-                                                :blur => 50, 
-                                                :color => 'hell', 
-                                                :size => 18, 
+                                                :blur => Strangecms::Stylez::Config[:front_systemButton_icon_blur], 
+                                								:color => Strangecms::Stylez::Config[:front_systemButton_icon_color], 
+                                								:size => Strangecms::Stylez::Config[:front_systemButton_icon_size], 
                                                 :class => "system admin_system_stuff_link#{' hidden' if this.object.system_stuff}", 
                                                 :url => '#', 
                                                 :tooltip => t("strange_sites.links.protect_abschnitt")  )
             abschnitt_text += finelineButton(		:icon => 37, 
-                                                :blur => 50, 
-                                                :color => 'hell', 
-                                                :size => 18, 
+                                                :blur => Strangecms::Stylez::Config[:front_systemButton_icon_blur], 
+                                								:color => Strangecms::Stylez::Config[:front_systemButton_icon_color], 
+                                								:size => Strangecms::Stylez::Config[:front_systemButton_icon_size],
                                                 :class => "system admin_system_stuff_unlink#{' hidden' unless this.object.system_stuff}", 
                                                 :url => '#', 
                                                 :tooltip => t("strange_sites.links.unprotect_abschnitt")  )
@@ -41,9 +41,9 @@ module StrangeSiteHelper
         if site_master
             if options[:edit]
                 abschnitt_text += finelineButton(		:icon => 30, 
-            								                        :blur => 50, 
-            								                        :color => 'hell', 
-            								                        :size => 18, 
+            								                        :blur => Strangecms::Stylez::Config[:front_systemButton_icon_blur], 
+                                    								:color => Strangecms::Stylez::Config[:front_systemButton_icon_color], 
+                                    								:size => Strangecms::Stylez::Config[:front_systemButton_icon_size],
             								                        :class => "system Pagez__toggle_remote_link", 
             								                        :url => '#', 
             								                        :tooltip => t("strange_sites.links.edit_abschnitt")  )
@@ -55,9 +55,9 @@ module StrangeSiteHelper
     else
       if options[:edit]
           abschnitt_text += finelineButton(		:icon => 30, 
-                                              :blur => 50, 
-                                              :color => 'hell', 
-                                              :size => 18, 
+                                              :blur => Strangecms::Stylez::Config[:front_systemButton_icon_blur], 
+                              								:color => Strangecms::Stylez::Config[:front_systemButton_icon_color], 
+                              								:size => Strangecms::Stylez::Config[:front_systemButton_icon_size], 
                                               :class => "system Pagez__toggle_remote_link", 
                                               :url => '#', 
                                               :tooltip => t("strange_sites.links.edit_abschnitt")  )

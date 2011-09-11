@@ -62,9 +62,9 @@ module StrangeSiteLinkHelper
     options.reverse_merge! :dataType => 'script'
     options.reverse_merge! :tooltip => t("strange_sites.links.delete_abschnitt")
     options.reverse_merge! :icon => 24
-    options.reverse_merge! :blur => 50
-    options.reverse_merge! :size => 18
-    options.reverse_merge! :color => 'hell'
+    options.reverse_merge! :blur => Strangecms::Stylez::Config[:front_systemButton_icon_blur]
+    options.reverse_merge! :size => Strangecms::Stylez::Config[:front_systemButton_icon_size]
+    options.reverse_merge! :color => Strangecms::Stylez::Config[:front_systemButton_icon_color]
     
     options.reverse_merge! :success => "function(r){ $(link).prev('input[type=hidden]').val('1');	$(link).closest('.fields').hide(); }"
     f.hidden_field(:_destroy, :class => "remova_"+helpa) + link_to_function(
