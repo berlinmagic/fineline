@@ -89,6 +89,7 @@ de:
           blur: "IconTransparenz"
           icon_color: "IconFarbe"
           border: "ButtonRahmen"
+          box_shadow: "ButtonSchatten"
           bg_colorz:
               verlauf: "Verlauf"
               farbe: "Farbe"

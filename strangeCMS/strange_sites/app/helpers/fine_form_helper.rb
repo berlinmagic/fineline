@@ -345,12 +345,7 @@ module FineFormHelper
     						
     						
   		          
-  		          # => stuff += '<div class="fl_box_170"><label class="norm1">' + t("strange_stylez.icon_atr.border_style") + '</label></div>'
-  		          stuff += '<div class="fl_box_170"><label class="norm1">' + t("strange_stylez.icon_atr.border") + '</label></div>'
-      		      stuff += '<div class="grid_4">' + fine_Btn_border_style_tag( pref ) + '</div>'
-      		      stuff += '<div class="grid_3">' + fine_Btn_border_width_tag( pref ) + '</div>'
-      		      stuff += '<div class="grid_4">' + fine_Btn_border_color_tag( pref ) + '</div>'
-      		      stuff += '<div class="clearfix"></div><div class="vspacer"></div><div class="clearfix"></div>'
+  		          
   		          
   		          # => stuff += '<div class="fl_box_170"><label class="norm1">' + t("strange_stylez.icon_atr.border_width") + '</label></div>'
       		      # => stuff += '<div class="fl_box_230">' + fine_Btn_border_width_tag( pref ) + '</div>'
@@ -359,29 +354,42 @@ module FineFormHelper
       		      # => stuff += '<div class="grid_4">' + fine_Btn_border_color_tag( pref ) + '</div>'
   		          # => stuff += '<div class="clearfix"></div><div class="vspacer"></div><div class="clearfix"></div>'
   		          
-  		          
+  		          stuff += fine_Btn_brdr( pref, area )
   		          
   		          stuff += '<div class="fl_box_170"><label class="norm1">' + t("strange_stylez.icon_atr.style") + '</label></div>'
       		      stuff += '<div class="grid_4">' + fine_Btn_style_tag( pref ) + '</div>'
-      		      stuff += "<div class='grid_4'><div class='btn_rds #{ 'hidden' unless Strangecms::Stylez::Config["#{ area }_#{ pref }_style"] == 'gerunded' } '> #{ fine_Btn_border_radius_tag( pref ) }px </div></div>"
+      		      stuff += "<div class='grid_4 push_1'><div class='btn_rds #{ 'hidden' unless Strangecms::Stylez::Config["#{ area }_#{ pref }_style"] == 'gerunded' } '> #{ fine_Btn_border_radius_tag( pref ) } px </div></div>"
   		          stuff += '<div class="clearfix"></div><div class="vspacer"></div><div class="clearfix"></div>'
   		          
   		          
-  		          stuff += '<div class="fl_box_170"><label class="norm1">' + t("strange_stylez.icon_atr.bg_style") + '</label></div>'
-  		          stuff += '<div class="grid_4">'
-      		        stuff += select_tag("preferences[#{ area }_#{ pref }_bg_style]",
-    											options_for_select(StylezConfiguration::BUTTON_BG_STYLEZ.map { |c| [I18n.t("strange_stylez.icon_atr.bg_colorz.#{c}"), c] }, Strangecms::Stylez::Config["#{ area }_#{ pref }_bg_style"]), :class => 'farbwahl')
-    						stuff += '</div><div class="grid_4 push_1">'
-    						  stuff += text_field_tag("preferences[#{ area }_#{ pref }_bg_color1]", Strangecms::Stylez::Config["#{ area }_#{ pref }_bg_color1"], :class => 'ff_Btn_pick_color', :size => '6' )
-    						stuff += "</div><div class='grid_4 push_3'><div class='color_2 #{ 'invisible' if Strangecms::Stylez::Config["#{ area }_#{ pref }_bg_style"] == 'farbe' } '>"
-    						  stuff += text_field_tag("preferences[#{ area }_#{ pref }_bg_color2]", Strangecms::Stylez::Config["#{ area }_#{ pref }_bg_color2"], :class => 'ff_Btn_pick_color', :size => '6' )
-    						stuff += '</div></div><div class="clearfix"></div><div class="vspacer"></div><div class="clearfix"></div>'
-                
-                
-                
-                
+  		          stuff += fine_Btn_bger( pref, area )
   		          
   		          
+  		          stuff += fine_Btn_bshadow(pref, area )
+                
+
+                
+                
+  		          stuff += '<div class="clearfix"></div><div class="vspacer"></div><div class="clearfix"></div>'
+  		          stuff += '<div class="fl_box_170"><label class="norm1"><strong> (Mouseover) </strong></label></div>'
+  		          stuff += '<div class="clearfix"></div>'
+                
+                stuff += fine_Btn_brdr( pref, area, 'hover' )
+                
+                stuff += fine_Btn_bger( pref, area, 'hover' )
+                
+                stuff += fine_Btn_bshadow( pref, area, 'hover' )
+                
+                stuff += '<div class="clearfix"></div><div class="vspacer"></div><div class="clearfix"></div>'
+  		          stuff += '<div class="fl_box_170"><label class="norm1"><strong> (Click) </strong></label></div>'
+  		          stuff += '<div class="clearfix"></div>'
+                
+                stuff += fine_Btn_brdr( pref, area, 'active' )
+                
+                stuff += fine_Btn_bger( pref, area, 'active' )
+                
+                stuff += fine_Btn_bshadow( pref, area, 'active' )
+                
                 
                 
                 
@@ -427,17 +435,19 @@ module FineFormHelper
 								            Strangecms::Stylez::Config[ "#{area}_#{ icon }_border_style" ] ), :class => 'ff_Btn_border_style' )   )
     end
     
-    def fine_Btn_border_width_tag( icon, area='front' )
-        raw( select_tag("preferences[#{area}_#{ icon }_border_width]",
+    def fine_Btn_border_width_tag( icon, area='front',  state="" )
+        state = state.blank? ? '' : "_#{ state }"
+        raw( select_tag("preferences[#{area}_#{ icon }_border_width#{ state }]",
 								        options_for_select(
 								            StylezConfiguration::BORDER_WIDTHS.map { |c| [c, c] },
-								            Strangecms::Stylez::Config[ "#{area}_#{ icon }_border_width" ] ), :class => 'ff_Btn_border_width' )   )
+								            Strangecms::Stylez::Config[ "#{area}_#{ icon }_border_width#{ state }" ] ), :class => 'ff_Btn_border_width' )   )
     end
     
-    def fine_Btn_border_color_tag( icon, area='front' )
+    def fine_Btn_border_color_tag( icon, area='front', state="" )
+        state = state.blank? ? '' : "_#{ state }"
         raw( 
-          text_field_tag( "preferences[#{area}_#{ icon }_border_color]", 
-                Strangecms::Stylez::Config[ "#{area}_#{ icon }_border_color" ], :class => 'ff_Btn_pick_color', :size => '6' )
+          text_field_tag( "preferences[#{area}_#{ icon }_border_color#{ state }]", 
+                Strangecms::Stylez::Config[ "#{area}_#{ icon }_border_color#{ state }" ], :class => "ff_Btn_pick_color#{ state }", :size => '6' )
             )
     end
     
@@ -471,32 +481,91 @@ module FineFormHelper
 								            Strangecms::Stylez::Config[ "#{area}_#{ icon }_style" ] ), :class => 'ff_Btn_style' )   )
     end
     
+    def fine_Btn_bger(pref, area=nil, state='')
+      state = state.blank? ? '' : "_#{ state }"
+      stuff = '<div class="fl_box_170"><label class="norm1">' + t("strange_stylez.icon_atr.bg_style") + '</label></div>'
+      stuff += '<div class="grid_4">'
+        stuff += select_tag("preferences[#{ area }_#{ pref }_bg_style#{ state }]",
+								options_for_select(StylezConfiguration::BUTTON_BG_STYLEZ.map { |c| [I18n.t("strange_stylez.icon_atr.bg_colorz.#{c}"), c] }, Strangecms::Stylez::Config["#{ area }_#{ pref }_bg_style#{ state }"]), :class => "farbwahl#{ state }")
+			stuff += '</div><div class="grid_4 push_1">'
+			  stuff += text_field_tag("preferences[#{ area }_#{ pref }_bg_color1#{ state }]", Strangecms::Stylez::Config["#{ area }_#{ pref }_bg_color1#{ state }"], :class => 'ff_Btn_pick_color', :size => '6' )
+			stuff += "</div><div class='grid_4 push_3'><div class='color_2#{ state } #{ 'invisible' if Strangecms::Stylez::Config["#{ area }_#{ pref }_bg_style#{ state }"] == 'farbe' } '>"
+			  stuff += text_field_tag("preferences[#{ area }_#{ pref }_bg_color2#{ state }]", Strangecms::Stylez::Config["#{ area }_#{ pref }_bg_color2#{ state }"], :class => 'ff_Btn_pick_color', :size => '6' )
+			stuff += '</div></div><div class="clearfix"></div><div class="vspacer"></div><div class="clearfix"></div>'
+			raw ( stuff )
+		end
+		
+		def fine_Btn_bshadow(pref, area=nil, state='')
+		  state = state.blank? ? '' : "_#{ state }"
+		  stuff = '<div class="fl_box_170"><label class="norm1">' + t("strange_stylez.icon_atr.box_shadow") + '</label></div>'
+      stuff += '<div class="fl_box_230">'
+        stuff += text_field_tag("preferences[#{ area }_#{ pref }_box_shadow#{ state }]", Strangecms::Stylez::Config["#{ area }_#{ pref }_box_shadow#{ state }"], :size => 35 )
+			stuff += '</div><div class="clearfix"></div><div class="vspacer"></div><div class="clearfix"></div>'
+			raw( stuff )
+		end
+		
+		def fine_Btn_brdr(pref, area=nil, state='')
+		  state = state.blank? ? '' : "_#{ state }"
+		  # => stuff += '<div class="fl_box_170"><label class="norm1">' + t("strange_stylez.icon_atr.border_style") + '</label></div>'
+      stuff = '<div class="fl_box_170"><label class="norm1">' + t("strange_stylez.icon_atr.border") + '</label></div>'
+      unless !state.blank?
+        stuff += '<div class="grid_4">' + fine_Btn_border_style_tag( pref, area ) + '</div>'
+      end
+      stuff += '<div class="grid_3">' + fine_Btn_border_width_tag( pref, area, state ) + '</div>'
+      stuff += '<div class="grid_4">' + fine_Btn_border_color_tag( pref, area, state ) + '</div>'
+      stuff += '<div class="clearfix"></div><div class="vspacer"></div><div class="clearfix"></div>'
+      raw( stuff )
+    end
     
-    
-    
-    
-    
-    def cxyxvbf( cc )
-      
-
-		  # => preference :front_systemButton_icon_blur, :integer, :default => 50
-
-		  # => preference :front__box_shadow, :string, :default => 'inset 1px 1px 1px 0px rgba(255,255,255,.4)'
-      # => 
-		  # => preference :front_systemButton_bg_style_hover, :string, :default => BUTTON_BG_STYLEZ[0]
-		  # => preference :front_systemButton_bg_color1_hover, :string, :default => 336699
-		  # => preference :front_systemButton_bg_color2_hover, :string, :default => 336699
-		  # => preference :front_systemButton_border_color_hover, :string, :default => 'cccccc'
-		  # => preference :front_systemButton_border_style_hover, :string, :default => BORDER_STYLEZ[1]
-		  # => preference :front__box_shadow_hover, :string, :default => 'inset 1px 1px 1px 0px rgba(255,255,255,.4)'
-      # => 
-		  # => preference :front_systemButton_bg_style_active, :string, :default => BUTTON_BG_STYLEZ[0]
-		  # => preference :front_systemButton_bg_color1_active, :string, :default => 336699
-		  # => preference :front_systemButton_bg_color2_active, :string, :default => 336699
-		  # => preference :front_systemButton_border_color_active, :string, :default => 'cccccc'
-		  # => preference :front_systemButton_border_style_active, :string, :default => BORDER_STYLEZ[1]
-		  # => preference :front__box_shadow_active, :string, :default => 'inset 1px 1px 1px 0px rgba(255,255,255,.4)'
+    def fine_icn_css(pref, area='front', state=nil)
+      state = state.blank? ? '' : "_#{ state }"
+      css = ""
+      unless !state.blank?
+		    if Strangecms::Stylez::Config["#{ area }_#{ pref }_style"] == 'gerunded'
+  		    css += fine_borderRadius( "#{ Strangecms::Stylez::Config["#{ area }_#{ pref }_border_radius"] }px" )
+  		  elsif Strangecms::Stylez::Config["#{ area }_#{ pref }_style"] == 'rund'
+  		    css += fine_borderRadius( "50px" )
+  		  else
+  		    css += fine_borderRadius( "" )
+  		  end
+  		end
+		  css += "border: #{Strangecms::Stylez::Config["#{ area }_#{ pref }_border_style"]} #{Strangecms::Stylez::Config["#{ area }_#{ pref }_border_width#{ state }"]}px ##{Strangecms::Stylez::Config["#{ area }_#{ pref }_border_color#{ state }"]};"
 		  
+		  if Strangecms::Stylez::Config["#{ area }_#{ pref }_bg_style#{ state }"] == 'verlauf'
+		    css += fine_backgroundGradient( "##{Strangecms::Stylez::Config["#{ area }_#{ pref }_bg_color1#{ state }"]}", "##{Strangecms::Stylez::Config["#{ area }_#{ pref }_bg_color2#{ state }"]}" )
+		  elsif Strangecms::Stylez::Config["#{ area }_#{ pref }_bg_style#{ state }"] == 'farbe'
+		    css += "background: ##{Strangecms::Stylez::Config["#{ area }_#{ pref }_bg_color1#{ state }"]};"
+		  else
+		    css += "background: transparent;"
+		  end
+		end
+		
+    def fine_iddcn_css()
+
+      # => preference :front_systemButton_icon_size, :integer, :default => ICON_SIZE[1]
+      # => preference :front_systemButton_icon_color, :string, :default => ICON_COLOR[1]
+      # => preference :front_systemButton_icon_blur, :integer, :default => 50
+      # => preference :front_systemButton_style, :string, :default => BUTTON_STYLEZ[1]
+      
+      
+      # => preference :front_systemButton_bg_style, :string, :default => BUTTON_BG_STYLEZ[0]
+      # => preference :front_systemButton_bg_color1, :string, :default => 336699
+      # => preference :front_systemButton_bg_color2, :string, :default => 336699
+      # => preference :front_systemButton_box_shadow, :string, :default => 'inset 1px 1px 1px 0px rgba(255,255,255,.4)'
+      # => 
+      # => preference :front_systemButton_bg_style_hover, :string, :default => BUTTON_BG_STYLEZ[0]
+      # => preference :front_systemButton_bg_color1_hover, :string, :default => 336699
+      # => preference :front_systemButton_bg_color2_hover, :string, :default => 336699
+      # => preference :front_systemButton_border_color_hover, :string, :default => 'cccccc'
+      # => preference :front_systemButton_border_style_hover, :string, :default => BORDER_STYLEZ[1]
+      # => preference :front_systemButton_box_shadow_hover, :string, :default => 'inset 1px 1px 1px 0px rgba(255,255,255,.4)'
+      # => 
+      # => preference :front_systemButton_bg_style_active, :string, :default => BUTTON_BG_STYLEZ[0]
+      # => preference :front_systemButton_bg_color1_active, :string, :default => 336699
+      # => preference :front_systemButton_bg_color2_active, :string, :default => 336699
+      # => preference :front_systemButton_border_color_active, :string, :default => 'cccccc'
+      # => preference :front_systemButton_border_style_active, :string, :default => BORDER_STYLEZ[1]
+      # => preference :front_systemButton_box_shadow_active, :string, :default => 'inset 1px 1px 1px 0px rgba(255,255,255,.4)'
 		end
   
 end

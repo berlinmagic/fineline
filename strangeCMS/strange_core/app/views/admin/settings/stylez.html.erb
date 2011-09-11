@@ -122,12 +122,20 @@ $(function() {
 		$(this).parent().parent().parent().find('.color_2').toggleClass('invisible');
 	});
 	
+	$('.farbwahl_hover').change(function(){
+		$(this).parent().parent().parent().find('.color_2_hover').toggleClass('invisible');
+	});
+	
+	$('.farbwahl_active').change(function(){
+		$(this).parent().parent().parent().find('.color_2_active').toggleClass('invisible');
+	});
+	
 	$('.ff_Btn_style').change(function(){
 		if ( $(this).val() == 'gerunded' ) {
-			$(this).parent().find('.btn_rds.hidden').hide().removeClass('hidden');
-			$(this).parent().find('.btn_rds').slideDown();
+			$(this).parent().parent().find('.btn_rds.hidden').hide().removeClass('hidden');
+			$(this).parent().parent().find('.btn_rds').slideDown();
 		} else {
-			$(this).parent().find('.btn_rds').slideDown();
+			$(this).parent().parent().find('.btn_rds').slideDown();
 		}
 	});
 
