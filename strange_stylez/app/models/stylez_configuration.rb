@@ -2,6 +2,7 @@
 class StylezConfiguration < Configuration
   
   BORDER_STYLEZ = %w[none solid inset outset]
+  BORDER_WIDTHS = %w[0 1 2 3 4 5 10 15]
   ICON_COLOR = %w[hell dunkel]
   ICON_SIZE = %w[18 24 32 48]
   BUTTON_BG_STYLEZ = %w[farbe verlauf]
@@ -139,21 +140,21 @@ class StylezConfiguration < Configuration
   preference :front_systemButton_bg_style, :string, :default => BUTTON_BG_STYLEZ[0]
   preference :front_systemButton_bg_color1, :string, :default => 336699
   preference :front_systemButton_bg_color2, :string, :default => 336699
-  preference :front__box_shadow, :string, :default => 'inset 1px 1px 1px 0px rgba(255,255,255,.4)'
+  preference :front_systemButton_box_shadow, :string, :default => 'inset 1px 1px 1px 0px rgba(255,255,255,.4)'
   
   preference :front_systemButton_bg_style_hover, :string, :default => BUTTON_BG_STYLEZ[0]
   preference :front_systemButton_bg_color1_hover, :string, :default => 336699
   preference :front_systemButton_bg_color2_hover, :string, :default => 336699
   preference :front_systemButton_border_color_hover, :string, :default => 'cccccc'
   preference :front_systemButton_border_style_hover, :string, :default => BORDER_STYLEZ[1]
-  preference :front__box_shadow_hover, :string, :default => 'inset 1px 1px 1px 0px rgba(255,255,255,.4)'
+  preference :front_systemButton_box_shadow_hover, :string, :default => 'inset 1px 1px 1px 0px rgba(255,255,255,.4)'
   
   preference :front_systemButton_bg_style_active, :string, :default => BUTTON_BG_STYLEZ[0]
   preference :front_systemButton_bg_color1_active, :string, :default => 336699
   preference :front_systemButton_bg_color2_active, :string, :default => 336699
   preference :front_systemButton_border_color_active, :string, :default => 'cccccc'
   preference :front_systemButton_border_style_active, :string, :default => BORDER_STYLEZ[1]
-  preference :front__box_shadow_active, :string, :default => 'inset 1px 1px 1px 0px rgba(255,255,255,.4)'
+  preference :front_systemButton_box_shadow_active, :string, :default => 'inset 1px 1px 1px 0px rgba(255,255,255,.4)'
   
   
   # => LightBox_Nav

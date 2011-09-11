@@ -1,4 +1,8 @@
 <%= render 'admin/shared/seiten_sub_menu' %>
+<link href='http://fonts.googleapis.com/css?family=<%= Strangecms::Stylez::Config[:google_font_one] %>' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=<%= Strangecms::Stylez::Config[:google_font_two] %>' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=<%= Strangecms::Stylez::Config[:google_font_three] %>' rel='stylesheet' type='text/css'>
+
 
 <div class="admin_box">
 	<h1 class="icon"><%= finelineIcon(:icon => 71, :color => finestyler('headline_icon_color'), :size => finestyler('headline_icon_size'), :blur => finestyler('headline_icon_blur')) %><%= t('strange_stylez.settings') %></h1>
@@ -21,17 +25,53 @@
 			<div class="in_box white" id="Hpics_Box">
 				
 				<div class="toggle_list_trigger">
-					<h2>Schriften</h2>
+					<h2><span>Schriften</span></h2>
 				</div>
 				<div class="toggle_list_box">
-					<div class="fl_box_170">
-						<%= t('strange_stylez.front_body_font_family') %>
-					</div>
-					<div class="fl_box_230">
-						Vorschau .. 
-					</div>
-					<div class="clearfix"></div>
+						
+						
+						<%= ff_fine_font_styler( 'h1' ) %>
+						<%= ff_fine_font_styler( 'h2' ) %>
+						<%= ff_fine_font_styler( 'h3' ) %>
+						<%= ff_fine_font_styler( 'h4' ) %>
+						<%= ff_fine_font_styler( 'h5' ) %>
+						<%= ff_fine_font_styler( 'h6' ) %>
+						
+						<%= ff_fine_font_styler( 'headline' ) %>
+						
+						<%= ff_fine_font_styler( 'p' ) %>
+						<%= ff_fine_font_styler( 'body' ) %>
+						<%= ff_fine_font_styler( 'pre' ) %>
+						<div class="clearfix"></div>
+						
+						<div id="comments">
+							
+						</div>
 				</div>
+				
+				<div class="clearfix"></div>
+				
+
+				<div class="toggle_list_trigger">
+					<h2><span>Buttons</span></h2>
+				</div>
+				<div class="toggle_list_box">
+					
+						<%= ff_fine_icon_styler( 'lightboxNav' ) %>
+						
+						<%= ff_fine_icon_styler( 'lightboxNav', 'admin' ) %>
+						
+						<%= ff_fine_icon_styler( 'systemButton' ) %>
+						
+						<%= ff_fine_icon_styler( 'finelineButton' ) %>
+
+						<div class="clearfix"></div>
+						
+						
+				</div>
+				
+				<div class="clearfix"></div>
+				
 				
 			</div>
 		</div>
@@ -39,7 +79,11 @@
 				<div class="trenn_linie"></div>
 		</div>
 		
-		<br/>
+		<div class="box">
+			<div class="in_box">
+				<%= render 'edit_buttons' %>
+			</div>
+		</div>
 		
 	</div>
 </div>
@@ -47,3 +91,49 @@
 <%= render 'sidebar' %>
 
 
+<% content_for :js_stuff do %>
+
+<script type="text/javascript">
+$(function() {
+	
+
+	
+	$('.pick_color').jPicker({ localization: { text: { ok: 'übernehmen', cancel: 'verwerfen' }} }, function(color, context)
+	        {
+	          var all = color.val('all');
+	          // alert('Color chosen - hex: ' + (all && '#' + all.hex || 'none') + ' - alpha: ' + (all && all.a + '%' || 'none'));
+	          $(this).parent().parent().parent().parent().find('.vorschau').css(
+	            {
+	              color: all && '#' + all.hex || 'transparent'
+	            }); // prevent IE from throwing exception if hex is empty
+	        });
+	
+	
+
+	
+	<%= ff_fine_icon_scripter( 'lightboxNav' ) %>
+	<%= ff_fine_icon_scripter( 'systemButton' ) %>
+	<%= ff_fine_icon_scripter( 'finelineButton' ) %>
+	<%= ff_fine_icon_scripter( 'lightboxNav', 'admin' ) %>
+	
+	$('.ff_Btn_pick_color').jPicker({ localization: { text: { ok: 'übernehmen', cancel: 'verwerfen' }} });
+	
+	$('.farbwahl').change(function(){
+		$(this).parent().parent().parent().find('.color_2').toggleClass('invisible');
+	});
+	
+	$('.ff_Btn_style').change(function(){
+		if ( $(this).val() == 'gerunded' ) {
+			$(this).parent().find('.btn_rds.hidden').hide().removeClass('hidden');
+			$(this).parent().find('.btn_rds').slideDown();
+		} else {
+			$(this).parent().find('.btn_rds').slideDown();
+		}
+	});
+
+		
+});
+
+
+</script>
+<% end %>

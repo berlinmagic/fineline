@@ -1,3 +1,35 @@
+/* =========  Settings - Toggle Boxen  ============= */
+
+.toggle_list_trigger { padding: 3px; background: #fff; border: solid 1px #ccc; }
+.toggle_list_trigger h2 {  color: #666; font-size: 15px; /* background: #f3f2f2; */ 
+		<%= fine_backgroundGradient( '#f2f4f2', '#dddbdb' ) %>  font-weight: normal;
+		<%= fine_borderRadius( '5px' ) %> cursor: pointer; }
+.toggle_list_trigger h2 span {background: url('/images/fineline/spezial/pulldown12px-r_50.png') no-repeat 7px 9px; padding: 5px 30px; line-height: 22px; display: block; color: #666; font-style:normal;}
+
+.toggle_list_trigger h2:hover span {font-weight: normal; color: #333;}
+
+
+.slider_holder { padding: 7px; }
+
+
+.toggle_list_trigger.aktiv h2, .toggle_list_trigger h2:hover { <%= fine_backgroundGradient( '#c6c5c5', '#f2f0f0' ) %> }
+.toggle_list_trigger.aktiv h2 span {background: url('/images/fineline/spezial/pulldown12px_50.png') no-repeat 7px 9px; font-weight: normal;}
+
+
+.toggle_list_box { border: solid 1px #ccc; padding: 0; background: #f3f2f2; display: none; <%= fine_boxShadow( 'inset 0 0 2px 2px rgba(153,153,153,.3)' ) %> }
+
+.toggle_list_box .toggle_list_inna_trigger { padding: 10px 30px; background: transparent; border: 0; }
+.toggle_list_box .toggle_list_inna_trigger h3 { cursor: pointer; color: #666; font-weight: normal; }
+.toggle_list_box .toggle_list_inna_trigger h3:hover { color: #333; font-weight: bold; }
+
+.toggle_list_box .toggle_list_inna_trigger.aktiv { border-bottom: solid 1px #ccc; border-top: solid 1px #ccc; background: #ebebeb; }
+.toggle_list_box .toggle_list_inna_trigger.aktiv h3 { color: #369; font-weight: bold; }
+
+.toggle_list_box .toggle_list_inna_box { padding: 20px 0 0; border: 0; display: none; }
+
+.toggle_list_box .toggle_list_inna_trigger .vorschau { background: #e1e1e1; border: solid 1px #fff; <%= fine_boxShadow( 'inset 1px 1px 1px 1px rgba(51,51,51,.3)' ) %> padding: 0 13px; }
+
+
 /* ========================   Formulare   =========================== */
 .box.edit_in, .box.edit { padding:0;}
 .box.abschnitt-inhalt:hover { padding-top: 16px;}

@@ -42,16 +42,15 @@ class Admin::SettingsController < Admin::BaseController
       @u_aktiv = @name
       respond_to do |format|
         if @name == 'stylez'
-          if Strangecms::Stylez::Config.set(params[:preferences])
+            @pref = params[:pref]
+            Strangecms::Stylez::Config.set(params[:preferences])
+            @ok_go = true
             expire_page	'/system/finestyle.css'
             expire_page	'/system/admin_finestyle.css'
             expire_page	'/system/editor_finestyle.css'
             flash.now[:notice] = I18n.t('strange_preferences.settings_updated')
             format.html { render :template => "admin/settings/#{@name}" }
-          else
-            flash.now[:alert] = I18n.t('strange_preferences.updated_error')
-            format.html { render :template => "admin/settings/#{@name}" }
-          end
+            format.js { render :template => "admin/settings/#{@name}_script" }
         else
           if Strangecms::Config.set(params[:preferences])
             Strangecms::Preferences::MailSettings.init if (@name == 'mail') || (@name == 'cms')

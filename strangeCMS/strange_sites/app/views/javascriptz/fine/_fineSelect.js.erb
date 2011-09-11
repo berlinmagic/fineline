@@ -24,7 +24,7 @@
 		var options = $.extend(defaults, options);
 		return this.each(function() {
 			var obj = $(this);
-			
+			// var this_select = $(this).parent().parent().parent().parent();
 			
 			
 			if(typeof(options.before) == "function")
@@ -56,6 +56,7 @@
 				event.preventDefault();
 				var this_href = $(this).attr('href');
 				var this_text = $(this).html();
+				
 				obj.find('.fineline_select_text').html( this_text );
 				/* obj.find('.fineline_select_box').slideUp(500); */
 				obj.find('.fineline_select_box').animate({
@@ -79,13 +80,21 @@
 					obj.find('.fineline_select_box_input').val( this_href );
 					if ( preval != this_href ) {
 						if(typeof(options.changed) == "function")
-				            options.changed(obj.html());
+				            options.changed.call(obj);
 					}
 				}
 			});
+			
+			
 
 	        if(typeof(options.after) == "function")
 	            options.after(obj.html());
 		});
+		function trigger(event, callback) {
+			if (callback) {
+				callback.call(element);
+			}
+			$.event.trigger(event);
+		}
 	};
 })(jQuery);

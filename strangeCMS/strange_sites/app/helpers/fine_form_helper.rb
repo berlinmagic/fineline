@@ -9,37 +9,141 @@ module FineFormHelper
       		<div class="fineline_select std_select">
       			<a href="#" class="fineline_select_trigger"></a>
       			<div class="fineline_select_box hidden">
-      				<ul>' +
-      				  if blank
-      				      '<li class="blank"><%= link_to " - - - - - ", "" %></li>' + 
-      				  end
-      					StylezConfiguration::FONTZ_TYPES.each do |font|
-      					  '<li class="level_0">' + link_to( t("strange_stylez.font_namez.#{ font }"), font, :style => "#{ fine_font_family(font) }" ) + '</li>'
-      					end + '
-      				</ul>
+      				<ul>'
+      if blank
+        stuff   +=  '<li class="blank">' + link_to( " - - - - - ", "" ) + '</li>'
+      end
+      StylezConfiguration::FONTZ_TYPES.each do |font|
+        stuff   +=  '<li class="level_0">' + link_to( t("strange_stylez.font_namez.#{ font }"), font, :style => "#{ fine_font_family(font) }" ) + '</li>'
+      end
+      stuff   +=  '</ul>
       			</div>
-      				 <span class="fineline_select_text selected">' +
-      				    font.blank? ? ' - - - ' : t("strange_stylez.font_namez.#{ font }")  +
-      			  '</span>' +
-      			  hidden_field( "preferences[#{ area }_#{ pref }_font_family]", :value => Strangecms::Stylez::Config[ "#{ area }_#{ pref }_font_family" ], :class => 'fineline_select_box_input' ) +
-      		'</div>
-      	</div><div class="clearfix"></div>'
-        
-        
-          select_tag( "preferences[#{ area }_#{ pref }_font_family]",
-								  options_for_select(
-								      StylezConfiguration::FONTZ_TYPES.map { |c| [t("strange_stylez.font_namez.#{c}"), c] },
-								      Strangecms::Stylez::Config[ "#{ area }_#{ pref }_font_family" ] ),
-								      :include_blank => true   )
-								else
-					select_tag( "preferences[#{ area }_#{ pref }_font_family]",
-								  options_for_select(
-								      StylezConfiguration::FONTZ_TYPES.map { |c| [t("strange_stylez.font_namez.#{c}"), c] },
-								      Strangecms::Stylez::Config[ "#{ area }_#{ pref }_font_family" ] )  )
-								end
+      				 <span class="fineline_select_text selected">'
+      stuff   +=  Strangecms::Stylez::Config[ "#{ area }_#{ pref }_font_family" ].blank? ? ' - - - ' : t("strange_stylez.font_namez.#{ Strangecms::Stylez::Config["#{ area }_#{ pref }_font_family"] }")
+      stuff   +=  '</span>'
+      stuff   +=  hidden_field_tag( "preferences[#{ area }_#{ pref }_font_family]", Strangecms::Stylez::Config[ "#{ area }_#{ pref }_font_family" ], :class => 'fineline_select_box_input' )
+      stuff   +=  '</div></div><div class="clearfix"></div>'
       stuff   +=  "</td></tr>"
       raw( stuff )
 		end
+		
+		
+		def ff_font_selecta(pref,blank=true, area='front')
+      stuff   = '<div class="fineline_select fineFont_select">
+                    <a href="#" class="fineline_select_trigger"></a>
+                    <div class="fineline_select_box hidden">
+                      <ul>'
+      if blank
+        stuff   +=  '<li class="blank">' + link_to( " - - - - - ", "" ) + '</li>'
+      end
+      StylezConfiguration::FONTZ_TYPES.each do |font|
+        
+        stuff   +=  '<li class="level_0">' + link_to( t("strange_stylez.font_namez.#{ font }"), font, :style => "#{ fine_font_family(font) }" ) + '</li>'
+      end
+      
+      stuff   +=  '</ul></div><span class="fineline_select_text">'
+        stuff   +=  Strangecms::Stylez::Config[ "#{ area }_#{ pref }_font_family" ].blank? ? ' - - - ' : t("strange_stylez.font_namez.#{ Strangecms::Stylez::Config["#{ area }_#{ pref }_font_family"] }")
+      stuff   +=  '</span>'
+      stuff   +=  hidden_field_tag( "preferences[#{ area }_#{ pref }_font_family]", Strangecms::Stylez::Config["#{ area }_#{ pref }_font_family"], :class => 'fineline_select_box_input' )
+      stuff   +=  '</div>'
+      stuff   +=  '<div class="clearfix"></div>'
+      raw( stuff )
+		end
+		
+		
+		def ff_fine_font_styler( pref, area='front', blank=true )
+
+  	    stuff  = ""
+  	    stuff += '<div class="toggle_list_inna_trigger">'
+  		      stuff += "<div class='fl_box_170'><h3 style='line-height: #{Strangecms::Stylez::Config["#{area}_#{pref}_line_height"]}px'>"
+    		      stuff += t("strange_stylez.fonts.#{ pref }")
+    		    stuff += "</h3></div>"
+    		    stuff += "<div class='fl_box_230'><div class='vorschau' style='#{ fine_font_style( pref ) }'>"
+    		      stuff += t('strange_stylez.sample_text')
+    		    stuff += '</div></div>'
+    		stuff += "<div class='fl_box_150'><div class='settings_callback #{ pref }'> </div></div>"
+  		      stuff += '<div class="clearfix"></div>'
+  	    
+  	        stuff += '<div class="toggle_list_inna_box">'
+  	        
+  	          stuff += '<form accept-charset="UTF-8" action="/admin/settings/stylez" data-remote="true" method="post">
+  	                      <div style="margin:0;padding:0;display:inline">
+  	                          <input name="utf8" type="hidden" value="✓">
+  	                          <input name="_method" type="hidden" value="put">
+  	                          <input id="name" name="name" size="50" type="hidden" value="stylez">
+  	                          <input id="pref" name="pref" size="50" type="hidden" value="'+ pref +'">
+  	                          <input name="authenticity_token" type="hidden" value="' + form_authenticity_token + '" class="rauto" />
+  	                      </div>'
+  	            
+      	        stuff += '<div class="fl_box_170"><label class="norm1">'
+      		          stuff += t("strange_stylez.font_family")
+      		      stuff += '</label></div>'
+      		      stuff += '<div class="fl_box_230">'
+      		          stuff += ff_font_selecta( pref )
+      		      stuff += '</div>'
+  		      
+      		      stuff += '<div class="clearfix"></div><div class="vspacer"></div><div class="clearfix"></div>'
+
+      		      stuff += '<div class="fl_box_170"><label class="norm1">'
+      		          stuff += t("strange_stylez.font_format")
+      		      stuff += '</label></div>'
+      		      
+      		      stuff += '<div class="grid_5">'
+      		          stuff += select_tag("preferences[#{area}_#{ pref }_font_style]",
+              								        options_for_select(
+              								            StylezConfiguration::FONT_STYLES.map { |c| [ I18n.t("strange_stylez.font_styloz.#{ c }"),c ] },
+              								            Strangecms::Stylez::Config["#{area}_#{ pref }_font_style"] ), :class => 'ff_font_style' )
+      		      stuff += '</div>'
+      		      stuff += '<div class="grid_5">'
+      		          stuff += select_tag("preferences[#{area}_#{ pref }_font_weight]",
+              								        options_for_select(
+              								            StylezConfiguration::FONT_WEIGHTS.map { |c| [ I18n.t("strange_stylez.font_styloz.#{ c }"),c ] },
+              								            Strangecms::Stylez::Config["#{area}_#{ pref }_font_weight"] ), :class => 'ff_font_weight' )
+      		      stuff += '</div>'
+      		      stuff += '<div class="grid_3">'
+      		          stuff += select_tag("preferences[#{area}_#{ pref }_font_size]",
+              								        options_for_select(
+              								            StylezConfiguration::FONT_SIZES.map { |c| [c, c] },
+              								            Strangecms::Stylez::Config["#{area}_#{ pref }_font_size"] ), :class => 'ff_font_size' )
+      		      stuff += '</div>'
+      		      
+      		      stuff += '<div class="clearfix"></div><div class="vspacer"></div><div class="clearfix"></div>'
+      		      
+      		      stuff += '<div class="fl_box_170"><label class="norm1">'
+      		          stuff += t("strange_stylez.font_color")
+      		      stuff += '</label></div>'
+      		      stuff += '<div class="fl_box_150">'
+      		          stuff += text_field_tag("preferences[#{area}_#{ pref }_font_color]", Strangecms::Stylez::Config[ "#{area}_#{ pref }_font_color" ], :class => 'half pick_color' )
+      		      stuff += '</div>'
+      		      
+      		      stuff += '<div class="clearfix"></div><div class="vspacer"></div><div class="clearfix"></div>'
+      		      
+      		      stuff += '<div class="fl_box_170"><label class="norm1">'
+      		          stuff += t("strange_stylez.line_height")
+      		      stuff += '</label></div>'
+      		      stuff += '<div class="fl_box_150">'
+      		          stuff += select_tag("preferences[#{area}_#{ pref }_line_height]",
+              								        options_for_select(
+              								            StylezConfiguration::LINE_HEIGHTS.map { |c| [c, c] },
+              								            Strangecms::Stylez::Config[ "#{area}_#{ pref }_line_height" ] ), :class => 'ff_line_height' )
+      		      stuff += '</div>'
+      		      
+      		      stuff += '<div class="clearfix"></div><div class="vspacer"></div><div class="clearfix"></div>'
+      		      
+      		      stuff += '<div class="fl_box_170">&nbsp;</div>'
+      		      stuff += '<div class="fl_box_230">'
+      		          stuff += '<input name="commit" type="submit" value="Einstellungen speichern" />'
+      		      stuff += '<div class="clearfix"></div></div><div class="clearfix"></div>'
+
+      		      
+      		    stuff += '</form>'
+
+      	    stuff += '</div>'
+  	    
+  	    stuff += '</div>'
+
+        raw( stuff )
+    end
 		
 		def ff_google_font_row(pref)
 		  stuff   =   "<tr><th>"
@@ -89,7 +193,7 @@ module FineFormHelper
 		  stuff   +=  "</td></tr>"
       raw( stuff )
 		end
-		
+    
 		def ff_font_weight_row(pref, area='front')
 		  stuff   =   "<tr><th>"
 		  stuff   +=  t("strange_stylez.font_weight")
@@ -101,7 +205,7 @@ module FineFormHelper
 		  stuff   +=  "</td></tr>"
       raw( stuff )
 		end
-		
+    
 		def ff_line_height_row(pref, area='front')
 		  stuff   =   "<tr><th>"
 		  stuff   +=  t("strange_stylez.line_height")
@@ -113,8 +217,7 @@ module FineFormHelper
 		  stuff   +=  "</td></tr>"
       raw( stuff )
 		end
-		
-		
+    
 		def ff_head_row(pref)
 		  stuff   =   "<tr><th colspan='4' class='group'>#{ t("strange_stylez.fonts.#{ pref }") }</th></tr>"
       raw( stuff )
@@ -135,7 +238,6 @@ module FineFormHelper
       raw( stuff )
 		end
 		
-		
 		def fine_font_style( object, area='front', inherit=true )
       stuff  = fine_font_family( Strangecms::Stylez::Config[ "#{area}_#{ object }_font_family" ], inherit )
       stuff += "font-size: #{ Strangecms::Stylez::Config[ "#{area}_#{ object }_font_size" ] }px;"
@@ -150,17 +252,29 @@ module FineFormHelper
     
     
     
+    def fine_font_gnames( font_family=nil, inherit=true )
+      if font_family == 'Google_one'
+        "#{Strangecms::Stylez::Config[:google_font_one].gsub(/(:)(.)*/, '')}, #{Strangecms::Stylez::Config[:google_font_default_one]}"
+      elsif font_family == 'Google_two'
+        "#{Strangecms::Stylez::Config[:google_font_two].gsub(/(:)(.)*/, '')}, #{Strangecms::Stylez::Config[:google_font_default_two]}"
+      elsif font_family == 'Google_three'
+        "#{Strangecms::Stylez::Config[:google_font_three].gsub(/(:)(.)*/, '')}, #{Strangecms::Stylez::Config[:google_font_default_three]};"
+      end
+    end
     
     
     
-    
-    def finestyler(stuff)
-      if request.fullpath.start_with?('/admin')
-        Strangecms::Stylez::Config["admin_#{stuff}"]
-      elsif request.fullpath.start_with?('/system')
-        Strangecms::Stylez::Config["admin_#{stuff}"]
+    def finestyler( stuff, path=nil )
+      if !path.blank?
+        Strangecms::Stylez::Config["#{path}_#{stuff}"]
       else
-        Strangecms::Stylez::Config["front_#{stuff}"]
+        if request.fullpath.start_with?('/admin')
+          Strangecms::Stylez::Config["admin_#{stuff}"]
+        elsif request.fullpath.start_with?('/system')
+          Strangecms::Stylez::Config["admin_#{stuff}"]
+        else
+          Strangecms::Stylez::Config["front_#{stuff}"]
+        end
       end
     end
     
@@ -182,5 +296,207 @@ module FineFormHelper
       end
     end
     
+    
+    
+    
+    
+    def ff_fine_icon_styler( pref, area='front', blank=true )
+
+  	    stuff  = ""
+  	    stuff += '<div class="toggle_list_inna_trigger">'
+  		      stuff += "<div class='fl_box_170'><h3 style='line-height: #{Strangecms::Stylez::Config["#{area}_#{pref}_icon_size"]}px'>"
+    		        stuff += t("strange_stylez.iconz.#{ pref }") + ' .. ' + area
+    		    stuff += "</h3></div>"
+    		    stuff += "<div class='fl_box_230'><div class='icon_vorschau' style='line-height: #{Strangecms::Stylez::Config["#{area}_#{pref}_icon_size"]}px'>"
+    		      stuff += finelineButton(:icon => 38, :color => finestyler("#{pref}_icon_color", area), :size => finestyler("#{pref}_icon_size", area), :blur => finestyler("#{pref}_icon_blur", area), :url => '#' )
+    		    stuff += '</div></div>'
+    		    
+    		    stuff += "<div class='fl_box_150'><div class='settings_callback #{ pref }'> </div></div>"
+  		      stuff += '<div class="clearfix"></div>'
+  	    
+  	        stuff += '<div class="toggle_list_inna_box">'
+  	        
+  	          stuff += '<form accept-charset="UTF-8" action="/admin/settings/stylez" data-remote="true" method="post">
+  	                      <div style="margin:0;padding:0;display:inline">
+  	                          <input name="utf8" type="hidden" value="✓">
+  	                          <input name="_method" type="hidden" value="put">
+  	                          <input id="name" name="name" size="50" type="hidden" value="stylez">
+  	                          <input id="pref" name="pref" size="50" type="hidden" value="'+ pref +'">
+  	                          <input name="authenticity_token" type="hidden" value="' + form_authenticity_token + '" class="rauto" />
+  	                      </div>'
+  	            
+  	            
+  	            
+  	            
+      	        stuff += '<div class="fl_box_170"><label class="norm1">'+ t("strange_stylez.icon_atr.size") +'</label></div>'
+      		      stuff += '<div class="fl_box_230">' + fine_Btn_size_tag( pref ) + '</div>'
+  		          stuff += '<div class="clearfix"></div><div class="vspacer"></div><div class="clearfix"></div>'
+  		          
+  		          stuff += '<div class="fl_box_170"><label class="norm1">' + t("strange_stylez.icon_atr.icon_color") + '</label></div>'
+      		      stuff += '<div class="fl_box_170">' + fine_Btn_icon_color_tag( pref ) + '</div>'
+  		          stuff += '<div class="clearfix"></div><div class="vspacer"></div><div class="clearfix"></div>'
+  		          
+  		          stuff += '<div class="fl_box_170"><label class="norm1">' + t("strange_stylez.icon_atr.blur") + '</label></div>'
+  		          stuff += '<div class="grid_4">'
+      		        stuff += text_field_tag("preferences[#{ area }_#{ pref }_icon_blur]", Strangecms::Stylez::Config["#{ area }_#{ pref }_icon_blur"], :class => 'no_view' )
+    						stuff += '</div><div class="grid_8 push_1">'
+    						  stuff += '<div class="slider_holder"><div id="' + area + '_' + pref + '_icon_blur_slider"></div></div>'
+    						stuff += '</div><div class="clearfix"></div><div class="vspacer"></div><div class="clearfix"></div>'
+    						
+    						
+  		          
+  		          # => stuff += '<div class="fl_box_170"><label class="norm1">' + t("strange_stylez.icon_atr.border_style") + '</label></div>'
+  		          stuff += '<div class="fl_box_170"><label class="norm1">' + t("strange_stylez.icon_atr.border") + '</label></div>'
+      		      stuff += '<div class="grid_4">' + fine_Btn_border_style_tag( pref ) + '</div>'
+      		      stuff += '<div class="grid_3">' + fine_Btn_border_width_tag( pref ) + '</div>'
+      		      stuff += '<div class="grid_4">' + fine_Btn_border_color_tag( pref ) + '</div>'
+      		      stuff += '<div class="clearfix"></div><div class="vspacer"></div><div class="clearfix"></div>'
+  		          
+  		          # => stuff += '<div class="fl_box_170"><label class="norm1">' + t("strange_stylez.icon_atr.border_width") + '</label></div>'
+      		      # => stuff += '<div class="fl_box_230">' + fine_Btn_border_width_tag( pref ) + '</div>'
+  		          # => stuff += '<div class="clearfix"></div><div class="vspacer"></div><div class="clearfix"></div>'
+  		          # => stuff += '<div class="fl_box_170"><label class="norm1">' + t("strange_stylez.icon_atr.border_color") + '</label></div>'
+      		      # => stuff += '<div class="grid_4">' + fine_Btn_border_color_tag( pref ) + '</div>'
+  		          # => stuff += '<div class="clearfix"></div><div class="vspacer"></div><div class="clearfix"></div>'
+  		          
+  		          
+  		          
+  		          stuff += '<div class="fl_box_170"><label class="norm1">' + t("strange_stylez.icon_atr.style") + '</label></div>'
+      		      stuff += '<div class="grid_4">' + fine_Btn_style_tag( pref ) + '</div>'
+      		      stuff += "<div class='grid_4'><div class='btn_rds #{ 'hidden' unless Strangecms::Stylez::Config["#{ area }_#{ pref }_style"] == 'gerunded' } '> #{ fine_Btn_border_radius_tag( pref ) }px </div></div>"
+  		          stuff += '<div class="clearfix"></div><div class="vspacer"></div><div class="clearfix"></div>'
+  		          
+  		          
+  		          stuff += '<div class="fl_box_170"><label class="norm1">' + t("strange_stylez.icon_atr.bg_style") + '</label></div>'
+  		          stuff += '<div class="grid_4">'
+      		        stuff += select_tag("preferences[#{ area }_#{ pref }_bg_style]",
+    											options_for_select(StylezConfiguration::BUTTON_BG_STYLEZ.map { |c| [I18n.t("strange_stylez.icon_atr.bg_colorz.#{c}"), c] }, Strangecms::Stylez::Config["#{ area }_#{ pref }_bg_style"]), :class => 'farbwahl')
+    						stuff += '</div><div class="grid_4 push_1">'
+    						  stuff += text_field_tag("preferences[#{ area }_#{ pref }_bg_color1]", Strangecms::Stylez::Config["#{ area }_#{ pref }_bg_color1"], :class => 'ff_Btn_pick_color', :size => '6' )
+    						stuff += "</div><div class='grid_4 push_3'><div class='color_2 #{ 'invisible' if Strangecms::Stylez::Config["#{ area }_#{ pref }_bg_style"] == 'farbe' } '>"
+    						  stuff += text_field_tag("preferences[#{ area }_#{ pref }_bg_color2]", Strangecms::Stylez::Config["#{ area }_#{ pref }_bg_color2"], :class => 'ff_Btn_pick_color', :size => '6' )
+    						stuff += '</div></div><div class="clearfix"></div><div class="vspacer"></div><div class="clearfix"></div>'
+                
+                
+                
+                
+  		          
+  		          
+                
+                
+                
+                
+      		      
+      		      stuff += '<div class="fl_box_170">&nbsp;</div>'
+      		      stuff += '<div class="fl_box_230">'
+      		          stuff += '<input name="commit" type="submit" value="Einstellungen speichern" />'
+      		      stuff += '<div class="clearfix"></div></div><div class="clearfix"></div>'
+
+      		      
+      		    stuff += '</form>'
+
+      	    stuff += '</div>'
+  	    
+  	    stuff += '</div>'
+
+        raw( stuff )
+    end
+    
+    def ff_fine_icon_scripter( pref, area='front', blank=true )
+        raw( "$( '##{area}_#{pref}_icon_blur_slider' ).slider({ min: 1, max: 100, value: #{ Strangecms::Stylez::Config["#{area}_#{pref}_icon_blur"] || 50 }, 
+      	slide: function( event, ui ) { $( '#preferences_#{area}_#{pref}_icon_blur' ).val( ui.value ); } });
+      	$( '#preferences_#{area}_#{pref}_icon_blur' ).val( $( '##{area}_#{pref}_icon_blur_slider' ).slider( 'value' ) );" )
+    end
+    
+    
+    
+    
+    
+    
+    def fine_Btn_size_tag( icon, area='front' )
+        raw( select_tag("preferences[#{area}_#{ icon }_icon_size]",
+								        options_for_select(
+								            StylezConfiguration::ICON_SIZE.map { |c| [c, c] },
+								            Strangecms::Stylez::Config[ "#{area}_#{ icon }_icon_size" ] ), :class => 'ff_Btn_size' )   )
+    end
+    
+    def fine_Btn_border_style_tag( icon, area='front' )
+        raw( select_tag("preferences[#{area}_#{ icon }_border_style]",
+								        options_for_select(
+								            StylezConfiguration::BORDER_STYLEZ.map { |c| [c, c] },
+								            Strangecms::Stylez::Config[ "#{area}_#{ icon }_border_style" ] ), :class => 'ff_Btn_border_style' )   )
+    end
+    
+    def fine_Btn_border_width_tag( icon, area='front' )
+        raw( select_tag("preferences[#{area}_#{ icon }_border_width]",
+								        options_for_select(
+								            StylezConfiguration::BORDER_WIDTHS.map { |c| [c, c] },
+								            Strangecms::Stylez::Config[ "#{area}_#{ icon }_border_width" ] ), :class => 'ff_Btn_border_width' )   )
+    end
+    
+    def fine_Btn_border_color_tag( icon, area='front' )
+        raw( 
+          text_field_tag( "preferences[#{area}_#{ icon }_border_color]", 
+                Strangecms::Stylez::Config[ "#{area}_#{ icon }_border_color" ], :class => 'ff_Btn_pick_color', :size => '6' )
+            )
+    end
+    
+    def fine_Btn_border_radius_tag( icon, area='front' )
+        raw( select_tag("preferences[#{area}_#{ icon }_border_radius]",
+								        options_for_select(
+								            StylezConfiguration::BORDER_WIDTHS.map { |c| [c, c] },
+								            Strangecms::Stylez::Config[ "#{area}_#{ icon }_border_radius" ] ), :class => 'ff_Btn_border_radius' )   )
+    end
+    
+    
+    def fine_Btn_icon_color_tag( icon, area='front' )
+        raw( select_tag("preferences[#{area}_#{ icon }_icon_color]",
+								        options_for_select(
+								            StylezConfiguration::ICON_COLOR.map { |c| [c, c] },
+								            Strangecms::Stylez::Config[ "#{area}_#{ icon }_icon_color" ] ), :class => 'ff_Btn_icon_color' )   )
+    end
+    
+    def fine_Btn_icon_color_tag( icon, area='front' )
+        raw( select_tag("preferences[#{area}_#{ icon }_icon_color]",
+								        options_for_select(
+								            StylezConfiguration::ICON_COLOR.map { |c| [c, c] },
+								            Strangecms::Stylez::Config[ "#{area}_#{ icon }_icon_color" ] ), :class => 'ff_Btn_icon_color' )   )
+    end
+    
+    
+    def fine_Btn_style_tag( icon, area='front' )
+        raw( select_tag("preferences[#{area}_#{ icon }_style]",
+								        options_for_select(
+								            StylezConfiguration::BUTTON_STYLEZ.map { |c| [c, c] },
+								            Strangecms::Stylez::Config[ "#{area}_#{ icon }_style" ] ), :class => 'ff_Btn_style' )   )
+    end
+    
+    
+    
+    
+    
+    
+    def cxyxvbf( cc )
+      
+
+		  # => preference :front_systemButton_icon_blur, :integer, :default => 50
+
+		  # => preference :front__box_shadow, :string, :default => 'inset 1px 1px 1px 0px rgba(255,255,255,.4)'
+      # => 
+		  # => preference :front_systemButton_bg_style_hover, :string, :default => BUTTON_BG_STYLEZ[0]
+		  # => preference :front_systemButton_bg_color1_hover, :string, :default => 336699
+		  # => preference :front_systemButton_bg_color2_hover, :string, :default => 336699
+		  # => preference :front_systemButton_border_color_hover, :string, :default => 'cccccc'
+		  # => preference :front_systemButton_border_style_hover, :string, :default => BORDER_STYLEZ[1]
+		  # => preference :front__box_shadow_hover, :string, :default => 'inset 1px 1px 1px 0px rgba(255,255,255,.4)'
+      # => 
+		  # => preference :front_systemButton_bg_style_active, :string, :default => BUTTON_BG_STYLEZ[0]
+		  # => preference :front_systemButton_bg_color1_active, :string, :default => 336699
+		  # => preference :front_systemButton_bg_color2_active, :string, :default => 336699
+		  # => preference :front_systemButton_border_color_active, :string, :default => 'cccccc'
+		  # => preference :front_systemButton_border_style_active, :string, :default => BORDER_STYLEZ[1]
+		  # => preference :front__box_shadow_active, :string, :default => 'inset 1px 1px 1px 0px rgba(255,255,255,.4)'
+		  
+		end
   
 end

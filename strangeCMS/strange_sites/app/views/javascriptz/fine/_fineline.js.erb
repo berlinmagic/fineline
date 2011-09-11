@@ -190,6 +190,69 @@ $().ready(function() {
 	        $(this).parent().parent().parent().find('div.hidden').hide().removeClass("hidden").fadeIn('900');
 			$(this).fadeOut('500');
 	      });
+	
+	
+	/* Admin Settings Toggle Box */
+		$('.toggle_list_trigger h2').click(function(){
+			if ( $(this).parent().hasClass('aktiv') ) {
+				$(this).parent().parent().find('.toggle_list_trigger.aktiv').removeClass('aktiv').next().slideUp();
+			} else {
+				$(this).parent().parent().find('.toggle_list_trigger.aktiv').removeClass('aktiv').next().slideUp();
+				$(this).parent().toggleClass('aktiv');
+				$(this).parent().next().slideToggle();
+			}
+		});
+		$('.toggle_list_inna_trigger h3').click(function(){
+			if ( $(this).parent().parent().hasClass('aktiv') ) {
+				$(this).parent().parent().parent().find('.toggle_list_inna_trigger.aktiv').removeClass('aktiv').find('.toggle_list_inna_box').slideUp();
+			} else {
+				$(this).parent().parent().parent().find('.toggle_list_inna_trigger.aktiv').removeClass('aktiv').find('.toggle_list_inna_box').slideUp();
+				$(this).parent().parent().toggleClass('aktiv');
+				$(this).parent().parent().find('.toggle_list_inna_box').slideToggle();
+			}
+		});
+		
+		
+		var FONT_NAMES = {	<% StylezConfiguration::FONTZ_TYPES.each_with_index do |font,index| %>
+								<% km = (index + 1) == StylezConfiguration::FONTZ_TYPES.count ? '' : ', ' %>
+								<% if font.start_with?("Google") %>
+									<%= font %>: '<%= raw fine_font_gnames( font ) %>'<%= km %>
+								<% else %>
+									<%= font %>: '<%= raw StylezConfiguration::FONTZ["#{ font }"] %>'<%= km %>
+								<% end %>
+							<% end %>  };
+		
+		$('.fineline_select.fineFont_select').finelineSelect({
+		            changed:function(){
+						var wert = $(this);
+						// var bla = FONT_NAMES[wert];
+						// var bla = $(this).html().replace(/(value=(.*)\>)/, $1);
+						var bla = $(this).html().replace(/([^.]*)value=\"([^\]]*)\"(.*)/g, "$2");
+						var blu = $(this).html().replace(/([^.]*)id=\"(\w*)\"([^.]*)/g, "$2");
+						// $('#'+blu).parent().parent().parent().parent().parent().find('.vorschau').css('font-family', FONT_NAMES[bla]);
+		                $(this).parent().parent().parent().parent().find('.vorschau').css('font-family', FONT_NAMES[bla]);
+						// alert( bla + ' ::: ' + FONT_NAMES[bla] + ' ::: ' + blu );
+		            }
+		});
+		
+		
+		
+		$('.ff_font_style').change(function(){
+			$(this).parent().parent().parent().parent().find('.vorschau').css( 'font-style', $(this).val() );
+		});
+		
+		$('.ff_font_weight').change(function(){
+			$(this).parent().parent().parent().parent().find('.vorschau').css( 'font-weight', $(this).val() );
+		});
+		
+		$('.ff_font_size').change(function(){
+			$(this).parent().parent().parent().parent().find('.vorschau').css( 'font-size', $(this).val()+'px' );
+		});
+		$('.ff_line_height').change(function(){
+			$(this).parent().parent().parent().parent().find('.vorschau').css( 'line-height', $(this).val()+'px' );
+			// $(this).parent().parent().parent().parent().find('.vorschau').css( 'height', $(this).val()+'px' );
+		});
+		
 
 
 
