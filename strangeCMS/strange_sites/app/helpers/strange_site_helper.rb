@@ -15,7 +15,7 @@ module StrangeSiteHelper
     options.reverse_merge! :delete  =>    nil   unless    options.key? :delete
     options.reverse_merge! :protect =>    nil   unless    options.key? :protect
     abschnitt_text = "<div class='deleted_abschnitt'><strong>X</strong> Gelöscht!</div>
-		<div class='abschnitt_admin_toolz'>"
+		<div class='abschnitt_admin_toolz fineline_system_toolz'>"
     if options[:safe]
         if site_master
         

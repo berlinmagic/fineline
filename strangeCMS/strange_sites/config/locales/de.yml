@@ -40,6 +40,10 @@ de:
           index: "Seitenverwaltung"
           module: "Aktive Module"
       show_sites: "Anzeigen:"
+      lightbox:
+          pic: "Bild"
+          of: "von"
+          pic_load_error: "Das Bild konnte nicht geladen werden."
 ###  Linkz  ###
   Show: "Anzeigen"
   Edit: "Bearbeiten"

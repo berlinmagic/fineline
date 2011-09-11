@@ -43,10 +43,25 @@ a.finelineButton, div.finelineButton { display: inline-block; padding:0; margin:
 	<% end %>
 	}
 
+.finelineButton.eckig.flb18 { <%= fine_borderRadius(  ) %> }
+.finelineButton.eckig.flb24 { <%= fine_borderRadius(  ) %> }
+.finelineButton.eckig.flb32 { <%= fine_borderRadius(  ) %> }
+.finelineButton.eckig.flb48 { <%= fine_borderRadius(  ) %> }
+
 .finelineButton.kreis.flb18 { <%= fine_borderRadius( '10px' ) %> }
 .finelineButton.kreis.flb24 { <%= fine_borderRadius( '13px' ) %> }
 .finelineButton.kreis.flb32 { <%= fine_borderRadius( '17px' ) %> }
 .finelineButton.kreis.flb48 { <%= fine_borderRadius( '25px' ) %> }
+
+.finelineButton.rund.flb18 { <%= fine_borderRadius( '10px' ) %> }
+.finelineButton.rund.flb24 { <%= fine_borderRadius( '13px' ) %> }
+.finelineButton.rund.flb32 { <%= fine_borderRadius( '17px' ) %> }
+.finelineButton.rund.flb48 { <%= fine_borderRadius( '25px' ) %> }
+
+.finelineButton.gerunded.system { <%= fine_borderRadius( "#{ Strangecms::Stylez::Config[:front_lightboxNav_border_radius] }px" ) %> }
+.finelineButton.gerunded.lighbox_nav{ <%= fine_borderRadius( "#{ Strangecms::Stylez::Config[:front_systemButton_border_radius] }px" ) %> }
+
+
 
 a.finelineButton:hover, div.finelineButton:hover { <%= fine_boxShadow( 'inset 1px 1px 1px 0px rgba(255,255,255,.4)' ) %>  
 		<% if Strangecms::Stylez::Config[:front_finelineButton_bg_style_hover] == "verlauf" %>

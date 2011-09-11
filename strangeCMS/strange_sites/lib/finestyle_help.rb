@@ -32,6 +32,8 @@ module FinestyleHelp
       end
     end
     
+    
+    
     def fine_borderRadius(radius=nil)
         radius = radius.blank? ? 'none' : radius
         " -khtml-border-radius: 	#{ radius };
@@ -39,7 +41,8 @@ module FinestyleHelp
     		  -moz-border-radius: 	  #{ radius }; 
     		  -o-border-radius: 		  #{ radius }; 
     		  -ms-border-radius: 		  #{ radius };
-    		  border-radius: 			    #{ radius };  "
+    		  border-radius: 			    #{ radius };
+    		  behavior: url(/stylesheets/border-radius.htc);  "
     end
     
     def fine3_borderRadius(radius=nil,spezialCorner=nil,spezialRadius=nil)
@@ -164,6 +167,23 @@ module FinestyleHelp
         # => -ms-text-shadow:      #{ shadow };
         # => -khtml-text-shadow:   #{ shadow };
         "text-shadow:          #{ shadow };"
+    end
+    
+    def fine_opacity( opacity )
+      opac = 1.0
+      if opacity
+        if opacity > 1
+          opac = opac * "0.#{ opacity }".to_f
+        else
+          opac = opac * "#{ opacity }".to_f
+        end
+      end
+      opaz = (100 * opac).to_i if opac < 1
+      " opacity: #{opac};
+        -moz-opacity: #{opac};
+        -webkit-opacity: #{opac};
+        -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=#{ opaz })';
+        filter: alpha(opacity=#{ opaz }); "
     end
     
     def my_fine_minify(css)

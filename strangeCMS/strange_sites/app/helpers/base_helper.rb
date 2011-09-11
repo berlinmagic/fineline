@@ -36,8 +36,7 @@ module BaseHelper
         opac = opac * "#{options[:blur]}".to_f
       end
     end
-    raw( "<div class='finelineIcon #{ color }' style='background: transparent url(/images/fineline/iconsets/stripe_#{size}x#{size2}.png) 
-        -#{ color == 'dunkel' ? size2 : 0 }px -#{top}px no-repeat; width: #{size2}px; height: #{size}px; opacity: #{ opac.to_s };'></div>" )
+    raw( "<div class='finelineIcon #{ color }' style='background: transparent url(/images/fineline/iconsets/stripe_#{size}x#{size2}.png)         -#{ color == 'dunkel' ? size2 : 0 }px -#{top}px no-repeat; width: #{size2}px; height: #{size}px; opacity: #{ opac.to_s };'></div>" )
   end
   
   

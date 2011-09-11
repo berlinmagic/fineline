@@ -10,7 +10,10 @@
 <%= raw( fine_js_minify( "#{ render 'javascriptz/libs/jquery_form' }" ) ) %>
 <%= raw( fine_js_minify( "#{ render 'javascriptz/libs/jquery_remotipart' }" ) ) %>
 <%= raw( fine_js_minify( "#{ render 'javascriptz/libs/jquery_validate' }" ) ) %>
-<%= raw( fine_js_minify( "#{ render 'javascriptz/libs/cbox' }" ) ) %>
+
+<%#= raw( fine_js_minify( "#{ render 'javascriptz/libs/cbox' }" ) ) %>
+<%= raw( fine_js_minify( "#{ render 'javascriptz/libs/fineBox' }" ) ) %>
+
 <%= raw( fine_js_minify( "#{ render 'javascriptz/libs/plugins' }" ) ) %>
 <%= raw( fine_js_minify( "#{ render 'javascriptz/libs/backgroundPosition' }" ) ) %>
 <%= raw( fine_js_minify( "#{ render 'javascriptz/libs/flowplayer' }" ) ) %>
@@ -29,14 +32,3 @@
 <%= raw( fine_js_minify( "#{ hook :admin_js_scriptz }" ) ) %>
 <% end %>
 /* ####################################     ..End of - generated - scripts     ######################################################### */
-<%- # asynchronous google analytics: mathiasbynens.be/notes/async-analytics-snippet -%>
-<%- if Rails.env.production? && Strangecms::Config[:analytics_key] != 'UA-XXXXX-X' -%>
-var _gaq = [['_setAccount', '<%= Strangecms::Config[:analytics_key] %>'], ['_trackPageview']];
-(function(d, t) {
- var g = d.createElement(t),
-     s = d.getElementsByTagName(t)[0];
- g.async = true;
- g.src = ('https:' == location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
- s.parentNode.insertBefore(g, s);
-})(document, 'script');
-<%- end -%>

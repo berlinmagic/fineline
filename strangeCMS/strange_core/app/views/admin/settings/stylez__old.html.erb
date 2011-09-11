@@ -1,0 +1,278 @@
+
+<div class="admin_box">
+	<h1 class="icon"><%= finelineIcon(:icon => 71, :color => finestyler('headline_icon_color'), :size => finestyler('headline_icon_size'), :blur => finestyler('headline_icon_blur')) %><%= t('strange_stylez.settings') %></h1>
+	<div class="admin_in_box">
+		<div class="box">
+			<div class="in_box">
+				<p>Hier sehen Sie standard CMS-Einstellungen.</p>
+			</div>
+		</div>
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box white">
+				
+				<div class="toggle_list_trigger">
+					<h2>Schriften</h2>
+				</div>
+				<div class="toggle_list_box">
+					<div class="fl_box_170">
+						
+					</div>
+					<div class="fl_box_230">
+						
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				
+				
+				
+				
+				<table class="settings">
+					<tr>
+						<th colspan="4" class="u_kat"><%= t('strange_stylez.front_stylez')%></th>
+					</tr>
+					<tr>
+						<th colspan="4" class="group"><%= t('strange_stylez.fontz')%></th>
+					</tr>
+					<tr>
+						<th><%= t('strange_stylez.google_font_one') %></th>
+						<td><%= Strangecms::Stylez::Config[:google_font_one].gsub(/(:)(.)*/, '') %></td>
+						<td><%= t('strange_stylez.google_font_default_one') %></td>
+						<td><%= t("strange_stylez.front_alts.#{Strangecms::Stylez::Config[:google_font_default_one]}") %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_stylez.google_font_two') %></th>
+						<td><%= Strangecms::Stylez::Config[:google_font_two].gsub(/(:)(.)*/, '') %></td>
+						<td><%= t('strange_stylez.google_font_default_two') %></td>
+						<td><%= t("strange_stylez.front_alts.#{Strangecms::Stylez::Config[:google_font_default_two]}") %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_stylez.google_font_three') %></th>
+						<td><%= Strangecms::Stylez::Config[:google_font_three].gsub(/(:)(.)*/, '') %></td>
+						<td><%= t('strange_stylez.google_font_default_three') %></td>
+						<td><%= t("strange_stylez.front_alts.#{Strangecms::Stylez::Config[:google_font_default_three]}") %></td>
+					</tr>
+					<tr><th colspan="4" class="group">&nbsp;</th></tr>
+					<tr>
+						<th><%= t('strange_stylez.front_body_font_family') %></th>
+						<td colspan="3"><%= !Strangecms::Stylez::Config[:front_body_font_family].blank? ? t("strange_stylez.font_namez.#{ Strangecms::Stylez::Config[:front_body_font_family] }") : t("strange_stylez.font_namez.font_inherit") %></td>
+					</tr>
+					
+					<tr>
+						<th><%= t('strange_stylez.front_pre_font_family') %></th>
+						<td colspan="3"><%= !Strangecms::Stylez::Config[:front_pre_font_family].blank? ? t("strange_stylez.font_namez.#{ Strangecms::Stylez::Config[:front_pre_font_family] }") : t("strange_stylez.font_namez.font_inherit") %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_stylez.front_p_font_family') %></th>
+						<td colspan="3"><%= !Strangecms::Stylez::Config[:front_p_font_family].blank? ? t("strange_stylez.font_namez.#{ Strangecms::Stylez::Config[:front_body_font_family] }") : t("strange_stylez.font_namez.font_inherit") %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_stylez.front_h1_font_family') %></th>
+						<td colspan="3"><%= !Strangecms::Stylez::Config[:front_h1_font_family].blank? ? t("strange_stylez.font_namez.#{ Strangecms::Stylez::Config[:front_h1_font_family] }") : t("strange_stylez.font_namez.font_inherit") %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_stylez.front_h2_font_family') %></th>
+						<td colspan="3"><%= !Strangecms::Stylez::Config[:front_h2_font_family].blank? ? t("strange_stylez.font_namez.#{ Strangecms::Stylez::Config[:front_body_font_family] }") : t("strange_stylez.font_namez.font_inherit") %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_stylez.front_h3_font_family') %></th>
+						<td colspan="3"><%= !Strangecms::Stylez::Config[:front_h3_font_family].blank? ? t("strange_stylez.font_namez.#{ Strangecms::Stylez::Config[:front_h2_font_family] }") : t("strange_stylez.font_namez.font_inherit") %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_stylez.front_h4_font_family') %></th>
+						<td colspan="3"><%= !Strangecms::Stylez::Config[:front_h4_font_family].blank? ? t("strange_stylez.font_namez.#{ Strangecms::Stylez::Config[:front_h4_font_family] }") : t("strange_stylez.font_namez.font_inherit") %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_stylez.front_h5_font_family') %></th>
+						<td colspan="3"><%= !Strangecms::Stylez::Config[:front_h5_font_family].blank? ? t("strange_stylez.font_namez.#{ Strangecms::Stylez::Config[:front_h5_font_family] }") : t("strange_stylez.font_namez.font_inherit") %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_stylez.front_h6_font_family') %></th>
+						<td colspan="3"><%= !Strangecms::Stylez::Config[:front_h6_font_family].blank? ? t("strange_stylez.font_namez.#{ Strangecms::Stylez::Config[:front_h6_font_family] }") : t("strange_stylez.font_namez.font_inherit") %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_stylez.front_headline_font_family') %></th>
+						<td colspan="3"><%= !Strangecms::Stylez::Config[:front_headline_font_family].blank? ? t("strange_stylez.font_namez.#{ Strangecms::Stylez::Config[:front_headline_font_family] }") : t("strange_stylez.font_namez.font_inherit") %></td>
+					</tr>
+					
+					
+					
+					<tr><th colspan="4" class="group">&nbsp;</th></tr>
+					<tr><th colspan="4" class="group">&nbsp;</th></tr>
+					<tr>
+						<th colspan="4" class="group"><%= t('strange_stylez.headline_icon')%></th>
+					</tr>
+					<tr>
+						<th><%= t('strange_stylez.headline_icon_size') %></th>
+						<td colspan="3"><%= Strangecms::Stylez::Config[:front_headline_icon_size] %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_stylez.headline_icon_color') %></th>
+						<td colspan="3"><%= Strangecms::Stylez::Config[:front_headline_icon_color] %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_stylez.headline_icon_blur') %></th>
+						<td colspan="3"><%= Strangecms::Stylez::Config[:front_headline_icon_blur] %></td>
+					</tr>
+					
+					<tr><th colspan="4" class="group">&nbsp;</th></tr>
+					
+					<tr>
+						<th colspan="4" class="group"><%= t('strange_stylez.finelineButton_std')%></th>
+					</tr>
+					<tr>
+						<th><%= t('strange_stylez.finelineButton.icon_size') %></th>
+						<td colspan="3"><%= Strangecms::Stylez::Config[:front_finelineButton_icon_size] %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_stylez.finelineButton.icon_color') %></th>
+						<td colspan="3"><%= Strangecms::Stylez::Config[:front_finelineButton_icon_color] %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_stylez.finelineButton.icon_blur') %></th>
+						<td colspan="3"><%= Strangecms::Stylez::Config[:front_finelineButton_icon_blur] %></td>
+					</tr>
+					
+					<tr>
+						<th><%= t('strange_stylez.finelineButton.style') %></th>
+						<td colspan="3"><%= Strangecms::Stylez::Config[:front_finelineButton_style] %></td>
+					</tr>
+					
+					<tr>
+						<th><%= t('strange_stylez.finelineButton.bg') %></th>
+						<td><%= Strangecms::Stylez::Config[:front_finelineButton_bg_style] %></td>
+						<td><%= Strangecms::Stylez::Config[:front_finelineButton_bg_color1] %></td>
+						<td><%= Strangecms::Stylez::Config[:front_finelineButton_bg_color2] unless Strangecms::Stylez::Config[:front_finelineButton_bg_style] == 'farbe' %></td>
+					</tr>
+					
+					<tr><th colspan="4" class="group">&nbsp;</th></tr>
+					
+					<tr>
+						<th colspan="4" class="group"><%= t('strange_stylez.finelineButton_hover')%></th>
+					</tr>
+					<tr>
+						<th><%= t('strange_stylez.finelineButton.bg') %></th>
+						<td><%= Strangecms::Stylez::Config[:front_finelineButton_bg_style_hover] %></td>
+						<td><%= Strangecms::Stylez::Config[:front_finelineButton_bg_color1_hover] %></td>
+						<td><%= Strangecms::Stylez::Config[:front_finelineButton_bg_color2_hover] unless Strangecms::Stylez::Config[:front_finelineButton_bg_style_hover] == 'farbe' %></td>
+					</tr>
+					
+					<tr><th colspan="4" class="group">&nbsp;</th></tr>
+					
+					<tr>
+						<th colspan="4" class="group"><%= t('strange_stylez.finelineButton_active')%></th>
+					</tr>
+					<tr>
+						<th><%= t('strange_stylez.finelineButton.bg') %></th>
+						<td><%= Strangecms::Stylez::Config[:front_finelineButton_bg_style_active] %></td>
+						<td><%= Strangecms::Stylez::Config[:front_finelineButton_bg_color1_active] %></td>
+						<td><%= Strangecms::Stylez::Config[:front_finelineButton_bg_color2_active] unless Strangecms::Stylez::Config[:front_finelineButton_bg_style_active] == 'farbe' %></td>
+					</tr>
+					
+					
+				</table>
+			</div>
+		</div>
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box white">
+				<table class="settings">
+					<tr>
+						<th colspan="4" class="u_kat"><%= t('strange_stylez.admin_stylez')%></th>
+					</tr>
+					<tr>
+						<th colspan="4" class="group"><%= t('strange_stylez.headline_icon')%></th>
+					</tr>
+					<tr>
+						<th><%= t('strange_stylez.headline_icon_size') %></th>
+						<td colspan="3"><%= Strangecms::Stylez::Config[:admin_headline_icon_size] %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_stylez.headline_icon_color') %></th>
+						<td colspan="3"><%= Strangecms::Stylez::Config[:admin_headline_icon_color] %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_stylez.headline_icon_blur') %></th>
+						<td colspan="3"><%= Strangecms::Stylez::Config[:admin_headline_icon_blur] %></td>
+					</tr>
+					
+					<tr><th colspan="4" class="group">&nbsp;</th></tr>
+
+					<tr>
+						<th colspan="4" class="group"><%= t('strange_stylez.finelineButton_std')%></th>
+					</tr>
+					<tr>
+						<th><%= t('strange_stylez.finelineButton.icon_size') %></th>
+						<td colspan="3"><%= Strangecms::Stylez::Config[:admin_finelineButton_icon_size] %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_stylez.finelineButton.icon_color') %></th>
+						<td colspan="3"><%= Strangecms::Stylez::Config[:admin_finelineButton_icon_color] %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_stylez.finelineButton.icon_blur') %></th>
+						<td colspan="3"><%= Strangecms::Stylez::Config[:admin_finelineButton_icon_blur] %></td>
+					</tr>
+
+					<tr>
+						<th><%= t('strange_stylez.finelineButton.style') %></th>
+						<td colspan="3"><%= Strangecms::Stylez::Config[:admin_finelineButton_style] %></td>
+					</tr>
+
+					<tr>
+						<th><%= t('strange_stylez.finelineButton.bg') %></th>
+						<td><%= Strangecms::Stylez::Config[:admin_finelineButton_bg_style] %></td>
+						<td><%= Strangecms::Stylez::Config[:admin_finelineButton_bg_color1] %></td>
+						<td><%= Strangecms::Stylez::Config[:admin_finelineButton_bg_color2] unless Strangecms::Stylez::Config[:admin_finelineButton_bg_style] == 'farbe' %></td>
+					</tr>
+					
+					<tr><th colspan="4" class="group">&nbsp;</th></tr>
+
+					<tr>
+						<th colspan="4" class="group"><%= t('strange_stylez.finelineButton_hover')%></th>
+					</tr>
+					<tr>
+						<th><%= t('strange_stylez.finelineButton.bg') %></th>
+						<td><%= Strangecms::Stylez::Config[:admin_finelineButton_bg_style_hover] %></td>
+						<td><%= Strangecms::Stylez::Config[:admin_finelineButton_bg_color1_hover] %></td>
+						<td><%= Strangecms::Stylez::Config[:admin_finelineButton_bg_color2_hover] unless Strangecms::Stylez::Config[:admin_finelineButton_bg_style_hover] == 'farbe' %></td>
+					</tr>
+					
+					<tr><th colspan="4" class="group">&nbsp;</th></tr>
+
+					<tr>
+						<th colspan="4" class="group"><%= t('strange_stylez.finelineButton_active')%></th>
+					</tr>
+					<tr>
+						<th><%= t('strange_stylez.finelineButton.bg') %></th>
+						<td><%= Strangecms::Stylez::Config[:admin_finelineButton_bg_style_active] %></td>
+						<td><%= Strangecms::Stylez::Config[:admin_finelineButton_bg_color1_active] %></td>
+						<td><%= Strangecms::Stylez::Config[:admin_finelineButton_bg_color2_active] unless Strangecms::Stylez::Config[:admin_finelineButton_bg_style_active] == 'farbe' %></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<%= render 'edit_buttons' %>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<%= render 'sidebar' %>

@@ -108,12 +108,25 @@ module FineFormHelper
 		  stuff   +=  ff_font_size_row(pref, area)
 		  stuff   +=  ff_font_weight_row(pref, area)
 		  stuff   +=  ff_font_style_row(pref, area)
-		  stuff   +=  ff_line_height_row(pref, area)
-		  stuff   +=  "<tr><th colspan='4' class='group'>&nbsp;</th></tr>"
+		  unless pref == 'headline'
+		    stuff   +=  ff_line_height_row(pref, area)
+		    stuff   +=  "<tr><th colspan='4' class='group'>&nbsp;</th></tr>"
+	    end
       raw( stuff )
 		end
 		
 		
-		
+		def fine_font_style( object, area='front', inherit=true )
+      stuff  = fine_font_family( Strangecms::Stylez::Config[ "#{area}_#{ object }_font_family" ], inherit )
+      stuff += "font-size: #{ Strangecms::Stylez::Config[ "#{area}_#{ object }_font_size" ] }px;"
+      stuff += "color: ##{ Strangecms::Stylez::Config[ "#{area}_#{ object }_font_color" ] };"
+      unless object == 'headline'
+        stuff += "line-height: #{ Strangecms::Stylez::Config[ "#{area}_#{ object }_line_height" ] }px;"
+      end
+      stuff += "font-weight: #{ Strangecms::Stylez::Config[ "#{area}_#{ object }_font_weight" ] };"
+      stuff += "font-style: #{ Strangecms::Stylez::Config[ "#{area}_#{ object }_font_style" ] };"
+      raw( stuff )
+    end
+    
   
 end
