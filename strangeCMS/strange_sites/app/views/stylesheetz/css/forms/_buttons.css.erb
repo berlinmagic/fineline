@@ -77,3 +77,13 @@ a.finelineButton:active, div.finelineButton:active { <%= fine_boxShadow( 'inset 
 			background: #<%= Strangecms::Stylez::Config[:front_finelineButton_bg_color1_active]  %>;
 		<% end %> }
 /* ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ */
+
+.finelineButton.lighbox_nav { <%= fine_icn_css( 'lightboxNav', 'front' ) %> }
+.finelineButton.system { <%= fine_icn_css( 'systemButton', 'front' ) %> }
+
+.finelineButton.lighbox_nav:hover { <%= fine_icn_css( 'lightboxNav', 'front', 'hover' ) %> }
+.finelineButton.system:hover { <%= fine_icn_css( 'systemButton', 'front', 'hover' ) %> }
+
+.finelineButton.lighbox_nav:active { <%= fine_icn_css( 'lightboxNav', 'front', 'active' ) %> }
+.finelineButton.system:active { <%= fine_icn_css( 'systemButton', 'front', 'active' ) %> }
+

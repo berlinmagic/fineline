@@ -29,20 +29,30 @@
         #cboxCurrent{position:absolute; bottom:4px; left:4px; color:#949494;}
         #cboxSlideshow{position:absolute; bottom:4px; right:30px; color:#0092ef;}
         
-		<% toppa = Strangecms::Stylez::Config[:front_lightboxNav_icon_size].to_i / 2 + Strangecms::Stylez::Config[:front_lightboxNav_border_width].to_i %>
-		<% if Strangecms::Stylez::Config[:front_lightboxNav_style] == "rund" %>
-			<% radios = 50 %>
-		<% elsif Strangecms::Stylez::Config[:front_lightboxNav_style] == "gerunded" %>
-			<% radios = Strangecms::Stylez::Config[:front_lightboxNav_border_radius] %>
-		<% else %>
-			<% radios = 0 %>
-		<% end %>
+		<%# toppa = Strangecms::Stylez::Config[:front_lightboxNav_icon_size].to_i / 2 + Strangecms::Stylez::Config[:front_lightboxNav_border_width].to_i %>
+		<%# if Strangecms::Stylez::Config[:front_lightboxNav_style] == "rund" %>
+			<%# radios = 50 %>
+		<%# elsif Strangecms::Stylez::Config[:front_lightboxNav_style] == "gerunded" %>
+			<%# radios = Strangecms::Stylez::Config[:front_lightboxNav_border_radius] %>
+		<%# else %>
+			<%# radios = 0 %>
+		<%# end %>
 		
-		#cboxPrevious{position:absolute; top: 50%; left:15px; padding: 3px; background: rgba(255,255,255,.70); 
-			margin-top: -<%= toppa || 0 %>px; <%= fine_borderRadius( "#{ radios }#{ 'px' if radios > 0 }" ) %>  }
+		
+	/*	#cboxPrevious{position:absolute; top: 50%; left:15px; padding: 3px; background: rgba(255,255,255,.70); 
+			margin-top: -<%#= toppa || 0 %>px; <%#= fine_borderRadius( "#{ radios }#{ 'px' if radios > 0 }" ) %>  }
         
 		#cboxNext{ position:absolute; top: 50%; right: 15px; padding: 3px; background: rgba(255,255,255,.70); 
-			margin-top: -<%= toppa || 0 %>px; <%= fine_borderRadius( "#{ radios }#{ 'px' if radios > 0 }" ) %>  }
+			margin-top: -<%#= toppa || 0 %>px; <%#= fine_borderRadius( "#{ radios }#{ 'px' if radios > 0 }" ) %>  }
+
+*/
+<% hoehe = finestyler( 'lightboxNav_icon_size', 'front' ).to_i + finestyler( 'lightboxNav_border_width', 'front' ).to_i * 2 %>
+#cboxPrevious{position:absolute; bottom: 50%; left:15px; height: <%= hoehe %>px; width: <%= hoehe %>px; }
+#cboxNext{ position:absolute; bottom: 50%; right: 15px; height: <%= hoehe %>px; width: <%= hoehe %>px; }
+		#cboxPrevious .finelineButton, #cboxNext .finelineButton { <%= fine_icn_css( 'lightboxNav', 'front' ) %> }
+		#cboxPrevious:hover .finelineButton, #cboxNext:hover .finelineButton { <%= fine_icn_css( 'lightboxNav', 'front', 'hover' ) %> }
+		#cboxPrevious:active .finelineButton, #cboxNext:active .finelineButton { <%= fine_icn_css( 'lightboxNav', 'front', 'active' ) %> }
+		
 
         #cboxLoadingOverlay{background:url(/images/loading_background.png) no-repeat center center;}
         #cboxLoadingGraphic{background:url(/images/loading.gif) no-repeat center center;}

@@ -34,18 +34,18 @@
 <% if admin_check %>
 	<div id="seite_admin_toolz" class="fineline_system_toolz">
 		<%= finelineButton(		:icon => 30, 
-								:blur => 50, 
-								:color => 'hell', 
-								:size => 18, 
+								:blur => Strangecms::Stylez::Config[:front_systemButton_icon_blur], 
+								:color => Strangecms::Stylez::Config[:front_systemButton_icon_color], 
+								:size => Strangecms::Stylez::Config[:front_systemButton_icon_size], 
 								:class => "system", 
 								:url => '/seiten/'+@seite.id.to_s+'/edit', 
 								:tooltip => t("strange_sites.links.edit")  ) %>
 	<% if site_master || @seite.system_seite == false %>
 		<%= finelineDelete(		@seite,
 								:icon => 24, 
-								:blur => 50, 
-								:color => 'hell', 
-								:size => 18, 
+								:blur => Strangecms::Stylez::Config[:front_systemButton_icon_blur], 
+								:color => Strangecms::Stylez::Config[:front_systemButton_icon_color], 
+								:size => Strangecms::Stylez::Config[:front_systemButton_icon_size], 
 								:class => "system", 
 								:url => admin_seite_path(@seite.id), 
 								:tooltip => t("strange_sites.links.delete")  ) %>
@@ -54,9 +54,6 @@
 	</div>
 <% end %>
 </div>
-
-
-
 
 
 <%= content_for :sidebar do %>
