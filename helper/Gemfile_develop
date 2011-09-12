@@ -1,6 +1,11 @@
+# ========================================================================================================================= #
+# ====================================   fineline CMS - Gemfile   ========================================================= #
+# ========================================================================================================================= #
 source 'http://rubygems.org'
-
-# => fineline CMS - Gemfile
+# => 	source 'http://fineline:QYKCj83x8VxrvUzi71h75GrYbeQysmuYfcNN2Xm0jq@user26331663-1.zeta.railshoster.de/'
+# => 	New-URL: strangegems.net,   New-Password: Dgk6cChuA0ZNxfMVU1HNopG : Gs1yM6AHaVHlNLzkkRAstFoZuFkjVsWAww1i1Mkt6Q
+# => 	source 'http://Dgk6cChuA0ZNxfMVU1HNopG:Gs1yM6AHaVHlNLzkkRAstFoZuFkjVsWAww1i1Mkt6Q@strangegems.net/'
+# ========================================================================================================================= #
 
 gem 'rails', '3.0.9'
 
