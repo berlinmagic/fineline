@@ -73,7 +73,7 @@ module StrangeSiteLinkHelper
 								      :blur => options[:blur], 
 								      :color => options[:color], 
 								      :size => options[:size], 
-								      :class => "system", 
+								      :class => "system #{ Strangecms::Stylez::Config[:front_systemButton_style] }",
 								      :tooltip => options[:tooltip] ), 
       "jConfirm('#{options[:caption]}', '#{options[:title]}', function(r) {
           if(r){

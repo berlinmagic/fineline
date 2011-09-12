@@ -25,14 +25,14 @@ module StrangeSiteHelper
                                                 :blur => Strangecms::Stylez::Config[:front_systemButton_icon_blur], 
                                 								:color => Strangecms::Stylez::Config[:front_systemButton_icon_color], 
                                 								:size => Strangecms::Stylez::Config[:front_systemButton_icon_size], 
-                                                :class => "system admin_system_stuff_link#{' hidden' if this.object.system_stuff}", 
+                                                :class => "system admin_system_stuff_link#{' hidden' if this.object.system_stuff} #{ Strangecms::Stylez::Config[:front_systemButton_style] }", 
                                                 :url => '#', 
                                                 :tooltip => t("strange_sites.links.protect_abschnitt")  )
             abschnitt_text += finelineButton(		:icon => 37, 
                                                 :blur => Strangecms::Stylez::Config[:front_systemButton_icon_blur], 
                                 								:color => Strangecms::Stylez::Config[:front_systemButton_icon_color], 
                                 								:size => Strangecms::Stylez::Config[:front_systemButton_icon_size],
-                                                :class => "system admin_system_stuff_unlink#{' hidden' unless this.object.system_stuff}", 
+                                                :class => "system admin_system_stuff_unlink#{' hidden' unless this.object.system_stuff} #{ Strangecms::Stylez::Config[:front_systemButton_style] }", 
                                                 :url => '#', 
                                                 :tooltip => t("strange_sites.links.unprotect_abschnitt")  )
         end
@@ -44,7 +44,7 @@ module StrangeSiteHelper
             								                        :blur => Strangecms::Stylez::Config[:front_systemButton_icon_blur], 
                                     								:color => Strangecms::Stylez::Config[:front_systemButton_icon_color], 
                                     								:size => Strangecms::Stylez::Config[:front_systemButton_icon_size],
-            								                        :class => "system Pagez__toggle_remote_link", 
+            								                        :class => "system Pagez__toggle_remote_link #{ Strangecms::Stylez::Config[:front_systemButton_style] }", 
             								                        :url => '#', 
             								                        :tooltip => t("strange_sites.links.edit_abschnitt")  )
             end
@@ -58,7 +58,7 @@ module StrangeSiteHelper
                                               :blur => Strangecms::Stylez::Config[:front_systemButton_icon_blur], 
                               								:color => Strangecms::Stylez::Config[:front_systemButton_icon_color], 
                               								:size => Strangecms::Stylez::Config[:front_systemButton_icon_size], 
-                                              :class => "system Pagez__toggle_remote_link", 
+                                              :class => "system Pagez__toggle_remote_link #{ Strangecms::Stylez::Config[:front_systemButton_style] }", 
                                               :url => '#', 
                                               :tooltip => t("strange_sites.links.edit_abschnitt")  )
       end

@@ -523,8 +523,9 @@ module FineFormHelper
       raw( stuff )
     end
     
-    def fine_icn_css(pref, area='front', state=nil)
+    def fine_icn_css(pref, area='front', state='')
       state = state.blank? ? '' : "_#{ state }"
+      size = Strangecms::Stylez::Config["#{ area }_#{ pref }_icon_size"].to_s
       css = ""
       unless !state.blank?
 		    if Strangecms::Stylez::Config["#{ area }_#{ pref }_style"] == 'gerunded'
@@ -532,11 +533,12 @@ module FineFormHelper
   		  elsif Strangecms::Stylez::Config["#{ area }_#{ pref }_style"] == 'rund'
   		    css += fine_borderRadius( "50px" )
   		  else
-  		    css += fine_borderRadius( "" )
+  		    css += fine_borderRadius( )
   		  end
   		end
   		css += "outline: none;"
   		css += "overflow: hidden;"
+  		css += "width: #{ size }px; height: #{ size }px; line-height: #{ size }px;"
 		  css += "border: #{Strangecms::Stylez::Config["#{ area }_#{ pref }_border_style"]} #{Strangecms::Stylez::Config["#{ area }_#{ pref }_border_width#{ state }"]}px ##{Strangecms::Stylez::Config["#{ area }_#{ pref }_border_color#{ state }"]};"
 		  
 		  if Strangecms::Stylez::Config["#{ area }_#{ pref }_bg_style#{ state }"] == 'verlauf'

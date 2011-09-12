@@ -30,33 +30,38 @@ input[type='submit']:active, a.big_submit_button:active, a.fineline_submit:activ
 		margin: 5px 5px 5px 0; color:#444; float:left;}
 
 /* ========================================        I C O N s  - BUTTONs         ======================================================= */
-.finelineIcon { display: inline-block; vertical-align: top; position: relative; padding:0; margin:0; border: none; outline: none; line-height: 18px; }
-a.finelineButton, div.finelineButton { display: inline-block; padding:0; margin:1px; vertical-align: top; position: relative; outline: none; 
-	line-height: 18px;
-	<%= fine_borderRadius( '3px' ) %>
-	border: solid 1px #336699;
-	cursor: pointer;
-	<% if Strangecms::Stylez::Config[:front_finelineButton_bg_style] == "verlauf" %>
-		<%=  fine_backgroundGradient( "##{Strangecms::Stylez::Config[:front_finelineButton_bg_color1]}", "##{Strangecms::Stylez::Config[:front_finelineButton_bg_color2]}" ) %>
-	<% else %>
-		background: #<%= Strangecms::Stylez::Config[:front_finelineButton_bg_color1]  %>;
-	<% end %>
-	}
+.finelineIcon { 
+	display: inline-block; 
+	vertical-align: top; 
+	position: relative; 
+	padding:0; 
+	margin:0; 
+	border: none; 
+	outline: none; 		}
+a.finelineButton, div.finelineButton { 
+	display: inline-block; 
+	padding:0; 
+	margin: 0 0 1px 1px; 
+	vertical-align: top; 
+	position: relative; 
+	outline: none; 
+	cursor: pointer; 	}
+/*
+.finelineButton.eckig.flb18 { <%#= fine_borderRadius(  ) %> }
+.finelineButton.eckig.flb24 { <%#= fine_borderRadius(  ) %> }
+.finelineButton.eckig.flb32 { <%#= fine_borderRadius(  ) %> }
+.finelineButton.eckig.flb48 { <%#= fine_borderRadius(  ) %> }
 
-.finelineButton.eckig.flb18 { <%= fine_borderRadius(  ) %> }
-.finelineButton.eckig.flb24 { <%= fine_borderRadius(  ) %> }
-.finelineButton.eckig.flb32 { <%= fine_borderRadius(  ) %> }
-.finelineButton.eckig.flb48 { <%= fine_borderRadius(  ) %> }
+.finelineButton.kreis.flb18 { <%#= fine_borderRadius( '10px' ) %> }
+.finelineButton.kreis.flb24 { <%#= fine_borderRadius( '13px' ) %> }
+.finelineButton.kreis.flb32 { <%#= fine_borderRadius( '17px' ) %> }
+.finelineButton.kreis.flb48 { <%#= fine_borderRadius( '25px' ) %> }
 
-.finelineButton.kreis.flb18 { <%= fine_borderRadius( '10px' ) %> }
-.finelineButton.kreis.flb24 { <%= fine_borderRadius( '13px' ) %> }
-.finelineButton.kreis.flb32 { <%= fine_borderRadius( '17px' ) %> }
-.finelineButton.kreis.flb48 { <%= fine_borderRadius( '25px' ) %> }
-
-.finelineButton.rund.flb18 { <%= fine_borderRadius( '10px' ) %> }
-.finelineButton.rund.flb24 { <%= fine_borderRadius( '13px' ) %> }
-.finelineButton.rund.flb32 { <%= fine_borderRadius( '17px' ) %> }
-.finelineButton.rund.flb48 { <%= fine_borderRadius( '25px' ) %> }
+.finelineButton.rund.flb18 { <%#= fine_borderRadius( '10px' ) %> }
+.finelineButton.rund.flb24 { <%#= fine_borderRadius( '13px' ) %> }
+.finelineButton.rund.flb32 { <%#= fine_borderRadius( '17px' ) %> }
+.finelineButton.rund.flb48 { <%#= fine_borderRadius( '25px' ) %> }
+*/
 
 .finelineButton.gerunded.system { <%= fine_borderRadius( "#{ Strangecms::Stylez::Config[:front_lightboxNav_border_radius] }px" ) %> }
 .finelineButton.gerunded.lighbox_nav{ <%= fine_borderRadius( "#{ Strangecms::Stylez::Config[:front_systemButton_border_radius] }px" ) %> }
