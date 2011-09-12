@@ -1,0 +1,25 @@
+<% area ||= '' %>
+<style>
+.<%= area %>_<%= pref %>_vorschau_in { display: inline-block; position: relative;
+	<%= fine_icn_css( pref, area) %> width: <%= Strangecms::Stylez::Config["#{area}_#{pref}_icon_size"] %>px; height: <%= Strangecms::Stylez::Config["#{area}_#{pref}_icon_size"] %>px; line-height: <%= Strangecms::Stylez::Config["#{area}_#{pref}_icon_size"] %>px; }
+.<%= area %>_<%= pref %>_vorschau_in:hover { <%= fine_icn_css( pref, area, 'hover') %> }
+.<%= area %>_<%= pref %>_vorschau_in:active { <%= fine_icn_css( pref, area, 'active') %> }
+</style>
+<div class='icon_vorschau <%= area %>_<%= pref %>_vorschau_in'>
+	<%= finelineIcon(			:icon => 1, 
+								:color => Strangecms::Stylez::Config["#{area}_#{pref}_icon_color"], 
+								:size => Strangecms::Stylez::Config["#{area}_#{pref}_icon_size"], 
+								:blur => Strangecms::Stylez::Config["#{area}_#{pref}_icon_blur"] )  %>
+</div>
+<div class='icon_vorschau <%= area %>_<%= pref %>_vorschau_in'>
+	<%= finelineIcon(			:icon => 38, 
+								:color => Strangecms::Stylez::Config["#{area}_#{pref}_icon_color"], 
+								:size => Strangecms::Stylez::Config["#{area}_#{pref}_icon_size"], 
+								:blur => Strangecms::Stylez::Config["#{area}_#{pref}_icon_blur"] )  %>
+</div>
+<div class='icon_vorschau <%= area %>_<%= pref %>_vorschau_in'>
+	<%= finelineIcon(			:icon => 2, 
+								:color => Strangecms::Stylez::Config["#{area}_#{pref}_icon_color"], 
+								:size => Strangecms::Stylez::Config["#{area}_#{pref}_icon_size"], 
+								:blur => Strangecms::Stylez::Config["#{area}_#{pref}_icon_blur"] )  %>
+</div>

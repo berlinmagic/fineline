@@ -43,6 +43,8 @@ class Admin::SettingsController < Admin::BaseController
       respond_to do |format|
         if @name == 'stylez'
             @pref = params[:pref]
+            @siza = params[:siza] if params[:siza]
+            @area = params[:area] if params[:area]
             Strangecms::Stylez::Config.set(params[:preferences])
             @ok_go = true
             expire_page	'/system/finestyle.css'

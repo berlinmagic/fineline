@@ -28,21 +28,21 @@ module FineFormHelper
 		end
 		
 		
-		def ff_font_selecta(pref,blank=true, area='front')
-      stuff   = '<div class="fineline_select fineFont_select">
-                    <a href="#" class="fineline_select_trigger"></a>
-                    <div class="fineline_select_box hidden">
-                      <ul>'
+		def ff_font_select_tag( pref, area='front', blank=true )
+      stuff   = '<div class="fineline_select fineFont_select"><a href="#" class="fineline_select_trigger"></a>
+                  <div class="fineline_select_box hidden"><ul>'
       if blank
-        stuff   +=  '<li class="blank">' + link_to( " - - - - - ", "" ) + '</li>'
+        stuff   +=  '<li class="blank">' + link_to( "- #{fine_font_names('') } -", '' ) + '</li>'
       end
+      
       StylezConfiguration::FONTZ_TYPES.each do |font|
-        
-        stuff   +=  '<li class="level_0">' + link_to( t("strange_stylez.font_namez.#{ font }"), font, :style => "#{ fine_font_family(font) }" ) + '</li>'
+        stuff   +=  '<li>'
+        stuff   +=  link_to( fine_font_names( font ), font, :style => "#{ fine_font_family(font) }" )
+        stuff   +=  '</li>'
       end
       
       stuff   +=  '</ul></div><span class="fineline_select_text">'
-        stuff   +=  Strangecms::Stylez::Config[ "#{ area }_#{ pref }_font_family" ].blank? ? ' - - - ' : t("strange_stylez.font_namez.#{ Strangecms::Stylez::Config["#{ area }_#{ pref }_font_family"] }")
+        stuff   +=  fine_font_names( Strangecms::Stylez::Config["#{ area }_#{ pref }_font_family"] )
       stuff   +=  '</span>'
       stuff   +=  hidden_field_tag( "preferences[#{ area }_#{ pref }_font_family]", Strangecms::Stylez::Config["#{ area }_#{ pref }_font_family"], :class => 'fineline_select_box_input' )
       stuff   +=  '</div>'
@@ -52,9 +52,7 @@ module FineFormHelper
 		
 		
 		def ff_fine_font_styler( pref, area='front', blank=true )
-
-  	    stuff  = ""
-  	    stuff += '<div class="toggle_list_inna_trigger">'
+        stuff = '<div class="toggle_list_inna_trigger">'
   		      stuff += "<div class='fl_box_170'><h3 style='line-height: #{Strangecms::Stylez::Config["#{area}_#{pref}_line_height"]}px'>"
     		      stuff += t("strange_stylez.fonts.#{ pref }")
     		    stuff += "</h3></div>"
@@ -79,7 +77,7 @@ module FineFormHelper
       		          stuff += t("strange_stylez.font_family")
       		      stuff += '</label></div>'
       		      stuff += '<div class="fl_box_230">'
-      		          stuff += ff_font_selecta( pref )
+      		          stuff += ff_font_select_tag( pref, area )
       		      stuff += '</div>'
   		      
       		      stuff += '<div class="clearfix"></div><div class="vspacer"></div><div class="clearfix"></div>'
@@ -258,7 +256,7 @@ module FineFormHelper
       elsif font_family == 'Google_two'
         "#{Strangecms::Stylez::Config[:google_font_two].gsub(/(:)(.)*/, '')}, #{Strangecms::Stylez::Config[:google_font_default_two]}"
       elsif font_family == 'Google_three'
-        "#{Strangecms::Stylez::Config[:google_font_three].gsub(/(:)(.)*/, '')}, #{Strangecms::Stylez::Config[:google_font_default_three]};"
+        "#{Strangecms::Stylez::Config[:google_font_three].gsub(/(:)(.)*/, '')}, #{Strangecms::Stylez::Config[:google_font_default_three]}"
       end
     end
     
@@ -296,212 +294,181 @@ module FineFormHelper
       end
     end
     
-    
-    
-    
-    
-    def ff_fine_icon_styler( pref, area='front', blank=true )
-        siza = Strangecms::Stylez::Config["#{area}_#{pref}_icon_size"].to_s
-  	    stuff  = ""
-  	    stuff += '<div class="toggle_list_inna_trigger">'
-  		      stuff += "<div class='fl_box_170'><h3 style='line-height: #{ siza }px'>"
-    		        stuff += t("strange_stylez.iconz.#{ pref }") + ' .. ' + area
-    		    stuff += "</h3></div>"
-    		    stuff += "<div class='fl_box_230'><div class='icon_vorschau' style='line-height: #{ siza }px' id='#{area}_#{pref}_vorschau'>"
-    		    stuff += '<style>#' + area + '_' + pref + '_vorschau { '
-    		    stuff += fine_icn_css( pref, area)
-    		    stuff += 'width: ' + siza + 'px; height: ' + siza + 'px; }' 
-    		    stuff += '#' + area + '_' + pref + '_vorschau:hover { ' + fine_icn_css( pref, area, 'hover') + ' } '
-    		    stuff += '#' + area + '_' + pref + '_vorschau:active { ' + fine_icn_css( pref, area, 'active') + ' } '
-    		    stuff += '</style>'
-    		      stuff += finelineIcon(:icon => 38, :color => Strangecms::Stylez::Config["#{area}_#{pref}_icon_color"], :size => Strangecms::Stylez::Config["#{area}_#{pref}_icon_size"], :blur => Strangecms::Stylez::Config["#{area}_#{pref}_icon_blur"] )
-    		    stuff += '</div></div>'
-    		    
-    		    stuff += "<div class='fl_box_150'><div class='settings_callback #{ pref }'> </div></div>"
-  		      stuff += '<div class="clearfix"></div>'
-  	    
-  	        stuff += '<div class="toggle_list_inna_box">'
-  	        
-  	          stuff += '<form accept-charset="UTF-8" action="/admin/settings/stylez" data-remote="true" method="post">
-  	                      <div style="margin:0;padding:0;display:inline">
-  	                          <input name="utf8" type="hidden" value="✓">
-  	                          <input name="_method" type="hidden" value="put">
-  	                          <input id="name" name="name" size="50" type="hidden" value="stylez">
-  	                          <input id="pref" name="pref" size="50" type="hidden" value="'+ pref +'">
-  	                          <input name="authenticity_token" type="hidden" value="' + form_authenticity_token + '" class="rauto" />
-  	                      </div>'
-  	            
-  	            
-  	            
-  	            
-      	        stuff += '<div class="fl_box_170"><label class="norm1">'+ t("strange_stylez.icon_atr.size") +'</label></div>'
-      		      stuff += '<div class="fl_box_230">' + fine_Btn_size_tag( pref, area ) + '</div>'
-  		          stuff += '<div class="clearfix"></div><div class="vspacer"></div><div class="clearfix"></div>'
-  		          
-  		          stuff += '<div class="fl_box_170"><label class="norm1">' + t("strange_stylez.icon_atr.icon_color") + '</label></div>'
-      		      stuff += '<div class="fl_box_170">' + fine_Btn_icon_color_tag( pref, area ) + '</div>'
-  		          stuff += '<div class="clearfix"></div><div class="vspacer"></div><div class="clearfix"></div>'
-  		          
-  		          stuff += '<div class="fl_box_170"><label class="norm1">' + t("strange_stylez.icon_atr.blur") + '</label></div>'
-  		          stuff += '<div class="grid_4">'
-      		        stuff += text_field_tag("preferences[#{ area }_#{ pref }_icon_blur]", Strangecms::Stylez::Config["#{ area }_#{ pref }_icon_blur"], :class => 'no_view' )
-    						stuff += '</div><div class="grid_8 push_1">'
-    						  stuff += '<div class="slider_holder"><div id="' + area + '_' + pref + '_icon_blur_slider"></div></div>'
-    						stuff += '</div><div class="clearfix"></div><div class="vspacer"></div><div class="clearfix"></div>'
-    						
-    						
-  		          
-  		          
-  		          
-  		          # => stuff += '<div class="fl_box_170"><label class="norm1">' + t("strange_stylez.icon_atr.border_width") + '</label></div>'
-      		      # => stuff += '<div class="fl_box_230">' + fine_Btn_border_width_tag( pref ) + '</div>'
-  		          # => stuff += '<div class="clearfix"></div><div class="vspacer"></div><div class="clearfix"></div>'
-  		          # => stuff += '<div class="fl_box_170"><label class="norm1">' + t("strange_stylez.icon_atr.border_color") + '</label></div>'
-      		      # => stuff += '<div class="grid_4">' + fine_Btn_border_color_tag( pref ) + '</div>'
-  		          # => stuff += '<div class="clearfix"></div><div class="vspacer"></div><div class="clearfix"></div>'
-  		          
-  		          stuff += fine_Btn_brdr( pref, area )
-  		          
-  		          stuff += '<div class="fl_box_170"><label class="norm1">' + t("strange_stylez.icon_atr.style") + '</label></div>'
-      		      stuff += '<div class="grid_4">' + fine_Btn_style_tag( pref, area ) + '</div>'
-      		      stuff += "<div class='grid_4 push_1'><div class='btn_rds #{ 'hidden' unless Strangecms::Stylez::Config["#{ area }_#{ pref }_style"] == 'gerunded' } '> #{ fine_Btn_border_radius_tag( pref ) } px </div></div>"
-  		          stuff += '<div class="clearfix"></div><div class="vspacer"></div><div class="clearfix"></div>'
-  		          
-  		          
-  		          stuff += fine_Btn_bger( pref, area )
-  		          
-  		          
-  		          stuff += fine_Btn_bshadow(pref, area )
-                
-
-                
-                
-  		          stuff += '<div class="clearfix"></div><div class="vspacer"></div><div class="clearfix"></div>'
-  		          stuff += '<div class="fl_box_170"><label class="norm1"><strong> (Mouseover) </strong></label></div>'
-  		          stuff += '<div class="clearfix"></div>'
-                
-                stuff += fine_Btn_brdr( pref, area, 'hover' )
-                
-                stuff += fine_Btn_bger( pref, area, 'hover' )
-                
-                stuff += fine_Btn_bshadow( pref, area, 'hover' )
-                
-                stuff += '<div class="clearfix"></div><div class="vspacer"></div><div class="clearfix"></div>'
-  		          stuff += '<div class="fl_box_170"><label class="norm1"><strong> (Click) </strong></label></div>'
-  		          stuff += '<div class="clearfix"></div>'
-                
-                stuff += fine_Btn_brdr( pref, area, 'active' )
-                
-                stuff += fine_Btn_bger( pref, area, 'active' )
-                
-                stuff += fine_Btn_bshadow( pref, area, 'active' )
-                
-                
-                
-                
-                
-      		      
-      		      stuff += '<div class="fl_box_170">&nbsp;</div>'
-      		      stuff += '<div class="fl_box_230">'
-      		          stuff += '<input name="commit" type="submit" value="Einstellungen speichern" />'
-      		      stuff += '<div class="clearfix"></div></div><div class="clearfix"></div>'
-
-      		      
-      		    stuff += '</form>'
-
-      	    stuff += '</div>'
-  	    
-  	    stuff += '</div>'
-
-        raw( stuff )
+    def fine_font_names( font_family=nil )
+      if font_family == 'Google_one'
+        "#{Strangecms::Stylez::Config[:google_font_one].gsub(/(:)(.)*/, '')} - #{Strangecms::Stylez::Config[:google_font_default_one]}"
+      elsif font_family == 'Google_two'
+        "#{Strangecms::Stylez::Config[:google_font_two].gsub(/(:)(.)*/, '')} - #{Strangecms::Stylez::Config[:google_font_default_two]}"
+      elsif font_family == 'Google_three'
+        "#{Strangecms::Stylez::Config[:google_font_three].gsub(/(:)(.)*/, '')} - #{Strangecms::Stylez::Config[:google_font_default_three]}"
+      elsif font_family.blank?
+        I18n.t("strange_stylez.font_namez.font_inherit")
+      else
+        I18n.t("strange_stylez.font_namez.#{ font_family }")
+      end
     end
     
-    def ff_fine_icon_scripter( pref, area='front', blank=true )
-        raw( "$( '##{area}_#{pref}_icon_blur_slider' ).slider({ min: 1, max: 100, value: #{ Strangecms::Stylez::Config["#{area}_#{pref}_icon_blur"] || 50 }, 
+    def ff_padding_tag
+      
+    end
+    
+    def ff_fine_icon_scripter( pref, options = {} )
+      options.assert_valid_keys(:area, :hover, :active, :protect)
+      options.reverse_merge! :area    =>    'front'   unless    options.key? :edit
+      options.reverse_merge! :hover    =>    true      unless    options.key? :safe
+      options.reverse_merge! :active   =>    true      unless    options.key? :delete
+      area = options[:area]
+      hover = options[:hover]
+      active = options[:active]
+        js = ""
+        states = []
+        states << ''
+        states << '_hover' if hover
+        states << '_active' if active
+        blur = Strangecms::Stylez::Config["#{area}_#{pref}_icon_blur"].to_i
+        opac = Strangecms::Stylez::Config["#{area}_#{pref}_opacity"].to_i
+        # => Slider
+        js += "$( '##{area}_#{pref}_icon_blur_slider' ).slider({ min: 1, max: 100, value: #{ blur }, 
       	slide: function( event, ui ) { $( '#preferences_#{area}_#{pref}_icon_blur' ).val( ui.value ); } });
-      	$( '#preferences_#{area}_#{pref}_icon_blur' ).val( $( '##{area}_#{pref}_icon_blur_slider' ).slider( 'value' ) );" )
+      	$( '#preferences_#{area}_#{pref}_icon_blur' ).val( $( '##{area}_#{pref}_icon_blur_slider' ).slider( 'value' ) );"
+      	
+      	states.each do |state|
+      	  js += "$('.#{ area }_#{ pref }_farbwahl#{ state }').change(function(){
+      	            var this_c = $(this).val();
+      	            if ( this_c == 'transparent' ) {
+      	              $(this).parent().parent().parent().find('.#{ area }_#{ pref }_color_1#{ state }').addClass('invisible');
+      	              $(this).parent().parent().parent().find('.#{ area }_#{ pref }_color_2#{ state }').addClass('invisible');
+      	            } else {
+      	              if ( this_c == 'farbe' ) {
+      	                $(this).parent().parent().parent().find('.#{ area }_#{ pref }_color_1#{ state }').removeClass('invisible');
+        	              $(this).parent().parent().parent().find('.#{ area }_#{ pref }_color_2#{ state }').addClass('invisible');
+      	              } else {
+      	                $(this).parent().parent().parent().find('.#{ area }_#{ pref }_color_1#{ state }').removeClass('invisible');
+        	              $(this).parent().parent().parent().find('.#{ area }_#{ pref }_color_2#{ state }').removeClass('invisible');
+      	              }
+      	            }
+      	            });"
+      	end
+        
+        js += "$('.#{area}_#{ pref }_icon_style').change(function(){
+                    if ( $(this).val() == 'gerunded' ) {
+                        $('.#{area}_#{ pref }_btn_rds').removeClass('invisible');
+                    } else {
+                        $('.#{area}_#{ pref }_btn_rds').addClass('invisible');
+                    }
+                    });"
+        raw( js )
     end
     
     
     
-    
-    
-    
-    def fine_Btn_size_tag( icon, area='front' )
-        raw( select_tag("preferences[#{area}_#{ icon }_icon_size]",
-								        options_for_select(
-								            StylezConfiguration::ICON_SIZE.map { |c| [c, c] },
-								            Strangecms::Stylez::Config[ "#{area}_#{ icon }_icon_size" ].to_i ), :class => 'ff_Btn_size' )   )
+    def fl_icon_size( icon, area='front' )
+      stuff = '<div class="fl_box_170"><label class="norm1">'+ t("strange_stylez.icon_atr.size") +'</label></div>'
+      stuff += '<div class="fl_box_230">'
+      stuff += select_tag("preferences[#{area}_#{ icon }_icon_size]",
+							    options_for_select(
+							      StylezConfiguration::ICON_SIZE.map { |c| [c, c] },
+							      Strangecms::Stylez::Config[ "#{area}_#{ icon }_icon_size" ].to_i ), :class => "ff_icon_size #{area}_#{ icon }_icon_size" )
+      stuff += '</div>'
+      stuff += '<div class="clearfix"></div><div class="vspacer"></div><div class="clearfix"></div>'
+      raw( stuff )
     end
     
-    def fine_Btn_border_style_tag( icon, area='front' )
-        raw( select_tag("preferences[#{area}_#{ icon }_border_style]",
-								        options_for_select(
-								            StylezConfiguration::BORDER_STYLEZ.map { |c| [c, c] },
-								            Strangecms::Stylez::Config[ "#{area}_#{ icon }_border_style" ] ), :class => 'ff_Btn_border_style' )   )
+    def fl_icon_color( icon, area='front' )
+      stuff = '<div class="fl_box_170"><label class="norm1">' + t("strange_stylez.icon_atr.icon_color") + '</label></div>'
+      stuff += '<div class="fl_box_170">'
+      stuff += select_tag( "preferences[#{area}_#{ icon }_icon_color]",
+							    options_for_select(
+							        StylezConfiguration::ICON_COLOR.map { |c| [c, c] },
+							        Strangecms::Stylez::Config["#{area}_#{ icon }_icon_color"] ), :class => "fl_icon_blur #{area}_#{ icon }_icon_size")
+      stuff += '</div>'
+      stuff += '<div class="clearfix"></div><div class="vspacer"></div><div class="clearfix"></div>'
     end
     
-    def fine_Btn_border_width_tag( icon, area='front',  state="" )
-        state = state.blank? ? '' : "_#{ state }"
-        raw( select_tag("preferences[#{area}_#{ icon }_border_width#{ state }]",
-								        options_for_select(
-								            StylezConfiguration::BORDER_WIDTHS.map { |c| [c, c] },
-								            Strangecms::Stylez::Config[ "#{area}_#{ icon }_border_width#{ state }" ].to_i ), :class => 'ff_Btn_border_width' )   )
+    def fl_icon_blur( icon, area='front' )
+      stuff = '<div class="fl_box_170"><label class="norm1">' + t("strange_stylez.icon_atr.blur") + '</label></div>'
+      stuff += '<div class="grid_4">'
+        stuff += text_field_tag("preferences[#{ area }_#{ icon }_icon_blur]", Strangecms::Stylez::Config["#{ area }_#{ icon }_icon_blur"], :class => 'no_view' )
+			stuff += '</div><div class="grid_8 push_1">'
+			  stuff += '<div class="slider_holder"><div id="' + area + '_' + icon + '_icon_blur_slider"></div></div>'
+			stuff += '</div><div class="clearfix"></div><div class="vspacer"></div><div class="clearfix"></div>'
     end
     
-    def fine_Btn_border_color_tag( icon, area='front', state="" )
-        state = state.blank? ? '' : "_#{ state }"
-        raw( 
-          text_field_tag( "preferences[#{area}_#{ icon }_border_color#{ state }]", 
-                Strangecms::Stylez::Config[ "#{area}_#{ icon }_border_color#{ state }" ], :class => "ff_Btn_pick_color#{ state }", :size => '6' )
-            )
+    def fl_icon_style( icon, area='front' )
+      stuff = '<div class="fl_box_170"><label class="norm1">' + t("strange_stylez.icon_atr.style") + '</label></div>'
+      stuff += '<div class="grid_4">'
+      stuff += select_tag("preferences[#{area}_#{ icon }_style]",
+							    options_for_select(
+							        StylezConfiguration::BUTTON_STYLEZ.map { |c| [c, c] },
+							        Strangecms::Stylez::Config[ "#{area}_#{ icon }_style" ] ), :class => "fl_icon_style #{area}_#{ icon }_icon_style" )
+      stuff += '</div>'
+      stuff += "<div class='grid_4 push_1'><div class='#{area}_#{ icon }_btn_rds #{ 'invisible' unless Strangecms::Stylez::Config["#{ area }_#{ icon }_style"] == 'gerunded' } '>"
+      stuff += select_tag("preferences[#{area}_#{ icon }_border_radius]",
+							    options_for_select(
+							        StylezConfiguration::BORDER_WIDTHS.map { |c| [c, c] },
+							        Strangecms::Stylez::Config["#{area}_#{ icon }_border_radius"].to_i ), :class => "fl_border_radius #{area}_#{ icon }_border_radius" )
+      stuff += " px </div></div>"
+      stuff += '<div class="clearfix"></div><div class="vspacer"></div><div class="clearfix"></div>'
     end
     
-    def fine_Btn_border_radius_tag( icon, area='front' )
-        raw( select_tag("preferences[#{area}_#{ icon }_border_radius]",
-								        options_for_select(
-								            StylezConfiguration::BORDER_WIDTHS.map { |c| [c, c] },
-								            Strangecms::Stylez::Config["#{area}_#{ icon }_border_radius"].to_i ), :class => 'ff_Btn_border_radius' )   )
+    def fl_border_style( icon, area='front', state="" )
+      state = state.blank? ? '' : "_#{ state }"
+      raw( select_tag("preferences[#{area}_#{ icon }_border_style#{ state }]",
+							        options_for_select(
+							            StylezConfiguration::BORDER_STYLEZ.map { |c| [c, c] },
+							            Strangecms::Stylez::Config[ "#{area}_#{ icon }_border_style#{ state }" ] ), :class => "fl_border_style #{area}_#{ icon }_border_style#{ state }" )   )
     end
     
-    
-    def fine_Btn_icon_color_tag( icon, area='front' )
-        raw( select_tag("preferences[#{area}_#{ icon }_icon_color]",
-								        options_for_select(
-								            StylezConfiguration::ICON_COLOR.map { |c| [c, c] },
-								            Strangecms::Stylez::Config[ "#{area}_#{ icon }_icon_color" ] ), :class => 'ff_Btn_icon_color' )   )
+    def fl_border_width( icon, area='front', state="" )
+      state = state.blank? ? '' : "_#{ state }"
+      raw( select_tag("preferences[#{area}_#{ icon }_border_width#{ state }]",
+							  options_for_select(
+							      StylezConfiguration::BORDER_WIDTHS.map { |c| [c, c] },
+							      Strangecms::Stylez::Config[ "#{area}_#{ icon }_border_width#{ state }" ].to_i ), :class => "fl_border_width #{area}_#{ icon }_border_style#{ state }" )   )
     end
     
-    def fine_Btn_icon_color_tag( icon, area='front' )
-        raw( select_tag("preferences[#{area}_#{ icon }_icon_color]",
-								        options_for_select(
-								            StylezConfiguration::ICON_COLOR.map { |c| [c, c] },
-								            Strangecms::Stylez::Config[ "#{area}_#{ icon }_icon_color" ] ), :class => 'ff_Btn_icon_color' )   )
+    def fl_border_color( icon, area='front', state="" )
+      state = state.blank? ? '' : "_#{ state }"
+      raw( text_field_tag( "preferences[#{area}_#{ icon }_border_color#{ state }]", 
+              Strangecms::Stylez::Config[ "#{area}_#{ icon }_border_color#{ state }" ], 
+              :class => "fl_border_color #{area}_#{ icon }_border_color#{ state }", :size => '6' )  )
     end
     
+    def fl_border_tag( icon, area='front', state="", style=true, width=true, color=true )
+      state = state.blank? ? '' : "_#{ state }"
+      stuff = '<div class="fl_box_170"><label class="norm1">' + t("strange_stylez.icon_atr.border") + '</label></div>'
+      stuff += '<div class="grid_4">' + fl_border_style( icon, area, state ) + '</div>' if style
+      stuff += '<div class="grid_3">' + fl_border_width( icon, area, state ) + '</div>' if width
+      stuff += '<div class="grid_4">' + fl_border_color( icon, area, state ) + '</div>' if color
+      stuff += '<div class="clearfix"></div><div class="vspacer"></div><div class="clearfix"></div>'
+			raw( stuff )
+		end
+
+
     
-    def fine_Btn_style_tag( icon, area='front' )
-        raw( select_tag("preferences[#{area}_#{ icon }_style]",
-								        options_for_select(
-								            StylezConfiguration::BUTTON_STYLEZ.map { |c| [c, c] },
-								            Strangecms::Stylez::Config[ "#{area}_#{ icon }_style" ] ), :class => 'ff_Btn_style' )   )
+    def fl_icon_color( icon, area='front', state="" )
+      state = state.blank? ? '' : "_#{ state }"
     end
     
-    def fine_Btn_bger(pref, area='front', state='')
+    def fl_background(pref, area='front', state='' )
       state = state.blank? ? '' : "_#{ state }"
       stuff = '<div class="fl_box_170"><label class="norm1">' + t("strange_stylez.icon_atr.bg_style") + '</label></div>'
       stuff += '<div class="grid_4">'
         stuff += select_tag("preferences[#{ area }_#{ pref }_bg_style#{ state }]",
-								options_for_select(StylezConfiguration::BUTTON_BG_STYLEZ.map { |c| [I18n.t("strange_stylez.icon_atr.bg_colorz.#{c}"), c] }, Strangecms::Stylez::Config["#{ area }_#{ pref }_bg_style#{ state }"]), :class => "farbwahl#{ state }")
-			stuff += '</div><div class="grid_4 push_1">'
-			  stuff += text_field_tag("preferences[#{ area }_#{ pref }_bg_color1#{ state }]", Strangecms::Stylez::Config["#{ area }_#{ pref }_bg_color1#{ state }"], :class => 'ff_Btn_pick_color', :size => '6' )
-			stuff += "</div><div class='grid_4 push_3'><div class='color_2#{ state } #{ 'invisible' if Strangecms::Stylez::Config["#{ area }_#{ pref }_bg_style#{ state }"] == 'farbe' } '>"
-			  stuff += text_field_tag("preferences[#{ area }_#{ pref }_bg_color2#{ state }]", Strangecms::Stylez::Config["#{ area }_#{ pref }_bg_color2#{ state }"], :class => 'ff_Btn_pick_color', :size => '6' )
+								options_for_select(StylezConfiguration::BUTTON_BG_STYLEZ.map { |c| [I18n.t("strange_stylez.icon_atr.bg_colorz.#{c}"), c] }, Strangecms::Stylez::Config["#{ area }_#{ pref }_bg_style#{ state }"]), :class => "#{ area }_#{ pref }_farbwahl#{ state }")
+			stuff += "</div><div class='grid_4 push_1'><div class='#{ area }_#{ pref }_color_1#{ state } #{ 'invisible' if Strangecms::Stylez::Config["#{ area }_#{ pref }_bg_style#{ state }"] == 'transparent' } '>"
+			  
+			  stuff += text_field_tag("preferences[#{ area }_#{ pref }_bg_color1#{ state }]", Strangecms::Stylez::Config["#{ area }_#{ pref }_bg_color1#{ state }"], :class => 'fl_pick_color', :size => '6' )
+			  
+			stuff += "</div></div><div class='grid_4 push_3'><div class='#{ area }_#{ pref }_color_2#{ state } #{ 'invisible' unless Strangecms::Stylez::Config["#{ area }_#{ pref }_bg_style#{ state }"] == 'verlauf' } '>"
+			  
+			  stuff += text_field_tag("preferences[#{ area }_#{ pref }_bg_color2#{ state }]", Strangecms::Stylez::Config["#{ area }_#{ pref }_bg_color2#{ state }"], :class => 'fl_pick_color', :size => '6' )
+			  
 			stuff += '</div></div><div class="clearfix"></div><div class="vspacer"></div><div class="clearfix"></div>'
 			raw ( stuff )
 		end
 		
-		def fine_Btn_bshadow(pref, area='front', state='')
+		def fl_box_shadow(pref, area='front', state='')
 		  state = state.blank? ? '' : "_#{ state }"
 		  stuff = '<div class="fl_box_170"><label class="norm1">' + t("strange_stylez.icon_atr.box_shadow") + '</label></div>'
       stuff += '<div class="fl_box_230">'
@@ -510,19 +477,6 @@ module FineFormHelper
 			raw( stuff )
 		end
 		
-		def fine_Btn_brdr(pref, area='front', state='')
-		  state = state.blank? ? '' : "_#{ state }"
-		  # => stuff += '<div class="fl_box_170"><label class="norm1">' + t("strange_stylez.icon_atr.border_style") + '</label></div>'
-      stuff = '<div class="fl_box_170"><label class="norm1">' + t("strange_stylez.icon_atr.border") + '</label></div>'
-      unless !state.blank?
-        stuff += '<div class="grid_4">' + fine_Btn_border_style_tag( pref, area ) + '</div>'
-      end
-      stuff += '<div class="grid_3">' + fine_Btn_border_width_tag( pref, area, state ) + '</div>'
-      stuff += '<div class="grid_4">' + fine_Btn_border_color_tag( pref, area, state ) + '</div>'
-      stuff += '<div class="clearfix"></div><div class="vspacer"></div><div class="clearfix"></div>'
-      raw( stuff )
-    end
-    
     def fine_icn_css(pref, area='front', state='')
       state = state.blank? ? '' : "_#{ state }"
       size = Strangecms::Stylez::Config["#{ area }_#{ pref }_icon_size"].to_s

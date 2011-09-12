@@ -201,6 +201,7 @@ module FinestyleHelp
     #receiver.extend         ClassMethods
     receiver.send :include, InstanceMethods
     receiver.send :helper, 'fine_form'
+    receiver.send :helper, 'fine_styler'
     receiver.send :helper_method, 'fine_borderRadius'
     receiver.send :helper_method, 'fine3_borderRadius'
     receiver.send :helper_method, 'fineBorderRadius'

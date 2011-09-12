@@ -57,13 +57,25 @@
 				</div>
 				<div class="toggle_list_box">
 					
-						<%= ff_fine_icon_styler( 'lightboxNav' ) %>
-						
-						<%= ff_fine_icon_styler( 'lightboxNav', 'admin' ) %>
-						
 						<%= ff_fine_icon_styler( 'systemButton' ) %>
 						
+						<%= ff_fine_icon_styler( 'lightboxNav' ) %>
+						
+						<%= ff_fine_icon_styler( 'finePagination' ) %>
+						
+						<%= ff_fine_icon_styler( 'PaginationNavButton' ) %>
+						
+						<%= ff_fine_icon_styler( 'PaginationViewButton' ) %>
+						
+						
+						
+						
+						<%# # #%>
+						
 						<%= ff_fine_icon_styler( 'finelineButton' ) %>
+						
+						
+						<%= ff_fine_icon_styler( 'lightboxNav', :area => 'admin' ) %>
 
 						<div class="clearfix"></div>
 						
@@ -93,56 +105,25 @@
 
 
 <% content_for :js_stuff do %>
-
 <script type="text/javascript">
 $(function() {
 	
-
-	
-	$('.pick_color').jPicker({ localization: { text: { ok: 'übernehmen', cancel: 'verwerfen' }} }, function(color, context)
-	        {
-	          var all = color.val('all');
-	          // alert('Color chosen - hex: ' + (all && '#' + all.hex || 'none') + ' - alpha: ' + (all && all.a + '%' || 'none'));
-	          $(this).parent().parent().parent().parent().find('.vorschau').css(
-	            {
-	              color: all && '#' + all.hex || 'transparent'
-	            }); // prevent IE from throwing exception if hex is empty
-	        });
-	
-	
-
+	$('.pick_color').jPicker({ localization: { text: { ok: 'übernehmen', cancel: 'verwerfen' }} }, function(color, context){
+	      var all = color.val('all');
+	      $(this).parent().parent().parent().parent().find('.vorschau').css({ color: all && '#' + all.hex || 'transparent' }); 
+		});
 	
 	<%= ff_fine_icon_scripter( 'lightboxNav' ) %>
 	<%= ff_fine_icon_scripter( 'systemButton' ) %>
+	
 	<%= ff_fine_icon_scripter( 'finelineButton' ) %>
-	<%= ff_fine_icon_scripter( 'lightboxNav', 'admin' ) %>
+	
+	<%= ff_fine_icon_scripter( 'lightboxNav', :area => 'admin' ) %>
 	
 	$('.ff_Btn_pick_color').jPicker({ localization: { text: { ok: 'übernehmen', cancel: 'verwerfen' }} });
 	
-	$('.farbwahl').change(function(){
-		$(this).parent().parent().parent().find('.color_2').toggleClass('invisible');
-	});
-	
-	$('.farbwahl_hover').change(function(){
-		$(this).parent().parent().parent().find('.color_2_hover').toggleClass('invisible');
-	});
-	
-	$('.farbwahl_active').change(function(){
-		$(this).parent().parent().parent().find('.color_2_active').toggleClass('invisible');
-	});
-	
-	$('.ff_Btn_style').change(function(){
-		if ( $(this).val() == 'gerunded' ) {
-			$(this).parent().parent().find('.btn_rds.hidden').hide().removeClass('hidden');
-			$(this).parent().parent().find('.btn_rds').slideDown();
-		} else {
-			$(this).parent().parent().find('.btn_rds').slideDown();
-		}
-	});
+	$('.fl_pick_color').jPicker({ localization: { text: { ok: 'übernehmen', cancel: 'verwerfen' }} });
 
-		
 });
-
-
 </script>
 <% end %>

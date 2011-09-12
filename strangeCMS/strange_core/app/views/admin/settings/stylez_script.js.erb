@@ -4,7 +4,7 @@ var fl_info_text = '<div class="remote_info"> .. erfolgreich gespeichert .. </di
 
 $('.settings_callback.<%= @pref %>').hide(100).html('<div class="remote_info"> <%= @ok_go ? ".. gespeichert." : ".. Fehler!" %> </div>').fadeIn(100).delay(5000).hide(100);
 
+<% if !@area.blank? && !@siza.blank? %>
+	$('#<%= @area %>_<%= @pref %>_vorschau').html("<%= escape_javascript( render 'admin/settings/fl_icon', :pref => @pref, :area => @area, :siza => @siza )%>");
+<% end %>
 
-/* $('form .rauto').each( function(){
-	$(this).val("<%#= form_authenticity_token.inspect %>");
-});*/

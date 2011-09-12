@@ -10,7 +10,7 @@
   <nav class="pagination">
 	<strong>Seite <%= current_page %> von <%= num_pages %> </strong>&nbsp;&nbsp;&nbsp;
     <%# first_page_tag unless current_page.first? %>
-    <%= prev_page_tag  %>
+    <%= prev_page_tag unless current_page.first?  %>
 <% if 'gelb' == 'blau' %>
     <% each_page do |page| -%>
       <% if page.left_outer? || page.right_outer? || page.inside_window? -%>
@@ -20,7 +20,7 @@
       <% end -%>
     <% end -%>
 <% end -%>
-    <%= next_page_tag  %>
+    <%= next_page_tag unless current_page.last? %>
     <%# last_page_tag unless current_page.last? %>
   </nav>
 <% end -%>
