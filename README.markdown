@@ -19,10 +19,10 @@ Gastón Ramos
 gramos (easy-fckeditor)   		::   https://github.com/gramos/easy-fckeditor
 
 Philip Hallstrom
-phallstrom (el_finder)   		::   https://github.com/phallstrom/el_finder
+phallstrom (el_finder)			https://github.com/phallstrom/el_finder
 
 .. and of course from:Ryan Bates
-ryanb (Railscasts)   			::   http://railscasts.com/  /  https://github.com/ryanb/railscasts-episodes/
+ryanb (Railscasts)			http://railscasts.com/  /  https://github.com/ryanb/railscasts-episodes/
 
 
 ## Usage

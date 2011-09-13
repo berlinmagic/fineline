@@ -187,19 +187,21 @@
 															:blur => 70, 
 															:color => 'hell',
 															:url => admin_header_path(head),
-															:class => "remote_form_link",
+															:class => "admin_system",
 															:title => t('strange_header.links.show') ) %>
 								
 								<%= finelineButton(			:icon => 30, 
 															:blur => 70, 
 															:color => 'hell',
 															:url => edit_admin_header_path(head),
+															:class => "admin_system",
 															:title => t('strange_header.links.edit') ) %>
 								<% unless head.system_stuff %>
 									<%= finelineDelete( head,	:icon => 24, 
 																:blur => 70, 
 																:color => 'hell',
 																:url => admin_header_path(head),
+																:class => "admin_system",
 																:title => t('strange_header.links.delete') ) %>
 								<% end %>
 							</div>
