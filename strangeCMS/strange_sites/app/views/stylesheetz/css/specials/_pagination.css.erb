@@ -1,12 +1,22 @@
 /********	Pagination	*****************************************************/
-.pagination { padding: 10px 20px; text-align:right;
-	<%= fine_boxShadow( 'inset 0 10px 8px 1px rgba(153,153,153,.3)' ) %>
-	<%= fineBorderRadius( '5px', '5px', '', '' ) %> }
+.paginator_wrapper { position: relative; <%= fine_box_css( 'finePagination', 'front', '' ) %> }
+.paginator_wrapper:hover { <%= fine_box_css( 'finePagination', 'front', 'hover' ) %> }
+.paginator_wrapper:active { <%= fine_box_css( 'finePagination', 'front', 'active' ) %> }
 
-.pagination.bottom { padding: 10px 20px; text-align:right;
-	<%= fine_boxShadow( 'inset 0 -10px 8px 1px rgba(153,153,153,.3)' ) %>
-	<%= fineBorderRadius( '0', '0', '5px', '5px' ) %> }
+.paginator_wrapper .pagination { <%= fine_boxShadow( ) %> }
+.paginator_wrapper .pagination p { display: inline-block; <%= fine_font_style( 'p' ) %> }
 
+.pagination { padding: 0; margin:0; display:block; float: right; position: relative; }
+
+.viewChangeButtons { padding: 0; margin:0; display:block; position: relative; float:left; z-index: 2; }
+
+
+<% hg = finestyler( 'PaginationNavButton_icon_size', 'front' ).to_i < finestyler( 'PaginationViewButton_icon_size', 'front' ).to_i ? finestyler( 'PaginationViewButton_icon_size', 'front' ).to_i : finestyler( 'PaginationNavButton_icon_size', 'front' ).to_i %>
+
+
+.pagination span a, .pagination span.current { display: inline-block; text-align: center; line-height: <%= hg %>px; }
+
+/*
 .pagination span a, .pagination span.current { width: 26px; height: 26px; border: solid 1px #ccc; display: inline-block; 
 	text-align: center; line-height:26px;
 	<%= fine_borderRadius( '13px' ) %>
@@ -14,23 +24,12 @@
 .pagination span a { background: #369; color: #fff; font-weight: bold; font-size: 14px; }
 .pagination span.first a { }
 .pagination span.page a { }
-.pagination span.current { font-size: 15px; font-weight: bold; font-style: italic; }
+.pagination span.current { font-size: 13px; font-weight: normal; font-style: italic; }
 .pagination span.last a { }
 
 .pagination span.prev a { background: #369 url('/images/fineline/spezial/pagination_l.png') center center no-repeat; color: transparent; }
 .pagination span.next a { background: #369 url('/images/fineline/spezial/pagination_r.png') center center no-repeat; color: transparent; }
 .pagination span.prev.current { background: #f3f3f3 url('/images/fineline/spezial/pagination_l_b50.png') center center no-repeat; color: transparent;}
 .pagination span.next.current { background: #f3f3f3 url('/images/fineline/spezial/pagination_r_b50.png') center center no-repeat; color: transparent;}
+*/
 
-.paginator_wrapper { position: relative; min-height: 48px; 
-	<%= fine_boxShadow( 'inset 0 10px 8px 1px rgba(153,153,153,.3)' ) %>
-	<%= fineBorderRadius( '5px', '5px', '', '' ) %> }
-
-.paginator_wrapper.bottom { <%= fine_boxShadow( 'inset 0 -10px 8px 1px rgba(153,153,153,.3)' ) %> 
-	<%= fineBorderRadius( '0', '0', '5px', '5px' ) %> }
-
-.paginator_wrapper .pagination { <%= fine_boxShadow( ) %> }
-
-.viewChangeButton { padding: 0; margin:0; display:block; position: absolute; left: 15px; top: 10px; z-index: 20; }
-.viewChangeButton .finelineButton { margin: 0 1px; background: transparent; border: solid 1px transparent; }
-.viewChangeButton .finelineButton:hover { background: #ddd; }

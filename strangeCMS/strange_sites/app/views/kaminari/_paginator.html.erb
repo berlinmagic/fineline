@@ -8,8 +8,8 @@
 -%>
 <%= paginator.render do -%>
   <nav class="pagination">
-	<strong>Seite <%= current_page %> von <%= num_pages %> </strong>&nbsp;&nbsp;&nbsp;
-    <%# first_page_tag unless current_page.first? %>
+	<p>Seite <%= current_page %> von <%= num_pages %> </p>&nbsp;&nbsp;&nbsp;
+    <%= first_page_tag unless current_page.first? %>
     <%= prev_page_tag unless current_page.first?  %>
 <% if 'gelb' == 'blau' %>
     <% each_page do |page| -%>
@@ -21,6 +21,6 @@
     <% end -%>
 <% end -%>
     <%= next_page_tag unless current_page.last? %>
-    <%# last_page_tag unless current_page.last? %>
+    <%= last_page_tag unless current_page.last? %>
   </nav>
 <% end -%>

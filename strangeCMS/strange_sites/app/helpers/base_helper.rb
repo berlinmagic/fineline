@@ -31,7 +31,7 @@ module BaseHelper
     opac = 1.0
     if options[:blur]
       if options[:blur].to_f > 1
-        opac = opac * "0.#{options[:blur].to_f}".to_f
+        opac = ( options[:blur] == 100 ) ? 1.0 : ( opac * "0.#{options[:blur].to_f}".to_f )
       else
         opac = opac * "#{options[:blur].to_f}".to_f
       end

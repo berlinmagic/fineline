@@ -1,0 +1,49 @@
+<% area ||= '' %>
+<style>
+.<%= area %>_<%= pref %>_vorschau_in { display: inline-block; position: relative;
+	<%= fine_box_css( pref, area ) %> width: 300px; }
+.<%= area %>_<%= pref %>_vorschau_in:hover { <%= fine_box_css( pref, area, 'hover') %> }
+.<%= area %>_<%= pref %>_vorschau_in:active { <%= fine_box_css( pref, area, 'active') %> }
+.<%= area %>_<%= pref %>_vorschau_in .finelineButton.pagination_nav { <%= fl_icon_css( 'PaginationNavButton',  :area => area, :important => true ) %> }
+.<%= area %>_<%= pref %>_vorschau_in .finelineButton.pagination_view { <%= fl_icon_css( 'PaginationViewButton',  :area => area, :important => true ) %> }
+.<%= area %>_<%= pref %>_vorschau_in .finelineButton.pagination_nav:hover { <%= fl_icon_css( 'PaginationNavButton', :area => area, :state => 'hover', :important => true ) %> }
+.<%= area %>_<%= pref %>_vorschau_in .finelineButton.pagination_view:hover { <%= fl_icon_css( 'PaginationViewButton', :area => area, :state => 'hover', :important => true ) %> }
+.<%= area %>_<%= pref %>_vorschau_in .finelineButton.pagination_nav:active { <%= fl_icon_css( 'PaginationNavButton', :area => area, :state => 'active', :important => true ) %> }
+.<%= area %>_<%= pref %>_vorschau_in .finelineButton.pagination_view:active { <%= fl_icon_css( 'PaginationViewButton', :area => area, :state => 'active', :important => true ) %> }
+</style>
+<div class='icon_vorschau <%= area %>_<%= pref %>_vorschau_in'>
+	
+	<% if group == 'pagination' %>
+		<div style="float: left">
+			<%= finelineButton(		:icon => 79, 
+									:blur => Strangecms::Stylez::Config["#{ area }_PaginationViewButton_icon_blur"], 
+									:color => Strangecms::Stylez::Config["#{ area }_PaginationViewButton_icon_color"], 
+									:size => Strangecms::Stylez::Config["#{ area }_PaginationViewButton_icon_size"], 
+									:class => "pagination_view #{ Strangecms::Stylez::Config["#{ area }_PaginationViewButton_style"] }", 
+									:url => '#' ) %>
+			<%= finelineButton(		:icon => 78, 
+									:blur => Strangecms::Stylez::Config["#{ area }_PaginationViewButton_icon_blur"], 
+									:color => Strangecms::Stylez::Config["#{ area }_PaginationViewButton_icon_color"], 
+									:size => Strangecms::Stylez::Config["#{ area }_PaginationViewButton_icon_size"], 
+									:class => "pagination_view #{ Strangecms::Stylez::Config["#{ area }_PaginationViewButton_style"] }", 
+									:url => '#' ) %>
+			<div class="clearfix"></div>
+		</div>
+		
+		<div style="float: right; text-align: right">
+			<%= finelineButton(		:icon => 1, 
+									:blur => Strangecms::Stylez::Config["#{ area }_PaginationNavButton_icon_blur"], 
+									:color => Strangecms::Stylez::Config["#{ area }_PaginationNavButton_icon_color"], 
+									:size => Strangecms::Stylez::Config["#{ area }_PaginationNavButton_icon_size"], 
+									:class => "pagination_nav #{ Strangecms::Stylez::Config["#{ area }_PaginationNavButton_style"] }", 
+									:url => '#') %>
+			<%= finelineButton(		:icon => 2, 
+									:blur => Strangecms::Stylez::Config["#{ area }_PaginationNavButton_icon_blur"], 
+									:color => Strangecms::Stylez::Config["#{ area }_PaginationNavButton_icon_color"], 
+									:size => Strangecms::Stylez::Config["#{ area }_PaginationNavButton_icon_size"], 
+									:class => "pagination_nav #{ Strangecms::Stylez::Config["#{ area }_PaginationNavButton_style"] }", 
+									:url => '#') %>
+			<div class="clearfix"></div>
+		</div>
+	<% end %>
+</div>

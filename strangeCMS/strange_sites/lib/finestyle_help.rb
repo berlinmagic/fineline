@@ -136,19 +136,29 @@ module FinestyleHelp
         # => -moz-text-shadow:     #{ shadow };
         # => -ms-text-shadow:      #{ shadow };
         # => -khtml-text-shadow:   #{ shadow };
-        "text-shadow:          #{ shadow };"
+        "text-shadow: #{ shadow };"
     end
     
     def fine_opacity( opacity )
-      opac = 1.0
       if opacity
         if opacity > 1
-          opac = opac * "0.#{ opacity }".to_f
+          if opacity == 100
+            opac = 1.0
+            opaz = 100
+          else
+            opac = "0.#{ opacity }".to_f
+            opaz = opacity.to_i
+          end
         else
-          opac = opac * "#{ opacity }".to_f
+          if opacity == 1
+            opac = 1.0
+            opaz = 100
+          else
+            opac = "#{ opacity }".to_f
+            opaz = opacity.to_i * 100
+          end
         end
       end
-      opaz = (100 * opac).to_i if opac < 1
       " opacity: #{opac};
         -moz-opacity: #{opac};
         -webkit-opacity: #{opac};
@@ -209,6 +219,7 @@ module FinestyleHelp
     receiver.send :helper_method, 'fine_Gradient'
     receiver.send :helper_method, 'fine_boxShadow'
     receiver.send :helper_method, 'fine_textShadow'
+    receiver.send :helper_method, 'fine_opacity'
     receiver.send :helper_method, 'fine_css_minify'
     receiver.send :helper_method, 'fine_js_minify'
   end

@@ -11,11 +11,11 @@ de:
           site_width: "Gesamtbreite:"
   views:
       pagination:
-        previous: "&lang;"
-        next: "&rang;"
-        truncate: "..."
-        first: "&laquo;"
-        last: "&raquo;"
+        previous: ""
+        next: ""
+        truncate: ""
+        first: ""
+        last: ""
   strange_Backend: "Backend bearbeiten"
   strange_Frontend: "zur Webseite wechseln"
   fine_dashboard: "Dashboard"

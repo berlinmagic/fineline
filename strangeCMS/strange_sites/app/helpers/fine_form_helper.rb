@@ -308,15 +308,27 @@ module FineFormHelper
       end
     end
     
-    def ff_padding_tag
+    def ff_padding_tag( icon, area='front' )
+      stuff = '<div class="fl_box_170"><label class="norm1">'+ t("strange_stylez.style_atr.padding") +'</label></div>'
+      %w(top right bottom left).each do |xx|
+        stuff += '<div class="grid_4">'
+        stuff += select_tag("preferences[#{area}_#{ icon }_padding_#{ xx }]",
+                    options_for_select(
+                      StylezConfiguration::STYLE_SIZES.map { |c| [c, c] },
+                      Strangecms::Stylez::Config[ "#{area}_#{ icon }_padding_#{ xx }" ].to_i ), :class => "ff_padding_#{ xx } #{area}_#{ icon }_padding_#{ xx }" )
+        stuff += '</div>'
+			end
       
+      stuff += '<div class="clearfix"></div><div class="vspacer"></div><div class="clearfix"></div>'
+      raw( stuff )
     end
     
     def ff_fine_icon_scripter( pref, options = {} )
-      options.assert_valid_keys(:area, :hover, :active, :protect)
-      options.reverse_merge! :area    =>    'front'   unless    options.key? :edit
-      options.reverse_merge! :hover    =>    true      unless    options.key? :safe
-      options.reverse_merge! :active   =>    true      unless    options.key? :delete
+      options.assert_valid_keys( :area, :hover, :active, :thing )
+      options.reverse_merge! :area    =>    'front'   unless    options.key? :area
+      options.reverse_merge! :hover    =>    true      unless    options.key? :hover
+      options.reverse_merge! :active   =>    true      unless    options.key? :active
+      options.reverse_merge! :thing   =>    'icon'      unless    options.key? :thing
       area = options[:area]
       hover = options[:hover]
       active = options[:active]
@@ -325,14 +337,22 @@ module FineFormHelper
         states << ''
         states << '_hover' if hover
         states << '_active' if active
-        blur = Strangecms::Stylez::Config["#{area}_#{pref}_icon_blur"].to_i
-        opac = Strangecms::Stylez::Config["#{area}_#{pref}_opacity"].to_i
-        # => Slider
-        js += "$( '##{area}_#{pref}_icon_blur_slider' ).slider({ min: 1, max: 100, value: #{ blur }, 
-      	slide: function( event, ui ) { $( '#preferences_#{area}_#{pref}_icon_blur' ).val( ui.value ); } });
-      	$( '#preferences_#{area}_#{pref}_icon_blur' ).val( $( '##{area}_#{pref}_icon_blur_slider' ).slider( 'value' ) );"
+        
+        unless options[:thing] == 'box'
+          # => Slider
+          blur = Strangecms::Stylez::Config["#{area}_#{pref}_icon_blur"].to_i
+          js += "$( '##{area}_#{pref}_icon_blur_slider' ).slider({ min: 1, max: 100, value: #{ blur }, 
+        	slide: function( event, ui ) { $( '#preferences_#{area}_#{pref}_icon_blur' ).val( ui.value ); } });
+        	$( '#preferences_#{area}_#{pref}_icon_blur' ).val( $( '##{area}_#{pref}_icon_blur_slider' ).slider( 'value' ) );"
+    	  end
+      	
       	
       	states.each do |state|
+      	  if options[:thing] == 'box'
+      	  js += "$( '##{ area }_#{ pref }_opacity#{ state }_slider' ).slider({ min: 1, max: 100, value: #{ Strangecms::Stylez::Config["#{area}_#{pref}_opacity#{ state }"].to_i }, 
+        	slide: function( event, ui ) { $( '#preferences_#{area}_#{pref}_opacity#{ state }' ).val( ui.value ); } });
+        	$( '#preferences_#{area}_#{pref}_opacity#{ state }' ).val( $( '##{ area }_#{ pref }_opacity#{ state }_slider' ).slider( 'value' ) );"
+      	  end
       	  js += "$('.#{ area }_#{ pref }_farbwahl#{ state }').change(function(){
       	            var this_c = $(this).val();
       	            if ( this_c == 'transparent' ) {
@@ -468,6 +488,16 @@ module FineFormHelper
 			raw ( stuff )
 		end
 		
+		def fl_opacity( icon, area='front', state='' )
+		  state = state.blank? ? '' : "_#{ state }"
+      stuff = '<div class="fl_box_170"><label class="norm1">' + t("strange_stylez.style_atr.opacity") + '</label></div>'
+      stuff += '<div class="grid_4">'
+        stuff += text_field_tag("preferences[#{ area }_#{ icon }_opacity#{ state }]", Strangecms::Stylez::Config["#{ area }_#{ icon }_opacity#{ state }"], :class => 'no_view' )
+			stuff += '</div><div class="grid_8 push_1">'
+			  stuff += "<div class='slider_holder'><div id='#{ area }_#{ icon }_opacity#{ state }_slider'></div></div>"
+			stuff += '</div><div class="clearfix"></div><div class="vspacer"></div><div class="clearfix"></div>'
+    end
+		
 		def fl_box_shadow(pref, area='front', state='')
 		  state = state.blank? ? '' : "_#{ state }"
 		  stuff = '<div class="fl_box_170"><label class="norm1">' + t("strange_stylez.icon_atr.box_shadow") + '</label></div>'
@@ -477,10 +507,49 @@ module FineFormHelper
 			raw( stuff )
 		end
 		
-    def fine_icn_css(pref, area='front', state='')
+		def fl_icon_css( icon, options={} )
+		  options.assert_valid_keys( :area, :state, :class, :important )
+      options.reverse_merge! :area      =>  'front'   unless    options.key? :area
+      options.reverse_merge! :important =>  false      unless   options.key? :important
+      options.reverse_merge! :state     =>  ''        unless    options.key? :state
+      state = options[:state]
       state = state.blank? ? '' : "_#{ state }"
-      size = Strangecms::Stylez::Config["#{ area }_#{ pref }_icon_size"].to_s
-      css = ""
+      area = options[:area]
+      imp = options[:important] == true ? ' !important' : ''
+      size = Strangecms::Stylez::Config["#{ area }_#{ icon }_icon_size"].to_s
+      css = "outline: none; overflow: hidden; position: relative;"
+      unless (state == 'hover') || (state == 'active')
+		    if Strangecms::Stylez::Config["#{ area }_#{ icon }_style"] == 'gerunded'
+  		    css += fine_borderRadius( "#{ Strangecms::Stylez::Config["#{ area }_#{ icon }_border_radius"] }px#{ imp }" )
+  		  elsif Strangecms::Stylez::Config["#{ area }_#{ icon }_style"] == 'rund'
+  		    css += fine_borderRadius( "50px#{ imp }" )
+  		  else
+  		    css += fine_borderRadius( "none#{ imp }" )
+  		  end
+  		end
+  		css += 
+  		css += "width: #{ size }px#{ imp }; height: #{ size }px#{ imp }; line-height: #{ size }px#{ imp };"
+		  css += "border-style: #{Strangecms::Stylez::Config["#{ area }_#{ icon }_border_style"]}#{ imp };"
+		  css += "border-width: #{Strangecms::Stylez::Config["#{ area }_#{ icon }_border_width#{ state }"]}px#{ imp };"
+		  css += "border-color: ##{Strangecms::Stylez::Config["#{ area }_#{ icon }_border_color#{ state }"]}#{ imp };" if !Strangecms::Stylez::Config["#{ area }_#{ icon }_border_color#{ state }"].blank?
+		  
+		  if Strangecms::Stylez::Config["#{ area }_#{ icon }_bg_style#{ state }"] == 'verlauf'
+		    css += fine_backgroundGradient( "##{Strangecms::Stylez::Config["#{ area }_#{ icon }_bg_color1#{ state }"]}", "##{Strangecms::Stylez::Config["#{ area }_#{ icon }_bg_color2#{ state }"]}" )
+		  elsif Strangecms::Stylez::Config["#{ area }_#{ icon }_bg_style#{ state }"] == 'farbe'
+		    css += "background: ##{Strangecms::Stylez::Config["#{ area }_#{ icon }_bg_color1#{ state }"]}#{ imp };"
+		  else
+		    css += "background: transparent#{ imp };"
+		  end
+		  raw( css )
+		end
+		
+    def fine_icn_css(pref, area='front', state='')
+      raw( fl_icon_css(pref, :area => area, :state => state) )
+		end
+		
+		def fine_box_css(pref, area='front', state='')
+      state = state.blank? ? '' : "_#{ state }"
+      css = "outline: none; overflow: hidden;"
       unless !state.blank?
 		    if Strangecms::Stylez::Config["#{ area }_#{ pref }_style"] == 'gerunded'
   		    css += fine_borderRadius( "#{ Strangecms::Stylez::Config["#{ area }_#{ pref }_border_radius"] }px" )
@@ -490,9 +559,8 @@ module FineFormHelper
   		    css += fine_borderRadius( )
   		  end
   		end
-  		css += "outline: none;"
-  		css += "overflow: hidden;"
-  		css += "width: #{ size }px; height: #{ size }px; line-height: #{ size }px;"
+  		css += "#{ fine_opacity( Strangecms::Stylez::Config["#{ area }_#{ pref }_opacity#{ state }"] ) }"
+  		css += "padding: #{ Strangecms::Stylez::Config["#{ area }_#{ pref }_padding_top"] }px #{ Strangecms::Stylez::Config["#{ area }_#{ pref }_padding_right"] }px #{ Strangecms::Stylez::Config["#{ area }_#{ pref }_padding_bottom"] }px #{ Strangecms::Stylez::Config["#{ area }_#{ pref }_padding_left"] }px;"
 		  css += "border: #{Strangecms::Stylez::Config["#{ area }_#{ pref }_border_style"]} #{Strangecms::Stylez::Config["#{ area }_#{ pref }_border_width#{ state }"]}px ##{Strangecms::Stylez::Config["#{ area }_#{ pref }_border_color#{ state }"]};"
 		  
 		  if Strangecms::Stylez::Config["#{ area }_#{ pref }_bg_style#{ state }"] == 'verlauf'
@@ -502,6 +570,9 @@ module FineFormHelper
 		  else
 		    css += "background: transparent;"
 		  end
+		  raw( css )
 		end
+		
+		
   
 end

@@ -1,20 +1,11 @@
-
-
-
-	
 <% if @bilder && @bilder.count > 0 %>
 
 
 	<% if @xxl_view %>
 
-		<div class="paginator_wrapper">
-			<a href="<%= gallerien_path %>" class="viewChangeButton">
-				<%= finelineButton :icon => 78, :size => 24 %>
-				<%= finelineButton :icon => 80, :size => 24, :blur => 50 %>
-				<div class="clearfix"></div>
-			</a>
-			<%= paginate @bilder, :params => {:controller => 'gallerien', :action => 'xxl_index'}  %>
-		</div>
+		<%= paginator_wrapper( @bilder, 
+			:mini => gallerien_path, :maxi => '#', :on => 'maxi', 
+			:params => {:controller => 'gallerien', :action => 'xxl_index'} ) %>
 	
 		
 		<% @bilder.each_with_index do |bild,index| %>
@@ -36,26 +27,17 @@
 			<div class="vert_space"></div>
 			<div class="clearfix"></div>
 		<% end %>
-		<div class="paginator_wrapper bottom">
-			<a href="<%= gallerien_path %>" class="viewChangeButton">
-				<%= finelineButton :icon => 78, :size => 24 %>
-				<%= finelineButton :icon => 80, :size => 24, :blur => 50 %>
-				<div class="clearfix"></div>
-			</a>
-			<%= paginate @bilder, :theme => 'bottom', :params => {:controller => 'gallerien', :action => 'xxl_index'}  %>
-		</div>
+		
+		<%#= paginator_wrapper( @bilder, 
+			:mini => gallerien_path, :maxi => '#', :on => 'maxi', 
+			:params => {:controller => 'gallerien', :action => 'xxl_index'} ) %>
 
 	<% else %>
 	
-		<div class="paginator_wrapper">
-			<a href="<%= xxl_gallerien_path %>" class="viewChangeButton">
-				<%= finelineButton :icon => 78, :size => 24, :blur => 50 %>
-				<%= finelineButton :icon => 80, :size => 24 %>
-				<div class="clearfix"></div>
-			</a>
-			<%= paginate @bilder, :params => {:controller => 'gallerien', :action => 'index'}  %>
-		</div>
-	
+
+		<%= paginator_wrapper( @bilder, 
+			:mini => '#', :maxi => xxl_gallerien_path, :on => 'mini', 
+			:params => {:controller => 'gallerien', :action => 'index'} ) %>
 		
 		<% @bilder.each_with_index do |bild,index| %>
 			
@@ -76,14 +58,11 @@
 			<div class="vert_space"></div>
 			<div class="clearfix"></div>
 		<% end %>
-		<div class="paginator_wrapper bottom">
-			<a href="<%= xxl_gallerien_path %>" class="viewChangeButton">
-				<%= finelineButton :icon => 78, :size => 24, :blur => 50 %>
-				<%= finelineButton :icon => 80, :size => 24 %>
-				<div class="clearfix"></div>
-			</a>
-			<%= paginate @bilder, :theme => 'bottom', :params => {:controller => 'gallerien', :action => 'index'}  %>
-		</div>
+		
+		<%#= paginator_wrapper( @bilder, 
+			:mini => '#', :maxi => xxl_gallerien_path, :on => 'mini', 
+			:params => {:controller => 'gallerien', :action => 'index'} ) %>
+		
 	<% end %>
 
 <% elsif @bild %>
@@ -118,5 +97,3 @@
 	<br/>
 	
 <% end %>
-
-

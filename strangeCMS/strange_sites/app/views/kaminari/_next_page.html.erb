@@ -7,5 +7,11 @@
     remote:        data-remote
 -%>
 <span class="next<%= ' current' if current_page.last? %>">
-  <%= link_to_unless current_page.last?, raw(t 'views.pagination.next'), url, :rel => 'next', :remote => remote %>
+<%#= link_to_unless current_page.last?, raw(t 'views.pagination.next'), url, :rel => 'next', :remote => remote %>
+<%= link_to_unless current_page.last?, finelineButton(  :icon => 2, 
+                				:blur => Strangecms::Stylez::Config[:front_PaginationNavButton_icon_blur], 
+								:color => Strangecms::Stylez::Config[:front_PaginationNavButton_icon_color], 
+								:size => Strangecms::Stylez::Config[:front_PaginationNavButton_icon_size], 
+								:class => "pagination_nav #{ Strangecms::Stylez::Config[:front_PaginationNavButton_style] }"
+								), url, :rel => 'next', :remote => remote %>
 </span>

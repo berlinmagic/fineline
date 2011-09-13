@@ -94,4 +94,7 @@ de:
               verlauf: "Verlauf"
               farbe: "Farbe"
               transparent: "Transparent"
+      style_atr:
+          padding: "Innsenabstand (o r u l)"
+          opacity: "Box-Tansparenz"
 # ==========================================   S T R A N G E - C M S   ================================================ #

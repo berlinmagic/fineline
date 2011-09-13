@@ -2,6 +2,7 @@
 class StylezConfiguration < Configuration
   
   BORDER_STYLEZ = %w[none solid inset outset]
+  STYLE_SIZES = %w[0 1 2 3 4 5 7 10 15 20 30 40 50]
   BORDER_WIDTHS = %w[0 1 2 3 4 5 10 15]
   ICON_COLOR = %w[hell dunkel]
   ICON_SIZE = %w[18 24 32 48]

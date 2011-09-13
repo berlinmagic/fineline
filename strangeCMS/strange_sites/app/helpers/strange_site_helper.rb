@@ -8,6 +8,50 @@ module StrangeSiteHelper
   
   # => # => # => # => # => # => # => # => # => # => # => # => # => # => # => # => # => # => # => # => # => # => # => # => #
   
+  
+  def paginator_wrapper( objects, options = {} )
+      options.assert_valid_keys(:on, :mini, :midi, :maxi, :object_type, :params)
+      options.reverse_merge! :params    =>    {}   unless    options.key? :params
+      options.reverse_merge! :object_type =>  'AR' unless    options.key? :object_type
+      options.reverse_merge! :maxi =>         ''   unless      options.key? :maxi
+      options.reverse_merge! :midi =>         ''   unless      options.key? :midi
+      options.reverse_merge! :mini =>         ''   unless      options.key? :mini
+      options.reverse_merge! :on =>           '' unless      options.key? :on
+      view_change = ( !options[:mini].blank? || !options[:midi].blank? || !options[:maxi].blank? ) ? true : false
+      stuff = '<div class="paginator_wrapper">'
+      if view_change
+        stuff += '<div class="viewChangeButtons">'
+        if !options[:mini].blank?
+          stuff += finelineButton(:icon => 80, 
+	                                :blur => Strangecms::Stylez::Config[:front_PaginationViewButton_icon_blur], 
+                  								:color => Strangecms::Stylez::Config[:front_PaginationViewButton_icon_color], 
+                  								:size => Strangecms::Stylez::Config[:front_PaginationViewButton_icon_size], 
+                  								:class => "#{'aktiv ' if options[:on] == 'mini' }pagination_view #{ Strangecms::Stylez::Config[:front_PaginationViewButton_style] }", 
+                  								:url => options[:mini] )
+        end
+        if !options[:midi].blank?
+          stuff += finelineButton(:icon => 79, 
+	                                :blur => Strangecms::Stylez::Config[:front_PaginationViewButton_icon_blur], 
+                  								:color => Strangecms::Stylez::Config[:front_PaginationViewButton_icon_color], 
+                  								:size => Strangecms::Stylez::Config[:front_PaginationViewButton_icon_size], 
+                  								:class => "#{'aktiv ' if options[:on] == 'midi' }pagination_view #{ Strangecms::Stylez::Config[:front_PaginationViewButton_style] }", 
+                  								:url => options[:midi] )
+        end
+        if !options[:maxi].blank?
+          stuff += finelineButton(:icon => 78, 
+	                                :blur => Strangecms::Stylez::Config[:front_PaginationViewButton_icon_blur], 
+                  								:color => Strangecms::Stylez::Config[:front_PaginationViewButton_icon_color], 
+                  								:size => Strangecms::Stylez::Config[:front_PaginationViewButton_icon_size], 
+                  								:class => "#{'aktiv ' if options[:on] == 'maxi' }pagination_view #{ Strangecms::Stylez::Config[:front_PaginationViewButton_style] }", 
+                  								:url => options[:maxi] )
+        end
+        stuff += '<div class="clearfix"></div></div>'
+      end
+      stuff += paginate( objects, :params => options[:params] )
+      stuff += '</div>'
+      raw( stuff )
+  end
+  
   def abschnitt_admin_toolz(this, options = {})
     options.assert_valid_keys(:edit, :safe, :delete, :protect)
     options.reverse_merge! :edit    =>    nil   unless    options.key? :edit

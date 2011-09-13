@@ -25,8 +25,8 @@
         #cboxError{padding:50px; border:1px solid #ccc;}
         #cboxLoadedContent{ /*margin-bottom:28px;*/ margin: 3px 3px 30px; }
 		#cboxLoadedContent .fine_lightbox_pic_holder { <%= fineBorderRadius( '1px','5px','5px','5px' ) %> overflow: hidden; border: solid 1px #ccc; background: #f3f2f2; }
-        #cboxTitle{position:relative; bottom:4px; left:100px; text-align:center; width:100%; color:#949494;}
-        #cboxCurrent{position:absolute; bottom:4px; left:4px; color:#949494;}
+        #cboxTitle{position:absolute; bottom:2px; left:4px; text-align:left; width:71%; <%= fine_font_style( 'p' ) %> }
+        #cboxCurrent{position:absolute; bottom:2px; right:5px; width:27%; text-align:right; <%= fine_font_style( 'p' ) %>}
         #cboxSlideshow{position:absolute; bottom:4px; right:30px; color:#0092ef;}
         
 		<%# toppa = Strangecms::Stylez::Config[:front_lightboxNav_icon_size].to_i / 2 + Strangecms::Stylez::Config[:front_lightboxNav_border_width].to_i %>
