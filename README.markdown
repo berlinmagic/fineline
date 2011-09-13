@@ -23,14 +23,12 @@ fineline is an GemSet, so it is fully modular.
 	$ rails g strangecms:modul [name]	# => generates new modul [name]
 	
 	$ rails g strangecms:theme [name]	# => generates new theme [name]
-	
 
 
 
 ## Code for this GEMset is inspired and adopted from following great stuff:
 	Thanks to all of theese People, this app exists!
 	THANKS A LOT !
-
 Spree Commerce - Spree (Spree) - [Spree][Spree], [spreecommerce][spreecommerce]
 
 Lucas Florio - lucasefe (themes_for_rails) - [lucasefe][lucasefe]
