@@ -9,23 +9,19 @@ fineline is an GemSet, so it is fully modular.
 Thanks to all of theese People, this app exists!
 THANKS A LOT !
 
-Spree Commerce
-
-Spree (Spree)   				::   http://spreecommerce.com/  /  https://github.com/spree/spree
-[Spree][Spree]
+Spree Commerce - Spree (Spree) - [Spree][Spree], [spreecommerce][spreecommerce]
 
 
-Lucas Florio
-lucasefe (themes_for_rails)   	::   https://github.com/lucasefe/themes_for_rails
+Lucas Florio - lucasefe (themes_for_rails) - [lucasefe][lucasefe]
 
-Gastón Ramos
-gramos (easy-fckeditor)   		::   https://github.com/gramos/easy-fckeditor
 
-Philip Hallstrom
-phallstrom (el_finder)			https://github.com/phallstrom/el_finder
+Gastón Ramos - gramos (easy-fckeditor) - [gramos][gramos]
 
-.. and of course from:Ryan Bates
-ryanb (Railscasts)			http://railscasts.com/  /  https://github.com/ryanb/railscasts-episodes/
+
+Philip Hallstrom - phallstrom (el_finder) - [phallstrom][phallstrom]
+
+
+Ryan Bates - ryanb (Railscasts) - [ryanb][ryanb], [railscasts][railscasts]
 
 
 ## Usage
@@ -44,4 +40,10 @@ ryanb (Railscasts)			http://railscasts.com/  /  https://github.com/ryanb/railsca
 	Private Repository ! .. no Copy! .. no Change! .. no Downloads! .. no Support!
 	
 
-[Spree]: http://www.sinatrarb.com/
+[spree]: https://github.com/spree/spree
+[spreecommerce]: http://spreecommerce.com/
+[lucasefe]: https://github.com/lucasefe/themes_for_rails
+[gramos]: https://github.com/gramos/easy-fckeditor
+[phallstrom]: https://github.com/phallstrom/el_finder
+[railscasts]: http://railscasts.com/
+[ryanb]: https://github.com/ryanb/railscasts-episodes/
