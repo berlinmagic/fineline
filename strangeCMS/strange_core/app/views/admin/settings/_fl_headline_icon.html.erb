@@ -1,0 +1,27 @@
+<% area ||= '' %>
+<style>
+.<%= area %>_<%= pref %>_vorschau_in { position: relative;
+	 height: <%= Strangecms::Stylez::Config["#{area}_#{pref}_icon_size"] %>px; line-height: <%= Strangecms::Stylez::Config["#{area}_#{pref}_icon_size"] %>px; }
+.<%= area %>_<%= pref %>_vorschau_in.icn {  <%= fine_icn_css( pref, area) %> display: inline-block; }
+h1.<%= area %>_<%= pref %>_vorschau_in  { <%= fine_font_style( 'headline', area ) %> margin-bottom: 5px; }
+</style>
+<h1 class='icon <%= area %>_<%= pref %>_vorschau_in'>
+	
+	
+<% this_icons = [54] %>
+
+
+<% this_icons.each do |this| %>
+<div class='icon_vorschau <%= area %>_<%= pref %>_vorschau_in icn'>
+	<%= finelineIcon(			:icon => this, 
+								:color => Strangecms::Stylez::Config["#{area}_#{pref}_icon_color"], 
+								:size => Strangecms::Stylez::Config["#{area}_#{pref}_icon_size"], 
+								:blur => Strangecms::Stylez::Config["#{area}_#{pref}_icon_blur"] )  %>
+</div>
+<% end %>
+
+	fineline
+
+<div class="clearfix"></div>
+
+</h1>

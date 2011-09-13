@@ -6,7 +6,7 @@ $('.settings_callback.<%= @pref %>').hide(100).html('<div class="remote_info"> <
 
 <% if !@area.blank? && !@thing.blank? %>
 	$('#<%= @area %>_<%= @pref %>_vorschau').html("<%= escape_javascript( 
-		render "admin/settings/fl_#{ @thing }", :pref => @pref, :area => @area, :group => @group
+		render "admin/settings/fl_#{ @thing }", :pref => @pref, :area => @area, :group => @group, :preview => @preview
 		)%>");
 <% end %>
 

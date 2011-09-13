@@ -5,21 +5,23 @@
 .<%= area %>_<%= pref %>_vorschau_in:hover { <%= fine_icn_css( pref, area, 'hover') %> }
 .<%= area %>_<%= pref %>_vorschau_in:active { <%= fine_icn_css( pref, area, 'active') %> }
 </style>
+
+
+
+<% if preview == 'navigation' %>
+	<% this_icons = [3, 1, 38, 2, 4] %>
+<% elsif preview == 'view' %>
+	<% this_icons = [78, 79, 80] %>
+<% else %>
+	<% this_icons = [29, 64, 30, 24] %>
+<% end %>
+
+
+<% this_icons.each do |this| %>
 <div class='icon_vorschau <%= area %>_<%= pref %>_vorschau_in'>
-	<%= finelineIcon(			:icon => 1, 
+	<%= finelineIcon(			:icon => this, 
 								:color => Strangecms::Stylez::Config["#{area}_#{pref}_icon_color"], 
 								:size => Strangecms::Stylez::Config["#{area}_#{pref}_icon_size"], 
 								:blur => Strangecms::Stylez::Config["#{area}_#{pref}_icon_blur"] )  %>
 </div>
-<div class='icon_vorschau <%= area %>_<%= pref %>_vorschau_in'>
-	<%= finelineIcon(			:icon => 38, 
-								:color => Strangecms::Stylez::Config["#{area}_#{pref}_icon_color"], 
-								:size => Strangecms::Stylez::Config["#{area}_#{pref}_icon_size"], 
-								:blur => Strangecms::Stylez::Config["#{area}_#{pref}_icon_blur"] )  %>
-</div>
-<div class='icon_vorschau <%= area %>_<%= pref %>_vorschau_in'>
-	<%= finelineIcon(			:icon => 2, 
-								:color => Strangecms::Stylez::Config["#{area}_#{pref}_icon_color"], 
-								:size => Strangecms::Stylez::Config["#{area}_#{pref}_icon_size"], 
-								:blur => Strangecms::Stylez::Config["#{area}_#{pref}_icon_blur"] )  %>
-</div>
+<% end %>

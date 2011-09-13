@@ -46,6 +46,7 @@ class Admin::SettingsController < Admin::BaseController
             @thing = params[:thing] if params[:thing]
             @area = params[:area] if params[:area]
             @group = params[:group] if params[:group]
+            @preview = params[:preview] if params[:preview]
             Strangecms::Stylez::Config.set(params[:preferences])
             @ok_go = true
             expire_page	'/system/finestyle.css'

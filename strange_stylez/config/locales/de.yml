@@ -78,8 +78,10 @@ de:
       font_format: "Schriftformat"
       sample_text: "Beispiel-Text"
       iconz:
-          lightboxNav: "Lightbox - Navigation"
-          systemButton: "System - Button"
+          lightboxNav: "Navigation [Lightbox]"
+          systemButton: "System - Buttons"
+          PaginationNavButton: "Navigation"
+          PaginationViewButton: "Ansichtbutton [Pagination]"
       icon_atr:
           size: "Icongröße"
           border_style: "Rahmenart"
