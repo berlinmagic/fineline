@@ -26,13 +26,22 @@ Ryan Bates - ryanb (Railscasts) - [ryanb][ryanb], [railscasts][railscasts]
 
 ## Usage
 
-	$ gem install strangecms		# => will install  strangecms, strange_core, strange_sites, strange_themes, strange_user
+	$ gem install strangecms			# => will install  strangecms, strange_core, strange_sites, strange_themes, strange_user
 	
-	$ gem install strange_[modul] 	# => will install  the modul
+	$ gem install strange_[modul] 		# => will install  the modul
 	
-	$ rails g strangecms:install	# => will mirror all needed files, than migrate and seed database (development + production)
+	$ rails g strangecms:install		# => will mirror all needed files, than migrate and seed database (development + production)
 	
-	$ rails server					# => start your new CMS
+	$ rails server						# => start your new CMS
+	
+	.. more usements:
+	
+	$ rails g strangecms:update			# => update system & all modules
+	
+	$ rails g strangecms:modul [name]	# => generates new modul [name]
+	
+	$ rails g strangecms:theme [name]	# => generates new theme [name]
+	
 
 
 ## Licence
