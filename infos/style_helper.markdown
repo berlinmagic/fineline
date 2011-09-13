@@ -50,6 +50,8 @@ compress js if Strangecms::Config::compress_scriptz is activ :: komprimiert Java
 
 
 
+new:  opacity
+
 
 ##	
 ... by Austin Strange!
