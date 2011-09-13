@@ -10,7 +10,10 @@ Thanks to all of theese People, this app exists!
 THANKS A LOT !
 
 Spree Commerce
+
 Spree (Spree)   				::   http://spreecommerce.com/  /  https://github.com/spree/spree
+[Spree][Spree]
+
 
 Lucas Florio
 lucasefe (themes_for_rails)   	::   https://github.com/lucasefe/themes_for_rails
@@ -39,3 +42,6 @@ ryanb (Railscasts)			http://railscasts.com/  /  https://github.com/ryanb/railsca
 ## Licence
 
 	Private Repository ! .. no Copy! .. no Change! .. no Downloads! .. no Support!
+	
+
+[Spree]: http://www.sinatrarb.com/
