@@ -52,5 +52,17 @@ end
                                               :style_aktiv => true )
 
 
+if Werteliste.where('name = ? AND system_stuff = ?', 'Schattentypen', true).count > 0
+  
+  swertliste = Werteliste.where('name = ? AND system_stuff = ?', 'Schattentypen', true).first
+  
+else
+  
+  swertliste = Werteliste.create(           :name => 'Schrift-Schatten', 
+                                            :system_stuff => true,
+                                            :beschreibung => 'Verschiedene Schrift-Schatten zum einbinden in die Schriftstile.' )
+                                            
+end
 
+  schatten1 = Wert.create( :inhalt => 'Schrift-Schatten', :werteliste_id => swertliste.id )
    

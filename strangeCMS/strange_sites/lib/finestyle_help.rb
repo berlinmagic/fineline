@@ -140,6 +140,7 @@ module FinestyleHelp
     end
     
     def fine_opacity( opacity )
+      opacity = opacity.to_i
       if opacity
         if opacity > 1
           if opacity == 100

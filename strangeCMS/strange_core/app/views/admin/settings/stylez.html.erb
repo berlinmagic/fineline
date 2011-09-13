@@ -55,6 +55,7 @@
 				<div class="toggle_list_trigger"><h2><span>Boxen</span></h2></div>
 				<div class="toggle_list_box">
 						<%= ff_fine_icon_styler( 'finePagination', :thing => 'box', :group => 'pagination' ) %>
+						<%= ff_fine_icon_styler( 'SidebarHead', :thing => 'box', :group => 'pagination' ) %>
 						<div class="clearfix"></div>
 				</div><div class="clearfix"></div>
 				
@@ -136,7 +137,10 @@ $(function() {
 	
 	<%= ff_fine_icon_scripter( 'finelineButton' ) %>
 	
-	<%= ff_fine_icon_scripter( 'lightboxNav', :area => 'admin' ) %>
+	<%= ff_fine_icon_scripter( 'headline', :area => 'front' ) %>
+	<%= ff_fine_icon_scripter( 'headline', :area => 'admin' ) %>
+	<%= ff_fine_icon_scripter( 'systemButton', :area => 'admin' ) %>
+	<%= ff_fine_icon_scripter( 'SidebarHead', :thing => 'box' ) %>
 	
 	$('.ff_Btn_pick_color').jPicker({ localization: { text: { ok: 'übernehmen', cancel: 'verwerfen' }} });
 	

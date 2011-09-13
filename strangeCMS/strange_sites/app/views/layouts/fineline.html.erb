@@ -108,14 +108,17 @@
 				<%= yield %>
 
 			</div>
-			<div class="fl_box_210 push_1">
+			<div class="fl_box_210 push_1 dbx-group" id='sidebarholder-outer'>
+				<div id="sidebarholder">
+					
+				
 				<%= yield :sidebar %>
 
 				<%= yield :modul_sidebar %>
 
 				<%= hook :strange_sidebar_test do %>
-					<div class="side_box">
-						<div class="sidebar_head">
+					<div class="side_box dbx-box">
+						<div class="sidebar_head dbx-handle">
 							<a href="#">fineline-Sidebar</a>
 						</div>
 						<ul class='sidebar'>
@@ -139,6 +142,7 @@
 				<% end %>
 
 				<%= hook :strange_sidebar %>
+				</div>
 			</div>
 			<div class="clearfix"></div>
 		</div>

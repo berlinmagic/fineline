@@ -31,4 +31,7 @@
 <% if @script4 == 'admin' %>
 <%= raw( fine_js_minify( "#{ hook :admin_js_scriptz }" ) ) %>
 <% end %>
+
+
+<%= raw( fine_js_minify( "#{ render 'javascriptz/libs/dbx' }" ) ) %>
 /* ####################################     ..End of - generated - scripts     ######################################################### */
