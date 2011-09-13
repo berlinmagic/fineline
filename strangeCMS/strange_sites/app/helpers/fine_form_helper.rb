@@ -1,32 +1,5 @@
 # encoding: utf-8
 module FineFormHelper
-
-    def ff_font_select_row(pref,blank=true, area='front')
-      stuff   =   "<tr><th>"
-      stuff   +=  t("strange_stylez.#{ area }_#{ pref }_font_family")
-      stuff   +=  "</th><td colspan='3'>"
-      stuff   +=  '<div class="field">
-      		<div class="fineline_select std_select">
-      			<a href="#" class="fineline_select_trigger"></a>
-      			<div class="fineline_select_box hidden">
-      				<ul>'
-      if blank
-        stuff   +=  '<li class="blank">' + link_to( " - - - - - ", "" ) + '</li>'
-      end
-      StylezConfiguration::FONTZ_TYPES.each do |font|
-        stuff   +=  '<li class="level_0">' + link_to( t("strange_stylez.font_namez.#{ font }"), font, :style => "#{ fine_font_family(font) }" ) + '</li>'
-      end
-      stuff   +=  '</ul>
-      			</div>
-      				 <span class="fineline_select_text selected">'
-      stuff   +=  Strangecms::Stylez::Config[ "#{ area }_#{ pref }_font_family" ].blank? ? ' - - - ' : t("strange_stylez.font_namez.#{ Strangecms::Stylez::Config["#{ area }_#{ pref }_font_family"] }")
-      stuff   +=  '</span>'
-      stuff   +=  hidden_field_tag( "preferences[#{ area }_#{ pref }_font_family]", Strangecms::Stylez::Config[ "#{ area }_#{ pref }_font_family" ], :class => 'fineline_select_box_input' )
-      stuff   +=  '</div></div><div class="clearfix"></div>'
-      stuff   +=  "</td></tr>"
-      raw( stuff )
-		end
-		
 		
 		def ff_font_select_tag( pref, area='front', blank=true )
       stuff   = '<div class="fineline_select fineFont_select"><a href="#" class="fineline_select_trigger"></a>
@@ -34,22 +7,15 @@ module FineFormHelper
       if blank
         stuff   +=  '<li class="blank">' + link_to( "- #{fine_font_names('') } -", '' ) + '</li>'
       end
-      
       StylezConfiguration::FONTZ_TYPES.each do |font|
-        stuff   +=  '<li>'
-        stuff   +=  link_to( fine_font_names( font ), font, :style => "#{ fine_font_family(font) }" )
-        stuff   +=  '</li>'
+        stuff   +=  '<li>' + link_to( fine_font_names( font ), font, :style => "#{ fine_font_family(font) }" ) + '</li>'
       end
-      
       stuff   +=  '</ul></div><span class="fineline_select_text">'
-        stuff   +=  fine_font_names( Strangecms::Stylez::Config["#{ area }_#{ pref }_font_family"] )
-      stuff   +=  '</span>'
+      stuff   +=  fine_font_names( Strangecms::Stylez::Config["#{ area }_#{ pref }_font_family"] ) + '</span>'
       stuff   +=  hidden_field_tag( "preferences[#{ area }_#{ pref }_font_family]", Strangecms::Stylez::Config["#{ area }_#{ pref }_font_family"], :class => 'fineline_select_box_input' )
-      stuff   +=  '</div>'
-      stuff   +=  '<div class="clearfix"></div>'
+      stuff   +=  '</div><div class="clearfix"></div>'
       raw( stuff )
 		end
-		
 		
 		def ff_fine_font_styler( pref, area='front', blank=true )
         stuff = '<div class="toggle_list_inna_trigger">'
@@ -142,6 +108,7 @@ module FineFormHelper
 
         raw( stuff )
     end
+    
 		
 		def ff_google_font_row(pref)
 		  stuff   =   "<tr><th>"
@@ -252,11 +219,11 @@ module FineFormHelper
     
     def fine_font_gnames( font_family=nil, inherit=true )
       if font_family == 'Google_one'
-        "#{Strangecms::Stylez::Config[:google_font_one].gsub(/(:)(.)*/, '')}, #{Strangecms::Stylez::Config[:google_font_default_one]}"
+        "#{ fine_gfont_name( 'one', false, false ) }"
       elsif font_family == 'Google_two'
-        "#{Strangecms::Stylez::Config[:google_font_two].gsub(/(:)(.)*/, '')}, #{Strangecms::Stylez::Config[:google_font_default_two]}"
+        "#{ fine_gfont_name( 'two', false, false ) }"
       elsif font_family == 'Google_three'
-        "#{Strangecms::Stylez::Config[:google_font_three].gsub(/(:)(.)*/, '')}, #{Strangecms::Stylez::Config[:google_font_default_three]}"
+        "#{ fine_gfont_name( 'three', false, false ) }"
       end
     end
     
@@ -278,11 +245,11 @@ module FineFormHelper
     
     def fine_font_family( font_family=nil, inherit=true )
       if font_family == 'Google_one'
-        "font-family: #{Strangecms::Stylez::Config[:google_font_one].gsub(/(:)(.)*/, '')}, #{Strangecms::Stylez::Config[:google_font_default_one]};"
+        "#{ fine_gfont_name( 'one', true, false ) }"
       elsif font_family == 'Google_two'
-        "font-family: #{Strangecms::Stylez::Config[:google_font_two].gsub(/(:)(.)*/, '')}, #{Strangecms::Stylez::Config[:google_font_default_two]};"
+        "#{ fine_gfont_name( 'two', true, false ) }"
       elsif font_family == 'Google_three'
-        "font-family: #{Strangecms::Stylez::Config[:google_font_three].gsub(/(:)(.)*/, '')}, #{Strangecms::Stylez::Config[:google_font_default_three]};"
+        "#{ fine_gfont_name( 'three', true, false ) }"
       elsif font_family.blank?
         if inherit
           "font-family: inherit;"
@@ -296,16 +263,23 @@ module FineFormHelper
     
     def fine_font_names( font_family=nil )
       if font_family == 'Google_one'
-        "#{Strangecms::Stylez::Config[:google_font_one].gsub(/(:)(.)*/, '')} - #{Strangecms::Stylez::Config[:google_font_default_one]}"
+        "#{ fine_gfont_name( 'one', false, true ) }"
       elsif font_family == 'Google_two'
-        "#{Strangecms::Stylez::Config[:google_font_two].gsub(/(:)(.)*/, '')} - #{Strangecms::Stylez::Config[:google_font_default_two]}"
+        "#{ fine_gfont_name( 'two', false, true ) }"
       elsif font_family == 'Google_three'
-        "#{Strangecms::Stylez::Config[:google_font_three].gsub(/(:)(.)*/, '')} - #{Strangecms::Stylez::Config[:google_font_default_three]}"
+        "#{ fine_gfont_name( 'three', false, true ) }"
       elsif font_family.blank?
         I18n.t("strange_stylez.font_namez.font_inherit")
       else
         I18n.t("strange_stylez.font_namez.#{ font_family }")
       end
+    end
+    
+    def fine_gfont_name( gfont='one', system=false, read=false )
+      start = system == true ? 'font-family: ' : ''
+      ende = system == true ? ';' : ''
+      mitte = read == true ? ' - ' : ', '
+      "#{ start }#{Strangecms::Stylez::Config["google_font_#{ gfont }"].gsub(/(:)(.)*/, '').gsub('+', ' ')}#{ mitte }#{Strangecms::Stylez::Config["google_font_default_#{ gfont }"]}#{ ende }"
     end
     
     def ff_padding_tag( icon, area='front' )

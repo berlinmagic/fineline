@@ -1,7 +1,7 @@
 <% area ||= '' %>
 <style>
 .<%= area %>_<%= pref %>_vorschau_in { display: inline-block; position: relative;
-	<%= fine_box_css( pref, area ) %> width: 300px; }
+	<%= fine_box_css( pref, area ) %> min-width: 250px; max-width: 310px; }
 .<%= area %>_<%= pref %>_vorschau_in:hover { <%= fine_box_css( pref, area, 'hover') %> }
 .<%= area %>_<%= pref %>_vorschau_in:active { <%= fine_box_css( pref, area, 'active') %> }
 .<%= area %>_<%= pref %>_vorschau_in .finelineButton.pagination_nav { <%= fl_icon_css( 'PaginationNavButton',  :area => area, :important => true ) %> }

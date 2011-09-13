@@ -2,6 +2,8 @@
 de:
 # ==========================================   S T R A N G E - C M S   ================================================ #
   strange_stylez:
+      helptext:
+          google_webfonts: "Hier haben Sie die Möglichkeit bis zu 3 externe Schriften von <a href='http://www.google.com/webfonts'>Google-WebFonts</a> einzubinden.<br/><br/><strong>Vorgehensweise:</strong><br/>1. Wählen Sie bei <a href='http://www.google.com/webfonts'>Google-WebFonts</a> die gewünschte Schrift aus<br/>&nbsp;&nbsp;&nbsp;( zB: Merienda One => '<strong>Quick-use</strong>' Klicken )<br/><br/>2. in Abschnitt3 (Add this code to your website:) finden Sie eine Code-Zeile<br/>&nbsp;&nbsp;&nbsp;( zB: &lt;link href='http://fonts.googleapis.com/css?family='<strong>Merienda+One</strong>' rel='stylesheet' type='text/css'&gt; )<br/><br/>3. Kopieren Sie die Schriftfamilie in das Texteingabefeld ( ohne Anführungszeichen! )<br/>&nbsp;&nbsp;&nbsp;( zB: '<strong>Merienda+One</strong>' )<br/><br/>4. Die Alternativschrift aus Abschnitt4 ( Integrate the fonts into your CSS: ) in 'Webfont alternativ' wählen.<br/>&nbsp;&nbsp;&nbsp;(  zb: font-family: 'Merienda One', <strong>cursive</strong>; )<br/><br/>Speichern .. Fertig! . . . Ihr System verfügt über eine neue Schriftart!<br/><br/>"
       settings: "Style Einstellungen"
       front_stylez: "Seiten Styles"
       admin_stylez: "Backend Styles"
