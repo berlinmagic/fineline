@@ -5,24 +5,6 @@ This is fineline-CMS a super simple but mighty cms build on Ruby on Rails.
 fineline is an GemSet, so it is fully modular.
 
 
-## Code for this GEMset is inspired and adopted from following great stuff:
-Thanks to all of theese People, this app exists!
-THANKS A LOT !
-
-Spree Commerce - Spree (Spree) - [Spree][Spree], [spreecommerce][spreecommerce]
-
-
-Lucas Florio - lucasefe (themes_for_rails) - [lucasefe][lucasefe]
-
-
-Gastón Ramos - gramos (easy-fckeditor) - [gramos][gramos]
-
-
-Philip Hallstrom - phallstrom (el_finder) - [phallstrom][phallstrom]
-
-
-Ryan Bates - ryanb (Railscasts) - [ryanb][ryanb], [railscasts][railscasts]
-
 
 ## Usage
 
@@ -42,6 +24,23 @@ Ryan Bates - ryanb (Railscasts) - [ryanb][ryanb], [railscasts][railscasts]
 	
 	$ rails g strangecms:theme [name]	# => generates new theme [name]
 	
+
+
+
+## Code for this GEMset is inspired and adopted from following great stuff:
+	Thanks to all of theese People, this app exists!
+	THANKS A LOT !
+
+Spree Commerce - Spree (Spree) - [Spree][Spree], [spreecommerce][spreecommerce]
+
+Lucas Florio - lucasefe (themes_for_rails) - [lucasefe][lucasefe]
+
+Gastón Ramos - gramos (easy-fckeditor) - [gramos][gramos]
+
+Philip Hallstrom - phallstrom (el_finder) - [phallstrom][phallstrom]
+
+Ryan Bates - ryanb (Railscasts) - [ryanb][ryanb], [railscasts][railscasts]
+
 
 
 ## Licence
