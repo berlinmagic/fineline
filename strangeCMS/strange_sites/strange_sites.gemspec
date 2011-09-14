@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
 
   s.rubyforge_project = "strange_sites"
 
-  s.files        = Dir['app/**/*', 'config/**/*', 'lib/**/*', 'public/**/*']
+  s.files        = Dir['app/**/*', 'config/**/*', 'db/**/*', 'lib/**/*', 'public/**/*']
   s.require_paths = ["lib"]
   s.requirements << 'none'
   

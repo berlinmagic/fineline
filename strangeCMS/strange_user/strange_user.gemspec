@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
 
   s.rubyforge_project = "strange_user"
 
-  s.files        = Dir['app/**/*', 'config/**/*', 'lib/**/*']
+  s.files        = Dir['app/**/*', 'config/**/*', 'db/**/*', 'lib/**/*']
   s.require_paths = ["lib"]
   s.requirements << 'none'
   

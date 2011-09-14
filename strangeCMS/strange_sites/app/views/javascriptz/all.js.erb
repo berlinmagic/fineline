@@ -5,6 +5,7 @@
 /* =====================================       f i n e l i n e - javascript      ============================================================== */
 /* ============================================================================================================================================ */
 <%= raw( fine_js_minify( "#{ render 'javascriptz/libs/jquery_ujs' }" ) ) %>
+<%= raw( fine_js_minify( "#{ render 'javascriptz/libs/jcookie' }" ) ) %>
 <%#= raw( fine_js_minify( "#{ render 'javascriptz/libs/rails' }" ) ) %>
 <%= raw( fine_js_minify( "#{ render 'javascriptz/fine/fineline' }" ) ) %>
 <%= raw( fine_js_minify( "#{ render 'javascriptz/libs/jquery_form' }" ) ) %>
@@ -33,5 +34,5 @@
 <% end %>
 
 
-<%= raw( fine_js_minify( "#{ render 'javascriptz/libs/dbx' }" ) ) %>
+<%#= raw( fine_js_minify( "#{ render 'javascriptz/libs/dbx' }" ) ) %>
 /* ####################################     ..End of - generated - scripts     ######################################################### */

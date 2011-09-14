@@ -40,6 +40,10 @@ module Strangecms
         true
       end
       
+      def self.sample_seed?
+        false
+      end
+      
       def self.modul_name
         "#{ self.to_s.gsub(/Modul$/, '') }"
       end
@@ -85,6 +89,14 @@ module Strangecms
       def self.theme(wert=true)
           if wert
             def self.theme?
+              true
+            end
+          end
+      end
+      
+      def self.sample_seed(wert=true)
+          if wert
+            def self.sample_seed?
               true
             end
           end

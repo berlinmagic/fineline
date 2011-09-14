@@ -7,7 +7,7 @@ source 'http://rubygems.org'
 source 'http://Dgk6cChuA0ZNxfMVU1HNopG:Gs1yM6AHaVHlNLzkkRAstFoZuFkjVsWAww1i1Mkt6Q@strangegems.net/'
 # ========================================================================================================================= #
 
-gem 'rails', '3.0.9'
+gem 'rails', '3.0.10'
 
 gem 'rake', '>= 0.9.2'
 
@@ -32,9 +32,13 @@ gem 'strange_comments', :path => '../fineline_CMS/strange_comments'
 
 gem 'strange_categories', :path => '../fineline_CMS/strange_categories'
 
-# => gem 'strange_sidebars', :path => '../fineline_CMS/strange_sidebars'
 
-# => gem 'strange_stylez', :path => '../fineline_CMS/strange_stylez'
+
+gem 'strange_sidebars', :path => '../fineline_CMS/strange_sidebars'
+
+gem 'strange_stylez', :path => '../fineline_CMS/strange_stylez'
+
+
 
 # => gem 'strange_newsletter', :path => '../fineline_CMS/strange_newsletter'
 

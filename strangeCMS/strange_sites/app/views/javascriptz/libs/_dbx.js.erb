@@ -16,7 +16,7 @@ var dbx;function dbxManager(sid, useid, hide, buttontype){dbx = this;if(!/^[-_a-
 
 //initialise the docking boxes manager
 var manager = new dbxManager(
-	'main',					// session ID [/-_a-zA-Z0-9/]
+	'fineline',					// session ID [/-_a-zA-Z0-9/]
 	'yes',					// enable box-ID based dynamic groups ['yes'|'no']
 	'yes',					// hide source box while dragging ['yes'|'no']
 	'button'				// toggle button element type ['link'|'button']
@@ -28,7 +28,7 @@ var purple = new dbxGroup(
 	'sidebarholder', 				// container ID [/-_a-zA-Z0-9/]
 	'vertical', 			// orientation ['vertical'|'horizontal'|'freeform'|'freeform-insert'|'confirm'|'confirm-insert']
 	'7', 					// drag threshold ['n' pixels]
-	'no',					// restrict drag movement to container/axis ['yes'|'no']
+	'yes',					// restrict drag movement to container/axis ['yes'|'no']
 	'10', 					// animate re-ordering [frames per transition, or '0' for no effect]
 	'yes', 					// include open/close toggle buttons ['yes'|'no']
 	'open', 				// default state ['open'|'closed']

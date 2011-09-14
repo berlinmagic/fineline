@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
 
   s.rubyforge_project = "strange_fineform"
 
-  s.files        = Dir['app/**/*', 'config/**/*', 'lib/**/*', 'public/**/*']
+  s.files        = Dir['app/**/*', 'config/**/*', 'db/**/*', 'lib/**/*', 'public/**/*']
   s.require_path = 'lib'
   s.requirements << 'none'
   
