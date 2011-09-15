@@ -29,9 +29,13 @@ class HeaderCell < Cell::Rails
   def script(args)
     @seite = args[:seite]
     if @seite
-      @header = @seite.header || Header.first
+      if @seite.header
+        @header = @seite.header
+      else
+        @header = Header.first if Strangecms::Header::Config[:generell_show_header]
+      end
     else
-      @header = Header.first
+      @header = Header.first if Strangecms::Header::Config[:generell_show_header]
     end
     render
   end

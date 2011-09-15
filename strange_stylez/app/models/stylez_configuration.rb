@@ -245,6 +245,13 @@ class StylezConfiguration < Configuration
   preference :front_SidebarHead_bg_color1, :string, :default => 336699
   preference :front_SidebarHead_bg_color2, :string, :default => 336699
   preference :front_SidebarHead_box_shadow, :string, :default => 'inset 1px 1px 1px 0px rgba(255,255,255,.4)'
+  preference :front_SidebarHead_font_family, :string, :default => FONTZ_TYPES[0]
+  preference :front_SidebarHead_font_style, :string, :default => FONT_STYLES[0]
+  preference :front_SidebarHead_font_weight, :string, :default => FONT_WEIGHTS[0]
+  preference :front_SidebarHead_font_size, :string, :default => 14
+  preference :front_SidebarHead_font_color, :string, :default => 444444
+  preference :front_SidebarHead_line_height, :string, :default => 20
+  preference :front_SidebarHead_text_shadow, :string, :default => 'none'
 # => Hover
   preference :front_SidebarHead_opacity_hover, :integer, :default => 100
   preference :front_SidebarHead_border_color_hover, :string, :default => 'cccccc'
@@ -252,6 +259,8 @@ class StylezConfiguration < Configuration
   preference :front_SidebarHead_bg_color1_hover, :string, :default => 336699
   preference :front_SidebarHead_bg_color2_hover, :string, :default => 336699
   preference :front_SidebarHead_box_shadow_hover, :string, :default => 'inset 1px 1px 1px 0px rgba(255,255,255,.4)'
+  preference :front_SidebarHead_font_color_hover, :string, :default => 444444
+  preference :front_SidebarHead_text_shadow_hover, :string, :default => 'none'
 # => Active
   preference :front_SidebarHead_opacity_active, :integer, :default => 100
   preference :front_SidebarHead_border_color_active, :string, :default => 'cccccc'
@@ -259,6 +268,8 @@ class StylezConfiguration < Configuration
   preference :front_SidebarHead_bg_color1_active, :string, :default => 336699
   preference :front_SidebarHead_bg_color2_active, :string, :default => 336699
   preference :front_SidebarHead_box_shadow_active, :string, :default => 'inset 1px 1px 1px 0px rgba(255,255,255,.4)'
+  preference :front_SidebarHead_font_color_active, :string, :default => 444444
+  preference :front_SidebarHead_text_shadow_active, :string, :default => 'none'
   
   
 

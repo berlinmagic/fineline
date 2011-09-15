@@ -6,13 +6,7 @@
 .side_box ul.sidebar_subnav li a.aktiv { background: #efefef url('/images/back.png') left top repeat; color: #444; font-weight:bold; }
 .side_box ul.sidebar_subnav li a:hover { background: #999; color: #fff; font-weight:bold; }
 
-
-aside { width: 195px;}
-
-div.side_box { border: 0; background: transparent; 
-	<%= fine_borderRadius( ) %> 
-	<%= fine_boxShadow( ) %> 
-	padding: 0; min-height: 20px; margin: 0 0 15px;}
+div.side_box { border: 0; background: transparent; <%= fine_borderRadius( ) %> <%= fine_boxShadow( ) %> padding: 0; margin: 0;}
 
 .side_box ul.sidebar { padding: 5px 7px 0 7px; list-style: none; margin: 0;}
 
@@ -21,8 +15,7 @@ div.side_box { border: 0; background: transparent;
 
 
 
-.side_box ul.sidebar li a, .side_box ul.sidebar li p { padding: 3px 6px 3px 16px; display:block; background: transparent; color: #777; font-size: 12px;
-	position: relative; line-height:18px; }
+.side_box ul.sidebar li a, .side_box ul.sidebar li p { padding: 3px 6px 3px 16px; display:block; background: transparent; color: #777; font-size: 12px; position: relative; line-height:18px; }
 
 .side_box ul.sidebar li:first-child { border-top: 0; }
 .side_box ul.sidebar li:last-child { border-bottom: 0; }
@@ -56,21 +49,98 @@ div.side_box { border: 0; background: transparent;
 
 
 .side_box .sidebar_head a { padding: 5px 13px 5px 23px; display:block; color: #336699; font-size: 15px; 
-	background: transparent url('/images/fineline/spezial/pulldown12px-r_50.png') 6px 8px no-repeat; line-height:18px;  }
+	background: transparent; line-height:18px;  }
 
 .side_box .sidebar_head:hover { <%= fine_backgroundGradient( 'rgba(51,102,153,0.3)', 'rgba(33,76,99,0.3)' ) %> }
 
 .side_box .sidebar_head.aktiv_box { <%= fine_backgroundGradient( '#336699', '#214c63' ) %> }
 
-.side_box .sidebar_head.aktiv_box a { background-image: url('/images/fineline/spezial/pulldown12px_50.png'); color: #fff;}
+.side_box .sidebar_head.aktiv_box a { background: transparent; color: #fff;}
 
 
-.side_box .sidebar_head { <%= fine_box_css( 'SidebarHead', 'front' ) %> }
-.side_box .sidebar_head:hover { <%= fine_box_css( 'SidebarHead', 'front', 'hover') %> }
-.side_box .sidebar_head:active { <%= fine_box_css( 'SidebarHead', 'front', 'active') %> }
-.side_box .sidebar_head.aktiv_box { <%= fine_box_css( 'SidebarHead', 'front', 'active') %> }
-
-
+.side_box .sidebar_head { 
+		<%= fine_box_css( 'SidebarHead', 'front' ) %> 
+		<%= fine_font_style( 'SidebarHead', 'front', true ) %> 	}
+.side_box .sidebar_head:hover { 
+		<%= fine_box_css( 'SidebarHead', 'front', 'hover') %> 
+		<%= fine_font_style( 'SidebarHead', 'front', true, 'hover' ) %> }
+.side_box .sidebar_head:active { 
+		<%= fine_box_css( 'SidebarHead', 'front', 'active') %> 
+		<%= fine_font_style( 'SidebarHead', 'front', true, 'active' ) %> }
+.side_box.dbx-box-open .sidebar_head { 
+		<%= fine_box_css( 'SidebarHead', 'front', 'active') %> 
+		<%= fine_font_style( 'SidebarHead', 'front', true, 'active' ) %> }
 
 
 /* ================================================================================================================================== */
+
+
+
+/****************************************************************
+  Docking Boxes core CSS: YOU MUST NOT CHANGE OR OVERRIDE THESE 
+*****************************************************************/
+.dbx-clone { position:absolute; visibility:hidden; }
+.dbx-clone, .dbx-clone .dbx-handle-cursor { cursor:move !important; }
+.dbx-dummy { display:block; width:0; height:0; overflow:hidden; margin:0 !important; padding:0 !important; border: dotted 1px #c00; }
+.dbx-group, .dbx-box, .dbx-handle { position:relative; display:block; }
+
+/****************************************************************
+  avoid padding, margins or borders on dbx-box, 
+  to reduce visual discrepancies between it and the clone.  
+  overall, dbx-box is best left as visually unstyled as possible 
+*****************************************************************/
+.dbx-box { margin:0; padding:0; border:none; }
+
+/****************************************************************
+  otherwise, do what you like :) 
+*****************************************************************/
+
+/* group container(s) */
+.dbx-group { clear:both; background: transparent; padding:0 0 10px; }
+	
+/* handles */
+.dbx-handle { }
+
+	
+/* handle cursors are in a class of their own
+   so they only get applied if the script is supported */
+.dbx-handle-cursor { cursor:move; }
+	
+/* toggle images */
+.dbx-toggle { display:block; width:20px; height:20px; padding:0; margin:0; border:none; position:absolute; border:none;
+	top:50%;
+	left:5px;
+	margin-top: -10px; }
+	
+	
+.dbx-toggle-open { background: transparent url('/images/fineline/spezial/pulldown12px_50.png') center center no-repeat; }
+.dbx-toggle-closed { background: transparent url('/images/fineline/spezial/pulldown12px-r_50.png') center center no-repeat; }
+.dbx-toggle-hilite-open { background: transparent url('/images/fineline/spezial/pulldown12px_50.png') center center no-repeat; }
+.dbx-toggle-hilite-closed { background: transparent url('/images/fineline/spezial/pulldown12px-r_50.png') center center no-repeat; }
+
+
+/* keyboard navigation tooltip */
+.dbx-tooltip { margin:36px 0 0 125px; width:185px; display:block; position:absolute; border:1px solid InfoText; background:InfoBackground;
+	color:InfoText; font:small-caption; font-weight:normal; padding:2px 4px 3px 5px; text-align:left; }
+
+/* inner content area */	
+.dbx-content { }
+
+.dbx-content li { }
+
+.dbx-content a, .dbx-content a:visited { }
+
+.dbx-content a:hover, .dbx-content a:focus, .dbx-content a:active { }
+
+/* toggle state of inner content area */
+.dbx-box-closed .dbx-content { display: block; height: 5px; padding: 0; overflow: hidden; }
+
+.dbx-box-closed .dbx-content * { display: none; }
+
+/* additional clone styles */
+.dbx-clone { opacity:0.8; filter:alpha(opacity=80); }
+
+ /* hacks for IE6 */
+* html .dbx-tooltip { font-weight:normal !important; }
+	
+

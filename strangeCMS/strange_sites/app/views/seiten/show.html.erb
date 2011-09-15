@@ -47,8 +47,8 @@
 <%= content_for :sidebar do %>
 <% if Seite.where(:elternseite_id => @seite.id).count > 0 %>
 
-<div class="side_box">
-	<div class="sidebar_head">
+<div class="side_box dbx-box">
+	<div class="sidebar_head dbx-handle">
 		<a href="#"><%= @seite.name.titleize %></a>
 	</div>
 	<ul class='sidebar'>
@@ -60,8 +60,8 @@
 <% end %>
 <% if @seite.ueber_seite %>
 
-<div class="side_box">
-	<div class="sidebar_head">
+<div class="side_box dbx-box">
+	<div class="sidebar_head dbx-handle">
 		<a href="#"><%= @seite.ueber_seite.name.titleize %></a>
 	</div>
 	<ul class='sidebar'>

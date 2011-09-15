@@ -120,10 +120,8 @@
 
 				<%= hook :strange_sidebar_test do %>
 					<div class="side_box dbx-box">
-						<div class="sidebar_head dbx-handle">
-							<a href="#">fineline-Sidebar</a>
-						</div>
-						<ul class='sidebar'>
+						<div class="sidebar_head dbx-handle" title="fineline-Sidebar">fineline-Sidebar</div>
+						<ul class='sidebar dbx-content'>
 							<% if current_user && site_master %>
 							<li><p><span class="norm1">Controller:</span> <span class="norm2"><%= controller.controller_name %></span></p></li>
 							<li><p><span class="norm1">Action:</span> <span class="norm2"><%= controller.action_name -%></span></p></li>

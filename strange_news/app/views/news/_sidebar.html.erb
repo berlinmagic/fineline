@@ -6,9 +6,9 @@
 
 <div class="side_box dbx-box">
 	<div class="sidebar_head dbx-handle">
-		<a href="#">Kategorien</a>
+		Kategorien
 	</div>
-	<ul class='sidebar'>
+	<ul class='sidebar dbx-content'>
 			<% if Kat.where(:target_type => 'News').count > 0 %>
 				<% @kats = [] %>
 				<% @n_kat_fl = 0 %>
@@ -29,9 +29,9 @@
 
 <div class="side_box dbx-box">
 	<div class="sidebar_head dbx-handle">
-		<a href="#">Newsarchiv</a>
+		Newsarchiv
 	</div>
-	<ul class='sidebar'>
+	<ul class='sidebar dbx-content'>
 			<% @n_jahr = 0 %>
 			<% News.aktiv.each do |news_bar| %>
 			
@@ -47,9 +47,9 @@
 
 <div class="side_box dbx-box">
 	<div class="sidebar_head dbx-handle">
-		<a href="#">Tags</a>
+		Tags
 	</div>
-	<ul class='sidebar'>
+	<ul class='sidebar dbx-content'>
 			<% if Tagging.where(:target_type => 'News').count > 0 %>
 				<% @tags = [] %>
 				<% @n_tag_fl = 0 %>

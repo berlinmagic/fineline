@@ -33,6 +33,7 @@
 <%= raw( fine_js_minify( "#{ hook :admin_js_scriptz }" ) ) %>
 <% end %>
 
-
-<%#= raw( fine_js_minify( "#{ render 'javascriptz/libs/dbx' }" ) ) %>
+<% if @script4 == 'seite' %>
+	<%= raw( fine_js_minify( "#{ render 'javascriptz/libs/dbx' }" ) ) %>
+<% end %>
 /* ####################################     ..End of - generated - scripts     ######################################################### */

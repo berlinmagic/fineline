@@ -2,7 +2,7 @@
 <% @google_two = false %>
 <% @google_three = false %>
 
-<% stylez = %w(p pre body h1 h2 h3 h4 h5 h6 headline) %>
+<% stylez = %w(p pre body h1 h2 h3 h4 h5 h6 headline SidebarHead) %>
 <% stylez.each do |style| %>
 	<% @google_one = 	true if Strangecms::Stylez::Config[ "front_#{ style }_font_family" ] == 'Google_one' %>
 	<% @google_two = 	true if Strangecms::Stylez::Config[ "front_#{ style }_font_family" ] == 'Google_two' %>

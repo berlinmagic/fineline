@@ -3,11 +3,11 @@
 <% bild ||= Bild.first %>
 
 
-<div class="side_box">
-	<div class="sidebar_head aktiv_box">
-		<a href="#">Kategorien</a>
+<div class="side_box dbx-box">
+	<div class="sidebar_head dbx-handle">
+		Kategorien
 	</div>
-	<ul class='sidebar'>
+	<ul class='sidebar dbx-content'>
 			<% if Kat.where(:target_type => 'Bild').count > 0 %>
 				<% @kats = [] %>
 				<% @n_kat_fl = 0 %>
@@ -26,11 +26,11 @@
 </div>
 
 
-<div class="side_box">
-	<div class="sidebar_head">
-		<a href="#">Bildarchiv</a>
+<div class="side_box dbx-box">
+	<div class="sidebar_head dbx-handle">
+		Bildarchiv
 	</div>
-	<ul class='sidebar'>
+	<ul class='sidebar dbx-content'>
 			<% @n_jahr = 0 %>
 			<% Bild.all.each do |pic| %>
 			
@@ -44,11 +44,11 @@
 </div>
 
 
-<div class="side_box">
-	<div class="sidebar_head aktiv_box">
-		<a href="#">Tags</a>
+<div class="side_box dbx-box">
+	<div class="sidebar_head dbx-handle">
+		Tags
 	</div>
-	<ul class='sidebar'>
+	<ul class='sidebar dbx-content'>
 			<% if Tagging.where(:target_type => 'Bild').count > 0 %>
 				<% @tags = [] %>
 				<% @n_tag_fl = 0 %>

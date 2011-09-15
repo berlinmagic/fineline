@@ -2,7 +2,7 @@
 module FineStylerHelper
   
   def ff_fine_icon_styler( pref, options = {} )
-    options.assert_valid_keys(:area, :hover, :active, :thing, :group, :preview, :blank)
+    options.assert_valid_keys(:area, :hover, :active, :thing, :group, :preview, :blank, :boxfont)
     options.reverse_merge! :area    =>    'front'         unless    options.key? :area
     options.reverse_merge! :blank    =>    false          unless    options.key? :blank
     options.reverse_merge! :hover    =>    true           unless    options.key? :hover
@@ -10,6 +10,7 @@ module FineStylerHelper
     options.reverse_merge! :thing   =>    'box'           unless    options.key? :thing
     options.reverse_merge! :group   =>    'system'        unless    options.key? :group
     options.reverse_merge! :preview   =>  'navigation'    unless    options.key? :preview
+    options.reverse_merge! :boxfont   =>   false          unless    options.key? :boxfont
     blank = options[:blank]
     area = options[:area]
     hover = options[:hover]
@@ -17,6 +18,7 @@ module FineStylerHelper
     thing = options[:thing]
     group = options[:group]
     preview = options[:preview]
+    boxfont = options[:boxfont]
     if (thing == 'headline_icon') || (thing == 'icon')
       siza = Strangecms::Stylez::Config["#{area}_#{pref}_icon_size"].to_s
     elsif (thing == 'box')
@@ -47,32 +49,23 @@ module FineStylerHelper
 	                </div>'
 	    
 	    if ( thing == 'icon' ) || ( thing == 'headline_icon' )
-	      
           stuff += fl_icon_size( pref, area )
           stuff += fl_icon_color( pref, area )
           stuff += fl_icon_blur( pref, area )
-          
       end
-      
-	    if ( thing == 'font' ) || ( thing == 'headline_icon' )
+	    if ( thing == 'font' ) || ( thing == 'headline_icon' ) || ( thing == 'box' && boxfont == true )
           stuff += ff_font_selecta( pref, area, blank )
           stuff += ff_font_format( pref, area )
           stuff += ff_font_color( pref, area )
-          stuff += ff_line_height( pref, area ) if thing == 'font' 
+          stuff += ff_line_height( pref, area ) if ( thing == 'font' ) || ( thing == 'box' && boxfont == true )
           stuff += fl_text_shadow( pref, area )
 	    end
-	            
-	    
-      
       if ( thing == 'icon' ) || ( thing == 'box' )
-        
           stuff += fl_border_tag( pref, area, '', true, true, true )
-          
           if thing == 'box'
               stuff += ff_padding_tag( pref, area )
               stuff += fl_opacity( pref, area )
           end
-          
           stuff += fl_icon_style( pref, area )
           stuff += fl_background( pref, area )
           stuff += fl_box_shadow( pref, area )
@@ -81,35 +74,35 @@ module FineStylerHelper
           stuff += '<div class="fl_box_170"><label class="norm1"><strong> (Mouseover) </strong></label></div>'
           stuff += '<div class="clearfix"></div>'
           stuff += fl_border_tag( pref, area, 'hover', false, true, true )
-          
           if thing == 'box'
               stuff += fl_opacity( pref, area, 'hover' )
+              if boxfont
+                stuff += ff_font_color( pref, area, 'hover' )
+                stuff += fl_text_shadow( pref, area, 'hover' )
+              end
           end
-          
           stuff += fl_background( pref, area, 'hover' )
           stuff += fl_box_shadow( pref, area, 'hover' )
           
           stuff += '<div class="clearfix"></div><div class="vspacer"></div><div class="clearfix"></div>'
           stuff += '<div class="fl_box_170"><label class="norm1"><strong> (Click) </strong></label></div>'
           stuff += '<div class="clearfix"></div>'
-          
-          
           stuff += fl_border_tag( pref, area, 'active', false, true, true )
-          
           if thing == 'box'
               stuff += fl_opacity( pref, area, 'active' )
+              if boxfont
+                stuff += ff_font_color( pref, area, 'active' )
+                stuff += fl_text_shadow( pref, area, 'active' )
+              end
           end
-          
           stuff += fl_background( pref, area, 'active' )
           stuff += fl_box_shadow( pref, area, 'active' )
       end
-      
       stuff += '<div class="fl_box_170">&nbsp;</div>'
       stuff += '<div class="fl_box_230">'+ submit_tag('speichern') +'<div class="clearfix"></div></div><div class="clearfix"></div>'
       stuff += '</form>'
       stuff += '</div>'
       stuff += '</div>'
-      
       raw( stuff )
   end
   
@@ -174,17 +167,18 @@ module FineStylerHelper
   
   
   
-  def fine_font_style( object, area='front', inherit=true )
+  def fine_font_style( object, area='front', inherit=true, state='' )
+    state = state.blank? ? '' : "_#{ state }"
     stuff  = fine_font_family( Strangecms::Stylez::Config[ "#{area}_#{ object }_font_family" ], inherit )
     stuff += "font-size: #{ Strangecms::Stylez::Config[ "#{area}_#{ object }_font_size" ] }px;"
-    stuff += "color: ##{ Strangecms::Stylez::Config[ "#{area}_#{ object }_font_color" ] };"
+    stuff += "color: ##{ Strangecms::Stylez::Config[ "#{area}_#{ object }_font_color#{ state }" ] };"
     unless object == 'headline'
       stuff += "line-height: #{ Strangecms::Stylez::Config[ "#{area}_#{ object }_line_height" ] }px;"
     end
     stuff += "font-weight: #{ Strangecms::Stylez::Config[ "#{area}_#{ object }_font_weight" ] };"
     stuff += "font-style: #{ Strangecms::Stylez::Config[ "#{area}_#{ object }_font_style" ] };"
-    unless Strangecms::Stylez::Config[ "#{area}_#{ object }_text_shadow" ].blank?
-      stuff += "#{ fine_textShadow( Strangecms::Stylez::Config[ "#{area}_#{ object }_text_shadow" ] ) }"
+    unless Strangecms::Stylez::Config[ "#{area}_#{ object }_text_shadow#{ state }" ].blank?
+      stuff += "#{ fine_textShadow( Strangecms::Stylez::Config[ "#{area}_#{ object }_text_shadow#{ state }" ] ) }"
     end
     raw( stuff )
   end

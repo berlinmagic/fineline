@@ -59,11 +59,9 @@
 <%= content_for :sidebar do %>
 <% if Seite.where(:elternseite_id => @seite.id).count > 0 %>
 
-<div class="side_box">
-	<div class="sidebar_head">
-		<a href="#"><%= @seite.name.titleize %></a>
-	</div>
-	<ul class='sidebar'>
+<div class="side_box dbx-box">
+	<div class="sidebar_head dbx-handle"><%= @seite.name.titleize %></div>
+	<ul class='sidebar dbx-content'>
 			<% Seite.where(:elternseite_id => @seite.id).order(:position).each do |u_site| %>
 				<li><%= link_to u_site.titel, u_site.slug, :class => "#{ 'aktiv' if u_site == @seite}"%></li>
 			<% end %>
@@ -72,11 +70,9 @@
 <% end %>
 <% if @seite.ueber_seite %>
 
-<div class="side_box">
-	<div class="sidebar_head">
-		<a href="#"><%= @seite.ueber_seite.name.titleize %></a>
-	</div>
-	<ul class='sidebar'>
+<div class="side_box dbx-box">
+	<div class="sidebar_head dbx-handle"><%= @seite.ueber_seite.name.titleize %></div>
+	<ul class='sidebar dbx-content'>
 			<% Seite.where(:elternseite_id => @seite.ueber_seite.id).order(:position).each do |u_site| %>
 				<li><%= link_to u_site.titel, u_site.slug, :class => "#{ 'aktiv' if u_site == @seite}"%></li>
 			<% end %>

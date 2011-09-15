@@ -38,9 +38,10 @@ module FineFormHelper
 	      raw( stuff )
 	  end
 	  
-	  def ff_font_color( pref, area='front', blank=true )
+	  def ff_font_color( pref, area='front', state='' )
+	      state = state.blank? ? '' : "_#{ state }"
 	      stuff = "<div class='fl_box_170'><label class='norm1'>#{ t("strange_stylez.font_color") }</label></div><div class='fl_box_150'>"
-	      stuff += text_field_tag("preferences[#{area}_#{ pref }_font_color]", Strangecms::Stylez::Config[ "#{area}_#{ pref }_font_color" ], :class => 'half pick_color' )
+	      stuff += text_field_tag("preferences[#{area}_#{ pref }_font_color#{ state }]", Strangecms::Stylez::Config[ "#{area}_#{ pref }_font_color#{ state }" ], :class => 'half pick_color' )
 	      stuff += '</div><div class="clearfix"></div><div class="vspacer"></div><div class="clearfix"></div>'
 	      raw( stuff )
 	  end
@@ -63,7 +64,7 @@ module FineFormHelper
 		  stuff   =   "<tr><th>#{ t("strange_stylez.google_font_#{ pref }") }</th><td>"
 		  stuff   +=  text_field_tag("preferences[google_font_#{ pref }]", Strangecms::Stylez::Config[ "google_font_#{ pref }" ] )
 		  stuff   +=  "</td><td>#{ t("strange_stylez.google_font_default_#{ pref }") }</td><td>"
-		  stuff   +=  select_tag("preferences[google_font_default_#{ pref }]", options_for_select( StylezConfiguration::FONTS_ALTS.map { |c| [t("strange_stylez.font_alts.#{c}"), c] }, Strangecms::Stylez::Config[ "google_font_#{ pref }" ] ) )
+		  stuff   +=  select_tag("preferences[google_font_default_#{ pref }]", options_for_select( StylezConfiguration::FONTS_ALTS.map { |c| [c,c] }, Strangecms::Stylez::Config[ "google_font_#{ pref }" ] ) )
 		  stuff   +=  "</td></tr>"
       raw( stuff )
     end

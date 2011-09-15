@@ -5,9 +5,9 @@
 
 <div class="side_box dbx-box">
 	<div class="sidebar_head dbx-handle">
-		<a href="#">Kategorien</a>
+		Kategorien
 	</div>
-	<ul class='sidebar'>
+	<ul class='sidebar dbx-content'>
 			<% if Kat.where(:target_type => 'News').count > 0 %>
 				<% @kats = [] %>
 				<% @n_kat_fl = 0 %>
@@ -27,9 +27,9 @@
 
 <div class="side_box dbx-box">
 	<div class="sidebar_head dbx-handle">
-		<a href="#">Newsarchiv</a>
+		Newsarchiv
 	</div>
-	<ul class='sidebar'>
+	<ul class='sidebar dbx-content'>
 			<% @n_jahr = 0 %>
 			<% News.aktiv.each do |news_bar| %>
 			
@@ -44,9 +44,9 @@
 
 <div class="side_box dbx-box">
 	<div class="sidebar_head dbx-handle">
-		<a href="#">Tags</a>
+		Tags
 	</div>
-	<ul class='sidebar'>
+	<ul class='sidebar dbx-content'>
 			<% if Tagging.where(:target_type => 'News').count > 0 %>
 				<% @tags = [] %>
 				<% @n_tag_fl = 0 %>
@@ -75,10 +75,10 @@
 
 <div class="side_box dbx-box">
 	<div class="sidebar_head dbx-handle">
-		<a href="#">Aktuelle News</a>
+		Aktuelle News
 	</div>
 	
-	<ul class='sidebar'>
+	<ul class='sidebar dbx-content'>
 			<% News.aktiv.limit(3).each do |news_bar| %>
 				<li><%= link_to raw("<span class='news_headline'>#{truncate(news_bar.headline, :length => 27, :omission => "...")}</span><br/><span class='news_info'>#{news_bar.datum.strftime('%d.%m.')} von #{news_bar.schreiber}</span><br/><p class='news_vorschau_text'>#{truncate(news_bar.beschreibung, :length => 90, :omission => "...")}</p>"), "#{news_bar.news_site_slug}#{news_bar.slug}", :class => "#{ 'aktiv' if news_bar == @news}"%></li>
 			<% end %>

@@ -1,15 +1,21 @@
 <% area ||= '' %>
 <style>
 .<%= area %>_<%= pref %>_vorschau_in { display: inline-block; position: relative;
-	<%= fine_box_css( pref, area ) %> min-width: 250px; max-width: 310px; }
-.<%= area %>_<%= pref %>_vorschau_in:hover { <%= fine_box_css( pref, area, 'hover') %> }
-.<%= area %>_<%= pref %>_vorschau_in:active { <%= fine_box_css( pref, area, 'active') %> }
+		<%= fine_box_css( pref, area ) %> min-width: 250px; max-width: 310px;
+		<%= fine_font_style( 'SidebarHead', 'front', true ) %> }
+.<%= area %>_<%= pref %>_vorschau_in:hover { <%= fine_box_css( pref, area, 'hover') %>
+		<%= fine_font_style( 'SidebarHead', 'front', true, 'hover' ) %> }
+.<%= area %>_<%= pref %>_vorschau_in:active { <%= fine_box_css( pref, area, 'active') %> 
+		<%= fine_font_style( 'SidebarHead', 'front', true, 'active' ) %> }
 .<%= area %>_<%= pref %>_vorschau_in .finelineButton.pagination_nav { <%= fl_icon_css( 'PaginationNavButton',  :area => area, :important => true ) %> }
 .<%= area %>_<%= pref %>_vorschau_in .finelineButton.pagination_view { <%= fl_icon_css( 'PaginationViewButton',  :area => area, :important => true ) %> }
 .<%= area %>_<%= pref %>_vorschau_in .finelineButton.pagination_nav:hover { <%= fl_icon_css( 'PaginationNavButton', :area => area, :state => 'hover', :important => true ) %> }
 .<%= area %>_<%= pref %>_vorschau_in .finelineButton.pagination_view:hover { <%= fl_icon_css( 'PaginationViewButton', :area => area, :state => 'hover', :important => true ) %> }
 .<%= area %>_<%= pref %>_vorschau_in .finelineButton.pagination_nav:active { <%= fl_icon_css( 'PaginationNavButton', :area => area, :state => 'active', :important => true ) %> }
 .<%= area %>_<%= pref %>_vorschau_in .finelineButton.pagination_view:active { <%= fl_icon_css( 'PaginationViewButton', :area => area, :state => 'active', :important => true ) %> }
+#sideHandle {display:block; width:20px; height:20px; padding:0; margin:0; border:none; position:absolute; border:none;
+top:50%; left:5px; margin-top: -10px; background: transparent url('/images/fineline/spezial/pulldown12px-r_50.png') center center no-repeat; }
+.<%= area %>_<%= pref %>_vorschau_in .finelineButton.pagination_view:active #sideHandle { background: transparent url('/images/fineline/spezial/pulldown12px_50.png') center center no-repeat; }
 </style>
 <div class='icon_vorschau <%= area %>_<%= pref %>_vorschau_in'>
 	
@@ -45,5 +51,8 @@
 									:url => '#') %>
 			<div class="clearfix"></div>
 		</div>
+	<% elsif group == 'sidebar' %>
+		<div id="sideHandle"></div>
+		Sidebar
 	<% end %>
 </div>
