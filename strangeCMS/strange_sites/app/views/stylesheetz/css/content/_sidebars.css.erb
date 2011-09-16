@@ -6,7 +6,7 @@
 .side_box ul.sidebar_subnav li a.aktiv { background: #efefef url('/images/back.png') left top repeat; color: #444; font-weight:bold; }
 .side_box ul.sidebar_subnav li a:hover { background: #999; color: #fff; font-weight:bold; }
 
-div.side_box { border: 0; background: transparent; <%= fine_borderRadius( ) %> <%= fine_boxShadow( ) %> padding: 0; margin: 0;}
+div.side_box { border: 0; background: transparent; <%= fine_borderRadius( ) %> <%= fine_boxShadow( ) %> padding: 0 0 10px !important; margin: 0;}
 
 .side_box ul.sidebar { padding: 5px 7px 0 7px; list-style: none; margin: 0;}
 
@@ -31,20 +31,15 @@ div.side_box { border: 0; background: transparent; <%= fine_borderRadius( ) %> <
 .side_box .sidebar_head { 
 	border: solid 1px #aebecd;
 	<%= fine_backgroundGradient( 'rgba(51,102,153,0.15)', 'rgba(33,76,99,0.15)' ) %>
-	
 	}
 
 .side_box .info_sidebar_head { 
 	border: solid 1px #aebecd; padding: 5px 13px 5px 23px;
 	color: rgb(102,102,102); font-weight: normal; font-size: 15px;
-
-			border: solid 1px #9a9a9a; 
-			<%= fine_borderRadius( '2px' ) %>
-			text-shadow: 		 0 0 3px #fff, 0 0 3px #fff;
-			<%= fine_backgroundGradient( '#f5f2f2', '#cdcdcd' ) %>
-			
-			
-	
+	border: solid 1px #9a9a9a; 
+	<%= fine_borderRadius( '2px' ) %>
+	text-shadow: 		 0 0 3px #fff, 0 0 3px #fff;
+	<%= fine_backgroundGradient( '#f5f2f2', '#cdcdcd' ) %>
 	}
 
 
@@ -143,4 +138,9 @@ div.side_box { border: 0; background: transparent; <%= fine_borderRadius( ) %> <
  /* hacks for IE6 */
 * html .dbx-tooltip { font-weight:normal !important; }
 	
+
+.side_box.dbx-box.draggedclone { background: transparent; opacity: .70 !important; border: dashed 1px #ccc !important; }
+.side_box.dbx-box.draggedclone .sidebar_head { border: dashed 1px #c00 !important; background: #d2fd7b; }
+.side_box.dbx-box.draggedclone .sidebar_head > * { opacity: .20 !important; }
+.side_box.dbx-box.draggedclone ul.sidebar { opacity: .20 !important; }
 

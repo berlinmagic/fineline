@@ -1,0 +1,16 @@
+<% if News.all.count > 3 %>
+	<div class="side_box dbx-box">
+		<div class="sidebar_head dbx-handle">
+			Newsarchiv
+		</div>
+		<ul class='sidebar dbx-content'>
+				<% @n_jahr = 0 %>
+				<% News.aktiv.each do |news_bar| %>
+					<% unless @n_jahr == news_bar.jahr %>
+						<li class="dot"><%= link_to news_bar.jahr, "#{news_bar.news_site_slug}/by_date/#{news_bar.jahr}", :class => "#{ 'aktiv' if news_bar.jahr.to_s == params[:year].to_s}" %></li>
+						<% @n_jahr = news_bar.jahr %>
+					<% end %>
+				<% end %>
+		</ul>
+	</div>
+<% end %>

@@ -1,0 +1,25 @@
+<% if Tagging.where(:target_type => 'Bild').count > 0 %>
+	<div class="side_box dbx-box">
+		<div class="sidebar_head dbx-handle">
+			Tags
+		</div>
+		<ul class='sidebar dbx-content'>
+			 <% @tags = [] %>
+			 <% @n_tag_fl = 0 %>
+			 <% Tagging.where(:target_type => 'Bild').each do |tagging| %>
+			 	<% @tags << tagging.tag.name %>
+			 <% end %>
+			 <% @tags.uniq.sort.each do |tag| %>
+			 	<% tg = Tag.where(:name => tag).first %>
+			 <% unless @n_tag_fl == tg.firstletter %>
+			 	<li><%= link_to raw("<span class='firstletter'>#{tg.firstletter}</span>#{ tag }"),
+			 	 					"#{bild.gallerie_slug}/by_tag#{tg.slug}", :class => "#{ 'aktiv' if @tag && @tag == tg}" %></li>
+			 	<% @n_tag_fl = tg.firstletter %>
+			 <% else %>
+			 	<li><%= link_to raw("#{ tag }"),
+			 	 					"#{bild.gallerie_slug}/by_tag#{tg.slug}", :class => "#{ 'aktiv' if @tag && @tag == tg}" %></li>
+			 <% end%>
+			 <% end %>
+		</ul>
+	</div>
+<% end %>

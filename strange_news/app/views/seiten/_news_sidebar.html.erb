@@ -1,91 +1,16 @@
+<% news = @one_news ? @one_news : News.aktiv.first %>
+
 <% if @seite && @seite.system_name && @seite.system_name == 'news_site' %>
 
-<% news ||= News.aktiv.first %>
-<% @news ||= News.aktiv.first %>
+	<%= render 'sidebars/news_kategorien', :news => news %>
 
-<div class="side_box dbx-box">
-	<div class="sidebar_head dbx-handle">
-		Kategorien
-	</div>
-	<ul class='sidebar dbx-content'>
-			<% if Kat.where(:target_type => 'News').count > 0 %>
-				<% @kats = [] %>
-				<% @n_kat_fl = 0 %>
-				<% Kat.where(:target_type => 'News').each do |tagging| %>
-					<% @kats << tagging.kategorie.name %>
-				<% end %>
-				<% @kats.uniq.sort.each do |kat| %>
-					<% kt = Kategorie.where(:name => kat).first %>
+	<%= render 'sidebars/news_archiv', :news => news %>
 
-					<li class="dot"><%= link_to raw("#{ kat }"),
-					 					"#{news.news_site_slug}/by_kategorie#{kt.slug}", :class => "#{ 'aktiv' if @kategorie && @kategorie == kt}" %></li>
+	<%= render 'sidebars/news_tags', :news => news %>
 
-				<% end %>
-			<% end %>
-	</ul>
-</div>
+<% else %>
 
-<div class="side_box dbx-box">
-	<div class="sidebar_head dbx-handle">
-		Newsarchiv
-	</div>
-	<ul class='sidebar dbx-content'>
-			<% @n_jahr = 0 %>
-			<% News.aktiv.each do |news_bar| %>
-			
-				<% unless @n_jahr == news_bar.jahr %>
-					<li class="dot"><%= link_to news_bar.jahr, "#{news_bar.news_site_slug}/by_date/#{news_bar.jahr}", :class => "#{ 'aktiv' if news_bar.jahr.to_s == params[:year].to_s}" %></li>
-					<% @n_jahr = news_bar.jahr %>
-				<% end %>
-				
-			<% end %>
-	</ul>
-</div>
-
-<div class="side_box dbx-box">
-	<div class="sidebar_head dbx-handle">
-		Tags
-	</div>
-	<ul class='sidebar dbx-content'>
-			<% if Tagging.where(:target_type => 'News').count > 0 %>
-				<% @tags = [] %>
-				<% @n_tag_fl = 0 %>
-				<% Tagging.where(:target_type => 'News').each do |tagging| %>
-					<% @tags << tagging.tag.name %>
-				<% end %>
-				<% @tags.uniq.sort.each do |tag| %>
-					<% tg = Tag.where(:name => tag).first %>
-				<% unless @n_tag_fl == tg.firstletter %>
-					<li><%= link_to raw("<span class='firstletter'>#{tg.firstletter}</span>#{ tag }"),
-					 					"#{news.news_site_slug}/by_tag/#{tg.name}", :class => "#{ 'aktiv' if @tag && @tag == tg}" %></li>
-					<% @n_tag_fl = tg.firstletter %>
-				<% else %>
-					<li><%= link_to raw("#{ tag }"),
-					 					"#{news.news_site_slug}/by_tag/#{tg.name}", :class => "#{ 'aktiv' if @tag && @tag == tg}" %></li>
-				<% end%>
-				<% end %>
-			<% end %>
-	</ul>
-</div>
-
-
-<%else%>
-
-
-
-<div class="side_box dbx-box">
-	<div class="sidebar_head dbx-handle">
-		Aktuelle News
-	</div>
-	
-	<ul class='sidebar dbx-content'>
-			<% News.aktiv.limit(3).each do |news_bar| %>
-				<li><%= link_to raw("<span class='news_headline'>#{truncate(news_bar.headline, :length => 27, :omission => "...")}</span><br/><span class='news_info'>#{news_bar.datum.strftime('%d.%m.')} von #{news_bar.schreiber}</span><br/><p class='news_vorschau_text'>#{truncate(news_bar.beschreibung, :length => 90, :omission => "...")}</p>"), "#{news_bar.news_site_slug}#{news_bar.slug}", :class => "#{ 'aktiv' if news_bar == @news}"%></li>
-			<% end %>
-			
-	</ul>
-</div>
-
+	<%= render 'sidebars/news_aktuell', :news => news %>
 
 <% end %>
 

@@ -1,42 +1,6 @@
-/*
- * FCKeditor - The text editor for Internet - http://www.fckeditor.net
- * Copyright (C) 2003-2007 Frederico Caldeira Knabben
- * 
- * == BEGIN LICENSE ==
- * 
- * Licensed under the terms of any of the following licenses at your
- * choice:
- * 
- *  - GNU General Public License Version 2 or later (the "GPL")
- *	 http://www.gnu.org/licenses/gpl.html
- * 
- *  - GNU Lesser General Public License Version 2.1 or later (the "LGPL")
- *	 http://www.gnu.org/licenses/lgpl.html
- * 
- *  - Mozilla Public License Version 1.1 or later (the "MPL")
- *	 http://www.mozilla.org/MPL/MPL-1.1.html
- * 
- * == END LICENSE ==
- * 
- * 	Styles used by the editor IFRAME and Toolbar.
- * 
- * 		Paul Moers (http://fckskins.saulmade.nl/)
- */
+body { padding: 0; margin: 0; }
 
-/*
-	### Basic Editor IFRAME Styles.
-*/
-
-body
-{
-	padding: 0px;
-	margin: 0px 0px 0px 0px;
-}
-
-#xEditingArea
-{
-	/* border: #696969 1px solid; */	border: 0;
-}
+#xEditingArea { /* border: #696969 1px solid; */	border: 0; }
 #fck_editor_text_area { border: 0; }
 
 #fck_editor_text_area table { border: solid 1px #cccccc !important; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;  padding: 5px; background-color: #f4f2f2;}
@@ -426,12 +390,12 @@ body
 
 .SC_Field
 {
-	margin: 3px 5px 5px 0;
+	margin: 0;
 	font-size: 12px; color: #444; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;
-	padding: 1px;
+	padding: 1px 1px 2px;
 	border: #9b9b9b 1px solid;
 	cursor: default;
-	width: 90px !important;
+	width: 84px !important;
 }
 
 .SC_FieldCaption

@@ -81,6 +81,16 @@ FCKConfig.ToolbarSets["Basic"] = [
 
 FCKConfig.ToolbarSets["Strange"] = [
 	
+	['Style'], /* ['FontFormat'], */
+	['Bold'],['Italic'],['Underline'],['StrikeThrough'],['JustifyLeft'],['JustifyCenter'],['JustifyRight'],['JustifyFull'],
+	['UnorderedList'],['OrderedList'],['Indent'],['Outdent'],['strangeLink'],['Unlink'],['strangeFile'],
+	['strangeImage'],['strangeFlash'],['googlemaps'],['Snippets'],['SpecialChar'],
+	['Source'],['ShowBlocks'],['TableOC']
+	 // No comma for the last row.
+] ;
+
+FCKConfig.ToolbarSets["X_Strange_X"] = [
+	
 	['FontFormat','Bold','Italic','Underline','StrikeThrough','JustifyLeft','JustifyCenter','JustifyRight','JustifyFull','UnorderedList','OrderedList','Indent','Outdent','strangeLink','Unlink','strangeImage','strangeFlash','googlemaps','Snippets','TableOC','SpecialChar','strangeFile'],
 	['Source','ShowBlocks']
 	 // No comma for the last row.
@@ -90,13 +100,6 @@ FCKConfig.ToolbarSets["StrangeAdmin"] = [
 	
 	['FontFormat','Bold','Italic','Underline','StrikeThrough','JustifyLeft','JustifyCenter','JustifyRight','JustifyFull','UnorderedList','OrderedList','Indent','Outdent','strangeLink','Unlink','strangeImage','strangeFlash','googlemaps','Snippets','TableOC','SpecialChar','strangeFile'],
 	['Source','ShowBlocks']
-	 // No comma for the last row.
-] ;
-
-FCKConfig.ToolbarSets["StrangeOld"] = [
-	
-	['FontFormat','Bold','Italic','Underline','StrikeThrough','JustifyLeft','JustifyCenter','JustifyRight','JustifyFull','UnorderedList','OrderedList','Indent','Outdent','strangeLink','Unlink','strangeImage','Flash','googlemaps','Templates','Table','SpecialChar','Source','ShowBlocks'],
-	['RemoveFormat','TableOC','easyFile','Snippets']
 	 // No comma for the last row.
 ] ;
 
@@ -117,7 +120,9 @@ FCKConfig.SpellChecker = 'WSC' ;	// 'WSC' | 'SpellerPages' | 'ieSpell'
 FCKConfig.ContextMenu = ['Generic','Anchor','Flash','Select','Textarea','Checkbox','Radio','TextField','HiddenField','ImageButton','Button','BulletedList','NumberedList','Table','Form'] ;
 FCKConfig.ShowBorders	= true ;
 FCKConfig.AutoGrowMax = 600 ;
-// FCKConfig.ToolbarLocation = 'Out:seiten_top_banner' ;
+// 
+// FCKConfig.ToolbarLocation = 'Out:fck_toolz_box' ;
+// 
 FCKConfig.DefaultLanguage		= 'de' ;
 FCKConfig.ForcePasteAsPlainText	= true ;
 
@@ -127,11 +132,11 @@ FCKConfig.EditorAreaCSS = '/system/editor_finestyle.css' ;
 
 FCKConfig.BodyClass = 'edit' ;
 FCKConfig.BodyId = 'edit' ;
-FCKConfig.CustomStyles =
-{
-	'Red Title'	: { Element : 'h3', Styles : { 'color' : 'Red' } },
-	'o_box' : { Element : 'div', Attributes : { 'class' : 'o_box' } }
-};
+
+FCKConfig.CustomStyles = {
+/*	'Red Title'	: { Element : 'h3', Styles : { 'color' : 'Red' } },
+	'o_box' : { Element : 'div', Attributes : { 'class' : 'o_box' } }   */	};
+
 // FCKConfig.FontNames		= 'StrangeBreath;Arial;Comic Sans MS;Courier New;Tahoma;Times New Roman;Verdana' ;
 FCKConfig.FontNames		= 'Verdana;Arial;Comic Sans MS;Courier New;Tahoma' ;
 // FCKConfig.FontSizes		= '12px;13px;15px;18px;smaller;larger;xx-small;x-small;small;medium;large;x-large;xx-large' ;
@@ -139,5 +144,5 @@ FCKConfig.FontSizes		= '12px;13px;15px;18px' ;
 FCKConfig.StylesXmlPath		= FCKConfig.EditorPath + 'fckstyles.xml' ;
 FCKConfig.TemplatesXmlPath	= FCKConfig.EditorPath + 'fcktemplates.xml' ;
 // FCKConfig.FontFormats	= 'p;h1;h2;h3;h4;h5;h6;pre;address;div' ;
-FCKConfig.FontFormats	= 'p;h1;h2;h3;h4;div' ;
+FCKConfig.FontFormats	= 'p;h1;h2;h3;h4;h5;h6;pre;div' ;
 FCKConfig.FontColors = '000000,993300,333300,003300,003366,000080,333399,333333,800000,FF6600,808000,808080,008080,0000FF,666699,808080,FF0000,FF9900,99CC00,339966,33CCCC,3366FF,800080,999999,FF00FF,FFCC00,FFFF00,00FF00,00FFFF,00CCFF,993366,C0C0C0,FF99CC,FFCC99,FFFF99,CCFFCC,CCFFFF,99CCFF,CC99FF,FFFFFF' ;

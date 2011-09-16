@@ -1,0 +1,18 @@
+<% if Bild.all.count > 3 %>
+	<div class="side_box dbx-box">
+		<div class="sidebar_head dbx-handle">
+			Bildarchiv
+		</div>
+		<ul class='sidebar dbx-content'>
+				<% @n_jahr = 0 %>
+				<% Bild.all.each do |pic| %>
+			
+					<% unless @n_jahr == pic.jahr %>
+						<li class="dot"><%= link_to pic.jahr, "#{pic.gallerie_slug}/by_date/#{pic.jahr}", :class => "#{ 'aktiv' if pic.jahr.to_s == params[:year].to_s}" %></li>
+						<% @n_jahr = pic.jahr %>
+					<% end %>
+				
+				<% end %>
+		</ul>
+	</div>
+<% end %>

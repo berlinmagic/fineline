@@ -24,6 +24,7 @@ class NewsController < ApplicationController
     else      
       @news = News.find_by_slug('/'+params[:id])
     end
+    @one_news = @news
   end
   
   def show_news
@@ -34,6 +35,7 @@ class NewsController < ApplicationController
     else      
       @news = News.find_by_slug('/'+params[:id])
     end
+    @one_news = @news
     render 'news/show'
   end
   
@@ -104,6 +106,7 @@ class NewsController < ApplicationController
   private
   
   def load_news_site
+    @one_news = false
     @seite = Seite.where("system_name = ? AND deleted = ?", 'news_site', false).first
   end
   

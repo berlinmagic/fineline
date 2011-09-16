@@ -2,73 +2,11 @@
 
 <% bild ||= Bild.first %>
 
+<%= render 'sidebars/bilder_kategorien' %>
 
-<div class="side_box dbx-box">
-	<div class="sidebar_head dbx-handle">
-		Kategorien
-	</div>
-	<ul class='sidebar dbx-content'>
-			<% if Kat.where(:target_type => 'Bild').count > 0 %>
-				<% @kats = [] %>
-				<% @n_kat_fl = 0 %>
-				<% Kat.where(:target_type => 'Bild').each do |tagging| %>
-					<% @kats << tagging.kategorie.name %>
-				<% end %>
-				<% @kats.uniq.sort.each do |kat| %>
-					<% kt = Kategorie.where(:name => kat).first %>
+<%= render 'sidebars/bilder_archiv' %>
 
-					<li class="dot"><%= link_to raw("#{ kat }"),
-					 					"#{bild.gallerie_slug}/by_kategorie#{kt.slug}", :class => "#{ 'aktiv' if @kategorie && @kategorie == kt}" %></li>
-
-				<% end %>
-			<% end %>
-	</ul>
-</div>
-
-
-<div class="side_box dbx-box">
-	<div class="sidebar_head dbx-handle">
-		Bildarchiv
-	</div>
-	<ul class='sidebar dbx-content'>
-			<% @n_jahr = 0 %>
-			<% Bild.all.each do |pic| %>
-			
-				<% unless @n_jahr == pic.jahr %>
-					<li class="dot"><%= link_to pic.jahr, "#{pic.gallerie_slug}/by_date/#{pic.jahr}", :class => "#{ 'aktiv' if pic.jahr.to_s == params[:year].to_s}" %></li>
-					<% @n_jahr = pic.jahr %>
-				<% end %>
-				
-			<% end %>
-	</ul>
-</div>
-
-
-<div class="side_box dbx-box">
-	<div class="sidebar_head dbx-handle">
-		Tags
-	</div>
-	<ul class='sidebar dbx-content'>
-			<% if Tagging.where(:target_type => 'Bild').count > 0 %>
-				<% @tags = [] %>
-				<% @n_tag_fl = 0 %>
-				<% Tagging.where(:target_type => 'Bild').each do |tagging| %>
-					<% @tags << tagging.tag.name %>
-				<% end %>
-				<% @tags.uniq.sort.each do |tag| %>
-					<% tg = Tag.where(:name => tag).first %>
-				<% unless @n_tag_fl == tg.firstletter %>
-					<li><%= link_to raw("<span class='firstletter'>#{tg.firstletter}</span>#{ tag }"),
-					 					"#{bild.gallerie_slug}/by_tag#{tg.slug}", :class => "#{ 'aktiv' if @tag && @tag == tg}" %></li>
-					<% @n_tag_fl = tg.firstletter %>
-				<% else %>
-					<li><%= link_to raw("#{ tag }"),
-					 					"#{bild.gallerie_slug}/by_tag#{tg.slug}", :class => "#{ 'aktiv' if @tag && @tag == tg}" %></li>
-				<% end%>
-				<% end %>
-			<% end %>
-	</ul>
-</div>
+<%= render 'sidebars/bilder_tags' %>
 
 <% end %>
 

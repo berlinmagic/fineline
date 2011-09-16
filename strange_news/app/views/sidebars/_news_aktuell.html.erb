@@ -1,0 +1,12 @@
+<div class="side_box dbx-box">
+	<div class="sidebar_head dbx-handle">
+		Aktuelle News
+	</div>
+	
+	<ul class='sidebar dbx-content'>
+			<% News.aktiv.limit(3).each do |news_bar| %>
+				<li><%= link_to raw("<span class='news_headline'>#{truncate(news_bar.headline, :length => 27, :omission => "...")}</span><br/><span class='news_info'>#{news_bar.datum.strftime('%d.%m.')} von #{news_bar.schreiber}</span><br/><p class='news_vorschau_text'>#{truncate(news_bar.beschreibung, :length => 90, :omission => "...")}</p>"), "#{news_bar.news_site_slug}#{news_bar.slug}", :class => "#{ 'aktiv' if news_bar == news}"%></li>
+			<% end %>
+			
+	</ul>
+</div>

@@ -32,6 +32,7 @@
 	# These styles are already available in the "Format" combo, so they are not
 	# needed here by default.
 
+	
 	<Style name="Heading 1" element="h1" />
 	<Style name="Heading 2" element="h2" />
 	<Style name="Heading 3" element="h3" />
@@ -43,6 +44,23 @@
 	<Style name="Preformatted Text" element="pre" />
 	<Style name="Address" element="address" />
 	-->
+	
+	
+	<Style name="Paragraph" element="p" />
+	<Style name="Krasse Schrift" element="p">
+		<Attribute name="class" value="krass" />
+	</Style>
+	<Style name="Überschrift 1" element="h1" />
+	<Style name="Überschrift 2" element="h2" />
+	<Style name="Überschrift 3" element="h3" />
+	<Style name="Überschrift 4" element="h4" />
+	<Style name="Überschrift 5" element="h5" />
+	<Style name="Überschrift 6" element="h6" />
+	
+	<Style name="Block" element="div" />
+	<Style name="Formartiert" element="pre" />
+	
+	
 
 	<!-- Inline Styles -->
 
@@ -60,7 +78,8 @@
 	<Style name="Subscript" element="sub" />
 	<Style name="Superscript" element="sup" />
 	-->
-
+	
+	<!-- 	Ugly Shit
 	<Style name="Marker: Yellow" element="span">
 		<Style name="background-color" value="Yellow" />
 	</Style>
@@ -95,8 +114,10 @@
 	<Style name="Language: LTR Strong" element="bdo">
 		<Attribute name="dir" value="ltr" />
 	</Style>
+	-->
 
 	<!-- Object Styles -->
+	<!--
 
 	<Style name="Image on Left" element="img">
 		<Attribute name="style" value="padding: 5px; margin-right: 5px" />
@@ -108,4 +129,5 @@
 		<Attribute name="border" value="2" />
 		<Attribute name="align" value="right" />
 	</Style>
+	-->
 </Styles>

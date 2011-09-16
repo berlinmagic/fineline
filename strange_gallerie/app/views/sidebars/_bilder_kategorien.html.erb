@@ -1,0 +1,19 @@
+<% if Kat.where(:target_type => 'Bild').count > 0 %>
+	<div class="side_box dbx-box">
+		<div class="sidebar_head dbx-handle">
+			Kategorien
+		</div>
+		<ul class='sidebar dbx-content'>
+			<% @kats = [] %>
+			<% @n_kat_fl = 0 %>
+			<% Kat.where(:target_type => 'Bild').each do |tagging| %>
+				<% @kats << tagging.kategorie.name %>
+			<% end %>
+			<% @kats.uniq.sort.each do |kat| %>
+				<% kt = Kategorie.where(:name => kat).first %>
+				<li class="dot"><%= link_to raw("#{ kat }"),
+						 "#{bild.gallerie_slug}/by_kategorie#{kt.slug}", :class => "#{ 'aktiv' if @kategorie && @kategorie == kt}" %></li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>
