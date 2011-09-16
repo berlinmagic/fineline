@@ -15,14 +15,14 @@ class Seite < ActiveRecord::Base
   #****************************************************************************************************************************************************
   # =>                     S C O P E S
   #****************************************************************************************************************************************************
-  scope :header,        where("in_header = ?", true)
-  scope :main,          where("elternseite_id = ?", nil)
-  scope :footer,        where("in_footer = ?", true)
-  scope :nav,           where("in_main_nav = ?", true)
-  scope :entwurf,       where("entwurf = ? AND deleted = ", true, false)
-  scope :aktiv,         where("entwurf = ? AND deleted = ", false, false)
-  scope :fineline,      where("system_seite = ?", true)
-  scope :deleted,       where("deleted = ?", true)
+  scope :header,        :conditions => {:in_header => true}, :order => 'position'
+  scope :main,          :conditions => {:elternseite_id => nil}, :order => 'position'
+  scope :footer,        :conditions => ["in_footer = ?", true], :order => 'position'
+  scope :nav,           :conditions => ["in_main_nav = ?", true], :order => 'position'
+  scope :entwurf,       :conditions => {:entwurf => true, :deleted => false}
+  scope :aktiv,         :conditions => {:entwurf => false, :deleted => false}
+  scope :fineline,      :conditions => {:system_seite => true}
+  scope :deleted,       :conditions => {:deleted => true}
   scope :sitemap,       where("system_seite = ? OR entwurf = ? AND deleted = ?", true, false, false)
   scope :systemsite,    lambda { |name| where("system_name = ? AND deleted = ?", name, false) }
   

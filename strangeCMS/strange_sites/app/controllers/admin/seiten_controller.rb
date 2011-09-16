@@ -141,13 +141,14 @@ class Admin::SeitenController < Admin::BaseController
   end
   
   def reorder_nested_stuff
-    @pos = 0
+    @pos = params[:seite].count
     params[:seite].each do |key,value|
-       if thing = Seite.find(key)
+       if thing = Seite.find_by_id(key.to_i)
+         logger.info "#{ key } - #{thing.name} => pos: #{ @pos }"
          thing.position = @pos
          thing.elternseite_id = (value == 'root') ? nil : value
          thing.save
-         @pos = @pos + 1
+         @pos = @pos - 1
        end
 
     end

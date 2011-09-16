@@ -25,6 +25,7 @@ class NewsController < ApplicationController
       @news = News.find_by_slug('/'+params[:id])
     end
     @one_news = @news
+    @title = @news.headline
   end
   
   def show_news
@@ -36,6 +37,7 @@ class NewsController < ApplicationController
       @news = News.find_by_slug('/'+params[:id])
     end
     @one_news = @news
+    @title = @news.headline
     render 'news/show'
   end
   

@@ -35,5 +35,12 @@
 
 <% if @script4 == 'seite' %>
 	<%= raw( fine_js_minify( "#{ render 'javascriptz/libs/dbx' }" ) ) %>
+	<%= raw( fine_js_minify( "#{ render 'javascriptz/libs/jCrump' }" ) ) %>
+	<%= raw( fine_js_minify( "#{ render 'javascriptz/libs/jBreadCrumb' }" ) ) %>
+	
+	$('#BreadBox').jCrumb({maxCrumbs:13, seperator:false});
+	/*	$('#fineBreadcrumps').jCrumb({maxCrumbs:5, jqUI : true, defaultClass : 'jCrumb-gray', seperator:false});  */
+	
+	$('#BreadBox').jBreadCrumb();
 <% end %>
 /* ####################################     ..End of - generated - scripts     ######################################################### */
