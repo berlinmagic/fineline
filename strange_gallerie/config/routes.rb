@@ -7,6 +7,18 @@ Rails.application.routes.draw do
   strange_gallerie
   
   namespace :admin do
+    
+      namespace :settings do
+        resources :gallerien do
+          collection do
+            get :edit
+            put :update
+            post :new_pref_pic
+            post :update_pref_pic
+          end
+        end
+      end
+      
         resources :gallerien do
             collection do
               get :ueberblick

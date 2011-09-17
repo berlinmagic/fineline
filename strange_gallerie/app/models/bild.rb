@@ -54,7 +54,8 @@ class Bild < ActiveRecord::Base
   	  if self.file && self.file.name && self.name.blank?
   	      xy_pic = self.file.name.split('.')
   	      xy_pic.delete(xy_pic.last)
-  	      self.name = xy_pic.join('_').to_s
+  	      self.name = xy_pic.join('_').to_url.gsub('/', '').titleize
+  	      self.file.name = self.file.name.to_url.gsub('/', '')
   	  end
   	  self.jahr = self.datum.year
       self.monat = self.datum.month

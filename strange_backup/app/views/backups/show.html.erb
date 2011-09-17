@@ -113,20 +113,7 @@
 			</ul>
 		</div>
 	<% end %>
-	
-	<% if @backup_seite && admin_check %>
-	<% bkp_count = @backup_seite.backups.count %>
-		<div class="side_box dbx-box">
-			<div class="sidebar_head dbx-handle">
-				Backups
-			</div>
-			<ul class='sidebar dbx-content'>
-				<% @backup_seite.backups.each_with_index do |bkp,index| %>
-					<li><%= link_to 'Version '+(bkp_count - index).to_s+' - '+bkp.created_at.strftime('%d.%m. - %H:%M').to_s, backup_path(bkp) %></li>
-				<% end %>
-			</ul>
-		</div>
-	<% end %>
+
 
 	
 

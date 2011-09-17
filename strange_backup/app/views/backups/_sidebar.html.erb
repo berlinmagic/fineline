@@ -1,4 +1,5 @@
 <% if @seite && @seite.backups.count > 0 && admin_check %>
+<% unless @backup %>
 <% bkp_count = @seite.backups.count %>
 	<div class="side_box dbx-box">
 	        <div class="sidebar_head dbx-handle">Backups</div>
@@ -11,4 +12,4 @@
 			</ul>
 	</div>
 <% end %>
-
+<% end %>

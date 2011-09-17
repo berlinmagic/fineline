@@ -1,5 +1,37 @@
 <div class="fine_lightbox_pic_holder" style="display:block; padding: 0; width:<%= @bild.file.thumb('900x600').width %>px; height: <%= @bild.file.thumb('900x600').height %>px">
 	
-<%= image_tag @bild.file.thumb('900x600').url %>
+	
+
+
+<% if Strangecms::Gallerie::Config[:use_watermarks] && Strangecms::Gallerie::Config[:lightbox_watermark] %>
+
+	<% if (Strangecms::Gallerie::Config[:watermark_type] == 'image') && dat = Datei.find(Strangecms::Gallerie::Config[:watermark_datei].to_i) %>
+		
+		<%= image_tag @bild.file.thumb("900x600").encode(:png).process(
+						:add_watermark, 
+							:path => "#{dat.file.path}", 
+							:tile => Strangecms::Gallerie::Config[:watermark_tile].to_i
+						).url %>
+		
+	<% else %>
+		
+		<%= image_tag @bild.file.thumb("900x600").encode(:png).process(
+						:add_tiled_text,
+						 	:text => Strangecms::Gallerie::Config[:watermark_text].to_s,
+							:color => Strangecms::Gallerie::Config[:watermark_font_color],
+							:opacity => Strangecms::Gallerie::Config[:watermark_blur],
+							:rotate => Strangecms::Gallerie::Config[:watermark_rotate],
+							:font_size => Strangecms::Gallerie::Config[:watermark_font_size],
+							:tile => Strangecms::Gallerie::Config[:watermark_tile]).url %>
+		
+	<% end %>
+
+<% else %>
+	
+	<%= image_tag @bild.file.thumb('900x600').url %>
+	
+<% end %>
+	
+
 
 </div>

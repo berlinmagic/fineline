@@ -12,8 +12,8 @@ module Dragonfly
           
           # => image = image.write('PNG')
            
-          width   =   opts[:width]  || 3000
-          height  =   opts[:height] || 1500
+          width   =   opts[:width].to_i  || 3000
+          height  =   opts[:height].to_i || 1500
           
           width   = (image.columns * 3) if image.columns > width
           height   = (image.rows * 3) if image.rows > height
@@ -21,7 +21,7 @@ module Dragonfly
           x_off   =   (width - image.columns) / -2
           y_off   =   (height - image.rows) / -2
           
-          image.background_color = "rgba(0,0,0,0.00)"
+          image.background_color = "rgba(0,0,0,.0)"
           
           image.extent(width, height, x_off, y_off)
           

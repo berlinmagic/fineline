@@ -1,10 +1,39 @@
 # encoding: utf-8
 class GallerieConfiguration < Configuration
   
-  PIC_SHOWS     =   %w(lightbox show_pic)
+  WATERMARKS    =   %w(image text)
+  WM_TILES      =   [1, 4, 9, 16]
+  FONTSIZE      =   (12..30).to_a
+  
+  
+  PIC_SHOWS     =   %w(lightbox seite)
   PIC_DETAIL    =   %w(full std)
   
   # => standard, hochformat, querformat, panorama, spezial
+  
+  preference :aktiv,                  :boolean,   :default => true
+  
+  
+  preference :use_watermarks,         :boolean,   :default => true
+  preference :lightbox_watermark,     :boolean,   :default => true
+  preference :show_watermark,         :boolean,   :default => true
+  
+  preference :watermark_type,         :string,    :default => WATERMARKS[1]
+  
+  preference :watermark_tile,         :integer,   :default => WM_TILES[1]
+  
+  preference :watermark_text,         :string,    :default => 'fineline-CMS'
+  
+  preference :watermark_font_size,    :integer,   :default => 18
+  preference :watermark_font_color,   :string,    :default => 'f3f2f2'
+  preference :watermark_rotate,       :integer,   :default => 13
+  preference :watermark_blur,         :integer,   :default => 42
+  
+  preference :watermark_datei,        :integer
+  
+  
+  
+  
   
   preference :hochformat_width, :integer, :default => 600
   preference :hochformat_height, :integer, :default => 800

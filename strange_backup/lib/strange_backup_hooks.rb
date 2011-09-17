@@ -15,7 +15,7 @@ class StrangeBackupHooks < Strangecms::ThemeSupport::HookListener
   end
   
   insert_after :strange_sidebar do
-    "<%= render 'backups/sidebar' %>"
+    "<%= render 'sidebars/seiten_backups' %>"
   end
   
   insert_after :admin_module_sub_tabs do

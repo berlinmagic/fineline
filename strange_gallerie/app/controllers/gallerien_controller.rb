@@ -105,6 +105,22 @@ class GallerienController< ApplicationController
     render 'gallerien/show_by'
   end
   
+  def fineline_accurate_title
+    portfolio = Seite.where('system_name = ?', 'gallerie').first
+    if @bild
+      this_title = @bild.name
+    elsif params[:year]
+      this_title = "#{portfolio.titel} - #{ params[:day] + '.' if params[:day] }#{ params[:month] + '.' if params[:month] }#{params[:year]}"
+    elsif params[:tag]
+      this_title = "#{portfolio.titel} - by tag - #{params[:tag]}"
+    elsif params[:kategorie]
+      this_title = "#{portfolio.titel} - by kategorie - #{params[:kategorie]}"
+    else
+      this_title = "#{portfolio.titel}"
+    end
+    this_title
+  end
+  
   private
   
     def load_stuff

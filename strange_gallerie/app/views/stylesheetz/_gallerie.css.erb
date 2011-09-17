@@ -24,17 +24,6 @@
    }
 .bild_box:hover { border: solid 1px #3878ae; background: #fff url("/images/back.png") left top repeat; }
 
-#sidebar #gallerie_navi { list-style: none; margin:0; padding: 0; }
-#sidebar #gallerie_navi li { margin: 0 0 5px; }
-#sidebar #gallerie_navi li a { padding: 8px 10px 7px 30px; display: block; text-decoration:none; font-weight: bold; border: inset 1px #ececec; 
-	background: #ececec; color: #666; line-height: 18px; }
-#sidebar #gallerie_navi li a.aktiv, #sidebar #sidebar_navi li a:hover { background: rgba(0,153,255,.9) url('/images/admin/sidebar_aktiv_bg.png') left top repeat-x; color: #fff; border: inset 1px #1a5189; }
-
-#sidebar #gallerie_navi li ul.inner_gallerie_navi { list-style: none; margin:0; padding: 0 10px 5px; }
-#sidebar #gallerie_navi li ul.inner_gallerie_navi li { margin: 0 0 3px; }
-#sidebar #gallerie_navi li ul.inner_gallerie_navi li a { padding: 2px 20px 2px; display: block; text-decoration:none; font-weight: normal; background: transparent; border: 0;
-	color: #666; line-height: 18px; }
-#sidebar #gallerie_navi li ul.inner_gallerie_navi li a:hover, #sidebar #gallerie_navi li ul.inner_gallerie_navi li a.aktiv {  color: #444; border: 0; font-weight: bold; }
 
 a.pic_btn_del {  width: 16px; height: 16px; position:absolute; top:0; background: transparent url('/images/btns/loeschen_16px.png') 0px 0px no-repeat; right: 5px; display:block; opacity: 0;}
 
@@ -61,13 +50,25 @@ a.pic_btn_del:hover { opacity: 1; }
 	background: #fff;
 }
 
+.gpix_box .in_box_admin_toolz { position: absolute; top:0; right:0; text-align:right; padding: 4px; display:block; background: #fff; 
+	<% if finestyler( 'systemButton_style', 'front' ) == 'gerunded' %>
+		<%= fineBorderRadius( '', '', '', "#{ finestyler( 'systemButton_border_radius', 'front' ) }px" ) %> 
+	<% elsif finestyler( 'systemButton_style', 'front' ) == 'rund' %>
+		<%= fineBorderRadius( '', '', '', "#{ finestyler( 'systemButton_icon_size', 'front' ).to_i / 2 + finestyler( 'systemButton_border_width', 'front' ).to_i }px" ) %>
+	<% else %>
+		<%= fineBorderRadius( '', '', '', "" ) %>
+	<% end %>
+		}
+
+
 a.gpix_box:hover { border: solid 1px #3878ae; background: #fff; }
 
-a.pic_nav_prev { position: absolute; left: 1%; top: 50%; bottom: 50%; padding:3px; background: #fff; display:block;}
-a.pic_nav_next { position: absolute; right: 1%; top: 50%; bottom: 50%; padding:3px; background: #fff; display:block;}
-
-a.pic_nav_prev, a.pic_nav_next { 
-	-webkit-border-radius: 30px; -moz-border-radius: 30px; border-radius: 30px; height: 28px; }
+<% toppa = finestyler( 'lightboxNav_icon_size', 'front' ).to_i / 2 + finestyler( 'lightboxNav_border_width', 'front' ).to_i %>
+<% hoehe = finestyler( 'lightboxNav_icon_size', 'front' ).to_i + finestyler( 'lightboxNav_border_width', 'front' ).to_i * 2 %>
+a.pic_nav_prev, a.pic_nav_next { position: absolute; top: 50%; display:block; height: <%= hoehe %>px; width: <%= hoehe %>px; margin-top: -<%= toppa %>px; 
+	background: transparent; }
+a.pic_nav_prev { left: 17px; }
+a.pic_nav_next { right: 17px; }
 
 /* +++++++++++++++++++++++++++++++++++++++++++++++   Gallerie - Admin   ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 .bild_box:hover { border: solid 1px #3878ae; background: #fff url("/images/back.png") left top repeat; }
@@ -75,17 +76,6 @@ a.pic_nav_prev, a.pic_nav_next {
 .selected_tag { position: relative; padding: 15px 42px 13px 15px; display: block; float: left; font-weight: bold; color: #555; }
 .selected_tag:hover { background: #fff; }
 
-#sidebar #gallerie_navi { list-style: none; margin:0; padding: 0; }
-#sidebar #gallerie_navi li { margin: 0 0 5px; }
-#sidebar #gallerie_navi li a { padding: 8px 10px 7px 30px; display: block; text-decoration:none; font-weight: bold; border: inset 1px #ececec; 
-	background: #ececec; color: #666; line-height: 18px; }
-#sidebar #gallerie_navi li a.aktiv, #sidebar #sidebar_navi li a:hover { background: rgba(0,153,255,.9) url('/images/admin/sidebar_aktiv_bg.png') left top repeat-x; color: #fff; border: inset 1px #1a5189; }
-
-#sidebar #gallerie_navi li ul.inner_gallerie_navi { list-style: none; margin:0; padding: 0 10px 5px; }
-#sidebar #gallerie_navi li ul.inner_gallerie_navi li { margin: 0 0 3px; }
-#sidebar #gallerie_navi li ul.inner_gallerie_navi li a { padding: 2px 20px 2px; display: block; text-decoration:none; font-weight: normal; background: transparent; border: 0;
-	color: #666; line-height: 18px; }
-#sidebar #gallerie_navi li ul.inner_gallerie_navi li a:hover, #sidebar #gallerie_navi li ul.inner_gallerie_navi li a.aktiv {  color: #444; border: 0; font-weight: bold; }
 
 a.pic_btn_del {  width: 16px; height: 16px; position:absolute; top:0; background: transparent url('/images/btns/loeschen_16px.png') 0px 0px no-repeat; right: 5px; display:block; opacity: 0;}
 

@@ -115,7 +115,7 @@ class Admin::SettingsController < Admin::BaseController
     @datei = Datei.new( params[:datei] )
     @datei.save
     if !@prefs.blank?
-      "Strangecms::#{@prefs.classify.constantize}::Config".classify.constantize.set(@key => @datei.id)
+      "Strangecms::#{@prefs}".constantize::Config.set(@key => @datei.id)
     else
       Strangecms::Config.set(@key => @datei.id)
     end

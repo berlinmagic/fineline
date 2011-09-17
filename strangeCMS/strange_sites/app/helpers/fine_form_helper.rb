@@ -1,5 +1,16 @@
 # encoding: utf-8
 module FineFormHelper
+  
+    def fine_bool_tag( object, pref='' )
+      if !pref.blank?
+        stuff =  hidden_field_tag("preferences[#{ object }]", "Strangecms::#{pref}".constantize::Config["#{ object }"])
+        stuff =  link_to('', '#', :class => "on_off_schalter #{"Strangecms::#{pref}".constantize::Config["#{ object }"] ? 'an' : 'aus'}")
+      else
+        stuff =  hidden_field_tag("preferences[#{ object }]", Strangecms::Config["#{ object }"])
+        stuff =  link_to('', '#', :class => "on_off_schalter #{Strangecms::Config["#{ object }"] ? 'an' : 'aus'}")
+      end
+      raw( stuff )
+    end
 		
 		def ff_font_select_tag( pref, area='front', blank=true )
       stuff   = '<div class="fineline_select fineFont_select"><a href="#" class="fineline_select_trigger"></a>

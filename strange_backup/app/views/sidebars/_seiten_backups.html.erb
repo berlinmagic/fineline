@@ -1,0 +1,21 @@
+<% if @seite && @seite.backups.count > 0 && admin_check %>
+	<% unless @backup %>
+	
+		<% if Strangecms::Config[:show_backups] && Strangecms::Config[:make_backups] %>
+
+			<% bkp_count = @seite.backups.count %>
+			<div class="side_box dbx-box">
+			        <div class="sidebar_head dbx-handle">Backups</div>
+					<ul class='sidebar dbx-content'>
+						<% @seite.backups.each_with_index do |bkp,index| %>
+							<li>
+							<%= link_to 'Version '+(bkp_count - index).to_s+' - '+bkp.created_at.strftime('%d.%m. - %H:%M').to_s, backup_path(bkp) %>
+							</li>
+						<% end %>
+					</ul>
+			</div>
+		
+		<% end %>
+		
+	<% end %>
+<% end %>

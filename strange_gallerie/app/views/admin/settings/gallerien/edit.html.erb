@@ -9,7 +9,7 @@
 				<p>alle Formate in .. [ <strong>Breite &times; Höhe</strong> ] .. Pixel</p>
 			</div>
 		</div>
-		<%= form_tag(admin_gallerie_settings_update_path, :method => :put) do -%>
+		<%= form_tag('/admin/settings/gallerien/update', :method => :put) do -%>
 		<%= hidden_field_tag('name', @name, :size => 50 ) %>
 		
 		<div class="box">
@@ -121,28 +121,14 @@
 					</tr>
 					
 					<tr>
-						<th><%= t('strange_gallerie.settings.logo') %></th>
-						<td colspan="2"><% if Strangecms::Gallerie::Config[:logo_datei] && !Strangecms::Gallerie::Config[:logo_datei].blank? %>
-								<% if datei = Datei.find(Strangecms::Gallerie::Config[:logo_datei]) %>
+						<th><%= t('strange_gallerie.settings.watermark_datei') %></th>
+						<td colspan="2"><% if Strangecms::Gallerie::Config[:watermark_datei] && !Strangecms::Gallerie::Config[:watermark_datei].blank? %>
+								<% if datei = Datei.find(Strangecms::Gallerie::Config[:watermark_datei]) %>
 									<%= image_tag datei.file.thumb("100x350>").url() %>
 								<% end %>
 							<% end %>
 						</td>
-						<td>
-							<%= form_tag(new_pref_pic_admin_settings_path, :method => :post) do %>
-								<%= hidden_field_tag :prefs, 'Gallerie' %>
-								<%= hidden_field_tag :modul, 'fineline_optik' %>
-								<%= hidden_field_tag :typ, 'Front_Logo' %>
-								<%= hidden_field_tag :name, 'optik' %>
-								<%= hidden_field_tag :back_link, '/admin/gallerie_settings_edit' %>
-								<%= hidden_field_tag :key, 'logo_datei' %>
-								<br/>
-								<%= submit_tag 'neu'%>
-								<div class="clearfix"></div>
-								<br/>
-								
-							<% end %>
-						</td>
+						<td>&nbsp;</td>
 					</tr>
 					
 					<tr>
@@ -303,6 +289,7 @@ $(function() {
 	$( "#watermark_blur_slider" ).slider({ min: 1, max: 99, value: <%= Strangecms::Gallerie::Config[:watermark_blur] || 50 %>, 
 	slide: function( event, ui ) { $( "#preferences_watermark_blur" ).val( ui.value ); } });
 	$( "#preferences_watermark_blur" ).val( $( "#watermark_blur_slider" ).slider( "value" ) );
+
 		
 });
 </script>

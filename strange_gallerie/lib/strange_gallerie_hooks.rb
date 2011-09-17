@@ -22,7 +22,7 @@ class StrangeGallerieHooks < Strangecms::ThemeSupport::HookListener
   end
   
   insert_after :admin_settings_sidebar do
-    "<li><%= link_to 'Gallerie-Bilder', admin_gallerie_settings_path, :class => ('aktiv' if @u_aktiv == 'gallerie_settings') %></li>"
+    "<li><%= link_to 'Gallerie-Bilder', admin_settings_gallerien_path, :class => ('aktiv' if @u_aktiv == 'gallerie_settings') %></li>"
   end
   
   # => insert_after :site_after_head do

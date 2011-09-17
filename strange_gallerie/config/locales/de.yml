@@ -21,6 +21,27 @@ de:
           bild_crop: "Bild '%{name}' zuschneiden"
           settings: "Gallerie Einstellungen"
           dash: "Bilder Übersicht"
+      pic_show:
+          lightbox: "LightBox"
+          seite: "Seite"
+      settings:
+          watermark: "Wasserzeichen - Einstellungen"
+          pic_show: "Bilddarstellung"
+          use_watermarks: "Wasserzeichen"
+          show_watermarks: "Einblenden in:"
+          lightbox_watermark: "LightBox"
+          show_watermark: "Bild-Seite"
+          watermark_type: "Wasserzeichen-Typ"
+          watermark_types:
+              image: "Bild"
+              text: "Text"
+          watermark_tile: "WZ-Wiederholung"
+          watermark_font_size: "WZ-Schriftgröße"
+          watermark_text: "WZ-Text"
+          watermark_rotate: "WZ-Text-Drehung"
+          watermark_datei: "WZ-Bild"
+          watermark_blur: "WZ-Schrift-Transparenz"
+          watermark_font_color: "WZ-Schriftfarbe"
 ##############################################################################################################################################
 #  =>  #  =>  #  =>  #  =>  #  =>  #  =>  #  =>  #  =>   S T R A N G E - C M S   <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #
 ##############################################################################################################################################

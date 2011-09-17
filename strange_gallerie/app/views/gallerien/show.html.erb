@@ -10,18 +10,53 @@
 	<div class="gpix_box">
 		<% if admin_check %>
 			<div class="in_box_admin_toolz">
-				<%= link_to finelineButton(:icon => 30, :color => 'hell'), "#" %>
-				<%= link_to finelineButton(:icon => 14, :color => 'hell'), "#" %>
+				<%= link_to finelineButton(:icon => 30, :blur => Strangecms::Stylez::Config[:front_systemButton_icon_blur], :color => Strangecms::Stylez::Config[:front_systemButton_icon_color], :size => Strangecms::Stylez::Config[:front_systemButton_icon_size], :class => 'system '+Strangecms::Stylez::Config[:front_systemButton_style].to_s), "#" %>
+				<%= link_to finelineButton(:icon => 24, :blur => Strangecms::Stylez::Config[:front_systemButton_icon_blur], :color => Strangecms::Stylez::Config[:front_systemButton_icon_color], :size => Strangecms::Stylez::Config[:front_systemButton_icon_size], :class => 'system '+Strangecms::Stylez::Config[:front_systemButton_style].to_s), "#" %>
 			</div>
 		<% end %>
-			<%= link_to finelineButton(:icon => 1, :size => 24, :class => 'kreis', :color => 'hell'), "#{ gallerien_path }/#{ @prev_pic.to_s }", :class => 'pic_nav_prev' %>
-			<%= link_to finelineButton(:icon => 2, :size => 24, :class => 'kreis', :color => 'hell'), "#{ gallerien_path }/#{ @next_pic.to_s }", :class => 'pic_nav_next' %>
+			<%= link_to finelineButton(:icon => 1, :blur => Strangecms::Stylez::Config[:front_lightboxNav_icon_blur], :color => Strangecms::Stylez::Config[:front_lightboxNav_icon_color], :size => Strangecms::Stylez::Config[:front_lightboxNav_icon_size], :class => "lighbox_nav #{ Strangecms::Stylez::Config[:front_lightboxNav_style].to_s }"), "#{ gallerien_path }/#{ @prev_pic.to_s }", :class => "pic_nav_prev" %>
+			<%= link_to finelineButton(:icon => 2, :blur => Strangecms::Stylez::Config[:front_lightboxNav_icon_blur], :color => Strangecms::Stylez::Config[:front_lightboxNav_icon_color], :size => Strangecms::Stylez::Config[:front_lightboxNav_icon_size], :class => "lighbox_nav #{ Strangecms::Stylez::Config[:front_lightboxNav_style].to_s }"), "#{ gallerien_path }/#{ @next_pic.to_s }", :class => "pic_nav_next" %>
 			
-			<%#= image_tag @bild.file.thumb( @bild.file_cropping ).thumb("#{700}x#{600}").process(:add_watermark, :path => "#{Rails.root}/public/images/fineline_logo_klein.png").url %>
 			
-			<%= image_tag @bild.file.thumb( @bild.file_cropping ).thumb("#{700}x#{600}").process(:convert, '-alpha set -virtual-pixel transparent -channel A \
+	
+	
+<% if Strangecms::Gallerie::Config[:use_watermarks] && Strangecms::Gallerie::Config[:show_watermark] %>
+
+	<% if (Strangecms::Gallerie::Config[:watermark_type] == 'image') && dat = Datei.find(Strangecms::Gallerie::Config[:watermark_datei].to_i) %>
+		
+		<%= image_tag @bild.file.thumb( @bild.file_cropping ).thumb("#{700}x#{600}").encode(:png).process(
+						:add_watermark, 
+							:path => "#{dat.file.path}", 
+							:tile => Strangecms::Gallerie::Config[:watermark_tile].to_i
+						).url %>
+		
+	<% else %>
+		
+		<%= image_tag @bild.file.thumb( @bild.file_cropping ).thumb("#{700}x#{600}").encode(:png).process(
+						:add_tiled_text,
+						 	:text => Strangecms::Gallerie::Config[:watermark_text].to_s,
+							:color => Strangecms::Gallerie::Config[:watermark_font_color],
+							:opacity => Strangecms::Gallerie::Config[:watermark_blur],
+							:rotate => Strangecms::Gallerie::Config[:watermark_rotate],
+							:font_size => Strangecms::Gallerie::Config[:watermark_font_size],
+							:tile => Strangecms::Gallerie::Config[:watermark_tile]).url %>
+		
+	<% end %>
+
+<% else %>
+	
+	<%= image_tag @bild.file.thumb( @bild.file_cropping ).thumb("#{700}x#{600}").url %>
+	
+<% end %>
+		
+			
+			
+			<%#= image_tag @bild.file.thumb( @bild.file_cropping ).thumb("#{700}x#{600}").encode(:png).process(:add_watermark, :path => "#{@bild.file.path}", :tile => 4).url %>
+			
+			<%#= image_tag @bild.file.thumb( @bild.file_cropping ).thumb("#{700}x#{600}").encode(:png).process(:add_tiled_text, :tile => 16).url %>
+			
+			<%#= image_tag @bild.file.thumb( @bild.file_cropping ).thumb("#{700}x#{600}").process(:convert, '-alpha set -virtual-pixel transparent -channel A \
 			          -morphology Distance Euclidean:1,10\!').url %>
-			
 			
 	</div>
 
