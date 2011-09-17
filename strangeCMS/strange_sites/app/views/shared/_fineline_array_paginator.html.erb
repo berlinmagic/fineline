@@ -14,31 +14,58 @@
 <% style    = 	style || ''  -%>
 
 <% if @fineline_array_paginated && num_pages > 1 %>
-
+	<div class="paginator_wrapper">
 		<nav class="pagination<%= ' '+style if !style.blank? %>">
-			<strong>Seite <%= current_page %> von <%= num_pages %> </strong>&nbsp;&nbsp;&nbsp;
-		    
-			<%# first_page_tag unless current_page.first? %>
 			
-			<span class="prev<%= ' current' if first %>">
-				<% unless first %>
-					<%= link_to raw(t 'views.pagination.previous'), "#{ page_url }/page/#{ current_page - 1 }" %>
-				<% else %>
-					<%= raw(t 'views.pagination.previous') %>
-				<% end %>
-			  
-			</span>
+			<p>Seite <%= current_page %> von <%= num_pages %> </p>&nbsp;&nbsp;&nbsp;
 			
-			<span class="next<%= ' current' if last %>">
-				<% unless last %>
-					<%= link_to raw(t 'views.pagination.next'), "#{ page_url }/page/#{ current_page + 1 }" %>
-				<% else %>
-					<%= raw(t 'views.pagination.next') %>
-				<% end %>
-			</span>
+			<% if ( num_pages > 4 ) && (current_page > 2) %>
+				<span class="first">
+					<%= link_to finelineButton(  	:icon => 3, 
+			                						:blur => Strangecms::Stylez::Config[:front_PaginationNavButton_icon_blur], 
+													:color => Strangecms::Stylez::Config[:front_PaginationNavButton_icon_color], 
+													:size => Strangecms::Stylez::Config[:front_PaginationNavButton_icon_size], 
+													:class => "pagination_nav #{ Strangecms::Stylez::Config[:front_PaginationNavButton_style] }"
+													), "#{ page_url }/page/1" %>
+				</span>
+			<% end %>
 			
-		    <%# last_page_tag unless current_page.last? %>
+			
+			<% unless first %>
+				<span class="prev<%= ' current' if first %>">
+					<%= link_to finelineButton(  	:icon => 1, 
+					                				:blur => Strangecms::Stylez::Config[:front_PaginationNavButton_icon_blur], 
+													:color => Strangecms::Stylez::Config[:front_PaginationNavButton_icon_color], 
+													:size => Strangecms::Stylez::Config[:front_PaginationNavButton_icon_size], 
+													:class => "pagination_nav #{ Strangecms::Stylez::Config[:front_PaginationNavButton_style] }"
+													), "#{ page_url }/page/#{ current_page - 1 }" %>
+				</span>
+			<% end %>
+			
+			<% unless last %>
+				<span class="next<%= ' current' if last %>">
+					<%= link_to finelineButton(  	:icon => 2, 
+					                				:blur => Strangecms::Stylez::Config[:front_PaginationNavButton_icon_blur], 
+													:color => Strangecms::Stylez::Config[:front_PaginationNavButton_icon_color], 
+													:size => Strangecms::Stylez::Config[:front_PaginationNavButton_icon_size], 
+													:class => "pagination_nav #{ Strangecms::Stylez::Config[:front_PaginationNavButton_style] }"
+													), "#{ page_url }/page/#{ current_page + 1 }" %>
+				</span>
+			<% end %>
+			
+			<% if ( num_pages > 4 ) && ( current_page < (num_pages - 1) ) %>
+				<span class="last">
+					<%= link_to finelineButton(  	:icon => 4, 
+			                						:blur => Strangecms::Stylez::Config[:front_PaginationNavButton_icon_blur], 
+													:color => Strangecms::Stylez::Config[:front_PaginationNavButton_icon_color], 
+													:size => Strangecms::Stylez::Config[:front_PaginationNavButton_icon_size], 
+													:class => "pagination_nav #{ Strangecms::Stylez::Config[:front_PaginationNavButton_style] }"
+													), "#{ page_url }/page/#{ num_pages }" %>
+				</span>
+			<% end %>
+			
 		  </nav>
+	</div>
 
 <% else %>
 
