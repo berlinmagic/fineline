@@ -18,6 +18,18 @@ module StrangeSitesHelp
       end
     end
     
+    def fine_num_pagez( objects, per_page )
+      page_count = objects.count / per_page
+      page_count = page_count + 1 if ( page_count * per_page ) < objects.count
+      page_count
+    end
+    
+    def fine_num_number( count, per_page )
+      page_count = count / per_page
+      page_count = page_count + 1 if ( page_count * per_page ) < count
+      page_count
+    end
+    
     # => rescue_from ActionController::RoutingError, :with => :route_not_found
     # => rescue_from ActionController::MethodNotAllowed, :with => :invalid_method
     # => rescue_from AbstractController::ActionNotFound, :with => :abstract_method
@@ -54,6 +66,8 @@ module StrangeSitesHelp
     receiver.send :helper, 'strange_site_link'
     receiver.send :helper_method, 'strange_m_keywords'
     receiver.send :helper_method, 'strange_m_description'
+    receiver.send :helper_method, 'fine_num_pagez'
+    receiver.send :helper_method, 'fine_num_number'
   end
   
 end

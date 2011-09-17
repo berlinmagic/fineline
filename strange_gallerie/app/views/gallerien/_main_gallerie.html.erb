@@ -4,14 +4,14 @@
 	<% if @xxl_view %>
 
 		<%= paginator_wrapper( @bilder, 
-			:mini => gallerien_path, :maxi => '#', :on => 'maxi', 
+			:mini => @smal_url, :maxi => '#', :on => 'maxi', 
 			:params => {:controller => 'gallerien', :action => 'xxl_index'} ) %>
 	
 		
 		<% @bilder.each_with_index do |bild,index| %>
 			
 				<div class="fl_box_350">
-					<%= render 'gallerien/g_pic', :bild => bild, :gpic_width => 340, :gpic_height => 260 %>
+					<%= render 'gallerien/g_pic', :bild => bild, :gpic_width => 340, :gpic_height => 260, :pic_size => '2line' %>
 				</div>
 		
 			<% if (index + 1).modulo(2) == 0 %>
@@ -28,21 +28,23 @@
 			<div class="clearfix"></div>
 		<% end %>
 		
-		<%#= paginator_wrapper( @bilder, 
-			:mini => gallerien_path, :maxi => '#', :on => 'maxi', 
+		<% if @bilder.count > 6 %>
+		<%= paginator_wrapper( @bilder, 
+			:mini => @smal_url, :maxi => '#', :on => 'maxi', 
 			:params => {:controller => 'gallerien', :action => 'xxl_index'} ) %>
-
+		<% end %>
+		
 	<% else %>
 	
 
 		<%= paginator_wrapper( @bilder, 
-			:mini => '#', :maxi => xxl_gallerien_path, :on => 'mini', 
+			:mini => '#', :maxi => @xxl_url, :on => 'mini', 
 			:params => {:controller => 'gallerien', :action => 'index'} ) %>
 		
 		<% @bilder.each_with_index do |bild,index| %>
 			
 				<div class="fl_box_170">
-					<%= render 'gallerien/g_pic', :bild => bild, :gpic_width => 160, :gpic_height => 122 %>
+					<%= render 'gallerien/g_pic', :bild => bild, :gpic_width => 160, :gpic_height => 122, :pic_size => '4line' %>
 				</div>
 		
 			<% if (index + 1).modulo(4) == 0 %>
@@ -59,9 +61,11 @@
 			<div class="clearfix"></div>
 		<% end %>
 		
-		<%#= paginator_wrapper( @bilder, 
-			:mini => '#', :maxi => xxl_gallerien_path, :on => 'mini', 
+		<% if @bilder.count > 20 %>
+		<%= paginator_wrapper( @bilder, 
+			:mini => '#', :maxi => @xxl_url, :on => 'mini', 
 			:params => {:controller => 'gallerien', :action => 'index'} ) %>
+		<% end %>
 		
 	<% end %>
 
@@ -93,7 +97,10 @@
 <% else %>
 	
 	<br/>
-	Bilder folgen ...
+	<br/>
+	.. Aktuell sind leider keine Bilder vorhanden ...
+	<br/>
+	<br/>
 	<br/>
 	
 <% end %>

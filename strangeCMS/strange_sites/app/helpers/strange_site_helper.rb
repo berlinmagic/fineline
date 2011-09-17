@@ -9,15 +9,18 @@ module StrangeSiteHelper
   # => # => # => # => # => # => # => # => # => # => # => # => # => # => # => # => # => # => # => # => # => # => # => # => #
   
   
+  
+  
   def paginator_wrapper( objects, options = {} )
       options.assert_valid_keys(:on, :mini, :midi, :maxi, :object_type, :params)
-      options.reverse_merge! :params    =>    {}   unless    options.key? :params
-      options.reverse_merge! :object_type =>  'AR' unless    options.key? :object_type
-      options.reverse_merge! :maxi =>         ''   unless      options.key? :maxi
-      options.reverse_merge! :midi =>         ''   unless      options.key? :midi
-      options.reverse_merge! :mini =>         ''   unless      options.key? :mini
-      options.reverse_merge! :on =>           '' unless      options.key? :on
+      options.reverse_merge! :params    =>    {}              unless    options.key? :params
+      options.reverse_merge! :object_type =>  'ActiveRecord'  unless    options.key? :object_type
+      options.reverse_merge! :maxi =>         ''              unless      options.key? :maxi
+      options.reverse_merge! :midi =>         ''              unless      options.key? :midi
+      options.reverse_merge! :mini =>         ''              unless      options.key? :mini
+      options.reverse_merge! :on =>           ''              unless      options.key? :on
       view_change = ( !options[:mini].blank? || !options[:midi].blank? || !options[:maxi].blank? ) ? true : false
+      paginatype  = %w(ActiveRecord Array).include?(options[:object_type].to_s) ? options[:object_type] : 'ActiveRecord'
       stuff = '<div class="paginator_wrapper">'
       if view_change
         stuff += '<div class="viewChangeButtons">'
@@ -47,7 +50,11 @@ module StrangeSiteHelper
         end
         stuff += '<div class="clearfix"></div></div>'
       end
-      stuff += paginate( objects, :params => options[:params] )
+      if paginatype == 'Array'
+        stuff += "#{ render 'shared/fineline_array_paginator' }"
+      else
+        stuff += paginate( objects, :params => options[:params] )
+      end
       stuff += '</div>'
       raw( stuff )
   end

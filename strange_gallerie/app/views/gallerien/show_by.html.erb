@@ -24,21 +24,15 @@
 
 	<% if @xxl_view %>
 
-		<div class="paginator_wrapper">
-			<a href="<%= gallerien_path %>" class="viewChangeButton">
-				<%= finelineButton :icon => 78, :size => 24 %>
-				<%= finelineButton :icon => 80, :size => 24, :blur => 50 %>
-				<div class="clearfix"></div>
-			</a>
-			<%#= paginate @bilder, :params => {:controller => 'gallerien', :action => 'xxl_index'}  %>
-			<%= render 'shared/fineline_array_paginator' %>
-		</div>
+		<%= paginator_wrapper( @bilder, 
+			:mini => @smal_url, :maxi => '#', :on => 'maxi', :object_type => 'Array',
+			:params => {:controller => 'gallerien', :action => 'index'} ) %>
 	
 		
 		<% @bilder.each_with_index do |bild,index| %>
 			
 				<div class="fl_box_350">
-					<%= render 'gallerien/g_pic', :bild => bild, :gpic_width => 340, :gpic_height => 260 %>
+					<%= render 'gallerien/g_pic', :bild => bild, :gpic_width => 340, :gpic_height => 260, :pic_size => '2line' %>
 				</div>
 		
 			<% if (index + 1).modulo(2) == 0 %>
@@ -54,33 +48,24 @@
 			<div class="vert_space"></div>
 			<div class="clearfix"></div>
 		<% end %>
-		<div class="paginator_wrapper bottom">
-			<a href="<%= gallerien_path %>" class="viewChangeButton">
-				<%= finelineButton :icon => 78, :size => 24 %>
-				<%= finelineButton :icon => 80, :size => 24, :blur => 50 %>
-				<div class="clearfix"></div>
-			</a>
-			<%#= paginate @bilder, :theme => 'bottom', :params => {:controller => 'gallerien', :action => 'xxl_index'}  %>
-			<%= render 'shared/fineline_array_paginator', :style => 'bottom' %>
-		</div>
+		
+		<% if @bilder.count > 6 %>
+			<%= paginator_wrapper( @bilder, 
+				:mini => @smal_url, :maxi => '#', :on => 'maxi', :object_type => 'Array',
+				:params => {:controller => 'gallerien', :action => 'index'} ) %>
+		<% end %>
 
 	<% else %>
 	
-		<div class="paginator_wrapper">
-			<a href="<%= xxl_gallerien_path %>" class="viewChangeButton">
-				<%= finelineButton :icon => 78, :size => 24, :blur => 50 %>
-				<%= finelineButton :icon => 80, :size => 24 %>
-				<div class="clearfix"></div>
-			</a>
-			<%#= paginate @bilder, :params => {:controller => 'gallerien', :action => 'index'}  %>
-			<%= render 'shared/fineline_array_paginator' %>
-		</div>
+		<%= paginator_wrapper( @bilder, 
+			:mini => '#', :maxi => @xxl_url, :on => 'mini', :object_type => 'Array',
+			:params => {:controller => 'gallerien', :action => 'index'} ) %>
 	
 		
 		<% @bilder.each_with_index do |bild,index| %>
 			
 				<div class="fl_box_170">
-					<%= render 'gallerien/g_pic', :bild => bild, :gpic_width => 160, :gpic_height => 122 %>
+					<%= render 'gallerien/g_pic', :bild => bild, :gpic_width => 160, :gpic_height => 122, :pic_size => '4line' %>
 				</div>
 		
 			<% if (index + 1).modulo(4) == 0 %>
@@ -96,22 +81,47 @@
 			<div class="vert_space"></div>
 			<div class="clearfix"></div>
 		<% end %>
-		<div class="paginator_wrapper bottom">
-			<a href="<%= xxl_gallerien_path %>" class="viewChangeButton">
-				<%= finelineButton :icon => 78, :size => 24, :blur => 50 %>
-				<%= finelineButton :icon => 80, :size => 24 %>
-				<div class="clearfix"></div>
-			</a>
-			<%#= paginate @bilder, :theme => 'bottom', :params => {:controller => 'gallerien', :action => 'index'}  %>
-			<%= render 'shared/fineline_array_paginator', :style => 'bottom' %>
-		</div>
+		
+		<% if @bilder.count > 20 %>
+			<%= paginator_wrapper( @bilder, 
+				:mini => '#', :maxi => @xxl_url, :on => 'mini', :object_type => 'Array',
+				:params => {:controller => 'gallerien', :action => 'index'} ) %>
+		<% end %>
+			
 	<% end %>
 
 <% elsif @bild %>
 	
 	<div class="fl_box_710">
 		<div class="gpix_box">
-				<%= image_tag @bild.file.thumb( @bild.file_cropping ).thumb("#{700}x#{600}").url %>
+				<% if Strangecms::Gallerie::Config[:use_watermarks] && Strangecms::Gallerie::Config[:show_watermark] %>
+
+					<% if (Strangecms::Gallerie::Config[:watermark_type] == 'image') && dat = Datei.find(Strangecms::Gallerie::Config[:watermark_datei].to_i) %>
+
+						<%= image_tag @bild.file.thumb( @bild.file_cropping ).thumb("#{700}x#{600}").encode(:png).process(
+										:add_watermark, 
+											:path => "#{dat.file.path}", 
+											:tile => Strangecms::Gallerie::Config[:watermark_tile].to_i
+										).url %>
+
+					<% else %>
+
+						<%= image_tag @bild.file.thumb( @bild.file_cropping ).thumb("#{700}x#{600}").encode(:png).process(
+										:add_tiled_text,
+										 	:text => Strangecms::Gallerie::Config[:watermark_text].to_s,
+											:color => Strangecms::Gallerie::Config[:watermark_font_color],
+											:opacity => Strangecms::Gallerie::Config[:watermark_blur],
+											:rotate => Strangecms::Gallerie::Config[:watermark_rotate],
+											:font_size => Strangecms::Gallerie::Config[:watermark_font_size],
+											:tile => Strangecms::Gallerie::Config[:watermark_tile]).url %>
+
+					<% end %>
+
+				<% else %>
+
+					<%= image_tag @bild.file.thumb( @bild.file_cropping ).thumb("#{700}x#{600}").url %>
+
+				<% end %>
 		</div>
 		<div class="clearfix"></div>
 		<div class="vert_space"></div>

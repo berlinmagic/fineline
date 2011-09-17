@@ -14,8 +14,7 @@
 <% style    = 	style || ''  -%>
 
 <% if @fineline_array_paginated && num_pages > 1 %>
-	<div class="paginator_wrapper">
-		<nav class="pagination<%= ' '+style if !style.blank? %>">
+	<nav class="pagination<%= ' '+style if !style.blank? %>">
 			
 			<p>Seite <%= current_page %> von <%= num_pages %> </p>&nbsp;&nbsp;&nbsp;
 			
@@ -65,7 +64,6 @@
 			<% end %>
 			
 		  </nav>
-	</div>
 
 <% else %>
 

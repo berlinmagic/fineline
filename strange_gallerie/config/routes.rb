@@ -95,10 +95,7 @@ Rails.application.routes.draw do
         #    end
         #  end
         #end
-    
-        match 'gallerie_settings' => 'gallerie_settings#index'
-        match 'gallerie_settings_edit' => 'gallerie_settings#edit'
-        match 'gallerie_settings_update' => 'gallerie_settings#update'
+
   end
   
 end

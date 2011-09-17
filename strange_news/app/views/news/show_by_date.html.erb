@@ -11,8 +11,12 @@
 			<div class="clearfix"></div>
 	</div>
 	
-<%= render 'shared/fineline_array_paginator' %>
-	<% @news.each do |news| %>
+<div class="in_box">
+	<%= render 'shared/fineline_array_paginator' %>
+</div>
+
+
+	<% @news.each_with_index do |news,index| %>
 	<div class="in_box">
 		<a href="<%= "#{news.news_site_slug}" + news.slug %>">
 			<h2 class="news_headline"><%= news.headline %></h2>
@@ -36,12 +40,22 @@
 			<div class="clearfix"></div>
 
 	</div>
+	
+	<% unless index == @news.count - 1 %>
 	<div class="in_box">
 			<div class="trenn_linie"></div>
 			<div class="clearfix"></div>
 	</div>
 	<% end %>
-<%= render 'shared/fineline_array_paginator', :style => 'bottom' %>
+	
+	<% end %>
+
+
+<% if @news.count > 4 %>
+	<div class="in_box">
+		<%= render 'shared/fineline_array_paginator' %>
+	</div>
+<% end %>
 
 </div>
 

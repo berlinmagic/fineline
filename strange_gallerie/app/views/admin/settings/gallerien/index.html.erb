@@ -35,6 +35,30 @@
 						<td colspan="6" style="text-align: center;">&nbsp;</td>
 					</tr>
 					<tr>
+						<th colspan="6" style="text-align: left;"><%= t('strange_gallerie.settings.pics_per_page') %></th>
+					</tr>
+					<tr>
+						<th><%= t('strange_gallerie.settings.pics_per_page_2line') %></th>
+						<td>&nbsp;</td>
+						<td colspan="3"><%= Strangecms::Gallerie::Config[:pics_per_page_2line] %> <%= t("strange_gallerie.settings.per_page_unit") %></td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<th><%= t('strange_gallerie.settings.pics_per_page_3line') %></th>
+						<td>&nbsp;</td>
+						<td colspan="3"><%= Strangecms::Gallerie::Config[:pics_per_page_3line] %> <%= t("strange_gallerie.settings.per_page_unit") %></td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<th><%= t('strange_gallerie.settings.pics_per_page_4line') %></th>
+						<td>&nbsp;</td>
+						<td colspan="3"><%= Strangecms::Gallerie::Config[:pics_per_page_4line] %> <%= t("strange_gallerie.settings.per_page_unit") %></td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td colspan="6" style="text-align: center;">&nbsp;</td>
+					</tr>
+					<tr>
 						<th><%= t('strange_gallerie.settings.use_watermarks') %></th>
 						<td>&nbsp;</td>
 						<td colspan="3"><%= Strangecms::Gallerie::Config[:use_watermarks] ? 'aktiv' : 'inaktiv' %></td>
@@ -54,6 +78,28 @@
 						<td>&nbsp;</td>
 						<td colspan="3"><%= Strangecms::Gallerie::Config[:show_watermark] ? 'aktiv' : 'inaktiv' %></td>
 						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<th><%= t('strange_gallerie.settings.index_watermark_2line') %></th>
+						<td>&nbsp;</td>
+						<td colspan="3"><%= Strangecms::Gallerie::Config[:index_watermark_2line] ? 'aktiv' : 'inaktiv' %></td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<th><%= t('strange_gallerie.settings.index_watermark_3line') %></th>
+						<td>&nbsp;</td>
+						<td colspan="3"><%= Strangecms::Gallerie::Config[:index_watermark_3line] ? 'aktiv' : 'inaktiv' %></td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<th><%= t('strange_gallerie.settings.index_watermark_4line') %></th>
+						<td>&nbsp;</td>
+						<td colspan="3"><%= Strangecms::Gallerie::Config[:index_watermark_4line] ? 'aktiv' : 'inaktiv' %></td>
+						<td>&nbsp;</td>
+					</tr>
+					
+					<tr>
+						<th colspan="6" style="text-align: center;">&nbsp;&nbsp;</th>
 					</tr>
 					<tr>
 						<th><%= t("strange_gallerie.settings.watermark_type") %></th>
@@ -77,13 +123,17 @@
 					
 					<tr>
 						<th><%= t('strange_gallerie.settings.watermark_datei') %></th>
-						<td colspan="2"><% if Strangecms::Gallerie::Config[:watermark_datei] && !Strangecms::Gallerie::Config[:watermark_datei].blank? %>
-								<% if datei = Datei.find(Strangecms::Gallerie::Config[:watermark_datei]) %>
-									<%= image_tag datei.file.thumb("100x350>").url() %>
-								<% end %>
+						<td>&nbsp;</td>
+						<td colspan="2">
+							<% if Strangecms::Gallerie::Config[:watermark_datei] && !Strangecms::Gallerie::Config[:watermark_datei].blank? %>
+								<div class="wt_holder schachbrett">
+									<% if datei = Datei.find(Strangecms::Gallerie::Config[:watermark_datei]) %>
+										<%= image_tag datei.file.thumb("100x350>").url() %>
+									<% end %>
+								</div>
 							<% end %>
 						</td>
-						<td>
+						<td colspan="2">
 							<%= form_tag(new_pref_pic_admin_settings_path, :method => :post) do %>
 								<%= hidden_field_tag :prefs, 'Gallerie' %>
 								<%= hidden_field_tag :modul, 'Gallerie' %>
@@ -269,3 +319,8 @@
 
 
 <%= render 'admin/settings/sidebar' %>
+
+<style>
+.wt_holder { padding: 5px; border: solid 1px #aaa; <%= fine_borderRadius( '3px' ) %> display: block; background: #fff; }
+</style>
+

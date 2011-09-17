@@ -9,7 +9,7 @@
 <% if ( num_pages > 4 ) && (current_page > 2) %>
 <span class="first">
 <%#= link_to_unless current_page.first?, raw(t 'views.pagination.first'), url, :remote => remote -%>
-<%= link_to_unless current_page.last?, finelineButton(  :icon => 3, 
+<%= link_to_unless current_page.first?, finelineButton(  :icon => 3, 
                 				:blur => Strangecms::Stylez::Config[:front_PaginationNavButton_icon_blur], 
 								:color => Strangecms::Stylez::Config[:front_PaginationNavButton_icon_color], 
 								:size => Strangecms::Stylez::Config[:front_PaginationNavButton_icon_size], 

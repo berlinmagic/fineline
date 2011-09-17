@@ -41,6 +41,21 @@
 	        								options_for_select(Bild::BILD_STILE, 
 	        								Strangecms::Gallerie::Config[:standard_format])) %></td>
 					</tr>
+					<tr>
+						<th colspan="4"><br/><br/><%= t('strange_gallerie.settings.pics_per_page') %></th>
+					</tr>
+					<tr>
+						<th><%= t('strange_gallerie.settings.pics_per_page_2line') %></th>
+					   <td colspan="3"><%= text_field_tag('preferences[pics_per_page_2line]', Strangecms::Gallerie::Config[:pics_per_page_2line], :size => 5 )%></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_gallerie.settings.pics_per_page_3line') %></th>
+						<td colspan="3"><%= text_field_tag('preferences[pics_per_page_3line]', Strangecms::Gallerie::Config[:pics_per_page_3line], :size => 5 )%></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_gallerie.settings.pics_per_page_4line') %></th>
+						<td colspan="3"><%= text_field_tag('preferences[pics_per_page_4line]', Strangecms::Gallerie::Config[:pics_per_page_4line], :size => 5 )%></td>
+					</tr>
 					
 					<tr>
 						<th colspan="4"><br/><br/><strong><%= t('strange_gallerie.settings.watermark') %></strong></th>
@@ -61,6 +76,18 @@
 					<tr>
 						<th><%= t('strange_gallerie.settings.show_watermark') %></th>
 						<td colspan="3"><%= fine_bool_tag('show_watermark', 'Gallerie') %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_gallerie.settings.index_watermark_2line') %></th>
+						<td colspan="3"><%= fine_bool_tag('index_watermark_2line', 'Gallerie') %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_gallerie.settings.index_watermark_3line') %></th>
+						<td colspan="3"><%= fine_bool_tag('index_watermark_3line', 'Gallerie') %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_gallerie.settings.index_watermark_4line') %></th>
+						<td colspan="3"><%= fine_bool_tag('index_watermark_4line', 'Gallerie') %></td>
 					</tr>
 					<tr>
 						<th colspan="4">&nbsp;</th>
@@ -259,7 +286,7 @@
 			<div class="in_box">
 				<%= submit_tag t('save_settings') %>
 				<div class="big_button_spacer"><%= t('or') %></div>
-				<%= link_to t('cancel'), admin_gallerie_settings_path, :class => 'big_button' %>
+				<%= link_to t('cancel'), admin_settings_gallerien_path, :class => 'big_button' %>
 				<div class="clearfix"></div>
 			</div>
 		</div>

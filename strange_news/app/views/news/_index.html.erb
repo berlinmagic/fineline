@@ -1,10 +1,9 @@
-<%# @news = News.aktiv %>
 <% @news ||= News.aktiv.page(params[:page]).per(Strangecms::Newz::Config[:news_per_page]) %>
-<%# @news = News.nach_jahr('2011') %>
-<%#= will_paginate @news, :params => { :url => @seite.link+'/per_page' } %>
-<%#= paginate @news, :params => {:controller => 'news', :action => 'index'}  %>
-<%= paginator_wrapper( @news, :params => {:controller => 'news', :action => 'index'} ) %>
-<div class="vspacer"></div>
+
+<div class="in_box">
+	<%= paginator_wrapper( @news, :params => {:controller => 'news', :action => 'index'} ) %>
+</div>
+
 <% @news.each_with_index do |news,index| %>
 <div class="in_box">
 	<a href="<%= "#{news.news_site_slug}" + news.slug %>">
@@ -39,7 +38,9 @@
 
 <% if @news.count > 4 %>
 
-	<%= paginator_wrapper( @news, :params => {:controller => 'news', :action => 'index'} ) %>
+	<div class="in_box">
+		<%= paginator_wrapper( @news, :params => {:controller => 'news', :action => 'index'} ) %>
+	</div>
 	
 <% end %>
 

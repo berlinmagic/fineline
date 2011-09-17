@@ -13,10 +13,17 @@ class GallerieConfiguration < Configuration
   
   preference :aktiv,                  :boolean,   :default => true
   
+  preference :pics_per_page_4line,    :integer,   :default => 16
+  preference :pics_per_page_3line,    :integer,   :default => 9
+  preference :pics_per_page_2line,    :integer,   :default => 4
   
   preference :use_watermarks,         :boolean,   :default => true
   preference :lightbox_watermark,     :boolean,   :default => true
   preference :show_watermark,         :boolean,   :default => true
+  
+  preference :index_watermark_4line,  :boolean,   :default => false
+  preference :index_watermark_3line,  :boolean,   :default => false
+  preference :index_watermark_2line,  :boolean,   :default => true
   
   preference :watermark_type,         :string,    :default => WATERMARKS[1]
   

@@ -28,7 +28,7 @@ de:
           watermark: "Wasserzeichen - Einstellungen"
           pic_show: "Bilddarstellung"
           use_watermarks: "Wasserzeichen"
-          show_watermarks: "Einblenden in:"
+          show_watermarks: "Wasserzeichen werden auf folgenden Bildtypen verwendet:"
           lightbox_watermark: "LightBox"
           show_watermark: "Bild-Seite"
           watermark_type: "Wasserzeichen-Typ"
@@ -42,6 +42,14 @@ de:
           watermark_datei: "WZ-Bild"
           watermark_blur: "WZ-Schrift-Transparenz"
           watermark_font_color: "WZ-Schriftfarbe"
+          pics_per_page: "Bilder pro Seite"
+          pics_per_page_2line: "L  (2 Bilder / Zeile)"
+          pics_per_page_3line: "M  (3 Bilder / Zeile)"
+          pics_per_page_4line: "S  (4 Bilder / Zeile)"
+          per_page_unit: "Bilder / Seite"
+          index_watermark_2line: "L - Bilder"
+          index_watermark_3line: "M - Bilder"
+          index_watermark_4line: "S - Bilder"
 ##############################################################################################################################################
 #  =>  #  =>  #  =>  #  =>  #  =>  #  =>  #  =>  #  =>   S T R A N G E - C M S   <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #
 ##############################################################################################################################################
