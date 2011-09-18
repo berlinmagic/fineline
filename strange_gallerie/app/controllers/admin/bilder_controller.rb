@@ -158,7 +158,7 @@ class Admin::BilderController < Admin::BaseController
   
   private
     def get_navi_werte
-      @aktivio = 'module'
+      @aktivio = 'bilder'
       @sub_aktivio = 'gallerie'
       @u_sub_aktivio = 'bild'
     end

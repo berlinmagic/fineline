@@ -16,12 +16,10 @@
 .bild_box_folder:hover { border: solid 1px #3878ae; background: #fff url("/images/back.png") left top repeat; }
 
 .bild_box { float: left; position: relative;
-   width: 200px; height: 150px;
-   margin: 10px 10px 10px 0; padding: 3px;
+   display: block;
+   margin: 0 10px 10px 0; padding: 3px;
    border: ridge 1px #efefef; 
-   background:#fff;
-   -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;
-   }
+   background:#fff; <%= fine_borderRadius( '3px' ) %> }
 .bild_box:hover { border: solid 1px #3878ae; background: #fff url("/images/back.png") left top repeat; }
 
 
@@ -90,4 +88,18 @@ a.pic_btn_del:hover { opacity: 1; }
 .right_meta table, .left_meta table { width: 100%; }
 .right_meta table th, .left_meta table th { padding: 5px 10px 5px 0px; }
 .right_meta table td, .left_meta table td { padding: 5px 10px 5px 0px; }
+
+#Bilder_BOX { margin-right: -12px; }
+#Bild_BOX { position:relative; }
+#Bild_BOX #pic_admin_toolz { position:absolute; top: -1px; right: -1px; padding: 0 0 5px 5px; border: 0; background: #fff; display: block;
+			<% if finestyler( 'systemButton_style', 'admin' ) == 'gerunded' %>
+				<%= fineBorderRadius( '', '', '', "#{ finestyler( 'systemButton_border_radius', 'admin' ) }px" ) %> 
+			<% elsif finestyler( 'systemButton_style', 'admin' ) == 'rund' %>
+				<%= fineBorderRadius( '', '', '', "#{ finestyler( 'systemButton_icon_size', 'admin' ).to_i / 2 + finestyler( 'systemButton_border_width', 'admin' ).to_i }px" ) %>
+			<% else %>
+				<%= fineBorderRadius( '', '', '', "" ) %>
+			<% end %>		}
+<% hoehe = finestyler( 'lightboxNav_icon_size', 'admin' ).to_i + finestyler( 'lightboxNav_border_width', 'admin' ).to_i * 2 %>
+#Bild_BOX #pic_prev_link { position:absolute; top: 50%; left: 10px; margin-top: -<%= hoehe / 2 %>px; height: <%= hoehe %>px; width: <%= hoehe %>px; }
+#Bild_BOX #pic_next_link { position:absolute; top: 50%; right: 10px; margin-top: -<%= hoehe / 2 %>px; height: <%= hoehe %>px; width: <%= hoehe %>px; }
 

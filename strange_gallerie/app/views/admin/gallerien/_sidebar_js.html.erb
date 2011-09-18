@@ -24,24 +24,7 @@
 					</li>
 				<% end %>
 				<li><%= link_to 'Bilder', admin_bilder_url, :class => "js_pic_link #{'aktiv' if @u_aktiv == 'bilder'}" %></li>
-				<% if Tagging.where(:target_type => 'Bild').count > 0 %>
-					<% @tags = [] %>
-					<% Tagging.where(:target_type => 'Bild').each do |tagging| %>
-						<% @tags << tagging.tag.name %>
-					<% end %>
-					<li>
-						<ul class="inner_gallerie_navi">
-							<li>&nbsp;</li>
-							<li><h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tag´s:</h3></li>
-					<% @tags.uniq.sort.each do |tag| %>
-						<% tg = Tag.where(:name => tag).first %>
-						<li><%= link_to raw("&nbsp;&raquo;&nbsp;&nbsp;#{ tag }&nbsp;&nbsp;&ndash;&nbsp;&nbsp;
-							[ #{ Tagging.where(:target_type => 'Bild', :tag_id => tg.id).count } ]"), selected_admin_tag_bilder_path(tg), :class => 'js_pic_link' %></li>
-					<% end %>
-						</ul>
-					</li>
-					
-				<% end %>
+
 				<% if @u_aktiv == 'gallerie' %>
 					<li>&nbsp;</li>
 					<li><%= link_to '+ neue Gallerie', new_admin_gallerie_url, :class => 'js_pic_link ' %></li>

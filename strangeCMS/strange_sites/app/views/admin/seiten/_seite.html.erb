@@ -1,4 +1,4 @@
-<li class='clearfix record' id="<%= dom_id(seite) -%>">
+<li class='clearfix record <%= 'no-nest' if !seite.modul_name.blank? %>' id="<%= dom_id(seite) -%>">
   <div class='sortable_list_entry'>
     <span class='title'>
       <%= seite.name %>

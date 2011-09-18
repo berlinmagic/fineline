@@ -145,9 +145,9 @@ class GallerienController< ApplicationController
     end
     
     def get_tag_pics
-      tag = Tag.find_by_name(params[:tag]) || Tag.find_by_slug(params[:tag]) || Tag.find_by_slug('/'+params[:tag])
+      @tag = Tag.find_by_name(params[:tag]) || Tag.find_by_slug(params[:tag]) || Tag.find_by_slug('/'+params[:tag])
       this_pics = []
-      Tagging.where(:target_type => 'Bild', :tag_id => tag.id).each do |tagging|
+      Tagging.where(:target_type => 'Bild', :tag_id => @tag.id).each do |tagging|
           this_pics << Bild.find(tagging.target_id)
       end
       this_pics

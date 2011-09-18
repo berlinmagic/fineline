@@ -10,9 +10,11 @@
 	<% end %>
 	
 	<%= hook :system_navigation do %>
-		<li class="fine_header_nav sitemap<%= ' nav_aktiv' if @is_sitemap %>">
-			<%= link_to t('std_seiten.sitemap').upcase, '/sitemap', :class => "strange_head_button #{' aktiv' if @is_sitemap }" %>
-		</li>
+		<% if Strangecms::Config[:show_sitemap]%>
+			<li class="fine_header_nav sitemap<%= ' nav_aktiv' if @is_sitemap %>">
+				<%= link_to t('std_seiten.sitemap').upcase, '/sitemap', :class => "strange_head_button #{' aktiv' if @is_sitemap }" %>
+			</li>
+		<% end %>
 	<% end %>
 	
 	<%= hook :after_system_navigation %>

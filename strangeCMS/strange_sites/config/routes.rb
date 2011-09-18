@@ -35,7 +35,10 @@ Rails.application.routes.draw do
     
     match 'module' => 'base#module'
     
-    root :to => "base#dashboard"
+
+    root :to => "base#dashboard", :constraints => StrangeSitesDashPass.new
+    root :to => "seiten#index", :constraints => StrangeSitesNodashPass.new
+    
     scope "/system" do
       match '/seiten_sorting' => "seiten#sortable_sites"
     end

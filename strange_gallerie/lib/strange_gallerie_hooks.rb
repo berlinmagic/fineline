@@ -1,9 +1,13 @@
 # encoding: utf-8
 class StrangeGallerieHooks < Strangecms::ThemeSupport::HookListener
   
+  insert_after :admin_main_navigation do
+    "<%= link_to t('strange_gallerie.linkz.Bilder'), admin_bilder_url, :class => ('aktiv' if @aktivio == 'bilder') %>"
+  end
+  
   insert_after :admin_module_sub_tabs do
     "<li class='<%= 'nav_aktiv' if @sub_aktivio == 'gallerie' %>'>
-          <%= link_to 'Gallerie', admin_bilder_url, :class => ('aktiv' if @sub_aktivio == 'gallerie') %>
+          <%= link_to t('strange_gallerie.linkz.Gallerie'), admin_gallerien_url, :class => ('aktiv' if @sub_aktivio == 'gallerie') %>
     </li>"
   end
   
@@ -22,7 +26,7 @@ class StrangeGallerieHooks < Strangecms::ThemeSupport::HookListener
   end
   
   insert_after :admin_settings_sidebar do
-    "<li><%= link_to 'Gallerie-Bilder', admin_settings_gallerien_path, :class => ('aktiv' if @u_aktiv == 'gallerie_settings') %></li>"
+    "<li><%= link_to t('strange_gallerie.linkz.GallerieSettings'), admin_settings_gallerien_path, :class => ('aktiv' if @u_aktiv == 'gallerie_settings') %></li>"
   end
   
   # => insert_after :site_after_head do

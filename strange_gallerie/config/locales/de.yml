@@ -50,6 +50,13 @@ de:
           index_watermark_2line: "L - Bilder"
           index_watermark_3line: "M - Bilder"
           index_watermark_4line: "S - Bilder"
+      linkz:
+          Bilder: "Bilder"
+          Gallerie: "Gallerie"
+          GallerieSettings: "Gallerie-Einstellungen"
+          del_pic: "Bild löschen"
+          edit_pic: "Bild bearbeiten"
+          crop_pic: "Bild neu zuschneiden"
 ##############################################################################################################################################
 #  =>  #  =>  #  =>  #  =>  #  =>  #  =>  #  =>  #  =>   S T R A N G E - C M S   <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #
 ##############################################################################################################################################

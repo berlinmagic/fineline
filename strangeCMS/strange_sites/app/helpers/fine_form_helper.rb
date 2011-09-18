@@ -4,10 +4,10 @@ module FineFormHelper
     def fine_bool_tag( object, pref='' )
       if !pref.blank?
         stuff =  hidden_field_tag("preferences[#{ object }]", "Strangecms::#{pref}".constantize::Config["#{ object }"])
-        stuff =  link_to('', '#', :class => "on_off_schalter #{"Strangecms::#{pref}".constantize::Config["#{ object }"] ? 'an' : 'aus'}")
+        stuff +=  link_to('', '#', :class => "on_off_schalter #{"Strangecms::#{pref}".constantize::Config["#{ object }"] ? 'an' : 'aus'}")
       else
         stuff =  hidden_field_tag("preferences[#{ object }]", Strangecms::Config["#{ object }"])
-        stuff =  link_to('', '#', :class => "on_off_schalter #{Strangecms::Config["#{ object }"] ? 'an' : 'aus'}")
+        stuff +=  link_to('', '#', :class => "on_off_schalter #{Strangecms::Config["#{ object }"] ? 'an' : 'aus'}")
       end
       raw( stuff )
     end
@@ -75,7 +75,7 @@ module FineFormHelper
 		  stuff   =   "<tr><th>#{ t("strange_stylez.google_font_#{ pref }") }</th><td>"
 		  stuff   +=  text_field_tag("preferences[google_font_#{ pref }]", Strangecms::Stylez::Config[ "google_font_#{ pref }" ] )
 		  stuff   +=  "</td><td>#{ t("strange_stylez.google_font_default_#{ pref }") }</td><td>"
-		  stuff   +=  select_tag("preferences[google_font_default_#{ pref }]", options_for_select( StylezConfiguration::FONTS_ALTS.map { |c| [c,c] }, Strangecms::Stylez::Config[ "google_font_#{ pref }" ] ) )
+		  stuff   +=  select_tag("preferences[google_font_default_#{ pref }]", options_for_select( StylezConfiguration::FONTS_ALTS.map { |c| [c,c] }, Strangecms::Stylez::Config[ "google_font_default_#{ pref }" ] ) )
 		  stuff   +=  "</td></tr>"
       raw( stuff )
     end

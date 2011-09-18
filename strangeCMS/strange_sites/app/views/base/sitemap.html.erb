@@ -55,34 +55,3 @@
 
 <br/>
 <br/>
-
-<h1><%= yeah_baby_yeah %></h1>
-
-<%#= finelineButton(  :icon,  :blur,  :color,   :size,  :aktion, :tooltip, :title, :url, :class ) %><br/>
-<%#= finelineButton(:icon => 53, :blur => 87, :color => 'hell', :size => 48, :aktion => false) %><br/>
-<%#= finelineButton(:icon => 11, :blur => 75, :color => 'hell', :size => 32, :aktion => true) %><br/>
-
-<% xx = Array(1 .. 90) %>
-<% ax = Array(1 .. 25) %>
-<% sz = [18, 24, 32, 48] %>
-	
-	<% sz.each do |z| %>
-		<h3><%= z %> Pixel</h3>
-		<% xx.each do |x_icon| %>
-			<%= finelineButton(:icon => x_icon.to_i, :blur => 90, :color => 'hell', :size => z.to_i, :class => "#{'kreis' if 2 == rand(5)}" ) %>
-			<%= finelineButton(:icon => x_icon.to_i, :blur => 90, :color => 'dunkel', :size => z.to_i, :class => "#{'kreis' if 2 == rand(5)}" ) %>
-		<% end %>
-		<br/>
-		<hr/>
-		<br/>
-		<% if z == 32 || z == 48 %>
-			<h3><%= z %> Pixel Spezial-Icons</h3>
-			<% ax.each do |a_icon| %>
-				<%= finelineButton(:icon => a_icon.to_i, :blur => 90, :color => 'hell', :size => z.to_i, :aktion => true) %>
-				<%= finelineButton(:icon => a_icon.to_i, :blur => 90, :color => 'dunkel', :size => z.to_i, :aktion => true) %>
-			<% end %>
-			<br/>
-			<hr/>
-			<br/>
-		<% end %>
-	<% end %>

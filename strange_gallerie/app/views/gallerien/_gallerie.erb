@@ -1,4 +1,5 @@
-<% if @gallerie = Gallerie.find(abs.stuff_param) %>
+<% abs ||= false %>
+<% if abs && @gallerie = Gallerie.find(abs.stuff_param) %>
 
 <div style="margin-right: -15px">
 	

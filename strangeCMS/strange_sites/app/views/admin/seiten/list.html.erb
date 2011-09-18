@@ -1,5 +1,6 @@
 <style>
 
+
 ol.sortable_list { list-style:none; margin:0; padding:0; }
 
 ol.sortable_list ol { list-style:none;  margin:0; padding: 10px; }
@@ -83,7 +84,7 @@ $('.sortable_list').nestedSortable({
 	opacity: .6,
 	placeholder: 'placeholder',
 	revert: 250,
-	tabSize: 25,
+	tabSize: 30,
 	tolerance: 'pointer'
 	});
 
@@ -91,14 +92,15 @@ $('.sortable_list').nestedSortable({
 				e.preventDefault();
 				serialized = $('ol.sortable_list').nestedSortable('serialize');
 				$('#serializeOutput').text(serialized+'\n\n');
+				
 				$.ajax({
 					type: 'post', 
-					data: 'authenticity_token='+AUTH_TOKEN+'&'+ serialized, 
+					data: 'authenticity_token='+AUTH_TOKEN+'&'+ $('ol.sortable_list').nestedSortable('serialize'), 
 					dataType: 'script',
 					complete: function(request){
 						window.location = "/admin/seiten/";
 					},
 					url: "<%= nestesd_seiten_reorder_path %>"
-				})
-			})
+				});
+			});
 </script>

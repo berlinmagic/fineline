@@ -418,6 +418,36 @@ class StylezConfiguration < Configuration
   
   
   
+  # => LightBox_Nav
+  preference :admin_lightboxNav_border_radius, :integer, :default => 3
+  preference :admin_lightboxNav_border_color, :string, :default => 'cccccc'
+  preference :admin_lightboxNav_border_width, :integer, :default => 1
+  preference :admin_lightboxNav_border_style, :string, :default => BORDER_STYLEZ[1]
+  preference :admin_lightboxNav_icon_size, :integer, :default => ICON_SIZE[2]
+  preference :admin_lightboxNav_icon_color, :string, :default => ICON_COLOR[0]
+  preference :admin_lightboxNav_icon_blur, :integer, :default => 50
+  preference :admin_lightboxNav_style, :string, :default => BUTTON_STYLEZ[2]
+  preference :admin_lightboxNav_bg_style, :string, :default => BUTTON_BG_STYLEZ[0]
+  preference :admin_lightboxNav_bg_color1, :string, :default => 336699
+  preference :admin_lightboxNav_bg_color2, :string, :default => 336699
+  preference :admin_lightboxNav_box_shadow, :string, :default => 'inset 1px 1px 1px 0px rgba(255,255,255,.4)'
+
+  preference :admin_lightboxNav_bg_style_hover, :string, :default => BUTTON_BG_STYLEZ[0]
+  preference :admin_lightboxNav_bg_color1_hover, :string, :default => 336699
+  preference :admin_lightboxNav_bg_color2_hover, :string, :default => 336699
+  preference :admin_lightboxNav_border_color_hover, :string, :default => 'cccccc'
+  preference :admin_lightboxNav_border_style_hover, :string, :default => BORDER_STYLEZ[1]
+  preference :admin_lightboxNav_box_shadow_hover, :string, :default => 'inset 1px 1px 1px 0px rgba(255,255,255,.4)'
+
+  preference :admin_lightboxNav_bg_style_active, :string, :default => BUTTON_BG_STYLEZ[0]
+  preference :admin_lightboxNav_bg_color1_active, :string, :default => 336699
+  preference :admin_lightboxNav_bg_color2_active, :string, :default => 336699
+  preference :admin_lightboxNav_border_color_active, :string, :default => 'cccccc'
+  preference :admin_lightboxNav_border_style_active, :string, :default => BORDER_STYLEZ[1]
+  preference :admin_lightboxNav_box_shadow_active, :string, :default => 'inset 1px 1px 1px 0px rgba(255,255,255,.4)'
+  
+  
+  
   
   
 ####################### Alt 

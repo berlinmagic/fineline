@@ -1,43 +1,89 @@
-<%= render 'admin/shared/module_sub_menu' %>
+<%#= render 'admin/shared/module_sub_menu' %>
 
 <div class="admin_box">
 	<h1 class="icon"><%= finelineIcon(:icon => 58, :color => finestyler('headline_icon_color'), :size => finestyler('headline_icon_size'), :blur => finestyler('headline_icon_blur')) %><%= t('strange_gallerie.headlines.bild_show', :name => @bild.name) %></h1>
-
 	<div class="admin_in_box">
+		
 		<div class="box">
 			<div class="in_box">
-				<div class="right">
-					<%= link_to 'zurück', admin_bild_path(@prev_pic), :class => 'big_button' %>
-					<div class="big_button_spacer"></div>
-					<%= link_to 'weiter', admin_bild_path(@next_pic), :class => 'big_button' %>
-					<div class="clearfix"></div>
-				</div>
 				<h2><%= @bild.name %></h2>
 				<div class="clearfix"></div>
 			</div>
 		</div>
+		
 		<div class="box">
-			<div class="trenn_box">
-				<div class="top_trenner"></div>
+				<div class="trenn_linie"></div>
+		</div>
+		
+		<div class="system_help_text<%= ' hidden' unless Strangecms::Config[:show_help] %>">
+			<div class="box">
+				<div class="in_box">
+					<p class="sys_help"><%= t('strange_gallerie.help_text.bilder.show') %></p>
+				</div>
+			</div>
+
+			<div class="trenn_linie"></div>
+		</div>
+		
+
+		<div class="work_box">
+			<div class="in_box white">
+				<div id="Bild_BOX">
+					<% x_dims = format_bild(@bild, 690, 650) %>
+					<% xb = x_dims[:breite] %>
+					<% xh = x_dims[:hoehe] %>
+
+					<div id="pic_admin_toolz">
+						<%= finelineButton(		:icon => 30, 
+												:blur => Strangecms::Stylez::Config[:admin_systemButton_icon_blur], 
+												:color => Strangecms::Stylez::Config[:admin_systemButton_icon_color], 
+												:size => Strangecms::Stylez::Config[:admin_systemButton_icon_size], 
+												:class => "admin_system #{ Strangecms::Stylez::Config[:admin_systemButton_style] }", 
+												:url => edit_admin_bild_path(@bild), 
+												:tooltip => t("strange_gallerie.linkz.edit_pic")  ) %>
+						<%= finelineButton(		:icon => 64, 
+												:blur => Strangecms::Stylez::Config[:admin_systemButton_icon_blur], 
+												:color => Strangecms::Stylez::Config[:admin_systemButton_icon_color], 
+												:size => Strangecms::Stylez::Config[:admin_systemButton_icon_size], 
+												:class => "admin_system #{ Strangecms::Stylez::Config[:admin_systemButton_style] }", 
+												:url => zuschneiden_admin_bild_path(@bild), 
+												:tooltip => t("strange_gallerie.linkz.crop_pic")  ) %>
+						<%= finelineDelete( @bild, 		:icon => 24, 
+														:blur => Strangecms::Stylez::Config[:admin_systemButton_icon_blur], 
+														:color => Strangecms::Stylez::Config[:admin_systemButton_icon_color], 
+														:size => Strangecms::Stylez::Config[:admin_systemButton_icon_size], 
+														:class => 'admin_system '+Strangecms::Stylez::Config[:admin_systemButton_style].to_s, 
+														:url => admin_bild_path(@bild),
+														:tooltip => t("strange_gallerie.linkz.del_pic")  ) %>
+					</div>
+					<div id="pic_prev_link">
+						<%= finelineButton( 	:icon => 1, 
+												:blur =>  Strangecms::Stylez::Config[:admin_lightboxNav_icon_blur], 
+												:color => Strangecms::Stylez::Config[:admin_lightboxNav_icon_color], 
+												:size =>  Strangecms::Stylez::Config[:admin_lightboxNav_icon_size], 
+												:class => 'lighbox_nav '+Strangecms::Stylez::Config[:admin_lightboxNav_style].to_s,
+												:url => admin_bild_path(@prev_pic) ) %>
+					</div>
+					<div id="pic_next_link">
+						<%= finelineButton( 	:icon => 2, 
+												:blur =>  Strangecms::Stylez::Config[:admin_lightboxNav_icon_blur], 
+												:color => Strangecms::Stylez::Config[:admin_lightboxNav_icon_color], 
+												:size =>  Strangecms::Stylez::Config[:admin_lightboxNav_icon_size], 
+												:class => 'lighbox_nav '+Strangecms::Stylez::Config[:admin_lightboxNav_style].to_s,
+												:url => admin_bild_path(@next_pic) ) %>
+					</div>
+					<%= image_tag @bild.file.thumb(@bild.file_cropping).thumb("#{xb}x#{xh}").url %>
+					<div class="clearfix"></div>
+				</div>
 			</div>
 		</div>
+		<div class="box">
+				<div class="trenn_linie"></div>
+		</div>
+		
 		<div class="box">
 			<div class="in_box">
-				<% x_dims = format_bild(@bild, 692, 650) %>
-				<% xb = x_dims[:breite] %>
-				<% xh = x_dims[:hoehe] %>
 				
-				
-				<%= image_tag @bild.file.thumb(@bild.file_cropping).thumb("#{xb}x#{xh}").url %>
-			</div>
-		</div>
-		<div class="box">
-			<div class="trenn_box">
-				<div class="top_trenner"></div>
-			</div>
-		</div>
-		<div class="box">
-			<div class="in_box">
 				<div class="left_meta">
 					<table>
 
@@ -113,44 +159,22 @@
 						<% end %>
 					</table>
 				</div>
-
+				
 				<div class="clearfix"></div>
-			</div>
-		</div>
-		<div class="box">
-			<div class="trenn_box">
-				<div class="top_trenner"></div>
-			</div>
-		</div>
-		<div class="box">
-			<div class="in_box">
-				<h3>Tag´s&nbsp;&nbsp;&ndash;&nbsp;&nbsp;[ <span id="bild_tags_count"><%= @bild.tags.count %></span> ]</h3>
-			</div>
-		</div>
-		<div class="box">
-			<div class="in_box" id="bild_tags_box">
-				<% if @bild.tags.count > 0 %>
-					<%= render 'b_tags', :data => @bild.tags %>
-				<% end %>
 			</div>
 		</div>
 		
 		<div id="js_magick_place"></div>
 		
-		<div class="box">
-			<div class="trenn_box">
-				<div class="top_trenner"></div>
-			</div>
-		</div>
-		
-		<div class="box">
-			<div class="in_box">
-				<%= link_to 'Tag´s hinzufügen', available_data_tags_admin_bild_tags_path(@bild), :remote => true, :class => 'big_submit_button show_available' %>
-				<div class="clearfix"></div>
-			</div>
-		</div>
+		<%= render 'admin/tags/tags_show', :data => @bild %>
 		
 	</div>
 </div>
 
-<%= render 'admin/gallerien/sidebar' %>
+<div id="remote_stuff">
+	
+</div>
+
+<%= render 'admin/sidebars/gallerie_sidebar' %>
+
+

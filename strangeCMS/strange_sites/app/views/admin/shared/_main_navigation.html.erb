@@ -1,8 +1,9 @@
 <div class="grid_32">
 	<div id="admin_main_navigation">
 		<%= hook :admin_main_navigation do %>
-
-			<%= link_to 'Dashboard', admin_root_url, :class => "#{'aktiv' if @aktivio && @aktivio == 'dashboard'}" %>
+			<% if Strangecms::Config[:show_dashboard] %>
+				<%= link_to 'Dashboard', admin_root_url, :class => "#{'aktiv' if @aktivio && @aktivio == 'dashboard'}" %>
+			<% end %>
 			<%= link_to 'Seiten', admin_seiten_url, :class => "#{'aktiv' if @aktivio && @aktivio == 'seiten'}" %>
 
 		<% end %>

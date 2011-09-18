@@ -27,7 +27,7 @@
 		<div class="box">
 			<div class="in_box">
 				<% @bilder.each do |bild| %>
-					<%= render 'admin/bilder/pic', :bild => bild %>
+					<%= render 'admin/bilder/pic', :bild => bild, :gpic_width => 157, :gpic_height => 119, :pic_size => '4line' %>
 				<% end %>
 				<div class="clearfix"></div>
 			</div>
@@ -39,4 +39,4 @@
 
 </div>
 
-<%= render 'admin/gallerien/sidebar_js' %>
+<%= render 'admin/sidebars/gallerie_sidebar_js' %>

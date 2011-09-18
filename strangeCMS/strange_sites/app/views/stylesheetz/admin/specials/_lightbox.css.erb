@@ -23,19 +23,52 @@
     #cboxBottomCenter{height:21px; background:url(/images/border.png) 0 -29px repeat-x;}
     #cboxContent{background:#fff; overflow:hidden;}
         #cboxError{padding:50px; border:1px solid #ccc;}
-        #cboxLoadedContent{margin-bottom:28px;}
-        #cboxTitle{position:absolute; bottom:4px; left:0; text-align:center; width:100%; color:#949494;}
-        #cboxCurrent{position:absolute; bottom:4px; left:58px; color:#949494;}
+        #cboxLoadedContent{ /*margin-bottom:28px;*/ margin: 3px 3px 30px; <%= fineBorderRadius( '1px','5px','5px','5px' ) %> border: solid 1px #ccc; }
+		#cboxLoadedContent .fine_lightbox_pic_holder { <%= fineBorderRadius( '1px','5px','5px','5px' ) %> overflow: hidden; border: solid 1px #ccc; background: #f3f2f2; }
+        #cboxTitle{position:absolute; bottom:2px; left:4px; text-align:left; width:71%; <%= fine_font_style( 'p' ) %> }
+        #cboxCurrent{position:absolute; bottom:2px; right:5px; width:27%; text-align:right; <%= fine_font_style( 'p' ) %>}
         #cboxSlideshow{position:absolute; bottom:4px; right:30px; color:#0092ef;}
-        #cboxPrevious{position:absolute; bottom:0; left:0; background:url(/images/controls.png) no-repeat -75px 0; width:25px; height:25px; text-indent:-9999px;}
-        #cboxPrevious.hover{background-position:-75px -25px;}
-        #cboxNext{position:absolute; bottom:0; left:27px; background:url(/images/controls.png) no-repeat -50px 0; width:25px; height:25px; text-indent:-9999px;}
-        #cboxNext.hover{background-position:-50px -25px;}
+        
+		<%# toppa = Strangecms::Stylez::Config[:front_lightboxNav_icon_size].to_i / 2 + Strangecms::Stylez::Config[:front_lightboxNav_border_width].to_i %>
+		<%# if Strangecms::Stylez::Config[:front_lightboxNav_style] == "rund" %>
+			<%# radios = 50 %>
+		<%# elsif Strangecms::Stylez::Config[:front_lightboxNav_style] == "gerunded" %>
+			<%# radios = Strangecms::Stylez::Config[:front_lightboxNav_border_radius] %>
+		<%# else %>
+			<%# radios = 0 %>
+		<%# end %>
+		
+		
+	/*	#cboxPrevious{position:absolute; top: 50%; left:15px; padding: 3px; background: rgba(255,255,255,.70); 
+			margin-top: -<%#= toppa || 0 %>px; <%#= fine_borderRadius( "#{ radios }#{ 'px' if radios > 0 }" ) %>  }
+        
+		#cboxNext{ position:absolute; top: 50%; right: 15px; padding: 3px; background: rgba(255,255,255,.70); 
+			margin-top: -<%#= toppa || 0 %>px; <%#= fine_borderRadius( "#{ radios }#{ 'px' if radios > 0 }" ) %>  }
+
+*/
+<% hoehe = finestyler( 'lightboxNav_icon_size', 'admin' ).to_i + finestyler( 'lightboxNav_border_width', 'admin' ).to_i * 2 %>
+#cboxPrevious{position:absolute; bottom: 50%; left:15px; height: <%= hoehe %>px; width: <%= hoehe %>px; }
+#cboxNext{ position:absolute; bottom: 50%; right: 15px; height: <%= hoehe %>px; width: <%= hoehe %>px; }
+		#cboxPrevious .finelineButton, #cboxNext .finelineButton { <%= fine_icn_css( 'lightboxNav', 'admin' ) %> }
+		#cboxPrevious:hover .finelineButton, #cboxNext:hover .finelineButton { <%= fine_icn_css( 'lightboxNav', 'admin', 'hover' ) %> }
+		#cboxPrevious:active .finelineButton, #cboxNext:active .finelineButton { <%= fine_icn_css( 'lightboxNav', 'admin', 'active' ) %> }
+		
+
         #cboxLoadingOverlay{background:url(/images/loading_background.png) no-repeat center center;}
         #cboxLoadingGraphic{background:url(/images/loading.gif) no-repeat center center;}
-
-        #cboxClose{position:absolute; top:0; right:0; background:url(/images/controls.png) no-repeat -25px 0; width:25px; height:25px; text-indent:-9999px;}
-        #cboxClose.hover{background-position:-25px -25px;}
+		
+        #cboxClose{ position:absolute; top:3px; right:3px; background: #fff; padding: 0 0 7px 7px; 
+			border:0; border-left: solid 1px #ccc; border-bottom: solid 1px #ccc;
+			<% if finestyler( 'systemButton_style', 'admin' ) == 'gerunded' %>
+				<%= fineBorderRadius( '', '', '', "#{ finestyler( 'systemButton_border_radius', 'admin' ) }px" ) %> 
+			<% elsif finestyler( 'systemButton_style', 'admin' ) == 'rund' %>
+				<%= fineBorderRadius( '', '', '', "#{ finestyler( 'systemButton_icon_size', 'admin' ).to_i / 2 + finestyler( 'systemButton_border_width', 'admin' ).to_i }px" ) %>
+			<% else %>
+				<%= fineBorderRadius( '', '', '', "" ) %>
+			<% end %>
+				}
+		
+        #cboxClose.hover {}
 
 /* 	The following fixes a problem where IE7 and IE8 replace a PNG's alpha transparency with a black fill
 	when an alpha filter (opacity change) is set on the element or ancestor element.  This style is not applied to IE9. */
@@ -54,3 +87,4 @@
 .cboxIE6 #cboxBottomRight{background:url(/images/ie6/borderBottomRight.png);}
 .cboxIE6 #cboxMiddleLeft{background:url(/images/ie6/borderMiddleLeft.png);}
 .cboxIE6 #cboxMiddleRight{background:url(/images/ie6/borderMiddleRight.png);}
+

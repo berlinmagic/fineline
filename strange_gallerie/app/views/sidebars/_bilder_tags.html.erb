@@ -9,6 +9,7 @@
 			 <% Tagging.where(:target_type => 'Bild').each do |tagging| %>
 			 	<% @tags << tagging.tag.name %>
 			 <% end %>
+			<% bild = Bild.all.first  %>
 			 <% @tags.uniq.sort.each do |tag| %>
 			 	<% tg = Tag.where(:name => tag).first %>
 			 <% unless @n_tag_fl == tg.firstletter %>

@@ -1,4 +1,0 @@
-$("#bild_tags_box").html("<%= escape_javascript(render(:partial => "admin/bilder/b_tags", :locals => {:data => @tags})) %>");
-$("#js_magick_place").html("<%= escape_javascript(render(:partial => "admin/bilder/available_tags", :locals => {:data => @available_tags})) %>");
-$("#bild_tags_count").html("<%= @tags.count %>");
-$("#new_tag_name").val("");

@@ -1,0 +1,74 @@
+<% content_for :sidebar do %>
+
+<div class="side_box">
+	<div class="sidebar_head aktiv_box">
+		<a href="#">Gallerien</a>
+	</div>
+	<ul class='sidebar'>
+		<li><%= link_to 'Gallerien', admin_gallerien_url, :class => "js_pic_link #{'aktiv' if @u_aktiv == 'gallerie'}" %></li>
+		<% if Gallerie.all.count > 0 %>
+			<% Gallerie.all.each do |data| %>
+				<li> <%= link_to raw("&raquo;&nbsp;#{data.name}&nbsp;&nbsp;[ #{data.bilder.count} ]"), admin_gallerie_url(data), 
+										:class => "js_pic_link #{'aktiv' if @gallerie && @gallerie.id == data.id}" %></li>
+			<% end %>
+		<% end %>
+		<% if @u_aktiv == 'gallerie' %>
+			<li><%= link_to '+ neue Gallerie', new_admin_gallerie_url, :class => 'js_pic_link' %></li>
+		<% end %>
+	</ul>
+</div>
+
+<div class="side_box">
+	<div class="sidebar_head aktiv_box">
+		<a href="#">Kategorien</a>
+	</div>
+	<ul class='sidebar'>
+		<li><%= link_to 'Kategorien', admin_bild_kategorien_url, :class => "js_pic_link #{'aktiv' if @u_aktiv == 'bild_kategorien'}" %></li>
+		<% if BildKategorie.all.count > 0 %>
+			<% BildKategorie.all.each do |data| %>
+				<li> <%= link_to raw("&raquo;&nbsp;#{data.name}&nbsp;&nbsp;[ #{data.bilder.count} ]"), admin_bild_kategorie_url(data), 
+										:class => "js_pic_link #{'aktiv' if @bild_kategorie && @bild_kategorie.id == data.id}" %></li>
+			<% end %>
+		<% end %>
+		<% if @u_aktiv == 'bild_kategorien' %>
+			<li><%= link_to '+ neue Kategorie', new_admin_bild_kategorie_url, :class => 'js_pic_link' %></li>
+		<% end %>
+	</ul>
+</div>
+
+<div class="side_box">
+	<div class="sidebar_head aktiv_box">
+		<a href="#">Bilder</a>
+	</div>
+	<ul class='sidebar'>
+		<li><%= link_to 'Bilder', admin_bilder_url, :class => "js_pic_link #{'aktiv' if @u_aktiv == 'bilder'}" %></li>
+		<% if @u_aktiv == 'bilder' %>
+			<li><%= link_to '+ neues Bild', new_admin_bild_url, :class => 'js_pic_link' %></li>
+		<% end %>
+	</ul>
+</div>
+
+
+<% if Tagging.where(:target_type => 'Bild').count > 0 %>
+	<div class="side_box">
+		<div class="sidebar_head aktiv_box">
+			<a href="#">Tags</a>
+		</div>
+		<ul class='sidebar'>
+			<% @tags = [] %>
+			<% Tagging.where(:target_type => 'Bild').each do |tagging| %>
+				<% @tags << tagging.tag.name %>
+			<% end %>
+			<% @tags.uniq.sort.each do |tag| %>
+				<% tg = Tag.where(:name => tag).first %>
+				<li><%= link_to raw("&raquo;&nbsp;#{ tag }&nbsp;&nbsp;
+					[ #{ Tagging.where(:target_type => 'Bild', :tag_id => tg.id).count } ]"), "/admin/bilder/by_tag#{tg.slug}", :class => 'js_pic_link' %></li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>
+
+<%= help_link_box %>
+
+
+<% end %>

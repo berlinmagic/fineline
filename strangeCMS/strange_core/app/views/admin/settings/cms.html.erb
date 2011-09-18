@@ -31,6 +31,29 @@
 						<th><%= t('strange_preferences.show_site_name') %></th>
 						<td><%= Strangecms::Config[:show_site_name] ? 'Ja' : 'Nein' %></td>
 					</tr>
+					
+					<tr>
+						<th><%= t('strange_preferences.show_help') %></th>
+						<td><%= Strangecms::Config[:show_help] ? 'Ja' : 'Nein' %></td>
+					</tr>
+					
+					
+					
+					
+					<tr>
+						<th><%= t('strange_preferences.always_put_site_name_in_title') %></th>
+						<td><%= Strangecms::Config[:always_put_site_name_in_title] ? 'Ja' : 'Nein' %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.put_site_name_bevore_title') %></th>
+						<td><%= Strangecms::Config[:put_site_name_bevore_title] ? 'Ja' : 'Nein' %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.title_seperator') %></th>
+						<td>'<%= Strangecms::Config[:title_seperator].to_s %>'</td>
+					</tr>
+					
+					
 					<tr>
 						<th><%= t('strange_preferences.invite_only_site') %></th>
 						<td><%= Strangecms::Config[:invite_only_site] ? 'Ja' : 'Nein' %></td>
@@ -84,7 +107,7 @@
 					</tr>
 					<% if current_user && site_master %>
 					<tr>
-						<th colspan="2" class="u_kat"><%= t('strange_preferences.locale_settings')%></th>
+						<th colspan="2" class="u_kat"><br/><br/>System-Einstellungen:</th>
 					</tr>
 					<tr>
 						<th><%= t('strange_preferences.compress_stylez') %></th>
@@ -93,6 +116,23 @@
 					<tr>
 						<th><%= t('strange_preferences.compress_scriptz') %></th>
 						<td><%= Strangecms::Config[:compress_scriptz] ? 'Ja' : 'Nein' %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.show_sitemap') %></th>
+						<td><%= Strangecms::Config[:show_sitemap] ? 'Ja' : 'Nein' %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.show_dashboard') %></th>
+						<td><%= Strangecms::Config[:show_dashboard] ? 'Ja' : 'Nein' %></td>
+					</tr>
+					
+					<tr>
+						<th><%= t('strange_preferences.make_backups') %></th>
+						<td><%= Strangecms::Config[:make_backups] ? 'Ja' : 'Nein' %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.show_backups') %></th>
+						<td><%= Strangecms::Config[:show_backups] ? 'Ja' : 'Nein' %></td>
 					</tr>
 					<% end %>
 				</table>

@@ -18,6 +18,13 @@ class AppConfiguration < Configuration
   
   preference :logo_datei, :integer
   
+  
+  preference :show_sitemap,     :boolean, :default => true
+  preference :show_dashboard,   :boolean, :default => true
+  preference :make_backups,     :boolean, :default => true
+  preference :show_backups,     :boolean, :default => false
+  
+  
   preference :show_site_name, :boolean, :default => true
   preference :stange_owner_name, :string, :default => 'Name'
   preference :stange_owner_vorname, :string, :default => 'Vorname'
@@ -71,40 +78,6 @@ class AppConfiguration < Configuration
   preference :kontakt_mail_an, :string, :default => 'cms@orangenwerk.com'
   preference :kontakt_mail_bcc, :string, :default => 'admin@orangenwerk.com'
   
-  preference :kontakt_anrede, :boolean, :default => true
-  preference :kontakt_validate_anrede, :boolean, :default => true
-  preference :kontakt_titel, :boolean, :default => false
-  preference :kontakt_validate_titel, :boolean, :default => false
-  preference :kontakt_name, :boolean, :default => true
-  preference :kontakt_validate_name, :boolean, :default => true
-  preference :kontakt_vorname, :boolean, :default => false
-  preference :kontakt_validate_vorname, :boolean, :default => false
-  preference :kontakt_firma, :boolean, :default => false
-  preference :kontakt_validate_firma, :boolean, :default => false
-  preference :kontakt_abteiung_oder_position, :boolean, :default => false
-  preference :kontakt_validate_abteiung_oder_position, :boolean, :default => false
-  preference :kontakt_webseite, :boolean, :default => false
-  preference :kontakt_validate_webseite, :boolean, :default => false
-  preference :kontakt_strasse, :boolean, :default => false
-  preference :kontakt_validate_strasse, :boolean, :default => false
-  preference :kontakt_plz, :boolean, :default => false
-  preference :kontakt_validate_plz, :boolean, :default => false
-  preference :kontakt_ort, :boolean, :default => false
-  preference :kontakt_validate_ort, :boolean, :default => false
-  preference :kontakt_bundesland, :boolean, :default => false
-  preference :kontakt_validate_bundesland, :boolean, :default => false
-  preference :kontakt_land, :boolean, :default => false
-  preference :kontakt_validate_land, :boolean, :default => false
-  preference :kontakt_geburtstag, :boolean, :default => false
-  preference :kontakt_validate_geburtstag, :boolean, :default => false
-  preference :kontakt_telefon, :boolean, :default => false
-  preference :kontakt_validate_telefon, :boolean, :default => false
-  preference :kontakt_telefax, :boolean, :default => false
-  preference :kontakt_validate_telefax, :boolean, :default => false
-  preference :kontakt_mobil, :boolean, :default => false
-  preference :kontakt_validate_mobil, :boolean, :default => false
-  preference :kontakt_betreff, :boolean, :default => true
-  preference :kontakt_validate_betreff, :boolean, :default => false
 
   validates :name, :presence => true, :uniqueness => true
 

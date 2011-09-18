@@ -22,19 +22,42 @@
 					</tr>
 					<tr>
 						<th><%= t('strange_preferences.show_site_name') %></th>
-						<td>
-							<%= hidden_field_tag('preferences[show_site_name]', Strangecms::Config[:show_site_name]) %>
-							<%= link_to '', '#', :class => "on_off_schalter #{Strangecms::Config[:show_site_name] ? 'an' : 'aus'}" %>
+						<td><%= fine_bool_tag('show_site_name') %>
 						</td>
 					</tr>
 					<tr>
 						<td colspan="2"><%= t('strange_preferences.show_site_name_explain')%></td>
 					</tr>
+					
+					
+					<tr>
+						<td colspan="2">&nbsp;</td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.show_help') %></th>
+						<td><%= fine_bool_tag('show_help') %></td>
+					</tr>
+					
+					<tr>
+						<th><%= t('strange_preferences.always_put_site_name_in_title') %></th>
+						<td><%= fine_bool_tag('always_put_site_name_in_title') %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.put_site_name_bevore_title') %></th>
+						<td><%= fine_bool_tag('put_site_name_bevore_title') %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.title_seperator') %></th>
+						<td><%= text_field_tag('preferences[title_seperator]', Strangecms::Config[:title_seperator], :size => 5 )%></td>
+					</tr>
+					<tr>
+						<td colspan="2">&nbsp;</td>
+					</tr>
+					
+					
 					<tr>
 						<th><%= t('strange_preferences.invite_only_site') %></th>
-						<td>
-						<%= hidden_field_tag('preferences[invite_only_site]', Strangecms::Config[:invite_only_site]) %>
-						<%= link_to '', '#', :class => "on_off_schalter #{Strangecms::Config[:invite_only_site] ? 'an' : 'aus'}" %></td>
+						<td><%= fine_bool_tag('invite_only_site') %></td>
 					</tr>
 					<tr>
 						<td colspan="2"><%= t('strange_preferences.invite_only_site_explain')%></td>
@@ -81,16 +104,30 @@
 				
 				<% if current_user && site_master %>
 				<table class="settings">
-				<tr>
-					<th colspan="2" class="u_kat"><%= t('strange_preferences.locale_settings')%></th>
-				</tr>
+				 <tr>
+				 	<th><%= t('strange_preferences.show_sitemap') %></th>
+				 	<td><%= fine_bool_tag('show_sitemap') %></td>
+				 </tr>
+				 <tr>
+				 	<th><%= t('strange_preferences.show_dashboard') %></th>
+				 	<td><%= fine_bool_tag('show_dashboard') %></td>
+				 </tr>
+				 
+				 <tr>
+				 	<th><%= t('strange_preferences.make_backups') %></th>
+				 	<td><%= fine_bool_tag('make_backups') %></td>
+				 </tr>
+				 <tr>
+				 	<th><%= t('strange_preferences.show_backups') %></th>
+				 	<td><%= fine_bool_tag('show_backups') %></td>
+				 </tr>
 				<tr>
 					<th><%= t('strange_preferences.compress_stylez') %></th>
-					<td><%= select_tag 'preferences[compress_stylez]', options_for_select({ 'Aktiv' => true, 'Inaktiv' => false }, Strangecms::Config[:compress_stylez])    %></td>
+					<td><%= fine_bool_tag('compress_stylez') %></td>
 				</tr>
 				<tr>
 					<th><%= t('strange_preferences.compress_scriptz') %></th>
-					<td><%= select_tag 'preferences[compress_scriptz]', options_for_select({ 'Aktiv' => true, 'Inaktiv' => false }, Strangecms::Config[:compress_scriptz])    %></td>
+					<td><%= fine_bool_tag('compress_scriptz') %></td>
 				</tr>
 				</table>
 				<% end %>

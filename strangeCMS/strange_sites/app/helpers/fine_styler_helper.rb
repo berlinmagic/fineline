@@ -234,9 +234,7 @@ module FineStylerHelper
 		    css += fine_borderRadius( )
 		  end
 		end
-		unless Strangecms::Stylez::Config[ "#{area}_#{ pref }_box_shadow#{ state }" ] != ''
-		  css += "#{ fine_boxShadow( Strangecms::Stylez::Config[ "#{area}_#{ pref }_box_shadow#{ state }" ] ) }"
-	  end
+		css += "#{ fine_boxShadow( Strangecms::Stylez::Config[ "#{area}_#{ pref }_box_shadow#{ state }" ] ) }"
 		css += "#{ fine_opacity( Strangecms::Stylez::Config["#{ area }_#{ pref }_opacity#{ state }"] ) }"
 		css += "padding: #{ Strangecms::Stylez::Config["#{ area }_#{ pref }_padding_top"] }px #{ Strangecms::Stylez::Config["#{ area }_#{ pref }_padding_right"] }px #{ Strangecms::Stylez::Config["#{ area }_#{ pref }_padding_bottom"] }px #{ Strangecms::Stylez::Config["#{ area }_#{ pref }_padding_left"] }px;"
 	  css += "border: #{Strangecms::Stylez::Config["#{ area }_#{ pref }_border_style"]} #{Strangecms::Stylez::Config["#{ area }_#{ pref }_border_width#{ state }"]}px ##{Strangecms::Stylez::Config["#{ area }_#{ pref }_border_color#{ state }"]};"
