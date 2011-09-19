@@ -1,11 +1,27 @@
 <% data ||= @data %>
+<% if (current_user && admin_check) || (data.tags.count > 0) %>
+
+<div class="in_box">
+	<div class="trenn_linie"></div>
+	<div class="clearfix"></div>
+</div>
+
 <div class="box">
+	<div class="in_box">
+		<h5 class="icon"><%= finelineIcon(:icon => 50, :color => finestyler('headline_icon_color'), :size => finestyler('headline_icon_size'), :blur => finestyler('headline_icon_blur')) %><%= t('strange_categories.headlines.object_tags') %> 
+			<% if current_user && admin_check %>
+				<span class="smal_text_link">| <%= link_to t('strange_categories.headlines.tag_add'), "/admin/#{data.class.to_s.tableize}/#{data.id.to_s}/tags/available_data_tags", :class => "colorB" %></span>
+			<% end %>
+		</h5>
+	</div>
 	<div class="in_box" id="data_tags_box">
 		<% if data.tags.count > 0 %>
 			<%= render 'admin/tags/objekt_tags', :data => data %>
 		<% end %>
 	</div>
 </div>
+
+<% end %>
 
 <% if 'x' == 'y' %>
 

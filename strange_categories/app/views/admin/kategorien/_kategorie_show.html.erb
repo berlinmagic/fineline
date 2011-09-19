@@ -1,12 +1,26 @@
 <% data ||= @data %>
+<% if (current_user && admin_check) || (data.kategorien.count > 0) %>
+
+<div class="in_box">
+	<div class="trenn_linie"></div>
+	<div class="clearfix"></div>
+</div>
 
 <div class="box">
+	<div class="in_box">
+		<h5 class="icon"><%= finelineIcon(:icon => 62, :color => finestyler('headline_icon_color'), :size => finestyler('headline_icon_size'), :blur => finestyler('headline_icon_blur')) %><%= t('strange_categories.headlines.object_kats') %> 
+			<% if current_user && admin_check %>
+				<span class="smal_text_link">| <%= link_to t('strange_categories.headlines.kat_add'), "/admin/#{data.class.to_s.tableize}/#{data.id.to_s}/kategorien/available_kats", :class => "colorB" %></span>
+			<% end %>
+		</h5>
+	</div>
 	<div class="in_box" id="data_kats_box">
 		<% if data.kategorien.count > 0 %>
 			<%= render 'admin/kategorien/objekt_kats', :data => data %>
 		<% end %>
 	</div>
 </div>
+<% end %>
 
 
 <% if 'x' == 'y' %>

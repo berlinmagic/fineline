@@ -1,12 +1,3 @@
-
-<% if (current_user && admin_check) || (data.tags.count > 0) %>
-<h5 class="icon"><%= finelineIcon(:icon => 50, :color => finestyler('headline_icon_color'), :size => finestyler('headline_icon_size'), :blur => finestyler('headline_icon_blur')) %><%= t('strange_categories.headlines.object_tags') %> 
-	<% if current_user && admin_check %>
-		<span class="smal_text_link">| <%= link_to t('strange_categories.headlines.tag_add'), "/admin/#{data.class.to_s.tableize}/#{data.id.to_s}/tags/available_data_tags", :class => "colorB" %></span>
-	<% end %>
-</h5>
-<% end %>
-
 <div id="objekt_tag_box">
 <% data.tags.each_with_index do |tag, index| %>
 
