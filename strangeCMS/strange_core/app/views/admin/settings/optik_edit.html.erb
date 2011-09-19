@@ -31,9 +31,16 @@
 					
 					<tr>
 						<th><%= t('strange_preferences.logo') %></th>
-						<td><%= file_field_tag('preferences[logo]') %></td>
+						<td><% if Strangecms::Config[:logo_datei] && !Strangecms::Config[:logo_datei].blank? %>
+								<% if datei = Datei.find(Strangecms::Config[:logo_datei]) %>
+									<%= image_tag datei.file.thumb("100x350>").url() %>
+								<% end %>
+							<% end %></td>
 					</tr>
-					
+					<tr>
+						<th><%= t('strange_preferences.use_logo_datei') %></th>
+						<td><%= fine_bool_tag('use_logo_datei')%></td>
+					</tr>
 					
 					<tr>
 						<th><%= t('strange_preferences.strange_logo') %></th>

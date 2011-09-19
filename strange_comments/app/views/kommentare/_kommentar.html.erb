@@ -5,28 +5,27 @@
 		<span class="kommentar_date"> am <%= kommentar.created_at.strftime('%d.%m.%Y') %> um <%= kommentar.created_at.strftime('%H:%M') %> Uhr</span>
 	</p>
 	
-	<div class="kommentar_inhalt">
+	<div class="kommentar_inhalt editable_box">
 		<div class="abschnitt_admin_toolz">
-		<% if (kommentar.user_ip == request.remote_ip) && (kommentar.created_at+5.minutes >= Time.now ) %>
+		<% if ( (kommentar.user_ip == request.remote_ip) && (kommentar.created_at+5.minutes >= Time.now ) ) || admin_check %>
 			<% @put_kommentar_form_box = true %>
-			<div class="remove_nested_forms">
-				<%= fineline_button_delete( kommentar, 	#:link_text => 'loeschen', 
-													:url => kommentare_path(kommentar),
-													:tooltip => 'Kommentar löschen' ) %>
+			<div class="outbox_system_admin_toolz">
+				<%= finelineButton(		:icon => 30, 
+										:blur => finestyler( 'systemButton_icon_blur' ), 
+										:color => finestyler( 'systemButton_icon_color' ), 
+										:size => finestyler( 'systemButton_icon_size' ), 
+										:class => "kommentar_form_toggle_remote_link system #{ finestyler( 'systemButton_style' ) }", 
+										:url => '#', 
+										:tooltip => t("strange_comments.links.edit")  ) %>
+				<%= finelineDelete(		kommentar,
+										:icon => 24, 
+										:blur => finestyler( 'systemButton_icon_blur' ), 
+										:color => finestyler( 'systemButton_icon_color' ), 
+										:size => finestyler( 'systemButton_icon_size' ), 
+										:class => "system #{ finestyler( 'systemButton_style' ) }", 
+										:url => kommentar_path(kommentar), 
+										:tooltip => t("strange_comments.links.delete")  ) %>
 			</div>
-			<div class="edit_nested_form">
-				<%= link_to fineline_button('bearbeiten'), '#', :class => "kommentar_form_toggle_remote_link tolltips_edit", :title => "Kommentar bearbeiten" %></div>
-		<% elsif admin_check %>
-			<% @put_kommentar_form_box = true %>
-			<div class="remove_nested_forms">
-				<%= fineline_button_delete( kommentar, 	#:link_text => 'loeschen', 
-													:url => kommentare_path(kommentar),
-													:tooltip => 'Kommentar löschen' ) %>
-			</div>
-			<div class="edit_nested_form">
-				<%= link_to fineline_button('bearbeiten'), '#', :class => "kommentar_form_toggle_remote_link tolltips_edit", :title => "Kommentar bearbeiten" %>
-			</div>
-
 		<% end %>
 		</div>
 		<p class="kommentar_text">
@@ -36,7 +35,9 @@
 			<% if @put_kommentar_form_box %>
 				<%= form_for kommentar, :remote => true do |f| %>
 					<%= f.hidden_field :back_url, :value => kommentar.back_url %>
-					<%= f.text_area :inhalt, :size => '90x5', :class => 'tipped' %>
+					<%= f.text_area :inhalt, :style => 'width: 98%; height: 60px;', :class => 'tipped' %>
+					<div class="vspacer"></div>
+					<div class="clearfix"></div>
 					<%= f.submit 'Speichern' %>
 					<div class="clearfix"></div>
 				<% end %>

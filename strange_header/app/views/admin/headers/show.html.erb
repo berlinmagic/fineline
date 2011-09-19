@@ -127,7 +127,7 @@
 		<div class="work_box">
 			<div class="in_box white" id="Hpics_Box">
 				<% @header.header_hpics.each do |head| %>
-					<div class="moover_box" id="<%= dom_id(head)%>">
+					<div class="moover_box editable_box" id="<%= dom_id(head)%>">
 					<% cache(:part => "hhpic_#{head.id}") do %>
 						<%= fine_handle( :icon => 77, :color => 'hell', :blur => 70) %>
 						<% unless @header.ratio == head.h_ratio %>

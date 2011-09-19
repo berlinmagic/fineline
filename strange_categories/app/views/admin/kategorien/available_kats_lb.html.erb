@@ -1,11 +1,11 @@
 <% data ||= @data %>
 <% available_data ||= @available_data %>
 
-<h2 class="polymorphe_form_head_toggle aktiv">
-	<%= link_to 'Kategorie hinzufügen', "#", :remote => true %>
-</h2>
+<div class="Toolz_LB">
 
-<div class="polymorphe_form_box">
+<h5 class="icon"><%= finelineIcon(:icon => 85, :color => finestyler('headline_icon_color'), :size => finestyler('headline_icon_size'), :blur => finestyler('headline_icon_blur')) %><%= t('strange_categories.headlines.kat_add') %></h5>
+<br/>
+<div>
 	
 	<div id="kat_form_available_tags">
 		<%= render 'admin/kategorien/a_kats', :data => data, :available_data => available_data %>
@@ -19,12 +19,12 @@
 		
 		<p>Neue Kategorie anlegen:</p>
 		<div class="field">
-			<%= text_field_tag 'new_kat_name', '', :class => 'tipped', :placeholder => 'Kategorie-Name' %>
+			<%= text_field_tag 'new_kat_name', '', :class => 'tipped', :placeholder => 'Kategorie-Name', :size => '80' %>
 		</div>
 		
 		
 		<div class="field">
-			<%= text_area_tag 'new_kat_desc', '', :class => 'tipped', :placeholder => 'Kategorie-Beschreibung' %>
+			<%= text_area_tag 'new_kat_desc', '', :class => 'tipped', :placeholder => 'Kategorie-Beschreibung', :size => '80x5' %>
 		</div>
 		<br/>
 		<div class="clearfix"></div>
@@ -37,4 +37,4 @@
 			
 </div>
 
-
+</div>

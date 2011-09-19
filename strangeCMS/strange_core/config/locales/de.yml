@@ -264,6 +264,7 @@ de:
         google_settings: "Google-API Einstellungen"
         analytics_key: "Google-Analytics - Key"
         g_maps_key: "Google-Maps - Key"
+        use_logo_datei: "Upload-Logo verwenden?"
   strangecms:
       datei: "Dateien"
       dateien:

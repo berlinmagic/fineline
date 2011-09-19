@@ -1,0 +1,34 @@
+<% data ||= @data %>
+<% available_tags ||= @available_tags %>
+
+
+<div class="Toolz_LB">
+
+<h5 class="icon"><%= finelineIcon(:icon => 83, :color => finestyler('headline_icon_color'), :size => finestyler('headline_icon_size'), :blur => finestyler('headline_icon_blur')) %><%= t('strange_categories.headlines.tag_add') %></h5>
+<br/>
+<div>
+	<div id="tag_form_available_tags">
+		<%= render 'admin/tags/a_tags', :data => data, :available_tags => available_tags %>
+	</div>
+
+	<div class="clearfix"></div>
+	<br/>
+	<div class="top_trenner"></div>
+	<br/>
+	<%= form_tag "/admin/#{data.class.to_s.tableize}/#{data.id}/tags/new_data_tag", :method => :post, :remote => true do %>
+		
+		<div class="form_field_spacer">
+			<%= text_field_tag 'new_tag_name', '', :class => 'tipped', :placeholder => 'neuen Tag anlegen', :size => '50' %>
+		</div>
+		<br/>
+		<div class="clearfix"></div>
+		<%= submit_tag 'Tag erstellen' %>
+	
+	<% end %>
+	<div class="clearfix"></div>
+	<br/>
+			
+</div>
+
+
+</div>

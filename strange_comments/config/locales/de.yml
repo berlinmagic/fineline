@@ -17,7 +17,9 @@ de:
         classic: "Klassiche Tabelle"
     headlines:
         settings: "Kommentar Einstellungen"
-    
+    links:
+        edit: "Kommentar bearbeiten"
+        delete: "Kommentar löschen"
     
     
 ##############################################################################################################################################

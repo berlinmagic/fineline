@@ -75,7 +75,7 @@ module BaseHelper
     options.reverse_merge! :tooltip => t("Destroy") unless options.key? :tooltip
     options.reverse_merge! :title => t('confirm_delete')
     options.reverse_merge! :dataType => 'script'
-    options.reverse_merge! :icon    => 1      unless options.key? :icon
+    options.reverse_merge! :icon    => 24     unless options.key? :icon
     options.reverse_merge! :blur    => 1.0    unless options.key? :blur
     options.reverse_merge! :color   => nil    unless options.key? :class
     options.reverse_merge! :size    => 18     unless options.key? :size
@@ -83,13 +83,13 @@ module BaseHelper
     opt_pix = [18, 24, 32, 48]
     size = opt_pix.include?(options[:size]) ? options[:size] : 18
     options.reverse_merge! :success => "function(r){ jQuery('##{dom_id helpa}').fadeOut('hide'); }"
-    link_to_function raw( "<div class='flb#{size} finelineButton#{' '+options[:class] if options[:class]}#{' tooltiped' if options[:tooltip] }'#{ ' title="'+ options[:title] +'"' if options[:title] }>#{ 
+    link_to_function raw( "#{ 
                 finelineIcon(     :icon => options[:icon], 
                                   :blur => options[:blur], 
                                   :color => options[:color], 
                                   :size => options[:size], 
                                   :aktion => options[:aktion]   ) 
-            }</div>" 
+            }" 
         ), "jConfirm('#{options[:caption]}', '#{options[:title]}', function(r) {
       if(r){
         jQuery.ajax({
@@ -100,7 +100,7 @@ module BaseHelper
           success: #{options[:success]}
         });
       }
-    });", :title => options[:tooltip], :class => 'tooltiped'
+    });", :title => options[:tooltip], :class => "flb#{size} system finelineButton#{' '+options[:class] if options[:class]}#{' tooltiped' if options[:tooltip] }"
   end
   
   def fine_handle(options = {})

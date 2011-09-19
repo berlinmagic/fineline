@@ -1,4 +1,5 @@
 <% data ||= @data %>
+
 <div class="box">
 	<div class="in_box" id="data_kats_box">
 		<% if data.kategorien.count > 0 %>
@@ -7,13 +8,14 @@
 	</div>
 </div>
 
-<div class="box">
-	<div class="trenn_box">
-		<div class="top_trenner"></div>
-	</div>
-</div>
 
-<% if current_user %>
+<% if 'x' == 'y' %>
+
+<%# if site_master %>
+	<div class="clearfix"></div>
+	<a class="colorB big_button" href=" <%= "/admin/#{data.class.to_s.tableize}/#{data.id.to_s}/kategorien/available_kats" %>">+ Kategorie</a>
+	<div class="clearfix"></div>
+<%# end %>
 
 <div class="box">
 	<div class="in_box">
@@ -22,12 +24,6 @@
 		</h2>
 		<div id="katts_js_magick_place"></div>
 		<div class="clearfix"></div>
-		
-		<a class="colorB" href=" <%= "/admin/#{data.class.to_s.tableize}/#{data.id.to_s}/kategorien/available_kats" %>">
-
-			LightBox
-		</a>
-		
 		
 		<br/>
 	</div>

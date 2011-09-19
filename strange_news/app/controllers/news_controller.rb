@@ -15,6 +15,7 @@ class NewsController < ApplicationController
   def index
     # => @news = News.aktiv
     @news = News.aktiv.page(params[:page]).per(Strangecms::Newz::Config[:news_per_page])
+    @title = @seite.titel
     render :template => 'base/seite'
   end
   

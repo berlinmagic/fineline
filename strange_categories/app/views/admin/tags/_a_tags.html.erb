@@ -3,7 +3,7 @@
 
 <% available_tags.each do |tag| %>
 	
-<%= link_to raw("<div class='selected_tag_deleta'>#{ fineline_icon('neu') }</div><div class='selected_tag_name'>#{ tag.name }</div><div class='clearfix'></div>"), 
+<%= link_to raw("<div class='selected_tag_deleta'>#{ finelineIcon( :icon => 21, :blur => 50, :color => 'hell', :size => 18 ) }</div><div class='selected_tag_name'>#{ tag.name }</div><div class='clearfix'></div>"), 
 							"/admin/#{data.class.to_s.tableize}/#{data.id}/tags/#{tag.id}/select_data_tags",
 							# => :id => dom_id(tag),
 							:class => 'available_tag',

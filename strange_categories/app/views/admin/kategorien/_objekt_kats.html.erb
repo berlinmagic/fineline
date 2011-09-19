@@ -1,18 +1,28 @@
+<% if 'x' == 'y' %>
 <h2 class="polymorphe_headline"><%= data.class.to_s.humanize %> enthällt folgende Kategorien</h2>
+<% end %>
+<% if (current_user && admin_check) || (data.kategorien.count > 0) %>
+<h5 class="icon"><%= finelineIcon(:icon => 62, :color => finestyler('headline_icon_color'), :size => finestyler('headline_icon_size'), :blur => finestyler('headline_icon_blur')) %><%= t('strange_categories.headlines.object_kats') %> 
+	<% if current_user && admin_check %>
+		<span class="smal_text_link">| <%= link_to t('strange_categories.headlines.kat_add'), "/admin/#{data.class.to_s.tableize}/#{data.id.to_s}/kategorien/available_kats", :class => "colorB" %></span>
+	<% end %>
+</h5>
+<% end %>
 
 <div id="objekt_tag_box">
-<% data.kategorien.each do |kat| %>
+<% data.kategorien.each_with_index do |kat, index| %>
+
+<% if current_user && admin_check %>
+
 <div class="selected_tag" id="<%= dom_id(kat)%>">
-	
-	<% if current_user %>
 	
 	<div class="selected_tag_deleta">
 		<%# strange_selected_delete( tag, :url => "/admin/tags/#{tag.id}/#{data.class.to_s.singularize.downcase}/#{data.id.to_s}/remove", :tooltip => 'Tag löschen' ) %>
 		<%# fineline_icon_delete( tag, :url => "/admin/#{data.class.to_s.tableize}/#{data.id.to_s}/tags/#{tag.id.to_s}/remove_data_tag", :tooltip => 'Tag löschen' ) %>
-		<%= link_to fineline_icon('loeschen'), "/admin/#{data.class.to_s.tableize}/#{data.id.to_s}/kategorien/#{kat.id.to_s}/remove_kategorie",
+		<%= link_to finelineIcon( :icon => 24, :blur => 50, :color => 'hell', :size => 18 ), "/admin/#{data.class.to_s.tableize}/#{data.id.to_s}/kategorien/#{kat.id.to_s}/remove_kategorie",
 										:method => :delete,
 										:class => 'tooltiped',
-										:title => 'Kategorie löschen',
+										:title => t('strange_categories.headlines.kat_remove'),
 										:remote => true %>
 		
 	</div>
@@ -23,19 +33,20 @@
 	
 	<div class="clearfix"></div>
 	
-	<% else %>
 	
-	<div class="selected_tag_name">
-		&nbsp;<%= kat.name %>
-	</div>
-	
-	<div class="clearfix"></div>
-	
-	<% end %>
 	
 </div>
+
+<% else %>
+
+
+<%= ', ' if index > 0 %><%= kat.name %>
+
+
+<% end %>
 	
 <% end %>
+
 <div class="clearfix"></div>
 </div>
 <div class="clearfix"></div>

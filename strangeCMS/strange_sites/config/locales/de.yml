@@ -64,6 +64,7 @@ de:
   Keine_standard_Seitennamen_verwenden: "Verwenden Sie keine vom System benötigten Namen!"
   seite_wurde_erstellt: "Die Seite '%{name}' wurde erfolgreich erstellt."
   seite_wurde_geaendert: "Ihre Änderungen an der Seite '%{name}' wurden gespeichert."
+  seite_nicht_vorhanden: "Die angeforderte Seite ist nicht, oder nicht mehr vorhanden."
 ###  Standard - Seiten  ###
   std_seiten:
       kontakt: "kontakt"

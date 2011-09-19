@@ -88,27 +88,33 @@
 			
 			<% else %>
 			
-				<%= f.text_field :user_name, :size => '50', :class => 'tipped', :placeholder => t('strange_comments.user_name')+" *" %>
-				
+				<%= f.text_field :user_name, :size => '50', :class => 'tipped', :placeholder => t('strange_comments.user_name')+"*" %>
+				<br/>
+
 				<% if Strangecms::Kommenta::Config[:vorname_feld] %>
 					<%= f.text_field :user_vorname, :size => '50', :class => 'tipped', :placeholder => t('strange_comments.user_vorname') %>
+					<br/>
 				<% end %>
-				
-				<%= f.text_field :user_email, :size => '50', :class => 'tipped', :placeholder => t('strange_comments.user_email')+" *" %>
-				
+
+				<%= f.text_field :user_email, :size => '50', :class => 'tipped', :placeholder => t('strange_comments.user_email')+"*" %>
+				<br/>
+
 				<% if Strangecms::Kommenta::Config[:firma_feld] %>
 					<%= f.text_field :user_firma, :size => '50', :class => 'tipped', :placeholder => t('strange_comments.user_firma') %>
+					<br/>
 				<% end %>
-				
+
 				<% if Strangecms::Kommenta::Config[:website_feld] %>
 					<%= f.text_field :user_website, :size => '50', :class => 'tipped', :placeholder => t('strange_comments.user_website') %>
+					<br/>
 				<% end %>
-				
+
 				<% if Strangecms::Kommenta::Config[:headline_feld] %>
 					<%= f.text_field :headline, :size => '50', :class => 'tipped', :placeholder => t('strange_comments.headline') %>
+					<br/>
 				<% end %>
-				
-				<%= f.text_area :inhalt, :size => '90x5', :class => 'tipped', :placeholder => t('strange_comments.inhalt')+" *" %>
+
+				<%= f.text_area :inhalt, :size => '90x5', :class => 'tipped', :placeholder => t('strange_comments.inhalt') %>
 
 				
 			<% end %>

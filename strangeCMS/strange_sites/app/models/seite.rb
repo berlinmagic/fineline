@@ -110,6 +110,16 @@ class Seite < ActiveRecord::Base
       end
     end
   end
+  
+  def is_deleted?
+    if !self.deleted_at.blank?
+      true
+    elsif self.deleted
+      true
+    else
+      false
+    end
+  end
 
   private       # =>  P R I V A T E   -   F U N K T I O N E N       *       *       *       *       *       *       *       *
   

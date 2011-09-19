@@ -21,6 +21,22 @@
 
 #fck_toolz_box { position: fixed; top: 50px; left: 10%; width: 80%; min-height:0; max-height: 50px; z-index:5000;}
 
+input.w230 { width: 230px !important;}
+
+
+<% shoehe = finestyler( 'systemButton_icon_size', 'front' ).to_i + finestyler( 'systemButton_border_width', 'front' ).to_i * 2 + 1 %>
+.inbox_admin_toolz { position: absolute; top: 0; right:0; display: none; }
+.outbox_system_admin_toolz { position: absolute; top: -<%= shoehe + 10 %>px; right: 3px; display: none; height: <%= shoehe %>px; padding: 10px 10px 0; }
+.editable_box { position: relative;}
+.editable_box:hover .inbox_admin_toolz { display: block; }
+.editable_box:hover .outbox_system_admin_toolz { display: block; }
+
+
+
+
+
+
+
 
 .box.edit_in, .box.edit { padding:0;}
 .box.abschnitt-inhalt:hover { padding-top: 16px;}

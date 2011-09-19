@@ -11,7 +11,13 @@
 	</div>
 	
 	<div class="in_box ">
-			<%= image_tag @news.file.thumb("700x300>").url if @news.file %>
+			<%= image_tag @news.file.thumb("710x300>").url if @news.file %>
+			<div class="clearfix"></div>
+			
+	</div>
+	<div class="in_box">
+		<div class="trenn_linie"></div>
+		<div class="clearfix"></div>
 	</div>
 	
 	
@@ -49,70 +55,64 @@
 <% end %>
 
 
-<% if @news.ilike %>
-<div class="in_box">	
-	<div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#appId=<%= Strangecms::Config[:facebook_app_id] %>&amp;xfbml=1"></script><fb:like href="<%= "#{Strangecms::Config[:site_url]}#{@news.news_site_slug}" + @news.slug + '/' %>" send="true" width="700" show_faces="false" font="lucida grande"></fb:like>
-	
-	<div class="clearfix"></div>
-</div>
+<% if @news.ilike && Strangecms::Config[:facebook_app_id] != "UA-XXXXX-X" %>
+	<div class="in_box">	
+		<div id="fb-root"></div>
+		<script src="http://connect.facebook.net/en_US/all.js#appId=<%= Strangecms::Config[:facebook_app_id] %>&amp;xfbml=1"></script>
+		<fb:like href="<%= "#{Strangecms::Config[:site_url]}#{@news.news_site_slug}" + @news.slug + '/' %>" send="true" width="700" show_faces="false" font="lucida grande"></fb:like>
+		<div class="clearfix"></div>
+	</div>
 <% end %>
-
+<% if admin_check && @news.ilike && Strangecms::Config[:facebook_app_id] == "UA-XXXXX-X" %>
+	<h5 class="panic">ACHTUNG, iLike-Button ist aktiviert, es ist aber keine Facebook-ID eingestellt bitte ändern Sie dies in den <a href="/admin/settings/cms">Einstellungen</a>.</h5>
+<% end %>
 
 </div>
 
 <% if @news.kommentierbar %>
-<div id="kommetar_area" class="<%= 'hidden' unless @news.kommentare.count > 0 %>">
+	<div id="kommetar_area" class="<%= 'hidden' unless @news.kommentare.count > 0 %>">
 	
 	
+		<div class="in_box">
+			<div class="trenn_linie"></div>
+			<div class="clearfix"></div>
+		</div>
+
+		<div class="box">
+			<div class="in_box kommentare_index_box">
+				<h2 class="komentare_headline">Kommentare</h2>
+
+				<% @news.kommentare.each do |kmt| %>
+
+					<%= render 'kommentare/kommentar', :kommentar => kmt %>
+
+				<% end %>
+			</div>
+		</div>
+	
+	
+	</div>
+
 	<div class="in_box">
 		<div class="trenn_linie"></div>
 		<div class="clearfix"></div>
 	</div>
 
 	<div class="box">
-		<div class="in_box kommentare_index_box">
-			<h2 class="komentare_headline">Kommentare</h2>
-
-			<% @news.kommentare.each do |kmt| %>
-
-				<%= render 'kommentare/kommentar', :kommentar => kmt %>
-
-			<% end %>
+		<div class="in_box">
+			<%= render 'kommentare/ajax_form', :this_target => 'News', :this_id => @news.id, :this_back_url => "#{@news.news_site_slug}" + @news.slug %>
+			<div class="clearfix"></div>
+			<br/>
 		</div>
 	</div>
-	
-	
-</div>
-
-
 
 <% end %>
-
-<% if @news.kommentierbar %>
-
-<div class="in_box">
-	<div class="trenn_linie"></div>
-	<div class="clearfix"></div>
-</div>
-
-<div class="box">
-	<div class="in_box">
-		<%= render 'kommentare/ajax_form', :this_target => 'News', :this_id => @news.id, :this_back_url => "#{@news.news_site_slug}" + @news.slug %>
-		<div class="clearfix"></div>
-		<br/>
-	</div>
-</div>
-<div class="in_box">
-	<div class="trenn_linie"></div>
-	<div class="clearfix"></div>
-</div>
-<% end %>
 	
 	
-	<%= render 'admin/tags/tags_show', :data => @news %>
+<%= render 'admin/tags/tags_show', :data => @news %>
 	
 	
-	<%= render 'admin/kategorien/kategorie_show', :data => @news %>
+<%= render 'admin/kategorien/kategorie_show', :data => @news %>
 
 
 

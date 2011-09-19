@@ -109,30 +109,21 @@ class BaseController < ApplicationController
       if params[:system_name]
         if @seite = Seite.find( Seite.where(:system_name => params[:system_name]).first().id )
           @title = @seite.titel
-          respond_to do |format|
-            format.html { render 'base/seite'}
-            format.xml  { render :xml => @seite }
-          end
+          render_this_site
         else
          render_seiten_error
         end
       elsif params[:id]
         if @seite = Seite.find(params[:id])
           @title = @seite.titel
-          respond_to do |format|
-            format.html { render 'base/seite'}
-            format.xml  { render :xml => @seite }
-          end
+          render_this_site
         else
          render_seiten_error
         end
       elsif params[:slug]
         if @seite = Seite.find_by_slug(params[:slug]) || Seite.find_by_slug('/'+params[:slug]) || Seite.find_by_name(params[:slug])
           @title = @seite.titel
-          respond_to do |format|
-            format.html { render 'base/seite'}
-            format.xml  { render :xml => @seite }
-          end
+          render_this_site
         else
          render_seiten_error
         end
@@ -146,10 +137,7 @@ class BaseController < ApplicationController
         
         if @seite = Seite.find_by_full_slug(this_full_slug) || Seite.find_by_slug(this_slug) || Seite.find_by_std_slug(this_slug) || Seite.find_by_name(this_name)
           @title = @seite.titel
-          respond_to do |format|
-            format.html { render 'base/seite'}
-            format.xml  { render :xml => @seite }
-          end
+          render_this_site
         else
          render_seiten_error
         end
@@ -162,7 +150,7 @@ class BaseController < ApplicationController
   
   def render_seiten_error
     # => render :text => 'What the fuck are you looking for ... Bastard?', :status => :not_found
-    redirect_to(root_path, :flash => { :error => 'Seite wurde nicht gefunden!' })
+    redirect_to(root_path, :flash => { :error => I18n.t('seite_nicht_vorhanden') })
   end
   
   
@@ -184,6 +172,17 @@ class BaseController < ApplicationController
       nav[tinfo['link']] = tinfo
     end
     nav
+  end
+  
+  def render_this_site
+    if @seite.is_deleted?
+      render_seiten_error
+    else
+      respond_to do |format|
+          format.html { render 'base/seite'}
+          format.xml  { render :xml => @seite }
+      end
+    end
   end
   
 
