@@ -1,23 +1,81 @@
-<h1 class="icon"><%= finelineIcon(:icon => 88, :color => finestyler('headline_icon_color'), :size => finestyler('headline_icon_size'), :blur => finestyler('headline_icon_blur')) %>Neue Seite</h1>
-
-
-
-
 <%= render 'shared/fck_editor' %>
-
-
-<%= I18n.t('activerecord.attributes.seite.name') %>
-
-<%= form_for @seite, :url => { :controller => 'admin/seiten'}  do |f| %>
-<%= render 'form', :f => f %>
+<%#= render 'javascriptz/strange_sites' %>
 <div class="box">
-  <div class="actions in_box">
-    <%= f.submit %>
-	<div class="big_button_spacer"><%= t('or') %></div>
-	<%= link_to 'verwerfen', admin_seiten_path, :class => 'big_button' %>
-	<div class="clearfix"></div>
-  </div>
+	<div class="in_box first">
+
+			<h1 id="seiten_healine_form"><%= t('Neue_Seite') %></h1>
+
+	</div>
+
+		<div class="in_box">
+			<p>Hier haben Sie die Möglichkeit weitere Seiten zuerstellen und mit Inhalten zu versehen. 
+			Über die erweiterten Einstellungen können Sie Ihre einzelnen Seiten für Suchmaschinen optimieren.</p>
+		</div>
+
+	<div class="in_trenn_box">
+		<div class="trenn_linie"></div>
+	</div>
 </div>
+<%= form_for @seite do |f| %>
+
+	<%= render 'shared/error', :item => f.object%>
+	<%= f.hidden_field :this_autor, :value => current_user.id %>
+	
+	<div id="fck_toolz_box">
+		
+	</div>
+
+	<div id="fineline_seite_form">
+
+				<div class="box">
+					<div class="in_box field">
+						<%= f.label :name,			:class => 'inline tooltiped',
+						 							:title => Seite.human_attribute_name(:name) %> 
+						<%= f.text_field :name, 	:class => 'tipped tooltiped', 
+													:placeholder => Seite.human_attribute_name(:name), 
+													:title => Seite.human_attribute_name(:name), 
+													:size => '50' %>
+					</div>
+				</div>
+			
+			<div id="fineline_seite_form_abschnitt_area">
+
+				<% f.fields_for :abschnitte do |builder| %>
+					<%= render "abschnitt_fields", :f => builder %>
+				<% end %>
+
+			</div>
+
+			<div class="box">
+				<div class="in_box" id="fineline_seite_form_abschnitt_new">
+					<% link_text = "<h5 class='icon'>#{ finelineIcon(:icon => 82, :color => finestyler('headline_icon_color'), :size => finestyler('headline_icon_size'), :blur => finestyler('headline_icon_blur')) }#{ t('strange_sites.links.add_abschnitt') }</h5>" %>
+					<%= link_to_add_fineline_abschnitt link_text, f, :abschnitte %>
+				</div>
+			</div>
+			
+			<div class="box">
+				<div class="in_trenn_box">
+					<div class="trenn_linie"></div>
+				</div>
+			</div>
+			
+			<%= render 'seiten/erweitert', :f => f %>
+
+			<div class="clearfix"></div>
+			<div class="vspacer"></div>
+			<div class="clearfix"></div>
+			
+			<div class="box">
+			  <div class="actions in_box">
+			    <%= f.submit t('save') %>
+			 	<div class="big_button_spacer">|<%#= t('or') %></div>
+				<%= link_to t('cancel'), "#{root_url}", :class => 'big_button' %>
+				<div class="clearfix"></div>
+			  </div>
+			</div>
+			
+	</div>
+
 <% end %>
 
 
