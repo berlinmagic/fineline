@@ -3,12 +3,10 @@
 $('.add_gallerie_form a').live('click', function(event){
 	event.preventDefault();
 	var galid = $(this).parent().find('span.gallerie_id').html();
-	$(this).parent().parent().parent().parent().find('.k_box input').val('gallerie');
-	$(this).parent().parent().parent().parent().find('.k_param_box input').val(galid);
-	$(this).parent().parent().parent().html('<br/><h2> [:: Bild - Gallerie ::] </h2><br/>');
+	$(this).parent().parent().parent().find('.new_abs_stuff_typ input').val('gallerie');
+	$(this).parent().parent().parent().find('.new_abs_modul_typ input').val('Gallerie');
+	$(this).parent().parent().parent().find('.new_abs_modul_id input').val( galid );
+	$(this).parent().parent().html('<br/><h2> [:: Bild - Gallerie ::] </h2><br/>');
 });
-
-
-
 
 

@@ -45,7 +45,9 @@ $().ready(function() {
 			$('#login_help_links').show();
 		});
 		
-		$('div.flash').delay(9000).slideUp(700);
+		<% flash_time = Strangecms::Config[:show_flash_for].to_i * 1000 %>
+		
+		$('div.flash').delay( <%= flash_time %> ).fadeOut(700);
 		
 		/*
 		

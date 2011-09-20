@@ -27,19 +27,40 @@
 						<th><%= t('strange_preferences.site_url') %></th>
 						<td><%= Strangecms::Config[:site_url] %></td>
 					</tr>
+					
+					<tr>
+						<th colspan="2" class="u_kat"><%= t('strange_preferences.look_settings')%></th>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.attr.show_help') %></th>
+						<td><%= Strangecms::Config[:show_help] ? 'Ja' : 'Nein' %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.attr.show_flash_for') %></th>
+						<td><%= Strangecms::Config[:show_flash_for] %> <%= t("datetime.prompts.second")%></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.attr.show_breadcrumps') %></th>
+						<td><%= Strangecms::Config[:show_breadcrumps] ? 'Ja' : 'Nein' %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.attr.breadcrump_style') %></th>
+						<td><%= !Strangecms::Config[:breadcrump_style].blank? ? t("strange_preferences.attr.breadcrump_stylez.#{ Strangecms::Config[:breadcrump_style] }") : ' - - - ' %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.attr.breadcrump_size') %></th>
+						<td><%= Strangecms::Config[:breadcrump_size] %></td>
+					</tr>
+					
+					
+					
+					<tr>
+						<th colspan="2" class="u_kat"><%= t('strange_preferences.title_settings')%></th>
+					</tr>
 					<tr>
 						<th><%= t('strange_preferences.show_site_name') %></th>
 						<td><%= Strangecms::Config[:show_site_name] ? 'Ja' : 'Nein' %></td>
 					</tr>
-					
-					<tr>
-						<th><%= t('strange_preferences.show_help') %></th>
-						<td><%= Strangecms::Config[:show_help] ? 'Ja' : 'Nein' %></td>
-					</tr>
-					
-					
-					
-					
 					<tr>
 						<th><%= t('strange_preferences.always_put_site_name_in_title') %></th>
 						<td><%= Strangecms::Config[:always_put_site_name_in_title] ? 'Ja' : 'Nein' %></td>
@@ -59,7 +80,7 @@
 						<td><%= Strangecms::Config[:invite_only_site] ? 'Ja' : 'Nein' %></td>
 					</tr>
 					<tr>
-						<th colspan="2" class="u_kat">Social-Einstellungen</th>
+						<th colspan="2" class="u_kat"><%= t('strange_preferences.social_settings')%></th>
 					</tr>
 					<tr>
 						<th>FaceBook App-ID</th>
@@ -67,7 +88,7 @@
 							<% if Strangecms::Config[:facebook_app_id] && Strangecms::Config[:facebook_app_id] != "UA-XXXXX-X" && Strangecms::Config[:facebook_app_id] != "" %>
 								<strong><%= Strangecms::Config[:facebook_app_id] %></strong>
 							<% else %>
-								<span class="panic">Achtung, nicht vergeben!</span>
+								<span class="panic"><strong>Achtung</strong>, nicht vergeben!</span>
 							<% end %>
 						</td>
 					</tr>
@@ -80,7 +101,7 @@
 							<% if Strangecms::Config[:analytics_key] && Strangecms::Config[:analytics_key] != "UA-XXXXX-X" && Strangecms::Config[:analytics_key] != "" %>
 								<strong>O.K.</strong>
 							<% else %>
-								<span class="panic">Achtung, nicht vergeben!</span>
+								<span class="panic"><strong>Achtung</strong>, nicht vergeben!</span>
 							<% end %>
 						</td>
 					</tr>
@@ -90,7 +111,7 @@
 							<% if Strangecms::Config[:g_maps_key] && Strangecms::Config[:g_maps_key] != "UA-XXXXX-X" && Strangecms::Config[:g_maps_key] != "" %>
 								<strong>O.K.</strong>
 							<% else %>
-								<span class="panic">Achtung, nicht vergeben!</span>
+								<span class="panic"><strong>Achtung</strong>, nicht vergeben!</span>
 							<% end %>
 						</td>
 					</tr>
@@ -107,7 +128,7 @@
 					</tr>
 					<% if current_user && site_master %>
 					<tr>
-						<th colspan="2" class="u_kat"><br/><br/>System-Einstellungen:</th>
+						<th colspan="2" class="u_kat"><br/><br/><%= t('strange_preferences.headlines.system_settings')%></th>
 					</tr>
 					<tr>
 						<th><%= t('strange_preferences.compress_stylez') %></th>

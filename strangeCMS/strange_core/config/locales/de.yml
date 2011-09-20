@@ -222,6 +222,7 @@ de:
         site_name: "Seiten Name"
         site_url: "Seiten Domain"
         owner_settings: "Besitzer Einstellungen"
+        social_settings: "Soziale-Netze"
         stange_owner_name: "Name"
         stange_owner_vorname: "Vorname"
         stange_owner_street: "Strasse, Hausnummer"
@@ -233,6 +234,7 @@ de:
         stange_owner_mobile: "Mobil"
         stange_owner_firma: "Unternehmen"
         look_settings: "Optik Einstellungen"
+        title_settings: "Titel Einstellungen"
         strange_logo: "Seiten-Logo"
         strange_admin_logo: "Admin-Logo"
         stylesheets: "CSS-Dateien"
@@ -265,10 +267,28 @@ de:
         analytics_key: "Google-Analytics - Key"
         g_maps_key: "Google-Maps - Key"
         use_logo_datei: "Upload-Logo verwenden?"
+        fine_settings: "System"
+        fine_modul_settings: "Module"
+        fine_style_settings: "Darstellung"
+        fine_master_settings: "Master-Toolz"
+        headlines:
+            system_settings: "System - Einstellungen"
+        attr:
+            show_flash_for: "Meldungen anzeigen für"
+            show_help: "Hilfetexte anzeigen"
+            breadcrump_style: "'Brotkrumen'-Art"
+            show_breadcrumps: "'Brotkrumen' Anzeigen"
+            breadcrump_size: "'Brotkrumen'-Anzahl"
+            breadcrump_stylez:
+                verlauf: "User-Verlauf"
+                position: "Seiten-Position"
   strangecms:
       datei: "Dateien"
       dateien:
           name: "Dateiname"
+  herr: "Herr"
+  frau: "Frau"
+  
 ##############################################################################################################################################
 #  =>  #  =>  #  =>  #  =>  #  =>  #  =>  #  =>  #  =>   S T R A N G E - C M S   <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #
 ##############################################################################################################################################

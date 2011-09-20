@@ -5,6 +5,7 @@ class GallerieConfiguration < Configuration
   WM_TILES      =   [1, 4, 9, 16]
   FONTSIZE      =   (12..30).to_a
   
+  PIC_FORMATS   =   %w(line2 line4)   # => %w(line2 line3 line4)
   
   PIC_SHOWS     =   %w(lightbox seite)
   PIC_DETAIL    =   %w(full std)

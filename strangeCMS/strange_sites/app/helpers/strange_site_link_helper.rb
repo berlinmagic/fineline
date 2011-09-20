@@ -65,27 +65,26 @@ module StrangeSiteLinkHelper
     options.reverse_merge! :blur => Strangecms::Stylez::Config[:front_systemButton_icon_blur]
     options.reverse_merge! :size => Strangecms::Stylez::Config[:front_systemButton_icon_size]
     options.reverse_merge! :color => Strangecms::Stylez::Config[:front_systemButton_icon_color]
-    
     options.reverse_merge! :success => "function(r){ $(link).prev('input[type=hidden]').val('1');	$(link).closest('.fields').hide(); }"
+    opt_pix = [18, 24, 32, 48]
+    size = opt_pix.include?(options[:size]) ? options[:size] : 18
     f.hidden_field(:_destroy, :class => "remova_"+helpa) + link_to_function(
     
-    finelineButton(		:icon => options[:icon], 
+    finelineIcon(		:icon => options[:icon], 
 								      :blur => options[:blur], 
 								      :color => options[:color], 
-								      :size => options[:size], 
-								      :class => "system #{ Strangecms::Stylez::Config[:front_systemButton_style] }",
-								      :tooltip => options[:tooltip] ), 
+								      :size => options[:size]  ), 
       "jConfirm('#{options[:caption]}', '#{options[:title]}', function(r) {
           if(r){
         
               $('##{'remova_'+helpa}').prev('input[type=hidden]').val('1');
-              $('##{'remova_'+helpa}').parent().parent().parent().parent().addClass('geloescht');
+              $('##{'remova_'+helpa}').parent().parent().parent().addClass('geloescht');
               $('##{'remova_'+helpa}').parent().parent().parent().find('span.handle').hide();
-              $('##{'remova_'+helpa}').parent().parent().hide();
+              $('##{'remova_'+helpa}').parent().hide();
           
       
           }
-          });", :class => 'strange_icon_link tolltips_del', :title => 'Abschnitt löschen', :id => "remova_"+helpa)
+          });", :class => "flb#{size} system finelineButton #{ Strangecms::Stylez::Config[:front_systemButton_style] } tooltiped", :title => options[:tooltip], :id => "remova_"+helpa)
   end
   
   def strange_show_link(helpa)

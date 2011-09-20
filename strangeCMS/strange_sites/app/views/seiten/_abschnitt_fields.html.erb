@@ -55,22 +55,32 @@
 					:color => Strangecms::Stylez::Config[:front_systemButton_icon_color], 
 					:size => Strangecms::Stylez::Config[:front_systemButton_icon_size])+' Trennlinie', '#', :class => 'abschnitt_choose_link add_trenn_linie' %>
 					
-				
+					<br/><br/>
 					<div class="new_text_abschnitt abschnitt_choose_option">
-						<%= link_to fineline_button('bearbeiten')+' Text', '#' %>
+						<%= link_to finelineIcon(
+								:icon => 48, 
+								:blur => Strangecms::Stylez::Config[:front_systemButton_icon_blur], 
+								:color => Strangecms::Stylez::Config[:front_systemButton_icon_color], 
+								:size => Strangecms::Stylez::Config[:front_systemButton_icon_size])+' Text', '#' %>
 					</div>
-					<div class="add_trenn_linie abschnitt_choose_option"><%= link_to fineline_button('bearbeiten')+' Trennlinie', '#' %></div>
+					<div class="add_trenn_linie abschnitt_choose_option">
+						<%= link_to finelineIcon(
+								:icon => 63, 
+								:blur => Strangecms::Stylez::Config[:front_systemButton_icon_blur], 
+								:color => Strangecms::Stylez::Config[:front_systemButton_icon_color], 
+								:size => Strangecms::Stylez::Config[:front_systemButton_icon_size])+' Trennlinie', '#' %>
+					</div>
 
 				<% end %>
 		</div>
-		<div class="hidden new_abs_stuff_typ"><%= f.hidden_field 		:stuff_typ, 	:value => 'new' %></div>
-		<div class="hidden new_abs_stuff_param"><%= f.hidden_field 		:stuff_param, 	:value => '' %></div>
+		<div class="hidden new_abs_stuff_typ"><%= f.hidden_field 		:stuff_typ, 		:value => 'new' %></div>
+		<div class="hidden new_abs_stuff_param"><%= f.hidden_field 		:stuff_param, 		:value => '' %></div>
 		<div class="hidden new_abs_protected"><%= f.hidden_field 		:protected_stuff, 	:value => false %></div>
-		<div class="hidden new_abs_gruppe"><%= f.hidden_field 			:gruppe_id, 	:value => '' %></div>
-		<div class="hidden new_abs_system_stuff"><%= f.hidden_field 	:system_stuff, 	:value => false %></div>
-		<div class="hidden new_abs_modul"><%= f.hidden_field 			:modul, 		:value => '' %></div>
-		<div class="hidden new_abs_modul_typ"><%= f.hidden_field 		:modul_typ, 	:value => '' %></div>
-		<div class="hidden new_abs_modul_id"><%= f.hidden_field 		:modul_id, 		:value => '' %></div>
+		<div class="hidden new_abs_gruppe"><%= f.hidden_field 			:gruppe_id, 		:value => '' %></div>
+		<div class="hidden new_abs_system_stuff"><%= f.hidden_field 	:system_stuff, 		:value => false %></div>
+		<div class="hidden new_abs_modul"><%= f.hidden_field 			:modul, 			:value => '' %></div>
+		<div class="hidden new_abs_modul_typ"><%= f.hidden_field 		:modul_typ, 		:value => '' %></div>
+		<div class="hidden new_abs_modul_id"><%= f.hidden_field 		:modul_id, 			:value => '' %></div>
 	</div>
 </div>
 <div class="clearfix"></div>

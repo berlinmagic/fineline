@@ -12,7 +12,9 @@
 
 		<h2> [:: Bild - Gallerie ::] </h2>
 		<br/>
-		<%= f.select :stuff_param, Gallerie.all.map { |c| [c.name, c.id] } %>
+		
+		<%= f.select :modul_id, Gallerie.all.map { |c| [ c.name, c.id ] } %>
+		<%= f.select :stuff_param, GallerieConfiguration::PIC_FORMATS.map { |c| [t("strange_gallerie.pic_formats.#{ c }"), c] } %>
 		<br/>
 		<br/>
 
@@ -34,9 +36,6 @@
 		<% end %>
 		<% if f.object.modul_typ %>
 			<div class="hidden new_abs_modul_typ"><%= f.hidden_field 		:modul_typ, 	:value => f.object.modul_typ %></div>
-		<% end %>
-		<% if f.object.modul_id %>
-			<div class="hidden new_abs_modul_id"><%= f.hidden_field 		:modul_id, 		:value => f.object.modul_id %></div>
 		<% end %>
 	</div>
 </div>

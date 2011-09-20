@@ -1,0 +1,35 @@
+<% data ||= @data %>
+<% back_url ||= @back_url %>
+
+<div id="kommetar_area" class="<%= 'hidden' unless data.kommentare.count > 0 %>">
+
+
+	<div class="in_box">
+		<div class="trenn_linie"></div>
+		<div class="clearfix"></div>
+	</div>
+
+	<div class="box">
+		<div class="in_box kommentare_index_box">
+			<h5 class="icon"><%= finelineIcon(:icon => 33, :color => finestyler('headline_icon_color'), :size => finestyler('headline_icon_size'), :blur => finestyler('headline_icon_blur')) %><%= t('strange_comments.headlines.object_comments') %></h5>
+
+			<% data.kommentare.each do |kmt| %>
+
+				<%= render 'kommentare/kommentar', :kommentar => kmt %>
+
+			<% end %>
+		</div>
+	</div>
+
+
+</div>
+
+
+
+
+<div class="box">
+	<div class="in_box">
+		<%= render 'kommentare/ajax_form', :this_target => data.class.to_s, :this_id => data.id, :this_back_url => back_url %>
+		<div class="clearfix"></div>
+	</div>
+</div>

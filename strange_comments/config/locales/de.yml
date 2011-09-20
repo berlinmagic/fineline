@@ -17,10 +17,11 @@ de:
         classic: "Klassiche Tabelle"
     headlines:
         settings: "Kommentar Einstellungen"
+        object_comments: "Kommentare"
     links:
         edit: "Kommentar bearbeiten"
         delete: "Kommentar löschen"
-    
+        add: "Kommentar hinzufügen"
     
 ##############################################################################################################################################
 #  =>  #  =>  #  =>  #  =>  #  =>  #  =>  #  =>  #  =>   S T R A N G E - C M S   <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #  <=  #

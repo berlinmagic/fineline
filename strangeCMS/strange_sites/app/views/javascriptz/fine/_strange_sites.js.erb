@@ -19,9 +19,8 @@
 	$(function() {
 		$("#fineline_seite_form_abschnitt_area").sortable({
 			axis: 'y',
-			handle: '.fine_handle',
+			handle: '.handle',
 			cursor: "move",
-			helper: fixWidthHelper,
 			update: function(){
 				$.ajax({
 					type: 'post', 
@@ -33,8 +32,8 @@
 					url: "<%=reorder_abschnitte_url%>"
 				})
 			}
-			}).disableSelection();
 		});
+	});
 	
 	/* GOOGLE  */
 	

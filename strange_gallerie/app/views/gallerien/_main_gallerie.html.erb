@@ -10,9 +10,9 @@
 		
 		<% @bilder.each_with_index do |bild,index| %>
 			
-				<div class="fl_box_350">
-					<%= render 'gallerien/g_pic', :bild => bild, :gpic_width => 340, :gpic_height => 260, :pic_size => '2line' %>
-				</div>
+			<div class="fl_box_350">
+				<%= render 'gallerien/g_pic', :bild => bild, :gpic_width => 340, :gpic_height => 260, :pic_size => '2line' %>
+			</div>
 		
 			<% if (index + 1).modulo(2) == 0 %>
 				<div class="clearfix"></div>

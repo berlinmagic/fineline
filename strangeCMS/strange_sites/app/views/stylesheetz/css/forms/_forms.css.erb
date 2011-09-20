@@ -1,5 +1,5 @@
 /* ========================   Formulare   =========================== */
-
+<% shoehe = finestyler( 'systemButton_icon_size', 'front' ).to_i + finestyler( 'systemButton_border_width', 'front' ).to_i * 2 + 1 %>
 
 
 /* ===   Seiten   === */
@@ -8,7 +8,7 @@
 .fineline_system_toolz { position:absolute; }
 .fineline_system_toolz a { margin-left: 1px; }
 
-.abschnitt_box 		 .abschnitt_inhalt_box .abschnitt_admin_toolz { position:absolute; top:-22px; right: 13px; visibility: hidden;}
+.abschnitt_box .abschnitt_inhalt_box .abschnitt_admin_toolz { position:absolute; top: -<%= shoehe %>px; right: 13px; visibility: hidden; text-align:right; }
 .abschnitt_box:hover .abschnitt_inhalt_box .abschnitt_admin_toolz { visibility: visible;}
 .abschnitt_box 		 .abschnitt_inhalt_box .deleted_abschnitt { position:absolute; top:0; right: 7px; display:none; }
 .abschnitt_box.geloescht .abschnitt_inhalt_box .deleted_abschnitt { display:block; }
@@ -23,8 +23,10 @@
 
 input.w230 { width: 230px !important;}
 
+.ui-sortable-placeholder { border: dotted 2px #c00; background: #f8fc00; visibility: visible !important; margin: 0 10px 0 39px; opacity: .50; }
 
-<% shoehe = finestyler( 'systemButton_icon_size', 'front' ).to_i + finestyler( 'systemButton_border_width', 'front' ).to_i * 2 + 1 %>
+.ui-sortable-helper { visibility: hidden; }
+
 .inbox_admin_toolz { position: absolute; top: 0; right:0; display: none; }
 .outbox_system_admin_toolz { position: absolute; top: -<%= shoehe + 10 %>px; right: 3px; display: none; height: <%= shoehe %>px; padding: 10px 10px 0; }
 .editable_box { position: relative;}
@@ -47,7 +49,7 @@ input.w230 { width: 230px !important;}
 #fineline_seite_form { width: 100%; padding: 0; margin: 0; position:relative; display: block; }
 
 #fineline_seite_form_abschnitt_area { margin: 12px -13px 12px -42px; padding: 5px 0 20px; display: block; border: 0; position:relative; 
-		background: #fff; border-top: solid 3px #ccc; border-bottom: solid 3px #ccc; }
+		background: transparent; }
 
 .abschnitt_box { padding: 25px 13px 0px 42px; position:relative; z-index:1; }
 

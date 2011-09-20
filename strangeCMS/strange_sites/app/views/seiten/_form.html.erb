@@ -6,7 +6,8 @@
 
 <div class="box">
 	<div class="in_box" id="fineline_seite_form_abschnitt_new">
-		<%= link_to_add_fineline_abschnitt fineline_button('neu')+" neuer Abschnitt", f, :abschnitte %>
+		<% link_text = "<h5 class="icon">#{ finelineIcon(:icon => 82, :color => finestyler('headline_icon_color'), :size => finestyler('headline_icon_size'), :blur => finestyler('headline_icon_blur')) }#{ t('strange_sites.links.add_abschnitt') }</h5>" %>
+		<%= link_to_add_fineline_abschnitt link_text, f, :abschnitte %>
 	</div>
 </div>
 

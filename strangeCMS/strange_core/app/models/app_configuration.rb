@@ -3,6 +3,7 @@ class AppConfiguration < Configuration
   
   MAIL_AUTH = ['none', 'plain', 'login', 'cram_md5']
   SECURE_CONNECTION_TYPES = ['None','SSL','TLS']
+  BREADCRUMPS = %w(verlauf position)
 
   preference :site_name, :string, :default => 'fineline-CMS'
   preference :site_url, :string, :default => '2strange.net'
@@ -25,6 +26,13 @@ class AppConfiguration < Configuration
   preference :show_dashboard,   :boolean, :default => true
   preference :make_backups,     :boolean, :default => true
   preference :show_backups,     :boolean, :default => false
+  
+  preference :show_breadcrumps, :boolean, :default => true
+  preference :breadcrump_style, :string,  :default => BREADCRUMPS[1]
+  preference :breadcrump_size,  :string,  :default => 10
+  
+  
+  preference :show_flash_for,   :integer,  :default => 3
   
   
   preference :show_site_name, :boolean, :default => true

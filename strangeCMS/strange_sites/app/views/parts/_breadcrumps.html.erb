@@ -4,19 +4,100 @@
 		
 		<div class="fl_box_950">
 			
-			<!--
-			<% if @seite && @seite.breadcrumps %>
-				<div id="fineBreadcrumps">
-					Sie befinden sich hier: <strong><%= @seite.name %></strong>
-				</div>
-			<% elsif @is_sitemap %>
-				<div id="fineBreadcrumps">
-					Sie befinden sich hier: <strong>Sitemap</strong>
-				</div>
+			<% if Strangecms::Config[:show_breadcrumps] %>
+				<% if Strangecms::Config[:breadcrump_style] == 'verlauf' %>
+					<div id="BreadBox"></div>
+					<div class="vspacer"></div>
+					<% content_for :js_stuff do %>
+					<script type="text/javascript">
+					$(function() {
+						$('#BreadBox').jCrumb({ maxCrumbs: <%= Strangecms::Config[:breadcrump_size].to_i %>, seperator:false });
+						$('#BreadBox').jBreadCrumb();
+					});
+					</script>
+					<% end %>
+				<% else %>
+					<% if @seite && @seite.breadcrumps %>
+						<% home_page = Seite.where('system_name = ?', 'start').first %>
+						<% if @seite.tiefe > 0 %>
+							<% @breads = [] %>
+							
+							<% @breads << @seite %>
+							<% u_site = @seite.ueber_seite %>
+							<% @breads << u_site %>
+							<% if u_site.tiefe > 0 %>
+								<% uu_site = u_site.ueber_seite %>
+								<% @breads << uu_site %>
+								<% if uu_site.tiefe > 0 %>
+									<% uuu_site = uu_site.ueber_seite %>
+									<% @breads << uuu_site %>
+									<% if uuu_site.tiefe > 0 %>
+										<% uuuu_site = uuu_site.ueber_seite %>
+										<% @breads << uuuu_site %>
+										<% unless uuuu_site == home_page %>
+											<% @breads << home_page %>
+										<% end %>
+									<% else %>
+										<% unless uuu_site == home_page %>
+											<% @breads << home_page %>
+										<% end %>
+									<% end %>
+								<% else %>
+									<% unless uu_site == home_page %>
+										<% @breads << home_page %>
+									<% end %>
+								<% end %>
+							<% else %>
+								<% unless u_site == home_page %>
+									<% @breads << home_page %>
+								<% end %>
+							<% end %>
+							<% @breads = @breads.reverse %>
+							<div id="fineBreadcrumps">
+								<ul>
+									<% @breads.each_with_index do |bready, index| %>
+										<% unless (index + 1) == @breads.count %>
+											<li><%= link_to bready.name, bready.link %></li>
+										<% else %>
+											<li><%= bready.name %></li>
+										<% end %>
+									<% end %>
+								</ul>
+							</div>
+							<div class="vspacer"></div>
+						<% elsif @seite == home_page %>
+							
+						<% else %>
+							
+							<div id="fineBreadcrumps">
+								<ul>
+									<li><%= link_to home_page.name, root_path %></li>
+									<li><%= @seite.name %></li>
+								</ul>
+							</div>
+							<div class="vspacer"></div>
+						<% end %>
+					
+					<% elsif @is_sitemap %>
+						<div id="fineBreadcrumps">
+							<ul>
+								<li><%= link_to home_page.name, root_path %></li>
+								<li>Sitemap</li>
+							</ul>
+						</div>
+						<div class="vspacer"></div>
+					<% end %>
+					
+					<% content_for :js_stuff do %>
+					<script type="text/javascript">
+					$(function() {
+						$('#fineBreadcrumps').jBreadCrumb();
+					});
+					</script>
+					<% end %>
+				<% end %>
 			<% end %>
-			-->
-			<div id="BreadBox"></div>
-			<div class="vspacer"></div>
+			<div class="clearfix"></div>
 		</div>
 		
 		<div class="clearfix"></div>

@@ -34,8 +34,49 @@
 						<td colspan="2">&nbsp;</td>
 					</tr>
 					<tr>
-						<th><%= t('strange_preferences.show_help') %></th>
+						<th colspan="2" class="u_kat"><%= t('strange_preferences.look_settings')%></th>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.attr.show_help') %></th>
 						<td><%= fine_bool_tag('show_help') %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.attr.show_flash_for') %></th>
+						<td>
+							<div class="fl_box_110">
+								<%= text_field_tag('preferences[show_flash_for]', Strangecms::Config[:show_flash_for], :size => 5 )%> 
+								<%= t("datetime.prompts.second")%>
+							</div>
+							<div class="fl_box_230">
+								<div class="slider_holder">
+									<div id="show_flash_for_slider"></div>
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.attr.show_breadcrumps') %></th>
+						<td><%= fine_bool_tag('show_breadcrumps') %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.attr.breadcrump_style') %></th>
+						<td><%= select_tag 'preferences[breadcrump_style]', options_for_select(
+							AppConfiguration::BREADCRUMPS.map{ |c| [t("strange_preferences.attr.breadcrump_stylez.#{ c }"),c]}, 
+							Strangecms::Config[:breadcrump_style]) %></td>
+					</tr>
+					<tr>
+						<th><%= t('strange_preferences.attr.breadcrump_size') %></th>
+						<td>
+							<div class="fl_box_110">
+								<%= text_field_tag('preferences[breadcrump_size]', Strangecms::Config[:breadcrump_size], :size => 5 )%> 
+								<%= t("datetime.prompts.second")%>
+							</div>
+							<div class="fl_box_230">
+								<div class="slider_holder">
+									<div id="breadcrump_size_slider"></div>
+								</div>
+							</div>
+						</td>
 					</tr>
 					
 					<tr>
@@ -71,18 +112,18 @@
 					</tr>
 					<tr>
 						<th>FaceBook App-ID</th>
-						<td><%= text_field_tag('preferences[facebook_app_id]', Strangecms::Config[:facebook_app_id], :size => 35 )%></td>
+						<td><%= text_field_tag('preferences[facebook_app_id]', Strangecms::Config[:facebook_app_id], :size => 50 )%></td>
 					</tr>
 					<tr>
 						<th colspan="2" class="u_kat"><%= t('strange_preferences.google_settings')%></th>
 					</tr>
 					<tr>
 						<th><%= t('strange_preferences.analytics_key') %></th>
-						<td><%= text_field_tag('preferences[analytics_key]', Strangecms::Config[:analytics_key], :size => 35 )%></td>
+						<td><%= text_field_tag('preferences[analytics_key]', Strangecms::Config[:analytics_key], :size => 50 )%></td>
 					</tr>
 					<tr>
 						<th><%= t('strange_preferences.g_maps_key') %></th>
-						<td><%= text_field_tag('preferences[g_maps_key]', Strangecms::Config[:g_maps_key], :size => 35 )%></td>
+						<td><%= text_field_tag('preferences[g_maps_key]', Strangecms::Config[:g_maps_key], :size => 50 )%></td>
 					</tr>
 				</table>
 				<br/>
@@ -93,7 +134,7 @@
 					</tr>
 					<tr>
 						<th><%= t('strange_preferences.allow_locale_switching') %></th>
-						<td><%= select_tag 'preferences[allow_locale_switching]', options_for_select({ 'Aktiv' => true, 'Inaktiv' => false }, Strangecms::Config[:allow_locale_switching])    %></td>
+						<td><%= fine_bool_tag('allow_locale_switching') %></td>
 					</tr>
 					<tr>
 						<th><%= t('strange_preferences.default_locale') %></th>
@@ -143,9 +184,21 @@
 	</div>
 </div>
 
-
-
-
+<% content_for :js_stuff do %>
+<script type="text/javascript">
+$(function() {
+	
+	$( "#show_flash_for_slider" ).slider({ min: 1, max: 10, value: <%= Strangecms::Config[:show_flash_for] || 3 %>, 
+	slide: function( event, ui ) { $( "#preferences_show_flash_for" ).val( ui.value ); } });
+	$( "#preferences_show_flash_for" ).val( $( "#show_flash_for_slider" ).slider( "value" ) );
+	
+	$( "#breadcrump_size_slider" ).slider({ min: 3, max: 23, value: <%= Strangecms::Config[:breadcrump_size] || 3 %>, 
+	slide: function( event, ui ) { $( "#preferences_breadcrump_size" ).val( ui.value ); } });
+	$( "#preferences_breadcrump_size" ).val( $( "#breadcrump_size_slider" ).slider( "value" ) );
+	
+});
+</script>
+<% end %>
 
 
 

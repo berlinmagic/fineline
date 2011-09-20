@@ -2,10 +2,9 @@
 $('#kommentar_form_box .tipped').defaultValue();
 
 
-$('.kommentar_form_head a').live('click', function(event){
+$('.kommentar_form_head').live('click', function(event){
 	event.preventDefault();
 	$('#kommentar_form_box').slideToggle();
-	$('.kommentar_form_head').toggleClass('aktiv');
 });
 
 $('.kommentar_form_toggle_remote_link').live('click', function(event){

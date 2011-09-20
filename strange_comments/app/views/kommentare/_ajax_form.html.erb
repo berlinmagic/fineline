@@ -1,5 +1,4 @@
-<h2 class="kommentar_form_head"><a href="#">Kommentar einfügen</a></h2>
-
+<h5 class="icon kommentar_form_head"><%= finelineIcon(:icon => 84, :color => finestyler('headline_icon_color'), :size => finestyler('headline_icon_size'), :blur => finestyler('headline_icon_blur')) %><%= t('strange_comments.links.add') %></h5>
 
 <% @kommentar ||= Kommentar.new %>
 
@@ -128,7 +127,6 @@
 
 		<%= f.submit 'Speichern' %>
 		<div class="clearfix"></div>
-		<br/>
 
 	<% end %>
 	<div class="clearfix"></div>

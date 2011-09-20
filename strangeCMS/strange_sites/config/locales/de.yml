@@ -36,6 +36,7 @@ de:
           edit_abschnitt: "Abschnitt bearbeiten"
           unprotect_abschnitt: "Abschnitt freigeben"
           protect_abschnitt: "Abschnitt sperren"
+          add_abschnitt: "Neuen Abschnitt hinzufügen"
       headlines:
           index: "Seitenverwaltung"
           module: "Aktive Module"
@@ -51,6 +52,7 @@ de:
   edit: "bearbeiten"
   or: "oder"
   back: "zurück"
+  save: "speichern"
   cancel: "verwerfen"
   speichern_und_beenden: "Speichern und Anzeigen"
   speichern_und_weiter: "Speichern"
@@ -65,6 +67,7 @@ de:
   seite_wurde_erstellt: "Die Seite '%{name}' wurde erfolgreich erstellt."
   seite_wurde_geaendert: "Ihre Änderungen an der Seite '%{name}' wurden gespeichert."
   seite_nicht_vorhanden: "Die angeforderte Seite ist nicht, oder nicht mehr vorhanden."
+  admin_rechte_erforderlich: "Sie verfügen nicht über die nötige Berechtigung, diese Seite anzuzeigen."
 ###  Standard - Seiten  ###
   std_seiten:
       kontakt: "kontakt"

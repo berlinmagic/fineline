@@ -1,51 +1,59 @@
 <% abs ||= false %>
-<% if abs && @gallerie = Gallerie.find(abs.stuff_param) %>
+<% if abs && abs.modul_id && !abs.modul_id.blank? && Gallerie.find(abs.modul_id) %>
+<% @gallerie = Gallerie.find(abs.modul_id) %>
 
-<div style="margin-right: -15px">
-	
-	<% if @gallerie.bilder.count == 2 %>
-	
-		<% @gallerie.bilder.each do |bild| %>
-			
-			<%= render 'gallerien/g_pic', :bild => bild, :gpic_width => 345, :gpic_height => 265 %>
-		
+	<% @this_bilder = [] %>
+
+	<% if @gallerie.bilder.count > 0 %>
+		<% @gallerie.bilder.each do |pic| %>
+			<% @this_bilder << pic %>
 		<% end %>
-	
-	<% elsif (@gallerie.bilder.count == 3) || (@gallerie.bilder.count == 6) %>
-		
-		<% @gallerie.bilder.each do |bild| %>
-			
-			<%= render 'gallerien/g_pic', :bild => bild, :gpic_width => 225, :gpic_height => 180 %>
-		
-		<% end %>
-	
-	<% elsif @gallerie.bilder.count > 3 %>
-
-		<% @gallerie.bilder.each do |bild| %>
-
-			<%= render 'gallerien/g_pic', :bild => bild, :gpic_width => 167, :gpic_height => 122 %>
-
-		<% end %>
-		
-	<% elsif @gallerie.bilder.count == 1 %>
-
-		<% @gallerie.bilder.each do |bild| %>
-
-			<%= render 'gallerien/g_pic', :bild => bild, :gpic_width => 700, :gpic_height => 525 %>
-
-		<% end %>
-	
-	<% else %>
-	
-		Bilder folgen ...
-
 	<% end %>
 	
-</div>
-
+	<% if @gallerie.kategorien.count > 0 %>
+		<% @gallerie.kategorien.each do |kat|  %>
+			<% if kat.bilder.count > 0 %>
+				<% kat.bilder.each do |pic| %>
+					<% @this_bilder << pic %>
+				<% end %>
+			<% end %>
+		<% end %>
+	<% end %>
+	
+	
+	
+	
+	
+	<% if abs.stuff_param == 'line2' %>
+		<% @this_bilder.each_with_index do |bild,index| %>
+			<div class="fl_box_350">
+				<%= render 'gallerien/g_pic', :bild => bild, :gpic_width => 340, :gpic_height => 260, :pic_size => '2line' %>
+			</div>
+			<% if (index + 1).modulo(2) == 0 %>
+				<div class="clearfix"></div>
+				<div class="vert_space"></div>
+				<div class="clearfix"></div>
+			<% end %>
+		<% end %>
+	<% else %>
+		<% @this_bilder.each_with_index do |bild,index| %>
+			<div class="fl_box_170">
+				<%= render 'gallerien/g_pic', :bild => bild, :gpic_width => 160, :gpic_height => 122, :pic_size => '4line' %>
+			</div>
+			<% if (index + 1).modulo(4) == 0 %>
+				<div class="clearfix"></div>
+				<div class="vert_space"></div>
+				<div class="clearfix"></div>
+			<% end %>
+		<% end %>
+	<% end %>
+	
 <% else %>
 
 <h2>undefinierte Gallerie</h2>
 
 
 <% end %>
+
+
+

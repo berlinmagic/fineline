@@ -2,20 +2,25 @@
 	<h1 class="icon"><%= finelineIcon(:icon => 54, :color => finestyler('headline_icon_color'), :size => finestyler('headline_icon_size'), :blur => finestyler('headline_icon_blur')) %><%= t('strange_preferences.Preferences') %></h1>
 
 	<div class="admin_in_box">
-		<div class="box">
-			<div class="in_box">
-				<p>Hier haben Sie die Möglichkeit verschiedene Einstellungen Ihrer Seite einzusehen und zu verändern. > > ></p><br/>
-				<p>Ändern Sie den Seitennamen, die möglichen und nötigen Felder des Kontakt-Formulars, den Mail-Server und vieles mehr .. um Ihre Seite perfekt zu machen.</p>
+		
+		<div class="system_help_text<%= ' hidden' unless Strangecms::Config[:show_help] %>">
+			<div class="box">
+				<div class="in_box">
+					<p class="sys_help">
+						<p>Hier haben Sie die Möglichkeit verschiedene Einstellungen Ihrer Seite einzusehen und zu verändern. > > ></p><br/>
+						<p>Ändern Sie den Seitennamen, die möglichen und nötigen Felder des Kontakt-Formulars, den Mail-Server und vieles mehr .. 
+							um Ihre Seite perfekt zu machen.</p>
+					</p>
+				</div>
+			</div>
+
+			<div class="trenn_linie"></div>
+		</div>
+		
+
+		<div class="work_box">
+			<div class="in_box white" id="settings_in_box">
 				
-			</div>
-		</div>
-		<div class="box">
-			<div class="trenn_box">
-				<div class="top_trenner"></div>
-			</div>
-		</div>
-		<div class="box">
-			<div class="in_box white">
 				<p><em>Hier eine kleine Übersicht der momentanen Einstellungen, ändern können Sie diese über das Menü auf der rechten Seite.</em></p>
 				<br/>
 				<table class="settings">
@@ -113,24 +118,26 @@
 					</tr>
 
 				</table>
+				
 			</div>
 		</div>
-		
-	</div>
-	<% if current_user && site_master %>
-	<div class="box">
-		<div class="in_box">
-			<div class="fl_box_350">
-				<%= link_to ' ! reload Stylez ! ', expire_finestyles_path, :class => 'big_submit_button' %>
-				<%= link_to ' ! reload Scriptz ! ', expire_finescripts_path, :class => 'big_submit_button' %>
+		<div class="box">
+				<div class="trenn_linie"></div>
+		</div>
+		<% if current_user && site_master %>
+		<div class="box">
+			<div class="in_box">
+				<div class="fl_box_350">
+					<%= link_to ' ! reload Stylez ! ', expire_finestyles_path, :class => 'big_submit_button' %>
+					<%= link_to ' ! reload Scriptz ! ', expire_finescripts_path, :class => 'big_submit_button' %>
+					<div class="clearfix"></div>
+				</div>
 				<div class="clearfix"></div>
 			</div>
-			<div class="clearfix"></div>
 		</div>
+		<% end %>
+		
 	</div>
-	<% end %>
-	
 </div>
-
 
 <%= render 'sidebar' %>

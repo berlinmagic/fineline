@@ -76,22 +76,8 @@
 
 			<div class="box">
 				<div class="in_box" id="fineline_seite_form_abschnitt_new">
-					<%= link_to_add_fineline_abschnitt fineline_button('neu')+" neuer Abschnitt", f, :abschnitte %>
-				</div>
-			</div>
-			
-			<div class="box">
-				<div class="in_trenn_box">
-					<div class="trenn_linie"></div>
-				</div>
-			</div>
-			
-			<div class="box">
-				<div class="in_box">
-					<%= add_new_fineline_abschnitt fineline_button('neu')+" neuer Text Abschnitt", f, :abschnitte, :class => 'tooltiped', :title => 'Fügen Sie einen neuen Text-Abschnitt ein.', :stuff_typ => 'text' %>
-					<br/>
-					<br/>
-					<%= add_new_fineline_abschnitt fineline_button('neu')+" neue Trennlinie", f, :abschnitte, :class => 'tooltiped', :title => 'Fügen Sie eine neue Trennlinie ein.', :stuff_typ => 'trenn_linie' %>
+					<% link_text = "<h5 class='icon'>#{ finelineIcon(:icon => 82, :color => finestyler('headline_icon_color'), :size => finestyler('headline_icon_size'), :blur => finestyler('headline_icon_blur')) }#{ t('strange_sites.links.add_abschnitt') }</h5>" %>
+					<%= link_to_add_fineline_abschnitt link_text, f, :abschnitte %>
 				</div>
 			</div>
 			
@@ -109,11 +95,9 @@
 			
 			<div class="box">
 			  <div class="actions in_box">
-			    <%= f.submit t('speichern_und_weiter') %>
-				<div class="big_button_spacer">|<%#= t('or') %></div>
-				<%= f.submit t('speichern_und_beenden') %>
+			    <%= f.submit t('save') %>
 			 	<div class="big_button_spacer">|<%#= t('or') %></div>
-				<%= link_to 'verwerfen', "#{root_url}", :class => 'big_button' %>
+				<%= link_to t('cancel'), "#{root_url}", :class => 'big_button' %>
 				<div class="clearfix"></div>
 			  </div>
 			</div>
