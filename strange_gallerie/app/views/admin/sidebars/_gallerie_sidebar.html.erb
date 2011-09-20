@@ -18,23 +18,28 @@
 	</ul>
 </div>
 
+<% if Kat.where(:target_type => 'Bild').count > 0 %>
 <div class="side_box">
 	<div class="sidebar_head aktiv_box">
 		<a href="#">Kategorien</a>
 	</div>
 	<ul class='sidebar'>
-		<li><%= link_to 'Kategorien', admin_bild_kategorien_url, :class => "#{'aktiv' if @u_aktiv == 'bild_kategorien'}" %></li>
-		<% if BildKategorie.all.count > 0 %>
-			<% BildKategorie.all.each do |data| %>
-				<li> <%= link_to raw("&raquo;&nbsp;#{data.name}&nbsp;&nbsp;[ #{data.bilder.count} ]"), admin_bild_kategorie_url(data), 
-										:class => "#{'aktiv' if @bild_kategorie && @bild_kategorie.id == data.id}" %></li>
-			<% end %>
+		<% @kats = [] %>
+		<% @n_kat_fl = 0 %>
+		<% Kat.where(:target_type => 'Bild').each do |tagging| %>
+			<% @kats << tagging.kategorie.name %>
 		<% end %>
-		<% if @u_aktiv == 'bild_kategorien' %>
-			<li><%= link_to '+ neue Kategorie', new_admin_bild_kategorie_url %></li>
+		<% @kats.uniq.sort.each do |kat| %>
+			<% kt = Kategorie.where(:name => kat).first %>
+			<li class="dot"><%= link_to raw("#{ kat }"),
+					 "#{bild.gallerie_slug}/by_kategorie#{kt.slug}", :class => "#{ 'aktiv' if @kategorie && @kategorie == kt}" %></li>
 		<% end %>
 	</ul>
 </div>
+<% end %>
+
+
+
 
 <div class="side_box">
 	<div class="sidebar_head aktiv_box">

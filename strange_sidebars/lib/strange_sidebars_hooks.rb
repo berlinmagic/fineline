@@ -5,7 +5,7 @@ class StrangeSidebarsHooks < Strangecms::ThemeSupport::HookListener
   # => end
   
   insert_after :admin_seiten_sub_tabs do
-    "<li class='<%= ' nav_aktiv' if @sub_aktivio == 'headers' %>'>
+    "<li class='<%= ' nav_aktiv' if @sub_aktivio == 'sidebars' %>'>
         <%= link_to 'Sidebars', admin_sidebars_path, :class => ('aktiv' if @sub_aktivio == 'sidebars') %>
     </li>"
   end
