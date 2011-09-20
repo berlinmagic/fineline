@@ -1,0 +1,21 @@
+<% content_for :sidebar do %>
+<div class="side_box">
+	<div class="sidebar_head aktiv_box">
+		<a href="#">News</a>
+	</div>
+	<ul class='sidebar'>
+		<li><%= link_to 'News', admin_news_index_path, :class => "#{'aktiv' if @u_aktiv == 'news'}" %></li>
+		<li><%= link_to '+ neue News', new_admin_news_url %></li>
+	</ul>
+</div>
+
+<div class="side_box">
+	<div class="sidebar_head aktiv_box">
+		<a href="#">News-Eistellungen</a>
+	</div>
+	<ul class='sidebar'>
+		<li><%= link_to 'News-Modul', admin_news_settings_path, :class => ('aktiv' if @u_aktiv == 'kontakt_settings') %></li>
+	</ul>
+</div>
+
+<% end %>

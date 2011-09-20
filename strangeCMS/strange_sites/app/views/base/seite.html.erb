@@ -34,19 +34,19 @@
 <% if admin_check %>
 	<div id="seite_admin_toolz" class="fineline_system_toolz">
 		<%= finelineButton(		:icon => 30, 
-								:blur => Strangecms::Stylez::Config[:front_systemButton_icon_blur], 
-								:color => Strangecms::Stylez::Config[:front_systemButton_icon_color], 
-								:size => Strangecms::Stylez::Config[:front_systemButton_icon_size], 
-								:class => "system #{ Strangecms::Stylez::Config[:front_systemButton_style] }", 
+								:blur => finestyler( 'systemButton_icon_blur' ), 
+								:color => finestyler( 'systemButton_icon_color' ), 
+								:size => finestyler( 'systemButton_icon_size' ), 
+								:class => "system #{ finestyler( 'systemButton_style' ) }", 
 								:url => '/seiten/'+@seite.id.to_s+'/edit', 
 								:tooltip => t("strange_sites.links.edit")  ) %>
 	<% if site_master || @seite.system_seite == false %>
 		<%= finelineDelete(		@seite,
 								:icon => 24, 
-								:blur => Strangecms::Stylez::Config[:front_systemButton_icon_blur], 
-								:color => Strangecms::Stylez::Config[:front_systemButton_icon_color], 
-								:size => Strangecms::Stylez::Config[:front_systemButton_icon_size], 
-								:class => "system #{ Strangecms::Stylez::Config[:front_systemButton_style] }", 
+								:blur => finestyler( 'systemButton_icon_blur' ), 
+								:color => finestyler( 'systemButton_icon_color' ), 
+								:size => finestyler( 'systemButton_icon_size' ), 
+								:class => "system #{ finestyler( 'systemButton_style' ) }", 
 								:url => admin_seite_path(@seite.id), 
 								:tooltip => t("strange_sites.links.delete")  ) %>
 	<% end %>

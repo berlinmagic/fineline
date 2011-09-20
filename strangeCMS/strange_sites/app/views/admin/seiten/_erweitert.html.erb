@@ -1,0 +1,53 @@
+<div class="box">
+	<div class="advanced_box" id="advanced_settings">
+		
+		<%= link_to raw("<h5 class='icon'>#{ finelineIcon( :icon => 54, 
+										:color => finestyler('headline_icon_color'), 
+										:size => finestyler('headline_icon_size'), 
+										:blur => finestyler('headline_icon_blur')
+			) } Seiteneinstellungen <span id='more_link_text'>bearbeiten</span></h5>"), '#', :class => "advanced_button" %>
+
+		<div class="clearfix"></div>
+		<div class="vspacer"></div>
+		<div class="clearfix"></div>
+
+		<div class="no_show hidden" id="advanced_site_settings">
+	
+			<ul id="advanced_nav">
+				<li>
+					<a href="#base">Grundeinstellungen</a>
+				</li>
+				<li>
+					<a href="#seo">Suchmaschienenoptimierung</a>
+				</li>
+				<li>
+					<a href="#more">Erweiterte Einstellungen</a>
+				</li>
+			</ul>
+		
+			<div class="in_advanced_box" id="base">
+				<div class="vspacer"></div>
+				<div class="clearfix"></div>
+				<%= render 'seiten/advanced/base', :f => f %>
+	
+			</div>
+			<div class="in_advanced_box" id="seo">
+				<div class="vspacer"></div>
+				<div class="clearfix"></div>
+				<%= render 'seiten/advanced/seo', :f => f %>
+	
+			</div>
+			<div class="in_advanced_box" id="more">	
+				<div class="vspacer"></div>
+				<div class="clearfix"></div>
+				<%= render 'seiten/advanced/more', :f => f %>
+	
+			</div>
+		
+		</div>
+		
+	</div>
+</div>
+
+
+
