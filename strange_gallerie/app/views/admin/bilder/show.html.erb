@@ -38,21 +38,21 @@
 												:blur => Strangecms::Stylez::Config[:admin_systemButton_icon_blur], 
 												:color => Strangecms::Stylez::Config[:admin_systemButton_icon_color], 
 												:size => Strangecms::Stylez::Config[:admin_systemButton_icon_size], 
-												:class => "admin_system #{ Strangecms::Stylez::Config[:admin_systemButton_style] }", 
+												:class => "system #{ Strangecms::Stylez::Config[:admin_systemButton_style] }", 
 												:url => edit_admin_bild_path(@bild), 
 												:tooltip => t("strange_gallerie.linkz.edit_pic")  ) %>
 						<%= finelineButton(		:icon => 64, 
 												:blur => Strangecms::Stylez::Config[:admin_systemButton_icon_blur], 
 												:color => Strangecms::Stylez::Config[:admin_systemButton_icon_color], 
 												:size => Strangecms::Stylez::Config[:admin_systemButton_icon_size], 
-												:class => "admin_system #{ Strangecms::Stylez::Config[:admin_systemButton_style] }", 
+												:class => "system #{ Strangecms::Stylez::Config[:admin_systemButton_style] }", 
 												:url => zuschneiden_admin_bild_path(@bild), 
 												:tooltip => t("strange_gallerie.linkz.crop_pic")  ) %>
 						<%= finelineDelete( @bild, 		:icon => 24, 
 														:blur => Strangecms::Stylez::Config[:admin_systemButton_icon_blur], 
 														:color => Strangecms::Stylez::Config[:admin_systemButton_icon_color], 
 														:size => Strangecms::Stylez::Config[:admin_systemButton_icon_size], 
-														:class => 'admin_system '+Strangecms::Stylez::Config[:admin_systemButton_style].to_s, 
+														:class => 'system '+Strangecms::Stylez::Config[:admin_systemButton_style].to_s, 
 														:url => admin_bild_path(@bild),
 														:tooltip => t("strange_gallerie.linkz.del_pic")  ) %>
 					</div>

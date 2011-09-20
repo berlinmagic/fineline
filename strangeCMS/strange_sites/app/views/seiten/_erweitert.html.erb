@@ -1,11 +1,11 @@
 <div class="box">
 	<div class="advanced_box" id="advanced_settings">
 		
-		<h5><%= link_to finelineIcon(	:icon => 54, 
-										:color => 'dunkel', 
-										:size => 24, 
-										:blur => 50
-			)+ raw(' Seiteneinstellungen <span id="more_link_text">bearbeiten</span>'), '#', :class => "advanced_button" %></h5>
+		<%= link_to raw("<h5 class='icon'>#{ finelineIcon( :icon => 54, 
+										:color => finestyler('headline_icon_color'), 
+										:size => finestyler('headline_icon_size'), 
+										:blur => finestyler('headline_icon_blur')
+			) } Seiteneinstellungen <span id='more_link_text'>bearbeiten</span></h5>"), '#', :class => "advanced_button" %>
 
 		<div class="clearfix"></div>
 		<div class="vspacer"></div>

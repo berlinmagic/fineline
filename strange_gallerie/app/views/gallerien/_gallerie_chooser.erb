@@ -1,17 +1,38 @@
 <% if @seite %>
 	<% if @seite.gallerien.count > 0 %>
 		<% @seite.gallerien.each do |gal| %>
-			<p class='add_gallerie_form'><%= link_to "[gallerie] :: #{gal.name}", '#', :remote => true %><span class='gallerie_id hidden'><%= gal.id %></span></p>
+			<div class='abschnitt_choose_option add_gallerie_form'>
+				<%= link_to raw("#{ finelineIcon(
+					:icon => 58, 
+					:blur => Strangecms::Stylez::Config[:front_systemButton_icon_blur], 
+					:color => Strangecms::Stylez::Config[:front_systemButton_icon_color], 
+					:size => Strangecms::Stylez::Config[:front_systemButton_icon_size]) } Gallerie: #{gal.name}"), '#' %>
+				<span class='gallerie_id hidden'><%= gal.id %></span>
+			</div>
 		<% end %>
 	<% else %>
 		
 		<% Gallerie.all.each do |gal| %>
-			<p class='add_gallerie_form'><%= link_to raw("[gallerie] :: #{gal.name}"), '#', :remote => true %><span class='gallerie_id hidden'><%= gal.id %></span></p>
+			<div class='abschnitt_choose_option add_gallerie_form'>
+				<%= link_to raw("#{ finelineIcon(
+					:icon => 58, 
+					:blur => Strangecms::Stylez::Config[:front_systemButton_icon_blur], 
+					:color => Strangecms::Stylez::Config[:front_systemButton_icon_color], 
+					:size => Strangecms::Stylez::Config[:front_systemButton_icon_size]) } Gallerie: #{gal.name}"), '#' %>
+				<span class='gallerie_id hidden'><%= gal.id %></span>
+			</div>
 		<% end %>
 	
 	<% end %>
 <% else %>
 	<% Gallerie.all.each do |gal| %>
-		<p class='add_gallerie_form'><%= link_to raw("[gallerie] :: #{gal.name}"), '#', :remote => true %><span class='gallerie_id hidden'><%= gal.id %></span></p>
+		<div class='abschnitt_choose_option add_gallerie_form'>
+			<%= link_to raw("#{ finelineIcon(
+				:icon => 58, 
+				:blur => Strangecms::Stylez::Config[:front_systemButton_icon_blur], 
+				:color => Strangecms::Stylez::Config[:front_systemButton_icon_color], 
+				:size => Strangecms::Stylez::Config[:front_systemButton_icon_size]) } Gallerie: #{gal.name}"), '#' %>
+			<span class='gallerie_id hidden'><%= gal.id %></span>
+		</div>
 	<% end %>
 <% end %>

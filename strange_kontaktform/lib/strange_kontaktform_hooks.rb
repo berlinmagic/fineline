@@ -32,7 +32,10 @@ class StrangeKontaktformHooks < Strangecms::ThemeSupport::HookListener
   end
   
   insert_after :abschnitt_content_choose do
-    "<p class='add_k_form'><%= link_to 'Kontakt Formular', admin_site_pic_K_form_path, :remote => true %></p>"
+    "<div class='abschnitt_choose_option add_k_form'><%= link_to finelineIcon( :icon => 45, 
+              :blur => Strangecms::Stylez::Config[:front_systemButton_icon_blur], 
+              :color => Strangecms::Stylez::Config[:front_systemButton_icon_color], 
+              :size => Strangecms::Stylez::Config[:front_systemButton_icon_size])+' Kontakt Formular', '#' %></div>"
   end
   
   insert_after :admin_dashboard do

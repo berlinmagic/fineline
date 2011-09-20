@@ -47,15 +47,6 @@
 				<h3 class="abschnitt_choose_head">Abschnitt-typ wählen:</h3>
 				
 				<%= hook :abschnitt_content_choose do %>
-					
-		
-		<%= link_to finelineIcon(:icon => 48, :blur => Strangecms::Stylez::Config[:front_systemButton_icon_blur], :color => Strangecms::Stylez::Config[:front_systemButton_icon_color], :size => Strangecms::Stylez::Config[:front_systemButton_icon_size])+' Text', '#', :class => 'abschnitt_choose_link new_text_abschnitt' %>
-		
-		<%= link_to finelineIcon(:icon => 63, :blur => Strangecms::Stylez::Config[:front_systemButton_icon_blur], 
-					:color => Strangecms::Stylez::Config[:front_systemButton_icon_color], 
-					:size => Strangecms::Stylez::Config[:front_systemButton_icon_size])+' Trennlinie', '#', :class => 'abschnitt_choose_link add_trenn_linie' %>
-					
-					<br/><br/>
 					<div class="new_text_abschnitt abschnitt_choose_option">
 						<%= link_to finelineIcon(
 								:icon => 48, 

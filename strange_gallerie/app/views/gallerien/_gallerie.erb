@@ -12,8 +12,9 @@
 	
 	<% if @gallerie.kategorien.count > 0 %>
 		<% @gallerie.kategorien.each do |kat|  %>
-			<% if kat.bilder.count > 0 %>
-				<% kat.bilder.each do |pic| %>
+			<% if Kat.where('kategorie_id = ? AND target_type = ?', kat.id, 'Bild').count > 0 %>
+				<% Kat.where('kategorie_id = ? AND target_type = ?', kat.id, 'Bild').each do |kp| %>
+					<% pic = Bild.find( kp.target_id )%>
 					<% @this_bilder << pic %>
 				<% end %>
 			<% end %>
