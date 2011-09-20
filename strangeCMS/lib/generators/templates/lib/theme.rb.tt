@@ -6,6 +6,7 @@
   
   require '<%= file_name %>_hooks'
   require '<%= file_name %>_modul'
+  require '<%= file_name %>_theme'
 
 
 module <%= class_name %>

@@ -33,6 +33,7 @@ module Strangecms
         empty_directory "#{file_name}/app"
         empty_directory "#{file_name}/#{StrangeThemes.config.themes_dir}"
         empty_directory "#{file_name}/#{StrangeThemes.config.themes_dir}/#{file_name.gsub(/strange_/, '')}"
+        empty_directory "#{file_name}/#{StrangeThemes.config.themes_dir}/#{file_name.gsub(/strange_/, '')}/views"
         empty_directory "#{file_name}/app/controllers"
         empty_directory "#{file_name}/app/helpers"
         empty_directory "#{file_name}/app/models"
@@ -41,12 +42,14 @@ module Strangecms
 
       def create_lib_files
         empty_directory "#{file_name}/lib"
-        template 'lib/modul.rb.tt', "#{file_name}/lib/#{file_name}.rb"
+        template 'lib/theme.rb.tt', "#{file_name}/lib/#{file_name}.rb"
         template 'lib/version.rb.tt', "#{file_name}/lib/#{file_name}/version.rb"
         
         template 'lib/modul_hooks.rb.tt', "#{file_name}/lib/#{file_name}_hooks.rb"
         template 'lib/modul_theme.rb.tt', "#{file_name}/lib/#{file_name}_theme.rb"
         template 'lib/theme_modul.rb.tt', "#{file_name}/lib/#{file_name}_modul.rb"
+        
+        template 'lib/theme__initializer.rb.tt', "#{file_name}/lib/theme_#{file_name}_initializer.rb"
         
         # => empty_directory "#{file_name}/lib/generators"
         # => empty_directory "#{file_name}/lib/generators/#{file_name}"
@@ -58,15 +61,100 @@ module Strangecms
         # => template 'lib/templates/seed_modul.rb.tt', "#{file_name}/lib/generators/#{file_name}/templates/seed_#{file_name}.rb"
       end
 
-      def create_spec_helper
-        template "spec_helper.rb", "#{file_name}/spec/spec_helper.rb"
-      end
 
       def update_gemfile
         gem file_name, :path => file_name, :require => file_name
       end
+      
+      def create_full_theme
+        if yes?("Alle relevanten Dateien in neuen Theme-Ordner spiegeln?")
+          puts("StrangeSites:: Spiegle views in default-Theme view-Ordner")
+          Strangecms::FileUtilz.mirror_files( 
+                File.join("#{StrangeSites::Engine.config.root}", "app", "views"), 
+                File.join("#{file_name}/#{StrangeThemes.config.themes_dir}/#{file_name.gsub(/strange_/, '')}", "views") 
+                )
+          puts("StrangeSites:: Spiegle views in default-Theme view-Ordner")
+          Strangecms::FileUtilz.mirror_files( 
+                File.join("#{StrangeSites::Engine.config.root}", "public"), 
+                File.join("#{file_name}/#{StrangeThemes.config.themes_dir}/#{file_name.gsub(/strange_/, '')}") 
+                )
+          puts("StrangeCore:: Spiegle views in default-Theme view-Ordner")
+          Strangecms::FileUtilz.mirror_files( 
+                File.join("#{StrangeCore::Engine.config.root}", "app", "views"), 
+                File.join("#{file_name}/#{StrangeThemes.config.themes_dir}/#{file_name.gsub(/strange_/, '')}", "views") 
+                )
+          puts("StrangeUser:: Spiegle views in default-Theme view-Ordner")
+          Strangecms::FileUtilz.mirror_files( 
+                File.join("#{StrangeUser::Engine.config.root}", "app", "views"), 
+                File.join("#{file_name}/#{StrangeThemes.config.themes_dir}/#{file_name.gsub(/strange_/, '')}", "views") 
+                )
+          Strangecms::CmsModul::FineModul.fine_modules.each do |modul|
+            unless modul.core?
+                copy_modul_data( modul.modul_name )
+            end
+          end
+        end
+      end
+      
+      def create_full_default_theme
+        if yes?("Default-Theme-Ordner erstellen und alle relevanten Dateien hinein spiegeln?")
+          empty_directory "#{file_name}/#{StrangeThemes.config.themes_dir}/default"
+          empty_directory "#{file_name}/#{StrangeThemes.config.themes_dir}/default/views"
+          puts("StrangeSites:: Spiegle views in default-Theme view-Ordner")
+          Strangecms::FileUtilz.mirror_files( 
+                File.join("#{StrangeSites::Engine.config.root}", "app", "views"), 
+                File.join("#{file_name}/#{StrangeThemes.config.themes_dir}/default", "views") 
+                )
+          puts("StrangeSites:: Spiegle views in default-Theme view-Ordner")
+          Strangecms::FileUtilz.mirror_files( 
+                File.join("#{StrangeSites::Engine.config.root}", "public"), 
+                File.join("#{file_name}/#{StrangeThemes.config.themes_dir}/default") 
+                )
+          puts("StrangeCore:: Spiegle views in default-Theme view-Ordner")
+          Strangecms::FileUtilz.mirror_files( 
+                File.join("#{StrangeCore::Engine.config.root}", "app", "views"), 
+                File.join("#{file_name}/#{StrangeThemes.config.themes_dir}/default", "views") 
+                )
+          puts("StrangeUser:: Spiegle views in default-Theme view-Ordner")
+          Strangecms::FileUtilz.mirror_files( 
+                File.join("#{StrangeUser::Engine.config.root}", "app", "views"), 
+                File.join("#{file_name}/#{StrangeThemes.config.themes_dir}/default", "views") 
+                )
+          Strangecms::CmsModul::FineModul.fine_modules.each do |modul|
+            unless modul.core?
+                copy_modul_default_data( modul.modul_name )
+            end
+          end
+        end
+      end
 
       protected
+      
+      def copy_modul_data( modul )
+        puts("#{modul.gsub(/Strange/, '')}:: Spiegle views in default-Theme view-Ordner")
+        Strangecms::FileUtilz.mirror_files( 
+              File.join("#{modul.constantize::Engine.config.root}", "app", "views"), 
+              File.join("#{file_name}/#{StrangeThemes.config.themes_dir}/#{file_name.gsub(/strange_/, '')}", "views") 
+              )
+        puts("#{modul.gsub(/Strange/, '')}:: Spiegle Daten in default-Theme public-Ordner")
+        Strangecms::FileUtilz.mirror_files( 
+              File.join("#{modul.constantize::Engine.config.root}", "public"), 
+              File.join("#{file_name}/#{StrangeThemes.config.themes_dir}/#{file_name.gsub(/strange_/, '')}")
+              )
+      end
+      
+      def copy_modul_default_data( modul )
+        puts("#{modul.gsub(/Strange/, '')}:: Spiegle views in default-Theme view-Ordner")
+        Strangecms::FileUtilz.mirror_files( 
+              File.join("#{modul.constantize::Engine.config.root}", "app", "views"), 
+              File.join("#{file_name}/#{StrangeThemes.config.themes_dir}/default", "views") 
+              )
+        puts("#{modul.gsub(/Strange/, '')}:: Spiegle Daten in default-Theme public-Ordner")
+        Strangecms::FileUtilz.mirror_files( 
+              File.join("#{modul.constantize::Engine.config.root}", "public"), 
+              File.join("#{file_name}/#{StrangeThemes.config.themes_dir}/default")
+              )
+      end
 
       def current_locale
         I18n.locale.to_s

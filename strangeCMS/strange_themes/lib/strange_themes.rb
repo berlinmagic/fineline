@@ -10,6 +10,7 @@ require 'strange_themes/routes'
 require 'strange_themes/gemed_themes'
 require 'strange_themes_help'
 require 'strange_themes_modul'
+require 'theme_default_initializer'
 
 module StrangeThemes
   class << self

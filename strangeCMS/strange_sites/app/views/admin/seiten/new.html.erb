@@ -16,7 +16,7 @@
 		<div class="trenn_linie"></div>
 	</div>
 </div>
-<%= form_for @seite do |f| %>
+<%= form_for [:admin, @seite] do |f| %>
 
 	<%= render 'shared/error', :item => f.object%>
 	<%= f.hidden_field :this_autor, :value => current_user.id %>

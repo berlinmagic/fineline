@@ -5,6 +5,8 @@ ol.sortable_list { list-style:none; margin:0; padding:0; }
 
 ol.sortable_list ol { list-style:none;  margin:0; padding: 10px; }
 
+ol.sortable_list .ui-sortable-placeholder { border: dotted 2px #c00; background: #f8fc00; visibility: visible !important; margin: 0 10px 0 39px; opacity: .50; }
+
 ol.sortable_list li { list-style:none; margin: 0; padding: 5px; }
 
 .sortable_list_entry { width: 350px; padding: 0 30px; display: block; cursor:move; border: solid 1px transparent; }
@@ -82,7 +84,6 @@ $('.sortable_list').nestedSortable({
 	items: 'li',
 	maxLevels: 3,
 	opacity: .6,
-	placeholder: 'placeholder',
 	revert: 250,
 	tabSize: 30,
 	tolerance: 'pointer'

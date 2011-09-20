@@ -22,12 +22,17 @@
 
 		<div class="work_box">
 			<div class="in_box white">
+				<!--
+				<ul class="sortable_area">
+					<%#= render :partial => "admin/seiten/sortable/seite", :collection => @seiten %>
+				</ul>
+				-->
+				
 				<div class="fine_table">
+					
 					<% @seiten.each do |seite| %>
 					  <div class="row" id="<%= dom_id(seite)%>">
-
 						<div class="sorter"><%= fine_handle(:color => 'hell') %></div>
-
 					    <div class="title">
 							<%= seite.titel %>
 							<% if seite.unter_seiten.count > 0 %>
@@ -46,7 +51,6 @@
 								<% end %>
 							<% end %>
 						</div>
-					
 						<div class="actions">
 							<% if seite.deleted %>
 								<%= link_to 'wiederherstellen', restore_admin_seite_path(seite) %> | <%= link_to 'engültig Löschen', kill_admin_seite_path(seite) %>
@@ -58,48 +62,44 @@
 							    	<%= strange_delete_link seite %>
 								<% end %>
 							<% end %>
-							
 							<% if seite.unter_seiten.count > 0 %>
 								<br />
 								<% seite.unter_seiten.each do |u_seite| %>
-								
 								<% if u_seite.deleted %>
 									<%= link_to 'aktivieren', restore_admin_seite_path(u_seite) %>
 									 | <%= link_to 'zerstören', kill_admin_seite_path(u_seite) %><br />
 								<% else %>
-									
 									<%= strange_admin_show_link u_seite %>
 									<%= strange_edit_link(u_seite) %>
 									<%# hook :admin_site_delete_button do %>
 									<% if site_master || u_seite.system_seite == false %>
 								    	<%= strange_delete_link u_seite %>
 									<% end %><br />
-									
 								<% end %>
-								
 								<% end %>
 							<% end %>
 						</div>
-					
 					  </div>
 					<% end %>
 					<div class="clearfix">
-						
 					</div>
 				</div>
 			</div>
 		</div>
-		
 		<div class="box">
 				<div class="trenn_linie"></div>
 		</div>
-		
 	</div>
 </div>
 
 
 <%= render 'admin/shared/seiten_sidebar' %>
 
+<style>
+.sortable_area { margin: 0; padding:0 30px; list-style:none; }
+.sortable_area li { position: relative; margin: 0; padding:0; list-style:none; }
+.sortable_area li ul { margin: 0; padding:0 30px; list-style:none; }
+</style>
 
 <% content_for :js_stuff do %>
 <script type="text/javascript">
@@ -124,6 +124,25 @@
           dataType: 'script',
           complete: function(request){
             $('div.fine_table').effect('highlight');
+          },
+          url: "<%= reorder_seiten_url %>"
+        })
+      }
+		});
+  });
+
+$(function() {
+    $(".sortable_area").sortable({
+	  connectWith: ".sortable_area",
+      axis: 'y',
+      cursor: "move",
+      update: function(){
+        $.ajax({
+          type: 'post', 
+          data: 'authenticity_token='+AUTH_TOKEN+'&'+ $('.sortable_area').sortable('serialize'), 
+          dataType: 'script',
+          complete: function(request){
+            $('.sortable_area').effect('highlight');
           },
           url: "<%= reorder_seiten_url %>"
         })

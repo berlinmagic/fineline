@@ -6,6 +6,10 @@ module StrangeThemes
       include Singleton
     
       attr_accessor :theme_gems
+      
+      def self.theme_init?
+        false
+      end
 
       def initialize
         @theme_gems = []

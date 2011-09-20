@@ -1,0 +1,31 @@
+<li class="row" id="<%= dom_id(seite)%>">
+	<div class="sorter"><%= fine_handle(:color => 'hell') %></div>
+    <div class="title">
+		<%= seite.titel %>
+
+	</div>
+    <div class="aktiv">
+		<% if seite.deleted %><strong>gelöscht</strong><% else%><%= seite.entwurf ? 'entwurf' : 'aktiv' %><% end %>
+
+	</div>
+	<div class="actions">
+		<% if seite.deleted %>
+			<%= link_to 'wiederherstellen', restore_admin_seite_path(seite) %> | <%= link_to 'engültig Löschen', kill_admin_seite_path(seite) %>
+		<% else%>
+			<%= strange_admin_show_link seite %>
+			<%= strange_edit_link(seite) %>
+			<%# hook :admin_site_delete_button do %>
+			<% if site_master || seite.system_seite == false %>
+		    	<%= strange_delete_link seite %>
+			<% end %>
+		<% end %>
+	</div>
+	<% if seite.unter_seiten.count > 0 %>
+	<div class="clearfix"></div>
+	<ul class="nested">
+		<%= render :partial => "admin/seiten/sortable/seite", :collection => seite.unter_seiten %>
+	</ul>
+	<% end %>
+</li>
+
+

@@ -30,6 +30,7 @@
 <%= raw( fine_js_minify( "#{ hook :seite_js_scriptz }" ) ) %>
 <% end %>
 <% if @script4 == 'admin' %>
+<%= raw( fine_js_minify( "#{ render 'javascriptz/libs/slist' }" ) ) %>
 <%= raw( fine_js_minify( "#{ hook :admin_js_scriptz }" ) ) %>
 <% end %>
 

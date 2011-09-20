@@ -1,0 +1,14 @@
+<div id="<%= dom_id(seite) -%>">
+	<div class='sortable_list_entry'>
+		<span class='title'>
+			<%= seite.name %>
+		</span>
+		<div class='clearfix'></div>
+	</div>
+	<div class='clearfix'></div>
+	<% if !seite.modul_name.blank? %>
+		<div class='nested_list sortable_area'>
+			<%= render :partial => 'main_seite', :collection => seite.unter_seiten %>
+		</div>
+	<% end %>
+</div>
