@@ -3,14 +3,15 @@
 	<div class="container_48">
 		
 		<div class="fl_box_950">
+				<% image_pt = theme_image_path(Strangecms::Config[:strange_logo].to_s).blank? ? Strangecms::Config[:strange_logo].to_s : theme_image_path(Strangecms::Config[:strange_logo].to_s)  %>
 				<% if Strangecms::Config[:use_logo_datei] && Strangecms::Config[:logo_datei] && !Strangecms::Config[:logo_datei].blank? %>
 						<% if datei = Datei.find(Strangecms::Config[:logo_datei]) %>
-							<%= link_to( image_tag( datei.file.thumb("100x350>").url() ), root_url, :id => "fineLOGO" ) %>
+							<%= link_to( image_tag( datei.file.thumb("350x90>").url() ), root_url, :id => "fineLOGO" ) %>
 						<% else %>
-							<%= link_to( theme_image_tag("#{Strangecms::Config[:strange_logo]}"), root_url, :id => "fineLOGO" ) %>
+							<%= link_to( raw("#{ image_tag( image_pt ) }"), root_url, :id => "fineLOGO" ) %>
 						<% end %>
 				<% else %>
-					<%= link_to( theme_image_tag("#{Strangecms::Config[:strange_logo]}"), root_url, :id => "fineLOGO" ) %>
+					<%= link_to( raw("#{ image_tag( image_pt ) }"), root_url, :id => "fineLOGO" ) %>
 				<% end %>
 			
 				
