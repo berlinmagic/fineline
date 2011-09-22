@@ -20,11 +20,7 @@ class NewsController < ApplicationController
   end
   
   def show
-    if params[:id] && params[:id] =~ /^\d/
-      @news = News.find(params[:id])
-    else      
-      @news = News.find_by_slug('/'+params[:id])
-    end
+    @news = News.find_by_slug('/'+params[:id]) || News.find(params[:id])
     @one_news = @news
     @title = @news.headline
   end

@@ -184,24 +184,27 @@
 							
 							<div class="inbox_admin_toolz">
 								<%= finelineButton(			:icon => 29, 
-															:blur => 70, 
-															:color => 'hell',
+															:blur => finestyler( 'systemButton_icon_blur' ), 
+															:color => finestyler( 'systemButton_icon_color' ), 
+															:size => finestyler( 'systemButton_icon_size' ), 
+															:class => "system #{ finestyler( 'systemButton_style' ) }",
 															:url => admin_header_path(head),
-															:class => "admin_system",
 															:title => t('strange_header.links.show') ) %>
 								
 								<%= finelineButton(			:icon => 30, 
-															:blur => 70, 
-															:color => 'hell',
+															:blur => finestyler( 'systemButton_icon_blur' ), 
+															:color => finestyler( 'systemButton_icon_color' ), 
+															:size => finestyler( 'systemButton_icon_size' ), 
+															:class => "system #{ finestyler( 'systemButton_style' ) }",
 															:url => edit_admin_header_path(head),
-															:class => "admin_system",
 															:title => t('strange_header.links.edit') ) %>
 								<% unless head.system_stuff %>
 									<%= finelineDelete( head,	:icon => 24, 
-																:blur => 70, 
-																:color => 'hell',
+																:blur => finestyler( 'systemButton_icon_blur' ), 
+																:color => finestyler( 'systemButton_icon_color' ), 
+																:size => finestyler( 'systemButton_icon_size' ), 
+																:class => "system #{ finestyler( 'systemButton_style' ) }",
 																:url => admin_header_path(head),
-																:class => "admin_system",
 																:title => t('strange_header.links.delete') ) %>
 								<% end %>
 							</div>

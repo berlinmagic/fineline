@@ -43,7 +43,7 @@ class StrangeKontaktformHooks < Strangecms::ThemeSupport::HookListener
   end
   
   insert_after :finestyles do
-    "<%= render 'stylesheetz/header' %>"
+    "<%= render 'stylesheetz/module/kontaktform' %>"
   end
   
 end

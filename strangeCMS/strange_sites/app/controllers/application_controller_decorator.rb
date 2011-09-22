@@ -21,7 +21,8 @@ ApplicationController.class_eval do
     # But we realy don't want to query DB on each page we're sure doesn't exist!
     return if Rails.cache.fetch('page_not_exist/'+request.path)
     if @seite = Seite.find_by_slug(request.path)
-        title = @seite.titel
+        @title    = @seite.use_titel ? @seite.titel : @seite.name
+        @headline = @seite.use_headline ? @seite.headline : @seite.name
         page_helper_methods
         if Strangecms::Config[:invite_only_site]
           redirect_to '/users/sign_in' unless current_user || request.path == '/users/sign_in'

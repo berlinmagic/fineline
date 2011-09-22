@@ -5,38 +5,7 @@
 </div>
 
 <% @news.each_with_index do |news,index| %>
-<div class="in_box">
-	<a href="<%= "#{news.news_site_slug}" + news.slug %>">
-		<h2 class="news_headline"><%= news.headline %></h2>
-		<span class="news_info"><%= news.datum.strftime('%d.%m.%Y') %> von <%= news.schreiber %></span>
-		<% if news.kommentare.count > 0 %>
-			&nbsp;&nbsp;<span class="news_komm_count"><%= news.kommentare.count %> Kommentare</span>
-
-		<% end %>
-		<br/>
-		<p class='news_vorschau_text'>
-			<%= image_tag news.file.thumb("300x100>").url, :class => 'news_thumb_image' if news.file %>
-			<%= news.beschreibung %>
-		</p>
-		<div class="clearfix"></div>
-	</a>
-		<% if news.ilike && Strangecms::Config[:facebook_app_id] != "UA-XXXXX-X" %>
-		<br/>
-		<iframe src="http://www.facebook.com/plugins/like.php?app_id=<%= Strangecms::Config[:facebook_app_id] %>&amp;href=<%= "#{Strangecms::Config[:site_url]}#{news.news_site_slug}" + news.slug %>&amp;send=false&amp;layout=standard&amp;width=700&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font=lucida+grande&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:700px; height:35px;" allowTransparency="true"></iframe>
-		
-		<% end %>
-		<% if admin_check && news.ilike && Strangecms::Config[:facebook_app_id] == "UA-XXXXX-X" %>
-			<h5 class="panic">ACHTUNG, iLike-Button ist aktiviert, es ist aber keine Facebook-ID eingestellt bitte ändern Sie dies in den <a href="/admin/settings/cms">Einstellungen</a>.</h5>
-		<% end %>
-		<div class="clearfix"></div>
-
-</div>
-<% unless index == @news.count - 1 %>
-<div class="in_box">
-		<div class="trenn_linie"></div>
-		<div class="clearfix"></div>
-</div>
-<% end %>
+	<%= render 'news', :news => news, :index => index, :count => @news.count %>
 <% end %>
 
 <% if @news.count > 4 %>

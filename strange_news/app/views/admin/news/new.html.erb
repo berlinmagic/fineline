@@ -5,14 +5,173 @@
 	<h1 class="icon"><%= finelineIcon(:icon => 48, :color => finestyler('headline_icon_color'), :size => finestyler('headline_icon_size'), :blur => finestyler('headline_icon_blur')) %><%= t('strange_news.headlines.new') %></h1>
 
 	<div class="admin_in_box">
+		
 		<%= form_for @news, :url => { :controller => 'admin/news'}, :html => { :multipart => true }  do |f| %>
+		
 		<div class="box">
 			<div class="in_box">
+				<strong><%= f.label :headline, 'Überschrift:' %></strong><br/>
+				<%= f.text_field :headline %>
+			</div>
+		</div>
+		
+		<div class="box">
+			<div class="in_box">
+		<strong><%= f.label :file, 'News-Bild:' %></strong><br/>
+		<%= f.file_field :file %>
+			</div>
+		</div>
+		
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		
+		
+		<div class="work_box">
+			<div class="in_box white">
 				
-				<%= render 'form', :f => f %>
+				
+				  <%= render 'shared/error', :item => f.object%>
+
+
+
+
+				<div class="abschnitte">
+
+					<div class="nested_form box edit" id="xxxxx">
+						<% f.fields_for :news_abschnitte do |builder| %>
+							<%= render "news_abschnitt_fields", :f => builder %>
+						<% end %>
+						<div class="box">
+						<p class="add_nested_form pic_link in_box">
+							<% link_text = "<h5 class='icon'>#{ finelineIcon(:icon => 82, :color => finestyler('headline_icon_color'), :size => finestyler('headline_icon_size'), :blur => finestyler('headline_icon_blur')) }#{ t('strange_sites.links.add_abschnitt') }</h5>" %>
+							<%= link_to_add_fields  "#{ link_text }", f, :news_abschnitte %>
+							
+							
+							<%#= link_to_add_fineline_abschnitt "#{ link_text }", f, :news_abschnitte %>
+						</p>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="box">
+					<div class="trenn_box">
+						<div class="top_trenner"></div>
+					</div>
+				</div>
+				<% if current_user %>
+				<%= f.hidden_field :user_id, :value => current_user.id %>
+				<% end %>
+				<div class="box">
+				  <div class="actions in_box">
+
+				<div class="left pic_link">
+					<%= link_to image_tag('/images/btns/einstellungen_16px.png')+ raw('Seiteneinstellungen <span id="more_link_text">bearbeiten</span>'), '#', :class => "more_button", :remote => true %>
+				</div>
+				<div class="right entwurf_box">
+
+				</div>
+				<div class="clearfix"></div>
+
+
+				<div class="no_show">
+					<br/>
+					<div class="clearfix"></div>
+					<div class="left seiten_einstl">
+						<div class="field">
+							<%= f.check_box :entwurf %> <%= f.label :entwurf, 'Diesen Beitrag noch nicht veröffentlichen' %>
+						</div>
+						<div class="field o_date_check">
+							<%= f.check_box :o_date %> <%= f.label :o_date, 'Diesen Beitrag veröffentlichen am' %>
+						</div>
+						<div class="field hidden o_date_field">
+							<%# f.label :datum, 'Datum:' %><%= f.datetime_select :datum %>
+						</div>
+
+						<div class="field o_user_check">
+							<%= f.check_box :o_user %> <%= f.label :o_user, 'Abweichender Autor' %>
+						</div>
+						<div class="field hidden o_user_field">
+							<%# f.label :autor, 'Autor:' %><%= f.select :autor, User.all.map { |c| [c.name+', '+c.vorname, c.id] }, :include_blank => true %>
+						</div>
+
+
+						<div class="field">
+							<%= f.check_box :ilike %> <%= f.label :ilike, 'FaceBook „Gefällt mir“ Button einblenden' %>
+						</div>
+						<div class="field">
+							<%= f.check_box :kommentierbar %> <%= f.label :kommentierbar, 'Kommentare erlauben' %>
+						</div>
+					</div>
+					<div class="right seiten_einstl">
+
+						<br />
+						<div class="field">
+							<p><strong>Kategorien:</strong></p>
+						</div>
+						<br />
+						<br />
+						<div class="field">
+							<p><strong>Tags:</strong></p>
+						</div>
+
+					</div>
+					<div class="clearfix"></div>
+
+					<br/>
+					<% if strange_master %>
+							<div class="box">
+								<div class="trenn_box">
+									<div class="top_trenner"></div>
+								</div>
+							</div>
+							<br/>
+						<div class="seiten_einstl">
+							<p><strong>Admin Toolz:</strong></p>
+							<br/>
+						  	<div class="field">
+								<%= f.label :slug, 'System-Slug' %>&nbsp;&nbsp;&nbsp;&nbsp;::&nbsp;&nbsp;<%= f.text_field :slug %>
+							</div>
+							<br/>
+							<div class="field">
+								<%= f.label :stil, 'Stil:' %><br />
+								<%= f.text_field :stil %>
+							</div>
+						</div>
+						<div class="clearfix"></div>
+						<br/>
+					<% end %>		
+
+				</div>
+
+				</div>
+				</div>
+
+
+				<% content_for :js_stuff do %>
+				<script type="text/javascript" charset="utf-8">
+				  $(function() {
+
+					$('.o_date_check').click(function(){
+						$('.o_date_field').toggleClass('hidden');
+					});
+					$('.o_user_check').click(function(){
+						$('.o_user_field').toggleClass('hidden');
+					});
+
+				  });
+				</script>
+				<% end %>
+
+
+
 				
 			</div>
 		</div>
+		
 		<div class="box">
 			<div class="trenn_box">
 				<div class="top_trenner"></div>

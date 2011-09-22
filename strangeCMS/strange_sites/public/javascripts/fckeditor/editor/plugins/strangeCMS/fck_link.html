@@ -30,6 +30,12 @@
 		<meta name="robots" content="noindex, nofollow" />
 		<script src="../../dialog/common/fck_dialog_common.js" type="text/javascript"></script>
 		<script src="fck_link/fck_link.js" type="text/javascript"></script>
+		<script src="libs/jquery-1.4.4.min.js" type="text/javascript"></script>
+		<script>
+		$(document).ready(function(){
+			$('.rails_authenticity_token').val( FCKConfig.AUTH_TOKEN );
+		});
+		</script>
 	</head>
 	<body scroll="no" style="OVERFLOW: hidden">
 <div style="margin: 0 10px 10px 0">
@@ -112,6 +118,10 @@
 		</div>
 		<div id="divUpload" style="DISPLAY: none">
 			<form id="frmUpload" method="post" target="UploadWindow" enctype="multipart/form-data" action="" onsubmit="return CheckUpload();">
+				<div style="margin:0;padding:0;display:inline">
+					<input name="utf8" type="hidden" value="✓" />
+					<input name="authenticity_token" type="hidden" class="rails_authenticity_token" value="" />
+				</div>
 				<span fckLang="DlgLnkUpload">Upload</span><br />
 				<input id="txtUploadFile" style="WIDTH: 100%" type="file" size="40" name="NewFile" /><br />
 				<br />

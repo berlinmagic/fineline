@@ -41,4 +41,5 @@ gallerie_abb6 = Abschnitt.create!    :seite_id => gallerie_site.id,    :stuff_ty
 puts 'INFO: Seite erstellt: ' << gallerie_site.name
 
 
+
    

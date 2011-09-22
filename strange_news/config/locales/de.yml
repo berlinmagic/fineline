@@ -9,6 +9,7 @@ de:
             index: "News"
             new: "Neue News anlegen"
             edit: "News bearbeiten"
+            crop: "News Bild zuschneiden"
   strange_preferences:
       strange_news:
           settings_headline: "News Einstellungen"

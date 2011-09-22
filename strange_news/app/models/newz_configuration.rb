@@ -10,18 +10,18 @@ class NewzConfiguration < Configuration
   preference :always_crop_pix, :boolean, :default => true
   
   
-  preference :preview_pic_width, :integer, :default => 317
-  preference :preview_pic_height, :integer, :default => 95
+  preference :preview_pic_width, :integer, :default => 300
+  preference :preview_pic_height, :integer, :default => 90
   
   
-  preference :preview_pic_max_width, :integer, :default => 317
-  preference :preview_pic_max_height, :integer, :default => 205
+  preference :preview_pic_max_width, :integer, :default => 300
+  preference :preview_pic_max_height, :integer, :default => 150
   
   
-  preference :news_pic_width, :integer, :default => 725
-  preference :news_pic_height, :integer, :default => 218
+  preference :news_pic_width, :integer, :default => 700
+  preference :news_pic_height, :integer, :default => 210
   
-  preference :news_pic_max_width, :integer, :default => 725
-  preference :news_pic_max_height, :integer, :default => 330
+  preference :news_pic_max_width, :integer, :default => 700
+  preference :news_pic_max_height, :integer, :default => 350
 
 end

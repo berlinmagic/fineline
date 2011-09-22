@@ -2,14 +2,16 @@
   
   require 'strangecms'
   
-  require '<%= file_name %>/version'
+  require '<%= @strange_file %>/version'
   
-  require '<%= file_name %>_hooks'
-  require '<%= file_name %>_modul'
-  require '<%= file_name %>_theme'
+  require '<%= @strange_file %>_hooks'
+  require '<%= @strange_file %>_modul'
+  require '<%= @strange_file %>_theme'
+
+  require 'theme_<%= @strange_name %>_initializer'
 
 
-module <%= class_name %>
+module <%= @strange_class %>
   class Engine < Rails::Engine
 
 

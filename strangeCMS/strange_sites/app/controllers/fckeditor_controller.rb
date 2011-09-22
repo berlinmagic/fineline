@@ -6,6 +6,7 @@ class FckeditorController < ApplicationController
 
   # => protect_from_forgery :except => [:command,:check_spelling,:config]
   skip_before_filter :protect_from_forgery
+  
   UPLOAD_FOLDER = "/uploads"
   #UPLOADED_ROOT = RAILS_ROOT + "/public" + UPLOAD_FOLDER
   UPLOADED = "/uploads"
@@ -251,7 +252,7 @@ class FckeditorController < ApplicationController
   def check_file(file)
     log "FCKEDITOR ---- CLASS OF UPLOAD OBJECT: #{file.class}"
 
-    unless ( file.class.to_s == "Tempfile" ) || ( file.class.to_s == "StringIO" )
+    unless file.class.to_s == "Tempfile" || "StringIO"
       @errorNumber = 403
       throw Exception.new
     end

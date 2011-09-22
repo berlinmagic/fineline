@@ -24,4 +24,6 @@ Gem::Specification.new do |s|
   s.add_dependency('strange_user',  version)
   s.add_dependency('strange_themes',  version)
   
+  s.add_dependency('truncate_html',  '0.5.1')
+  
 end

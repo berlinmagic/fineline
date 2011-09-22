@@ -14,8 +14,8 @@ class AppConfiguration < Configuration
   
   preference :show_help, :boolean, :default => true
   
-  preference :compress_stylez, :boolean, :default => true
-  preference :compress_scriptz, :boolean, :default => true
+  preference :compress_stylez, :boolean,  :default => false
+  preference :compress_scriptz, :boolean, :default => false
   
   preference :logo_datei,       :integer
   preference :use_logo_datei,   :boolean, :default => false

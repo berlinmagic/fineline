@@ -254,21 +254,26 @@
 							</table>
 							<div class="inbox_admin_toolz">
 								<%= finelineButton(			:icon => 30, 
-															:blur => 70, 
-															:color => 'hell',
+															:blur => finestyler( 'systemButton_icon_blur' ), 
+															:color => finestyler( 'systemButton_icon_color' ), 
+															:size => finestyler( 'systemButton_icon_size' ), 
+															:class => "colorB system #{ finestyler( 'systemButton_style' ) }",
 															:url => edit_admin_header_hpic_hpic_path(head,head.hpic),
-															:class => "colorB",
 															:title => t('strange_header.edit_hpic') ) %>
 								
 								<%= finelineButton(			:icon => 64, 
-															:blur => 70, 
-															:color => 'hell',
+															:blur => finestyler( 'systemButton_icon_blur' ), 
+															:color => finestyler( 'systemButton_icon_color' ), 
+															:size => finestyler( 'systemButton_icon_size' ), 
+															:class => "system #{ finestyler( 'systemButton_style' ) }",
 															:url => crop_admin_header_hpic_hpic_path(head,head.hpic),
 															:title => t('strange_header.crop_hpic') ) %>
 								
 								<%= finelineDelete( head,	:icon => 24, 
-															:blur => 70, 
-															:color => 'hell',
+															:blur => finestyler( 'systemButton_icon_blur' ), 
+															:color => finestyler( 'systemButton_icon_color' ), 
+															:size => finestyler( 'systemButton_icon_size' ), 
+															:class => "system #{ finestyler( 'systemButton_style' ) }",
 															:url => remove_admin_header_hpic_hpic_path(head,head.hpic),
 															:title => t('strange_header.del_pic') ) %>
 							</div>

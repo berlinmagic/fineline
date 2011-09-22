@@ -19,7 +19,7 @@
 
 		<%# if abschnitt.text %>
 		<% if abschnitt.stuff_typ == 'text' %>
-		<div class="in_box<%= ' first' unless Strangecms::Config[:show_site_name] || index > 0 %>">
+		<div class="in_box<%= ' first' unless Strangecms::Config[:show_site_name] || index > 0 %> user_edited_content">
 			<%= raw abschnitt.inhalt %>
 			<div class="clearfix"></div>
 		</div>

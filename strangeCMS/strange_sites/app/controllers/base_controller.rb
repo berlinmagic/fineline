@@ -38,6 +38,12 @@ class BaseController < ApplicationController
     redirect_to :back, :notice => 'Scriptz expired!'
   end
   
+  def editor_config
+    respond_to do |format|
+      format.js { render :template => 'javascriptz/fck_custom_config' }
+    end
+  end
+  
   def grid_test
     render :layout => 'fineline_blanko', :template => 'base/testarea'
   end
@@ -107,25 +113,16 @@ class BaseController < ApplicationController
   
   def show_seite
       if params[:system_name]
-        if @seite = Seite.find( Seite.where(:system_name => params[:system_name]).first().id )
-          @title = @seite.titel
-          render_this_site
-        else
-         render_seiten_error
+        if Seite.find( Seite.where(:system_name => params[:system_name]).first().id )
+          @seite = Seite.find( Seite.where(:system_name => params[:system_name]).first().id )
         end
       elsif params[:id]
-        if @seite = Seite.find(params[:id])
-          @title = @seite.titel
-          render_this_site
-        else
-         render_seiten_error
+        if Seite.find(params[:id])
+          @seite = Seite.find(params[:id])
         end
       elsif params[:slug]
-        if @seite = Seite.find_by_slug(params[:slug]) || Seite.find_by_slug('/'+params[:slug]) || Seite.find_by_name(params[:slug])
-          @title = @seite.titel
-          render_this_site
-        else
-         render_seiten_error
+        if Seite.find_by_slug(params[:slug]) || Seite.find_by_slug('/'+params[:slug]) || Seite.find_by_name(params[:slug])
+          @seite = Seite.find_by_slug(params[:slug]) || Seite.find_by_slug('/'+params[:slug]) || Seite.find_by_name(params[:slug])
         end
       elsif params[:slug1]
         this_full_slug = "/#{params[:slug1]}#{ '/' + params[:slug2] if params[:slug2] }#{ '/' + params[:slug3] if params[:slug3] }#{ '/' + params[:slug4] if params[:slug4] }"
@@ -134,17 +131,18 @@ class BaseController < ApplicationController
         this_name = params[:slug3] if params[:slug3]
         this_name = params[:slug4] if params[:slug4]
         this_slug = "/#{this_name}"
-        
-        if @seite = Seite.find_by_full_slug(this_full_slug) || Seite.find_by_slug(this_slug) || Seite.find_by_std_slug(this_slug) || Seite.find_by_name(this_name)
-          @title = @seite.titel
-          render_this_site
-        else
-         render_seiten_error
+        if Seite.find_by_full_slug(this_full_slug) || Seite.find_by_slug(this_slug) || Seite.find_by_std_slug(this_slug) || Seite.find_by_name(this_name)
+          @seite = Seite.find_by_full_slug(this_full_slug) || Seite.find_by_slug(this_slug) || Seite.find_by_std_slug(this_slug) || Seite.find_by_name(this_name)
         end
-        
-      else
-       render_seiten_error
       end
+      if @seite
+        @title = @seite.use_titel ? @seite.titel : @seite.name
+        @headline = @seite.use_headline ? @seite.headline : @seite.name
+        render_this_site
+      else
+        render_seiten_error
+      end
+      
     
   end
   

@@ -59,8 +59,8 @@ class Admin::SettingsController < Admin::BaseController
           if Strangecms::Config.set(params[:preferences])
             Strangecms::Preferences::MailSettings.init if (@name == 'mail') || (@name == 'cms')
             if (@name == 'optik')
-              if !!defined?"Strangecms::Theme#{ params[:preferences][:theme].titleize }Initializer".constantize
-                "Theme#{ params[:preferences][:theme].titleize }Initializer".constantize.init
+              if !!defined?"Theme#{ params[:preferences][:theme].camelize }Initializer".constantize
+                "Theme#{ params[:preferences][:theme].camelize }Initializer".constantize.init
               end
               expire_page	'/system/finestyle.css'
               expire_page	'/system/admin_finestyle.css'

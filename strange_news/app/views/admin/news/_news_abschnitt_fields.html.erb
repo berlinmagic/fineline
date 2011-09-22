@@ -77,14 +77,14 @@
 	var js_path = "/javascripts";
     var base_path = js_path+"/fckeditor/";
 	var fck_height = "200px";
-	var fck_width = "700px";
+	var fck_width = "726px";
 	var fck_toolz = "Strange"
 	
   $('textarea.this_fck').each(function(){
 	var oFCKeditor = new FCKeditor(this.id, fck_width, fck_height, fck_toolz);
 	oFCKeditor.BasePath = base_path;
 	oFCKeditor.Config['GoogleMaps_Key'] = STRANGE_G_MAP_KEY;
-	oFCKeditor.Config['CustomConfigurationsPath'] = js_path+'/fckcustom.js';
+	oFCKeditor.Config['CustomConfigurationsPath'] = '/system/editor_configuration.js';
 	oFCKeditor.ReplaceTextarea(); 
   });
 

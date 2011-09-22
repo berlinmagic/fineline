@@ -151,7 +151,7 @@ function LoadSelection()
 	GetE('iStrangeborderColor').value = oImage.style.borderColor ;
 	GetE('iStrangeborderWidth').value = oImage.style.borderWidth ;
 
-	var iWidth, iHeight ;
+	var iWidth, iHeight, thisHeight, thisWidth ;
 
 	var regexSize = /^\s*(\d+)px\s*$/i ;
 
@@ -177,8 +177,18 @@ function LoadSelection()
 		}
 	}
 
-	GetE('txtWidth').value	= iWidth ? iWidth : GetAttribute( oImage, "width", '' ) ;
-	GetE('txtHeight').value	= iHeight ? iHeight : GetAttribute( oImage, "height", '' ) ;
+	thisWidth	= iWidth ? iWidth : GetAttribute( oImage, "width", '' ) ;
+	thisHeight	= iHeight ? iHeight : GetAttribute( oImage, "height", '' ) ;
+	var pic_width = thisWidth;
+	
+	if ( thisWidth > FCKConfig.MaxPicWidth ) {
+		thisWidth = FCKConfig.MaxPicWidth;
+		thisHeight = Math.round( thisHeight * ( thisWidth  /pic_width ) );
+	}
+	
+	GetE('txtWidth').value	= thisWidth ;
+	GetE('txtHeight').value	= thisHeight ;
+	
 
 	// Get Advances Attributes
 	GetE('txtAttId').value			= oImage.id ;
@@ -387,18 +397,35 @@ function OnSizeChanged( dimension, value )
 	if ( oImageOriginal && bLockRatio )
 	{
 		var e = dimension == 'Width' ? GetE('txtHeight') : GetE('txtWidth') ;
+		var x = dimension == 'Width' ? GetE('txtWidth') : GetE('txtHeight') ;
+		var help_value = value
 
 		if ( value.length == 0 || isNaN( value ) )
 		{
 			e.value = '' ;
 			return ;
 		}
+		
+		if ( dimension == 'Width' ) {
+			if ( value > FCKConfig.MaxPicWidth ) {
+				value = FCKConfig.MaxPicWidth;
+				x.value = FCKConfig.MaxPicWidth;
+			}
+		}
 
-		if ( dimension == 'Width' )
+		if ( dimension == 'Width' ) {
 			value = value == 0 ? 0 : Math.round( oImageOriginal.height * ( value  / oImageOriginal.width ) ) ;
-		else
+		} else {
 			value = value == 0 ? 0 : Math.round( oImageOriginal.width  * ( value / oImageOriginal.height ) ) ;
-
+		}
+		
+		if ( dimension == 'Height' ) {
+			if ( value > FCKConfig.MaxPicWidth ) {
+				value = FCKConfig.MaxPicWidth;
+				x.value = Math.round( oImageOriginal.height * ( value  / oImageOriginal.width ) );
+			}
+		}
+		
 		if ( !isNaN( value ) )
 			e.value = value ;
 	}
@@ -416,8 +443,18 @@ function ResetSizes()
 		return ;
 	}
 
-	GetE('txtWidth').value  = oImageOriginal.width ;
-	GetE('txtHeight').value = oImageOriginal.height ;
+	
+	thisWidth	= oImageOriginal.width ;
+	thisHeight	= oImageOriginal.height ;
+	var pic_width = thisWidth;
+	
+	if ( thisWidth > FCKConfig.MaxPicWidth ) {
+		thisWidth = FCKConfig.MaxPicWidth;
+		thisHeight = Math.round( thisHeight * ( thisWidth  / pic_width ) );
+	}
+	
+	GetE('txtWidth').value	= thisWidth ;
+	GetE('txtHeight').value	= thisHeight ;
 
 	UpdatePreview() ;
 }

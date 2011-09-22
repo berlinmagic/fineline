@@ -1,0 +1,107 @@
+<% content_for :head do %>
+<%= theme_stylesheet_link_tag 'jquery.Jcrop' %>
+<% end %>
+
+
+<% bild_breite 	= Strangecms::Newz::Config[:news_pic_width] %>
+<% bild_hoehe 	= Strangecms::Newz::Config[:news_pic_height] %>
+<% thumb_breite = Strangecms::Newz::Config[:preview_pic_width] %>
+<% thumb_hoehe 	= Strangecms::Newz::Config[:preview_pic_height] %>
+
+<% content_for :js_stuff do %>
+
+<%= theme_javascript_include_tag 'jquery.Jcrop.min' %>
+
+<script language="Javascript">
+
+function showPreview(coords)
+{	
+  var aspect_ratio = <%= @news.file_width %> / <%= @news.file_height %>;
+  var scale = <%= 1.0 * @news.file_width / bild_breite %>;
+  var crop_str = Math.round(coords.w * scale) + 'x' + Math.round(coords.h * scale) +
+           '+' + Math.round(coords.x * scale) + '+' + Math.round(coords.y * scale);
+  $('#file_cropping').val(crop_str);
+
+  var rx = <%= bild_breite %> / coords.w ;
+  var ry = <%= bild_hoehe %> / coords.h;
+  $('#preview').css({
+    width: Math.round(rx * <%= bild_breite %>) + 'px',
+    height: Math.round(ry * <%= bild_breite * @news.file_height / @news.file_width %>) + 'px',
+    marginLeft: '-' + Math.round(rx * coords.x) + 'px',
+    marginTop: '-' + Math.round(ry * coords.y) + 'px'
+  });
+}
+
+$(function() {
+  $('#cropbox').Jcrop({
+      onSelect: showPreview,
+      onChange: showPreview,
+      setSelect:   [ 0, 0, 240, 240 ],
+      aspectRatio: <%= @news.stil == 'spezial' ? @news.file_width : bild_breite %>/<%= @news.stil == 'spezial' ? @news.file_height : bild_hoehe %>
+    });
+});
+
+</script>
+<% end %>
+
+<div class="admin_box">
+	<h1 class="icon"><%= finelineIcon(:icon => 64, :color => finestyler('headline_icon_color'), :size => finestyler('headline_icon_size'), :blur => finestyler('headline_icon_blur')) %><%= t('strange_news.headlines.crop') %></h1>
+
+	<div class="admin_in_box">
+		<div class="box">
+			<div class="in_box">
+				<h3>Original:</h3>
+			</div>
+		</div>
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<p><%= image_tag @news.file.thumb("#{bild_breite}x").url, :id => 'cropbox' %></p>
+			</div>
+		</div>
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<%= form_for @news, :url => admin_news_path(@news) do |f| %>
+				  <%= f.hidden_field :file_cropping, :id => 'file_cropping' %><br />
+				  <%= f.submit "zuschneiden!" %>
+				<% end %>
+				<div class="clearfix"></div>
+				<br/>
+			</div>
+		</div>
+		<div class="box">
+			<div class="trenn_box">
+				<div class="top_trenner"></div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<h3>Vorschau:</h3>
+			</div>
+		</div>
+		<div class="box">
+			<div class="in_box">
+				<p><div style="width:<%= bild_breite %>px;height:<%= bild_hoehe %>px;overflow:hidden">
+				  <%= image_tag @news.file.thumb("#{bild_breite}x").url, :id => 'preview' %>
+				</div></p>
+			</div>
+		</div>
+		
+
+	</div>
+</div>
+
+
+
+
+
+

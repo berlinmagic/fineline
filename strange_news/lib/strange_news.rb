@@ -12,6 +12,7 @@
   require 'newz/config'
   
   require 'kaminari'
+  require 'truncate_html'
   
   require 'strange_news/routes'
 

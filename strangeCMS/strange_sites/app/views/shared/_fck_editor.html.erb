@@ -9,14 +9,14 @@ window.onload = function()
 	var js_path = "/javascripts";
     var base_path = js_path+"/fckeditor/";
 	var fck_height = "200px";
-	var fck_width = "688px";
+	var fck_width = "740px";
 	var fck_toolz = "Strange"
 	
   $('textarea.fck').each(function(){
 	var oFCKeditor = new FCKeditor(this.id, fck_width, fck_height, fck_toolz);
 	oFCKeditor.BasePath = base_path;
 	oFCKeditor.Config['GoogleMaps_Key'] = STRANGE_G_MAP_KEY;
-	oFCKeditor.Config['CustomConfigurationsPath'] = js_path+'/fckcustom.js';
+	oFCKeditor.Config['CustomConfigurationsPath'] = '/system/editor_configuration.js';
 	oFCKeditor.ReplaceTextarea(); 
   });
 $('div.add_nested_form.add_text_field a').live('click', function(){
@@ -35,7 +35,7 @@ $('.abschnitt_admin_toolz.fineline_system_toolz a.Pagez__toggle_remote_link').li
 	var oFCKeditor = new FCKeditor(text_stuff, fck_width, fck_height, fck_toolz);
 	oFCKeditor.BasePath = base_path;
 	oFCKeditor.Config['GoogleMaps_Key'] = STRANGE_G_MAP_KEY;
-	oFCKeditor.Config['CustomConfigurationsPath'] = js_path+'/fckcustom.js';
+	oFCKeditor.Config['CustomConfigurationsPath'] = '/system/editor_configuration.js';
 	oFCKeditor.ReplaceTextarea(); 
 	
 	$(this).parent().parent().parent().find('div.hidden').hide().removeClass("hidden").fadeIn('900');

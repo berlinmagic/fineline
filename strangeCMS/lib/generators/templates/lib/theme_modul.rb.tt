@@ -1,7 +1,7 @@
 # encoding: utf-8
-class <%= class_name %>Modul < Strangecms::CmsModul::FineListener
+class <%= @strange_class %>Modul < Strangecms::CmsModul::FineListener
 
-  install true
+  # => install true
 
   theme true
   

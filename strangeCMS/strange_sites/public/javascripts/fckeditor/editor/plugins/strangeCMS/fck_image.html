@@ -180,6 +180,8 @@ $(document).ready(function(){
 	});
 	$('#upload_row').fadeIn();
 	
+	$('.rails_authenticity_token').val( FCKConfig.AUTH_TOKEN );
+	
 	$("#strangeUploaderSelect").change(function () {
  		var str = "";
 		$('table.upload tr').each(function () {
@@ -191,6 +193,7 @@ $(document).ready(function(){
 		$('#'+str).fadeIn();
 	})
 	.change();
+	
 });
 </script>
 	
@@ -210,6 +213,10 @@ $(document).ready(function(){
 				<th><span fcklang="">neues Bild hochladen:</span></th>
 				<form id="frmUpload" method="post" target="UploadWindow" enctype="multipart/form-data"
 					action="" onsubmit="return CheckUpload();">
+					<div style="margin:0;padding:0;display:inline">
+						<input name="utf8" type="hidden" value="✓" />
+						<input name="authenticity_token" type="hidden" class="rails_authenticity_token" value="" />
+					</div>
 					<td><input id="txtUploadFile" style="width: 100%" type="file" size="40" name="NewFile" /></td>
 					<td><input id="btnUpload" type="submit" value="Send it to the Server" fcklang="DlgLnkBtnUpload" /><div class="clearfix"></div></td>
 					<script type="text/javascript">

@@ -17,8 +17,8 @@
 					</script>
 					<% end %>
 				<% else %>
+					<% home_page = Seite.where('system_name = ?', 'start').first %>
 					<% if @seite && @seite.breadcrumps %>
-						<% home_page = Seite.where('system_name = ?', 'start').first %>
 						<% if @seite.tiefe > 0 %>
 							<% @breads = [] %>
 							

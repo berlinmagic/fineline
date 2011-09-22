@@ -5,15 +5,12 @@ Rails.application.routes.draw do
     # => resources :news
     
     resources :news do
-      
-      strange_tag_admin_routes
-      
-      strange_kategorie_admin_routes
-      
       member do
         get :zuschneiden
         post :new_tag
       end
+      strange_kategorie_admin_routes
+      strange_tag_admin_routes
     end
     
     

@@ -11,7 +11,19 @@
 	</div>
 	
 	<div class="in_box ">
-			<%= image_tag @news.file.thumb("710x300>").url if @news.file %>
+			<%#= image_tag @news.file.thumb("710x300>").url if @news.file %>
+			<% news = @news %>
+			<% if news.file %>
+				<%  if news.file_cropping && !news.file_cropping.blank? %>
+					<%= image_tag news.file.thumb(news.file_cropping).thumb(
+						"#{Strangecms::Newz::Config[:news_pic_width]}x#{Strangecms::Newz::Config[:news_pic_height]}>"
+						).url, :class => 'news_thumb_image' %>
+				<% else %>
+					<%= image_tag news.file.thumb(
+						"#{Strangecms::Newz::Config[:news_pic_max_width]}x#{Strangecms::Newz::Config[:news_pic_max_height]}#"
+						).url, :class => 'news_thumb_image' if news.file %>
+				<% end %>
+			<% end %>
 			<div class="clearfix"></div>
 			
 	</div>
@@ -35,7 +47,7 @@
 		<% end %>
 
 		<% if abschnitt.stuff_typ == 'text' %>
-		<div class="in_box">
+		<div class="in_box user_edited_content">
 			<%= raw abschnitt.inhalt %>
 			<div class="clearfix"></div>
 		</div>

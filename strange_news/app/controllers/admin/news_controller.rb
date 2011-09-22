@@ -36,28 +36,32 @@ class Admin::NewsController < Admin::BaseController
     @news = News.new(params[:news])
     @news.user_id = current_user.id
     @news.autor = current_user.id unless @news.autor && @news.autor != ''
-    respond_to do |format|
-      if @news.save
-        format.html { redirect_to(admin_news_index_path, :notice => 'News was successfully created.') }
-        format.xml  { render :xml => admin_news_index_path, :status => :created, :location => @news }
+    if @news.save
+      if params[:news][:file].present?
+        redirect_to( zuschneiden_admin_news_path(@news) )
       else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @news.errors, :status => :unprocessable_entity }
+        redirect_to(admin_news_index_path, :notice => 'News was successfully created.')
       end
+    else
+       render :action => "new"
     end
   end
 
   def update
     @news = News.find(params[:id])
-    respond_to do |format|
-      if @news.update_attributes(params[:news])
-        format.html { redirect_to(admin_news_index_path, :notice => 'News was successfully updated.') }
-        format.xml  { head :ok }
+    if @news.update_attributes(params[:news])
+      if params[:news][:file].present?
+        redirect_to( zuschneiden_admin_news_path(@news) )
       else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @news.errors, :status => :unprocessable_entity }
+        redirect_to(admin_news_index_path, :notice => 'News was successfully updated.')
       end
+    else
+       render :action => "edit" 
     end
+  end
+  
+  def zuschneiden
+    @news = News.find(params[:id])
   end
 
   def destroy

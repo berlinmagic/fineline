@@ -3,45 +3,6 @@
 
 # encoding: utf-8
 
-puts 'INFO: erstelle News-Seite'
-news_site = Seite.create!           :name => 'Aktuelles', 
-                                    :system_seite => true, 
-                                    :modul_seite => true, 
-                                    :modul_name => 'strange_news',
-                                    :system_name => 'news_site',
-                                    :in_footer => true, 
-                                    :in_header => false, 
-                                    :in_main_nav => true, 
-                                    :meta_description => 'fineline CMS - Standard News-Seite', 
-                                    :meta_keywords => 'fineline CMS, orangenwerk'
-                              
-
-news_abb1 = Abschnitt.create!       :seite_id => news_site.id,    :stuff_typ => 'trenn_linie'
-news_abb2 = Abschnitt.create!       :seite_id => news_site.id,    :stuff_typ => 'text',
-                                    :inhalt => '<p>Einleitungs-Text f&uuml;r das News-Modul.</p>'
-news_abb3 = Abschnitt.create!       :seite_id => news_site.id,    :stuff_typ => 'trenn_linie'
-
-news_abb4 = Abschnitt.create!       :seite_id => news_site.id,  
-                                    :name => 'Kontakt-Formular',
-                                    #:slug,
-                                    :system_stuff => true, 
-                                    #:protected, 
-                                    #:gruppe_id,
-                                    :stuff_typ => 'news_modul', 
-                                    #:stuff_param, 
-                                    :modul => 'strange_news'
-                                    #:modul_typ,
-                                    #:modul_id, 
-                                    #:inhalt
-                                    
-
-news_abb5 = Abschnitt.create!       :seite_id => news_site.id,    :stuff_typ => 'trenn_linie'
-news_abb6 = Abschnitt.create!       :seite_id => news_site.id,    :stuff_typ => 'text',
-                                    :inhalt => '<p><em>Abschluss-Text f&uuml;r das News-Modul.</em></p>'
-
-
-puts 'INFO: Seite erstellt: ' << news_site.name
-
 
 @lorem_worte = %w[Überall dieselbe alte Leier Das Layout ist fertig der Text lässt auf sich warten Damit das Layout nun nicht nackt im Raume steht und sich klein und leer vorkommt springe ich ein: der Blindtext Genau zu diesem Zwecke erschaffen immer im Schatten meines großen Bruders »Lorem Ipsum« freue ich mich jedes Mal wenn Sie ein paar Zeilen lesen Denn esse est percipi  Sein ist wahrgenommen werden Und weil Sie nun schon die Güte haben mich ein paar weitere Sätze lang zu begleiten möchte ich diese Gelegenheit nutzen Ihnen nicht nur als Lückenfüller zu dienen sondern auf etwas hinzuweisen das es ebenso verdient wahrgenommen zu werden: Webstandards nämlich Sehen Sie Webstandards sind das Regelwerk auf dem Webseiten aufbauen So gibt es Regeln für HTML CSS JavaScript oder auch XML; Worte die Sie vielleicht schon einmal von Ihrem Entwickler gehört haben Diese Standards sorgen dafür dass alle Beteiligten aus einer Webseite den größten Nutzen ziehen Im Gegensatz zu früheren Webseiten müssen wir zum Beispiel nicht mehr zwei verschiedene Webseiten für den Internet Explorer und einen anderen Browser programmieren Es reicht eine Seite die  richtig angelegt  sowohl auf verschiedenen Browsern im Netz funktioniert aber ebenso gut für den Ausdruck oder die Darstellung auf einem Handy geeignet ist Wohlgemerkt: Eine Seite für alle Formate Was für eine Erleichterung Standards sparen Zeit bei den Entwicklungskosten und sorgen dafür dass sich Webseiten später leichter pflegen lassen Natürlich nur dann wenn sich alle an diese Standards halten Das gilt für Browser wie Firefox Opera Safari und den Internet Explorer ebenso wie für die Darstellung in Handys Und was können Sie für Standards tun Fordern Sie von Ihren Designern und Programmieren einfach standardkonforme Webseiten Ihr Budget wird es Ihnen auf Dauer danken Ebenso möchte ich Ihnen dafür danken dass Sie mich bin zum Ende gelesen haben Meine Mission ist erfüllt Ich werde hier noch die Stellung halten bis der geplante Text eintrifft Ich wünsche Ihnen noch einen schönen Tag Und arbeiten Sie nicht zuviel]
 
@@ -83,7 +44,7 @@ end
 23.times do 
   @headline = []
   tima = rand(5) + 2
-  a_tima = rand(2) + 1
+  a_tima = rand(3) + 1
   t_tima = rand(3) + 1
   tima.to_i.times do
     @headline << @lorem_worte[rand(325)] if @lorem_worte[rand(325)]
@@ -94,7 +55,7 @@ end
   
   puts('erstelle News:: '+ @headline.join(' ').to_s)
   
-  @newz = News.create!   :headline => @headline.join(' ').to_s, :user_id => @user, :beschreibung => @lorem_texte[rand(6)].to_s, :datum => @date
+  @newz = News.create!   :headline => @headline.join(' ').to_s, :user_id => @user, :beschreibung => @lorem_texte[rand(12)].to_s, :datum => @date
   
   a_tima.to_i.times do
     NewsAbschnitt.create! :news_id => @newz.id, :stuff_typ => 'trenn_linie'
@@ -108,3 +69,4 @@ end
 end
 
 
+   

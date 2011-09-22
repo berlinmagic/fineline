@@ -49,3 +49,5 @@ gem 'strange_fineform', :path => '../fineline_CMS/strange_fineform'
 
 ### => gem 'strange_mobilview', :path => '../fineline_CMS/strange_mobilview'
 ### => gem 'strange_tags', :path => '../fineline_CMS/strange_tags'
+
+

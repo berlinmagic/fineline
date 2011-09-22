@@ -52,6 +52,8 @@ Rails.application.routes.draw do
     match '/finescript.:format' => "base#finescript", :to_script => 'seite'
     match '/admin_finescript.:format' => "base#finescript", :to_script => 'admin'
     
+    match '/editor_configuration.:format' => "base#editor_config"
+    
     match '/expire_finestyles' => "base#expire_finestyles"
     match '/expire_finescripts' => "base#expire_finescripts"
     
