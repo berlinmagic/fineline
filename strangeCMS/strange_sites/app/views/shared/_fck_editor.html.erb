@@ -6,45 +6,69 @@
 <script type="text/javascript">
 window.onload = function()
 {
-	var js_path = "/javascripts";
-    var base_path = js_path+"/fckeditor/";
-	var fck_height = "200px";
-	var fck_width = "740px";
-	var fck_toolz = "Strange"
+	var js_path 	= "/javascripts";
+    var base_path 	= js_path+"/fckeditor/";
+	var fck_height 	= "200px";
+	var fck_width 	= "740px";
+	var fck_toolz 	= "Strange";
+	var fck_conf 	= '/system/editor_configuration.js';
 	
-  $('textarea.fck').each(function(){
-	var oFCKeditor = new FCKeditor(this.id, fck_width, fck_height, fck_toolz);
-	oFCKeditor.BasePath = base_path;
-	oFCKeditor.Config['GoogleMaps_Key'] = STRANGE_G_MAP_KEY;
-	oFCKeditor.Config['CustomConfigurationsPath'] = '/system/editor_configuration.js';
-	oFCKeditor.ReplaceTextarea(); 
-  });
-$('div.add_nested_form.add_text_field a').live('click', function(){
-/*	$('textarea.live-fck').live('click', function(){ */
-		
-	$(this).parent().parent().hide();
+	$('div.add_nested_form.add_text_field a').live('click', function(){
+		/* $('textarea.live-fck').live('click', function(){ */
+		$(this).parent().parent().hide();
+	});
 	
+	$('.abschnitt_admin_toolz.fineline_system_toolz a.Pagez__toggle_remote_link').live('click', function(event){
+		/* $('textarea.live-fck').each(function(){ */
+		event.preventDefault();
+		var text_stuff = $(this).parent().parent().parent().find('textarea.live-fck').attr("id");
+		var oFCKeditor = new FCKeditor(text_stuff, fck_width, fck_height, fck_toolz);
+		oFCKeditor.BasePath = base_path;
+		oFCKeditor.Config['GoogleMaps_Key'] = STRANGE_G_MAP_KEY;
+		oFCKeditor.Config['CustomConfigurationsPath'] = fck_conf ;
+		oFCKeditor.ReplaceTextarea(); 
+		$(this).parent().parent().parent().find('div.hidden').hide().removeClass("hidden").fadeIn('900');
+		$(this).parent().parent().parent().find('div.show_text').fadeOut('300').hide();
+		$(this).parent().fadeOut('500');
+	});
 	
-  });
-$('.abschnitt_admin_toolz.fineline_system_toolz a.Pagez__toggle_remote_link').live('click', function(event){
-/* $('textarea.live-fck').each(function(){ */
+	$('.new_text_abschnitt a').live('click', function(event){
+		event.preventDefault();
+		var this_box = $(this).parent().parent().parent();
+		this_box.find('.abschnitt_choose_toolz').fadeOut('900').html('');
+		var text_stuff = this_box.find('textarea.new_abs_fck').attr("id");
+		var oFCKeditor = new FCKeditor(text_stuff, fck_width, fck_height, fck_toolz);
+		oFCKeditor.BasePath = base_path;
+		oFCKeditor.Config['GoogleMaps_Key'] = STRANGE_G_MAP_KEY;
+		oFCKeditor.Config['CustomConfigurationsPath'] = fck_conf ;
+		oFCKeditor.ReplaceTextarea();
+		this_box.find('.abs_text_box').hide().removeClass("hidden").fadeIn('900');
+		this_box.find('.new_abs_stuff_typ input').val('text');
+		this_box.find('.abschnitt_inhalt_anker_feld').hide().removeClass("hidden").fadeIn('900');
+	});
 	
-	event.preventDefault();
-
-	var text_stuff = $(this).parent().parent().parent().find('textarea.live-fck').attr("id");
-	var oFCKeditor = new FCKeditor(text_stuff, fck_width, fck_height, fck_toolz);
-	oFCKeditor.BasePath = base_path;
-	oFCKeditor.Config['GoogleMaps_Key'] = STRANGE_G_MAP_KEY;
-	oFCKeditor.Config['CustomConfigurationsPath'] = '/system/editor_configuration.js';
-	oFCKeditor.ReplaceTextarea(); 
-	
-	$(this).parent().parent().parent().find('div.hidden').hide().removeClass("hidden").fadeIn('900');
-	$(this).parent().parent().parent().find('div.show_text').fadeOut('300').hide();
-	$(this).parent().fadeOut('500');
-	
-  })
-
-
+	$('textarea.fck').each(function(){
+		var oFCKeditor = new FCKeditor(this.id, fck_width, fck_height, fck_toolz);
+		oFCKeditor.BasePath = base_path;
+		oFCKeditor.Config['GoogleMaps_Key'] = STRANGE_G_MAP_KEY;
+		oFCKeditor.Config['CustomConfigurationsPath'] = fck_conf ;
+		oFCKeditor.ReplaceTextarea(); 
+	});
 };
+function add_fck_fields(link, association, content) {
+  var new_id = new Date().getTime();
+  var regexp = new RegExp("new_" + association, "g");
+  $(link).parent().parent().before(content.replace(regexp, new_id));
+  $('textarea.ajax-fck').each(function(){
+		var text_stuff = $(this).attr('id');
+		var oFCKeditor = new FCKeditor(this.id, fck_width, fck_height, fck_toolz);
+		oFCKeditor.BasePath = base_path;
+		oFCKeditor.GoogleMaps_Key = STRANGE_G_MAP_KEY;
+		oFCKeditor.Config['GoogleMaps_Key'] = STRANGE_G_MAP_KEY;
+		oFCKeditor.Config['CustomConfigurationsPath'] = fck_conf ;
+		oFCKeditor.ReplaceTextarea();
+	});
+};
+
 </script>
 <% end %>

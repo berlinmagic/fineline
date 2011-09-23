@@ -23,6 +23,7 @@
 <%= raw( fine_js_minify( "#{ render 'javascriptz/fine/strange_sites' }" ) ) %>
 <%= raw( fine_js_minify( "#{ hook :all_js_scriptz }" ) ) %>
 <% if @script4 == 'admin' %>
+<%= raw( fine_js_minify( "#{ render 'javascriptz/fine/fine_switch' }" ) ) %>
 <%= raw( fine_js_minify( "#{ render 'javascriptz/libs/nested_sort' }" ) ) %>
 <%= raw( fine_js_minify( "#{ render 'javascriptz/fine/finePicker' }" ) ) %>
 <% end %>
