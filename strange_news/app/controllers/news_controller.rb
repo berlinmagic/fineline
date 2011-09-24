@@ -15,12 +15,14 @@ class NewsController < ApplicationController
   def index
     # => @news = News.aktiv
     @news = News.aktiv.page(params[:page]).per(Strangecms::Newz::Config[:news_per_page])
-    @title = @seite.titel
+    @title = @seite.use_titel ? @seite.titel : @seite.name
+    @headline = @seite.use_headline ? @seite.headline : @seite.name
     render :template => 'base/seite'
   end
   
   def show
     @news = News.find_by_slug('/'+params[:id]) || News.find(params[:id])
+    @headline = @news.headline
     @one_news = @news
     @title = @news.headline
   end
@@ -35,6 +37,7 @@ class NewsController < ApplicationController
     end
     @one_news = @news
     @title = @news.headline
+    @headline = @news.headline
     render 'news/show'
   end
   
@@ -59,7 +62,8 @@ class NewsController < ApplicationController
     else
         @news = @date_news
     end
-    
+    @title = @seite.titel+Strangecms::Config[:title_seperator].to_s+"#{params[:day]+'.' if params[:day]}#{params[:month]+'.' if params[:month]}#{params[:year]}"
+    @headline = @seite.headline + " nach Datum: #{params[:day]+'.' if params[:day]}#{params[:month]+'.' if params[:month]}#{params[:year]}"
     render 'news/show_by'
   end
   
@@ -80,6 +84,8 @@ class NewsController < ApplicationController
     else
         @news = @tag_news
     end
+    @title = @seite.titel + Strangecms::Config[:title_seperator].to_s + "mit Tag #{ @tag.name }"
+    @headline = @seite.headline + " getaggt mit: #{ @tag.name }"
     render 'news/show_by'
   end
   
@@ -99,6 +105,8 @@ class NewsController < ApplicationController
     else
         @news = @kat_news
     end
+    @title = @seite.titel + Strangecms::Config[:title_seperator].to_s + "Kategorie: #{ @kategorie.name }"
+    @headline = @seite.headline + " mit Kategorie: #{ @kategorie.name }"
     render 'news/show_by'
   end
   

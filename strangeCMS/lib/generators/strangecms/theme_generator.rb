@@ -135,8 +135,8 @@ module Strangecms
       
       def create_full_default_theme
         if yes?("Default-Theme-Ordner erstellen und alle relevanten Dateien hinein spiegeln?")
-          empty_directory "#{@strange_file}/#{StrangeThemes.config.themes_dir}/fineline"
-          empty_directory "#{@strange_file}/#{StrangeThemes.config.themes_dir}/fineline/views"
+          empty_directory "#{@strange_file}/#{StrangeThemes.config.themes_dir}/default"
+          empty_directory "#{@strange_file}/#{StrangeThemes.config.themes_dir}/default/views"
           puts("StrangeSites:: Spiegle views in default-Theme view-Ordner")
           Strangecms::FileUtilz.mirror_files( 
                 File.join("#{StrangeSites::Engine.config.root}", "app", "views"), 

@@ -1,8 +1,8 @@
 <div class="box">
 <%# cache(:part => "inhalt") do %>
-	<% if Strangecms::Config[:show_site_name] %>
+	<% if Strangecms::Config[:show_site_name] && @headline %>
 	<div class="in_box first">
-		<h1><%= @seite.headline %></h1>
+		<h1><%= @headline %></h1>
 	</div>
 	<% end %>
 	

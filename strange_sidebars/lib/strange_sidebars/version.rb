@@ -1,3 +1,6 @@
 module StrangeSidebars
-  VERSION = "0.0.5"
+  VERSION = "0.0.6"
+  def self.version
+    VERSION
+  end
 end

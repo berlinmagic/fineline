@@ -1,28 +1,7 @@
-<!--
-de:
-  date:
-    formats:
-      default: "%d.%m.%Y"
-      short: "%e. %b"
-      long: "%e. %B %Y"
-      only_day: "%e"
-
-    day_names: [Sonntag, Montag, Dienstag, Mittwoch, Donnerstag, Freitag, Samstag]
-    abbr_day_names: [So, Mo, Di, Mi, Do, Fr, Sa]
-    month_names: [~, Januar, Februar, März, April, Mai, Juni, Juli, August, September, Oktober, November, Dezember]
-    abbr_month_names: [~, Jan, Feb, Mär, Apr, Mai, Jun, Jul, Aug, Sep, Okt, Nov, Dez] -->
 <div class="box">
 
 	<div class="in_box first">
-		<% if @tag %>
-			<h1>News mit Tag: '<%= @tag.name %>'</h1>
-		<% elsif @kategorie %>
-			<h1>News der Kategorie: '<%= @kategorie.name %>'</h1>
-		<% elsif params[:year] %>
-			<h1>News von: <%= params[:day]+"." if params[:day] %><%= params[:month]+"." if params[:month] %><%= params[:year] %></h1>
-		<% else %>
-			<h1>News</h1>
-		<% end %>
+		<h1><%= @headline %></h1>
 	</div>
 
 	
