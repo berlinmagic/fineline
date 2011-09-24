@@ -1,14 +1,6 @@
 <div class="box">
 <div class="in_box first">
-	<% if @tag %>
-		<h1>Bilder mit Tag: '<%= @tag.name %>'</h1>
-	<% elsif @kategorie %>
-		<h1>Bilder der Kategorie: '<%= @kategorie.name %>'</h1>
-	<% elsif params[:year] %>
-		<h1>Bilder von: <%= params[:day]+"." if params[:day] %><%= params[:month]+"." if params[:month] %><%= params[:year] %></h1>
-	<% else %>
-		<h1>Bilder</h1>
-	<% end %>
+	<h1><%= @headline %></h1>
 </div>
 
 <div class="in_box">

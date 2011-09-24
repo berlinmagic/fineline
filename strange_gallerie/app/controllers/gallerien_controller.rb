@@ -22,6 +22,10 @@ class GallerienController< ApplicationController
     # => news = News.aktiv
     @bilder     = Bild.page(params[:page]).per( Strangecms::Gallerie::Config[:pics_per_page_4line].to_i )
     @xxl_url    = "#{ @page_uri }/xxl/page/#{ @lpage }"
+    
+    @title = @seite.titel + Strangecms::Config[:title_seperator].to_s + "mit Tag #{ @tag.name }"
+    @headline = @seite.headline + " getaggt mit: #{ @tag.name }"
+      
     render :template => 'base/seite'
   end
   
@@ -29,11 +33,19 @@ class GallerienController< ApplicationController
     @xxl_view = true
     @bilder = Bild.page(params[:page]).per( Strangecms::Gallerie::Config[:pics_per_page_2line].to_i )
     @smal_url    = "#{ @page_uri }/page/#{ @spage }"
+    
+    @title = @seite.titel
+    @headline = @seite.headline
+    
     render :template => 'base/seite'
   end
   
   def show_pic
     @bild = Bild.find(params[:id])
+    
+    @title = @seite.titel + Strangecms::Config[:title_seperator].to_s + "#{ @bild.name }"
+    @headline = @seite.headline + ":  #{ @bild.name }"
+    
     render :layout => false
   end
   
@@ -45,6 +57,10 @@ class GallerienController< ApplicationController
     end
     @prev_pic = @pic_box[ ( @pic_box.index(@bild.id) - 1 ) < 0 ? ( @pic_box.size - 1 ) : ( @pic_box.index(@bild.id) - 1 ) ]
     @next_pic = @pic_box[ ( @pic_box.index(@bild.id) + 1 ) > ( @pic_box.size - 1 ) ? 0 : ( @pic_box.index(@bild.id) + 1 ) ]
+    
+    @title = @seite.titel + Strangecms::Config[:title_seperator].to_s + "#{ @bild.name }"
+    @headline = @seite.headline + ":  #{ @bild.name }"
+      
     # => render :template => 'base/seite'
   end
   
@@ -54,6 +70,10 @@ class GallerienController< ApplicationController
     @xxl_url    = "#{ @page_uri }/xxl_date/#{params[:year]}#{'/'+params[:month] if params[:month]}#{'/'+params[:day] if params[:day]}/page/#{ @lpage }"
     @page_count = fine_num_pagez( @this_pics, @per_page4 )
     @bilder     = paginated_objs( @this_pics, @per_page4 )
+    
+    @title =  @seite.titel + Strangecms::Config[:title_seperator].to_s + "#{params[:day]+'.' if params[:day]}#{params[:month]+'.' if params[:month]}#{params[:year]}"
+    @headline = @seite.headline + " - #{params[:day]+'.' if params[:day]}#{params[:month]+'.' if params[:month]}#{params[:year]}"
+      
     render 'gallerien/show_by'
   end
   def xxl_by_date
@@ -63,6 +83,10 @@ class GallerienController< ApplicationController
     @smal_url   = @page_uri+'/by_date'+"/#{params[:year]}"+"#{'/'+params[:month] if params[:month]}"+"#{'/'+params[:day] if params[:day]}/page/#{ @spage }"
     @page_count = fine_num_pagez( @this_pics, @per_page2 )
     @bilder     = paginated_objs( @this_pics, @per_page2 )
+    
+    @title = @seite.titel + Strangecms::Config[:title_seperator].to_s + "#{params[:day]+'.' if params[:day]}#{params[:month]+'.' if params[:month]}#{params[:year]}" + Strangecms::Config[:title_seperator].to_s + 'XXL'
+    @headline = @seite.headline + " - #{params[:day]+'.' if params[:day]}#{params[:month]+'.' if params[:month]}#{params[:year]}" + ' XXL'
+    
     render 'gallerien/show_by'
   end
   
@@ -72,6 +96,10 @@ class GallerienController< ApplicationController
     @xxl_url      = "#{ @page_uri }/xxl_tag/#{ @tag.slug }/page/#{ @lpage }"
     @page_count   = fine_num_pagez( @this_pics, @per_page4 )
     @bilder       = paginated_objs( @this_pics, @per_page4 )
+    
+    @title = @seite.titel + Strangecms::Config[:title_seperator].to_s + "Tag: #{ @tag.name }"
+    @headline = @seite.headline + " getaggt mit: #{ @tag.name }"
+    
     render 'gallerien/show_by'
   end
   def xxl_by_tag
@@ -81,6 +109,10 @@ class GallerienController< ApplicationController
     @smal_url      = "#{ @page_uri }/by_tag/#{ @tag.slug }/page/#{ @spage }"
     @page_count   = fine_num_pagez( @this_pics, @per_page2 )
     @bilder       = paginated_objs( @this_pics, @per_page2 )
+    
+    @title = @seite.titel + Strangecms::Config[:title_seperator].to_s + "Tag: #{ @tag.name }" + Strangecms::Config[:title_seperator].to_s + 'XXL'
+    @headline = @seite.headline + " getaggt mit: #{ @tag.name }" + ' XXL'
+    
     render 'gallerien/show_by'
   end
   
@@ -90,6 +122,10 @@ class GallerienController< ApplicationController
     @page_url     = @page_uri + '/by_kategorie' + @kategorie.slug
     @xxl_url      = "#{ @page_uri }/xxl_kategorie/#{ @kategorie.slug }/page/#{ @lpage }"
     @bilder       = paginated_objs( @this_pics, @per_page4 )
+    
+    @title = @seite.titel + Strangecms::Config[:title_seperator].to_s + "Kategorie: #{ @kategorie.name }"
+    @headline = @seite.headline + " - Kategorie: #{ @kategorie.name }"
+    
     render 'gallerien/show_by'
   end
   def xxl_by_kategorie
@@ -99,11 +135,15 @@ class GallerienController< ApplicationController
     @page_url     = @page_uri + '/xxl_kategorie' + @kategorie.slug
     @smal_url     = "#{ @page_uri }/by_kategorie/#{ @kategorie.slug }/page/#{ @spage }"
     @bilder       = paginated_objs( @this_pics, @per_page2 )
+    
+    @title = @seite.titel + Strangecms::Config[:title_seperator].to_s + "Kategorie: #{ @kategorie.name }" + Strangecms::Config[:title_seperator].to_s + 'XXL'
+    @headline = @seite.headline + " - Kategorie: #{ @kategorie.name }" + ' XXL'
+    
     render 'gallerien/show_by'
   end
   
   
-  def fineline_accurate_title
+  def fineline_accurate_title_xxx
     portfolio = Seite.where('system_name = ?', 'gallerie').first
     if @bild
       this_title = @bild.name
