@@ -23,8 +23,8 @@ class GallerienController< ApplicationController
     @bilder     = Bild.page(params[:page]).per( Strangecms::Gallerie::Config[:pics_per_page_4line].to_i )
     @xxl_url    = "#{ @page_uri }/xxl/page/#{ @lpage }"
     
-    @title = @seite.titel + Strangecms::Config[:title_seperator].to_s + "mit Tag #{ @tag.name }"
-    @headline = @seite.headline + " getaggt mit: #{ @tag.name }"
+    @title = @seite.titel
+    @headline = @seite.headline
       
     render :template => 'base/seite'
   end
@@ -43,8 +43,8 @@ class GallerienController< ApplicationController
   def show_pic
     @bild = Bild.find(params[:id])
     
-    @title = @seite.titel + Strangecms::Config[:title_seperator].to_s + "#{ @bild.name }"
-    @headline = @seite.headline + ":  #{ @bild.name }"
+    @title = @seite.titel + Strangecms::Config[:title_seperator].to_s + "#{ @bild.name if @bild }"
+    @headline = @seite.headline + ":  #{ @bild.name if @bild }"
     
     render :layout => false
   end
@@ -58,8 +58,8 @@ class GallerienController< ApplicationController
     @prev_pic = @pic_box[ ( @pic_box.index(@bild.id) - 1 ) < 0 ? ( @pic_box.size - 1 ) : ( @pic_box.index(@bild.id) - 1 ) ]
     @next_pic = @pic_box[ ( @pic_box.index(@bild.id) + 1 ) > ( @pic_box.size - 1 ) ? 0 : ( @pic_box.index(@bild.id) + 1 ) ]
     
-    @title = @seite.titel + Strangecms::Config[:title_seperator].to_s + "#{ @bild.name }"
-    @headline = @seite.headline + ":  #{ @bild.name }"
+    @title = @seite.titel + Strangecms::Config[:title_seperator].to_s + "#{ @bild.name if @bild }"
+    @headline = @seite.headline + ":  #{ @bild.name if @bild }"
       
     # => render :template => 'base/seite'
   end
