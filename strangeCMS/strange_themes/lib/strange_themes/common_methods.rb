@@ -1,8 +1,14 @@
 module StrangeThemes
   module CommonMethods
+    
     def view_path_for(theme)
       File.join(theme_path_for(theme), "views")
     end
+    
+    def theme_cell_path_for(theme)
+      File.join(theme_path_for(theme), "cells")
+    end
+    
     def theme_name
       @cached_theme_name ||= begin
         case @theme_name
@@ -35,8 +41,14 @@ module StrangeThemes
     def add_theme_view_path_for(name)
       unless name.to_s == 'default'
         self.view_paths.insert 0, ActionView::FileSystemResolver.new(view_path_for('default'))
+        # => Cell::Base.prepend_view_path( File.join("#{StrangeHeader::Engine.config.root}", "app", "cells") )
+        # => Cell::Base.prepend_view_path( File.join("#{StrangeHeader::Engine.config.root}", "app", "views") )
+        Cell::Base.prepend_view_path( theme_cell_path_for('default') )
+        Cell::Base.prepend_view_path( view_path_for('default') )
       end
       self.view_paths.insert 0, ActionView::FileSystemResolver.new(view_path_for(name))
+      Cell::Base.prepend_view_path( theme_cell_path_for(name) )
+      Cell::Base.prepend_view_path( view_path_for(name) )
     end
     def public_theme_path
       theme_path("/")
