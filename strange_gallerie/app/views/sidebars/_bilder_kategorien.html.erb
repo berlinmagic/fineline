@@ -1,4 +1,5 @@
 <% if Kat.where(:target_type => 'Bild').count > 0 %>
+<% one_bild = Bild.all.first %>
 	<div class="side_box dbx-box">
 		<div class="sidebar_head dbx-handle">
 			Kategorien
@@ -12,7 +13,7 @@
 			<% @kats.uniq.sort.each do |kat| %>
 				<% kt = Kategorie.where(:name => kat).first %>
 				<li class="dot"><%= link_to raw("#{ kat }"),
-						 "#{bild.gallerie_slug}/by_kategorie#{kt.slug}", :class => "#{ 'aktiv' if @kategorie && @kategorie == kt}" %></li>
+						 "#{one_bild.gallerie_slug}/by_kategorie#{kt.slug}", :class => "#{ 'aktiv' if @kategorie && @kategorie == kt}" %></li>
 			<% end %>
 		</ul>
 	</div>

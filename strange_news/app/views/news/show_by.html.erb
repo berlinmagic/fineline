@@ -10,9 +10,11 @@
 			<div class="clearfix"></div>
 	</div>
 
+<% if @paginator_needed  %>
 <div class="in_box">
 	<%= render 'shared/fineline_array_paginator' %>
 </div>
+<% end %>
 
 
 	<% @news.each_with_index do |news,index| %>
@@ -20,7 +22,7 @@
 	<% end %>
 	
 
-<% if @news.count > 4 %>
+<% if (@news.count > 4) && @paginator_needed %>
 	<div class="in_box">
 		<%= render 'shared/fineline_array_paginator' %>
 	</div>

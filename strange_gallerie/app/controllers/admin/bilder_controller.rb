@@ -74,7 +74,10 @@ class Admin::BilderController < Admin::BaseController
       @bild = Bild.find(params[:id])
     end
     @bild.destroy
-    redirect_to(admin_bilder_path)
+    respond_to do |format|
+      format.html { redirect_to admin_bilder_path }
+      format.js { render :inline => "window.location = '/admin/bilder/'" }
+    end
   end
   
   def select

@@ -4,7 +4,7 @@
 <% end %>
 
 <div class="in_box">
-	<a href="<%= "#{news.news_site_slug}" + news.slug %>">
+	<a class="news_preview_link" href="<%= "#{news.news_site_slug}" + news.slug %>">
 		<h2 class="news_headline"><%= news.headline %></h2>
 		<span class="news_info"><%= news.datum.strftime('%d.%m.%Y') %> von <%= news.schreiber %></span>
 		<% if news.kommentare.count > 0 %>

@@ -17,6 +17,7 @@ class NewsController < ApplicationController
     @news = News.aktiv.page(params[:page]).per(Strangecms::Newz::Config[:news_per_page])
     @title = @seite.use_titel ? @seite.titel : @seite.name
     @headline = @seite.use_headline ? @seite.headline : @seite.name
+    @paginator_needed = (News.aktiv.count > Strangecms::Newz::Config[:news_per_page]) ? true : false
     render :template => 'base/seite'
   end
   
@@ -55,6 +56,7 @@ class NewsController < ApplicationController
     @page_url = News.first.news_site_slug+'/by_date'+"/#{params[:year]}"+"#{'/'+params[:month] if params[:month]}"+"#{'/'+params[:day] if params[:day]}"
     
     @page_count = @date_news.count / per_page + 1
+    @paginator_needed = (@date_news.count > Strangecms::Newz::Config[:news_per_page]) ? true : false
     
     if @date_news.count > per_page
         @fineline_array_paginated = true
@@ -78,6 +80,7 @@ class NewsController < ApplicationController
     per_page = Strangecms::Newz::Config[:news_per_page]
     @page_count = @tag_news.count / per_page + 1 
     @page_url = News.first.news_site_slug + '/by_tag' + @tag.slug
+    @paginator_needed = (@tag_news.count > Strangecms::Newz::Config[:news_per_page]) ? true : false
     if @tag_news.count > per_page
         @fineline_array_paginated = true
         @news = @tag_news.fine_paginated(@page, per_page) 
@@ -99,6 +102,7 @@ class NewsController < ApplicationController
     per_page = Strangecms::Newz::Config[:news_per_page]
     @page_count = @kat_news.count / per_page + 1 
     @page_url = News.first.news_site_slug + '/by_kategorie' + @kategorie.slug
+    @paginator_needed = (@kat_news.count > Strangecms::Newz::Config[:news_per_page]) ? true : false
     if @kat_news.count > per_page
         @fineline_array_paginated = true
         @news = @kat_news.fine_paginated(@page, per_page) 

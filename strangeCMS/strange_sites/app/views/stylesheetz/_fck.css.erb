@@ -1,12 +1,12 @@
 /* =====================================   Standards   =================================== */
-<%#= raw( fine_css_minify( "#{ render 'stylesheetz/css/basics/boiler1' }" ) ) %>
-<%#= raw( fine_css_minify( "#{ render 'stylesheetz/css/basics/jq_ui' }" ) ) %>
-<%#= raw( fine_css_minify( "#{ render 'stylesheetz/css/basics/grid960_48' }" ) ) %>
-<%#= raw( fine_css_minify( "#{ render 'stylesheetz/css/basics/finegrid' }" ) ) %>
+<%= raw( fine_css_minify( "#{ render 'stylesheetz/css/basics/boiler1' }" ) ) %>
+<%= raw( fine_css_minify( "#{ render 'stylesheetz/css/basics/jq_ui' }" ) ) %>
+<%= raw( fine_css_minify( "#{ render 'stylesheetz/css/basics/grid960_48' }" ) ) %>
+<%= raw( fine_css_minify( "#{ render 'stylesheetz/css/basics/finegrid' }" ) ) %>
 
 body { margin: 0; padding: 0; border: 0; outline: 0; }
 body.edit { margin: 0; padding: 0; border: 0; outline: 0; }
-body#edit { margin: 0; padding: 0; border: 0; outline: 0; }
+body#edit { margin: 0; padding: 0; border: 0; outline: 0; <%= fine_backgroundGradient( '#f3f3f3', '#ffffff' ) %> }
 
 /* =====================================   Main - Seiten-Inhalte   =================================== */
 #main { padding: 10px 0; min-height: 420px; <%= fine_backgroundGradient( '#f3f3f3', '#ffffff' ) %> }
@@ -30,4 +30,4 @@ body#edit { margin: 0; padding: 0; border: 0; outline: 0; }
 
 
 /* =====================================   Standards   =================================== */
-<%#= raw( fine_css_minify( "#{ render 'stylesheetz/css/basics/boiler2'  }" ) ) %>
+<%= raw( fine_css_minify( "#{ render 'stylesheetz/css/basics/boiler2'  }" ) ) %>

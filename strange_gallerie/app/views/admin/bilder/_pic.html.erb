@@ -11,6 +11,11 @@
 <a class="bild_box" href="<%= admin_bild_path(bild) %>" id="<%= dom_id(bild)%>">
 	<%#= image_tag bild.file.thumb(bild.file_cropping).thumb("#{thumb_breite}x#{thumb_hoehe}").url, 
 					:style => "margin: #{(200-thumb_hoehe)/2}px #{(200-thumb_breite)/2}px" %>
+	<% if !bild.file_cropping.blank? %>
 	<%= image_tag bild.file.thumb(bild.file_cropping).thumb("#{thumb_breite}x#{thumb_hoehe}").url, 
 					:style => "margin: #{(gpic_height-thumb_hoehe)/2}px #{(gpic_width-thumb_breite)/2}px" %>
+	<% else %> 
+	<%= image_tag bild.file.thumb("#{thumb_breite}x#{thumb_hoehe}#").url, 
+					:style => "margin: #{(gpic_height-thumb_hoehe)/2}px #{(gpic_width-thumb_breite)/2}px" %>
+	<% end %>
 </a>

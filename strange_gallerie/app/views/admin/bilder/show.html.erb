@@ -72,7 +72,12 @@
 												:class => 'lighbox_nav '+Strangecms::Stylez::Config[:admin_lightboxNav_style].to_s,
 												:url => admin_bild_path(@next_pic) ) %>
 					</div>
-					<%= image_tag @bild.file.thumb(@bild.file_cropping).thumb("#{xb}x#{xh}").url %>
+					
+					<% if !@bild.file_cropping.blank? %>
+						<%= image_tag @bild.file.thumb(@bild.file_cropping).thumb("#{xb}x#{xh}").url %>
+					<% else %> 
+						<%= image_tag @bild.file.thumb("#{xb}x#{xh}#").url %>
+					<% end %>
 					<div class="clearfix"></div>
 				</div>
 			</div>
@@ -167,6 +172,8 @@
 		<div id="js_magick_place"></div>
 		
 		<%= render 'admin/tags/tags_show', :data => @bild %>
+		
+		<%= render 'admin/kategorien/kategorie_show', :data => @bild %>
 		
 	</div>
 </div>

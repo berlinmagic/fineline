@@ -9,7 +9,7 @@
 				<% news.news_abschnitte.each do |na| %>
 					<% @nc += na.inhalt.to_s %>
 				<% end %>
-				<li><%= link_to raw("<div class='news_headline'>#{truncate(news_bar.headline, :length => 27, :omission => "...")}</div><div class='news_info'>#{news_bar.datum.strftime('%d.%m.')} von #{news_bar.schreiber}</div><div class='news_vorschau_text'>#{ truncate_html(@nc, :length => 90, :omission => ' ...')}</div>"), "#{news_bar.news_site_slug}#{news_bar.slug}", :class => "news_preview_link #{ 'aktiv' if news_bar == news}"%></li>
+				<li><%= link_to raw("<div class='news_headline'>#{truncate(news_bar.headline, :length => 23, :omission => ". ...")}</div><div class='news_info'>#{news_bar.datum.strftime('%d.%m.')} von #{news_bar.schreiber}</div><div class='news_vorschau_text'>#{ truncate_html(@nc, :length => 90, :omission => ' ...')}</div>"), "#{news_bar.news_site_slug}#{news_bar.slug}", :class => "news_preview_link #{ 'aktiv' if news_bar == news}"%></li>
 			<% end %>
 			
 	</ul>

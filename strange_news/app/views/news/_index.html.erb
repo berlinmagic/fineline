@@ -1,14 +1,16 @@
 <% @news ||= News.aktiv.page(params[:page]).per(Strangecms::Newz::Config[:news_per_page]) %>
 
+<% if @paginator_needed  %>
 <div class="in_box">
 	<%= paginator_wrapper( @news, :params => {:controller => 'news', :action => 'index'} ) %>
 </div>
+<% end %>
 
 <% @news.each_with_index do |news,index| %>
 	<%= render 'news', :news => news, :index => index, :count => @news.count %>
 <% end %>
 
-<% if @news.count > 4 %>
+<% if ( @news.count > 4 ) && @paginator_needed %>
 
 	<div class="in_box">
 		<%= paginator_wrapper( @news, :params => {:controller => 'news', :action => 'index'} ) %>
