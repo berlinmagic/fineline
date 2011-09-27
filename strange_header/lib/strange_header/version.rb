@@ -1,5 +1,5 @@
 module StrangeHeader
-  VERSION = "0.0.26"
+  VERSION = "0.0.27"
   def self.version
     VERSION
   end

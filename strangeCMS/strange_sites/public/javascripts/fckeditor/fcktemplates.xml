@@ -61,42 +61,41 @@
 			]]>
 		</Html>
 	</Template>
-	<Template title="Text and Table" image="template3.gif">
-		<Description>A title with some text and a table.</Description>
+	<Template title="3 Spalten" image="template3.gif">
+		<Description>einfaches 3 Spalten-Layout</Description>
 		<Html>
 			<![CDATA[
-				<table align="left" width="80%" border="0" cellspacing="0" cellpadding="0"><tr><td>
-					<h3>Title goes here</h3>
-					<p>
-					<table style="FLOAT: right" cellspacing="0" cellpadding="0" width="150" border="1">
-						<tbody>
-							<tr>
-								<td align="center" colspan="3"><strong>Table title</strong></td>
-							</tr>
-							<tr>
-								<td>&nbsp;</td>
-								<td>&nbsp;</td>
-								<td>&nbsp;</td>
-							</tr>
-							<tr>
-								<td>&nbsp;</td>
-								<td>&nbsp;</td>
-								<td>&nbsp;</td>
-							</tr>
-							<tr>
-								<td>&nbsp;</td>
-								<td>&nbsp;</td>
-								<td>&nbsp;</td>
-							</tr>
-							<tr>
-								<td>&nbsp;</td>
-								<td>&nbsp;</td>
-								<td>&nbsp;</td>
-							</tr>
-						</tbody>
-					</table>
-					Type the text here</p>
-				</td></tr></table>
+				<div class="drei_spalt">
+					<div class="spalt eins">
+						<p>Erste</p>
+					</div>
+					<div class="spalt zwei">
+						<p>Zweite</p>
+					</div>
+					<div class="spalt drei">
+						<p>Dritte</p>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			]]>
+		</Html>
+	</Template>
+	<Template title="3 Spalten dunkel" image="template3.gif">
+		<Description>dunkles 3 Spalten-Layout</Description>
+		<Html>
+			<![CDATA[
+				<div class="drei_spalt black_bg">
+					<div class="spalt eins">
+						<p>Erste</p>
+					</div>
+					<div class="spalt zwei">
+						<p>Zweite</p>
+					</div>
+					<div class="spalt drei">
+						<p>Dritte</p>
+					</div>
+					<div class="clearfix"></div>
+				</div>
 			]]>
 		</Html>
 	</Template>

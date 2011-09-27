@@ -17,7 +17,7 @@ gem 'sqlite3'
 gem "mysql2", "0.2.11"
 
 
-gem 'strangecms', '>= 0.1.35'
+gem 'strangecms', '>= 0.1.36'
 
 gem 'strange_backup', '>= 0.0.16'
 
@@ -29,11 +29,11 @@ gem 'strange_fineform', '>= 0.0.13'
 
 gem 'strange_gallerie', '>= 0.0.17'
 
-gem 'strange_header', '>= 0.0.26'
+gem 'strange_header', '>= 0.0.27'
 
 gem 'strange_kontaktform', '>= 0.0.15'
 
-gem 'strange_news', '>= 0.0.15'
+gem 'strange_news', '>= 0.0.16'
 
 # => gem 'strange_newsletter', '>= 0.0.5'
 
@@ -44,7 +44,7 @@ gem 'strange_stylez', '>= 0.0.7'
 
 # => ### Theme - GEMs ###
 
-gem 'strange_theme_fomu', '>= 0.0.7'
+gem 'strange_theme_fomu', '>= 0.0.8'
 
 
 

@@ -48,7 +48,7 @@ class StrangeNewsHooks < Strangecms::ThemeSupport::HookListener
   # => end
   
   insert_after :finestyles do
-    "<%= render 'stylesheetz/news' %>"
+    "<%= render 'stylesheetz/module/news' %>"
   end
   
 end

@@ -29,19 +29,24 @@ class BaseController < ApplicationController
     expire_page	'/system/finestyle.css'
     expire_page	'/system/admin_finestyle.css'
     expire_page	'/system/editor_finestyle.css'
-    redirect_to :back, :notice => 'Stylez expired!'
+    redirect_to :back, :notice => 'Stylesheetz wurden aktuallisiert!'
   end
   
   def expire_finescripts
     expire_page	'/system/finescript.js'
     expire_page	'/system/admin_finescript.js'
-    redirect_to :back, :notice => 'Scriptz expired!'
+    redirect_to :back, :notice => 'Javascriptz wurden aktuallisiert!'
   end
   
   def editor_config
     respond_to do |format|
       format.js { render :template => 'javascriptz/fck_custom_config' }
     end
+  end
+  
+  def restart_fineline
+    FileUtils.touch "#{Rails.root}/tmp/restart.txt"
+    redirect_to :back, :notice => 'Neustart des Servers durchgeführt!'
   end
   
   def grid_test

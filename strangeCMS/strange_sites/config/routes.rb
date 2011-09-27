@@ -57,6 +57,8 @@ Rails.application.routes.draw do
     match '/expire_finestyles' => "base#expire_finestyles"
     match '/expire_finescripts' => "base#expire_finescripts"
     
+    match '/restart_fineline' => 'base#restart_fineline'
+    
     match '/grid_test' => "base#grid_test"
     match 'nestesd_seiten_reorder' => 'admin/seiten#reorder_nested_stuff'
   end

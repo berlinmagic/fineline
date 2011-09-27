@@ -94,26 +94,20 @@
 				<%= yield :modul_sidebar %>
 
 				<%= hook :strange_sidebar_test do %>
+					<% if current_user && site_master %>
 					<div class="side_box dbx-box">
-						<div class="sidebar_head dbx-handle" title="fineline-Sidebar">fineline-Sidebar</div>
+						<div class="sidebar_head dbx-handle" title="fineline-Sidebar">Admin-Toolz</div>
 						<ul class='sidebar dbx-content'>
-							<% if current_user && site_master %>
+							
 							<li><p><span class="norm1">Controller:</span> <span class="norm2"><%= controller.controller_name %></span></p></li>
 							<li><p><span class="norm1">Action:</span> <span class="norm2"><%= controller.action_name -%></span></p></li>
-							<li><%= link_to ' ! reload Stylez ! ', expire_finestyles_path %></li>
-							<li><%= link_to ' ! reload Scriptz ! ', expire_finescripts_path %></li>
-							<% end %>
-							<% if current_user %>
-								<li><%= link_to 'neue Seite', new_seite_url %></li>
-							<% else %>
-
-								<li><p>Beispiel Sidebar</p></li>
-								<li><p>Modul-Sidebars:</p></li>
-								<li><p>- News_Modul</p></li>
-								<li><p>- Bild_Modul</p></li>
-							<% end %>
+							<li><%= link_to ' ! C S S - reload ! ', expire_finestyles_path %></li>
+							<li><%= link_to ' !  J S  - reload ! ', expire_finescripts_path %></li>
+							<li><%= link_to ' ! restart Server ! ', restart_fineline_path %></li>
+							<li><%= link_to ' + neue Seite erstellen', new_seite_url %></li>
 						</ul>
 					</div>
+					<% end %>
 				<% end %>
 
 				<%= hook :strange_sidebar %>

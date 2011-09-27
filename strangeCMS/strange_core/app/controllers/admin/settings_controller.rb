@@ -53,7 +53,7 @@ class Admin::SettingsController < Admin::BaseController
             expire_page	'/system/admin_finestyle.css'
             expire_page	'/system/editor_finestyle.css'
             flash.now[:notice] = I18n.t('strange_preferences.settings_updated')
-            format.html { render :template => "admin/settings/#{@name}" }
+            format.html { redirect_to "/admin/settings/#{@name}", :notice => I18n.t('strange_preferences.settings_updated') }
             format.js { render :template => "admin/settings/#{@name}_script" }
         else
           if Strangecms::Config.set(params[:preferences])
@@ -68,12 +68,10 @@ class Admin::SettingsController < Admin::BaseController
               expire_page	'/system/finescript.js'
               expire_page	'/system/admin_finescript.js'
               FileUtils.touch "#{Rails.root}/tmp/restart.txt"
-            end
-            flash.now[:notice] = I18n.t('strange_preferences.settings_updated')
-            format.html { render :template => "admin/settings/#{@name}" }
+            end 
+            format.html { redirect_to "/admin/settings/#{@name}", :notice => I18n.t('strange_preferences.settings_updated') }
           else
-            flash.now[:alert] = I18n.t('strange_preferences.updated_error')
-            format.html { render :template => "admin/settings/#{@name}" }
+            format.html { redirect_to "/admin/settings/#{@name}", :notice => I18n.t('strange_preferences.updated_error') }
           end
         end
       end
