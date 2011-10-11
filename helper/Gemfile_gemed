@@ -27,7 +27,7 @@ gem 'strange_comments', '>= 0.0.15'
 
 gem 'strange_fineform', '>= 0.0.13'
 
-gem 'strange_gallerie', '>= 0.0.19'
+gem 'strange_gallerie', '>= 0.0.20'
 
 gem 'strange_header', '>= 0.0.27'
 

@@ -125,10 +125,13 @@
 								<td>Aufnahme-Datum:</td>
 								<th><%= EXIFR::JPEG.new(@bild.file.file).date_time_original.strftime('%d.%m.%Y - %H:%M') if EXIFR::JPEG.new(@bild.file.file).date_time_original %></th>
 							</tr>
-							<tr>
-								<td>Änderungs-Datum:</td>
-								<th><%= EXIFR::JPEG.new(@bild.file.file).date_time.to_datetime.strftime('%d.%m.%Y - %H:%M') if EXIFR::JPEG.new(@bild.file.file).date_time.to_datetime %></th>
-							</tr>
+								<% if EXIFR::JPEG.new(@bild.file.file).date_time %>
+								<tr>
+									<td>Änderungs-Datum:</td>
+									<th><%= EXIFR::JPEG.new(@bild.file.file).date_time.to_datetime.strftime('%d.%m.%Y - %H:%M') if
+									 			EXIFR::JPEG.new(@bild.file.file).date_time.to_datetime %></th>
+								</tr>
+								<% end %>
 							<% elsif EXIFR::JPEG.new(@bild.file.file).date_time %>
 							<tr>
 								<td>Aufnahme-Datum:</td>
