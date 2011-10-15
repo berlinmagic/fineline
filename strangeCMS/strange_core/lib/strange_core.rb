@@ -25,3 +25,5 @@
   
   require 'cells'
   
+  require 'stylez/config'
+  

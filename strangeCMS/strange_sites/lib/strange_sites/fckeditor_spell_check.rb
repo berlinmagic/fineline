@@ -2,7 +2,8 @@
 class FckeditorSpellCheck
   cattr_accessor :language
 
-  @@language ||= "en_US"
+  # => @@language ||= "en_US"
+  @@language ||= "de_De"
 
   # call aspell and retrieve the results
   def self.check_spelling(text)

@@ -13,8 +13,8 @@
 # => end
 
 Array.class_eval do
+  
   def fine_paginated(*args)
-    "#{args.first} hello Dude"
     @page = args.first || 1
     @per_page = args[1] || 5
     @page_count = self.count / @per_page

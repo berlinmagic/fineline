@@ -6,7 +6,7 @@
   require 'strange_stylez_modul'
   # => require 'default_theme'
   
-  require 'stylez/config'
+  # => require 'stylez/config'
 
 
 module StrangeStylez
