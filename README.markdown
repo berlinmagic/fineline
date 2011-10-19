@@ -8,11 +8,11 @@ fineline is an GemSet, so it is fully modular.
 
 ## Usage
 
-	$ gem install strangecms			# => will install  strangecms, strange_core, strange_sites, strange_themes, strange_user
+	load Gemfile
 	
-	$ gem install strange_[modul] 		# => will install  the modul
+	$ bundle install
 	
-	$ rails g strangecms:install		# => will mirror all needed files, than migrate and seed database (development + production)
+	$ rails g strangecms:install		# => will mirror all needed files, than migrate and seed database (production & development if needed)
 	
 	$ rails server						# => start your new CMS
 	
