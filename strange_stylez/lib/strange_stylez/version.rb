@@ -1,5 +1,5 @@
 module StrangeStylez
-  VERSION = "0.0.8"
+  VERSION = "0.0.7"
   def self.version
     VERSION
   end
