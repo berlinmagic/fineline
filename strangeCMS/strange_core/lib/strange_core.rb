@@ -6,6 +6,7 @@
   
   require 'strangecms/core_ext/array'
   require 'strangecms/core_ext/string'
+  require 'strangecms/core_ext/email_validator'
   # => require 'strangecms/core_ext/rfc822'
 
   require 'strangecms/theme_support'
