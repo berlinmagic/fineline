@@ -1,0 +1,51 @@
+/* GOOGLE  */
+
+function showGooglePreview() {
+	var gp_text = $('#seite_meta_description').val();
+	var gp_titel = $('#seite_titel').val();
+	if (gp_titel.length > 69) {
+		gp_titel = gp_titel.substring(0,70);
+		gp_titel = $.trim(gp_titel).split(/\b[\s,\.-:;]*/);
+		gp_titel.pop();
+		gp_titel.push("<b>...</b>");
+		gp_titel = gp_titel.join(' ');
+	}
+	$('#pg_titel').html( gp_titel );
+	if ( gp_text.match(/[\n\r]/) ) {
+		var gp_text = gp_text.split(/[\n\r]/);
+
+		if (gp_text[0].length > 79) {
+			var gp_text1 = gp_text[0].substring(0,80);
+			gp_text1 = $.trim(gp_text1).split(/\b[\s,\.-:;]*/);
+			gp_text1.pop();
+			gp_text1.push("<b>...</b>");
+			gp_text1 = gp_text1.join(' ');
+		} else { var gp_text1 = gp_text[0] || gp_text || '' ; }
+		if (gp_text[1].length > 79) {
+			var gp_text2 = gp_text[1].substring(0,80);
+			gp_text2 = $.trim(gp_text2).split(/\b[\s,\.-:;]*/);
+			gp_text2.pop();
+			gp_text2.push("<b>...</b>");
+			gp_text2 = gp_text2.join(' ');
+		} else { var gp_text2 = gp_text[1] || '' ; }
+		$('#pg_text').html( gp_text1 +'<br/>'+ gp_text2 );
+	} else {
+		if (gp_text.length > 79) {
+			gp_text = gp_text.substring(0,80);
+			gp_text = $.trim(gp_text).split(/\b[\s,\.-:;]*/);
+			gp_text.pop();
+			gp_text.push("<b>...</b>");
+			gp_text = gp_text.join(' ');
+		} else {
+			gp_text = gp_text || '' ;
+		}
+		$('#pg_text').html( gp_text );
+	}
+}
+
+
+$('#seite_titel').change( showGooglePreview );
+
+$('#seite_meta_description').change( showGooglePreview );
+
+$('#gp_trigger').click( showGooglePreview );

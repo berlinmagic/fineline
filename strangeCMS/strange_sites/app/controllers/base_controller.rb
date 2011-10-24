@@ -5,7 +5,7 @@ class BaseController < ApplicationController
   
   caches_page :finestyle
   caches_page :finescript
-  # => caches_page :show_seite
+  #### => caches_page :show_seite # => 
   
   skip_before_filter :verify_authenticity_token, :only => ['elfinder']
   

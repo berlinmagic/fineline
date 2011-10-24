@@ -11,12 +11,9 @@
 <%= raw( fine_js_minify( "#{ render 'javascriptz/libs/jquery_form' }" ) ) %>
 <%= raw( fine_js_minify( "#{ render 'javascriptz/libs/jquery_remotipart' }" ) ) %>
 <%= raw( fine_js_minify( "#{ render 'javascriptz/libs/jquery_validate' }" ) ) %>
-
 <%#= raw( fine_js_minify( "#{ render 'javascriptz/libs/cbox' }" ) ) %>
 <%= raw( fine_js_minify( "#{ render 'javascriptz/libs/fineBox' }" ) ) %>
-
 <%#= raw( fine_js_minify( "#{ render 'javascriptz/libs/tooltip' }" ) ) %>
-
 <%= raw( fine_js_minify( "#{ render 'javascriptz/libs/plugins' }" ) ) %>
 <%= raw( fine_js_minify( "#{ render 'javascriptz/libs/backgroundPosition' }" ) ) %>
 <%= raw( fine_js_minify( "#{ render 'javascriptz/libs/flowplayer' }" ) ) %>
@@ -35,13 +32,12 @@
 <% if @script4 == 'admin' %>
 <%= raw( fine_js_minify( "#{ render 'javascriptz/libs/slist' }" ) ) %>
 <%= raw( fine_js_minify( "#{ hook :admin_js_scriptz }" ) ) %>
+<%= raw( fine_js_minify( "#{ render 'javascriptz/admin/fine_optik' }" ) ) %>
 <% end %>
-
 <% if @script4 == 'seite' %>
 	<%= raw( fine_js_minify( "#{ render 'javascriptz/libs/dbx' }" ) ) %>
 	<%= raw( fine_js_minify( "#{ render 'javascriptz/libs/jCrump' }" ) ) %>
 	<%= raw( fine_js_minify( "#{ render 'javascriptz/libs/jBreadCrumb' }" ) ) %>
-	
-	
+	<%= raw( fine_js_minify( "#{ render 'javascriptz/front/fine_optik' }" ) ) %>
 <% end %>
 /* ####################################     ..End of - generated - scripts     ######################################################### */

@@ -8,11 +8,11 @@ class StrangeUserHooks < Strangecms::ThemeSupport::HookListener
   
   insert_after :after_system_navigation, :partial => "devise/menu/login"
   
-  replace :user_part do
-    "<% if admin_check %>
-      <%= render 'navigation/user' %>
-     <% end %>"
-  end
+  # => replace :user_part do
+  # =>   "<% if admin_check %>
+  # =>     <%= render 'navigation/user' %>
+  # =>    <% end %>"
+  # => end
   
   insert_after :admin_main_right_navigation do
     "<%= link_to 'User', admin_users_url, :class => ('aktiv' if @aktivio == 'user') %>"

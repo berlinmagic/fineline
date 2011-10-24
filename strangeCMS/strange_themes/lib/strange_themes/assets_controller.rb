@@ -6,7 +6,9 @@ module StrangeThemes
     include StrangeThemes::CommonMethods
     include StrangeThemes::UrlHelpers
     
-    caches_action :images
+    caches_page :stylesheets
+    caches_page :javascripts
+    caches_page :images
     
     def stylesheets
       render_asset asset_path_for(params[:asset], 'stylesheets', params[:theme]), defaulft_asset_path_for(params[:asset], 'stylesheets'), app_asset_path_for(params[:asset], 'stylesheets'), mime_type_from(params[:asset])
@@ -74,7 +76,7 @@ module StrangeThemes
           # => send_file request.fullpath, :type => mime_type.to_s
           # => send_data File.read(Rails.root+'/public/'+request.fullpath), :disposition => 'inline', :type => mime_type
         else
-          send_file asset, :type => mime_type.to_s
+          send_file asset, :type => mime_type.to_s, :x_sendfile => true
           # => send_data File.read(asset), :disposition => 'inline', :type => mime_type
         end
       else
@@ -84,13 +86,13 @@ module StrangeThemes
     
     def render_asset(asset, default, app, mime_type)
       if File.exists?(asset)
-        send_file asset, :type => mime_type.to_s
+        send_file asset, :type => mime_type.to_s, :x_sendfile => true
         # => send_data File.read(asset), :disposition => 'inline', :type => mime_type
       elsif File.exists?(default)
-        send_file default, :type => mime_type.to_s
+        send_file default, :type => mime_type.to_s, :x_sendfile => true
         # => send_data File.read(default), :disposition => 'inline', :type => mime_type
       elsif File.exists?(app)
-        send_file app, :type => mime_type.to_s
+        send_file app, :type => mime_type.to_s, :x_sendfile => true
         # => send_data File.read(app), :disposition => 'inline', :type => mime_type
       else
         render :text => 'not found', :status => 404
@@ -102,19 +104,19 @@ module StrangeThemes
         if params[:InstanceName]
           render :template => Rails.root+'/public/'+request.fullpath.to_s
         else
-          send_file asset, :type => mime_type.to_s
+          send_file asset, :type => mime_type.to_s, :x_sendfile => true
         end
       elsif File.exists?(default)
         if params[:InstanceName]
           render :template => Rails.root+'/public/'+request.fullpath.to_s
         else
-          send_file default, :type => mime_type.to_s
+          send_file default, :type => mime_type.to_s, :x_sendfile => true
         end
       elsif File.exists?(app)
         if params[:InstanceName]
           render :template => Rails.root+'/public/'+request.fullpath.to_s
         else
-          send_file app, :type => mime_type.to_s
+          send_file app, :type => mime_type.to_s, :x_sendfile => true
         end
       else
         render :text => 'not found', :status => 404
