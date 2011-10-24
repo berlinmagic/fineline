@@ -1,6 +1,6 @@
 # encoding: utf-8
 class FinemailField < ActiveRecord::Base
-  include RFC822
+  # => include RFC822
   
   belongs_to :finemail
   
